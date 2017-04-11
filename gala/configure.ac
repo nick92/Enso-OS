@@ -299,6 +299,7 @@ data/Makefile
 data/icons/Makefile
 vapi/Makefile
 plugins/Makefile
+plugins/maskcorners/Makefile
 plugins/notify/Makefile
 plugins/zoom/Makefile
 po/Makefile.in

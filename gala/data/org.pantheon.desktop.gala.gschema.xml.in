@@ -89,10 +89,6 @@
 			<summary>Shortcut to move to first workspace</summary>
 			<description></description>
 		</key>
-		<key type="as" name="launch-whiskermenu">
-			<default><![CDATA[['Super_L']]]></default>
-			<summary>Launch Whisker Menu</summary>
-		</key>
 		<key type="as" name="switch-to-workspace-last">
 			<default><![CDATA[['<Super>End', '<Super>0']]]></default>
 			<summary>Shortcut to move to last workspace</summary>
