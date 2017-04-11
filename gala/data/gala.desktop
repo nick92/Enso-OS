@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Gala
+Exec=gala
+NoDisplay=true
+# name of loadable control center module
+X-GNOME-WMSettingsModule=metacity
+# name we put on the WM spec check window
+X-GNOME-WMName=Gala
+# back compat only 
+X-GnomeWMSettingsLibrary=metacity
+X-GNOME-Autostart-Phase=WindowManager
+X-GNOME-Provides=windowmanager
+X-GNOME-Autostart-Notify=true
+X-Ubuntu-Gettext-Domain=gala

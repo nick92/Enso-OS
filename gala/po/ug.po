@@ -1,0 +1,387 @@
+# Uyghur translation for gala
+# Copyright (c) 2016 Rosetta Contributors and Canonical Ltd 2016
+# This file is distributed under the same license as the gala package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gala\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-01-05 14:05+0000\n"
+"PO-Revision-Date: 2016-12-10 19:42+0000\n"
+"Last-Translator: ablimet <Unknown>\n"
+"Language-Team: Uyghur <ug@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-01-06 06:10+0000\n"
+"X-Generator: Launchpad (build 18302)\n"
+"Language: ug\n"
+
+#: ../src/WindowManager.vala:1636
+msgid "Does the display look OK?"
+msgstr "نورمال كۆرۈنىۋاتامدۇ؟"
+
+#: ../src/WindowManager.vala:1639
+msgid "Keep This Configuration"
+msgstr "بى تەڭشەكلەرنى ساقلاش"
+
+#: ../src/WindowManager.vala:1640
+msgid "Restore Previous Configuration"
+msgstr "ئىلگىرىكى تەڭشەكلەرنى ئەسلىگە كەلتۈرۈش"
+
+#: ../src/Widgets/WindowMenu.vala:56
+msgid "Minimize"
+msgstr "كىچىكلىتىش"
+
+#: ../src/Widgets/WindowMenu.vala:71
+msgid "Move"
+msgstr "يۆتكەش"
+
+#: ../src/Widgets/WindowMenu.vala:78
+msgid "Resize"
+msgstr "چوڭ-كىچىكلىكىنى ئۆزگەرتىش"
+
+#: ../src/Widgets/WindowMenu.vala:85
+msgid "Always on Top"
+msgstr "ھەمىشە ئەڭ ئۈستىدە"
+
+#: ../src/Widgets/WindowMenu.vala:94
+msgid "Always on Visible Workspace"
+msgstr "ھەمىشە كۆرگىلى بولىدىغان خىزمەت رايونىدا"
+
+#: ../src/Widgets/WindowMenu.vala:103
+msgid "Move to Workspace Left"
+msgstr "سول تەرەپتىكى خىزمەت رايونىغا يۆتكەش"
+
+#: ../src/Widgets/WindowMenu.vala:111
+msgid "Move to Workspace Right"
+msgstr "ئوڭ تەرەپتىكى خىزمەت رايونىغا يۆتكەش"
+
+#: ../src/Widgets/WindowMenu.vala:119
+msgid "Close"
+msgstr "تاقاش"
+
+#: ../src/Widgets/WindowMenu.vala:131
+msgid "Unmaximize"
+msgstr "ئەسلىگە قايتۇرۇش"
+
+#: ../src/Widgets/WindowMenu.vala:131
+msgid "Maximize"
+msgstr "چوڭايتىش"
+
+#: ../data/gala-multitaskingview.desktop.in.h:1
+msgid "Multitasking View"
+msgstr "كۆپ ۋەزىپىلىك كۆرۈنۈش"
+
+#: ../data/gala-multitaskingview.desktop.in.h:2
+msgid "View all open windows and workspaces"
+msgstr "بارلىق ئىچىلغان كۆزنەكلەرنى ۋە خىزمەت رايونلىرىنى كۆرۈش"
+
+#: ../data/gala-other.desktop.in.h:1
+msgid "Other"
+msgstr "باشقا"
+
+#: ../data/gala-other.desktop.in.h:2
+msgid "Fallback desktop file for notifications from outdated applications."
+msgstr ""
+"ۋاقتى ئۆتكەن ئەپلەردىن ئۈستەليۈزى ئۇقتۇرۇش ھۆججەتلىرىنى قايتۇرۇپ كىلىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:1
+msgid "Action for the top left corner"
+msgstr "سول تەرەپ ئۈستى بۇلۇڭنىڭ ھەركىتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:2
+msgid "Algorithm for window overview layout"
+msgstr "كۆزنەك لايىھەسىنىڭ ئومۇمىي كۆرۈنۈشى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:3
+msgid "Choose the algorithm used for exposing the windows"
+msgstr "كۆزنەك ئورۇنلاشتۇرۇش لايىھەسىنى تاللاڭ"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:4
+msgid "Action for the top right corner"
+msgstr "ئوڭ تەرەپ ئۈستى بۇلۇڭنىڭ ھەركىتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:5
+msgid "Action for the bottom left corner"
+msgstr "سول تەرەپ ئاستى بۇلۇڭنىڭ ھەركىتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:6
+msgid "Action for the bottom right corner"
+msgstr "ئوڭ تەرەپ ئاستى بۇلۇڭنىڭ ھەركىتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:7
+msgid ""
+"The command that will be executed for the hotcorner action 'custom-command' "
+"or multiple"
+msgstr ""
+"قىزىق بۇلۇڭنىڭ ھەركىتىنى ئىجرا قىلىدىغان ئۆزگەرتىلگەن كوماندا ياكى كۆپ "
+"قاتلاملىق كوماندا"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:8
+msgid ""
+"If you just put a single command, it will be used for every hotcorner "
+"assigned to 'custom-command'. If you instead use the pattern 'hotcorner-"
+"topleft:command;;hotcorner-bottomright:command' the specific commands will "
+"be used per hotcorner. Possible identifiers are 'hotcorner-[topleft; "
+"topright; bottomleft; bottomright]' followed by a ':' and then the command. "
+"';;' is used as delimiter between command defintions."
+msgstr ""
+"ئەگەر بىرلا كوماندا كىرگۈزسىڭىز، ئۇ ھالدا بۇ كوماندا ’ئۆزگەرتىلگەن كوماندا‘ "
+"قىلىپ بەلگىلەنگەن بارلىق قىزىق نۇقتىلارنىڭ ھەركىتىنى ئىجرا قىلىشقا "
+"ئىشلىتىلىدۇ。ئەگەر سىز ’قىزىق نۇقتا-سول ئۈستى بۇلۇڭ：كوماندا؛ قىزىق نۇقتا ئوڭ "
+"ئاستى بۇلۇق：كوماندا‘ ئەندىزىسىنى ئىشلەتسىڭىز ھەربىر بۇلۇڭنىڭ مەخسۇس "
+"كوماندىسى ئىجرا بولىدۇ. \"قىزىق نۇقتا- [سول ئۈستى بۇلۇڭ؛ ئوڭ ئۈستى بۇلۇڭ؛ "
+"سول ئاستى بۇلۇڭ؛ ئوڭ ئاستى بۇلۇڭ\" قاتارلىق سۆزلەرنى ئىشلەتسىڭىز بولىدۇ، ۋە "
+"ئوخشىمىغان كوماندىلارنىڭ ئارىسىنى ئېنگلىزچە \";\"بىلەن ئايرىپ يىزىڭ."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:9
+msgid "Enable edge tiling when dropping windows on screen edges"
+msgstr ""
+"كۆزنەك ئىكراننىڭ گىرۋىكىگە يىقىنلاشقاندا ئاپتوماتىك جىپىسلىشىش ئىقتىدارىنى "
+"قوزغىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:10
+msgid ""
+"If enabled, dropping windows on vertical screen edges maximizes them "
+"vertically and resizes them horizontally to cover half of the available "
+"area. Dropping windows on the top screen edge maximizes them completely."
+msgstr ""
+"بۇ ئىقتىدارنى قوزغاتقان ۋاقىتتا، كۆزنەكنى ئىكراننىڭ سول گىرۋىكىگە "
+"يىقىنلاشتۇرسىڭىز،كۆزنەك ئاپتوماتىك ھالدا ئىكراننىڭ ئوڭ ياكى سول يىرىمىنى "
+"پۈتۈن ئىگىلەيدۇ؛ ئەگەر كۆزنەكنى ئىكراننىڭ ئۈستى گىرۋىكىگە يىقىنلاشتۇرسىڭىز، "
+"كۆزنەك ئاپتوماتىك ھالدا پۈتۈن ئىكراننى ئىگىلەيدۇ."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:11
+msgid "Panel main menu action"
+msgstr "تاختا ئاساسىي تىزىملىك ھەركىتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:12
+msgid ""
+"Sets the command to run when the panel-main-menu keybinding is pressed"
+msgstr ""
+"panel-main-menu كۇنۇپكىلىرى تەڭ بىسىلغان ۋاقىتتا بۇ كوماندىنى ئىجرا "
+"قىلىدىغان قىلىپ تەڭشەش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:13
+msgid "Enable dynamic workspace instead of static ones"
+msgstr ""
+"جىم ھالەتتىكى خىزمەت رايونىنى ئىشلەتمەي ھەركەتچان خىزمەت رايونىنى قوزغىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:14
+msgid ""
+"Use a dynamically increasing or decreseasing number, as needed, of "
+"workspaces instead of a static, fixed number"
+msgstr ""
+"مۇقىم، ئۆزگەرمەيدىغان سان ئىشلەتمەي، ھەركەتچان چوڭىيىدىغان ياكى "
+"كىچىكلەيدىغان سان ئىشلىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:15
+msgid "Names that are recognized as dock windows for the window switcher"
+msgstr "كۆزنەك ئالماشتۇرغۇچ تەرىپىدىن dock كۆزنەكلىرى دەپ تونۇلغان ئىسىملار"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:16
+msgid ""
+"When launching the window-switcher, gala iterates over this list and "
+"attempts to find a window matching the names. If it does, it will hide this "
+"window and fade it back in, once the the switcher is closed."
+msgstr ""
+"كۆزنەك ئالماشتۇرغۇچنى قوزغاتقان ۋاقىتتا،Gala بۇ تىزىمكىكتىن بۇ ئىسىم بىلەن "
+"ماس كىلىدىغان كۆزنەكنى ئاختۇرىدۇ. ئەگەر تاپالىسا بۇ كۆزنەكنى يوشۇرۇپ قويىدۇ، "
+"ۋە كۆزنەك ئالماشتۇرغۇچ تاقالغاندىن كىيىن قايتا كۆرسىتىدۇ."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:17
+msgid "Shortcut to move to first workspace"
+msgstr "تۇنجى خىزمەت رايونىغا يۆتكەشنىڭ قولاي كۇنۇپكىسى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:18
+msgid "Shortcut to move to last workspace"
+msgstr "ئاخىرقى خىزمەت رايونىغا يۆتكەشنىڭ قولاي كۇنۇپكىسى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:19
+msgid "Shortcut to move the current window to first workspace"
+msgstr "نۆۋەتتىكى كۆزنەكنى بىرىنچى خىزمەت رايونىغا يۆتكەشنىڭ قولاي كۇنۇپكىسى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:20
+msgid "Shortcut to move the current window to last workspace"
+msgstr "نۆۋەتتىكى كۆزنەكنى ئاخىرقى خىزمەت رايونىغا يۆتكەشنىڭ قولاي كۇنۇپكىسى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:21
+msgid "Zoom in"
+msgstr "چوڭايتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:22
+msgid "Zoom out"
+msgstr "كىچىكلىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:23
+msgid "Shortcut to open the window overview"
+msgstr "كۆزنەكنىڭ ئومۇمىي كۆرۈنىشىنى ئىچىشنىڭ قولاي كۇنۇپكىسى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:24
+msgid "Shortcut to open the window overview for all windows"
+msgstr "بارلىق كۆزنەكلەرنىڭ ئومۇمىي كۆرۈنىشىنى ئىچىشنىڭ قولاي كۇنۇپكىسى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:25
+msgid "Cycle to the next workspace to the right or to back to the first"
+msgstr ""
+"دەۋرىي ھالدا كىيىنكى خىزمەت رايونىغا ياكى بىرىنچى خىزمەت رايونىغا ئالماشتۇرۇش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:26
+msgid "Cycle to next keyboard layout"
+msgstr "دەۋرىي ھالدا كىيىنكى كۇنۇپكا تاختىسى لايىھەسىگە ئالماشتۇرۇش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:27
+msgid "Cycle to previous keyboard layout"
+msgstr "دەۋرىي ھالدا ئالدىنقى كۇنۇپكا تاختىسى لايىھەسىگە ئالماشتۇرۇش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:28
+msgid "Attach modal dialogs"
+msgstr "modal لىك دىئالوگ كۆزنىكى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:29
+msgid ""
+"When true, instead of having independent titlebars, modal dialogs appear "
+"attached to the titlebar of the parent window and are moved together with "
+"the parent window."
+msgstr ""
+"قىممىتى راسىت بولغاندا، modal دىئالوگ كۆزنىكى ئاتا كۆزنەكنىڭ ماۋزۇ سىتونىغا "
+"ئەگىشىپ كۆرۈنىدۇ، ۋە ئاتا كۆزنەككە ئەگىشىپ يۆتكىلىدۇ، ئايرىم ماۋزۇ سىتونى "
+"ئىشلەتمەيدۇ."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:30
+msgid "Arrangement of buttons on the titlebar"
+msgstr "ماۋزۇ سىتونىدىكى كۇنۇپكىلارنىڭ ئورۇنلاشتۇرۇلىشى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:31
+msgid ""
+"Arrangement of buttons on the titlebar. The value should be a string, such "
+"as \"menu:minimize,maximize,spacer,close\"; the colon separates the left "
+"corner of the window from the right corner, and the button names are comma-"
+"separated. Duplicate buttons are not allowed. Unknown button names are "
+"silently ignored so that buttons can be added in future metacity versions "
+"without breaking older versions. A special spacer tag can be used to insert "
+"some space between two adjacent buttons."
+msgstr ""
+"ماۋزۇ سىتونىدىكى كۇنۇپكىلارنىڭ ئورۇنلاشتۇرۇش ئەھۋالى. ئەگەر قىممىت ھەرپ-"
+"بەلگە تىزىقى بولسا، ”تىزىملىك： كىچىكلىتىش، چوڭايتىش، ئوتتۇراھال قىلىش، "
+"تاقاش“ دىگەندەك، قوش چىكىت كۆزنەكنىڭ سول ئۈستى بۇلۇڭى بىلەن ئوڭ ئۈستى "
+"بۇلۇڭىنى ئايرىدۇ。 كۇنۇپكىنىڭ تەكرار بولىشىغا بولمايدۇ。نامەلۇم كۇنۇپكا "
+"قىممىتى كۈچكە ئىگە بولمايدۇ، بۇنداق قىلغاندا كىيىنكى metacity نەشىرىدە "
+"كۇنۇپكىنى جىقلاتقاندا كونا نەشىرىنى بۇزۇۋەتمەيدۇ。 ئالاھىدە بوشلۇق خەتكۈچى "
+"بىلەن كۇنۇپكىلارنىڭ ئارىسىدىكى بوشلۇقنى چوڭايتىشقا بولىدۇ。"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:32
+msgid "Make parent windows that spawn a modal attached dialog being dimmed"
+msgstr "modal كۆزنەك ئىچىلغان ۋاقىتتا ئاتا كۆزنەكنى خىرەلەشتۈرۈش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:33
+msgid ""
+"The opacity of the windows located in the background in the alt-tab-switcher."
+msgstr ""
+"alt ۋە tab كۇنۇپكىسىنى تەڭ بىسىپ كۆزنەك ئالماشتۇرغاندا ۋاقىتتا ئارقىسىدىكى "
+"كۆزنەكنىڭ سۈزۈكلۈك دەرىجىسى."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:34
+msgid "Background-image used in the workspace-switcher"
+msgstr "خىزمەت رايونىنى ئالماشتۇرغۇچتا ئىشلىتىلگەن ئارقا كۆرۈنۈش رەسىمى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:35
+msgid "Enable Animations"
+msgstr "ھەركەتلىك رەسىمنى قوزغىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:36
+msgid ""
+"Whether animations should be displayed. Note: This is a global key, it "
+"changes the behaviour of the window manager, the panel etc."
+msgstr ""
+"ھەركەتلىك رەسىمنى كۆرسىتەمدۇ؟ دىققەت: بۇ بىر ئومۇمىي رايون كۇنۇپكىسى، ئۇ "
+"كۆزنەك باشقۇرغۇچ، تاختاي قاتارلىقلارنىڭ ھەممىسىنىڭ ھەركىتىنى ئۆزگەرتىدۇ."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:37
+msgid "Duration of the snap animation as used by maximize/unmaximize"
+msgstr "چوڭايتىش/كىچىكلىتىش ئىشلەتكەن ھەركەتلىك رەسىمنىڭ چىقىش ۋاقتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:38
+msgid "Duration of the close animation"
+msgstr "تاقاشنىڭ ھەركەتلىك رەسىمىنىڭ ۋاقتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:39
+msgid "Duration of the minimize animation"
+msgstr "كىچىكلىتىشنىڭ ھەركەتلىك رەسىم ۋاقتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:40
+msgid "Duration of the workspace switch animation"
+msgstr "خىزمەت رايونىنى ئالماشتۇرۇشنىڭ ھەركەتلىك رەسىم ۋاقتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:41
+msgid "Duration of the menu mapping animation"
+msgstr "تىزىملىك خەرىتىسىنىڭ ھەركەتلىك رەسىم ۋاقتى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:42
+msgid "Defines the shadow of normal focused windows"
+msgstr "نورمال فوكۇس كۆزنەك سايىسىنى بىكىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:43
+msgid ""
+"The first value is the radius of the blur of the shadow, the second one the "
+"top fade (which is usually just -1), the third and fourth the x- and y-"
+"offset and the last the opacity. So [blur-radius, top-fade, x-offset, y-"
+"offset, opacity]"
+msgstr ""
+"بىرىنچى قىممەت سايىنىڭ رادىئۇس قىممىتى، ئىككىنجىسى ئۈستىنىڭ خىرەلىشىش "
+"قىممىتى(قىممىتى ئادەتتە 1-)، ئۈچىنجى ۋە تۆتىنجىسى گورىزۇنتال ۋە ۋېرتىكال "
+"سىلجىش قىممىتى، ئاخىرقىسى سۈزۈكلۈك دەرىجىسى قىممىتى。"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:44
+msgid "Defines the shadow of a normal unfocused window"
+msgstr "نورمال غەيرى فوكۇس كۆزنەكنىڭ سايە رادىئۇسىنى بەلگىلەش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:45
+msgid "See normal-focused"
+msgstr "نورمال فوكۇسقا قاراڭ"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:46
+msgid "Defines the shadow of a menu"
+msgstr "تىزىملىك سايىسىنى بەلگىلەش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:47
+msgid "Defines the shadow of a focused dialog"
+msgstr "فوكۇس دىئالوگ كۆزنىكىنىڭ سايىسىنى بەلگىلەش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:48
+msgid "Defines the shadow of an unfocused dialog"
+msgstr "غەيرى فوكۇس دىئالوگ كۆزنىكىنىڭ سايىسىنى بەلگىلەش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:49
+msgid "Disable all notifications"
+msgstr "ھەممە ئۇقتۇرۇشلارنى چەكلەش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:50
+msgid "Enable bubbles"
+msgstr "گاز كۆپۈكچىسىنى قوزغىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:51
+msgid "Enable sounds"
+msgstr "ئاۋازنى قوزغىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:52
+msgid "Show missed notifications in notification center"
+msgstr "ئۇقتۇرۇش مەركىزىدە ئوقۇلمىغان ئۇقتۇرۇشلارنى كۆرسىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:53
+msgid "Enable rounded corner mask"
+msgstr "يۇمىلاق بۇلۇڭلۇق كۆزنەكنى قوزغىتىش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:54
+msgid "Corner radius"
+msgstr "بۇلۇڭ رادىئۇسى"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:55
+msgid "Disable corner mask on fullscreen"
+msgstr "پۈتۈن ئىكراندا كۆرسەتكەندە يۇمىلاق بۇلۇڭ ئىشلىتىشنى چەكلەش"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:56
+msgid "Only show corner masks on primary monitor"
+msgstr "ئاساسىي كۆزەتكۈچتىلا يۇمىلاق بۇلۇڭلۇق كۆزنەكنى كۆرسىتىش"

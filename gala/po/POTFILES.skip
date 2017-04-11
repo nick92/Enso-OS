@@ -1,0 +1,3 @@
+data/org.pantheon.desktop.gala.gschema.xml
+src/WindowManager.c
+src/Widgets/WindowMenu.c

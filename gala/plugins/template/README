@@ -1,0 +1,73 @@
+
+Note for compilition
+--------------------
+If you want your own plugin within this source tree
+don't forget to add the new subdirectory to the plugins' Makefile.am
+SUBDIRS list and add your Makefile to the list of Makefiles found at
+about the end of the configure.ac file AC_CONFIG_FILES.
+The API is currently internal until the API is finalized, so you have
+to build it in this source tree.
+
+Some more useful notes on developing plugins:
+
+Modal Mode
+----------
+If you want to display large elements that can be toggled instead of small overlays,
+you can use wm.begin_modal() to make Gala enter modal mode. In this mode, you'll be
+able to receive key events and all mouse events will be delivered regardless of the
+region you have set. Don't forget to call wm.end_modal() and provide an obvious way
+to exit modal mode for the user, otherwise he will be stuck and can only restart
+Gala.
+
+Keybindings
+-----------
+To add keybindings, you'll need a gsettings schema. You can take a look at Gala's
+schema in data/org.pantheon.desktop.gschema.xml for an example. You'll also find
+how to correctly declare shortcut keys in that file. Once you got this file ready
+it's pretty easy. Just enable its installation in cmake, the relevant is commented
+out in this template, and call wm.get_screen().get_display().add_keybinding().
+The keybinding function takes the name of the shortcut key in your 
+schema, then a GSettings instance for that schema, which can be obtained with
+'new GLib.Settings("org.pantheon.gala.plugins.my-plugin")', then some flags, for
+which you can almost always use 0, refer to the vapi for more details, and finally
+your function as arguments. Its delegate is:
+
+public delegate void KeyHandlerFunc (Meta.Display display, Meta.Screen screen,
+	Meta.Window? window, X.Event event, Meta.KeyBinding binding);
+
+So it'd be something like
+
+void initialize (Gala.WindowManager wm)
+{
+	[...]
+	var display = wm.get_screen ().get_display ();
+	var schema = new GLib.Settings ("org.pantheon.desktop.gala.plugins");
+	display.add_keybinding ("my-shortcut", schema, 0, my_handler);
+	[...]
+}
+void my_handler (Meta.Display display, Meta.Screen screen, Meta.Window? window,
+	X.Event event, Meta.KeyBinding binding)
+{
+	print ("Shortcut hit! D:");
+}
+void destroy ()
+{
+	wm.get_screen ().get_display ().remove_keybinding ("my-shortcut");
+}
+
+Overriding default keybindings
+------------------------------
+Libmutter allows you to override exisiting shortcuts, which is a lot easier than
+adding new ones. All you have to do is:
+
+Keybinding.set_custom_handler ("shortcut-name", my_handler);
+
+The signature for my_handler is the same as above.
+
+More info
+---------
+A great source for exploring the possibilities of mutter's API is scrolling through
+the mentioned mutter vapi. In some cases you can find documentation on particular
+functions in the mutter source code. Just grep for their C names.
+
+*/

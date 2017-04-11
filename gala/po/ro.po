@@ -1,0 +1,397 @@
+# Romanian translation for beat-box
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the beat-box package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: beat-box\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-05 14:05+0000\n"
+"PO-Revision-Date: 2016-12-13 14:59+0000\n"
+"Last-Translator: Marius Albina <marius.albina@gmail.com>\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-01-06 06:10+0000\n"
+"X-Generator: Launchpad (build 18302)\n"
+"Language: ro\n"
+
+#: ../src/WindowManager.vala:1636
+msgid "Does the display look OK?"
+msgstr "Ecranul arată bine?"
+
+#: ../src/WindowManager.vala:1639
+msgid "Keep This Configuration"
+msgstr "Păstrează această configurație"
+
+#: ../src/WindowManager.vala:1640
+msgid "Restore Previous Configuration"
+msgstr "Restaurează configurația precedentă"
+
+#: ../src/Widgets/WindowMenu.vala:56
+msgid "Minimize"
+msgstr "Minimizează"
+
+#: ../src/Widgets/WindowMenu.vala:71
+msgid "Move"
+msgstr "Mută"
+
+#: ../src/Widgets/WindowMenu.vala:78
+msgid "Resize"
+msgstr "Redimensionează"
+
+#: ../src/Widgets/WindowMenu.vala:85
+msgid "Always on Top"
+msgstr "Mereu deasupra"
+
+#: ../src/Widgets/WindowMenu.vala:94
+msgid "Always on Visible Workspace"
+msgstr "Întotdeauna în spațiul de lucru vizibil"
+
+#: ../src/Widgets/WindowMenu.vala:103
+msgid "Move to Workspace Left"
+msgstr "Mută în spațiul de lucru din stânga"
+
+#: ../src/Widgets/WindowMenu.vala:111
+msgid "Move to Workspace Right"
+msgstr "Mută în spațiul de lucru din dreapta"
+
+#: ../src/Widgets/WindowMenu.vala:119
+msgid "Close"
+msgstr "Închide"
+
+#: ../src/Widgets/WindowMenu.vala:131
+msgid "Unmaximize"
+msgstr "Anulează maximizarea"
+
+#: ../src/Widgets/WindowMenu.vala:131
+msgid "Maximize"
+msgstr "Maximizează"
+
+#: ../data/gala-multitaskingview.desktop.in.h:1
+msgid "Multitasking View"
+msgstr "Privire multifuncțională"
+
+#: ../data/gala-multitaskingview.desktop.in.h:2
+msgid "View all open windows and workspaces"
+msgstr "Vizualizați toate ferestrele deschise și spațiile de lucru"
+
+#: ../data/gala-other.desktop.in.h:1
+msgid "Other"
+msgstr "Altele"
+
+#: ../data/gala-other.desktop.in.h:2
+msgid "Fallback desktop file for notifications from outdated applications."
+msgstr ""
+"Rezervă fişierele desktop pentru notificări din aplicaţiile care nu sunt la "
+"zi."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:1
+msgid "Action for the top left corner"
+msgstr "Acțiune în colțul din stânga sus"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:2
+msgid "Algorithm for window overview layout"
+msgstr "Algoritmul pentru schema ferestrei generale"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:3
+msgid "Choose the algorithm used for exposing the windows"
+msgstr "Alege algoritmul utilizat pentru expunerea ferestrelor"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:4
+msgid "Action for the top right corner"
+msgstr "Acțiune în colțul din dreapta sus"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:5
+msgid "Action for the bottom left corner"
+msgstr "Acțiune în colțul din stânga jos"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:6
+msgid "Action for the bottom right corner"
+msgstr "Acțiune în colțul din dreapta jos"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:7
+msgid ""
+"The command that will be executed for the hotcorner action 'custom-command' "
+"or multiple"
+msgstr ""
+"Comanda, care va fi executată pentru acțiunea colț fierbinte 'comandă-"
+"personalizată' sau multiplă"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:8
+msgid ""
+"If you just put a single command, it will be used for every hotcorner "
+"assigned to 'custom-command'. If you instead use the pattern 'hotcorner-"
+"topleft:command;;hotcorner-bottomright:command' the specific commands will "
+"be used per hotcorner. Possible identifiers are 'hotcorner-[topleft; "
+"topright; bottomleft; bottomright]' followed by a ':' and then the command. "
+"';;' is used as delimiter between command defintions."
+msgstr ""
+"Dacă ați pus doar o singură comandă, aceasta va fi utilizată pentru fiecare "
+"colţ fierbinte atribuit 'comenzii-personalizate'. În cazul în care utilizați "
+"în schimb modelul 'hotcorner-topleft:comanda;;hotcorner-bottomright:comanda' "
+"comenzile specifice vor fi utilizate pe colţul fierbinte. Posibili "
+"identificatori sunt 'hotcorner- [topleft;sus dreapta; stânga jos; dreapta "
+"jos]' urmat de ':' și apoi comanda. ';;' este folosită ca delimitator între "
+"definiții de comandă."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:9
+msgid "Enable edge tiling when dropping windows on screen edges"
+msgstr ""
+"Activați ţigla margine atunci când tragi ferestrele pe marginile ecranului"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:10
+msgid ""
+"If enabled, dropping windows on vertical screen edges maximizes them "
+"vertically and resizes them horizontally to cover half of the available "
+"area. Dropping windows on the top screen edge maximizes them completely."
+msgstr ""
+"Dacă este activat, tragerea ferestrelor pe marginile ecranului le "
+"maximizează pe verticală și le redimensionează pe orizontală pentru a "
+"acoperi jumătate din suprafața disponibilă. Tragerea ferestrelor pe marginea "
+"ecranului de sus le maximizează complet."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:11
+msgid "Panel main menu action"
+msgstr "Panou de acțiune pentru menu principal"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:12
+msgid ""
+"Sets the command to run when the panel-main-menu keybinding is pressed"
+msgstr ""
+"Setează comanda pentru a rula atunci când cheia de panou principal-meniu "
+"este apăsată"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:13
+msgid "Enable dynamic workspace instead of static ones"
+msgstr "Activați spațiul de lucru dinamic, în loc de cele statice"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:14
+msgid ""
+"Use a dynamically increasing or decreseasing number, as needed, of "
+"workspaces instead of a static, fixed number"
+msgstr ""
+"Utilizați, după cum este necesar, creşterea sau scăderea unui numar dinamic, "
+"în locul unui număr fix, pentru spațiile de lucru"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:15
+msgid "Names that are recognized as dock windows for the window switcher"
+msgstr ""
+"Alte denumiri care sunt recunoscute ca ferestre de andocare pentru "
+"comutatorul de ferestre"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:16
+msgid ""
+"When launching the window-switcher, gala iterates over this list and "
+"attempts to find a window matching the names. If it does, it will hide this "
+"window and fade it back in, once the the switcher is closed."
+msgstr ""
+"La lansarea ferestrei switcher, gala iterează peste această listă și "
+"încearcă să găsească o fereastră potrivind numele. În cazul în care o face, "
+"va ascunde această fereastră și o va estompa, de îndată ce comutatorul este "
+"închis."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:17
+msgid "Shortcut to move to first workspace"
+msgstr "Comandă rapidă pentru a te muta la primul spațiu de lucru"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:18
+msgid "Shortcut to move to last workspace"
+msgstr "Comendă rapidă pentru a te muta la ultimul spațiu de lucru"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:19
+msgid "Shortcut to move the current window to first workspace"
+msgstr ""
+"Comandă rapidă pentru a muta fereastra curentă în primul spațiu de lucru"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:20
+msgid "Shortcut to move the current window to last workspace"
+msgstr ""
+"Comandă rapidă pentru a muta fereastra curentă în ultimul spațiu de lucru"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:21
+msgid "Zoom in"
+msgstr "Măreşte"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:22
+msgid "Zoom out"
+msgstr "Micșorează"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:23
+msgid "Shortcut to open the window overview"
+msgstr "Comandă rapidă pentru a deschide fereastra generală"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:24
+msgid "Shortcut to open the window overview for all windows"
+msgstr ""
+"Comandă rapidă pentru a deschide fereastra generală pentru toate ferestrele"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:25
+msgid "Cycle to the next workspace to the right or to back to the first"
+msgstr "Treci la următorul spațiu de lucru la dreapta sau  înapoi la primul"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:26
+msgid "Cycle to next keyboard layout"
+msgstr "Treci la următoarea configurație de tastatură"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:27
+msgid "Cycle to previous keyboard layout"
+msgstr "Treci la aspectul tastaturii precedent"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:28
+msgid "Attach modal dialogs"
+msgstr "Atașează dialoguri modale"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:29
+msgid ""
+"When true, instead of having independent titlebars, modal dialogs appear "
+"attached to the titlebar of the parent window and are moved together with "
+"the parent window."
+msgstr ""
+"Atunci când este adevărat, în loc de a avea bare de titlu independente, "
+"dialogurile modale apar atașate la bara de titlu a ferestrei părinte și sunt "
+"deplasate împreună cu fereastra părinte."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:30
+msgid "Arrangement of buttons on the titlebar"
+msgstr "Aranjamentul butoanelor în bara de titlu"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:31
+msgid ""
+"Arrangement of buttons on the titlebar. The value should be a string, such "
+"as \"menu:minimize,maximize,spacer,close\"; the colon separates the left "
+"corner of the window from the right corner, and the button names are comma-"
+"separated. Duplicate buttons are not allowed. Unknown button names are "
+"silently ignored so that buttons can be added in future metacity versions "
+"without breaking older versions. A special spacer tag can be used to insert "
+"some space between two adjacent buttons."
+msgstr ""
+"Aranjamentul butoanelor pe bara de titlu. Valoare ar trebui să fie un șir ca "
+"„menu:minimize,maximize,spacer,close”; două puncte separă colțul stâng de "
+"cel drept al ferestrei și numele butoanelor sunt separate prin virgulă. Nu "
+"este permisă reduplicarea butoanelor. Numele butoanelor necunoscute sunt "
+"ignorate, astfel că noi butoane pot fi adăugate în versiuni viitoare ale "
+"metacity fără a încurca versiunile mai vechi. O etichetă specială „spacer” "
+"poate fi folosită pentru a introduce un spațiu între două butoane adiacente."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:32
+msgid "Make parent windows that spawn a modal attached dialog being dimmed"
+msgstr ""
+"Adaugă un dialog formal ferestrelor părinte care se înmulţesc  pentru a le "
+"estompa"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:33
+msgid ""
+"The opacity of the windows located in the background in the alt-tab-switcher."
+msgstr "Opacitatea ferestrelor situate în fundal în Alt-Tab-switcher."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:34
+msgid "Background-image used in the workspace-switcher"
+msgstr "Imagine de fundal utilizată în spațiul de lucru-switcher"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:35
+msgid "Enable Animations"
+msgstr "Activare animații"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:36
+msgid ""
+"Whether animations should be displayed. Note: This is a global key, it "
+"changes the behaviour of the window manager, the panel etc."
+msgstr ""
+"Specifică dacă animațiile ar trebui afișate. Notă: aceasta este o cheie "
+"globală ce afectează administratorul de ferestre, panoul etc."
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:37
+msgid "Duration of the snap animation as used by maximize/unmaximize"
+msgstr ""
+"Durata animației anticipate așa cum utilizată de către maximizare / "
+"restaurare"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:38
+msgid "Duration of the close animation"
+msgstr "Durata animației de închidere"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:39
+msgid "Duration of the minimize animation"
+msgstr "Durata animației de minimizare"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:40
+msgid "Duration of the workspace switch animation"
+msgstr "Durata de animației comutator spațiului de lucru"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:41
+msgid "Duration of the menu mapping animation"
+msgstr "Durata de animație de cartografiere meniu"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:42
+msgid "Defines the shadow of normal focused windows"
+msgstr "Definește umbra ferestrelor normal focalizate"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:43
+msgid ""
+"The first value is the radius of the blur of the shadow, the second one the "
+"top fade (which is usually just -1), the third and fourth the x- and y-"
+"offset and the last the opacity. So [blur-radius, top-fade, x-offset, y-"
+"offset, opacity]"
+msgstr ""
+"Prima valoare este raza de estompare a umbrei, a doua este decolorare sus "
+"(de obicei -1), a treia si a patra sunt compensarea x şi y iar ultima este "
+"opacitatea. deci [rază estompare umbră, decolorare sus, compensare x, "
+"compensare y, opacitate]"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:44
+msgid "Defines the shadow of a normal unfocused window"
+msgstr "Definește umbra unei ferestre normal nefocalizate"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:45
+msgid "See normal-focused"
+msgstr "Vezi normal concentrat"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:46
+msgid "Defines the shadow of a menu"
+msgstr "Definește umbra unui meniu"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:47
+msgid "Defines the shadow of a focused dialog"
+msgstr "Definește umbra unui dialog focalizat"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:48
+msgid "Defines the shadow of an unfocused dialog"
+msgstr "Definește umbra unui dialog nefocalizat"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:49
+msgid "Disable all notifications"
+msgstr "Dezactivează toate notificările"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:50
+msgid "Enable bubbles"
+msgstr "Activează bule"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:51
+msgid "Enable sounds"
+msgstr "Activează sunetul"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:52
+msgid "Show missed notifications in notification center"
+msgstr "Arată notificările ratate în centrul de notificare"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:53
+msgid "Enable rounded corner mask"
+msgstr "Activează masca de colț rotunjit"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:54
+msgid "Corner radius"
+msgstr "Rază colț"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:55
+msgid "Disable corner mask on fullscreen"
+msgstr "Dezactivați masca de colț pe ecran complet"
+
+#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:56
+msgid "Only show corner masks on primary monitor"
+msgstr "Arată măști de colț doar pe monitorul primar"
+
+#~ msgid "Cancel"
+#~ msgstr "Anulează"

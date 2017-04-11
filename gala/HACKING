@@ -1,0 +1,303 @@
+====== Gala Contribute ======
+
+====== Testing the latest build ======
+
+Get daily builds on Launchpad for Ubuntu 12.04 and later.
+
+    https://launchpad.net/~elementary-os/+archive/daily
+
+====== Join IRC chat rooms ======
+
+Join #elementary-dev on Freenode (irc.freenode.net).
+
+====== Contribute without touching code ======
+
+Go through problem reports and check unconfirmed bugs or those lacking
+information and mark any duplicates you spot.
+
+    http://bugs.launchpad.net/gala
+
+Help getting Gala translated in your language!
+
+    https://translations.launchpad.net/gala
+
+Answer questions.
+
+    https://answers.launchpad.net/gala
+
+====== Check out the sources ======
+
+    bzr branch lp:gala
+
+The development trunk (master, tip) is the latest iteration of the next
+release. Browse it online and look for other branches at:
+
+    http://code.launchpad.net/gala
+
+====== Build the code ======
+
+Prepare the source and compile:
+    ./autogen.sh --prefix=/usr
+    make
+
+Run Gala:
+    ./src/gala --replace
+
+For more detailed instructions, please see the INSTALL file.
+
+===== Debugging Code ======
+
+Debugging a window manager is not as easy as debugging any window application.
+When the window manager processes crashes, it is stopped by gdb, so all your 
+windows will get stuck. Instead, run gdb from a different tty by pressing 
+Ctrl+Alt+F6 for example and executing
+
+    gdb gala
+    # once inside gdb
+    run -d :0 --replace
+
+Now, you can switch back to your X session, which will probably be on tty7,
+which would be Ctrl+Alt+F7. You can then get program to crash as you usually
+would and switch back to tty6 as above and you have full access to all gdb
+features like "bt" for getting a backtrace. See the end of the 
+"If something goes wrong" section if you have troubles starting gala a second
+time from gdb.
+
+===== If something goes wrong =====
+
+If gala crashes, you'll usually find yourself in a pretty bad position, as you
+can't give focus to a window anymore by clicking on it, so you can't enter text
+either. To get things back running, switch to tty6 by pressing ctrl+alt+f6 and
+execute
+
+    gala -d :0 --replace
+
+which will start gala on display :0, which typically is the display you'll be
+running. The "--replace" is most probably not required when gala crashed.
+You might experience some weirdnesses if you you try to restart gala again from
+a tty. The first launch will usually be somehow ignored. If that's the case,
+just hit ctrl+c, and start it again. Now it should be running just fine.
+
+===== Gala is a mutter plugin? =====
+
+Mutter works with plugins, although they are not implemented in the way you 
+would maybe expect. In fact, you should better only load a single plugin at a
+time. This plugin will then be queried by mutter for animating windows or 
+workspaces and defining a few other things. The plugin also has the oppurtinity
+to add arbitrary ClutterActors to the stage or registring handlers for shortcuts.
+
+===== Adding a new shell component ====
+
+Shell components are typically placed in the src/Widgets/ folder. They usually derive
+from ClutterActor, so they can be added to the stage the wm runs in directly. Once
+you defined your actor, you can go to src/Plugins.vala and add a new instance of it
+to the stage in the Plugin's start() method. You can register shortcuts for invoking
+your view in that function as well. To get input events on your actor, you'll have to 
+call plugin.begin_modal(), which puts the stage in a mode where only the custom actors
+receive events and the windows are unaccessible. When your view is closed, call 
+plugin.end_modal() to make the windows accessible again. A last option to have elements
+like a panel receive clicks, even when not being in modal mode, is to have a look at the
+Utils.set_input_region() method. Currently, you'll have to hack your area into it 
+manually, it is planned to have automatic areas for actors that request it as well later
+on as we need it.
+
+====== Important: Keep fixes for different bugs in different branches ======
+
+Branches that contain patches to fix more than one bug will be rejected, and
+you will be asked to supply a separate branch for every bug fix. However,
+this doesn't apply to patches that are indivisible by nature, and that
+fix multiple bugs.
+
+The reasons to work in this way are the following:
+
+If one of the bugs targeted by your branch is correctly fixed, but one of the
+other bugs is incorrectly fixed or needs corrections, the branch won't be
+accepted until everything looks ok for all bugs. This causes an unnecessary
+delay for the bugs that where fixed correctly.
+
+Suppose your branch was accepted for merging in the main one. Later, it is 
+discovered that your branch introduces faulty behavior. The standard course of
+action for these situations is to revert the merge that introduced that faulty
+behavior. This will cause that all of your fixes are reverted (even the ones
+that didn't cause problems) because there was no way of discriminating between
+them. If a separate branch for each bug fixed existed, only the offending one
+would have been reverted, and not all of them.
+
+Be sure to understand this, and avoid a headache later!
+
+====== Coding style ======
+
+Gala's source code in general follows the K&R "One True Brace Style" (1TBS),
+with a caveat: spaces are inserted before opening parenthesis.
+
+For indenting the source code only tabs are used!
+Tabs should be 4 spaces wide for code to look good.
+
+Consider the following snippet as an example:
+
+    int test_check ()
+    {
+        if (x < 0) {
+            message ("Negative");
+            negative (x);
+        } else {
+            message ("Non-negative");
+            nonnegative (x);
+        }
+        
+        return 0;
+    }
+
+Of course the best example is the current source code itself.
+
+You can also have a look at this doc for some parts:
+
+   http://elementaryos.org/docs/code/code-style
+
+Keep in mind that neither the indentation rules or curly
+bracket positions mentioned there apply for Gala.
+
+====== Committing code ======
+
+Make a branch which will contain your changes for fixing bug 123456:
+
+    bzr branch lp:gala fix-123456
+
+Tell Bazaar your name if you haven't yet:
+
+    bzr whoami "Real Name <email@address>"
+
+See what you did so far:
+
+    bzr diff
+    bzr diff | less
+
+Get an overview of changed and new files:
+
+    bzr status
+
+Add new files, move/ rename or delete:
+
+    bzr add FILENAME
+    bzr mv OLDFILENAME NEWFILENAME
+    bzr rm FILENAME
+
+Note: 'bzr add' should be used only when new source or data files are added
+to Gala's source directory.
+
+After making your changes, you need to commit your work as a new revision.
+
+    bzr commit
+
+Bazaar will open the default text editor (in most systems, nano) where you
+will write the commit message, save the document, and close it. Bazaar will
+use the commit message as commentary for the new revision, so it should be
+a concise summary of what you did.
+
+To change Bazaar's text editor, add the following line to Bazaar's
+configuration file (usually located at ~/.bazaar/bazaar.conf):
+
+    editor = your_text_editor_here
+    
+For example:
+
+    editor = gedit
+
+Commit your changes in small increments. It is better to keep different
+changes in different commits.
+
+If a commit fixes a reported bug in Launchpad, it is useful to make a
+reference to that bug report when committing:
+
+    bzr commit --fixes lp:123456
+
+Did you make changes to more than one file, but don't want to commit the
+changes of all of them? You can specify which files you want to commit:
+
+    bzr commit file1 file2
+
+To see the last 5 revisions in the current branch:
+
+    bzr log -l5
+    bzr log -l5 -p | less
+
+In the case you committed something wrong or want to ammend it:
+
+    bzr uncommit
+
+If you want to revert all the changes made after the last revision:
+
+    bzr revert
+
+Remember to keep your branch updated:
+
+    bzr pull
+
+As a general rule of thumb, 'bzr help COMMAND' gives you an explanation of any
+command and 'bzr help commands' lists all available commands.
+
+====== Push proposed changes ======
+
+If you haven't yet, https://launchpad.net/~/+editsshkeys check that Launchpad
+has your SSH key - you can create an SSH key with Passwords and Keys aka
+Seahorse or 'ssh-keygen -t rsa' - and use 'bzr launchpad-login' to make
+youself known to bzr locally.
+
+If you checked out trunk, and commited your patch(es), just push it under your
+username in Launchpad and you can propose it for merging into trunk. This will
+automatically request a review from other developers who can then comment on
+it and provide feedback.
+
+    bzr push lp:~USERNAME/gala/fix-123456
+    bzr lp-open
+
+The last command will open a summary of the current branch in your web
+browser. There, you will be able to propose it for merging into trunk.
+Your branch will be reviewed by another developer. At this stage, you may be
+notified that changes need to be made to your branch, so keep an eye on your
+email inbox!
+After the branch is approved by the reviewer, it will get merged into the main
+project's source code.
+
+
+What happens to all the branches?
+
+Leave the branches alone, approved branches are cleared automatically by
+Launchpad.
+
+For larger feature branches, use the team in Launchpad to allow other
+developers to work on the code with you.
+
+What if I want to help out on an existing merge request that I can't push to?
+
+    bzr branch lp:~OTHERPERSON/gala/fix-123456
+    cd fix-123456
+    # make commits
+    bzr push lp:~USERNAME/gala/fix-123456
+    bzr lp-open
+
+And in the Launchpad web overview of your branch, propose your branch for
+merging into lp:~OTHERPERSON/gala/fix-123456
+
+Updating a branch that may be out of sync with trunk:
+
+    bzr pull
+    bzr: ERROR: These branches have diverged
+    bzr merge lp:gala
+    # Hand-edit conflicting changes
+    bzr resolve FILENAME
+    # If any conflicts remain continue fixing
+    bzr commit -m 'Merge changes from lp:gala'
+
+Save a little bandwidth, branch from an existing local copy that you keep
+around:
+
+    bzr branch lp:gala gala
+    bzr branch gala/ gala-fix-123456
+    cd gala-fix-123456
+    bzr pull lp:gala
+
+====== License ======
+
+This document and the Gala project are licensed under the
+GPL Version 3.

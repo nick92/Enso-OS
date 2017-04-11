@@ -1,0 +1,5 @@
+SUBDIRS = \
+	notify \
+	zoom \
+	$(NULL)
+
