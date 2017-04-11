@@ -8,6 +8,22 @@ it from these desktops.
 
 ## Installing Panther Launcher
 
+### Required packages
+
+	atk
+	cairo
+	gdk-3.0
+	gdk-pixbuf-2.0
+	gee-0.8
+	gio-2.0
+	gio-unix-2.0
+	glib-2.0
+	gobject-2.0
+	gtk+-3.0
+	json-glib-1.0
+	libgnome-menu-3.0
+	libsoup-2.4
+
 Just type from a command line:
 
 	mkdir install
