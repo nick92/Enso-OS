@@ -1,0 +1,205 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-03 20:59+0200\n"
+"PO-Revision-Date: 2015-02-11 22:54+0000\n"
+"Last-Translator: Yvo Marques <macghivo@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-11-11 05:05+0000\n"
+"X-Generator: Launchpad (build 17843)\n"
+
+#: ../src/Widgets/SearchView.vala:160
+msgid "Other"
+msgstr "Aner"
+
+#: ../src/Widgets/SearchView.vala:163
+msgid "Text"
+msgstr "Text"
+
+#: ../src/Widgets/SearchView.vala:166
+msgid "Applications"
+msgstr "Applikatiounen"
+
+#: ../src/Widgets/SearchView.vala:169
+msgid "Files"
+msgstr "Dateien"
+
+#: ../src/Widgets/SearchView.vala:172
+msgid "Actions"
+msgstr "Aktiounen"
+
+#: ../src/Widgets/SearchView.vala:175
+msgid "Search"
+msgstr "Sichen"
+
+#: ../src/Widgets/SearchView.vala:178
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: ../src/Widgets/SearchView.vala:181
+msgid "Internet"
+msgstr "Internet"
+
+#: ../src/Widgets/SearchView.vala:184
+msgid "Settings"
+msgstr ""
+
+#: ../src/Widgets/AppEntry.vala:195
+msgid "Remove from _Dock"
+msgstr ""
+
+#: ../src/Widgets/AppEntry.vala:197
+msgid "Add to _Dock"
+msgstr ""
+
+#: ../src/Widgets/CategoryView.vala:27
+msgid "All Applications"
+msgstr "All Applikatiounen"
+
+#: ../src/Widgets/CategoryView.vala:28
+msgid "Create a new Filter"
+msgstr "Neien Filter kreéieren"
+
+#: ../src/Backend/App.vala:108
+msgid "Run this command…"
+msgstr ""
+
+#: ../src/SlingshotView.vala:169
+msgid "View as Grid"
+msgstr "Gitter usicht"
+
+#: ../src/SlingshotView.vala:173
+msgid "View by Category"
+msgstr "Kategorien usicht"
+
+#: ../src/SlingshotView.vala:182
+msgid "Search Apps"
+msgstr "Applikatiounen sichen"
+
+#: ../lib/synapse-plugins/system-managment.vala:103
+msgid "Suspend"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:104
+msgid "Put your computer into suspend mode"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:203
+msgid "Hibernate"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:204
+msgid "Put your computer into hibernation mode"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:302
+msgid "Shut Down"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:303
+msgid "Turn your computer off"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:386
+msgid "Restart"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:387
+msgid "Restart your computer"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:471
+msgid "Suspend, hibernate, restart or shutdown your computer."
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:476
+msgid "ConsoleKit wasn't found"
+msgstr ""
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:94
+msgid "Search for and run applications on your computer."
+msgstr ""
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:283
+msgid "Open with %s"
+msgstr ""
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:285
+msgid "Opens current selection using %s"
+msgstr ""
+
+#: ../lib/synapse-plugins/command-plugin.vala:56
+msgid "Execute '%s'"
+msgstr ""
+
+#: ../lib/synapse-plugins/command-plugin.vala:56
+msgid "Run command"
+msgstr "Befhehl ausféieren"
+
+#: ../lib/synapse-plugins/command-plugin.vala:77
+msgid "Find and execute arbitrary commands."
+msgstr ""
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:63
+msgid "Calculator"
+msgstr "Rechner"
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:64
+msgid "Calculate basic expressions."
+msgstr ""
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:68
+msgid "bc is not installed"
+msgstr ""
+
+#: ../lib/synapse-plugins/switchboard-plugin.vala:55
+msgid "Open %s settings"
+msgstr ""
+
+#: ../lib/synapse-plugins/switchboard-plugin.vala:71
+msgid "Find switchboard plugs and open them."
+msgstr ""
+
+#: ../lib/synapse-core/common-actions.vala:77
+msgid "Run"
+msgstr "Ausféieren"
+
+#: ../lib/synapse-core/common-actions.vala:78
+msgid "Run an application, action or script"
+msgstr ""
+
+#: ../lib/synapse-core/common-actions.vala:133
+msgid "Run in Terminal"
+msgstr "Am Terminal ausféieren"
+
+#: ../lib/synapse-core/common-actions.vala:134
+msgid "Run application or command in terminal"
+msgstr ""
+
+#: ../lib/synapse-core/common-actions.vala:182
+msgid "Open"
+msgstr "Opmaachen"
+
+#: ../lib/synapse-core/common-actions.vala:183
+msgid "Open using default application"
+msgstr ""
+
+#: ../lib/synapse-core/common-actions.vala:252
+msgid "Open folder"
+msgstr "Dossier opmaachen"
+
+#: ../lib/synapse-core/common-actions.vala:253
+msgid "Open folder containing this file"
+msgstr ""
+
+#: ../lib/synapse-core/common-actions.vala:293
+msgid "Copy to Clipboard"
+msgstr "An d'Zwëchenoflag kopéieren"
+
+#: ../lib/synapse-core/common-actions.vala:294
+msgid "Copy selection to clipboard"
+msgstr ""

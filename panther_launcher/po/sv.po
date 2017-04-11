@@ -1,0 +1,210 @@
+# Swedish translation for slingshot
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the slingshot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: slingshot\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-06-03 20:59+0200\n"
+"PO-Revision-Date: 2015-09-11 22:03+0000\n"
+"Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-11-11 05:05+0000\n"
+"X-Generator: Launchpad (build 17843)\n"
+
+#: ../src/Widgets/SearchView.vala:160
+msgid "Other"
+msgstr "Övrigt"
+
+#: ../src/Widgets/SearchView.vala:163
+msgid "Text"
+msgstr "Text"
+
+#: ../src/Widgets/SearchView.vala:166
+msgid "Applications"
+msgstr "Program"
+
+#: ../src/Widgets/SearchView.vala:169
+msgid "Files"
+msgstr "Filer"
+
+#: ../src/Widgets/SearchView.vala:172
+msgid "Actions"
+msgstr "Åtgärder"
+
+#: ../src/Widgets/SearchView.vala:175
+msgid "Search"
+msgstr "Sök"
+
+#: ../src/Widgets/SearchView.vala:178
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: ../src/Widgets/SearchView.vala:181
+msgid "Internet"
+msgstr "Internet"
+
+#: ../src/Widgets/SearchView.vala:184
+msgid "Settings"
+msgstr ""
+
+#: ../src/Widgets/AppEntry.vala:195
+msgid "Remove from _Dock"
+msgstr "Ta bort från _dockan"
+
+#: ../src/Widgets/AppEntry.vala:197
+msgid "Add to _Dock"
+msgstr "Lägg till i _dockan"
+
+#: ../src/Widgets/CategoryView.vala:27
+msgid "All Applications"
+msgstr "Alla program"
+
+#: ../src/Widgets/CategoryView.vala:28
+msgid "Create a new Filter"
+msgstr "Skapa ett nytt filter"
+
+#: ../src/Backend/App.vala:108
+msgid "Run this command…"
+msgstr "Kör detta kommando..."
+
+#: ../src/SlingshotView.vala:169
+msgid "View as Grid"
+msgstr "Visa som rutnät"
+
+#: ../src/SlingshotView.vala:173
+msgid "View by Category"
+msgstr "Visa kategorivis"
+
+#: ../src/SlingshotView.vala:182
+msgid "Search Apps"
+msgstr "Sök efter program"
+
+#: ../lib/synapse-plugins/system-managment.vala:103
+msgid "Suspend"
+msgstr "Försätt i vänteläge"
+
+#: ../lib/synapse-plugins/system-managment.vala:104
+msgid "Put your computer into suspend mode"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:203
+msgid "Hibernate"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:204
+msgid "Put your computer into hibernation mode"
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:302
+msgid "Shut Down"
+msgstr "Stäng av"
+
+#: ../lib/synapse-plugins/system-managment.vala:303
+msgid "Turn your computer off"
+msgstr "Stäng av din dator"
+
+#: ../lib/synapse-plugins/system-managment.vala:386
+msgid "Restart"
+msgstr "Starta om"
+
+#: ../lib/synapse-plugins/system-managment.vala:387
+msgid "Restart your computer"
+msgstr "Starta om din dator"
+
+#: ../lib/synapse-plugins/system-managment.vala:471
+msgid "Suspend, hibernate, restart or shutdown your computer."
+msgstr ""
+
+#: ../lib/synapse-plugins/system-managment.vala:476
+msgid "ConsoleKit wasn't found"
+msgstr "ConsoleKit hittades inte"
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:94
+msgid "Search for and run applications on your computer."
+msgstr "Sök och starta program på din dator"
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:283
+msgid "Open with %s"
+msgstr "Öppna med %s"
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:285
+msgid "Opens current selection using %s"
+msgstr "Öppna det markerade objektet med %s"
+
+#: ../lib/synapse-plugins/command-plugin.vala:56
+msgid "Execute '%s'"
+msgstr "Kör '%s'"
+
+#: ../lib/synapse-plugins/command-plugin.vala:56
+msgid "Run command"
+msgstr "Kör kommando"
+
+#: ../lib/synapse-plugins/command-plugin.vala:77
+msgid "Find and execute arbitrary commands."
+msgstr "Hitta och kör godtyckliga kommandon."
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:63
+msgid "Calculator"
+msgstr "Kalkylator"
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:64
+msgid "Calculate basic expressions."
+msgstr "Beräkna enkla uttryck."
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:68
+msgid "bc is not installed"
+msgstr "bc är inte installerad"
+
+#: ../lib/synapse-plugins/switchboard-plugin.vala:55
+msgid "Open %s settings"
+msgstr ""
+
+#: ../lib/synapse-plugins/switchboard-plugin.vala:71
+msgid "Find switchboard plugs and open them."
+msgstr ""
+
+#: ../lib/synapse-core/common-actions.vala:77
+msgid "Run"
+msgstr "Kör"
+
+#: ../lib/synapse-core/common-actions.vala:78
+msgid "Run an application, action or script"
+msgstr "Starta program, händelse eller skript"
+
+#: ../lib/synapse-core/common-actions.vala:133
+msgid "Run in Terminal"
+msgstr "Starta i terminalen"
+
+#: ../lib/synapse-core/common-actions.vala:134
+msgid "Run application or command in terminal"
+msgstr "Kör program eller kommando i terminalen"
+
+#: ../lib/synapse-core/common-actions.vala:182
+msgid "Open"
+msgstr "Öppna"
+
+#: ../lib/synapse-core/common-actions.vala:183
+msgid "Open using default application"
+msgstr "Öppna med förvalt program"
+
+#: ../lib/synapse-core/common-actions.vala:252
+msgid "Open folder"
+msgstr "Öppna mapp"
+
+#: ../lib/synapse-core/common-actions.vala:253
+msgid "Open folder containing this file"
+msgstr "Öppna mappen som innehåller denna fil"
+
+#: ../lib/synapse-core/common-actions.vala:293
+msgid "Copy to Clipboard"
+msgstr "Kopiera till urklipp"
+
+#: ../lib/synapse-core/common-actions.vala:294
+msgid "Copy selection to clipboard"
+msgstr "Kopiera markeringen till urklipp"

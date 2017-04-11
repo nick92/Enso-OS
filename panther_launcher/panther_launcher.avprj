@@ -1,0 +1,138 @@
+### AutoVala Project ###
+autovala_version: 23
+project_name: panther_launcher
+vala_version: 0.26
+
+custom: data/panther-applications.menu /etc/xdg/menus
+custom: panther_gnome_shell/LICENSE share/gnome-shell/extensions/slingshotgnome@rastersoft.com
+custom: panther_gnome_shell/README.md share/gnome-shell/extensions/slingshotgnome@rastersoft.com
+custom: panther_gnome_shell/extension.js share/gnome-shell/extensions/slingshotgnome@rastersoft.com
+custom: panther_gnome_shell/metadata.json share/gnome-shell/extensions/slingshotgnome@rastersoft.com
+
+*define: HAVE_ZEITGEIST
+*define: HAS_PLANK
+
+
+vala_binary: src/panther_launcher
+*version: 1.12.0
+compile_c_options: -DGMENU_I_KNOW_THIS_IS_UNSTABLE
+*vala_package: posix
+if (HAVE_ZEITGEIST)
+vala_check_package: zeitgeist-1.0
+end
+*vala_check_package: atk
+*vala_check_package: cairo
+*vala_check_package: gdk-3.0
+*vala_check_package: gdk-pixbuf-2.0
+*vala_check_package: gee-0.8
+*vala_check_package: gio-2.0
+*vala_check_package: gio-unix-2.0
+*vala_check_package: glib-2.0
+*vala_check_package: gobject-2.0
+*vala_check_package: gtk+-3.0
+*vala_check_package: json-glib-1.0
+*vala_check_package: libgnome-menu-3.0
+*vala_check_package: libsoup-2.4
+*vala_check_package: pango
+*vala_check_package: pangocairo
+*vala_check_package: x11
+*c_library: m
+*vala_source: Backend/App.vala
+*vala_source: Backend/AppSystem.vala
+*vala_source: Backend/DBusService.vala
+*vala_source: Backend/RelevancyService.vala
+*vala_source: Backend/SynapseSearch.vala
+*vala_source: Panther.vala
+*vala_source: PantherView.vala
+*vala_source: Pixels.vala
+*vala_source: Settings.vala
+*vala_source: Utils.vala
+*vala_source: Widgets/AppEntry.vala
+*vala_source: Widgets/CategoryView.vala
+*vala_source: Widgets/Grid.vala
+*vala_source: Widgets/SearchItem.vala
+*vala_source: Widgets/SearchView.vala
+*vala_source: Widgets/Sidebar.vala
+*vala_source: Widgets/Switcher.vala
+*vala_source: synapse-core/common-actions.vala
+*vala_source: synapse-core/config-service.vala
+*vala_source: synapse-core/data-sink.vala
+*vala_source: synapse-core/dbus-service.vala
+*vala_source: synapse-core/desktop-file-service.vala
+*vala_source: synapse-core/match.vala
+*vala_source: synapse-core/plugin.vala
+*vala_source: synapse-core/query.vala
+*vala_source: synapse-core/relevancy-backend-zg.vala
+*vala_source: synapse-core/relevancy-service.vala
+*vala_source: synapse-core/result-set.vala
+*vala_source: synapse-core/utils.vala
+*vala_source: synapse-core/volume-service.vala
+*vala_source: synapse-plugins/calculator-plugin.vala
+*vala_source: synapse-plugins/command-plugin.vala
+*vala_source: synapse-plugins/desktop-file-plugin.vala
+*vala_source: synapse-plugins/system-managment.vala
+
+*po: po
+
+*translate: vala src/Settings.vala
+*translate: vala src/Pixels.vala
+*translate: vala src/PantherView.vala
+*translate: vala src/Utils.vala
+*translate: vala src/Panther.vala
+*translate: vala src/Backend/App.vala
+*translate: vala src/Backend/SynapseSearch.vala
+*translate: vala src/Backend/DBusService.vala
+*translate: vala src/Backend/RelevancyService.vala
+*translate: vala src/Backend/AppSystem.vala
+*translate: vala src/Widgets/AppEntry.vala
+*translate: vala src/Widgets/SearchView.vala
+*translate: vala src/Widgets/SearchItem.vala
+*translate: vala src/Widgets/CategoryView.vala
+*translate: vala src/Widgets/Grid.vala
+*translate: vala src/Widgets/Switcher.vala
+*translate: vala src/Widgets/Sidebar.vala
+*translate: vala src/synapse-core/desktop-file-service.vala
+*translate: vala src/synapse-core/common-actions.vala
+*translate: vala src/synapse-core/config-service.vala
+*translate: vala src/synapse-core/data-sink.vala
+*translate: vala src/synapse-core/dbus-service.vala
+*translate: vala src/synapse-core/match.vala
+*translate: vala src/synapse-core/plugin.vala
+*translate: vala src/synapse-core/query.vala
+*translate: vala src/synapse-core/result-set.vala
+*translate: vala src/synapse-core/utils.vala
+*translate: vala src/synapse-core/volume-service.vala
+*translate: vala src/synapse-core/relevancy-service.vala
+*translate: vala src/synapse-core/relevancy-backend-zg.vala
+*translate: vala src/synapse-plugins/desktop-file-plugin.vala
+*translate: vala src/synapse-plugins/calculator-plugin.vala
+*translate: vala src/synapse-plugins/command-plugin.vala
+*translate: vala src/synapse-plugins/system-managment.vala
+
+*data: data/local
+
+*doc: doc
+
+*dbus_service: data/com.rastersoft.panther.remotecontrol.service.base
+
+*scheme: data/org.rastersoft.panther.gschema.xml
+
+*full_icon: Hicolor Status data/icons/panther-categories-symbolic.svg
+*full_icon: Hicolor Status data/icons/panther-icons-symbolic.svg
+
+if NOT DISABLE_FLASHBACK
+include: panther_applet/applet.txt
+end
+if NOT DISABLE_MATE
+include: panther_mate/applet.txt
+end
+
+if NOT DISABLE_FLASHBACK
+source_dependency: /usr/lib/pkgconfig/libpanel-applet.pc /usr/lib64/pkgconfig/libpanel-applet.pc
+end
+if NOT DISABLE_MATE
+source_dependency: /usr/lib/pkgconfig/libmatepanelapplet-4.0.pc /usr/lib64/pkgconfig/libmatepanelapplet-4.0.pc /usr/lib/x86_64-linux-gnu/pkgconfig/libmatepanelapplet-4.0.pc /usr/lib/i386-linux-gnu/pkgconfig/libmatepanelapplet-4.0.pc
+end
+
+binary_dependency: /usr/share/icons/gnome/16x16/status/image-missing.png /usr/share/icons/gnome/22x22/status/image-missing.png /usr/share/icons/gnome/24x24/status/image-missing.png /usr/share/icons/gnome/256x256/status/image-missing.png /usr/share/icons/gnome/32x32/status/image-missing.png /usr/share/icons/gnome/48x48/status/image-missing.png
+

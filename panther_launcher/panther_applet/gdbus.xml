@@ -1,0 +1,9 @@
+<node>
+<interface name="com.rastersoft.panther.remotecontrol">
+  <method name="DoShow" />
+  <method name="DoPing" >
+    <arg name="n" direction="in" type="i"/>
+    <arg name="response" direction="out" type="i"/>
+  </method>
+</interface>
+</node>

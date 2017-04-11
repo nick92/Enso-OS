@@ -1,0 +1,128 @@
+panther-launcher (1.12.0-Debian1) sid; urgency=low
+
+  * Added support for Mate Desktop (thanks to XRevan86)
+  * Added dependencies for needed icons
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 25 Sep 2016 23:55:00 +0200
+
+panther-launcher (1.11.3-Debian1) sid; urgency=low
+
+  * Allows to disable building the gnome-panel applet (useful for fedora users)
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Tue, 20 Sep 2016 23:55:00 +0200
+
+panther-launcher (1.11.2-Debian1) sid; urgency=low
+
+  * Fixed packages
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Mon, 19 Sep 2016 23:55:00 +0200
+
+panther-launcher (1.11.1-Debian1) sid; urgency=low
+
+  * New packages for Fedora 24
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 07 Aug 2016 23:55:00 +0200
+
+panther-launcher (1.11.0-Debian1) sid; urgency=low
+
+  * Allows to change the font and icon size, and has better autosizing
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 17 Jul 2016 23:55:00 +0200
+
+panther-launcher (1.10.1-Debian1) sid; urgency=low
+
+  * Added compatibility with Gnome 3.20
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Wed, 30 Mar 2016 23:55:00 +0200
+
+panther-launcher (1.10.0-Debian1) sid; urgency=low
+
+  * Fixes a bug when moving the launcher to the bottom part
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Wed, 06 Jan 2016 23:55:00 +0200
+
+panther-launcher (1.9.0-Debian1) sid; urgency=low
+
+  * Allows to move the launcher to the bottom part of the screen
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Tue, 05 Jan 2016 23:55:00 +0200
+
+panther-launcher (1.8.0-Debian1) sid; urgency=low
+
+  * Now ensures that the cathegories width is constant
+  * Now the size doesn't change when the screen resolution changes (example: after launching a game)
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Wed, 23 Dec 2015 23:55:00 +0200
+
+panther-launcher (1.7.0-Debian1) sid; urgency=low
+
+  * Now uses only DBus for both activating and pre-launching panther launcher from applet and extension
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Fry, 11 Dec 2015 23:55:00 +0200
+
+panther-launcher (1.6.0-Debian1) sid; urgency=low
+
+  * Fixed translations in Debian and Ubuntu
+  * Gnome flashback applet now is translated
+  * Added last patches from upstream Slingshot
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Wed, 09 Dec 2015 23:55:00 +0200
+
+panther-launcher (1.5.0-Debian1) sid; urgency=low
+
+  * Added DBus remote control and DBus activation support
+  * Gnome Shell extension now uses DBus to show the menu
+  * Applet for gnome-panel (gnome flashback) now uses DBus to show the menu
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 06 Dec 2015 23:55:00 +0200
+
+panther-launcher (1.4.0-Debian1) sid; urgency=low
+
+  * Now Zeitgeist is really fully optional
+  * Now also installs the applet for gnome flashback
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 22 Nov 2015 23:55:00 +0200
+
+panther-launcher (1.3.0-Debian1) sid; urgency=low
+
+  * Added a frame around the launcher to better visually delimite it
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sun, 18 Oct 2015 23:55:00 +0200
+
+panther-launcher (1.2.0-Debian1) sid; urgency=low
+
+  * It closes when pressing ESCAPE key
+  * Can be launched with <Super>+q (editable with dconf-editor)
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sat, 17 Oct 2015 23:55:00 +0200
+
+panther-launcher (1.1.3-Debian1) sid; urgency=low
+
+  * Removed dependency from Zeitgeist (now is fully optional)
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Tue, 13 Oct 2015 23:55:00 +0200
+
+panther-launcher (1.1.2-Debian1) sid; urgency=low
+
+  * Updated gnome shell extension for gnome shell 3.18
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Tue, 13 Oct 2015 23:50:00 +0200
+
+panther-launcher (1.1.1-Debian1) sid; urgency=low
+
+  * Updated text in Shell extension
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Thu, 24 Sep 2015 23:55:00 +0200
+
+panther-launcher (1.1.0-Debian1) sid; urgency=low
+
+  * Now installs the Gnome Shell extension system wide, allowing to put it in the packages
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Wed, 23 Sep 2015 23:55:00 +0200
+
+panther-launcher (1.0.0-Debian1) sid; urgency=low
+
+  * First public version
+
+ -- Sergio Costas Rodriguez <raster@rastersoft.com>  Sat, 15 Aug 2015 23:55:00 +0200
+

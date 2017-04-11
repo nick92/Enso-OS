@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 2.8)
+
+find_package(PkgConfig)
+pkg_check_modules(APPLET gtk+-3.0 libpanel-applet gio-2.0 gio-unix-2.0)
+
+if(CMAKE_INSTALL_FULL_LIBEXECDIR)
+    set(libdir "${CMAKE_INSTALL_FULL_LIBDIR}")
+else()
+    set(libdir "${CMAKE_INSTALL_PREFIX}/lib")
+endif()
+
+link_directories(
+    ${APPLET_LIBRARY_DIRS}
+)
+include_directories(
+    ${APPLET_INCLUDE_DIRS}
+)
+
+add_library(pantherapplet SHARED panther_applet.c dbus.c)
+
+target_link_libraries(pantherapplet
+    ${APPLET_LIBRARIES}
+)
+
+configure_file (
+    ${CMAKE_CURRENT_SOURCE_DIR}/panther_launcher.panel-applet.in
+    ${CMAKE_CURRENT_BINARY_DIR}/panther_launcher.panel-applet
+    @ONLY
+)
+
+install (TARGETS pantherapplet LIBRARY DESTINATION ${libdir}/gnome-panel/5.0/)
+install (FILES ${CMAKE_CURRENT_BINARY_DIR}/panther_launcher.panel-applet DESTINATION share/gnome-panel/5.0/applets/)

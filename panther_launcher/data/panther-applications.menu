@@ -1,0 +1,250 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+
+  <Name>Applications</Name>
+  <Directory>X-GNOME-Menu-Applications.directory</Directory>
+
+  <!-- Scan legacy dirs first, as later items take priority -->
+  <LegacyDir>/etc/X11/applnk</LegacyDir>
+  <LegacyDir>/usr/share/gnome/apps</LegacyDir>
+
+  <!-- Read standard .directory and .desktop file locations -->
+  <DefaultAppDirs/>
+  <DefaultDirectoryDirs/>
+
+  <!-- Read in overrides and child menus from applications-merged/ -->
+  <DefaultMergeDirs/>
+
+  <!-- Accessories submenu -->
+  <Menu>
+    <Name>Accessories</Name>
+    <Directory>Utility.directory</Directory>
+    <Include>
+      <And>
+        <Category>Utility</Category>
+    <!-- Accessibility spec must have either the Utility or Settings
+         category, and we display an accessibility submenu already for
+         the ones that do not have Settings, so don't display accessibility
+         applications here -->
+        <Not><Category>Accessibility</Category></Not>
+        <Not><Category>System</Category></Not>
+        <Not><Filename>org.gnome.font-viewer.desktop</Filename></Not>
+        <Not><Filename>gnome-font-viewer.desktop</Filename></Not>
+        <Not><Filename>file-roller.desktop</Filename></Not>
+        <Not><Filename>org.gnome.FileRoller.desktop</Filename></Not>
+      </And>
+    </Include>
+  </Menu> <!-- End Accessories -->
+
+  <!-- Accessibility submenu -->
+  <Menu>
+    <Name>Universal Access</Name>
+    <Directory>Utility-Accessibility.directory</Directory>
+    <Include>
+      <And>
+        <Category>Accessibility</Category>
+        <Not><Category>Settings</Category></Not>
+        <!-- Do not display Orca and OnBoard; they belong to a11y plug -->
+        <Not><Filename>orca.desktop</Filename></Not>
+        <Not><Filename>onboard.desktop</Filename></Not>
+      </And>
+    </Include>
+  </Menu> <!-- End Accessibility -->
+
+  <!-- Development Tools -->
+  <Menu>
+    <Name>Development</Name>
+    <Directory>Development.directory</Directory>
+    <Include>
+      <And>
+        <Category>Development</Category>
+      </And>
+      <Filename>emacs.desktop</Filename>
+    </Include>
+  </Menu> <!-- End Development Tools -->
+
+  <!-- Education -->
+  <Menu>
+    <Name>Education</Name>
+    <Directory>Education.directory</Directory>
+    <Include>
+      <And>
+        <Category>Education</Category>
+        <Not><Category>Science</Category></Not>
+      </And>
+    </Include>
+  </Menu> <!-- End Education -->
+
+  <!-- Science -->
+  <Menu>
+    <Name>Science</Name>
+    <Directory>GnomeScience.directory</Directory>
+    <Include>
+      <And>
+        <Category>Education</Category>
+        <Category>Science</Category>
+      </And>
+    </Include>
+  </Menu> <!-- End Science -->
+
+  <!-- Games -->
+  <Menu>
+    <Name>Games</Name>
+    <Directory>Game.directory</Directory>
+    <Include>
+      <And>
+        <Category>Game</Category>
+      </And>
+      <Filename>steam.desktop</Filename> <!-- Steam belongs only in Games category not Internet too -->
+    </Include>
+  </Menu> <!-- End Games -->
+
+  <!-- Graphics -->
+  <Menu>
+    <Name>Graphics</Name>
+    <Directory>Graphics.directory</Directory>
+    <Include>
+      <And>
+        <Category>Graphics</Category>
+        <Not><Filename>evince.desktop</Filename></Not>
+      </And>
+    </Include>
+  </Menu> <!-- End Graphics -->
+
+  <!-- Internet -->
+  <Menu>
+    <Name>Internet</Name>
+    <Directory>Network.directory</Directory>
+    <Include>
+      <And>
+        <Category>Network</Category>
+        <Not><Filename>steam.desktop</Filename></Not> <!-- Steam belongs only in Games category not Internet too -->
+      </And>
+    </Include>
+  </Menu>   <!-- End Internet -->
+
+  <!-- Multimedia -->
+  <Menu>
+    <Name>Multimedia</Name>
+    <Directory>AudioVideo.directory</Directory>
+    <Include>
+      <And>
+        <Category>AudioVideo</Category>
+      </And>
+    </Include>
+  </Menu>   <!-- End Multimedia -->
+
+  <!-- Office -->
+  <Menu>
+    <Name>Office</Name>
+    <Directory>Office.directory</Directory>
+    <Include>
+      <And>
+        <Category>Office</Category>
+        <Not><Filename>evince.desktop</Filename></Not>
+      </And>
+    </Include>
+  </Menu> <!-- End Office -->
+
+  <!-- System Tools-->
+  <Menu>
+    <Name>System</Name>
+    <Directory>System-Tools.directory</Directory>
+    <Include>
+      <And>
+        <Or>
+          <Category>System</Category>
+          <Category>Administration</Category>
+        </Or>
+        <Not>
+          <Category>Game</Category>
+          <Category>X-GNOME-Settings-Panel</Category>
+          <Filename>debian-xterm.desktop</Filename>
+          <Filename>debian-uxterm.desktop</Filename>
+          <Filename>htop.desktop</Filename>
+          <Filename>ibus.desktop</Filename>
+        </Not>
+      </And>
+      <Filename>ubuntuone-installer.desktop</Filename>
+      <Filename>ubuntu-tweak.desktop</Filename>
+    </Include>
+  </Menu>   <!-- End System Tools -->
+
+  <!-- Other -->
+  <Menu>
+    <Name>Other</Name>
+    <Directory>X-GNOME-Other.directory</Directory>
+    <OnlyUnallocated/>
+    <Include>
+      <And>
+        <Not>
+          <Category>Core</Category>
+          <Category>Screensaver</Category>
+          <Category>X-GNOME-Settings-Panel</Category>
+          <Filename>debian-xterm.desktop</Filename>
+          <Filename>debian-uxterm.desktop</Filename>
+          <Filename>htop.desktop</Filename>
+          <Filename>ibus.desktop</Filename>
+          <Filename>empathy-accounts.desktop</Filename>
+          <Filename>orca.desktop</Filename>
+          <Filename>onboard.desktop</Filename>
+          <Filename>org.gnome.font-viewer.desktop</Filename>
+          <Filename>gnome-font-viewer.desktop</Filename>
+          <Filename>evince.desktop</Filename>
+          <Filename>file-roller.desktop</Filename>
+          <Filename>org.gnome.FileRoller.desktop</Filename>
+        </Not>
+        <Or>
+          <Not><Category>Settings</Category></Not>
+          <And>
+            <Category>Settings</Category>
+            <Or>
+              <Category>DesktopSettings</Category>
+              <Category>Security</Category>
+            </Or>
+          </And>
+        </Or>
+      </And>
+    </Include>
+  </Menu> <!-- End Other -->
+
+  <Menu>
+    <Name>Wine</Name>
+    <Directory>Wine.directory</Directory>
+    <Include>
+      <And>
+        <Category>Wine</Category>
+      </And>
+    </Include>
+  </Menu> <!-- End Wine -->
+
+   <Layout>
+     <Merge type="menus" />
+     <Menuname>Other</Menuname>
+     <Merge type="files" />
+   </Layout>
+
+  <!-- The Debian menu -->
+  <Menu>
+    <Name>Debian</Name>
+    <MergeFile>debian-menu.menu</MergeFile>
+    <Directory>Debian.directory</Directory>
+  </Menu>
+
+  <!-- Switchboard menu -->
+  <Menu>
+    <Name>switchboard</Name>
+    <Directory>Switchboard.directory</Directory>
+    <Include>
+      <And>
+        <Or>
+          <Category>X-PANTHEON-Switchboard-Plugs</Category>
+          <Category>X-GNOME-Settings-Panel</Category>
+        </Or>
+      </And>
+    </Include>
+  </Menu>
+
+</Menu> <!-- End Applications -->

@@ -1,0 +1,210 @@
+# Russian translation for slingshot
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the slingshot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: slingshot\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-06-03 20:59+0200\n"
+"PO-Revision-Date: 2015-10-25 16:10+0000\n"
+"Last-Translator: zEvilz <zevilz13@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-11-11 05:05+0000\n"
+"X-Generator: Launchpad (build 17843)\n"
+
+#: ../src/Widgets/SearchView.vala:160
+msgid "Other"
+msgstr "Прочие"
+
+#: ../src/Widgets/SearchView.vala:163
+msgid "Text"
+msgstr "Текст"
+
+#: ../src/Widgets/SearchView.vala:166
+msgid "Applications"
+msgstr "Приложения"
+
+#: ../src/Widgets/SearchView.vala:169
+msgid "Files"
+msgstr "Файлы"
+
+#: ../src/Widgets/SearchView.vala:172
+msgid "Actions"
+msgstr "Действия"
+
+#: ../src/Widgets/SearchView.vala:175
+msgid "Search"
+msgstr "Поиск"
+
+#: ../src/Widgets/SearchView.vala:178
+msgid "Contacts"
+msgstr "Контакты"
+
+#: ../src/Widgets/SearchView.vala:181
+msgid "Internet"
+msgstr "Интернет"
+
+#: ../src/Widgets/SearchView.vala:184
+msgid "Settings"
+msgstr "Параметры"
+
+#: ../src/Widgets/AppEntry.vala:195
+msgid "Remove from _Dock"
+msgstr "Убрать из _док-панели"
+
+#: ../src/Widgets/AppEntry.vala:197
+msgid "Add to _Dock"
+msgstr "Добавить в _док-панель"
+
+#: ../src/Widgets/CategoryView.vala:27
+msgid "All Applications"
+msgstr "Все приложения"
+
+#: ../src/Widgets/CategoryView.vala:28
+msgid "Create a new Filter"
+msgstr "Создать новый фильтр"
+
+#: ../src/Backend/App.vala:108
+msgid "Run this command…"
+msgstr "Выполнить команду..."
+
+#: ../src/SlingshotView.vala:169
+msgid "View as Grid"
+msgstr "В виде таблицы"
+
+#: ../src/SlingshotView.vala:173
+msgid "View by Category"
+msgstr "В виде категорий"
+
+#: ../src/SlingshotView.vala:182
+msgid "Search Apps"
+msgstr "Поиск приложений"
+
+#: ../lib/synapse-plugins/system-managment.vala:103
+msgid "Suspend"
+msgstr "Ждущий режим"
+
+#: ../lib/synapse-plugins/system-managment.vala:104
+msgid "Put your computer into suspend mode"
+msgstr "Перейти в режим ожидания"
+
+#: ../lib/synapse-plugins/system-managment.vala:203
+msgid "Hibernate"
+msgstr "Спящий режим"
+
+#: ../lib/synapse-plugins/system-managment.vala:204
+msgid "Put your computer into hibernation mode"
+msgstr "Перейти в спящий режим"
+
+#: ../lib/synapse-plugins/system-managment.vala:302
+msgid "Shut Down"
+msgstr "Выключить"
+
+#: ../lib/synapse-plugins/system-managment.vala:303
+msgid "Turn your computer off"
+msgstr "Выключить компьютер"
+
+#: ../lib/synapse-plugins/system-managment.vala:386
+msgid "Restart"
+msgstr "Перезагрузить"
+
+#: ../lib/synapse-plugins/system-managment.vala:387
+msgid "Restart your computer"
+msgstr "Перезагрузить компьютер"
+
+#: ../lib/synapse-plugins/system-managment.vala:471
+msgid "Suspend, hibernate, restart or shutdown your computer."
+msgstr "Приостановить, усыпить, перезагрузить или выключить компьютер"
+
+#: ../lib/synapse-plugins/system-managment.vala:476
+msgid "ConsoleKit wasn't found"
+msgstr "Не найден ConsoleKit"
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:94
+msgid "Search for and run applications on your computer."
+msgstr "Найти и запустить приложения на этом компьютере"
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:283
+msgid "Open with %s"
+msgstr "Открыть в %s"
+
+#: ../lib/synapse-plugins/desktop-file-plugin.vala:285
+msgid "Opens current selection using %s"
+msgstr "Открыть выделенное в %s"
+
+#: ../lib/synapse-plugins/command-plugin.vala:56
+msgid "Execute '%s'"
+msgstr "Выполнить '%s'"
+
+#: ../lib/synapse-plugins/command-plugin.vala:56
+msgid "Run command"
+msgstr "Выполнить команду"
+
+#: ../lib/synapse-plugins/command-plugin.vala:77
+msgid "Find and execute arbitrary commands."
+msgstr "Найти и выполнить произвольную команду"
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:63
+msgid "Calculator"
+msgstr "Калькулятор"
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:64
+msgid "Calculate basic expressions."
+msgstr "Вычислить основные выражения."
+
+#: ../lib/synapse-plugins/calculator-plugin.vala:68
+msgid "bc is not installed"
+msgstr "bc не установлена"
+
+#: ../lib/synapse-plugins/switchboard-plugin.vala:55
+msgid "Open %s settings"
+msgstr "Открыть настройки %s"
+
+#: ../lib/synapse-plugins/switchboard-plugin.vala:71
+msgid "Find switchboard plugs and open them."
+msgstr "Найти плагины Switchboard и открыть их."
+
+#: ../lib/synapse-core/common-actions.vala:77
+msgid "Run"
+msgstr "Выполнить"
+
+#: ../lib/synapse-core/common-actions.vala:78
+msgid "Run an application, action or script"
+msgstr "Запустить приложение, действие или скрипт"
+
+#: ../lib/synapse-core/common-actions.vala:133
+msgid "Run in Terminal"
+msgstr "Запустить в терминале"
+
+#: ../lib/synapse-core/common-actions.vala:134
+msgid "Run application or command in terminal"
+msgstr "Запустить приложение или команду в терминале"
+
+#: ../lib/synapse-core/common-actions.vala:182
+msgid "Open"
+msgstr "Открыть"
+
+#: ../lib/synapse-core/common-actions.vala:183
+msgid "Open using default application"
+msgstr "Открыть в приложении по умолчанию"
+
+#: ../lib/synapse-core/common-actions.vala:252
+msgid "Open folder"
+msgstr "Открыть папку"
+
+#: ../lib/synapse-core/common-actions.vala:253
+msgid "Open folder containing this file"
+msgstr "Открыть папку с этим файлом"
+
+#: ../lib/synapse-core/common-actions.vala:293
+msgid "Copy to Clipboard"
+msgstr "Копировать"
+
+#: ../lib/synapse-core/common-actions.vala:294
+msgid "Copy selection to clipboard"
+msgstr "Копировать выделенное"
