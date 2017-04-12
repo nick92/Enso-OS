@@ -7,7 +7,7 @@ A simple OS designed for ease of use and ageing computers
 
 ## Launcher
 
-![panther](http://i.imgur.com/d6uKudc.png)
+![panther](http://i.imgur.com/ysXAp7p.png)
 
 ## Multitasking view
 
