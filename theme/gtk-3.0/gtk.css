@@ -2591,8 +2591,8 @@ GtkVolumeButton.button {
 
 .header-bar .button.titlebutton,
 .titlebar .button.titlebutton {
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 2px;
+  padding-right: 2px;
   border-color: transparent;
   background-color: transparent;
   background-image: none;
@@ -3351,7 +3351,8 @@ UnityPanelWidget,
   color: white; }
 
 .lightdm-combo .menu {
-  background-color: rgba(253, 253, 254, 0.95);
+  /*background-color: rgba(253, 253, 254, 0.95);*/
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 0px;
   padding: 0px;
   color: white; }
