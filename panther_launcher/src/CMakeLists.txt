@@ -42,6 +42,11 @@ set (VALA_PACKAGES ${VALA_PACKAGES} libsoup-2.4)
 set (VALA_PACKAGES ${VALA_PACKAGES} pango)
 set (VALA_PACKAGES ${VALA_PACKAGES} pangocairo)
 set (VALA_PACKAGES ${VALA_PACKAGES} x11)
+set (VALA_PACKAGES ${VALA_PACKAGES} libxfce4panel-2.0)
+set (VALA_PACKAGES ${VALA_PACKAGES} libxfconf-0)
+set (VALA_PACKAGES ${VALA_PACKAGES} garcon-1)
+#set (VALA_PACKAGES ${VALA_PACKAGES} exo-1)
+
 
 set (APP_SOURCES ${APP_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/Config.vala)
 set (APP_SOURCES ${APP_SOURCES} Backend/App.vala)
@@ -54,6 +59,7 @@ set (APP_SOURCES ${APP_SOURCES} PantherView.vala)
 set (APP_SOURCES ${APP_SOURCES} Pixels.vala)
 set (APP_SOURCES ${APP_SOURCES} Settings.vala)
 set (APP_SOURCES ${APP_SOURCES} Utils.vala)
+set (APP_SOURCES ${APP_SOURCES} Xfce4PantherPlugin.vala)
 set (APP_SOURCES ${APP_SOURCES} Widgets/AppEntry.vala)
 set (APP_SOURCES ${APP_SOURCES} Widgets/CategoryView.vala)
 set (APP_SOURCES ${APP_SOURCES} Widgets/Grid.vala)
@@ -61,6 +67,8 @@ set (APP_SOURCES ${APP_SOURCES} Widgets/SearchItem.vala)
 set (APP_SOURCES ${APP_SOURCES} Widgets/SearchView.vala)
 set (APP_SOURCES ${APP_SOURCES} Widgets/Sidebar.vala)
 set (APP_SOURCES ${APP_SOURCES} Widgets/Switcher.vala)
+set (APP_SOURCES ${APP_SOURCES} Widgets/Client.vala)
+set (APP_SOURCES ${APP_SOURCES} Widgets/Interfaces.vala)
 set (APP_SOURCES ${APP_SOURCES} synapse-core/common-actions.vala)
 set (APP_SOURCES ${APP_SOURCES} synapse-core/config-service.vala)
 set (APP_SOURCES ${APP_SOURCES} synapse-core/data-sink.vala)
@@ -104,25 +112,35 @@ if ((${CMAKE_BUILD_TYPE} STREQUAL "Debug") OR (${CMAKE_BUILD_TYPE} STREQUAL "Rel
 	set(COMPILE_OPTIONS ${COMPILE_OPTIONS} "-g")
 endif()
 
+set(COMPILE_OPTIONS ${COMPILE_OPTIONS} "--vapidir=${CMAKE_CURRENT_SOURCE_DIR}/src/vapi")
+set(COMPILE_OPTIONS ${COMPILE_OPTIONS} "--vapidir=${CMAKE_CURRENT_BINARY_DIR}/src/")
 
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGMENU_I_KNOW_THIS_IS_UNSTABLE" )
 
-vala_precompile(VALA_C panther_launcher
+vala_precompile(VALA_C_XFCE pantherplugin
 	${APP_SOURCES}
 PACKAGES
 	${VALA_PACKAGES}
+CUSTOM_VAPIS
+#	vapi/libxfce4panel-2.0.vapi
+#	vapi/libxfconf-0.vapi
 OPTIONS
 	${COMPILE_OPTIONS}
 )
 
-add_executable(panther_launcher ${VALA_C})
-target_link_libraries( panther_launcher m )
+#add_executable(pantherplugin ${VALA_C})
+add_library (pantherplugin SHARED
+        ${VALA_C_XFCE}
+    )
+
+include_directories(${GTK+_INCLUDE_DIRS} ${XFCE_INCLUDE_DIRS})
+target_link_libraries( pantherplugin ${GTK+_LIBRARIES} ${XFCE_LIBRARIES} -lm )
 
 
 install(TARGETS
-	panther_launcher
-RUNTIME DESTINATION
-	${CMAKE_INSTALL_BINDIR}
+	pantherplugin
+DESTINATION
+	${CMAKE_INSTALL_LIBDIR}/xfce4/panel/plugins
 )
 if(HAVE_VALADOC)
 	valadoc(panther_launcher
