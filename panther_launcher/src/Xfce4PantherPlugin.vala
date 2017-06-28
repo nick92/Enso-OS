@@ -17,29 +17,95 @@
 //
 
 namespace Panther {
-  private class Plugin : Xfce.PanelPlugin {
-      public override void @construct() {
-          var widget = new Widget(orientation, size, this);
-          add(widget);
-          add_action_widget(widget);
 
-          orientation_changed.connect((orientation) => {
-              widget.orientation = orientation;
-              widget.update_size();
-          });
+  public class Plugin : Xfce.PanelPlugin {
 
-          size_changed.connect(() => {
-              widget.size = size;
-              widget.update_size();
-              return true;
-          });
+    private Panther app;
 
-          widget.show_all();
-      }
+    public PantherView view = null;
+    public static bool silent = false;
+    public static bool command_mode = false;
+    public bool launched = false;
+
+    public static Settings settings { get; private set; default = null; }
+    public static Gtk.IconTheme icon_theme { get; set; default = null; }
+    private DBusService? dbus_service = null;
+
+    private int view_width;
+    private int view_height;
+    private bool first = true;
+
+    private string[] args = null;
+
+    public override void @construct() {
+
+        Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, GLib.Path.build_filename(Constants.DATADIR,"locale"));
+        Intl.textdomain(Constants.GETTEXT_PACKAGE);
+        Intl.bind_textdomain_codeset(Constants.GETTEXT_PACKAGE, "UTF-8" );
+
+        app = new Panther ();
+        app.view = new PantherView ();
+
+        app.app_button = new Gtk.ToggleButton.with_label ("Applications");
+        app.app_button.set_relief(Gtk.ReliefStyle.NONE);
+        app.app_button.set_focus_on_click(false);
+        add (app.app_button);
+        app.app_button.show ();
+
+        add_action_widget (app.app_button);
+
+        Bus.own_name (BusType.SESSION, "com.rastersoft.panther.remotecontrol", BusNameOwnerFlags.NONE, on_bus_aquired, () => {}, () => {});
+
+        app.app_button.toggled.connect (() => {
+          if (app.app_button.active) {
+            if (app.get_windows () == null) {
+              app.run ();
+            }
+            else {
+              app.view.show_panther ();
+            }
+          }
+          else {
+            app.view.hide ();
+          }
+        });
+
+    		menu_show_about ();
+    		about.connect (() => {
+    				Gtk.show_about_dialog (null,
+    					"program-name", "Panther Launcher",
+    					"comments", "A fork from Slingshot Launcher. Its main change is that it doesn't depend on Gala, Granite or other libraries not available in regular linux distros. It also has been ported to Autovala, allowing an easier build. Finally, it also has an applet for Gnome Flashback and an extension for Gnome Shell, allowing to use it from these desktops.",
+    					null);
+    			});
+
+    		destroy.connect (() => { Gtk.main_quit (); });
+    }
   }
 }
 
 [ModuleInit]
 public Type xfce_panel_module_init(TypeModule module) {
-  return typeof (StatusNotifier.Plugin);
+  return typeof (Panther.Plugin);
+}
+
+
+void on_bus_aquired (DBusConnection conn) {
+    try {
+        conn.register_object ("/com/rastersoft/panther/remotecontrol", new RemoteControl ());
+    } catch (IOError e) {
+        GLib.stderr.printf ("Could not register service\n");
+    }
+}
+
+[DBus (name = "com.rastersoft.panther.remotecontrol")]
+public class RemoteControl : GLib.Object {
+
+    public int do_ping(int v) {
+        return (v+1);
+    }
+
+    public void do_show() {
+        print("Called from DBus\n");
+        app.activate();
+    }
 }

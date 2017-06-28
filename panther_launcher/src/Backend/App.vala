@@ -83,7 +83,7 @@ public class Panther.Backend.App : Object {
         desktop_path = entry.get_desktop_file_path ();
         categories = info.get_categories ();
         generic_name = info.get_generic_name ();
-
+        //warning("entry id:" + entry.get_desktop_file_id ());  
         /*firstres = 0;
         firstres = (int)Panther.settings.screen_resolution.substring(0, Panther.settings.screen_resolution.index_of("x"));
         secondres =  0;

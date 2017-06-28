@@ -31,18 +31,22 @@ public class Panther.Widgets.AppEntry : Gtk.Button {
     public int icon_size;
     public string desktop_path;
 
+    public File launchers_dir;
+
     public signal void app_launched ();
 
     private bool dragging = false; //prevent launching
 
     private Backend.App application;
 
+    private Backend.AppSystem app_system;
+
 #if HAS_PLANK
     static construct {
-        plank_client = Plank.DBus.Client.get_instance ();
+        plank_client = Plank.DBusClient.get_instance ();
     }
 
-    private static Plank.DBus.Client plank_client;
+    private static Plank.DBusClient plank_client;
     private bool docked = false;
     private string desktop_uri;
 #endif
@@ -166,11 +170,9 @@ public class Panther.Widgets.AppEntry : Gtk.Button {
             var panther_app = (Gtk.Application) GLib.Application.get_default ();
             ((PantherView)panther_app.active_window).grab_device ();
         });
-
         foreach (var action in application.actions) {
             var menuitem = new Gtk.MenuItem.with_mnemonic (action);
             menu.add (menuitem);
-
             menuitem.activate.connect (() => {
                 try {
                     var values = application.actions_map.get (action).split (";;");
@@ -181,6 +183,11 @@ public class Panther.Widgets.AppEntry : Gtk.Button {
                 }
             });
         }
+
+        if (menu.get_children ().length () > 0)
+            menu.add (new Gtk.SeparatorMenuItem ());
+
+        menu.add(get_saved_menuitem ());
 
 #if HAS_PLANK
         if (plank_client != null && plank_client.is_connected) {
@@ -204,7 +211,7 @@ public class Panther.Widgets.AppEntry : Gtk.Button {
         if (docked)
             plank_menuitem.set_label (_("Remove from _Dock"));
         else
-            plank_menuitem.set_label (_("Add to _Dock"));
+            plank_menuitem.set_label (_("Pin to _Dock"));
 
         plank_menuitem.activate.connect (plank_menuitem_activate);
 
@@ -221,4 +228,105 @@ public class Panther.Widgets.AppEntry : Gtk.Button {
             plank_client.add_item (desktop_uri);
     }
 #endif
+  private Gtk.MenuItem get_saved_menuitem () {
+      //docked = (desktop_uri in plank_client.get_persistent_applications ());
+      var panther_app = (Gtk.Application) GLib.Application.get_default ();
+      bool saved = ((PantherView)panther_app.active_window).cat_saved;
+
+      var saved_menuitem = new Gtk.MenuItem ();
+      saved_menuitem.set_use_underline (true);
+
+      warning(desktop_uri);
+
+      if (saved)
+          saved_menuitem.set_label (_("Remove from _Saved"));
+      else
+          saved_menuitem.set_label (_("Add to Saved"));
+
+      saved_menuitem.activate.connect (saved_menuitem_activate);
+
+      return saved_menuitem;
+  }
+
+  private void saved_menuitem_activate () {
+    var panther_app = (Gtk.Application) GLib.Application.get_default ();
+    bool saved = ((PantherView)panther_app.active_window).cat_saved;
+
+    if(saved)
+      remove_saved_item ();
+    else
+      add_saved_item ();
+  }
+
+  private void add_saved_item () {
+    string uri = desktop_uri;
+    File? target_dir = null;
+
+    if (target_dir == null)
+      target_dir = File.new_for_path (Environment.get_home_dir () + "/.config/panther/saved/");
+
+    bool is_valid = false;
+    string basename;
+    var launcher_file = File.new_for_uri (uri);
+    is_valid = launcher_file.query_exists ();
+    basename = (launcher_file.get_basename () ?? "unknown");
+
+    if (is_valid) {
+      var file = new KeyFile ();
+
+      try {
+        // find a unique file name, based on the name of the launcher
+        var index_of_last_dot = basename.last_index_of (".");
+        var launcher_base = (index_of_last_dot >= 0 ? basename.slice (0, index_of_last_dot) : basename);
+        var dockitem = "%s.saveditem".printf (launcher_base);
+        var dockitem_file = target_dir.get_child (dockitem);
+
+        var counter = 1;
+
+        if (!dockitem_file.query_exists ()) {
+          // save the key file
+          var stream = new DataOutputStream (dockitem_file.create (FileCreateFlags.NONE));
+          stream.put_string (file.to_data ());
+          stream.close ();
+
+          var panther_app = (Gtk.Application) GLib.Application.get_default ();
+          ((PantherView)panther_app.active_window).add_saved (basename);
+        }
+      } catch (Error e){
+        warning(e.message);
+      }
+    }
+  }
+
+  private void remove_saved_item () {
+    string uri = desktop_uri;
+    File? target_dir = null;
+    File saved_file = null;
+
+    if (target_dir == null)
+      target_dir = File.new_for_path (Environment.get_home_dir () + "/.config/panther/saved/");
+
+    bool is_valid = false;
+    string basename;
+    var launcher_file = File.new_for_uri (uri);
+    //is_valid = launcher_file.query_exists ();
+    basename = (launcher_file.get_basename () ?? "unknown");
+
+    var saveditem = "%s%s.saveditem".printf (target_dir.get_path () + "/", basename.substring(0, basename.index_of(".")));
+
+    saved_file = File.new_for_path(saveditem);
+    is_valid = saved_file.query_exists ();
+
+    if(is_valid){
+      try{
+        saved_file.delete ();
+
+        var panther_app = (Gtk.Application) GLib.Application.get_default ();
+        ((PantherView)panther_app.active_window).add_saved (basename);
+
+      } catch (Error e){
+        warning(e.message);
+      }
+    }
+  }
 }

@@ -30,6 +30,7 @@ public class Panther.Panther : Gtk.Application {
     public static bool silent = false;
     public static bool command_mode = false;
     public bool launched = false;
+    public Gtk.ToggleButton app_button;
 
     public static Settings settings { get; private set; default = null; }
     public static Gtk.IconTheme icon_theme { get; set; default = null; }
@@ -42,13 +43,25 @@ public class Panther.Panther : Gtk.Application {
         application_id = "com.rastersoft.panther";
     }
 
+    public int set_view_width {
+      set {
+        this.view_width = value;
+      }
+    }
+
+    public int set_view_height {
+      set {
+        this.view_height = value;
+      }
+    }
+
     public Panther () {
         settings = new Settings ();
         Pixels.ITEM_SIZE = settings.icon_size * 2;
         Pixels.SIDEBAR_WIDTH = Pixels.PADDING + Pixels.ITEM_SIZE - Pixels.SIDEBAR_GRID_PADDING - 1;
     }
 
-    private bool realize_view(Cairo.Context? cr) {
+    public bool realize_view(Cairo.Context? cr) {
 
         Gtk.Allocation alloc;
         this.view.get_allocation(out alloc);
@@ -73,6 +86,9 @@ public class Panther.Panther : Gtk.Application {
 
             if (!Panther.silent) {
                 this.view.show_panther ();
+                this.view.hide.connect (() => {
+                    this.app_button.set_active(false);
+                });
             }
         } else {
             if (this.view.visible && !Panther.silent) {
@@ -90,7 +106,7 @@ public class Panther.Panther : Gtk.Application {
         { null }
     };
 
-    public static int main (string[] args) {
+    /*public static int main (string[] args) {
 
         Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, GLib.Path.build_filename(Constants.DATADIR,"locale"));
         Intl.textdomain(Constants.GETTEXT_PACKAGE);
@@ -114,25 +130,17 @@ public class Panther.Panther : Gtk.Application {
 
         return app.run (args);
     }
-}
 
-void on_bus_aquired (DBusConnection conn) {
-    try {
-        conn.register_object ("/com/rastersoft/panther/remotecontrol", new RemoteControl ());
-    } catch (IOError e) {
-        GLib.stderr.printf ("Could not register service\n");
-    }
-}
+    public void main_run ()
+    {
+        Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, GLib.Path.build_filename(Constants.DATADIR,"locale"));
+        Intl.textdomain(Constants.GETTEXT_PACKAGE);
+        Intl.bind_textdomain_codeset(Constants.GETTEXT_PACKAGE, "UTF-8" );
 
-[DBus (name = "com.rastersoft.panther.remotecontrol")]
-public class RemoteControl : GLib.Object {
+        app = new Panther ();
 
-    public int do_ping(int v) {
-        return (v+1);
-    }
+        Bus.own_name (BusType.SESSION, "com.rastersoft.panther.remotecontrol", BusNameOwnerFlags.NONE, on_bus_aquired, () => {}, () => {});
 
-    public void do_show() {
-        print("Called from DBus\n");
-        app.activate();
-    }
+        app.run ();
+    }*/
 }

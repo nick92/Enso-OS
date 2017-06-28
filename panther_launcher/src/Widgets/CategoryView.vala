@@ -67,9 +67,14 @@ public class Panther.Widgets.CategoryView : Gtk.EventBox {
         // Fill the sidebar
 
         int n = 0;
+        category_ids.set (n, "Saved");
+        n++;
         category_ids.set (n, "All");
         n++;
+
+        category_switcher.add_category (GLib.dgettext ("gnome-menus-3.0", "★Saved").dup ());
         category_switcher.add_category (GLib.dgettext ("gnome-menus-3.0", "All").dup ());
+
         foreach (string cat_name in view.apps.keys) {
             if (cat_name == SWITCHBOARD_CATEGORY)
                 continue;
@@ -99,6 +104,12 @@ public class Panther.Widgets.CategoryView : Gtk.EventBox {
         category_switcher.selection_changed.connect ((name, nth) => {
             view.reset_category_focus ();
             string category = category_ids.get (nth);
+
+            if(category == "Saved")
+              view.cat_saved = true;
+            else
+              view.cat_saved = false;
+
             show_filtered_apps (category);
         });
     }
@@ -115,16 +126,18 @@ public class Panther.Widgets.CategoryView : Gtk.EventBox {
     }
 
     public void show_filtered_apps (string category) {
-
         app_view.clear ();
-        if(category!="All")
-        {
-            foreach (Backend.App app in view.apps[category])
+        if(category=="All"){
+          foreach (Backend.App app in view.app_name)
               add_app (app);
         }
-        else {
-            foreach (Backend.App app in view.app_name)
-                add_app (app);
+        else if(category=="Saved"){
+            foreach(Backend.App app in view.saved_apps)
+              add_app (app);
+        }
+        else{
+          foreach (Backend.App app in view.apps[category])
+            add_app (app);
         }
 
         current_position = 0;

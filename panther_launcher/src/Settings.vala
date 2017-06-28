@@ -52,7 +52,7 @@ namespace Panther {
             this.panther_settings.bind("use-category",this,"use_category",SettingsBindFlags.DEFAULT);
             this.panther_settings.bind("screen-resolution",this,"screen_resolution",SettingsBindFlags.DEFAULT);
             this.panther_settings.bind("show-at-top",this,"show_at_top",SettingsBindFlags.DEFAULT);
-            this.panther_settings.bind("favourite",this,"favourite",SettingsBindFlags.DEFAULT);
+            //this.panther_settings.bind("favourite",this,"favourite",SettingsBindFlags.DEFAULT);
 
             this.panther_settings.changed.connect((key) => {
                 if (key == "rows") {

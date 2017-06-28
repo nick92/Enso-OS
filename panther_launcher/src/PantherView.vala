@@ -49,22 +49,22 @@ namespace Panther {
             this.set_orientation(orientation);
             this.set_layout(Gtk.ButtonBoxStyle.START);
 
-            view_all = new Gtk.ToggleButton();
+            /*view_all = new Gtk.ToggleButton();
             var image = new Gtk.Image.from_icon_name ("panther-icons-symbolic", Gtk.IconSize.MENU);
             image.tooltip_text = _("View as Grid");
             view_all.add(image);
-            this.pack_start(view_all,false,false,0);
+            this.pack_start(view_all,false,false,0);*/
 
             view_cats = new Gtk.ToggleButton();
-            image = new Gtk.Image.from_icon_name ("panther-categories-symbolic", Gtk.IconSize.MENU);
-            image.tooltip_text = _("View by Category");
-            view_cats.add(image);
+            //image = new Gtk.Image.from_icon_name ("panther-categories-symbolic", Gtk.IconSize.MENU);
+            //image.tooltip_text = _("View by Category");
+            //view_cats.add(image);
             this.pack_start (view_cats,false,false,0);
 
-            view_all.button_release_event.connect( (bt) => {
+            /*view_all.button_release_event.connect( (bt) => {
                 this.set_selector(0);
                 return true;
-            });
+            });*/
             view_cats.button_release_event.connect( (bt) => {
                 this.set_selector(1);
                 return true;
@@ -80,11 +80,11 @@ namespace Panther {
                 this._selected = v;
                 switch(v) {
                 case 0:
-                    this.view_all.set_active(true);
+                    //this.view_all.set_active(true);
                     this.view_cats.set_active(false);
                     break;
                 case 1:
-                    this.view_all.set_active(false);
+                    //this.view_all.set_active(false);
                     this.view_cats.set_active(true);
                     break;
                 }
@@ -117,12 +117,15 @@ namespace Panther {
         public Backend.AppSystem app_system;
         private Gee.ArrayList<GMenu.TreeDirectory> categories;
         public Gee.HashMap<string, Gee.ArrayList<Backend.App>> apps;
+        public Gee.ArrayList<Backend.App> saved_apps;
         public SList<Backend.App> app_name;
 
         private Modality modality;
         private bool can_trigger_hotcorner = true;
 
         private Backend.SynapseSearch synapse;
+
+        private bool saved_cat = false;
 
         // Sizes
         public int columns {
@@ -186,6 +189,7 @@ namespace Panther {
             categories = app_system.get_categories ();
             apps = app_system.get_apps ();
             app_name = app_system.get_apps_by_name ();
+            saved_apps = app_system.get_saved_apps ();
 
             if (Panther.settings.screen_resolution != @"$(geometry.width)x$(geometry.height)") {
                 setup_size ();
@@ -369,8 +373,36 @@ namespace Panther {
             return false;
         }
 
-        private void connect_signals () {
+        public bool cat_saved {
+          get {
+            return this.saved_cat;
+          }
+          set {
+            this.saved_cat = value;
+          }
+        }
 
+        public void add_saved (string app) {
+
+          categories = app_system.get_categories ();
+          apps = app_system.get_apps ();
+          app_name = app_system.get_apps_by_name ();
+          saved_apps = app_system.get_saved_apps ();
+          category_view.setup_sidebar ();
+
+          string app_name = app.substring(0, app.index_of("."));
+          var note = new GLib.Notification(_(app_name));
+
+          if(saved_cat)
+            note.set_body(_("Removed from saved"));
+          else
+            note.set_body(_("Added to saved"));
+
+          GLib.Application.get_default ().send_notification(null, note);
+
+        }
+        private void connect_signals () {
+            warning("connect signals");
             this.focus_in_event.connect (() => {
                 search_entry.grab_focus ();
                 return false;
@@ -415,10 +447,10 @@ namespace Panther {
 
             // Auto-update applications grid
             app_system.changed.connect (() => {
-
                 categories = app_system.get_categories ();
                 apps = app_system.get_apps ();
                 app_name = app_system.get_apps_by_name ();
+                saved_apps = app_system.get_saved_apps ();
 
                 populate_grid_view ();
                 category_view.setup_sidebar ();
@@ -446,7 +478,7 @@ namespace Panther {
 
         public void reposition () {
             debug("Repositioning");
-            
+
             var workspace_area = this.get_screen().get_monitor_workarea(this.screen.get_primary_monitor());
 
             int new_y;
