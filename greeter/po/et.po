@@ -1,0 +1,86 @@
+# Estonian translation for pantheon-greeter
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the pantheon-greeter package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pantheon-greeter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-01 10:31-0600\n"
+"PO-Revision-Date: 2017-03-31 17:44+0000\n"
+"Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
+"Language-Team: Estonian <et@li.org>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-04-05 07:04+0000\n"
+"X-Generator: Launchpad (build 18335)\n"
+
+#: ../src/LoginOptions/GuestLogin.vala:41
+msgid "Guest session"
+msgstr "Külalisseanss"
+
+#: ../src/LoginOptions/ManualLogin.vala:35
+msgid "Manual Login"
+msgstr "Manuaalne sisselogimine"
+
+#: ../src/FingerprintIndicatorArea.vala:117
+msgid "Swipe your finger"
+msgstr "Pühi näpuga"
+
+#: ../src/FingerprintIndicatorArea.vala:120
+msgid "Place your finger"
+msgstr "Aseta näpp"
+
+#: ../src/FingerprintIndicatorArea.vala:123
+msgid "Remove your finger and try again."
+msgstr "Eemalda näpp ja proovi uuesti."
+
+#: ../src/FingerprintIndicatorArea.vala:126
+msgid "Center your finger and try again."
+msgstr "Liiguta näpp keskele ja proovi uuesti."
+
+#: ../src/PasswordArea.vala:34 ../src/LoginButtonArea.vala:26
+msgid "Log In"
+msgstr "Logi sisse"
+
+#. / Date display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:59
+msgid "%A, %B %e"
+msgstr "%A, %e. %B"
+
+#. / Time display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:61
+msgid "%l:%M"
+msgstr "%H:%M"
+
+#. / AM/PM display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details. If you translate in a language that has no equivalent for AM/PM, keep the original english string.
+#: ../src/TimeLabel.vala:63
+msgid " %p"
+msgstr " %p"
+
+#~ msgid "Login"
+#~ msgstr "Sisselogimine"
+
+#~ msgid "HighContrast"
+#~ msgstr "Kõrgkontrastne"
+
+#~ msgid "Onscreen Keyboard"
+#~ msgstr "Ekraanklaviatuur"
+
+#~ msgid "Hibernate"
+#~ msgstr "Talveunne"
+
+#~ msgid "Shutdown"
+#~ msgstr "Lülita välja"
+
+#~ msgid "Restart"
+#~ msgstr "Taaskäivita"
+
+#~ msgid "Suspend"
+#~ msgstr "Seiska"
+
+#~ msgid "%A, %B %e%v"
+#~ msgstr "%A, %e. %B"

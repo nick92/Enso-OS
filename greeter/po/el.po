@@ -1,0 +1,86 @@
+# Greek translation for pantheon-greeter
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the pantheon-greeter package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pantheon-greeter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-01 10:31-0600\n"
+"PO-Revision-Date: 2017-01-23 16:27+0000\n"
+"Last-Translator: Christos Iatropoulos <Unknown>\n"
+"Language-Team: Greek <el@li.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-03-09 05:44+0000\n"
+"X-Generator: Launchpad (build 18330)\n"
+
+#: ../src/LoginOptions/GuestLogin.vala:41
+msgid "Guest session"
+msgstr "Συνεδρία επισκέπτη"
+
+#: ../src/LoginOptions/ManualLogin.vala:35
+msgid "Manual Login"
+msgstr "Χειροκίνητη είσοδος"
+
+#: ../src/FingerprintIndicatorArea.vala:117
+msgid "Swipe your finger"
+msgstr "Σύρετε το δάχτυλο σας"
+
+#: ../src/FingerprintIndicatorArea.vala:120
+msgid "Place your finger"
+msgstr "Τοποθετήστε το δάχτυλο σας"
+
+#: ../src/FingerprintIndicatorArea.vala:123
+msgid "Remove your finger and try again."
+msgstr "Απομακρύνετε το δάχτυλο σας και δοκιμάστε ξανά."
+
+#: ../src/FingerprintIndicatorArea.vala:126
+msgid "Center your finger and try again."
+msgstr "Κεντράρετε το δάχτυλο σας και δοκιμάστε ξανά."
+
+#: ../src/PasswordArea.vala:34 ../src/LoginButtonArea.vala:26
+msgid "Log In"
+msgstr "Είσοδος"
+
+#. / Date display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:59
+msgid "%A, %B %e"
+msgstr "%A, %B %e"
+
+#. / Time display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:61
+msgid "%l:%M"
+msgstr "%l:%M"
+
+#. / AM/PM display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details. If you translate in a language that has no equivalent for AM/PM, keep the original english string.
+#: ../src/TimeLabel.vala:63
+msgid " %p"
+msgstr " %p"
+
+#~ msgid "Login"
+#~ msgstr "Είσοδος"
+
+#~ msgid "Restart"
+#~ msgstr "Επανεκκίνηση"
+
+#~ msgid "Suspend"
+#~ msgstr "Αναστολή"
+
+#~ msgid "HighContrast"
+#~ msgstr "Υψηλή αντίθεση"
+
+#~ msgid "Onscreen Keyboard"
+#~ msgstr "Πληκτρολόγιο οθόνης"
+
+#~ msgid "Hibernate"
+#~ msgstr "Αδρανοποίηση"
+
+#~ msgid "%A, %B %e%v"
+#~ msgstr "%A, %e %b %Y"
+
+#~ msgid "Shutdown"
+#~ msgstr "Τερματισμός λειτουργίας"

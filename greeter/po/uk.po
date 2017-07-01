@@ -1,0 +1,89 @@
+# Ukrainian translation for pantheon-greeter
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the pantheon-greeter package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pantheon-greeter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-01 10:31-0600\n"
+"PO-Revision-Date: 2017-04-26 15:27+0000\n"
+"Last-Translator: Володимир Білошицький <volbilnexus@gmail.com>\n"
+"Language-Team: Ukrainian "
+"<https://l10n.elementary.io/projects/desktop/greeter/uk/>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-03-09 05:44+0000\n"
+
+#: ../src/LoginOptions/GuestLogin.vala:41
+msgid "Guest session"
+msgstr "Гостьовий сеанс"
+
+#: ../src/LoginOptions/ManualLogin.vala:35
+msgid "Manual Login"
+msgstr "Ввійти вручну"
+
+#: ../src/FingerprintIndicatorArea.vala:117
+msgid "Swipe your finger"
+msgstr "Проведіть своїм пальцем"
+
+#: ../src/FingerprintIndicatorArea.vala:120
+msgid "Place your finger"
+msgstr "Прикладіть ваш палець"
+
+#: ../src/FingerprintIndicatorArea.vala:123
+msgid "Remove your finger and try again."
+msgstr "Заберіть ваш палець та спробуйте ще раз."
+
+#: ../src/FingerprintIndicatorArea.vala:126
+msgid "Center your finger and try again."
+msgstr "Центруйте ваш палець та спробуйте ще раз."
+
+#: ../src/PasswordArea.vala:34 ../src/LoginButtonArea.vala:26
+msgid "Log In"
+msgstr "Увійти"
+
+#. / Date display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:59
+msgid "%A, %B %e"
+msgstr "%A, %B %e"
+
+#. / Time display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:61
+msgid "%l:%M"
+msgstr "%l:%M"
+
+#. / AM/PM display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details. If you translate in a language that has no equivalent for AM/PM, keep the original english string.
+#: ../src/TimeLabel.vala:63
+msgid " %p"
+msgstr " %p"
+
+#~ msgid "Suspend"
+#~ msgstr "Призупинити"
+
+#~ msgid "HighContrast"
+#~ msgstr "Висока контрастність"
+
+#~ msgid "Onscreen Keyboard"
+#~ msgstr "Екранна клавіатура"
+
+#~ msgid "Restart"
+#~ msgstr "Перезавантажити"
+
+#~ msgid "Shutdown"
+#~ msgstr "Вимкнути"
+
+#~ msgid "%A, %B %e%v"
+#~ msgstr "%A,  %e %B"
+
+#~ msgid "Hibernate"
+#~ msgstr "Приспати"
+
+#~ msgid "Login"
+#~ msgstr "Увійти"

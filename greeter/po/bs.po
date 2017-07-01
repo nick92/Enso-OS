@@ -1,0 +1,86 @@
+# Bosnian translation for pantheon-greeter
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the pantheon-greeter package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pantheon-greeter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-01 10:31-0600\n"
+"PO-Revision-Date: 2014-11-11 09:21+0000\n"
+"Last-Translator: aleksandar-todorovic <aleksandar.todorovic@mail.ru>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-03-09 05:44+0000\n"
+"X-Generator: Launchpad (build 18330)\n"
+
+#: ../src/LoginOptions/GuestLogin.vala:41
+msgid "Guest session"
+msgstr "Prijava gosta"
+
+#: ../src/LoginOptions/ManualLogin.vala:35
+msgid "Manual Login"
+msgstr "Ručna prijava"
+
+#: ../src/FingerprintIndicatorArea.vala:117
+msgid "Swipe your finger"
+msgstr ""
+
+#: ../src/FingerprintIndicatorArea.vala:120
+msgid "Place your finger"
+msgstr ""
+
+#: ../src/FingerprintIndicatorArea.vala:123
+msgid "Remove your finger and try again."
+msgstr ""
+
+#: ../src/FingerprintIndicatorArea.vala:126
+msgid "Center your finger and try again."
+msgstr ""
+
+#: ../src/PasswordArea.vala:34 ../src/LoginButtonArea.vala:26
+msgid "Log In"
+msgstr ""
+
+#. / Date display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:59
+msgid "%A, %B %e"
+msgstr ""
+
+#. / Time display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:61
+msgid "%l:%M"
+msgstr "%l:%M"
+
+#. / AM/PM display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details. If you translate in a language that has no equivalent for AM/PM, keep the original english string.
+#: ../src/TimeLabel.vala:63
+msgid " %p"
+msgstr " %p"
+
+#~ msgid "HighContrast"
+#~ msgstr "Visoki kontrast"
+
+#~ msgid "Onscreen Keyboard"
+#~ msgstr "Virtualna tipkovnica"
+
+#~ msgid "Hibernate"
+#~ msgstr "Hibernacija"
+
+#~ msgid "Restart"
+#~ msgstr "Restartuj"
+
+#~ msgid "Suspend"
+#~ msgstr "Suspenduj"
+
+#~ msgid "Shutdown"
+#~ msgstr "Ugasi"
+
+#~ msgid "Login"
+#~ msgstr "Prijava"
+
+#~ msgid "%A, %B %e%v"
+#~ msgstr "%A, %B %e%v"

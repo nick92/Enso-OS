@@ -1,0 +1,88 @@
+# Bulgarian translation for pantheon-greeter
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the pantheon-greeter package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pantheon-greeter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-01 10:31-0600\n"
+"PO-Revision-Date: 2017-05-09 22:12+0000\n"
+"Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
+"Language-Team: Bulgarian "
+"<https://l10n.elementary.io/projects/desktop/greeter/bg/>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-03-09 05:44+0000\n"
+
+#: ../src/LoginOptions/GuestLogin.vala:41
+msgid "Guest session"
+msgstr "Сесия на гост"
+
+#: ../src/LoginOptions/ManualLogin.vala:35
+msgid "Manual Login"
+msgstr "Ръчен вход"
+
+#: ../src/FingerprintIndicatorArea.vala:117
+msgid "Swipe your finger"
+msgstr "Плъзни пръста"
+
+#: ../src/FingerprintIndicatorArea.vala:120
+msgid "Place your finger"
+msgstr "Поставете пръста си"
+
+#: ../src/FingerprintIndicatorArea.vala:123
+msgid "Remove your finger and try again."
+msgstr "Вдигнете пръста си и опитайте отново."
+
+#: ../src/FingerprintIndicatorArea.vala:126
+msgid "Center your finger and try again."
+msgstr "Поставете пръста си в центъра и опитайте отново."
+
+#: ../src/PasswordArea.vala:34 ../src/LoginButtonArea.vala:26
+msgid "Log In"
+msgstr "Влизане"
+
+#. / Date display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:59
+msgid "%A, %B %e"
+msgstr "%A, %e %B"
+
+#. / Time display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:61
+msgid "%l:%M"
+msgstr "%H:%M"
+
+#. / AM/PM display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details. If you translate in a language that has no equivalent for AM/PM, keep the original english string.
+#: ../src/TimeLabel.vala:63
+msgid " %p"
+msgstr " %p"
+
+#~ msgid "Login"
+#~ msgstr "Вход"
+
+#~ msgid "Restart"
+#~ msgstr "Рестартиране"
+
+#~ msgid "HighContrast"
+#~ msgstr "Висок контраст"
+
+#~ msgid "Onscreen Keyboard"
+#~ msgstr "Екранна клавиатура"
+
+#~ msgid "Hibernate"
+#~ msgstr "Дълбоко приспиване"
+
+#~ msgid "Suspend"
+#~ msgstr "Приспиване"
+
+#~ msgid "Shutdown"
+#~ msgstr "Изключване"
+
+#~ msgid "%A, %B %e%v"
+#~ msgstr "%A, %B %e"

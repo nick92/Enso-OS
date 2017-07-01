@@ -1,0 +1,88 @@
+# Chinese (Simplified) translation for pantheon-greeter
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the pantheon-greeter package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pantheon-greeter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-01 10:31-0600\n"
+"PO-Revision-Date: 2017-04-13 08:46+0000\n"
+"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"Language-Team: Chinese (Simplified) "
+"<https://l10n.elementary.io/projects/desktop/greeter/zh_CN/>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-03-14 06:58+0000\n"
+
+#: ../src/LoginOptions/GuestLogin.vala:41
+msgid "Guest session"
+msgstr "访客会话"
+
+#: ../src/LoginOptions/ManualLogin.vala:35
+msgid "Manual Login"
+msgstr "手动登录"
+
+#: ../src/FingerprintIndicatorArea.vala:117
+msgid "Swipe your finger"
+msgstr "滑动手指"
+
+#: ../src/FingerprintIndicatorArea.vala:120
+msgid "Place your finger"
+msgstr "放置手指"
+
+#: ../src/FingerprintIndicatorArea.vala:123
+msgid "Remove your finger and try again."
+msgstr "移开您的手指并重试"
+
+#: ../src/FingerprintIndicatorArea.vala:126
+msgid "Center your finger and try again."
+msgstr "居中放置手指并重试"
+
+#: ../src/PasswordArea.vala:34 ../src/LoginButtonArea.vala:26
+msgid "Log In"
+msgstr "登录"
+
+#. / Date display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:59
+msgid "%A, %B %e"
+msgstr "%b%e日 %A"
+
+#. / Time display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
+#: ../src/TimeLabel.vala:61
+msgid "%l:%M"
+msgstr "%l:%M"
+
+#. / AM/PM display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details. If you translate in a language that has no equivalent for AM/PM, keep the original english string.
+#: ../src/TimeLabel.vala:63
+msgid " %p"
+msgstr " %p"
+
+#~ msgid "HighContrast"
+#~ msgstr "高对比度"
+
+#~ msgid "Onscreen Keyboard"
+#~ msgstr "屏幕键盘"
+
+#~ msgid "Hibernate"
+#~ msgstr "休眠"
+
+#~ msgid "Restart"
+#~ msgstr "重启"
+
+#~ msgid "Suspend"
+#~ msgstr "待机"
+
+#~ msgid "Shutdown"
+#~ msgstr "关机"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "%A, %B %e%v"
+#~ msgstr "%b%e日，%A"
