@@ -1,5 +1,4 @@
-# Pantheon Greeter
-[![l10n](https://l10n.elementary.io/widgets/desktop/greeter/svg-badge.svg)](https://l10n.elementary.io/projects/desktop/greeter)
+##Greeter
 
 ## Building and Installation
 
@@ -8,7 +7,7 @@ You'll need the following dependencies:
 * cmake
 * libclutter-gtk-2.0-dev
 * libgdk-pixbuf2.0-dev
-* libgranite-dev
+* libgee-0.8-dev
 * libgtk-3-dev
 * liblightdm-gobject-1-dev
 * libx11-dev
@@ -35,3 +34,9 @@ Run LightDM in test mode with Xephyr:
     lightdm --test-mode --debug
 
 You can then find the debug log in `~/.cache/lightdm/log`
+
+Also by running the local executable
+
+    ./pantheon-greeter 
+
+from you build folder

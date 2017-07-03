@@ -161,7 +161,7 @@ public class PantheonGreeter : Gtk.Window {
             warning (e.message);
         }
         if (activate_numlock) {
-            Granite.Services.System.execute_command ("/usr/bin/numlockx on");
+            //Granite.Services.System.execute_command ("/usr/bin/numlockx on");
         }
 
         var screensaver_timeout = 60;
@@ -464,11 +464,38 @@ public static int main (string [] args) {
     Intl.bind_textdomain_codeset ("pantheon-greeter", "UTF-8");
     Intl.textdomain ("pantheon-greeter");
 
-    var cursor = new Gdk.Cursor.for_display (Gdk.Display.get_default (),
-                                             Gdk.CursorType.LEFT_PTR);
+    var cursor = new Gdk.Cursor.for_display (Gdk.Display.get_default (), Gdk.CursorType.LEFT_PTR);
     Gdk.get_default_root_window ().set_cursor (cursor);
+
+    /* change default gtk settings */
+    Gtk.Settings settings = Gtk.Settings.get_default ();
+    settings.gtk_theme_name = get_defaults ("gtk-theme");//enso
+    settings.gtk_icon_theme_name = get_defaults ("icon-theme");//Papirus-GTK
+    settings.gtk_cursor_theme_name = get_defaults ("cursor-theme");//capitaine-cursors
 
     new PantheonGreeter ();
     Gtk.main ();
     return Posix.EXIT_SUCCESS;
+}
+
+string get_defaults (string default) {
+    var settings = new KeyFile ();
+    string ret = "";
+    try {
+        settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+        switch(default){
+          case("gtk-theme"):
+            ret = settings.get_string ("greeter", "gtk-theme");
+            break;
+          case("icon-theme"):
+            ret = settings.get_string ("greeter", "icon-theme");
+            break;
+          case("cursor-theme"):
+            ret = settings.get_string ("greeter", "cursor-theme");
+            break;
+        }
+    } catch (Error e) {
+        warning (e.message);
+    }
+    return ret;
 }

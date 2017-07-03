@@ -59,18 +59,18 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
     construct {
         reactive = true;
 
+        Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
+        
         credentials_area = new CredentialsArea (this, user);
 
-        Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
-        icon_theme.add_resource_path("/usr/share/icons/Papirus-GTK/");
-
         var path = user.avatar_path;
-        Granite.Widgets.Avatar avatar;
+        Gtk.Image avatar;
 
         if (path != null) {
-            avatar = new Granite.Widgets.Avatar.from_file (path, 130);
+            avatar = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_size(path, 130, 130));
+            //avatar = new Granite.Widgets.Avatar.from_file (path, 130);
         } else {
-            avatar = new Granite.Widgets.Avatar.from_pixbuf (icon_theme.load_icon ("avatar-default-symbolic", 64, 0));
+            avatar = new Gtk.Image.from_pixbuf (icon_theme.load_icon ("avatar-default", 130, 0));
             //avatar = new Granite.Widgets.Avatar.with_default_icon (130);
         }
 
@@ -110,6 +110,18 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
         });
 
     }
+
+    /*string get_default () {
+        var settings = new KeyFile ();
+        //string default_wallpaper = "/usr/share/backgrounds/elementaryos-default";
+        try {
+            settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+            default_wallpaper = settings.get_string ("greeter", "default-icon-set");
+        } catch (Error e) {
+            warning (e.message);
+        }
+        return default_wallpaper;
+    }*/
 
     /**
      * Starts the login procedure. Necessary to call this before the user

@@ -56,7 +56,7 @@ public class CredentialsArea : Gtk.Revealer {
         credentials = null;
 
         Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
-        icon_theme.add_resource_path("/usr/share/icons/Papirus-GTK/");
+
         var login_name_label = new Gtk.Label (login_option.get_markup ());
         login_name_label.hexpand = true;
         login_name_label.halign = Gtk.Align.CENTER;
