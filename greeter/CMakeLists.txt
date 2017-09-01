@@ -1,4 +1,4 @@
-project (pantheon-greeter)
+project (enso-greeter)
 cmake_minimum_required (VERSION 2.8)
 cmake_policy (VERSION 2.8)
 
@@ -8,9 +8,9 @@ list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 set (CONF_DIR "/etc/lightdm")
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
-set (PKGDATADIR "${DATADIR}/pantheon-greeter")
+set (PKGDATADIR "${DATADIR}/enso/greeter")
 set (CMAKE_INSTALL_PREFIX /usr)
-set (VERSION "3.1.1")
+set (VERSION "1.0.0")
 
 configure_file (${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_BINARY_DIR}/src/config.vala)
 add_definitions (-DGETTEXT_PACKAGE="pantheon-greeter")
@@ -62,6 +62,7 @@ vala_precompile (VALA_C
     src/Widgets/LoginButtonCredentials.vala
     src/Widgets/PasswordCredentials.vala
     src/Widgets/TimeLabel.vala
+    src/Widgets/PowerLabel.vala
     src/Widgets/Wallpaper.vala
 
     ${CMAKE_BINARY_DIR}/src/config.vala
@@ -92,3 +93,4 @@ install (TARGETS pantheon-greeter RUNTIME DESTINATION sbin)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/pantheon-greeter.desktop DESTINATION share/xgreeters)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/pantheon-greeter.conf DESTINATION ${CONF_DIR})
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/fingerprint.svg DESTINATION ${PKGDATADIR})
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/power.svg DESTINATION ${PKGDATADIR})

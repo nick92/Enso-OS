@@ -1,0 +1,43 @@
+enso-greeter (1.0.5) xenial; urgency=medium
+
+  * update shutdown icon
+		
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 15 Aug 2017 20:53:44 +0100
+
+
+enso-greeter (1.0.4) xenial; urgency=medium
+
+  * change position of time lable 
+  * set up time lable default width and height
+  * change location of power button to top right	
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 15 Aug 2017 20:53:44 +0100
+
+
+enso-greeter (1.0.3) xenial; urgency=medium
+
+  * added description
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Mon, 14 Aug 2017 20:53:44 +0100
+
+
+enso-greeter (1.0.2) xenial; urgency=medium
+
+  * remove install file
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Mon, 14 Aug 2017 20:53:44 +0100
+
+
+enso-greeter (1.0.1) xenial; urgency=medium
+
+  * change libclutter gtk deps from 2 to 1
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Mon, 14 Aug 2017 20:53:44 +0100
+
+
+enso-greeter (1.0.0) xenial; urgency=medium
+
+  * Initial release
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Mon, 14 Aug 2017 20:53:44 +0100

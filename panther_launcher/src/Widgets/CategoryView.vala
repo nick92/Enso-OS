@@ -101,17 +101,17 @@ public class Panther.Widgets.CategoryView : Gtk.EventBox {
     }
 
     private void connect_events () {
-        category_switcher.selection_changed.connect ((name, nth) => {
-            view.reset_category_focus ();
-            string category = category_ids.get (nth);
+      category_switcher.selection_changed.connect ((name, nth) => {
+          view.reset_category_focus ();
+          string category = category_ids.get (nth);
 
-            if(category == "Saved")
-              view.cat_saved = true;
-            else
-              view.cat_saved = false;
+          if(category == "Saved")
+            view.cat_saved = true;
+          else
+            view.cat_saved = false;
 
-            show_filtered_apps (category);
-        });
+          show_filtered_apps (category);
+      });
     }
 
     private void add_app (Backend.App app) {

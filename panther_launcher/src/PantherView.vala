@@ -153,6 +153,12 @@ namespace Panther {
 
         public PantherView () {
 
+          const string PANTHER_STYLESHEET = """
+            GtkWidget {
+              background-color:#000;
+            }
+          """;
+
             primary_monitor = screen.get_primary_monitor ();
             Gdk.Rectangle geometry;
             screen.get_monitor_geometry (primary_monitor, out geometry);
@@ -190,6 +196,12 @@ namespace Panther {
             apps = app_system.get_apps ();
             app_name = app_system.get_apps_by_name ();
             saved_apps = app_system.get_saved_apps ();
+
+            get_style_context ().add_class ("panther");
+
+            var provider = new Gtk.CssProvider ();
+            provider.load_from_resource ("/home/nick/work/elementary/panther_launcher/data/panther.css");
+            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
             if (Panther.settings.screen_resolution != @"$(geometry.width)x$(geometry.height)") {
                 setup_size ();

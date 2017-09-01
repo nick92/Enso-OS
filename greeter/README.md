@@ -1,4 +1,6 @@
-##Greeter
+## Greeter
+
+A fork of pantheon greeter
 
 ## Building and Installation
 

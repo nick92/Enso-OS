@@ -26,6 +26,7 @@ public class PantheonGreeter : Gtk.Window {
     GtkClutter.Embed clutter;
     GtkClutter.Actor wallpaper_actor;
     GtkClutter.Actor time_actor;
+    GtkClutter.Actor power_actor;
 
     Clutter.Actor greeterbox;
     UserListActor userlist_actor;
@@ -63,9 +64,13 @@ public class PantheonGreeter : Gtk.Window {
     private static SettingsDaemon settings_daemon;
 
     //from this width on we use the shrinked down version
-    const int NORMAL_WIDTH = 1200;
+    const int NORMAL_HEIGHT = 600;
     //from this width on the clock wont fit anymore
-    const int NO_CLOCK_WIDTH = 920;
+    const int NO_CLOCK_WIDTH = 1500;
+
+    const int DEFAULT_CLOCK_HEIGHT = 296;
+    const int DEFAULT_CLOCK_WIDTH = 617;
+
 
     public static bool TEST_MODE { get; private set; }
 
@@ -109,17 +114,11 @@ public class PantheonGreeter : Gtk.Window {
         }
 
         clutter = new GtkClutter.Embed ();
-        clutter.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK);
+        clutter.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK | Gdk.EventMask.BUTTON_PRESS_MASK);
 
         var stage = clutter.get_stage () as Clutter.Stage;
         stage.background_color = {0, 0, 0, 255};
 
-        /*var indicator_bar = new Indicators.IndicatorBar ();
-
-        indicator_bar_actor = new GtkClutter.Actor ();
-        indicator_bar_actor.add_constraint (new Clutter.BindConstraint (stage, Clutter.BindCoordinate.WIDTH, 0));
-        ((Gtk.Container) indicator_bar_actor.get_widget ()).add (indicator_bar);
-        */
         userlist = new UserList (LightDM.UserList.get_instance ());
         userlist_actor = new UserListActor (userlist);
 
@@ -127,6 +126,11 @@ public class PantheonGreeter : Gtk.Window {
 
         time_actor = new GtkClutter.Actor ();
         ((Gtk.Container) time_actor.get_widget ()).add (time_label);
+
+        var power_label = new PowerLabel ();
+
+        power_actor = new GtkClutter.Actor ();
+        ((Gtk.Container) power_actor.get_widget ()).add (power_label);
 
         wallpaper = new Wallpaper ();
 
@@ -146,6 +150,7 @@ public class PantheonGreeter : Gtk.Window {
         greeterbox.restore_easing_state ();
 
         greeterbox.add_child (wallpaper_actor);
+        greeterbox.add_child (power_actor);
         greeterbox.add_child (time_actor);
         greeterbox.add_child (userlist_actor);
         //greeterbox.add_child (indicator_bar_actor);
@@ -267,6 +272,7 @@ public class PantheonGreeter : Gtk.Window {
         // the correct time everything is faded out.
         var anim = fade_out_actor (time_actor);
         fade_out_actor (userlist_actor);
+        fade_out_actor (power_actor);
         /*if (!TEST_MODE)
             fade_out_actor (indicator_bar_actor);*/
 
@@ -289,21 +295,22 @@ public class PantheonGreeter : Gtk.Window {
 
         get_size (out width, out height);
 
-        if (width > NORMAL_WIDTH) {
-            //userlist_actor.x = 243;
-            userlist_actor.x = width / 2 ;
-        } else {
-            userlist_actor.x = 120 * ((float) (width) / NORMAL_WIDTH);
+        if(height > NORMAL_HEIGHT)
+          userlist_actor.y = height / 2 - userlist_actor.height / 2 ;
+        else {
+            userlist_actor.y = height / 2;
         }
 
-        //userlist_actor.y = Math.floorf (height / 2.0f);
-        userlist_actor.y = height / 2 - userlist_actor.height / 2 ;
+        userlist_actor.x = width / 2 - 50;
 
-        time_actor.x = width - time_actor.width - time_actor.width / 2 - 200;
-        //time_actor.y = height / 2 - time_actor.height / 2;
-        time_actor.y = height - time_actor.height * 6;
-        message(time_actor.height.to_string ());
-        time_actor.visible = width > NO_CLOCK_WIDTH + time_actor.width / 2;
+        //userlist_actor.y = height / 2 - userlist_actor.height / 2 ;
+
+        time_actor.x = width - DEFAULT_CLOCK_WIDTH - 10;
+        time_actor.y = height - DEFAULT_CLOCK_HEIGHT;
+
+        time_actor.visible = width > NO_CLOCK_WIDTH;
+        power_actor.x = width - power_actor.width - 10;
+        power_actor.y = 10;
 
         wallpaper_actor.width = width;
         wallpaper_actor.height = height;

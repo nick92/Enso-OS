@@ -196,6 +196,9 @@ public class Panther.Widgets.AppEntry : Gtk.Button {
 
             menu.add (get_plank_menuitem ());
         }
+        else {
+          message("Not connected: " + plank_client.is_connected.to_string ());
+        }
 #endif
 
         menu.show_all ();

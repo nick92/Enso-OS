@@ -60,17 +60,17 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
         reactive = true;
 
         Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
-        
+
         credentials_area = new CredentialsArea (this, user);
 
         var path = user.avatar_path;
         Gtk.Image avatar;
 
         if (path != null) {
-            avatar = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_size(path, 130, 130));
+            avatar = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_size(path, 100, 100));
             //avatar = new Granite.Widgets.Avatar.from_file (path, 130);
         } else {
-            avatar = new Gtk.Image.from_pixbuf (icon_theme.load_icon ("avatar-default", 130, 0));
+            avatar = new Gtk.Image.from_pixbuf (icon_theme.load_icon ("avatar-default", 100, 0));
             //avatar = new Granite.Widgets.Avatar.with_default_icon (130);
         }
 
@@ -82,7 +82,7 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
         grid.show_all ();
 
         var credentials_area_actor = new GtkClutter.Actor ();
-        credentials_area_actor.height = 288;
+        //credentials_area_actor.height = 288;
         credentials_area_actor.width = 288;
 
         ((Gtk.Container) credentials_area_actor.get_widget ()).add (grid);

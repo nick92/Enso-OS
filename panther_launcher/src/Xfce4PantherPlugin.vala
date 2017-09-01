@@ -16,59 +16,81 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+[DBus (name = "com.rastersoft.panther.remotecontrol")]
+interface RemoteService : Object {
+  public abstract int do_ping (int v) throws IOError;
+  public abstract void do_show() throws IOError;
+}
+
+[DBus (name = "com.rastersoft.panther")]
+interface Service : Object {
+  public signal void visibility_changed (bool launcher_visible);
+}
+
+Gtk.ToggleButton app_button;
+
 namespace Panther {
 
   public class Plugin : Xfce.PanelPlugin {
 
-    private Panther app;
+    //private Panther app;
 
-    public PantherView view = null;
+    //public PantherView view = null;
     public static bool silent = false;
     public static bool command_mode = false;
     public bool launched = false;
 
     public static Settings settings { get; private set; default = null; }
     public static Gtk.IconTheme icon_theme { get; set; default = null; }
-    private DBusService? dbus_service = null;
+    //private Gtk.ToggleButton app_button;
 
     private int view_width;
     private int view_height;
     private bool first = true;
 
-    private string[] args = null;
+    private Service panther_bus;
+    private RemoteService remote_bus;
 
     public override void @construct() {
 
-        Intl.bindtextdomain(Constants.GETTEXT_PACKAGE, GLib.Path.build_filename(Constants.DATADIR,"locale"));
-        Intl.textdomain(Constants.GETTEXT_PACKAGE);
-        Intl.bind_textdomain_codeset(Constants.GETTEXT_PACKAGE, "UTF-8" );
+        app_button = new Gtk.ToggleButton.with_label ("Applications");
+        app_button.set_relief(Gtk.ReliefStyle.NONE);
+        //app_button.set_focus_on_click(false);
+        add (app_button);
+        add_action_widget (app_button);
 
-        app = new Panther ();
-        app.view = new PantherView ();
+        app_button.show ();
 
-        app.app_button = new Gtk.ToggleButton.with_label ("Applications");
-        app.app_button.set_relief(Gtk.ReliefStyle.NONE);
-        app.app_button.set_focus_on_click(false);
-        add (app.app_button);
-        app.app_button.show ();
+        panther_bus = Bus.get_proxy_sync (BusType.SESSION, "com.rastersoft.panther",
+                                                        "/com/rastersoft/panther");
 
-        add_action_widget (app.app_button);
+        remote_bus = Bus.get_proxy_sync (BusType.SESSION, "com.rastersoft.panther.remotecontrol",
+                                                        "/com/rastersoft/panther/remotecontrol");
 
-        Bus.own_name (BusType.SESSION, "com.rastersoft.panther.remotecontrol", BusNameOwnerFlags.NONE, on_bus_aquired, () => {}, () => {});
 
-        app.app_button.toggled.connect (() => {
-          if (app.app_button.active) {
-            if (app.get_windows () == null) {
-              app.run ();
+        app_button.toggled.connect (() => {
+          if (app_button.active) {
+              try {
+      					//Process.spawn_command_line_async ("panther_launcher");
+                remote_bus.do_show ();
+                //  app_button.active = false;
+      				} catch (Error e) {
+      					warning (e.message);
+      				}
             }
-            else {
-              app.view.show_panther ();
-            }
-          }
-          else {
-            app.view.hide ();
-          }
         });
+
+        try{
+          panther_bus.visibility_changed.connect ((visible) => {
+              if(!visible)
+                app_button.set_active(visible);
+              else {
+                //app_button.set_active(visible);
+              }
+          });
+        } catch (Error e) {
+          warning (e.message);
+        }
 
     		menu_show_about ();
     		about.connect (() => {
@@ -86,26 +108,4 @@ namespace Panther {
 [ModuleInit]
 public Type xfce_panel_module_init(TypeModule module) {
   return typeof (Panther.Plugin);
-}
-
-
-void on_bus_aquired (DBusConnection conn) {
-    try {
-        conn.register_object ("/com/rastersoft/panther/remotecontrol", new RemoteControl ());
-    } catch (IOError e) {
-        GLib.stderr.printf ("Could not register service\n");
-    }
-}
-
-[DBus (name = "com.rastersoft.panther.remotecontrol")]
-public class RemoteControl : GLib.Object {
-
-    public int do_ping(int v) {
-        return (v+1);
-    }
-
-    public void do_show() {
-        print("Called from DBus\n");
-        app.activate();
-    }
 }

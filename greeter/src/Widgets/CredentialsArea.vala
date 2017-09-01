@@ -83,7 +83,7 @@ public class CredentialsArea : Gtk.Revealer {
         settings_popover.bind_property ("visible", settings, "active", GLib.BindingFlags.BIDIRECTIONAL);
 
         grid = new Gtk.Grid ();
-        grid.width_request = 260;
+        //grid.width_request = 260;
         grid.column_spacing = 6;
         grid.row_spacing = 12;
 
@@ -94,8 +94,8 @@ public class CredentialsArea : Gtk.Revealer {
         }
 
         if (LightDM.get_sessions ().length () > 1) {
-            //create_settings_items ();
-            //grid.attach (settings, 1, 0, 1, 1);
+            create_settings_items ();
+            grid.attach (settings, 0, 2, 1, 1);
         }
 
         add (grid);
