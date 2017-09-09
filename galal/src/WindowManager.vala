@@ -187,6 +187,9 @@ namespace Gala
 			ui_group.add_child (window_group);
 
 			background_group = new BackgroundContainer (screen);
+		 	background_group.set_reactive(true);
+			background_group.button_release_event.connect(on_background_click);
+
 			window_group.add_child (background_group);
 			window_group.set_child_below_sibling (background_group, null);
 
@@ -204,7 +207,6 @@ namespace Gala
 			display.add_keybinding ("move-to-workspace-last", keybinding_schema, 0, (Meta.KeyHandlerFunc) handle_move_to_workspace_end);
 			display.add_keybinding ("cycle-workspaces-next", keybinding_schema, 0, (Meta.KeyHandlerFunc) handle_cycle_workspaces);
 			display.add_keybinding ("cycle-workspaces-previous", keybinding_schema, 0, (Meta.KeyHandlerFunc) handle_cycle_workspaces);
-			display.add_keybinding ("launch-whiskermenu", keybinding_schema, 0, (Meta.KeyHandlerFunc) handle_launch_whiskermenu);
 
 			display.overlay_key.connect (() => {
 				try {
@@ -278,7 +280,7 @@ namespace Gala
 				KeyBinding.set_custom_handler ("switch-windows-backward", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
 			}
 
-			if (plugin_manager.window_overview_provider == null
+			/*if (plugin_manager.window_overview_provider == null
 				|| (window_overview = (plugin_manager.get_plugin (plugin_manager.window_overview_provider) as ActivatableComponent)) == null) {
 				window_overview = new WindowOverview (this);
 				ui_group.add_child ((Clutter.Actor) window_overview);
@@ -298,7 +300,7 @@ namespace Gala
 					hints.@set ("all-windows", true);
 					window_overview.open (hints);
 				}
-			});
+			});*/
 
 			update_input_area ();
 
@@ -317,19 +319,19 @@ namespace Gala
 
 		void configure_hotcorners ()
 		{
-			var geometry = get_screen ().get_monitor_geometry (get_screen ().get_primary_monitor ());
+			/*var geometry = get_screen ().get_monitor_geometry (get_screen ().get_primary_monitor ());
 
 			add_hotcorner (geometry.x, geometry.y, "hotcorner-topleft");
 			add_hotcorner (geometry.x + geometry.width - 1, geometry.y, "hotcorner-topright");
 			add_hotcorner (geometry.x, geometry.y + geometry.height - 1, "hotcorner-bottomleft");
 			add_hotcorner (geometry.x + geometry.width - 1, geometry.y + geometry.height - 1, "hotcorner-bottomright");
 
-			update_input_area ();
+			update_input_area ();*/
 		}
 
 		void add_hotcorner (float x, float y, string key)
 		{
-			unowned Clutter.Actor? stage = Compositor.get_stage_for_screen (get_screen ());
+			/*unowned Clutter.Actor? stage = Compositor.get_stage_for_screen (get_screen ());
 			return_if_fail (stage != null);
 
 			var action = (ActionType) BehaviorSettings.get_default ().schema.get_enum (key);
@@ -360,7 +362,33 @@ namespace Gala
 			}
 
 			hot_corner.x = x;
-			hot_corner.y = y;
+			hot_corner.y = y;*/
+		}
+
+		/**
+     * Launch menu manager with our wallpaper
+     */
+
+		DesktopMenu desktop_menu = null;
+
+    private bool on_background_click(Clutter.ButtonEvent? event)
+		{
+			int x = 0;
+			int y = 0;
+
+			if(event.button == 3)
+			{
+				var time = get_screen ().get_display ().get_current_time_roundtrip ();
+
+				if(desktop_menu == null)
+					desktop_menu = new DesktopMenu (this);
+					//get_current_cursor_position(out x, out y);
+					desktop_menu.show_all ();
+
+					desktop_menu.popup (null, null, null, Gdk.BUTTON_SECONDARY, time);
+
+			}
+			return true;
 		}
 
 		[CCode (instance_pos = -1)]
@@ -375,17 +403,6 @@ namespace Gala
 				index = 0;
 
 			screen.get_workspace_by_index (index).activate (display.get_current_time ());
-		}
-
-		[CCode (instance_pos = -1)]
-		void handle_launch_whiskermenu (Meta.Display display, Meta.Screen screen, Meta.Window? window,
-			Clutter.KeyEvent event, Meta.KeyBinding binding)
-		{
-			try {
-				Process.spawn_command_line_sync ("xfce4-popup-whiskermenu");
-			} catch (Error e) {
-				warning (e.message);
-			}
 		}
 
 		[CCode (instance_pos = -1)]
@@ -614,6 +631,7 @@ namespace Gala
 		{
 			var screen = get_screen ();
 			var display = screen.get_display ();
+			var workspace = screen.get_active_workspace ();
 			var current = display.get_focus_window ();
 
 			switch (type) {
@@ -638,6 +656,12 @@ namespace Gala
 				case ActionType.MINIMIZE_CURRENT:
 					if (current != null && current.window_type == WindowType.NORMAL)
 						current.minimize ();
+					break;
+				case ActionType.MINIMIZE_ALL:
+					foreach (var window in workspace.list_windows ()) {
+						if (window != null && window.window_type == WindowType.NORMAL)
+							window.minimize ();
+					}
 					break;
 				case ActionType.OPEN_LAUNCHER:
 					try {
@@ -674,7 +698,7 @@ namespace Gala
 						warning (e.message);
 					}
 					break;
-				case ActionType.WINDOW_OVERVIEW:
+				/*case ActionType.WINDOW_OVERVIEW:
 					if (window_overview == null)
 						break;
 
@@ -694,7 +718,7 @@ namespace Gala
 						hints.@set ("all-windows", true);
 						window_overview.open (hints);
 					}
-					break;
+					break;*/
 				default:
 					warning ("Trying to run unknown action");
 					break;

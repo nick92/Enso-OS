@@ -148,6 +148,7 @@ namespace Gala
 		void update_animation ()
 		{
 			update_animation_timeout_id = 0;
+			message("update");
 
 			animation.update (screen.get_monitor_geometry (monitor_index));
 			var files = animation.key_frame_files;
@@ -287,4 +288,3 @@ namespace Gala
 		}
 	}
 }
-

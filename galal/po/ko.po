@@ -7,115 +7,124 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2017-01-05 14:05+0000\n"
-"PO-Revision-Date: 2016-07-16 05:17+0000\n"
+"POT-Creation-Date: 2017-02-20 08:08+0100\n"
+"PO-Revision-Date: 2017-02-20 10:27+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-01-06 06:09+0000\n"
-"X-Generator: Launchpad (build 18302)\n"
+"X-Launchpad-Export-Date: 2017-02-21 05:47+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
 
-#: ../src/WindowManager.vala:1636
+#: src/WindowManager.vala:1636
 msgid "Does the display look OK?"
 msgstr "화면이 올바르게 보입니까?"
 
-#: ../src/WindowManager.vala:1639
+#: src/WindowManager.vala:1639
 msgid "Keep This Configuration"
 msgstr "이 설정 유지하기"
 
-#: ../src/WindowManager.vala:1640
+#: src/WindowManager.vala:1640
 msgid "Restore Previous Configuration"
 msgstr "이전 설정으로 되돌리기"
 
-#: ../src/Widgets/WindowMenu.vala:56
+#: src/Widgets/WindowMenu.vala:56
 msgid "Minimize"
 msgstr "최소화"
 
-#: ../src/Widgets/WindowMenu.vala:71
+#: src/Widgets/WindowMenu.vala:71
 msgid "Move"
 msgstr "이동"
 
-#: ../src/Widgets/WindowMenu.vala:78
+#: src/Widgets/WindowMenu.vala:78
 msgid "Resize"
 msgstr "크기조절"
 
-#: ../src/Widgets/WindowMenu.vala:85
+#: src/Widgets/WindowMenu.vala:85
 msgid "Always on Top"
 msgstr "항상 위"
 
-#: ../src/Widgets/WindowMenu.vala:94
+#: src/Widgets/WindowMenu.vala:94
 msgid "Always on Visible Workspace"
 msgstr "항상 보이는 작업 공간에"
 
-#: ../src/Widgets/WindowMenu.vala:103
+#: src/Widgets/WindowMenu.vala:103
 msgid "Move to Workspace Left"
 msgstr "왼쪽 작업 공간으로 이동"
 
-#: ../src/Widgets/WindowMenu.vala:111
+#: src/Widgets/WindowMenu.vala:111
 msgid "Move to Workspace Right"
 msgstr "오른쪽 작업 공간으로 이동"
 
-#: ../src/Widgets/WindowMenu.vala:119
+#: src/Widgets/WindowMenu.vala:119
 msgid "Close"
 msgstr "닫기"
 
-#: ../src/Widgets/WindowMenu.vala:131
+#: src/Widgets/WindowMenu.vala:131
 msgid "Unmaximize"
 msgstr "최대화에서 복원"
 
-#: ../src/Widgets/WindowMenu.vala:131
+#: src/Widgets/WindowMenu.vala:131
 msgid "Maximize"
 msgstr "최대화"
 
-#: ../data/gala-multitaskingview.desktop.in.h:1
+#: data/gala-multitaskingview.desktop.in:4
+#: data/gala-multitaskingview.desktop.in:6
 msgid "Multitasking View"
 msgstr "멀티태스킹 보기"
 
-#: ../data/gala-multitaskingview.desktop.in.h:2
+#: data/gala-multitaskingview.desktop.in:5
 msgid "View all open windows and workspaces"
 msgstr "모든 창과 작업 공간 보기"
 
-#: ../data/gala-other.desktop.in.h:1
+#: data/gala-multitaskingview.desktop.in:7
+msgid "multitasking-view"
+msgstr "멀티태스킹 뷰"
+
+#: data/gala-other.desktop.in:4
 msgid "Other"
 msgstr "기타"
 
-#: ../data/gala-other.desktop.in.h:2
+#: data/gala-other.desktop.in:5
 msgid "Fallback desktop file for notifications from outdated applications."
-msgstr "오래된 애플리케이션 알림용 대체 데스크톱 파일."
+msgstr "오래된 애플리케이션 알림을 위한 대체 데스크톱 파일"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:1
+#: data/gala-other.desktop.in:6
+msgid "applications-other"
+msgstr "다른 애플리케이션"
+
+#: data/org.pantheon.desktop.gala.gschema.xml.in:21
 msgid "Action for the top left corner"
 msgstr "왼쪽 상단 모서리 행동 설정"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:2
+#: data/org.pantheon.desktop.gala.gschema.xml.in:26
 msgid "Algorithm for window overview layout"
 msgstr "창 개요 레이아웃 알고리즘"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:3
+#: data/org.pantheon.desktop.gala.gschema.xml.in:27
 msgid "Choose the algorithm used for exposing the windows"
 msgstr "창 분할에 사용되는 알고리즘 선택"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:4
+#: data/org.pantheon.desktop.gala.gschema.xml.in:31
 msgid "Action for the top right corner"
 msgstr "오른쪽 상단 모서리 행동 설정"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:5
+#: data/org.pantheon.desktop.gala.gschema.xml.in:36
 msgid "Action for the bottom left corner"
 msgstr "왼쪽 하단 모서리 행동 설정"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:6
+#: data/org.pantheon.desktop.gala.gschema.xml.in:41
 msgid "Action for the bottom right corner"
 msgstr "오른쪽 하단 모서리 행동 설정"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:7
+#: data/org.pantheon.desktop.gala.gschema.xml.in:46
 msgid ""
 "The command that will be executed for the hotcorner action 'custom-command' "
 "or multiple"
 msgstr "핫코너 액션에 사용될 '사용자지정-명령문' 이나 명령문들"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:8
+#: data/org.pantheon.desktop.gala.gschema.xml.in:47
 msgid ""
 "If you just put a single command, it will be used for every hotcorner "
 "assigned to 'custom-command'. If you instead use the pattern 'hotcorner-"
@@ -128,11 +137,11 @@ msgstr ""
 "하단:명령문'을 이용하시면 별정 된 명령문이 각 핫코너에 이용됩니다. 가능한 식별자는 ':' 이후에 오는 '핫코너-[왼쪽 상단; 오른쪽 "
 "상단; 왼쪽 하단; 오른쪽 하단]' 명령문입니다. ';;' 은 명령어 정의 사이의 구분 기호로 사용됩니다."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:9
+#: data/org.pantheon.desktop.gala.gschema.xml.in:56
 msgid "Enable edge tiling when dropping windows on screen edges"
 msgstr "창을 화면 가장자리에 놓으면 적절하게 크기를 조정합니다."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:10
+#: data/org.pantheon.desktop.gala.gschema.xml.in:57
 msgid ""
 "If enabled, dropping windows on vertical screen edges maximizes them "
 "vertically and resizes them horizontally to cover half of the available "
@@ -141,30 +150,30 @@ msgstr ""
 "사용하면 창을 화면의 측면 가장자리에 놓았을 때 수직으로 최대화하고 창의 폭은 화면의 절반을 가리도록 조정합니다. 창을 화면의 위쪽 "
 "가장자리에 놓으면 완전히 최대화합니다."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:11
+#: data/org.pantheon.desktop.gala.gschema.xml.in:61
 msgid "Panel main menu action"
 msgstr "패널 주 메뉴 행동"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:12
+#: data/org.pantheon.desktop.gala.gschema.xml.in:62
 msgid ""
 "Sets the command to run when the panel-main-menu keybinding is pressed"
 msgstr "패널 주메뉴 설정 키가 눌려져 있을 때 작동할 명령어를 설정하기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:13
+#: data/org.pantheon.desktop.gala.gschema.xml.in:76
 msgid "Enable dynamic workspace instead of static ones"
 msgstr "고정된 작업 공간 대신 동적 작업 공간 실행하기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:14
+#: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
 "Use a dynamically increasing or decreseasing number, as needed, of "
 "workspaces instead of a static, fixed number"
 msgstr "고정된, 작업 공간 수 대신, 필요에 따라, 유동적으로 개수를 늘리거나 줄여 사용하기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:15
+#: data/org.pantheon.desktop.gala.gschema.xml.in:81
 msgid "Names that are recognized as dock windows for the window switcher"
 msgstr "창 변환기의 독 창으로 인식되는 이름들"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:16
+#: data/org.pantheon.desktop.gala.gschema.xml.in:82
 msgid ""
 "When launching the window-switcher, gala iterates over this list and "
 "attempts to find a window matching the names. If it does, it will hide this "
@@ -173,66 +182,72 @@ msgstr ""
 "창 변환기를 실행하면, 갈라는 이 목록을 반복하고 이름과 일치하는 창을 찾습니다. 그렇게 될 때, 이 창을 숨기며, 변환기를 닫으면 다시 "
 "서서히 복구하게 됩니다."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:17
+#: data/org.pantheon.desktop.gala.gschema.xml.in:89
 msgid "Shortcut to move to first workspace"
 msgstr "첫 번째 작업 공간으로 가는 바로 가기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:18
+#: data/org.pantheon.desktop.gala.gschema.xml.in:94
 msgid "Shortcut to move to last workspace"
 msgstr "마지막 작업 공간으로 가는 바로 가기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:19
+#: data/org.pantheon.desktop.gala.gschema.xml.in:99
 msgid "Shortcut to move the current window to first workspace"
 msgstr "이 창을 첫 번째 작업 공간으로 보내는 바로 가기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:20
+#: data/org.pantheon.desktop.gala.gschema.xml.in:104
 msgid "Shortcut to move the current window to last workspace"
 msgstr "이 창을 마지막 작업 공간으로 보내는 바로 가기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:21
+#: data/org.pantheon.desktop.gala.gschema.xml.in:109
 msgid "Zoom in"
 msgstr "확대"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:22
+#: data/org.pantheon.desktop.gala.gschema.xml.in:114
 msgid "Zoom out"
 msgstr "축소"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:23
+#: data/org.pantheon.desktop.gala.gschema.xml.in:118
 msgid "Shortcut to open the window overview"
 msgstr "이 작업 공간의 모든 창 보기 바로 가기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:24
+#: data/org.pantheon.desktop.gala.gschema.xml.in:123
 msgid "Shortcut to open the window overview for all windows"
 msgstr "작업 중인 모든 창 보기 바로 가기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:25
+#: data/org.pantheon.desktop.gala.gschema.xml.in:128
+#: data/org.pantheon.desktop.gala.gschema.xml.in:132
 msgid "Cycle to the next workspace to the right or to back to the first"
 msgstr "다음 작업 공간을 오른쪽으로 또는 처음으로 돌리는 주기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:26
+#: data/org.pantheon.desktop.gala.gschema.xml.in:136
 msgid "Cycle to next keyboard layout"
 msgstr "다음 키보드 레이아웃 주기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:27
+#: data/org.pantheon.desktop.gala.gschema.xml.in:137
+#: data/org.pantheon.desktop.gala.gschema.xml.in:142
+msgid "DEPRECATED: This key is deprecated and ignored."
+msgstr "사용 안 함: 이 키는 더 이상 사용되지 않습니다."
+
+#: data/org.pantheon.desktop.gala.gschema.xml.in:141
 msgid "Cycle to previous keyboard layout"
 msgstr "이전 키보드 레이아웃 주기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:28
+#: data/org.pantheon.desktop.gala.gschema.xml.in:149
 msgid "Attach modal dialogs"
 msgstr "양식 대화상자 부착"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:29
+#: data/org.pantheon.desktop.gala.gschema.xml.in:150
 msgid ""
 "When true, instead of having independent titlebars, modal dialogs appear "
 "attached to the titlebar of the parent window and are moved together with "
 "the parent window."
 msgstr "참이면, 독립된 제목 표시줄을 갖는 대신, 양식 대화상자는 부모창의 제목 표시줄에 부착되며 부모창과 함께 이동됩니다."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:30
+#: data/org.pantheon.desktop.gala.gschema.xml.in:154
 msgid "Arrangement of buttons on the titlebar"
 msgstr "제목 표시 줄의 단추 배열"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:31
+#: data/org.pantheon.desktop.gala.gschema.xml.in:155
 msgid ""
 "Arrangement of buttons on the titlebar. The value should be a string, such "
 "as \"menu:minimize,maximize,spacer,close\"; the colon separates the left "
@@ -247,54 +262,54 @@ msgstr ""
 "없애지 않은 채 이후에 메타시티 버전을 추가할 수 있도록 조용히 그대로 둡니다. 특수 여백 태그는 인접한 두 단추 사이에 여백을 두려할 "
 "때 이용될 수 있습니다."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:32
+#: data/org.pantheon.desktop.gala.gschema.xml.in:159
 msgid "Make parent windows that spawn a modal attached dialog being dimmed"
 msgstr "흐려지는 양식 대화상자를 만드는 부모창 만들기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:33
+#: data/org.pantheon.desktop.gala.gschema.xml.in:164
 msgid ""
 "The opacity of the windows located in the background in the alt-tab-switcher."
 msgstr "alt-tab 변환기 사용 시 배경에 있는 창의 불투명도"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:34
+#: data/org.pantheon.desktop.gala.gschema.xml.in:168
 msgid "Background-image used in the workspace-switcher"
 msgstr "작업 공간 변환기에 사용되는 배경 이미지"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:35
+#: data/org.pantheon.desktop.gala.gschema.xml.in:175
 msgid "Enable Animations"
 msgstr "애니메이션 사용"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:36
+#: data/org.pantheon.desktop.gala.gschema.xml.in:176
 msgid ""
 "Whether animations should be displayed. Note: This is a global key, it "
 "changes the behaviour of the window manager, the panel etc."
 msgstr "애니메이션을 사용할지 결정. 알림: 이것은 글로벌 키로, 창 관리자와, 패널 등의 동작을 바꿀 수 있습니다."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:37
+#: data/org.pantheon.desktop.gala.gschema.xml.in:183
 msgid "Duration of the snap animation as used by maximize/unmaximize"
 msgstr "스냅 애니메이션의 지속 시간은 최대화 / 최대화 취소에 의해 사용됨"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:38
+#: data/org.pantheon.desktop.gala.gschema.xml.in:187
 msgid "Duration of the close animation"
 msgstr "닫기 애니메이션의 지속 시간"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:39
+#: data/org.pantheon.desktop.gala.gschema.xml.in:191
 msgid "Duration of the minimize animation"
 msgstr "최소화 애니메이션의 지속 시간"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:40
+#: data/org.pantheon.desktop.gala.gschema.xml.in:195
 msgid "Duration of the workspace switch animation"
 msgstr "작업 공간 변환 애니메이션의 지속 시간"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:41
+#: data/org.pantheon.desktop.gala.gschema.xml.in:199
 msgid "Duration of the menu mapping animation"
 msgstr "메뉴 매핑 애니메이션의 지속 시간"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:42
+#: data/org.pantheon.desktop.gala.gschema.xml.in:206
 msgid "Defines the shadow of normal focused windows"
 msgstr "정상 초점 창의 그림자 정의"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:43
+#: data/org.pantheon.desktop.gala.gschema.xml.in:207
 msgid ""
 "The first value is the radius of the blur of the shadow, the second one the "
 "top fade (which is usually just -1), the third and fourth the x- and y-"
@@ -304,55 +319,64 @@ msgstr ""
 "첫 값은 그림자 흐림 반경, 둘째 값은 상단 페이드 (대개 just-1), 셋째와 넷째 값은 x- 와 y- 오프셋과 최종 불 "
 "투명도입니다. 이런 거죠 [blur-radius, top-fade, x-offset, y-offset, opacity]"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:44
+#: data/org.pantheon.desktop.gala.gschema.xml.in:211
 msgid "Defines the shadow of a normal unfocused window"
 msgstr "정상 비초점 창의 그림자 정의"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:45
+#: data/org.pantheon.desktop.gala.gschema.xml.in:212
+#: data/org.pantheon.desktop.gala.gschema.xml.in:217
+#: data/org.pantheon.desktop.gala.gschema.xml.in:222
+#: data/org.pantheon.desktop.gala.gschema.xml.in:227
 msgid "See normal-focused"
 msgstr "정상-초점  보기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:46
+#: data/org.pantheon.desktop.gala.gschema.xml.in:216
 msgid "Defines the shadow of a menu"
 msgstr "메뉴의 그림자 정의"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:47
+#: data/org.pantheon.desktop.gala.gschema.xml.in:221
 msgid "Defines the shadow of a focused dialog"
 msgstr "초점 된 대화창의 그림자 정의"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:48
+#: data/org.pantheon.desktop.gala.gschema.xml.in:226
 msgid "Defines the shadow of an unfocused dialog"
 msgstr "비 초점 된 대화창의 그림자 정의"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:49
+#: data/org.pantheon.desktop.gala.gschema.xml.in:234
 msgid "Disable all notifications"
 msgstr "모든 알림 끄기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:50
+#: data/org.pantheon.desktop.gala.gschema.xml.in:242
 msgid "Enable bubbles"
 msgstr "알림 풍선 표시"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:51
+#: data/org.pantheon.desktop.gala.gschema.xml.in:246
 msgid "Enable sounds"
 msgstr "효과음 사용"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:52
+#: data/org.pantheon.desktop.gala.gschema.xml.in:250
 msgid "Show missed notifications in notification center"
 msgstr "알림 센터에서 못 본 알림 보기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:53
+#: data/org.pantheon.desktop.gala.gschema.xml.in:257
 msgid "Enable rounded corner mask"
 msgstr "둥근 모서리 마스크 사용"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:54
+#: data/org.pantheon.desktop.gala.gschema.xml.in:262
 msgid "Corner radius"
 msgstr "모서리 반경"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:55
+#: data/org.pantheon.desktop.gala.gschema.xml.in:266
 msgid "Disable corner mask on fullscreen"
 msgstr "전체 화면일때 모서리 마스크 끄기"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:56
+#: data/org.pantheon.desktop.gala.gschema.xml.in:267
+msgid ""
+"If enabled, when an application is fullscreen (fills the monitor), the "
+"corner masks will be disabled on that monitor."
+msgstr "이 옵션을 사용하면, 애플리케이션이 전체 화면 (모니터 채우기) 일 때 핫 코너 설정이 해당 모니터에서 비활성화됩니다."
+
+#: data/org.pantheon.desktop.gala.gschema.xml.in:271
 msgid "Only show corner masks on primary monitor"
 msgstr "주 모니터에만 모서리 마스크 표시"
 

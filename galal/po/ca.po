@@ -7,110 +7,121 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-05 14:05+0000\n"
-"PO-Revision-Date: 2016-12-13 16:10+0000\n"
+"POT-Creation-Date: 2017-02-20 08:08+0100\n"
+"PO-Revision-Date: 2017-03-27 14:53+0000\n"
 "Last-Translator: Davidmp <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-01-06 06:09+0000\n"
-"X-Generator: Launchpad (build 18302)\n"
+"X-Launchpad-Export-Date: 2017-04-05 07:08+0000\n"
+"X-Generator: Launchpad (build 18335)\n"
 "Language: ca\n"
 
-#: ../src/WindowManager.vala:1636
+#: src/WindowManager.vala:1636
 msgid "Does the display look OK?"
 msgstr "Es veu correctament la pantalla?"
 
-#: ../src/WindowManager.vala:1639
+#: src/WindowManager.vala:1639
 msgid "Keep This Configuration"
 msgstr "Mantén aquesta configuració"
 
-#: ../src/WindowManager.vala:1640
+#: src/WindowManager.vala:1640
 msgid "Restore Previous Configuration"
 msgstr "Restaura la configuració prèvia"
 
-#: ../src/Widgets/WindowMenu.vala:56
+#: src/Widgets/WindowMenu.vala:56
 msgid "Minimize"
 msgstr "Minimitza"
 
-#: ../src/Widgets/WindowMenu.vala:71
+#: src/Widgets/WindowMenu.vala:71
 msgid "Move"
 msgstr "Mou"
 
-#: ../src/Widgets/WindowMenu.vala:78
+#: src/Widgets/WindowMenu.vala:78
 msgid "Resize"
 msgstr "Redimensiona"
 
-#: ../src/Widgets/WindowMenu.vala:85
+#: src/Widgets/WindowMenu.vala:85
 msgid "Always on Top"
 msgstr "Sempre al davant"
 
-#: ../src/Widgets/WindowMenu.vala:94
+#: src/Widgets/WindowMenu.vala:94
 msgid "Always on Visible Workspace"
 msgstr "Sempre a l'espai de treball visible"
 
-#: ../src/Widgets/WindowMenu.vala:103
+#: src/Widgets/WindowMenu.vala:103
 msgid "Move to Workspace Left"
 msgstr "Mou a l'espai de treball de l'esquerra"
 
-#: ../src/Widgets/WindowMenu.vala:111
+#: src/Widgets/WindowMenu.vala:111
 msgid "Move to Workspace Right"
 msgstr "Mou a l'espai de treball de la dreta"
 
-#: ../src/Widgets/WindowMenu.vala:119
+#: src/Widgets/WindowMenu.vala:119
 msgid "Close"
 msgstr "Tanca"
 
-#: ../src/Widgets/WindowMenu.vala:131
+#: src/Widgets/WindowMenu.vala:131
 msgid "Unmaximize"
 msgstr "Desmaximitza"
 
-#: ../src/Widgets/WindowMenu.vala:131
+#: src/Widgets/WindowMenu.vala:131
 msgid "Maximize"
 msgstr "Maximitza"
 
-#: ../data/gala-multitaskingview.desktop.in.h:1
+#: data/gala-multitaskingview.desktop.in:4
+#: data/gala-multitaskingview.desktop.in:6
 msgid "Multitasking View"
 msgstr "Vista de multitasca"
 
-#: ../data/gala-multitaskingview.desktop.in.h:2
+#: data/gala-multitaskingview.desktop.in:5
 msgid "View all open windows and workspaces"
 msgstr "Visualitza totes les finestres obertes i totes les àrees de treball"
 
-#: ../data/gala-other.desktop.in.h:1
+#: data/gala-multitaskingview.desktop.in:7
+msgid "multitasking-view"
+msgstr "Vista de multitasca"
+
+#: data/gala-other.desktop.in:4
 msgid "Other"
 msgstr "Altres"
 
-#: ../data/gala-other.desktop.in.h:2
+#: data/gala-other.desktop.in:5
 msgid "Fallback desktop file for notifications from outdated applications."
-msgstr "Fitxer alternatiu per a notificacions d'aplicacions antigues."
+msgstr ""
+"Fitxer d'escriptori alternatiu per a notificacions d'aplicacions "
+"desactualitzades."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:1
+#: data/gala-other.desktop.in:6
+msgid "applications-other"
+msgstr "aplicacions-altres"
+
+#: data/org.pantheon.desktop.gala.gschema.xml.in:21
 msgid "Action for the top left corner"
 msgstr "Acció per a la cantonada de dalt a l'esquerra"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:2
+#: data/org.pantheon.desktop.gala.gschema.xml.in:26
 msgid "Algorithm for window overview layout"
 msgstr "Algoritme per a la disposició de la vista de finestres"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:3
+#: data/org.pantheon.desktop.gala.gschema.xml.in:27
 msgid "Choose the algorithm used for exposing the windows"
 msgstr "Trieu l'algoritme que s'ha d'usar per exposar les finestres"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:4
+#: data/org.pantheon.desktop.gala.gschema.xml.in:31
 msgid "Action for the top right corner"
 msgstr "Acció per a la cantonada de dalt a la dreta"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:5
+#: data/org.pantheon.desktop.gala.gschema.xml.in:36
 msgid "Action for the bottom left corner"
 msgstr "Acció per a la canotnada de baix a l'esquerra"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:6
+#: data/org.pantheon.desktop.gala.gschema.xml.in:41
 msgid "Action for the bottom right corner"
 msgstr "Acció per a la cantonada de baix a la dreta"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:7
+#: data/org.pantheon.desktop.gala.gschema.xml.in:46
 msgid ""
 "The command that will be executed for the hotcorner action 'custom-command' "
 "or multiple"
@@ -118,7 +129,7 @@ msgstr ""
 "L'ordre que s'executarà per a l'acció de la cantonada activa \"ordre "
 "personalitzada\" o múltiple"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:8
+#: data/org.pantheon.desktop.gala.gschema.xml.in:47
 msgid ""
 "If you just put a single command, it will be used for every hotcorner "
 "assigned to 'custom-command'. If you instead use the pattern 'hotcorner-"
@@ -134,12 +145,12 @@ msgstr ""
 "\"hotcorner-[topleft; topright; bottomleft; bottomright]\" seguits de \":\" "
 "i després l'ordre. ';;' s'usa com a  delimitador entre definicions d'ordre."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:9
+#: data/org.pantheon.desktop.gala.gschema.xml.in:56
 msgid "Enable edge tiling when dropping windows on screen edges"
 msgstr ""
 "Habilita el mosaic quan es deixin anar finestres a les vores de la pantalla"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:10
+#: data/org.pantheon.desktop.gala.gschema.xml.in:57
 msgid ""
 "If enabled, dropping windows on vertical screen edges maximizes them "
 "vertically and resizes them horizontally to cover half of the available "
@@ -150,22 +161,22 @@ msgstr ""
 "cobrir la meitat de la superfície disponible. Deixar anar les finestres a la "
 "part superior de la pantalla les maximitza completament."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:11
+#: data/org.pantheon.desktop.gala.gschema.xml.in:61
 msgid "Panel main menu action"
 msgstr "Acció del menú del plafó principal"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:12
+#: data/org.pantheon.desktop.gala.gschema.xml.in:62
 msgid ""
 "Sets the command to run when the panel-main-menu keybinding is pressed"
 msgstr ""
 "Estableix l'ordre per executar quan es prem la combinació de tecles del menú-"
 "plafó principal"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:13
+#: data/org.pantheon.desktop.gala.gschema.xml.in:76
 msgid "Enable dynamic workspace instead of static ones"
 msgstr "Habilita l'espai de treball dinàmic en comptes dels estàtics"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:14
+#: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
 "Use a dynamically increasing or decreseasing number, as needed, of "
 "workspaces instead of a static, fixed number"
@@ -173,13 +184,13 @@ msgstr ""
 "Usa un nombre dinàmicament creixent o decreixent, segons sigui necessari, "
 "dels espais de treball en lloc d'un nombre estàtic, fix."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:15
+#: data/org.pantheon.desktop.gala.gschema.xml.in:81
 msgid "Names that are recognized as dock windows for the window switcher"
 msgstr ""
 "Els noms que es reconeixen com a finestres de l'acoblador per al commutador "
 "de finestres"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:16
+#: data/org.pantheon.desktop.gala.gschema.xml.in:82
 msgid ""
 "When launching the window-switcher, gala iterates over this list and "
 "attempts to find a window matching the names. If it does, it will hide this "
@@ -190,57 +201,63 @@ msgstr ""
 "aquesta finestra i la tornarà a fer aparèixer quan el commutador estigui "
 "tancat."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:17
+#: data/org.pantheon.desktop.gala.gschema.xml.in:89
 msgid "Shortcut to move to first workspace"
 msgstr "Drecera per anar al primer espai de treball"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:18
+#: data/org.pantheon.desktop.gala.gschema.xml.in:94
 msgid "Shortcut to move to last workspace"
 msgstr "Drecera per anar a l'últim espai de treball"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:19
+#: data/org.pantheon.desktop.gala.gschema.xml.in:99
 msgid "Shortcut to move the current window to first workspace"
 msgstr "Drecera per desplaçar la finestra actual al primer espai de treball"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:20
+#: data/org.pantheon.desktop.gala.gschema.xml.in:104
 msgid "Shortcut to move the current window to last workspace"
 msgstr "Drecera per desplaçar la finestra actual a l'últim espai de treball"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:21
+#: data/org.pantheon.desktop.gala.gschema.xml.in:109
 msgid "Zoom in"
 msgstr "Amplia"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:22
+#: data/org.pantheon.desktop.gala.gschema.xml.in:114
 msgid "Zoom out"
 msgstr "Redueix"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:23
+#: data/org.pantheon.desktop.gala.gschema.xml.in:118
 msgid "Shortcut to open the window overview"
 msgstr "Drecera per obrir el resum de finestres"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:24
+#: data/org.pantheon.desktop.gala.gschema.xml.in:123
 msgid "Shortcut to open the window overview for all windows"
 msgstr "Drecera per obrir el resum de finestres per a totes les finestres"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:25
+#: data/org.pantheon.desktop.gala.gschema.xml.in:128
+#: data/org.pantheon.desktop.gala.gschema.xml.in:132
 msgid "Cycle to the next workspace to the right or to back to the first"
 msgstr ""
 "Continua cap a l'espai de treball següent a la dreta o torna enrere cap al "
 "primer"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:26
+#: data/org.pantheon.desktop.gala.gschema.xml.in:136
 msgid "Cycle to next keyboard layout"
 msgstr "Continua cap a la disposició de teclat següent"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:27
+#: data/org.pantheon.desktop.gala.gschema.xml.in:137
+#: data/org.pantheon.desktop.gala.gschema.xml.in:142
+msgid "DEPRECATED: This key is deprecated and ignored."
+msgstr "OBSOLET: aquesta clau està obsoleta i s'ignora."
+
+#: data/org.pantheon.desktop.gala.gschema.xml.in:141
 msgid "Cycle to previous keyboard layout"
 msgstr "Continua cap a la disposició de teclat anterior"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:28
+#: data/org.pantheon.desktop.gala.gschema.xml.in:149
 msgid "Attach modal dialogs"
 msgstr "Adjunta-hi diàlegs de mode"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:29
+#: data/org.pantheon.desktop.gala.gschema.xml.in:150
 msgid ""
 "When true, instead of having independent titlebars, modal dialogs appear "
 "attached to the titlebar of the parent window and are moved together with "
@@ -250,11 +267,11 @@ msgstr ""
 "diàlegs modals apareixen enganxats a la finestra pare i es mouen "
 "conjuntament amb la finestra."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:30
+#: data/org.pantheon.desktop.gala.gschema.xml.in:154
 msgid "Arrangement of buttons on the titlebar"
 msgstr "Disposició dels botons a la barra de títol"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:31
+#: data/org.pantheon.desktop.gala.gschema.xml.in:155
 msgid ""
 "Arrangement of buttons on the titlebar. The value should be a string, such "
 "as \"menu:minimize,maximize,spacer,close\"; the colon separates the left "
@@ -274,25 +291,25 @@ msgstr ""
 "etiqueta especial d'espaiament («spacer») per inserir una determinada "
 "quantitat d'espai entre dos botons adjacents."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:32
+#: data/org.pantheon.desktop.gala.gschema.xml.in:159
 msgid "Make parent windows that spawn a modal attached dialog being dimmed"
 msgstr ""
 "Fes que finestres primàries que generen un quadre de diàleg modal s'atenuïn"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:33
+#: data/org.pantheon.desktop.gala.gschema.xml.in:164
 msgid ""
 "The opacity of the windows located in the background in the alt-tab-switcher."
 msgstr "L'opacitat de les finestres situades al fons al commutador alt-tab."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:34
+#: data/org.pantheon.desktop.gala.gschema.xml.in:168
 msgid "Background-image used in the workspace-switcher"
 msgstr "Imatge de fons usada al commutador d'espais de treball"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:35
+#: data/org.pantheon.desktop.gala.gschema.xml.in:175
 msgid "Enable Animations"
 msgstr "Habilita les animacions"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:36
+#: data/org.pantheon.desktop.gala.gschema.xml.in:176
 msgid ""
 "Whether animations should be displayed. Note: This is a global key, it "
 "changes the behaviour of the window manager, the panel etc."
@@ -300,33 +317,33 @@ msgstr ""
 "Si s'han de mostrar les animacions. Nota: és una clau global, canvia el "
 "comportament del gestor de finestres, el plafó, etc."
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:37
+#: data/org.pantheon.desktop.gala.gschema.xml.in:183
 msgid "Duration of the snap animation as used by maximize/unmaximize"
 msgstr ""
 "Durada de l'animació de desplaçament com l'usada per maximitzar / "
 "desmaximitzar"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:38
+#: data/org.pantheon.desktop.gala.gschema.xml.in:187
 msgid "Duration of the close animation"
 msgstr "Durada de l'animació de tancament"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:39
+#: data/org.pantheon.desktop.gala.gschema.xml.in:191
 msgid "Duration of the minimize animation"
 msgstr "Durada de l'animació de minimització"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:40
+#: data/org.pantheon.desktop.gala.gschema.xml.in:195
 msgid "Duration of the workspace switch animation"
 msgstr "Durada de l'animació del canvi d'espai de treball"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:41
+#: data/org.pantheon.desktop.gala.gschema.xml.in:199
 msgid "Duration of the menu mapping animation"
 msgstr "Durada de l'animació de mapatge del menú"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:42
+#: data/org.pantheon.desktop.gala.gschema.xml.in:206
 msgid "Defines the shadow of normal focused windows"
 msgstr "Defineix l'ombra de les finestres normals amb el focus"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:43
+#: data/org.pantheon.desktop.gala.gschema.xml.in:207
 msgid ""
 "The first value is the radius of the blur of the shadow, the second one the "
 "top fade (which is usually just -1), the third and fourth the x- and y-"
@@ -338,56 +355,67 @@ msgstr ""
 "desplaçament x i y, i l'últim és l'opacitat. Per tant: [blur-radius, top-"
 "fade, x-offset, y-offset, opacity]"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:44
+#: data/org.pantheon.desktop.gala.gschema.xml.in:211
 msgid "Defines the shadow of a normal unfocused window"
 msgstr "Defineix l'ombra de la finestra normal sense el focus"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:45
+#: data/org.pantheon.desktop.gala.gschema.xml.in:212
+#: data/org.pantheon.desktop.gala.gschema.xml.in:217
+#: data/org.pantheon.desktop.gala.gschema.xml.in:222
+#: data/org.pantheon.desktop.gala.gschema.xml.in:227
 msgid "See normal-focused"
 msgstr "Vegeu el focus normal"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:46
+#: data/org.pantheon.desktop.gala.gschema.xml.in:216
 msgid "Defines the shadow of a menu"
 msgstr "Defineix l'ombra d'un menú"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:47
+#: data/org.pantheon.desktop.gala.gschema.xml.in:221
 msgid "Defines the shadow of a focused dialog"
 msgstr "Defineix l'ombra d'un diàleg amb el focus"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:48
+#: data/org.pantheon.desktop.gala.gschema.xml.in:226
 msgid "Defines the shadow of an unfocused dialog"
 msgstr "Defineix l'ombra d'un diàleg sense el focus"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:49
+#: data/org.pantheon.desktop.gala.gschema.xml.in:234
 msgid "Disable all notifications"
 msgstr "Inhabilita totes les notificacions"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:50
+#: data/org.pantheon.desktop.gala.gschema.xml.in:242
 msgid "Enable bubbles"
 msgstr "Habilita les bafarades"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:51
+#: data/org.pantheon.desktop.gala.gschema.xml.in:246
 msgid "Enable sounds"
 msgstr "Habilita els sons"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:52
+#: data/org.pantheon.desktop.gala.gschema.xml.in:250
 msgid "Show missed notifications in notification center"
 msgstr ""
 "Mostra les notificacions que no s'han vist al centre de notificacions"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:53
+#: data/org.pantheon.desktop.gala.gschema.xml.in:257
 msgid "Enable rounded corner mask"
 msgstr "Habilita la màscara de cantonada arrodonida"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:54
+#: data/org.pantheon.desktop.gala.gschema.xml.in:262
 msgid "Corner radius"
 msgstr "Radi de les cantonades"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:55
+#: data/org.pantheon.desktop.gala.gschema.xml.in:266
 msgid "Disable corner mask on fullscreen"
 msgstr "Inhabilita la màscara de les cantonades en pantalla completa"
 
-#: ../data/org.pantheon.desktop.gala.gschema.xml.in.in.h:56
+#: data/org.pantheon.desktop.gala.gschema.xml.in:267
+msgid ""
+"If enabled, when an application is fullscreen (fills the monitor), the "
+"corner masks will be disabled on that monitor."
+msgstr ""
+"Si s'habilita, quan una aplicació està en pantalla completa (omple el "
+"monitor), les màscares dels cantons s'inhabilitaran al monitor."
+
+#: data/org.pantheon.desktop.gala.gschema.xml.in:271
 msgid "Only show corner masks on primary monitor"
 msgstr "Mostra només les màscares de cantonades a la pantalla primària"
 

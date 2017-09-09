@@ -197,12 +197,6 @@ namespace Panther {
             app_name = app_system.get_apps_by_name ();
             saved_apps = app_system.get_saved_apps ();
 
-            get_style_context ().add_class ("panther");
-
-            var provider = new Gtk.CssProvider ();
-            provider.load_from_resource ("/home/nick/work/elementary/panther_launcher/data/panther.css");
-            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-
             if (Panther.settings.screen_resolution != @"$(geometry.width)x$(geometry.height)") {
                 setup_size ();
             }
@@ -402,7 +396,7 @@ namespace Panther {
           saved_apps = app_system.get_saved_apps ();
           category_view.setup_sidebar ();
 
-          string app_name = app.substring(0, app.index_of("."));
+          string app_name = app.substring(0, app.length - 8);
           var note = new GLib.Notification(_(app_name));
 
           if(saved_cat)

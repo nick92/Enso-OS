@@ -24,7 +24,7 @@ m4_define([gala_full_version],
 
 # Extend version with bzr revision for non-release builds
 m4_define([gala_version], m4_if(gala_released, [1],
-          [gala_full_version], [m4_esyscmd([build-aux/bzr-version-gen gala_full_version])]))
+          [gala_full_version], [m4_esyscmd([build-aux/git-version-gen --prefix "" --fallback gala_full_version $srcdir/.tarball-version])]))
 m4_define([gala_major_minor_version], gala_major_version.gala_minor_version)
 m4_define([gala_module_version], gala_lt_current)
 
@@ -43,7 +43,7 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_SRCDIR([configure.ac])
-AM_INIT_AUTOMAKE([1.11 tar-ustar dist-xz no-dist-gzip -Wno-portability subdir-objects])
+AM_INIT_AUTOMAKE([1.11 foreign tar-ustar dist-xz no-dist-gzip -Wno-portability subdir-objects])
 
 AM_MAINTAINER_MODE([enable])
 

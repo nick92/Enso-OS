@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+
+BUILDDIR = build_dir
+
+# secondly called by launchpad
+build:
+	mkdir $(BUILDDIR);
+	cd $(BUILDDIR); cmake -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF -DICON_UPDATE=OFF ..
+	make -C $(BUILDDIR)
+
+
+# thirdly called by launchpad
+binary: binary-indep binary-arch
+
+binary-indep:
+	# nothing to be done
+
+binary-arch:
+	make install -C $(BUILDDIR) DESTDIR=./debian/tmp
+	mkdir -p ./debian/tmp/DEBIAN
+	mv $(BUILDDIR)/debian/tmp/* ./debian/tmp
+	dpkg-gencontrol -ppanther-launcher;
+	dpkg --build debian/tmp ..
+
+# firstly called by launchpad
+clean:
+	rm -f build
+	rm -rf $(BUILDDIR)
+
+.PHONY: binary binary-arch binary-indep clean

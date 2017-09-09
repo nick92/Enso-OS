@@ -266,7 +266,16 @@ public class Panther.Widgets.AppEntry : Gtk.Button {
     File? target_dir = null;
 
     if (target_dir == null)
-      target_dir = File.new_for_path (Environment.get_home_dir () + "/.config/panther/saved/");
+    {
+      target_dir = File.new_for_path (Environment.get_user_config_dir () + "/panther/saved/");
+
+      if (!target_dir.query_exists ())
+				try {
+					target_dir.make_directory_with_parents ();
+				} catch (Error e) {
+					critical ("Could not access or create the directory '%s'. (%s)", target_dir.get_path () ?? "", e.message);
+				}
+    }
 
     bool is_valid = false;
     string basename;
@@ -315,8 +324,8 @@ public class Panther.Widgets.AppEntry : Gtk.Button {
     //is_valid = launcher_file.query_exists ();
     basename = (launcher_file.get_basename () ?? "unknown");
 
-    var saveditem = "%s%s.saveditem".printf (target_dir.get_path () + "/", basename.substring(0, basename.index_of(".")));
-
+    var saveditem = "%s%s.saveditem".printf (target_dir.get_path () + "/", basename.substring(0, basename.length - 8));
+    message("removing saved file: " + saveditem);
     saved_file = File.new_for_path(saveditem);
     is_valid = saved_file.query_exists ();
 

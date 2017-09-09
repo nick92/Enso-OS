@@ -122,8 +122,7 @@ namespace Gala
 		{
 			var filename = AppearanceSettings.get_default ().workspace_switcher_background;
 			var default_file = Config.PKGDATADIR + "/texture.png";
-			message(default_file);
-			message(filename);
+
 			if (filename == "") {
 				filename = default_file;
 			} else if (!FileUtils.test (filename, FileTest.IS_REGULAR)) {
@@ -298,7 +297,7 @@ namespace Gala
 				// Work out where the slot is
 				Meta.Rectangle target = {area.x + (slot % columns) * slot_width,
 				                         area.y + (slot / columns) * slot_height,
-				                         slot_width,
+				                         slot_width, 
 				                         slot_height};
 				target = rect_adjusted (target, 10, 10, -10, -10);
 
@@ -320,7 +319,7 @@ namespace Gala
 					scale = 1.0f;
 					target = {rect_center (target).x - (int)Math.floorf (rect.width * scale) / 2,
 					          rect_center (target).y - (int)Math.floorf (rect.height * scale) / 2,
-					          (int)Math.floorf (scale * rect.width),
+					          (int)Math.floorf (scale * rect.width), 
 					          (int)Math.floorf (scale * rect.height)};
 				}
 
@@ -485,7 +484,7 @@ namespace Gala
 				foreach (var rect in rects) {
 
 					int width_diff = ACCURACY;
-					int height_diff = (int)Math.floorf ((((rect.width + width_diff) - rect.height) /
+					int height_diff = (int)Math.floorf ((((rect.width + width_diff) - rect.height) / 
 					    (float)rect.width) * rect.height);
 					int x_diff = width_diff / 2;
 					int y_diff = height_diff / 2;

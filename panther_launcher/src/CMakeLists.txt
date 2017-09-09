@@ -42,12 +42,13 @@ set (VALA_PACKAGES ${VALA_PACKAGES} libsoup-2.4)
 set (VALA_PACKAGES ${VALA_PACKAGES} pango)
 set (VALA_PACKAGES ${VALA_PACKAGES} pangocairo)
 set (VALA_PACKAGES ${VALA_PACKAGES} x11)
-set (VALA_PACKAGES ${VALA_PACKAGES} garcon-1)
 set (VALA_PACKAGES ${VALA_PACKAGES} plank)
 #set (VALA_PACKAGES ${VALA_PACKAGES} exo-1)
 
-set (XFCE_VALA_PACKAGES ${XFCE_VALA_PACKAGES} libxfce4panel-2.0)
-set (XFCE_VALA_PACKAGES ${XFCE_VALA_PACKAGES} libxfconf-0)
+#set (XFCE_VALA_PACKAGES ${XFCE_VALA_PACKAGES} libxfce4panel-2.0)
+#set (XFCE_VALA_PACKAGES ${XFCE_VALA_PACKAGES} libxfconf-0)
+#set (XFCE_VALA_PACKAGES ${XFCE_VALA_PACKAGES} garcon-1)
+#set (XFCE_VALA_PACKAGES ${XFCE_VALA_PACKAGES} exo-1)
 set (XFCE_VALA_PACKAGES ${XFCE_VALA_PACKAGES} gtk+-3.0)
 set (XFCE_VALA_PACKAGES ${XFCE_VALA_PACKAGES} glib-2.0)
 
@@ -113,9 +114,6 @@ if ((${CMAKE_BUILD_TYPE} STREQUAL "Debug") OR (${CMAKE_BUILD_TYPE} STREQUAL "Rel
 	set(COMPILE_OPTIONS ${COMPILE_OPTIONS} "-g")
 endif()
 
-set(COMPILE_OPTIONS ${COMPILE_OPTIONS} "--vapidir=${CMAKE_CURRENT_SOURCE_DIR}/src/vapi")
-set(COMPILE_OPTIONS ${COMPILE_OPTIONS} "--vapidir=${CMAKE_CURRENT_BINARY_DIR}/src/")
-
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DGMENU_I_KNOW_THIS_IS_UNSTABLE" )
 
 vala_precompile(VALA_C_XFCE pantherplugin
@@ -123,10 +121,11 @@ vala_precompile(VALA_C_XFCE pantherplugin
 PACKAGES
 	${XFCE_VALA_PACKAGES}
 CUSTOM_VAPIS
-#	vapi/libxfce4panel-2.0.vapi
-#	vapi/libxfconf-0.vapi
+	vapi/garcon-1.vapi
+	vapi/libxfce4panel-2.0.vapi
+	vapi/libxfconf-0.vapi
 OPTIONS
-	${COMPILE_OPTIONS}
+
 )
 
 #add_executable(pantherplugin ${VALA_C})
@@ -141,9 +140,6 @@ vala_precompile(VALA_C panther_launcher
 	${APP_SOURCES}
 PACKAGES
 	${VALA_PACKAGES}
-CUSTOM_VAPIS
-#	vapi/libxfce4panel-2.0.vapi
-#	vapi/libxfconf-0.vapi
 OPTIONS
 	${COMPILE_OPTIONS}
 )

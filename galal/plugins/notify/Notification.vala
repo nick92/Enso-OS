@@ -24,12 +24,12 @@ namespace Gala.Plugins.Notify
 	{
 		public static Gtk.CssProvider? default_css = null;
 
-		public const int WIDTH = 350;
+		public const int WIDTH = 300;
 		public const int ICON_SIZE = 48;
 		public const int MARGIN = 12;
 
-		public const int SPACING = 10;
-		public const int PADDING = 20;
+		public const int SPACING = 6;
+		public const int PADDING = 4;
 
 		public signal void action_invoked (uint32 id, string action);
 		public signal void closed (uint32 id, uint32 reason);
@@ -158,7 +158,7 @@ namespace Gala.Plugins.Notify
 
 			var opacity_transition = new PropertyTransition ("opacity");
 			opacity_transition.set_from_value (0);
-			opacity_transition.set_to_value (250);
+			opacity_transition.set_to_value (255);
 
 			var flip_transition = new KeyframeTransition ("rotation-angle-x");
 			flip_transition.set_from_value (90.0);

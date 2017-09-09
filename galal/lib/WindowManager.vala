@@ -23,6 +23,7 @@ namespace Gala
 		SHOW_WORKSPACE_VIEW,
 		MAXIMIZE_CURRENT,
 		MINIMIZE_CURRENT,
+		MINIMIZE_ALL,
 		OPEN_LAUNCHER,
 		CUSTOM_COMMAND,
 		WINDOW_OVERVIEW,
@@ -147,4 +148,3 @@ namespace Gala
 		public abstract void switch_to_next_workspace (Meta.MotionDirection direction);
 	}
 }
-

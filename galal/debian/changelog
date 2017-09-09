@@ -1,0 +1,166 @@
+galal (1.0.33) xenial; urgency=medium
+
+  * added show desktop item to desktop menu
+  * added workspace view item to desktop menu
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Thu, 17 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.32) xenial; urgency=medium
+
+  * change dep libgranite to libgranite2
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.29) xenial; urgency=medium
+
+  * change dep libgranite3 to libgranite
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.28) xenial; urgency=medium
+
+  * change dep libcanberra-0 to libcanberra0
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.27) xenial; urgency=medium
+
+  * change deps due to runtime error on install
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.26) xenial; urgency=medium
+
+  * change rules - add bianry arch
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.25) xenial; urgency=medium
+
+  * change rules to include gencontrol
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+galal (1.0.24) xenial; urgency=medium
+
+  * change rules to install again
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+galal (1.0.23) xenial; urgency=medium
+
+  * change rules to install again
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+galal (1.0.22) xenial; urgency=medium
+
+  * change rules to install 
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.21) xenial; urgency=medium
+
+  * change rules to install into tmp folder
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.20) xenial; urgency=medium
+
+  * change rules to install and build in one place
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.19) xenial; urgency=medium
+
+  * change rules to just make instead of make -C
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.18) xenial; urgency=medium
+
+  * added deps for libcanberra
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+galal (1.0.17) xenial; urgency=medium
+
+  * added deps for clutter and mutter  
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+galal (1.0.16) xenial; urgency=medium
+
+  * change deps to dev 
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.15) xenial; urgency=medium
+
+  * add libtool to deps
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+galal (1.0.14) xenial; urgency=medium
+
+  * add autopoint to deps
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+galal (1.0.13) xenial; urgency=medium
+
+  * add make tools and build essetials to deps
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.11) xenial; urgency=medium
+
+  * add autotools to deps
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+galal (1.0.8) xenial; urgency=medium
+
+  * changes debian rules file to not create build_dir and build in current folder
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.6) xenial; urgency=medium
+
+  * changes debian rules file to autogen and make application
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.5) xenial; urgency=medium
+
+  * fix for right click menu - not working due to gschema not being correct
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.4) xenial; urgency=medium
+
+  * Updated close icon
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100
+
+
+galal (1.0.3) xenial; urgency=medium
+
+  * Initial Release.
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Tue, 08 Aug 2017 09:22:10 +0100

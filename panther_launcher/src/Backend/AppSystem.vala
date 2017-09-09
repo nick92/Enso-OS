@@ -114,8 +114,8 @@ public class Panther.Backend.AppSystem : Object {
             if (info.get_is_hidden () || !filename.has_suffix (".saveditem"))
               continue;
 
-            filename = filename.substring(0, filename.index_of(".")) + ".desktop";
-
+            filename = filename.substring(0, filename.length - 9) + "desktop";
+            message("getting saved file: " + filename);
             GMenu.TreeEntry te = apps_menu.get_entry_by_id(filename);
             var app = new App (te);
 

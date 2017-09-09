@@ -1,0 +1,8 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Name=Panther Launcher
+Comment=Applications launcher
+Icon=application-x-executable
+X-XFCE-Module=pantherplugin
+X-XFCE-Internal=false
+X-XFCE-API=2.0

@@ -16,14 +16,8 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-[DBus (name = "com.rastersoft.panther.remotecontrol")]
-interface RemoteService : Object {
-  public abstract int do_ping (int v) throws IOError;
-  public abstract void do_show() throws IOError;
-}
-
 [DBus (name = "com.rastersoft.panther")]
-interface Service : Object {
+interface Panther_Service : Object {
   public signal void visibility_changed (bool launcher_visible);
 }
 
@@ -48,8 +42,7 @@ namespace Panther {
     private int view_height;
     private bool first = true;
 
-    private Service panther_bus;
-    private RemoteService remote_bus;
+    private Panther_Service panther_bus;
 
     public override void @construct() {
 
@@ -64,16 +57,11 @@ namespace Panther {
         panther_bus = Bus.get_proxy_sync (BusType.SESSION, "com.rastersoft.panther",
                                                         "/com/rastersoft/panther");
 
-        remote_bus = Bus.get_proxy_sync (BusType.SESSION, "com.rastersoft.panther.remotecontrol",
-                                                        "/com/rastersoft/panther/remotecontrol");
-
-
         app_button.toggled.connect (() => {
           if (app_button.active) {
               try {
-      					//Process.spawn_command_line_async ("panther_launcher");
-                remote_bus.do_show ();
-                //  app_button.active = false;
+      					Process.spawn_command_line_async ("panther_launcher");
+                //remote_bus.do_show ();
       				} catch (Error e) {
       					warning (e.message);
       				}

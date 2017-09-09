@@ -1,0 +1,15 @@
+Source: panther-launcher
+Section: misc
+Priority: optional
+Maintainer: Nick Wilkins <nickawilkins@hotmail.com>
+Build-Depends: build-essential, po-debconf, valac, libc6-dev, libatk1.0-dev, libcairo2-dev, libgtk-3-dev, libgdk-pixbuf2.0-dev, libgee-0.8-dev, libglib2.0-dev, libjson-glib-dev, libgnome-menu-3-dev, libsoup2.4-dev, libpango1.0-dev, libx11-dev, cmake, gettext, pkg-config, gcc, g++, make, intltool,  libxfce4panel-2.0-dev, libxfconf-0-dev, libxfce4util-dev, libplank-dev
+Standards-Version: 3.9.6
+
+Package: panther-launcher
+Architecture: any
+Depends: libatk1.0-0, libglib2.0-0, libcairo2, libgtk-3-0, libpangocairo-1.0-0, libpango-1.0-0, libgdk-pixbuf2.0-0, libcairo-gobject2, libgee-0.8-2, libjson-glib-1.0-0, libgnome-menu-3-0, libsoup2.4-1, libx11-6, libc6-dev, gnome-icon-theme, gnome-menus, libxfce4panel-2.0-4, libxfconf-0-2, libxfce4util7, libplank1
+Description: A fork from Slingshot Launcher. Its main change is that it doesn't
+ depend on Gala, Granite or other libraries not available in regular
+ linux distros. It also has been ported to Autovala, allowing an
+ easier build. Finally, it also has an applet for Gnome Flashback and
+ an extension for Gnome Shell, allowing to use it from these desktops.

@@ -51,7 +51,7 @@ namespace Gala
 			dock_settings = new Plank.DockPreferences ("dock1");
 #else
 			var file = Environment.get_user_config_dir () + "/plank/dock1/settings";
-			message("hello");
+
 			dock_settings = new Plank.DockPreferences.with_filename (file);
 #endif
 			dock_settings.notify["Theme"].connect (load_dock_theme);
