@@ -6,7 +6,7 @@ A simple OS designed for ease of use and ageing computers
 
 Download the leaster release from SourceForge
 
-![Download Enso OS](https://img.shields.io/sourceforge/dm/enso-os.svg)](https://sourceforge.net/projects/enso-os/files/latest/download)
+[![Download Enso OS](https://img.shields.io/sourceforge/dm/enso-os.svg)](https://sourceforge.net/projects/enso-os/files/latest/download)
 
 ## Screens
 
