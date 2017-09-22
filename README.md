@@ -1,14 +1,27 @@
 # Enso OS
+
 A simple OS designed for ease of use and ageing computers
 
-## Desktop
+## Download
 
-![enso](http://i.imgur.com/E8BlQsQ.png)
+Download the leaster release from SourceForge
 
-## Launcher
+[![Download Enso OS](https://img.shields.io/sourceforge/dm/enso-os.svg)](https://sourceforge.net/projects/enso-os/files/latest/download)
 
-![panther](http://i.imgur.com/ysXAp7p.png)
+## Screens
 
-## Multitasking view
+### Login 
 
-![multitask](http://i.imgur.com/IA9zIdc.png)
+![login](https://i.imgur.com/g6FmczJ.jpg)
+	
+### Desktop
+
+![enso](https://i.imgur.com/yeANZiW.png)
+
+### Launcher
+
+![panther](https://i.imgur.com/UuxxqxQ.png)
+
+### Multitasking view
+
+![multitask](https://i.imgur.com/79wnAGs.jpg)

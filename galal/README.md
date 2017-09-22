@@ -1,11 +1,11 @@
-# Gala
-[![l10n](https://l10n.elementary.io/widgets/desktop/gala/svg-badge.svg)](https://l10n.elementary.io/projects/desktop/gala)
+# Galal
 
-A window & compositing manager based on libmutter and designed by elementary for use with Pantheon.
+A fork of elementarys Gala window & compositing manager based on libmutter, tweaked to work with Xfce and in a lighter manner. 
 
 ## Building, Testing, and Installation
 
 You'll need the following dependencies:
+
 * automake
 * autopoint
 * gettext (>= 0.19.6)
