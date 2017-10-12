@@ -2,5 +2,6 @@
 <gresources>
   <gresource prefix="/io/elementary/greeter">
     <file alias="Greeter.css" compressed="true">Greeter.css</file>
+    <file alias="shader.glsl" compressed="true">shader.glsl</file>
   </gresource>
 </gresources>

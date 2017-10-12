@@ -53,6 +53,10 @@
     font-size: 48px;
 }
 
+.background {
+  opacity: 0.5;
+}
+
 .button.text-button.suggested-action {
     padding: 6px 32px;
     border-radius: 3.5px;

@@ -121,21 +121,43 @@ public class PantheonGreeter : Gtk.Window {
 
         userlist = new UserList (LightDM.UserList.get_instance ());
         userlist_actor = new UserListActor (userlist);
+        userlist_actor.set_opacity (0);
 
         var time_label = new TimeLabel ();
 
         time_actor = new GtkClutter.Actor ();
         ((Gtk.Container) time_actor.get_widget ()).add (time_label);
+        time_actor.set_opacity (0);
 
         var power_label = new PowerLabel ();
 
         power_actor = new GtkClutter.Actor ();
         ((Gtk.Container) power_actor.get_widget ()).add (power_label);
+        power_actor.set_opacity (0);
 
         wallpaper = new Wallpaper ();
 
+        var shadeEffect = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
+        //shadeEffect.set_shader_source(load_from_resource ("io/elementary/greeter/shader.glsl"))
+        //shadeEffect.
+
+        try {
+            shadeEffect.set_shader_source(load_from_resource(Environment.get_home_dir() + "/work/Enso/greeter/data/shader.glsl"));
+        } catch (Error e) {
+            warning (e.message);
+        }
+
+        shadeEffect.set_uniform_value("width", 100);
+        shadeEffect.set_uniform_value("dir", 1.0);
+        shadeEffect.set_uniform_value("height", 200);
+        shadeEffect.set_uniform_value("radius", 10);
+        shadeEffect.set_uniform_value("brightness", 0.9999);
+
+
         wallpaper_actor = new GtkClutter.Actor ();
         ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
+        wallpaper_actor.add_effect(shadeEffect);
+
 
         monitors_changed ();
 
@@ -211,7 +233,23 @@ public class PantheonGreeter : Gtk.Window {
 
         show_all ();
 
+        fade_in_actor (userlist_actor);
+        fade_in_actor (time_actor);
+        fade_out_actor (power_actor);
+
         this.get_window ().focus (Gdk.CURRENT_TIME);
+    }
+
+    public string load_from_resource (string uri) throws IOError, Error {
+        var file = File.new_for_path(uri);
+        var stream = file.read ();
+        var dis = new DataInputStream(stream);
+        StringBuilder builder = new StringBuilder ();
+        string line;
+        while ( (line = dis.read_line (null)) != null ) {
+            builder.append (line);
+        }
+        return builder.str.dup ();
     }
 
     void connect_signals () {
@@ -256,6 +294,17 @@ public class PantheonGreeter : Gtk.Window {
         transition.set_from_value (actor.opacity);
         transition.set_to_value (0);
         actor.add_transition ("fadeout", transition);
+        return transition;
+    }
+
+    Clutter.PropertyTransition fade_in_actor (Clutter.Actor actor) {
+        var transition = new Clutter.PropertyTransition ("opacity");
+        transition.animatable = actor;
+        transition.set_duration (600);
+        transition.set_progress_mode (Clutter.AnimationMode.EASE_IN_CIRC);
+        transition.set_from_value (actor.opacity);
+        transition.set_to_value (255);
+        actor.add_transition ("fadein", transition);
         return transition;
     }
 

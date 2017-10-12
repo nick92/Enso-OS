@@ -10,7 +10,7 @@ set (CONF_DIR "/etc/lightdm")
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/enso/greeter")
 set (CMAKE_INSTALL_PREFIX /usr)
-set (VERSION "1.0.0")
+set (VERSION "1.0.1")
 
 configure_file (${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_BINARY_DIR}/src/config.vala)
 add_definitions (-DGETTEXT_PACKAGE="pantheon-greeter")
