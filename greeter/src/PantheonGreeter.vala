@@ -79,6 +79,10 @@ public class PantheonGreeter : Gtk.Window {
         assert (instance == null);
         instance = this;
 
+        int scale_factor = get_screen ().get_root_window ().get_scale_factor ();
+        int width = get_screen ().get_width () * scale_factor;
+        int height = get_screen ().get_height () * scale_factor;
+
         TEST_MODE = Environment.get_variable ("LIGHTDM_TO_SERVER_FD") == null;
 
         if (TEST_MODE) {
@@ -135,29 +139,15 @@ public class PantheonGreeter : Gtk.Window {
         ((Gtk.Container) power_actor.get_widget ()).add (power_label);
         power_actor.set_opacity (0);
 
+		var shaderEffectVer = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
+        var shaderEffectHor = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
+
         wallpaper = new Wallpaper ();
 
-        var shadeEffect = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
-        //shadeEffect.set_shader_source(load_from_resource ("io/elementary/greeter/shader.glsl"))
-        //shadeEffect.
-
-        try {
-            shadeEffect.set_shader_source(load_from_resource(Environment.get_home_dir() + "/work/Enso/greeter/data/shader.glsl"));
-        } catch (Error e) {
-            warning (e.message);
-        }
-
-        shadeEffect.set_uniform_value("width", 100);
-        shadeEffect.set_uniform_value("dir", 1.0);
-        shadeEffect.set_uniform_value("height", 200);
-        shadeEffect.set_uniform_value("radius", 10);
-        shadeEffect.set_uniform_value("brightness", 0.9999);
-
-
         wallpaper_actor = new GtkClutter.Actor ();
+
         ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
         wallpaper_actor.add_effect(shadeEffect);
-
 
         monitors_changed ();
 
@@ -240,8 +230,13 @@ public class PantheonGreeter : Gtk.Window {
         this.get_window ().focus (Gdk.CURRENT_TIME);
     }
 
+<<<<<<< HEAD
     public string load_from_resource (string uri) throws IOError, Error {
         var file = File.new_for_path(uri);
+=======
+	public string load_from_resource (string uri) throws IOError, Error {
+        var file = File.new_for_path (uri);
+>>>>>>> a9e667bf9fca4ebab8e3c9c4e7e5e51bb5c500f0
         var stream = file.read ();
         var dis = new DataInputStream(stream);
         StringBuilder builder = new StringBuilder ();
