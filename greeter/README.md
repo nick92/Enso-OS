@@ -7,7 +7,7 @@ A fork of pantheon greeter
 You'll need the following dependencies:
 
 * cmake
-* libclutter-gtk-2.0-dev
+* libclutter-gtk-1.0-dev
 * libgdk-pixbuf2.0-dev
 * libgee-0.8-dev
 * libgtk-3-dev

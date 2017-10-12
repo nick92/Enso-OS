@@ -78,6 +78,10 @@ public class PantheonGreeter : Gtk.Window {
         //singleton
         assert (instance == null);
         instance = this;
+        
+        int scale_factor = get_screen ().get_root_window ().get_scale_factor ();
+        int width = get_screen ().get_width () * scale_factor;
+        int height = get_screen ().get_height () * scale_factor;
 
         TEST_MODE = Environment.get_variable ("LIGHTDM_TO_SERVER_FD") == null;
 
@@ -132,10 +136,27 @@ public class PantheonGreeter : Gtk.Window {
         power_actor = new GtkClutter.Actor ();
         ((Gtk.Container) power_actor.get_widget ()).add (power_label);
 
+		var shaderEffectVer = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
+        var shaderEffectHor = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
+		
         wallpaper = new Wallpaper ();
 
         wallpaper_actor = new GtkClutter.Actor ();
+		
         ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
+
+        shaderEffectVer.set_shader_source(load_from_resource("/home/nick/work/Enso-OS/greeter/data/shader.glsl"));
+        shaderEffectVer.set_uniform_value("dir", 1.0);
+        shaderEffectVer.set_uniform_value("width", width);
+        shaderEffectVer.set_uniform_value("height", height);
+        shaderEffectVer.set_uniform_value("radius", 10.0);
+        shaderEffectVer.set_uniform_value("brightness", 1.0);
+
+        //wallpaper_actor.add_effect_with_name("horizontal_blur",shaderEffectHor);
+        wallpaper_actor.add_effect_with_name("vertical_blur",shaderEffectVer);
+
+
+        //wallpaper_actor.add_effect(new Clutter.BlurEffect());
 
         monitors_changed ();
 
@@ -212,6 +233,18 @@ public class PantheonGreeter : Gtk.Window {
         show_all ();
 
         this.get_window ().focus (Gdk.CURRENT_TIME);
+    }
+
+	public string load_from_resource (string uri) throws IOError, Error {
+        var file = File.new_for_path (uri);
+        var stream = file.read ();
+        var dis = new DataInputStream(stream);
+        StringBuilder builder = new StringBuilder ();
+        string line;
+        while ( (line = dis.read_line (null)) != null ) {
+            builder.append (line);
+        }
+        return builder.str.dup ();
     }
 
     void connect_signals () {
