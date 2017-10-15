@@ -1,4 +1,4 @@
-project (enso-greeter)
+project (greeter)
 cmake_minimum_required (VERSION 2.8)
 cmake_policy (VERSION 2.8)
 
@@ -10,10 +10,10 @@ set (CONF_DIR "/etc/lightdm")
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDATADIR "${DATADIR}/enso/greeter")
 set (CMAKE_INSTALL_PREFIX /usr)
-set (VERSION "1.0.0")
+set (VERSION "1.1.0")
 
 configure_file (${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_BINARY_DIR}/src/config.vala)
-add_definitions (-DGETTEXT_PACKAGE="pantheon-greeter")
+add_definitions (-DGETTEXT_PACKAGE="greeter")
 
 # Comment this out to enable C compiler warnings
 add_definitions (-w)
@@ -86,11 +86,13 @@ include (GSettings)
 include (GResource)
 glib_compile_resources (GLIB_RESOURCES_CSS SOURCE data/css.gresource.xml)
 
-add_executable (pantheon-greeter ${VALA_C} ${GLIB_RESOURCES_CSS})
-target_link_libraries(pantheon-greeter m)
+add_executable (greeter ${VALA_C} ${GLIB_RESOURCES_CSS})
+target_link_libraries(greeter m)
 
-install (TARGETS pantheon-greeter RUNTIME DESTINATION sbin)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/pantheon-greeter.desktop DESTINATION share/xgreeters)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/pantheon-greeter.conf DESTINATION ${CONF_DIR})
+install (TARGETS greeter RUNTIME DESTINATION sbin)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/greeter.desktop DESTINATION share/xgreeters)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/greeter.conf DESTINATION ${CONF_DIR})
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/fingerprint.svg DESTINATION ${PKGDATADIR})
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/power.svg DESTINATION ${PKGDATADIR})
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/checked.svg DESTINATION ${PKGDATADIR})
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/shader.glsl DESTINATION ${PKGDATADIR})

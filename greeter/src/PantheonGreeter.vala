@@ -62,6 +62,8 @@ public class PantheonGreeter : Gtk.Window {
 
     public static PantheonGreeter instance { get; private set; }
     private static SettingsDaemon settings_daemon;
+    private int g_width;
+    private int g_height;
 
     //from this width on we use the shrinked down version
     const int NORMAL_HEIGHT = 600;
@@ -78,10 +80,10 @@ public class PantheonGreeter : Gtk.Window {
         //singleton
         assert (instance == null);
         instance = this;
-        
+
         int scale_factor = get_screen ().get_root_window ().get_scale_factor ();
-        int width = get_screen ().get_width () * scale_factor;
-        int height = get_screen ().get_height () * scale_factor;
+        g_width = get_screen ().get_width () * scale_factor;
+        g_height = get_screen ().get_height () * scale_factor;
 
         TEST_MODE = Environment.get_variable ("LIGHTDM_TO_SERVER_FD") == null;
 
@@ -125,6 +127,7 @@ public class PantheonGreeter : Gtk.Window {
 
         userlist = new UserList (LightDM.UserList.get_instance ());
         userlist_actor = new UserListActor (userlist);
+        userlist_actor.set_opacity(0);
 
         var time_label = new TimeLabel ();
 
@@ -136,24 +139,23 @@ public class PantheonGreeter : Gtk.Window {
         power_actor = new GtkClutter.Actor ();
         ((Gtk.Container) power_actor.get_widget ()).add (power_label);
 
-		var shaderEffectVer = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
-        var shaderEffectHor = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
-		
+	      var shaderEffectVer = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
+
         wallpaper = new Wallpaper ();
 
         wallpaper_actor = new GtkClutter.Actor ();
-		
+
         ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
 
-        shaderEffectVer.set_shader_source(load_from_resource("/home/nick/work/Enso-OS/greeter/data/shader.glsl"));
+        shaderEffectVer.set_shader_source(load_from_resource(Constants.PKGDATADIR + "/shader.glsl"));
         shaderEffectVer.set_uniform_value("dir", 1.0);
-        shaderEffectVer.set_uniform_value("width", width);
-        shaderEffectVer.set_uniform_value("height", height);
+        shaderEffectVer.set_uniform_value("width", g_width);
+        shaderEffectVer.set_uniform_value("height", g_height);
         shaderEffectVer.set_uniform_value("radius", 10.0);
-        shaderEffectVer.set_uniform_value("brightness", 1.0);
+        shaderEffectVer.set_uniform_value("brightness", 0.948);
 
         //wallpaper_actor.add_effect_with_name("horizontal_blur",shaderEffectHor);
-        wallpaper_actor.add_effect_with_name("vertical_blur",shaderEffectVer);
+        wallpaper_actor.add_effect_with_name("blur",shaderEffectVer);
 
 
         //wallpaper_actor.add_effect(new Clutter.BlurEffect());
@@ -232,6 +234,10 @@ public class PantheonGreeter : Gtk.Window {
 
         show_all ();
 
+        fade_in_actor(userlist_actor);
+        fade_in_actor(time_actor);
+        fade_in_actor(wallpaper_actor);
+
         this.get_window ().focus (Gdk.CURRENT_TIME);
     }
 
@@ -293,6 +299,21 @@ public class PantheonGreeter : Gtk.Window {
     }
 
     /**
+     * Fades out an actor and returns the used transition that we can
+     * connect us to its completed-signal.
+     */
+    Clutter.PropertyTransition fade_in_actor (Clutter.Actor actor) {
+        var transition = new Clutter.PropertyTransition ("opacity");
+        transition.animatable = actor;
+        transition.set_duration (400);
+        transition.set_progress_mode (Clutter.AnimationMode.EASE_IN_CIRC);
+        transition.set_from_value (actor.opacity);
+        transition.set_to_value (255);
+        actor.add_transition ("fadein", transition);
+        return transition;
+    }
+
+    /**
      * Fades out the ui and then starts the session.
      * Only call this if the LoginGateway has signaled it is awaiting
      * start_session by firing login_successful!.
@@ -338,8 +359,8 @@ public class PantheonGreeter : Gtk.Window {
 
         //userlist_actor.y = height / 2 - userlist_actor.height / 2 ;
 
-        time_actor.x = width - DEFAULT_CLOCK_WIDTH - 10;
-        time_actor.y = height - DEFAULT_CLOCK_HEIGHT;
+        time_actor.x = width - time_actor.width - 150;
+        time_actor.y = height - time_actor.height - 150;
 
         time_actor.visible = width > NO_CLOCK_WIDTH;
         power_actor.x = width - power_actor.width - 10;
