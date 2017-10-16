@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Pantheon Greeter
-Comment=Pantheon Greeter
-Exec=pantheon-greeter
+Name=Greeter
+Comment=Greeter
+Exec=greeter
 Type=Application
-X-Ubuntu-Gettext-Domain=pantheon-greeter
-Name[en_US]=pantheon-greeter
+X-Ubuntu-Gettext-Domain=greeter
+

@@ -37,12 +37,12 @@ public class FingerprintCredentials : Gtk.Grid, Credentials {
     Gtk.Label label;
 
     public FingerprintCredentials () {
-        var image = new Gtk.Image.from_file (Constants.PKGDATADIR + "/fingerprint.svg");
-        image.margin = 6;
+        //var image = new Gtk.Image.from_file (Constants.PKGDATADIR + "/fingerprint.svg");
+        //image.margin = 6;
 
-        var box = new Gtk.Grid ();
+        /*var box = new Gtk.Grid ();
         box.get_style_context ().add_class ("fingerprint");
-        box.add (image);
+        //box.add (image);*/
 
         label = new Gtk.Label ("");
         label.valign = Gtk.Align.CENTER;
@@ -51,7 +51,7 @@ public class FingerprintCredentials : Gtk.Grid, Credentials {
         label_style_context.add_class ("h3");
         label_style_context.add_class ("fingerprint-label");
 
-        attach (box, 0, 0, 1, 1);   
+        //attach (box, 0, 0, 1, 1);   
         attach (label, 1, 0, 1, 1);
         column_spacing = 6;
     }

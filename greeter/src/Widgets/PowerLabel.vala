@@ -34,7 +34,7 @@ public class PowerLabel : Gtk.Grid {
     }
 
     construct {
-      shutdown_img = new Gtk.Image.from_file (Constants.PKGDATADIR + "/power.svg");
+      //shutdown_img = new Gtk.Image.from_file (Constants.PKGDATADIR + "/power.svg");
       //shutdown_img.set_size_request (16, 16);
       //shutdown_img.valign = Gtk.Align.CENTER;
 
