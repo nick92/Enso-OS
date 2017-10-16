@@ -34,14 +34,14 @@ public class PowerLabel : Gtk.Grid {
     }
 
     construct {
-      //shutdown_img = new Gtk.Image.from_file (Constants.PKGDATADIR + "/power.svg");
-      //shutdown_img.set_size_request (16, 16);
-      //shutdown_img.valign = Gtk.Align.CENTER;
+      shutdown_img = new Gtk.Image.from_file (Constants.PKGDATADIR + "/power.svg");
+      shutdown_img.set_size_request (16, 16);
+      shutdown_img.valign = Gtk.Align.CENTER;
 
       var settings = new Gtk.ToggleButton ();
       settings.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-      settings.image = shutdown_img;
-      settings.set_size_request (40, 40);
+      settings.image = new Gtk.Image.from_file (Constants.PKGDATADIR + "/power.svg");
+      settings.set_size_request (45, 45);
       settings.valign = Gtk.Align.CENTER;
 
       settings_list = new Gtk.ListBox ();

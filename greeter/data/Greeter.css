@@ -45,15 +45,14 @@
 }
 
 .time {
-    font-size: 50px;
-    font-weight: 50px;
+    font-size: 60px;
 }
 
 .pm {
-    font-size: 48px;
+    font-size: 40px;
 }
 
-.button.text-button.suggested-action {
+/*.button.text-button.suggested-action {
     padding: 6px 32px;
     border-radius: 3.5px;
     border-color: rgba(0, 0, 0, 0.1);
@@ -100,7 +99,7 @@
 
 .fingerprint-label.error {
     color: lighter (@error_color);
-}
+}*/
 
 @keyframes shake {
     0% { padding-left: 0 }

@@ -359,7 +359,7 @@ public class PantheonGreeter : Gtk.Window {
 
         //userlist_actor.y = height / 2 - userlist_actor.height / 2 ;
 
-        time_actor.x = width - time_actor.width - 100;
+        time_actor.x = width - time_actor.width - 150;
         time_actor.y = height - time_actor.height - 100;
 
         time_actor.visible = width > NO_CLOCK_WIDTH;
