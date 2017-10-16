@@ -70,6 +70,7 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
 
         if (path != null) {
             avatar = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_size(path, size, size));
+            //avatar.get_style_context ().add_class("avatar");
             //avatar = new Granite.Widgets.Avatar.from_file (path, 130);
         } else {
             avatar = new Gtk.Image.from_pixbuf (icon_theme.load_icon ("avatar-default", size, 0));
@@ -77,7 +78,7 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
         }
 
         var grid = new Gtk.Grid ();
-        grid.column_spacing = 12;
+        grid.row_spacing = 20;
         grid.set_orientation(Gtk.Orientation.VERTICAL);
         grid.add (avatar);
         grid.add (credentials_area);

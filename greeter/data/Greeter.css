@@ -1,12 +1,12 @@
-.avatar .image {
-    border-radius: 100%;
-    border-color: alpha (#000, 0.25);
+.avatar {
+    border-radius: 50%;
+    border-color: alpha (#000, 0.50);
     box-shadow:
         inset 0 0 0 1px alpha (#fff, 0.05),
         inset 0 1px 0 0 alpha (#fff, 0.45),
         inset 0 -1px 0 0 alpha (#fff, 0.15),
         0 1px 2px alpha (#000, 0.15),
-        0 2px 6px alpha (#000, 0.1);
+        0 2px 8px alpha (#000, 0.1);
 }
 
 .entry,
