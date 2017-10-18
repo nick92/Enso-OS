@@ -139,15 +139,12 @@ public class PantheonGreeter : Gtk.Window {
         ((Gtk.Container) power_actor.get_widget ()).add (power_label);
         power_actor.set_opacity (0);
 
-		var shaderEffectVer = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
-        var shaderEffectHor = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
-
         wallpaper = new Wallpaper ();
 
         wallpaper_actor = new GtkClutter.Actor ();
 
         ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
-        wallpaper_actor.add_effect(shadeEffect);
+        //wallpaper_actor.add_effect(shadeEffect);
 
         monitors_changed ();
 
@@ -228,23 +225,6 @@ public class PantheonGreeter : Gtk.Window {
         fade_out_actor (power_actor);
 
         this.get_window ().focus (Gdk.CURRENT_TIME);
-    }
-
-<<<<<<< HEAD
-    public string load_from_resource (string uri) throws IOError, Error {
-        var file = File.new_for_path(uri);
-=======
-	public string load_from_resource (string uri) throws IOError, Error {
-        var file = File.new_for_path (uri);
->>>>>>> a9e667bf9fca4ebab8e3c9c4e7e5e51bb5c500f0
-        var stream = file.read ();
-        var dis = new DataInputStream(stream);
-        StringBuilder builder = new StringBuilder ();
-        string line;
-        while ( (line = dis.read_line (null)) != null ) {
-            builder.append (line);
-        }
-        return builder.str.dup ();
     }
 
     void connect_signals () {

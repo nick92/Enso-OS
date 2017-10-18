@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+8073ade87304ea8d08c3a30138219466 CMakeFiles/dist
+a2c34b319481f3343f59851aa4d27d55 data/css.gresource.c
+cb821e3e22f8d98c76c7f5c619508834 src/PantheonGreeter.c
