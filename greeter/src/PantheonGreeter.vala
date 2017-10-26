@@ -114,7 +114,7 @@ public class PantheonGreeter : Gtk.Window {
 
         settings = new KeyFile ();
         try {
-            settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "pantheon-greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
+            settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
         } catch (Error e) {
             warning (e.message);
         }
@@ -139,24 +139,34 @@ public class PantheonGreeter : Gtk.Window {
         power_actor = new GtkClutter.Actor ();
         ((Gtk.Container) power_actor.get_widget ()).add (power_label);
 
-	      var shaderEffectVer = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
-
         wallpaper = new Wallpaper ();
 
         wallpaper_actor = new GtkClutter.Actor ();
 
         ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
 
-        shaderEffectVer.set_shader_source(load_from_resource(Constants.PKGDATADIR + "/shader.glsl"));
-        shaderEffectVer.set_uniform_value("dir", 1.0);
-        shaderEffectVer.set_uniform_value("width", g_width);
-        shaderEffectVer.set_uniform_value("height", g_height);
-        shaderEffectVer.set_uniform_value("radius", 10.0);
-        shaderEffectVer.set_uniform_value("brightness", 0.948);
+        // if blur enabled add shader effect
+        bool blur_effect = false;
+        try {
+            blur_effect = settings.get_boolean("greeter", "blur");
+        } catch (Error e) {
+            warning (e.message);
+        }
 
-        //wallpaper_actor.add_effect_with_name("horizontal_blur",shaderEffectHor);
-        wallpaper_actor.add_effect_with_name("blur",shaderEffectVer);
+        if(blur_effect)
+        {
+            var shaderEffectVer = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
 
+            shaderEffectVer.set_shader_source(load_from_resource(Constants.PKGDATADIR + "/shader.glsl"));
+            shaderEffectVer.set_uniform_value("dir", 1.0);
+            shaderEffectVer.set_uniform_value("width", g_width);
+            shaderEffectVer.set_uniform_value("height", g_height);
+            shaderEffectVer.set_uniform_value("radius", 10.0);
+            shaderEffectVer.set_uniform_value("brightness", 0.948);
+
+            //wallpaper_actor.add_effect_with_name("horizontal_blur",shaderEffectHor);
+            wallpaper_actor.add_effect_with_name("blur",shaderEffectVer);
+        }
 
         //wallpaper_actor.add_effect(new Clutter.BlurEffect());
 
@@ -522,8 +532,8 @@ public static int main (string [] args) {
 
     /*some settings*/
     Intl.setlocale (LocaleCategory.ALL, "");
-    Intl.bind_textdomain_codeset ("pantheon-greeter", "UTF-8");
-    Intl.textdomain ("pantheon-greeter");
+    Intl.bind_textdomain_codeset ("greeter", "UTF-8");
+    Intl.textdomain ("greeter");
 
     var cursor = new Gdk.Cursor.for_display (Gdk.Display.get_default (), Gdk.CursorType.LEFT_PTR);
     Gdk.get_default_root_window ().set_cursor (cursor);
@@ -543,7 +553,7 @@ string get_defaults (string default) {
     var settings = new KeyFile ();
     string ret = "";
     try {
-        settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+        settings.load_from_file (Constants.CONF_DIR + "/greeter.conf", KeyFileFlags.KEEP_COMMENTS);
         switch(default){
           case("gtk-theme"):
             ret = settings.get_string ("greeter", "gtk-theme");
@@ -554,6 +564,9 @@ string get_defaults (string default) {
           case("cursor-theme"):
             ret = settings.get_string ("greeter", "cursor-theme");
             break;
+          case("blur"):
+            ret = settings.get_string ("greeter", "blur");
+          break;
         }
     } catch (Error e) {
         warning (e.message);
