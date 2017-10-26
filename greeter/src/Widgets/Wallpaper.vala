@@ -105,6 +105,7 @@ public class Wallpaper : Gtk.Stack {
 
             var new_wallpaper = make_image ();
             new_wallpaper.pixbuf = buf;
+            //get_style_context ().add_class ("background");
             add (new_wallpaper);
             show_all ();
             visible_child = new_wallpaper;
