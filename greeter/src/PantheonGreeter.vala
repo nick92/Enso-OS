@@ -19,6 +19,7 @@
     END LICENSE
 ***/
 
+
 public class PantheonGreeter : Gtk.Window {
 
     public static LoginGateway login_gateway { get; private set; }
@@ -82,10 +83,6 @@ public class PantheonGreeter : Gtk.Window {
         instance = this;
 
         int scale_factor = get_screen ().get_root_window ().get_scale_factor ();
-        int width = get_screen ().get_width () * scale_factor;
-        int height = get_screen ().get_height () * scale_factor;
-
-        int scale_factor = get_screen ().get_root_window ().get_scale_factor ();
         g_width = get_screen ().get_width () * scale_factor;
         g_height = get_screen ().get_height () * scale_factor;
 
@@ -131,29 +128,21 @@ public class PantheonGreeter : Gtk.Window {
 
         userlist = new UserList (LightDM.UserList.get_instance ());
         userlist_actor = new UserListActor (userlist);
-<<<<<<< HEAD
         userlist_actor.set_opacity(0);
-=======
-        userlist_actor.set_opacity (0);
->>>>>>> 5907ee562cf5281aa4a53cde13a798a7cb78de73
 
         var time_label = new TimeLabel ();
 
         time_actor = new GtkClutter.Actor ();
         ((Gtk.Container) time_actor.get_widget ()).add (time_label);
-        time_actor.set_opacity (0);
 
         var power_label = new PowerLabel ();
 
         power_actor = new GtkClutter.Actor ();
         ((Gtk.Container) power_actor.get_widget ()).add (power_label);
-        power_actor.set_opacity (0);
 
         wallpaper = new Wallpaper ();
 
         wallpaper_actor = new GtkClutter.Actor ();
-<<<<<<< HEAD
-<<<<<<< HEAD
 
         ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
 
@@ -179,26 +168,8 @@ public class PantheonGreeter : Gtk.Window {
             //wallpaper_actor.add_effect_with_name("horizontal_blur",shaderEffectHor);
             wallpaper_actor.add_effect_with_name("blur",shaderEffectVer);
         }
-=======
-		
-        ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
 
-        shaderEffectVer.set_shader_source(load_from_resource("/home/nick/work/Enso-OS/greeter/data/shader.glsl"));
-        shaderEffectVer.set_uniform_value("dir", 1.0);
-        shaderEffectVer.set_uniform_value("width", width);
-        shaderEffectVer.set_uniform_value("height", height);
-        shaderEffectVer.set_uniform_value("radius", 10.0);
-        shaderEffectVer.set_uniform_value("brightness", 1.0);
-
-        //wallpaper_actor.add_effect_with_name("horizontal_blur",shaderEffectHor);
-        wallpaper_actor.add_effect_with_name("vertical_blur",shaderEffectVer);
-
->>>>>>> master
-=======
->>>>>>> 5907ee562cf5281aa4a53cde13a798a7cb78de73
-
-        ((Gtk.Container) wallpaper_actor.get_widget ()).add (wallpaper);
-        //wallpaper_actor.add_effect(shadeEffect);
+        //wallpaper_actor.add_effect(new Clutter.BlurEffect());
 
         monitors_changed ();
 
@@ -274,20 +245,23 @@ public class PantheonGreeter : Gtk.Window {
 
         show_all ();
 
-<<<<<<< HEAD
         fade_in_actor(userlist_actor);
         fade_in_actor(time_actor);
         fade_in_actor(wallpaper_actor);
 
         this.get_window ().focus (Gdk.CURRENT_TIME);
     }
-=======
-        fade_in_actor (userlist_actor);
-        fade_in_actor (time_actor);
-        fade_out_actor (power_actor);
->>>>>>> 5907ee562cf5281aa4a53cde13a798a7cb78de73
 
-        this.get_window ().focus (Gdk.CURRENT_TIME);
+    public string load_from_resource (string uri) throws IOError, Error {
+        var file = File.new_for_path (uri);
+        var stream = file.read ();
+        var dis = new DataInputStream(stream);
+        StringBuilder builder = new StringBuilder ();
+        string line;
+        while ( (line = dis.read_line (null)) != null ) {
+            builder.append (line);
+        }
+        return builder.str.dup ();
     }
 
     void connect_signals () {
@@ -332,17 +306,6 @@ public class PantheonGreeter : Gtk.Window {
         transition.set_from_value (actor.opacity);
         transition.set_to_value (0);
         actor.add_transition ("fadeout", transition);
-        return transition;
-    }
-
-    Clutter.PropertyTransition fade_in_actor (Clutter.Actor actor) {
-        var transition = new Clutter.PropertyTransition ("opacity");
-        transition.animatable = actor;
-        transition.set_duration (600);
-        transition.set_progress_mode (Clutter.AnimationMode.EASE_IN_CIRC);
-        transition.set_from_value (actor.opacity);
-        transition.set_to_value (255);
-        actor.add_transition ("fadein", transition);
         return transition;
     }
 
