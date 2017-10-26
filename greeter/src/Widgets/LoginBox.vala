@@ -65,17 +65,20 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
 
         var path = user.avatar_path;
         Gtk.Image avatar;
+        var size = 130;
+        //var size = pixel_size * get_style_context ().get_scale ();
 
         if (path != null) {
-            avatar = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_size(path, 100, 100));
+            avatar = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_size(path, size, size));
+            //avatar.get_style_context ().add_class("avatar");
             //avatar = new Granite.Widgets.Avatar.from_file (path, 130);
         } else {
-            avatar = new Gtk.Image.from_pixbuf (icon_theme.load_icon ("avatar-default", 100, 0));
+            avatar = new Gtk.Image.from_pixbuf (icon_theme.load_icon ("avatar-default", size, 0));
             //avatar = new Granite.Widgets.Avatar.with_default_icon (130);
         }
 
         var grid = new Gtk.Grid ();
-        grid.column_spacing = 12;
+        grid.row_spacing = 20;
         grid.set_orientation(Gtk.Orientation.VERTICAL);
         grid.add (avatar);
         grid.add (credentials_area);
@@ -90,7 +93,7 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
         add_child (credentials_area_actor);
 
         if (user.logged_in) {
-            var logged_in = new Gtk.Image.from_icon_name ("selection-checked", Gtk.IconSize.LARGE_TOOLBAR);
+            var logged_in = new Gtk.Image.from_file (Constants.PKGDATADIR + "/checked.svg");
 
             var logged_in_actor = new GtkClutter.Actor ();
             logged_in_actor.x = logged_in_actor.y = 75;

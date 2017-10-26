@@ -1,6 +1,6 @@
 ## Greeter
 
-A fork of pantheon greeter
+A fork of pantheon greeter that positions elements in a central and vertigal manner and adds a blur effect to the background 
 
 ## Building and Installation
 
@@ -42,3 +42,37 @@ Also by running the local executable
     ./pantheon-greeter 
 
 from you build folder
+
+## Changelog
+
+1.0.6
+	
+	* add blur effect to background (can be enabled through config file with blur=true)
+	* Positional fixes for clock
+	* change launcher name from pantheon-greeter to greeter
+
+1.0.5
+
+	* update shutdown icon
+
+1.0.4
+
+	* change position of time lable 
+	* set up time lable default width and height
+	* change location of power button to top right	
+
+1.0.3
+
+	* added description
+
+1.0.2
+
+	* remove install file
+
+1.0.1
+
+	* change libclutter gtk deps from 2 to 1
+
+1.0.0
+
+	* Initial release

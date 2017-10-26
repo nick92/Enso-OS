@@ -1,11 +1,12 @@
 .avatar {
-    border-color: alpha (#000, 0.25);
+    border-radius: 50%;
+    border-color: alpha (#000, 0.50);
     box-shadow:
         inset 0 0 0 1px alpha (#fff, 0.05),
         inset 0 1px 0 0 alpha (#fff, 0.45),
         inset 0 -1px 0 0 alpha (#fff, 0.15),
         0 1px 2px alpha (#000, 0.15),
-        0 2px 6px alpha (#000, 0.1);
+        0 2px 8px alpha (#000, 0.1);
 }
 
 .entry,
@@ -44,20 +45,22 @@
 }
 
 .time {
-    font-size: 72px;
-    font-family: Raleway;
-    font-weight: 100;
+    font-size: 60px;
 }
 
 .pm {
-    font-size: 48px;
+    font-size: 40px;
 }
 
+<<<<<<< HEAD
+/*.button.text-button.suggested-action {
+=======
 .background {
   opacity: 0.5;
 }
 
 .button.text-button.suggested-action {
+>>>>>>> 5907ee562cf5281aa4a53cde13a798a7cb78de73
     padding: 6px 32px;
     border-radius: 3.5px;
     border-color: rgba(0, 0, 0, 0.1);
@@ -104,7 +107,7 @@
 
 .fingerprint-label.error {
     color: lighter (@error_color);
-}
+}*/
 
 @keyframes shake {
     0% { padding-left: 0 }
