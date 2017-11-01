@@ -2,6 +2,8 @@
 
 A fork of pantheon greeter that positions elements in a central and vertigal manner and adds a blur effect to the background 
 
+![greeter](https://i.imgur.com/LdOc6h1.png)
+
 ## Building and Installation
 
 You'll need the following dependencies:
