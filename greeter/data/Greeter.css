@@ -52,15 +52,12 @@
     font-size: 40px;
 }
 
-<<<<<<< HEAD
 /*.button.text-button.suggested-action {
-=======
 .background {
   opacity: 0.5;
 }
 
 .button.text-button.suggested-action {
->>>>>>> 5907ee562cf5281aa4a53cde13a798a7cb78de73
     padding: 6px 32px;
     border-radius: 3.5px;
     border-color: rgba(0, 0, 0, 0.1);
