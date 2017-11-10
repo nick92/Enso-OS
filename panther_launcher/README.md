@@ -4,6 +4,8 @@ A fork of a fork originally 'Slingshot Launcher' by the elementary team
 
 Changed to work with Xfce Panel with added functionality such as being able to 'Save' items
 
+[panther](https://i.imgur.com/pIFgCJh.png)
+
 ## Installing and Running 
 
 ### Dependencies 

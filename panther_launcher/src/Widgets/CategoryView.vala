@@ -53,8 +53,8 @@ public class Panther.Widgets.CategoryView : Gtk.EventBox {
 
         user_view = new UserView ();
 
-        container.add (category_switcher);
-        //container.add (user_view);
+        container.attach (category_switcher, 0, 0, 1, 1);
+        //container.attach (user_view, 0, 1, 1, 1);
         //container.add (separator);
         container.add (app_view);
         add (container);

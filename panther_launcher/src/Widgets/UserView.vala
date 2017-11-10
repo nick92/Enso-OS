@@ -25,17 +25,26 @@ namespace Panther.Widgets {
 		Gtk.Image face;
 		Gtk.Grid grid;
 		Gtk.Label name;
+		Gtk.Button button;
 
 		public UserView () {
 			grid = new Gtk.Grid();
+			button = new Gtk.Button();
+
 			name = new Gtk.Label ("Nick");
 			face = new Gtk.Image.from_pixbuf(new Gdk.Pixbuf.from_file_at_scale ("/home/nick/.face", Panther.settings.icon_size,
                                                                      Panther.settings.icon_size, true));
+
+			button.set_image(face);
+			button.set_image_position(Gtk.PositionType.LEFT);
+			button.set_label("Nick");
+			button.set_relief(Gtk.ReliefStyle.NONE);
+
             grid.orientation = Gtk.Orientation.HORIZONTAL;
             grid.row_spacing = 30;
+            
 
-            grid.add(face);
-            grid.add(name);
+            grid.add(button);
 			
 			add(grid);
 		}

@@ -24,6 +24,8 @@ public class Panther.Widgets.Sidebar : Gtk.TreeView {
 
     private Gtk.TreeIter entry_iter;
 
+    private UserView user_view;
+
     public int cat_size {
         get {
             return store.iter_n_children (null);
