@@ -47,6 +47,10 @@ from you build folder
 
 ## Changelog
 
+1.0.7
+
+	* brightness setting added to config file - set to anything less than 1 to dim login
+ 
 1.0.6
 	
 	* add blur effect to background (can be enabled through config file with blur=true)
