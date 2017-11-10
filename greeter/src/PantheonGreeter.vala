@@ -148,8 +148,11 @@ public class PantheonGreeter : Gtk.Window {
 
         // if blur enabled add shader effect
         bool blur_effect = false;
+        double setting_brightness = 0.0;
+
         try {
             blur_effect = settings.get_boolean("greeter", "blur");
+            setting_brightness = settings.get_double("greeter", "brightness");
         } catch (Error e) {
             warning (e.message);
         }
@@ -163,7 +166,10 @@ public class PantheonGreeter : Gtk.Window {
             shaderEffectVer.set_uniform_value("width", g_width);
             shaderEffectVer.set_uniform_value("height", g_height);
             shaderEffectVer.set_uniform_value("radius", 10.0);
-            shaderEffectVer.set_uniform_value("brightness", 0.948);
+            if(setting_brightness < 1)
+            	shaderEffectVer.set_uniform_value("brightness", setting_brightness);
+            else
+            	shaderEffectVer.set_uniform_value("brightness", 1.0);
 
             //wallpaper_actor.add_effect_with_name("horizontal_blur",shaderEffectHor);
             wallpaper_actor.add_effect_with_name("blur",shaderEffectVer);
