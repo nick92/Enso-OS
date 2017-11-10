@@ -41,14 +41,14 @@ namespace Panther.Widgets {
 
         public Grid (int rows, int columns) {
             page.rows = rows;
-            page.columns = rows + 2;
+            page.columns = columns;
             page.number = 1;
             var main_grid = new Gtk.Grid ();
             main_grid.orientation = Gtk.Orientation.VERTICAL;
             main_grid.row_spacing = 30;
             main_grid.margin_bottom = 12;
             stack = new Gtk.Stack ();
-            stack.expand = true;
+            stack.expand = false;
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             page_switcher = new Widgets.Switcher ();
             page_switcher.set_stack (stack);
@@ -68,9 +68,9 @@ namespace Panther.Widgets {
         private void create_new_grid () {
             // Grid properties
             current_grid = new Gtk.Grid ();
-            current_grid.expand = true;
-            current_grid.row_homogeneous = true;
-            current_grid.column_homogeneous = true;
+            current_grid.expand = false;
+            current_grid.row_homogeneous = false;
+            current_grid.column_homogeneous = false;
             current_grid.margin_start = 12;
             current_grid.margin_end = 12;
 

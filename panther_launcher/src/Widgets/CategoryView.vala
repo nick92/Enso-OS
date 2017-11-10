@@ -22,6 +22,7 @@ public class Panther.Widgets.CategoryView : Gtk.EventBox {
 
     private Gtk.Grid container;
     public Sidebar category_switcher;
+    public UserView user_view;
     public Gtk.Separator separator;
     public Widgets.Grid app_view;
     private PantherView view;
@@ -50,8 +51,11 @@ public class Panther.Widgets.CategoryView : Gtk.EventBox {
 
         app_view = new Widgets.Grid (view.rows, view.columns);
 
+        user_view = new UserView ();
+
         container.add (category_switcher);
-        container.add (separator);
+        //container.add (user_view);
+        //container.add (separator);
         container.add (app_view);
         add (container);
 

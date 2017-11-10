@@ -172,10 +172,10 @@
     </Include>
   </Menu>   <!-- End System Tools -->
 
-  <!-- Other -->
+  <!-- Settings -->
   <Menu>
-    <Name>Other</Name>
-    <Directory>X-GNOME-Other.directory</Directory>
+    <Name>Settings</Name>
+    <Directory>Settings.directory</Directory>
     <OnlyUnallocated/>
     <Include>
       <And>
@@ -222,7 +222,7 @@
 
    <Layout>
      <Merge type="menus" />
-     <Menuname>Other</Menuname>
+     <Menuname>Settings</Menuname>
      <Merge type="files" />
    </Layout>
 

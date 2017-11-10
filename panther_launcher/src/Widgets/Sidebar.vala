@@ -59,13 +59,14 @@ public class Panther.Widgets.Sidebar : Gtk.TreeView {
 
         set_headers_visible (false);
         set_show_expanders (false);
-        set_level_indentation (8);
+        //set_level_indentation (8);
 
         hexpand = false;
         get_style_context ().add_class ("sidebar");
 
         var cell = new Gtk.CellRendererText ();
         cell.xpad = Pixels.PADDING;
+        cell.ypad = 5;
 
         insert_column_with_attributes (-1, "Filters", cell, "markup", Columns.TEXT);
 

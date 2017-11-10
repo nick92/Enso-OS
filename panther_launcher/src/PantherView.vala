@@ -152,13 +152,6 @@ namespace Panther {
         private bool avoid_show;
 
         public PantherView () {
-
-          const string PANTHER_STYLESHEET = """
-            GtkWidget {
-              background-color:#000;
-            }
-          """;
-
             primary_monitor = screen.get_primary_monitor ();
             Gdk.Rectangle geometry;
             screen.get_monitor_geometry (primary_monitor, out geometry);
@@ -241,7 +234,6 @@ namespace Panther {
         }
 
         private void setup_ui () {
-
             debug ("In setup_ui ()");
 
             // Create the base container
@@ -284,7 +276,7 @@ namespace Panther {
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
             // Create the "NORMAL_VIEW"
-            grid_view = new Widgets.Grid (default_rows, default_columns);
+            grid_view = new Widgets.Grid (Panther.settings.rows, Panther.settings.columns);
             stack.add_named (grid_view, "normal");
 
             // Create the "CATEGORY_VIEW"

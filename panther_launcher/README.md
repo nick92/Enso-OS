@@ -1,8 +1,20 @@
 # Panther Launcher
 
-A tweaked version of a fork of Slingshot Launcher. Built in Xfce Panel Plugin with added functionality such as being able to 'Star' items for easier future use
+A fork of a fork originally 'Slingshot Launcher' by the elementary team
+
+Changed to work with Xfce Panel with added functionality such as being able to 'Save' items
 
 ## Installing and Running 
+
+### Dependencies 
+
+	libgnome-menu-3-dev 
+	libxfce4panel-2.0-dev 
+	libplank-dev
+	libxfce4util-dev
+	libxfconf-0-dev
+
+### Build and install 
 
 Just type from a command line:
 
@@ -23,3 +35,5 @@ just use *dconf* to set *org.rastersoft.panther.show-at-top* to *false*.
 Created by Raster Software Vigo (rastersoft) 
 http://www.rastersoft.com 
 https://github.com/rastersoft/slingshot_gnome 
+
+Forked for Xfce and Enso OS
