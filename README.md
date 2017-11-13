@@ -1,5 +1,7 @@
 # Enso OS
 
+[![Join the chat at https://gitter.im/Enso-OS/Lobby](https://badges.gitter.im/Enso-OS/Lobby.svg)](https://gitter.im/Enso-OS/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A simple OS designed for ease of use and ageing computers
 
 ## Download
