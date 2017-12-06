@@ -149,11 +149,11 @@ public class PantheonGreeter : Gtk.Window {
 
         // if blur enabled add shader effect
         bool blur_effect = false;
-        double setting_brightness = 0.0;
+        float setting_brightness = 7;
 
         try {
             blur_effect = settings.get_boolean("greeter", "blur");
-            setting_brightness = settings.get_double("greeter", "brightness");
+            setting_brightness = (float)settings.get_double("greeter", "brightness");
         } catch (Error e) {
             warning (e.message);
         }
@@ -308,7 +308,7 @@ public class PantheonGreeter : Gtk.Window {
     Clutter.PropertyTransition fade_out_actor (Clutter.Actor actor) {
         var transition = new Clutter.PropertyTransition ("opacity");
         transition.animatable = actor;
-        transition.set_duration (300);
+        transition.set_duration (600);
         transition.set_progress_mode (Clutter.AnimationMode.EASE_OUT_CIRC);
         transition.set_from_value (actor.opacity);
         transition.set_to_value (0);
