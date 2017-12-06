@@ -58,6 +58,7 @@ vala_precompile (VALA_C
     src/LoginOptions/UserLogin.vala
 
     src/Widgets/CredentialsArea.vala
+    src/Widgets/DeepinBlurEffect.vala
     src/Widgets/FingerprintCredentials.vala
     src/Widgets/LoginBox.vala
     src/Widgets/LoginButtonCredentials.vala
@@ -76,6 +77,8 @@ PACKAGES
     x11
     clutter-gtk-1.0
     gl
+CUSTOM_VAPIS
+	vapi/cogl-fixes.vapi
 OPTIONS
     --vapidir=${CMAKE_CURRENT_SOURCE_DIR}/vapi
 )
@@ -87,11 +90,11 @@ include (GSettings)
 include (GResource)
 glib_compile_resources (GLIB_RESOURCES_CSS SOURCE data/css.gresource.xml)
 
-add_executable (greeter ${VALA_C} ${GLIB_RESOURCES_CSS})
-target_link_libraries(greeter m)
+add_executable (pantheon-greeter ${VALA_C} ${GLIB_RESOURCES_CSS})
+target_link_libraries(pantheon-greeter m)
 
-install (TARGETS greeter RUNTIME DESTINATION sbin)
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/greeter.desktop DESTINATION share/xgreeters)
+install (TARGETS pantheon-greeter RUNTIME DESTINATION sbin)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/pantheon-greeter.desktop DESTINATION share/xgreeters)
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/greeter.conf DESTINATION ${CONF_DIR})
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/fingerprint.svg DESTINATION ${PKGDATADIR})
 install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/power.svg DESTINATION ${PKGDATADIR})
