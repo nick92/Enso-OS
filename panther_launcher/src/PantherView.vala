@@ -49,22 +49,22 @@ namespace Panther {
             this.set_orientation(orientation);
             this.set_layout(Gtk.ButtonBoxStyle.START);
 
-            /*view_all = new Gtk.ToggleButton();
+            view_all = new Gtk.ToggleButton();
             var image = new Gtk.Image.from_icon_name ("panther-icons-symbolic", Gtk.IconSize.MENU);
             image.tooltip_text = _("View as Grid");
             view_all.add(image);
-            this.pack_start(view_all,false,false,0);*/
+            this.pack_start(view_all,false,false,0);
 
             view_cats = new Gtk.ToggleButton();
-            //image = new Gtk.Image.from_icon_name ("panther-categories-symbolic", Gtk.IconSize.MENU);
-            //image.tooltip_text = _("View by Category");
-            //view_cats.add(image);
+            image = new Gtk.Image.from_icon_name ("panther-categories-symbolic", Gtk.IconSize.MENU);
+            image.tooltip_text = _("View by Category");
+            view_cats.add(image);
             this.pack_start (view_cats,false,false,0);
 
-            /*view_all.button_release_event.connect( (bt) => {
+            view_all.button_release_event.connect( (bt) => {
                 this.set_selector(0);
                 return true;
-            });*/
+            });
             view_cats.button_release_event.connect( (bt) => {
                 this.set_selector(1);
                 return true;
@@ -95,6 +95,14 @@ namespace Panther {
     }
 
     public class PantherView : Gtk.Window {
+
+        const string PANTHER_STYLE_CSS = """
+            .view2 {
+                border: none;
+                box-shadow: none;
+                opacity: 0.5;
+            }
+        """;
 
         // Widgets
         public Gtk.SearchEntry search_entry;
@@ -167,6 +175,14 @@ namespace Panther {
                 Panther.settings.columns = Panther.settings.columns_int;
             }
 
+            var provider = new Gtk.CssProvider ();
+            try {
+                provider.load_from_data (PANTHER_STYLE_CSS, PANTHER_STYLE_CSS.length);
+                Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            } catch (Error e) {
+                critical (e.message);
+            }
+
             // Window properties
             this.title = "Panther";
             this.skip_pager_hint = true;
@@ -176,6 +192,9 @@ namespace Panther {
             this.focus_on_map = true;
             this.decorated = false;
             this.avoid_show = false;
+            this.set_opacity (0.5);
+
+            //get_style_context ().add_class ("view2");
 
             // Have the window in the right place
             read_settings (true);
@@ -194,7 +213,7 @@ namespace Panther {
                 setup_size ();
             }
 
-            height_request = calculate_grid_height () + Pixels.BOTTOM_SPACE;
+            //height_request = calculate_grid_height () + Pixels.BOTTOM_SPACE;
             setup_ui ();
 
             connect_signals ();
@@ -236,6 +255,14 @@ namespace Panther {
         private void setup_ui () {
             debug ("In setup_ui ()");
 
+            var provider = new Gtk.CssProvider ();
+            try {
+                provider.load_from_data (PANTHER_STYLE_CSS, PANTHER_STYLE_CSS.length);
+                Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            } catch (Error e) {
+                critical (e.message);
+            }
+
             // Create the base container
             container = new Gtk.Grid ();
             container.row_spacing = 12;
@@ -250,11 +277,11 @@ namespace Panther {
             top.margin_end = 6;
 
             view_selector = new Selector(Gtk.Orientation.HORIZONTAL);
-            /*view_selector.margin_end = 6;
+            view_selector.margin_end = 6;
             view_selector.margin_start = 6;
             view_selector_revealer = new Gtk.Revealer ();
             view_selector_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_RIGHT;
-            view_selector_revealer.add (view_selector);*/
+            view_selector_revealer.add (view_selector);
 
             if (Panther.settings.use_category)
                 this.view_selector.selected = 1;
@@ -400,7 +427,7 @@ namespace Panther {
 
         }
         private void connect_signals () {
-            warning("connect signals");
+
             this.focus_in_event.connect (() => {
                 search_entry.grab_focus ();
                 return false;
@@ -964,7 +991,7 @@ namespace Panther {
             if (!first_start) {
                 grid_view.resize (default_rows, default_columns);
                 populate_grid_view ();
-                height_request = calculate_grid_height () + Pixels.BOTTOM_SPACE;
+                //height_request = calculate_grid_height () + Pixels.BOTTOM_SPACE;
 
                 category_view.app_view.resize (default_rows, default_columns);
                 category_view.show_filtered_apps (category_view.category_ids.get (category_view.category_switcher.selected));

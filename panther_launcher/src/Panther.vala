@@ -123,19 +123,11 @@ public class Panther.Panther : Gtk.Application {
             }
 
         }
+        app = new Panther ();
 
-        if (app.get_windows () == null) {
+        Bus.own_name (BusType.SESSION, "com.rastersoft.panther.remotecontrol", BusNameOwnerFlags.NONE, on_bus_aquired, () => {}, () => {});
 
-          app = new Panther ();
-
-          Bus.own_name (BusType.SESSION, "com.rastersoft.panther.remotecontrol", BusNameOwnerFlags.NONE, on_bus_aquired, () => {}, () => {});
-
-          return app.run (args);
-
-        }else{
-          app.activate ();
-          return 1;
-        }
+        return app.run (args);
     }
 }
 

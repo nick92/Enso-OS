@@ -1,6 +1,3 @@
-### CMakeLists automatically created with AutoVala
-### Do not edit
-
 project (panther_launcher)
 cmake_minimum_required (VERSION 2.6)
 cmake_policy (VERSION 2.8)
@@ -76,7 +73,6 @@ endif ()
 add_subdirectory(src/Backend)
 add_subdirectory(po)
 add_subdirectory(src/synapse-core)
-#add_subdirectory(panther_applet)
 add_subdirectory(data)
 add_subdirectory(src/synapse-plugins)
 add_subdirectory(data/icons)

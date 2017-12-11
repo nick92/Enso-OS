@@ -115,7 +115,7 @@ public class Panther.Backend.AppSystem : Object {
               continue;
 
             filename = filename.substring(0, filename.length - 9) + "desktop";
-            message("getting saved file: " + filename);
+            
             GMenu.TreeEntry te = apps_menu.get_entry_by_id(filename);
             var app = new App (te);
 

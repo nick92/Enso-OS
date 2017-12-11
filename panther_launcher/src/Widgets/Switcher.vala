@@ -26,9 +26,9 @@ public class Panther.Widgets.Switcher : Gtk.Box {
           background-color: transparent;
           border: none;
           box-shadow: none;
-          opacity: 0.4;
+          opacity: 0.5;
       }
-      
+
       .switcher:checked {
           border: none;
           box-shadow: none;
@@ -80,7 +80,7 @@ public class Panther.Widgets.Switcher : Gtk.Box {
         //var button = new Gtk.ToggleButton.with_label ((buttons.size +1).to_string ());
         //var button = new Gtk.ToggleButton.with_label ("°");
         var button = new Gtk.ToggleButton ();
-        button.image = new Gtk.Image.from_icon_name ("mail-unread-symbolic", Gtk.IconSize.MENU);
+        button.image = new Gtk.Image.from_icon_name ("radio-symbolic", Gtk.IconSize.MENU);
         button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         button.get_style_context ().add_class ("switcher");
         button.button_release_event.connect (() => {

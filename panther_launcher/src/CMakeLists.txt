@@ -122,9 +122,9 @@ vala_precompile(VALA_C_XFCE pantherplugin
 PACKAGES
 	${XFCE_VALA_PACKAGES}
 CUSTOM_VAPIS
-	vapi/garcon-1.vapi
-	vapi/libxfce4panel-2.0.vapi
-	vapi/libxfconf-0.vapi
+	${CMAKE_SOURCE_DIR}/vapi/garcon-1.vapi
+	${CMAKE_SOURCE_DIR}/vapi/libxfce4panel-2.0.vapi
+	${CMAKE_SOURCE_DIR}/vapi/libxfconf-0.vapi
 OPTIONS
 
 )
