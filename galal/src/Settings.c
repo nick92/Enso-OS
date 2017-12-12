@@ -40,8 +40,6 @@
 typedef struct _GalaBehaviorSettings GalaBehaviorSettings;
 typedef struct _GalaBehaviorSettingsClass GalaBehaviorSettingsClass;
 typedef struct _GalaBehaviorSettingsPrivate GalaBehaviorSettingsPrivate;
-
-#define GALA_TYPE_WINDOW_OVERVIEW_TYPE (gala_window_overview_type_get_type ())
 #define _g_free0(var) (var = (g_free (var), NULL))
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 
@@ -109,22 +107,18 @@ struct _GalaBehaviorSettingsClass {
 	GraniteServicesSettingsClass parent_class;
 };
 
-typedef enum  {
-	GALA_WINDOW_OVERVIEW_TYPE_GRID = 0,
-	GALA_WINDOW_OVERVIEW_TYPE_NATURAL
-} GalaWindowOverviewType;
-
 struct _GalaBehaviorSettingsPrivate {
 	gboolean _dynamic_workspaces;
 	gboolean _edge_tiling;
 	gchar* _panel_main_menu_action;
+	gchar* _change_background_action;
+	gchar* _settings_action;
 	gchar* _toggle_recording_action;
 	gchar* _overlay_action;
 	gchar* _hotcorner_custom_command;
 	gchar** _dock_names;
 	gint _dock_names_length1;
 	gint __dock_names_size_;
-	GalaWindowOverviewType _window_overview_type;
 	GalaActionType _hotcorner_topleft;
 	GalaActionType _hotcorner_topright;
 	GalaActionType _hotcorner_bottomleft;
@@ -242,18 +236,18 @@ static GalaBackgroundSettings* gala_background_settings_instance;
 static GalaBackgroundSettings* gala_background_settings_instance = NULL;
 
 GType gala_behavior_settings_get_type (void) G_GNUC_CONST;
-GType gala_window_overview_type_get_type (void) G_GNUC_CONST;
 #define GALA_BEHAVIOR_SETTINGS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GALA_TYPE_BEHAVIOR_SETTINGS, GalaBehaviorSettingsPrivate))
 enum  {
 	GALA_BEHAVIOR_SETTINGS_DUMMY_PROPERTY,
 	GALA_BEHAVIOR_SETTINGS_DYNAMIC_WORKSPACES,
 	GALA_BEHAVIOR_SETTINGS_EDGE_TILING,
 	GALA_BEHAVIOR_SETTINGS_PANEL_MAIN_MENU_ACTION,
+	GALA_BEHAVIOR_SETTINGS_CHANGE_BACKGROUND_ACTION,
+	GALA_BEHAVIOR_SETTINGS_SETTINGS_ACTION,
 	GALA_BEHAVIOR_SETTINGS_TOGGLE_RECORDING_ACTION,
 	GALA_BEHAVIOR_SETTINGS_OVERLAY_ACTION,
 	GALA_BEHAVIOR_SETTINGS_HOTCORNER_CUSTOM_COMMAND,
 	GALA_BEHAVIOR_SETTINGS_DOCK_NAMES,
-	GALA_BEHAVIOR_SETTINGS_WINDOW_OVERVIEW_TYPE,
 	GALA_BEHAVIOR_SETTINGS_HOTCORNER_TOPLEFT,
 	GALA_BEHAVIOR_SETTINGS_HOTCORNER_TOPRIGHT,
 	GALA_BEHAVIOR_SETTINGS_HOTCORNER_BOTTOMLEFT,
@@ -268,6 +262,10 @@ gboolean gala_behavior_settings_get_edge_tiling (GalaBehaviorSettings* self);
 void gala_behavior_settings_set_edge_tiling (GalaBehaviorSettings* self, gboolean value);
 const gchar* gala_behavior_settings_get_panel_main_menu_action (GalaBehaviorSettings* self);
 void gala_behavior_settings_set_panel_main_menu_action (GalaBehaviorSettings* self, const gchar* value);
+const gchar* gala_behavior_settings_get_change_background_action (GalaBehaviorSettings* self);
+void gala_behavior_settings_set_change_background_action (GalaBehaviorSettings* self, const gchar* value);
+const gchar* gala_behavior_settings_get_settings_action (GalaBehaviorSettings* self);
+void gala_behavior_settings_set_settings_action (GalaBehaviorSettings* self, const gchar* value);
 const gchar* gala_behavior_settings_get_toggle_recording_action (GalaBehaviorSettings* self);
 void gala_behavior_settings_set_toggle_recording_action (GalaBehaviorSettings* self, const gchar* value);
 const gchar* gala_behavior_settings_get_overlay_action (GalaBehaviorSettings* self);
@@ -277,8 +275,6 @@ void gala_behavior_settings_set_hotcorner_custom_command (GalaBehaviorSettings* 
 gchar** gala_behavior_settings_get_dock_names (GalaBehaviorSettings* self, int* result_length1);
 void gala_behavior_settings_set_dock_names (GalaBehaviorSettings* self, gchar** value, int value_length1);
 static gchar** _vala_array_dup2 (gchar** self, int length);
-GalaWindowOverviewType gala_behavior_settings_get_window_overview_type (GalaBehaviorSettings* self);
-void gala_behavior_settings_set_window_overview_type (GalaBehaviorSettings* self, GalaWindowOverviewType value);
 GalaActionType gala_behavior_settings_get_hotcorner_topleft (GalaBehaviorSettings* self);
 void gala_behavior_settings_set_hotcorner_topleft (GalaBehaviorSettings* self, GalaActionType value);
 GalaActionType gala_behavior_settings_get_hotcorner_topright (GalaBehaviorSettings* self);
@@ -423,18 +419,18 @@ static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify 
 
 static GalaBehaviorSettings* gala_behavior_settings_construct (GType object_type) {
 	GalaBehaviorSettings * self = NULL;
-#line 41 "/home/nick/work/gala/src/Settings.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = (GalaBehaviorSettings*) granite_services_settings_construct (object_type, SCHEMA ".behavior");
-#line 39 "/home/nick/work/gala/src/Settings.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return self;
-#line 431 "Settings.c"
+#line 427 "Settings.c"
 }
 
 
 static GalaBehaviorSettings* gala_behavior_settings_new (void) {
-#line 39 "/home/nick/work/gala/src/Settings.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return gala_behavior_settings_construct (GALA_TYPE_BEHAVIOR_SETTINGS);
-#line 438 "Settings.c"
+#line 434 "Settings.c"
 }
 
 
@@ -442,221 +438,289 @@ GalaBehaviorSettings* gala_behavior_settings_get_default (void) {
 	GalaBehaviorSettings* result = NULL;
 	GalaBehaviorSettings* _tmp0_ = NULL;
 	GalaBehaviorSettings* _tmp2_ = NULL;
-#line 46 "/home/nick/work/gala/src/Settings.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = gala_behavior_settings_instance;
-#line 46 "/home/nick/work/gala/src/Settings.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (_tmp0_ == NULL) {
-#line 450 "Settings.c"
+#line 446 "Settings.c"
 		GalaBehaviorSettings* _tmp1_ = NULL;
-#line 47 "/home/nick/work/gala/src/Settings.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp1_ = gala_behavior_settings_new ();
-#line 47 "/home/nick/work/gala/src/Settings.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_g_object_unref0 (gala_behavior_settings_instance);
-#line 47 "/home/nick/work/gala/src/Settings.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_instance = _tmp1_;
-#line 458 "Settings.c"
+#line 454 "Settings.c"
 	}
-#line 49 "/home/nick/work/gala/src/Settings.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp2_ = gala_behavior_settings_instance;
-#line 49 "/home/nick/work/gala/src/Settings.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp2_;
-#line 49 "/home/nick/work/gala/src/Settings.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 466 "Settings.c"
+#line 462 "Settings.c"
 }
 
 
 gboolean gala_behavior_settings_get_dynamic_workspaces (GalaBehaviorSettings* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 22 "/home/nick/work/gala/src/Settings.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 22 "/home/nick/work/gala/src/Settings.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_dynamic_workspaces;
-#line 22 "/home/nick/work/gala/src/Settings.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 22 "/home/nick/work/gala/src/Settings.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 481 "Settings.c"
+#line 477 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_dynamic_workspaces (GalaBehaviorSettings* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 22 "/home/nick/work/gala/src/Settings.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 22 "/home/nick/work/gala/src/Settings.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 22 "/home/nick/work/gala/src/Settings.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dynamic_workspaces = _tmp0_;
-#line 22 "/home/nick/work/gala/src/Settings.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "dynamic-workspaces");
-#line 495 "Settings.c"
+#line 491 "Settings.c"
 }
 
 
 gboolean gala_behavior_settings_get_edge_tiling (GalaBehaviorSettings* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 23 "/home/nick/work/gala/src/Settings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 23 "/home/nick/work/gala/src/Settings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_edge_tiling;
-#line 23 "/home/nick/work/gala/src/Settings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 23 "/home/nick/work/gala/src/Settings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 510 "Settings.c"
+#line 506 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_edge_tiling (GalaBehaviorSettings* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 23 "/home/nick/work/gala/src/Settings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 23 "/home/nick/work/gala/src/Settings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 23 "/home/nick/work/gala/src/Settings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_edge_tiling = _tmp0_;
-#line 23 "/home/nick/work/gala/src/Settings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "edge-tiling");
-#line 524 "Settings.c"
+#line 520 "Settings.c"
 }
 
 
 const gchar* gala_behavior_settings_get_panel_main_menu_action (GalaBehaviorSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_panel_main_menu_action;
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 539 "Settings.c"
+#line 535 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_panel_main_menu_action (GalaBehaviorSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_panel_main_menu_action);
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_panel_main_menu_action = _tmp1_;
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "panel-main-menu-action");
-#line 558 "Settings.c"
+#line 554 "Settings.c"
+}
+
+
+const gchar* gala_behavior_settings_get_change_background_action (GalaBehaviorSettings* self) {
+	const gchar* result;
+	const gchar* _tmp0_ = NULL;
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	g_return_val_if_fail (self != NULL, NULL);
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_tmp0_ = self->priv->_change_background_action;
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	result = _tmp0_;
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	return result;
+#line 569 "Settings.c"
+}
+
+
+void gala_behavior_settings_set_change_background_action (GalaBehaviorSettings* self, const gchar* value) {
+	const gchar* _tmp0_ = NULL;
+	gchar* _tmp1_ = NULL;
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	g_return_if_fail (self != NULL);
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_tmp0_ = value;
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_tmp1_ = g_strdup (_tmp0_);
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_g_free0 (self->priv->_change_background_action);
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	self->priv->_change_background_action = _tmp1_;
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	g_object_notify ((GObject *) self, "change-background-action");
+#line 588 "Settings.c"
+}
+
+
+const gchar* gala_behavior_settings_get_settings_action (GalaBehaviorSettings* self) {
+	const gchar* result;
+	const gchar* _tmp0_ = NULL;
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	g_return_val_if_fail (self != NULL, NULL);
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_tmp0_ = self->priv->_settings_action;
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	result = _tmp0_;
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	return result;
+#line 603 "Settings.c"
+}
+
+
+void gala_behavior_settings_set_settings_action (GalaBehaviorSettings* self, const gchar* value) {
+	const gchar* _tmp0_ = NULL;
+	gchar* _tmp1_ = NULL;
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	g_return_if_fail (self != NULL);
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_tmp0_ = value;
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_tmp1_ = g_strdup (_tmp0_);
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_g_free0 (self->priv->_settings_action);
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	self->priv->_settings_action = _tmp1_;
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	g_object_notify ((GObject *) self, "settings-action");
+#line 622 "Settings.c"
 }
 
 
 const gchar* gala_behavior_settings_get_toggle_recording_action (GalaBehaviorSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_toggle_recording_action;
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 573 "Settings.c"
+#line 637 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_toggle_recording_action (GalaBehaviorSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_toggle_recording_action);
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_toggle_recording_action = _tmp1_;
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "toggle-recording-action");
-#line 592 "Settings.c"
+#line 656 "Settings.c"
 }
 
 
 const gchar* gala_behavior_settings_get_overlay_action (GalaBehaviorSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_overlay_action;
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 607 "Settings.c"
+#line 671 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_overlay_action (GalaBehaviorSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_overlay_action);
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_overlay_action = _tmp1_;
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "overlay-action");
-#line 626 "Settings.c"
+#line 690 "Settings.c"
 }
 
 
 const gchar* gala_behavior_settings_get_hotcorner_custom_command (GalaBehaviorSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_hotcorner_custom_command;
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 641 "Settings.c"
+#line 705 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_hotcorner_custom_command (GalaBehaviorSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_hotcorner_custom_command);
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_hotcorner_custom_command = _tmp1_;
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "hotcorner-custom-command");
-#line 660 "Settings.c"
+#line 724 "Settings.c"
 }
 
 
@@ -666,48 +730,48 @@ gchar** gala_behavior_settings_get_dock_names (GalaBehaviorSettings* self, int* 
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_dock_names;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = self->priv->_dock_names_length1;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = _tmp0_;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (result_length1) {
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		*result_length1 = _tmp1__length1;
-#line 684 "Settings.c"
+#line 748 "Settings.c"
 	}
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp1_;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 690 "Settings.c"
+#line 754 "Settings.c"
 }
 
 
 static gchar** _vala_array_dup2 (gchar** self, int length) {
 	gchar** result;
 	int i;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = g_new0 (gchar*, length + 1);
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	for (i = 0; i < length; i++) {
-#line 701 "Settings.c"
+#line 765 "Settings.c"
 		gchar* _tmp0_ = NULL;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp0_ = g_strdup (self[i]);
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		result[i] = _tmp0_;
-#line 707 "Settings.c"
+#line 771 "Settings.c"
 	}
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 711 "Settings.c"
+#line 775 "Settings.c"
 }
 
 
@@ -716,238 +780,215 @@ void gala_behavior_settings_set_dock_names (GalaBehaviorSettings* self, gchar** 
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = value_length1;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = (_tmp0_ != NULL) ? _vala_array_dup2 (_tmp0_, _tmp0__length1) : ((gpointer) _tmp0_);
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dock_names = (_vala_array_free (self->priv->_dock_names, self->priv->_dock_names_length1, (GDestroyNotify) g_free), NULL);
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dock_names = _tmp1_;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dock_names_length1 = _tmp1__length1;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->__dock_names_size_ = self->priv->_dock_names_length1;
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "dock-names");
-#line 740 "Settings.c"
-}
-
-
-GalaWindowOverviewType gala_behavior_settings_get_window_overview_type (GalaBehaviorSettings* self) {
-	GalaWindowOverviewType result;
-	GalaWindowOverviewType _tmp0_ = 0;
-#line 30 "/home/nick/work/gala/src/Settings.vala"
-	g_return_val_if_fail (self != NULL, 0);
-#line 30 "/home/nick/work/gala/src/Settings.vala"
-	_tmp0_ = self->priv->_window_overview_type;
-#line 30 "/home/nick/work/gala/src/Settings.vala"
-	result = _tmp0_;
-#line 30 "/home/nick/work/gala/src/Settings.vala"
-	return result;
-#line 755 "Settings.c"
-}
-
-
-void gala_behavior_settings_set_window_overview_type (GalaBehaviorSettings* self, GalaWindowOverviewType value) {
-	GalaWindowOverviewType _tmp0_ = 0;
-#line 30 "/home/nick/work/gala/src/Settings.vala"
-	g_return_if_fail (self != NULL);
-#line 30 "/home/nick/work/gala/src/Settings.vala"
-	_tmp0_ = value;
-#line 30 "/home/nick/work/gala/src/Settings.vala"
-	self->priv->_window_overview_type = _tmp0_;
-#line 30 "/home/nick/work/gala/src/Settings.vala"
-	g_object_notify ((GObject *) self, "window-overview-type");
-#line 769 "Settings.c"
+#line 804 "Settings.c"
 }
 
 
 GalaActionType gala_behavior_settings_get_hotcorner_topleft (GalaBehaviorSettings* self) {
 	GalaActionType result;
 	GalaActionType _tmp0_ = 0;
-#line 32 "/home/nick/work/gala/src/Settings.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 32 "/home/nick/work/gala/src/Settings.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_hotcorner_topleft;
-#line 32 "/home/nick/work/gala/src/Settings.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 32 "/home/nick/work/gala/src/Settings.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 784 "Settings.c"
+#line 819 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_hotcorner_topleft (GalaBehaviorSettings* self, GalaActionType value) {
 	GalaActionType _tmp0_ = 0;
-#line 32 "/home/nick/work/gala/src/Settings.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 32 "/home/nick/work/gala/src/Settings.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 32 "/home/nick/work/gala/src/Settings.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_hotcorner_topleft = _tmp0_;
-#line 32 "/home/nick/work/gala/src/Settings.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "hotcorner-topleft");
-#line 798 "Settings.c"
+#line 833 "Settings.c"
 }
 
 
 GalaActionType gala_behavior_settings_get_hotcorner_topright (GalaBehaviorSettings* self) {
 	GalaActionType result;
 	GalaActionType _tmp0_ = 0;
-#line 33 "/home/nick/work/gala/src/Settings.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 33 "/home/nick/work/gala/src/Settings.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_hotcorner_topright;
-#line 33 "/home/nick/work/gala/src/Settings.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 33 "/home/nick/work/gala/src/Settings.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 813 "Settings.c"
+#line 848 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_hotcorner_topright (GalaBehaviorSettings* self, GalaActionType value) {
 	GalaActionType _tmp0_ = 0;
-#line 33 "/home/nick/work/gala/src/Settings.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 33 "/home/nick/work/gala/src/Settings.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 33 "/home/nick/work/gala/src/Settings.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_hotcorner_topright = _tmp0_;
-#line 33 "/home/nick/work/gala/src/Settings.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "hotcorner-topright");
-#line 827 "Settings.c"
+#line 862 "Settings.c"
 }
 
 
 GalaActionType gala_behavior_settings_get_hotcorner_bottomleft (GalaBehaviorSettings* self) {
 	GalaActionType result;
 	GalaActionType _tmp0_ = 0;
-#line 34 "/home/nick/work/gala/src/Settings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 34 "/home/nick/work/gala/src/Settings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_hotcorner_bottomleft;
-#line 34 "/home/nick/work/gala/src/Settings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 34 "/home/nick/work/gala/src/Settings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 842 "Settings.c"
+#line 877 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_hotcorner_bottomleft (GalaBehaviorSettings* self, GalaActionType value) {
 	GalaActionType _tmp0_ = 0;
-#line 34 "/home/nick/work/gala/src/Settings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 34 "/home/nick/work/gala/src/Settings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 34 "/home/nick/work/gala/src/Settings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_hotcorner_bottomleft = _tmp0_;
-#line 34 "/home/nick/work/gala/src/Settings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "hotcorner-bottomleft");
-#line 856 "Settings.c"
+#line 891 "Settings.c"
 }
 
 
 GalaActionType gala_behavior_settings_get_hotcorner_bottomright (GalaBehaviorSettings* self) {
 	GalaActionType result;
 	GalaActionType _tmp0_ = 0;
-#line 35 "/home/nick/work/gala/src/Settings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 35 "/home/nick/work/gala/src/Settings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_hotcorner_bottomright;
-#line 35 "/home/nick/work/gala/src/Settings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 35 "/home/nick/work/gala/src/Settings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 871 "Settings.c"
+#line 906 "Settings.c"
 }
 
 
 void gala_behavior_settings_set_hotcorner_bottomright (GalaBehaviorSettings* self, GalaActionType value) {
 	GalaActionType _tmp0_ = 0;
-#line 35 "/home/nick/work/gala/src/Settings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 35 "/home/nick/work/gala/src/Settings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 35 "/home/nick/work/gala/src/Settings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_hotcorner_bottomright = _tmp0_;
-#line 35 "/home/nick/work/gala/src/Settings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "hotcorner-bottomright");
-#line 885 "Settings.c"
+#line 920 "Settings.c"
 }
 
 
 static void gala_behavior_settings_class_init (GalaBehaviorSettingsClass * klass) {
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	gala_behavior_settings_parent_class = g_type_class_peek_parent (klass);
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_type_class_add_private (klass, sizeof (GalaBehaviorSettingsPrivate));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_behavior_settings_get_property;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_behavior_settings_set_property;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_behavior_settings_finalize;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_DYNAMIC_WORKSPACES, g_param_spec_boolean ("dynamic-workspaces", "dynamic-workspaces", "dynamic-workspaces", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_EDGE_TILING, g_param_spec_boolean ("edge-tiling", "edge-tiling", "edge-tiling", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_PANEL_MAIN_MENU_ACTION, g_param_spec_string ("panel-main-menu-action", "panel-main-menu-action", "panel-main-menu-action", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_CHANGE_BACKGROUND_ACTION, g_param_spec_string ("change-background-action", "change-background-action", "change-background-action", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_SETTINGS_ACTION, g_param_spec_string ("settings-action", "settings-action", "settings-action", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_TOGGLE_RECORDING_ACTION, g_param_spec_string ("toggle-recording-action", "toggle-recording-action", "toggle-recording-action", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_OVERLAY_ACTION, g_param_spec_string ("overlay-action", "overlay-action", "overlay-action", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_HOTCORNER_CUSTOM_COMMAND, g_param_spec_string ("hotcorner-custom-command", "hotcorner-custom-command", "hotcorner-custom-command", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_DOCK_NAMES, g_param_spec_boxed ("dock-names", "dock-names", "dock-names", G_TYPE_STRV, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
-	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_WINDOW_OVERVIEW_TYPE, g_param_spec_enum ("window-overview-type", "window-overview-type", "window-overview-type", GALA_TYPE_WINDOW_OVERVIEW_TYPE, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_HOTCORNER_TOPLEFT, g_param_spec_enum ("hotcorner-topleft", "hotcorner-topleft", "hotcorner-topleft", GALA_TYPE_ACTION_TYPE, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_HOTCORNER_TOPRIGHT, g_param_spec_enum ("hotcorner-topright", "hotcorner-topright", "hotcorner-topright", GALA_TYPE_ACTION_TYPE, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_HOTCORNER_BOTTOMLEFT, g_param_spec_enum ("hotcorner-bottomleft", "hotcorner-bottomleft", "hotcorner-bottomleft", GALA_TYPE_ACTION_TYPE, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BEHAVIOR_SETTINGS_HOTCORNER_BOTTOMRIGHT, g_param_spec_enum ("hotcorner-bottomright", "hotcorner-bottomright", "hotcorner-bottomright", GALA_TYPE_ACTION_TYPE, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 924 "Settings.c"
+#line 961 "Settings.c"
 }
 
 
 static void gala_behavior_settings_instance_init (GalaBehaviorSettings * self) {
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv = GALA_BEHAVIOR_SETTINGS_GET_PRIVATE (self);
-#line 931 "Settings.c"
+#line 968 "Settings.c"
 }
 
 
 static void gala_behavior_settings_finalize (GObject* obj) {
 	GalaBehaviorSettings * self;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_BEHAVIOR_SETTINGS, GalaBehaviorSettings);
-#line 24 "/home/nick/work/gala/src/Settings.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_panel_main_menu_action);
-#line 25 "/home/nick/work/gala/src/Settings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_g_free0 (self->priv->_change_background_action);
+#line 26 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+	_g_free0 (self->priv->_settings_action);
+#line 27 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_toggle_recording_action);
-#line 26 "/home/nick/work/gala/src/Settings.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_overlay_action);
-#line 27 "/home/nick/work/gala/src/Settings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_hotcorner_custom_command);
-#line 28 "/home/nick/work/gala/src/Settings.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dock_names = (_vala_array_free (self->priv->_dock_names, self->priv->_dock_names_length1, (GDestroyNotify) g_free), NULL);
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (gala_behavior_settings_parent_class)->finalize (obj);
-#line 951 "Settings.c"
+#line 992 "Settings.c"
 }
 
 
@@ -966,92 +1007,98 @@ GType gala_behavior_settings_get_type (void) {
 static void _vala_gala_behavior_settings_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaBehaviorSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_BEHAVIOR_SETTINGS, GalaBehaviorSettings);
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_DYNAMIC_WORKSPACES:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_boolean (value, gala_behavior_settings_get_dynamic_workspaces (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_EDGE_TILING:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_boolean (value, gala_behavior_settings_get_edge_tiling (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_PANEL_MAIN_MENU_ACTION:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_behavior_settings_get_panel_main_menu_action (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		case GALA_BEHAVIOR_SETTINGS_CHANGE_BACKGROUND_ACTION:
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		g_value_set_string (value, gala_behavior_settings_get_change_background_action (self));
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		case GALA_BEHAVIOR_SETTINGS_SETTINGS_ACTION:
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		g_value_set_string (value, gala_behavior_settings_get_settings_action (self));
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_TOGGLE_RECORDING_ACTION:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_behavior_settings_get_toggle_recording_action (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_OVERLAY_ACTION:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_behavior_settings_get_overlay_action (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_CUSTOM_COMMAND:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_behavior_settings_get_hotcorner_custom_command (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_DOCK_NAMES:
-#line 1010 "Settings.c"
+#line 1063 "Settings.c"
 		{
 			int length;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			g_value_set_boxed (value, gala_behavior_settings_get_dock_names (self, &length));
-#line 1015 "Settings.c"
+#line 1068 "Settings.c"
 		}
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
-		case GALA_BEHAVIOR_SETTINGS_WINDOW_OVERVIEW_TYPE:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
-		g_value_set_enum (value, gala_behavior_settings_get_window_overview_type (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
-		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_TOPLEFT:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_enum (value, gala_behavior_settings_get_hotcorner_topleft (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_TOPRIGHT:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_enum (value, gala_behavior_settings_get_hotcorner_topright (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_BOTTOMLEFT:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_enum (value, gala_behavior_settings_get_hotcorner_bottomleft (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_BOTTOMRIGHT:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_enum (value, gala_behavior_settings_get_hotcorner_bottomright (self));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 1049 "Settings.c"
+#line 1096 "Settings.c"
 		default:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 1055 "Settings.c"
+#line 1102 "Settings.c"
 	}
 }
 
@@ -1059,112 +1106,118 @@ static void _vala_gala_behavior_settings_get_property (GObject * object, guint p
 static void _vala_gala_behavior_settings_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaBehaviorSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_BEHAVIOR_SETTINGS, GalaBehaviorSettings);
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_DYNAMIC_WORKSPACES:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_dynamic_workspaces (self, g_value_get_boolean (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_EDGE_TILING:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_edge_tiling (self, g_value_get_boolean (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_PANEL_MAIN_MENU_ACTION:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_panel_main_menu_action (self, g_value_get_string (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		case GALA_BEHAVIOR_SETTINGS_CHANGE_BACKGROUND_ACTION:
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		gala_behavior_settings_set_change_background_action (self, g_value_get_string (value));
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		case GALA_BEHAVIOR_SETTINGS_SETTINGS_ACTION:
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		gala_behavior_settings_set_settings_action (self, g_value_get_string (value));
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_TOGGLE_RECORDING_ACTION:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_toggle_recording_action (self, g_value_get_string (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_OVERLAY_ACTION:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_overlay_action (self, g_value_get_string (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_CUSTOM_COMMAND:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_hotcorner_custom_command (self, g_value_get_string (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_DOCK_NAMES:
-#line 1103 "Settings.c"
+#line 1162 "Settings.c"
 		{
 			gpointer boxed;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			boxed = g_value_get_boxed (value);
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			gala_behavior_settings_set_dock_names (self, boxed, (boxed == NULL) ? 0 : g_strv_length (boxed));
-#line 1110 "Settings.c"
+#line 1169 "Settings.c"
 		}
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
-		case GALA_BEHAVIOR_SETTINGS_WINDOW_OVERVIEW_TYPE:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
-		gala_behavior_settings_set_window_overview_type (self, g_value_get_enum (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
-		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_TOPLEFT:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_hotcorner_topleft (self, g_value_get_enum (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_TOPRIGHT:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_hotcorner_topright (self, g_value_get_enum (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_BOTTOMLEFT:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_hotcorner_bottomleft (self, g_value_get_enum (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BEHAVIOR_SETTINGS_HOTCORNER_BOTTOMRIGHT:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_behavior_settings_set_hotcorner_bottomright (self, g_value_get_enum (value));
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 1144 "Settings.c"
+#line 1197 "Settings.c"
 		default:
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/Settings.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 1150 "Settings.c"
+#line 1203 "Settings.c"
 	}
 }
 
 
 static GalaKeybindingSettings* gala_keybinding_settings_construct (GType object_type) {
 	GalaKeybindingSettings * self = NULL;
-#line 59 "/home/nick/work/gala/src/Settings.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = (GalaKeybindingSettings*) granite_services_settings_construct (object_type, SCHEMA ".keybindings");
-#line 57 "/home/nick/work/gala/src/Settings.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return self;
-#line 1161 "Settings.c"
+#line 1214 "Settings.c"
 }
 
 
 static GalaKeybindingSettings* gala_keybinding_settings_new (void) {
-#line 57 "/home/nick/work/gala/src/Settings.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return gala_keybinding_settings_construct (GALA_TYPE_KEYBINDING_SETTINGS);
-#line 1168 "Settings.c"
+#line 1221 "Settings.c"
 }
 
 
@@ -1172,36 +1225,36 @@ GalaKeybindingSettings* gala_keybinding_settings_get_default (void) {
 	GalaKeybindingSettings* result = NULL;
 	GalaKeybindingSettings* _tmp0_ = NULL;
 	GalaKeybindingSettings* _tmp2_ = NULL;
-#line 64 "/home/nick/work/gala/src/Settings.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = gala_keybinding_settings_instance;
-#line 64 "/home/nick/work/gala/src/Settings.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (_tmp0_ == NULL) {
-#line 1180 "Settings.c"
+#line 1233 "Settings.c"
 		GalaKeybindingSettings* _tmp1_ = NULL;
-#line 65 "/home/nick/work/gala/src/Settings.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp1_ = gala_keybinding_settings_new ();
-#line 65 "/home/nick/work/gala/src/Settings.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_g_object_unref0 (gala_keybinding_settings_instance);
-#line 65 "/home/nick/work/gala/src/Settings.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_keybinding_settings_instance = _tmp1_;
-#line 1188 "Settings.c"
+#line 1241 "Settings.c"
 	}
-#line 67 "/home/nick/work/gala/src/Settings.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp2_ = gala_keybinding_settings_instance;
-#line 67 "/home/nick/work/gala/src/Settings.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp2_;
-#line 67 "/home/nick/work/gala/src/Settings.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1196 "Settings.c"
+#line 1249 "Settings.c"
 }
 
 
 static void gala_keybinding_settings_class_init (GalaKeybindingSettingsClass * klass) {
-#line 53 "/home/nick/work/gala/src/Settings.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	gala_keybinding_settings_parent_class = g_type_class_peek_parent (klass);
-#line 53 "/home/nick/work/gala/src/Settings.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_keybinding_settings_finalize;
-#line 1205 "Settings.c"
+#line 1258 "Settings.c"
 }
 
 
@@ -1211,11 +1264,11 @@ static void gala_keybinding_settings_instance_init (GalaKeybindingSettings * sel
 
 static void gala_keybinding_settings_finalize (GObject* obj) {
 	GalaKeybindingSettings * self;
-#line 53 "/home/nick/work/gala/src/Settings.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_KEYBINDING_SETTINGS, GalaKeybindingSettings);
-#line 53 "/home/nick/work/gala/src/Settings.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (gala_keybinding_settings_parent_class)->finalize (obj);
-#line 1219 "Settings.c"
+#line 1272 "Settings.c"
 }
 
 
@@ -1233,18 +1286,18 @@ GType gala_keybinding_settings_get_type (void) {
 
 static GalaAppearanceSettings* gala_appearance_settings_construct (GType object_type) {
 	GalaAppearanceSettings * self = NULL;
-#line 83 "/home/nick/work/gala/src/Settings.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = (GalaAppearanceSettings*) granite_services_settings_construct (object_type, SCHEMA ".appearance");
-#line 81 "/home/nick/work/gala/src/Settings.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return self;
-#line 1241 "Settings.c"
+#line 1294 "Settings.c"
 }
 
 
 static GalaAppearanceSettings* gala_appearance_settings_new (void) {
-#line 81 "/home/nick/work/gala/src/Settings.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return gala_appearance_settings_construct (GALA_TYPE_APPEARANCE_SETTINGS);
-#line 1248 "Settings.c"
+#line 1301 "Settings.c"
 }
 
 
@@ -1252,228 +1305,228 @@ GalaAppearanceSettings* gala_appearance_settings_get_default (void) {
 	GalaAppearanceSettings* result = NULL;
 	GalaAppearanceSettings* _tmp0_ = NULL;
 	GalaAppearanceSettings* _tmp2_ = NULL;
-#line 88 "/home/nick/work/gala/src/Settings.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = gala_appearance_settings_instance;
-#line 88 "/home/nick/work/gala/src/Settings.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (_tmp0_ == NULL) {
-#line 1260 "Settings.c"
+#line 1313 "Settings.c"
 		GalaAppearanceSettings* _tmp1_ = NULL;
-#line 89 "/home/nick/work/gala/src/Settings.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp1_ = gala_appearance_settings_new ();
-#line 89 "/home/nick/work/gala/src/Settings.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_g_object_unref0 (gala_appearance_settings_instance);
-#line 89 "/home/nick/work/gala/src/Settings.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_appearance_settings_instance = _tmp1_;
-#line 1268 "Settings.c"
+#line 1321 "Settings.c"
 	}
-#line 91 "/home/nick/work/gala/src/Settings.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp2_ = gala_appearance_settings_instance;
-#line 91 "/home/nick/work/gala/src/Settings.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp2_;
-#line 91 "/home/nick/work/gala/src/Settings.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1276 "Settings.c"
+#line 1329 "Settings.c"
 }
 
 
 const gchar* gala_appearance_settings_get_button_layout (GalaAppearanceSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_button_layout;
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1291 "Settings.c"
+#line 1344 "Settings.c"
 }
 
 
 void gala_appearance_settings_set_button_layout (GalaAppearanceSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_button_layout);
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_button_layout = _tmp1_;
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "button-layout");
-#line 1310 "Settings.c"
+#line 1363 "Settings.c"
 }
 
 
 gboolean gala_appearance_settings_get_attach_modal_dialogs (GalaAppearanceSettings* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 74 "/home/nick/work/gala/src/Settings.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 74 "/home/nick/work/gala/src/Settings.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_attach_modal_dialogs;
-#line 74 "/home/nick/work/gala/src/Settings.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 74 "/home/nick/work/gala/src/Settings.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1325 "Settings.c"
+#line 1378 "Settings.c"
 }
 
 
 void gala_appearance_settings_set_attach_modal_dialogs (GalaAppearanceSettings* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 74 "/home/nick/work/gala/src/Settings.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 74 "/home/nick/work/gala/src/Settings.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 74 "/home/nick/work/gala/src/Settings.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_attach_modal_dialogs = _tmp0_;
-#line 74 "/home/nick/work/gala/src/Settings.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "attach-modal-dialogs");
-#line 1339 "Settings.c"
+#line 1392 "Settings.c"
 }
 
 
 gboolean gala_appearance_settings_get_dim_parents (GalaAppearanceSettings* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 75 "/home/nick/work/gala/src/Settings.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 75 "/home/nick/work/gala/src/Settings.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_dim_parents;
-#line 75 "/home/nick/work/gala/src/Settings.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 75 "/home/nick/work/gala/src/Settings.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1354 "Settings.c"
+#line 1407 "Settings.c"
 }
 
 
 void gala_appearance_settings_set_dim_parents (GalaAppearanceSettings* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 75 "/home/nick/work/gala/src/Settings.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 75 "/home/nick/work/gala/src/Settings.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 75 "/home/nick/work/gala/src/Settings.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dim_parents = _tmp0_;
-#line 75 "/home/nick/work/gala/src/Settings.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "dim-parents");
-#line 1368 "Settings.c"
+#line 1421 "Settings.c"
 }
 
 
 gdouble gala_appearance_settings_get_alt_tab_window_opacity (GalaAppearanceSettings* self) {
 	gdouble result;
 	gdouble _tmp0_ = 0.0;
-#line 76 "/home/nick/work/gala/src/Settings.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0.0);
-#line 76 "/home/nick/work/gala/src/Settings.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_alt_tab_window_opacity;
-#line 76 "/home/nick/work/gala/src/Settings.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 76 "/home/nick/work/gala/src/Settings.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1383 "Settings.c"
+#line 1436 "Settings.c"
 }
 
 
 void gala_appearance_settings_set_alt_tab_window_opacity (GalaAppearanceSettings* self, gdouble value) {
 	gdouble _tmp0_ = 0.0;
-#line 76 "/home/nick/work/gala/src/Settings.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 76 "/home/nick/work/gala/src/Settings.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 76 "/home/nick/work/gala/src/Settings.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_alt_tab_window_opacity = _tmp0_;
-#line 76 "/home/nick/work/gala/src/Settings.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "alt-tab-window-opacity");
-#line 1397 "Settings.c"
+#line 1450 "Settings.c"
 }
 
 
 const gchar* gala_appearance_settings_get_workspace_switcher_background (GalaAppearanceSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_workspace_switcher_background;
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1412 "Settings.c"
+#line 1465 "Settings.c"
 }
 
 
 void gala_appearance_settings_set_workspace_switcher_background (GalaAppearanceSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_workspace_switcher_background);
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_workspace_switcher_background = _tmp1_;
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "workspace-switcher-background");
-#line 1431 "Settings.c"
+#line 1484 "Settings.c"
 }
 
 
 static void gala_appearance_settings_class_init (GalaAppearanceSettingsClass * klass) {
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	gala_appearance_settings_parent_class = g_type_class_peek_parent (klass);
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_type_class_add_private (klass, sizeof (GalaAppearanceSettingsPrivate));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_appearance_settings_get_property;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_appearance_settings_set_property;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_appearance_settings_finalize;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_APPEARANCE_SETTINGS_BUTTON_LAYOUT, g_param_spec_string ("button-layout", "button-layout", "button-layout", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_APPEARANCE_SETTINGS_ATTACH_MODAL_DIALOGS, g_param_spec_boolean ("attach-modal-dialogs", "attach-modal-dialogs", "attach-modal-dialogs", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_APPEARANCE_SETTINGS_DIM_PARENTS, g_param_spec_boolean ("dim-parents", "dim-parents", "dim-parents", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_APPEARANCE_SETTINGS_ALT_TAB_WINDOW_OPACITY, g_param_spec_double ("alt-tab-window-opacity", "alt-tab-window-opacity", "alt-tab-window-opacity", -G_MAXDOUBLE, G_MAXDOUBLE, 0.0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_APPEARANCE_SETTINGS_WORKSPACE_SWITCHER_BACKGROUND, g_param_spec_string ("workspace-switcher-background", "workspace-switcher-background", "workspace-switcher-background", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 1456 "Settings.c"
+#line 1509 "Settings.c"
 }
 
 
 static void gala_appearance_settings_instance_init (GalaAppearanceSettings * self) {
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv = GALA_APPEARANCE_SETTINGS_GET_PRIVATE (self);
-#line 1463 "Settings.c"
+#line 1516 "Settings.c"
 }
 
 
 static void gala_appearance_settings_finalize (GObject* obj) {
 	GalaAppearanceSettings * self;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_APPEARANCE_SETTINGS, GalaAppearanceSettings);
-#line 73 "/home/nick/work/gala/src/Settings.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_button_layout);
-#line 77 "/home/nick/work/gala/src/Settings.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_workspace_switcher_background);
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (gala_appearance_settings_parent_class)->finalize (obj);
-#line 1477 "Settings.c"
+#line 1530 "Settings.c"
 }
 
 
@@ -1492,45 +1545,45 @@ GType gala_appearance_settings_get_type (void) {
 static void _vala_gala_appearance_settings_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaAppearanceSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_APPEARANCE_SETTINGS, GalaAppearanceSettings);
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_BUTTON_LAYOUT:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_appearance_settings_get_button_layout (self));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_ATTACH_MODAL_DIALOGS:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_boolean (value, gala_appearance_settings_get_attach_modal_dialogs (self));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_DIM_PARENTS:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_boolean (value, gala_appearance_settings_get_dim_parents (self));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_ALT_TAB_WINDOW_OPACITY:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_double (value, gala_appearance_settings_get_alt_tab_window_opacity (self));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_WORKSPACE_SWITCHER_BACKGROUND:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_appearance_settings_get_workspace_switcher_background (self));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 1528 "Settings.c"
+#line 1581 "Settings.c"
 		default:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 1534 "Settings.c"
+#line 1587 "Settings.c"
 	}
 }
 
@@ -1538,63 +1591,63 @@ static void _vala_gala_appearance_settings_get_property (GObject * object, guint
 static void _vala_gala_appearance_settings_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaAppearanceSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_APPEARANCE_SETTINGS, GalaAppearanceSettings);
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_BUTTON_LAYOUT:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_appearance_settings_set_button_layout (self, g_value_get_string (value));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_ATTACH_MODAL_DIALOGS:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_appearance_settings_set_attach_modal_dialogs (self, g_value_get_boolean (value));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_DIM_PARENTS:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_appearance_settings_set_dim_parents (self, g_value_get_boolean (value));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_ALT_TAB_WINDOW_OPACITY:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_appearance_settings_set_alt_tab_window_opacity (self, g_value_get_double (value));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_APPEARANCE_SETTINGS_WORKSPACE_SWITCHER_BACKGROUND:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_appearance_settings_set_workspace_switcher_background (self, g_value_get_string (value));
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 1574 "Settings.c"
+#line 1627 "Settings.c"
 		default:
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 71 "/home/nick/work/gala/src/Settings.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 1580 "Settings.c"
+#line 1633 "Settings.c"
 	}
 }
 
 
 static GalaShadowSettings* gala_shadow_settings_construct (GType object_type) {
 	GalaShadowSettings * self = NULL;
-#line 107 "/home/nick/work/gala/src/Settings.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = (GalaShadowSettings*) granite_services_settings_construct (object_type, SCHEMA ".shadows");
-#line 105 "/home/nick/work/gala/src/Settings.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return self;
-#line 1591 "Settings.c"
+#line 1644 "Settings.c"
 }
 
 
 static GalaShadowSettings* gala_shadow_settings_new (void) {
-#line 105 "/home/nick/work/gala/src/Settings.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return gala_shadow_settings_construct (GALA_TYPE_SHADOW_SETTINGS);
-#line 1598 "Settings.c"
+#line 1651 "Settings.c"
 }
 
 
@@ -1602,27 +1655,27 @@ GalaShadowSettings* gala_shadow_settings_get_default (void) {
 	GalaShadowSettings* result = NULL;
 	GalaShadowSettings* _tmp0_ = NULL;
 	GalaShadowSettings* _tmp2_ = NULL;
-#line 112 "/home/nick/work/gala/src/Settings.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = gala_shadow_settings_instance;
-#line 112 "/home/nick/work/gala/src/Settings.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (_tmp0_ == NULL) {
-#line 1610 "Settings.c"
+#line 1663 "Settings.c"
 		GalaShadowSettings* _tmp1_ = NULL;
-#line 113 "/home/nick/work/gala/src/Settings.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp1_ = gala_shadow_settings_new ();
-#line 113 "/home/nick/work/gala/src/Settings.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_g_object_unref0 (gala_shadow_settings_instance);
-#line 113 "/home/nick/work/gala/src/Settings.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_shadow_settings_instance = _tmp1_;
-#line 1618 "Settings.c"
+#line 1671 "Settings.c"
 	}
-#line 115 "/home/nick/work/gala/src/Settings.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp2_ = gala_shadow_settings_instance;
-#line 115 "/home/nick/work/gala/src/Settings.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp2_;
-#line 115 "/home/nick/work/gala/src/Settings.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1626 "Settings.c"
+#line 1679 "Settings.c"
 }
 
 
@@ -1655,123 +1708,123 @@ void gala_shadow_settings_get_shadowparams (GalaShadowSettings* self, const gcha
 	const gchar* _tmp20_ = NULL;
 	gint _tmp21_ = 0;
 	MetaShadowParams _tmp22_ = {0};
-#line 118 "/home/nick/work/gala/src/Settings.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 118 "/home/nick/work/gala/src/Settings.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (class_name != NULL);
-#line 121 "/home/nick/work/gala/src/Settings.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = class_name;
-#line 121 "/home/nick/work/gala/src/Settings.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_get ((GObject*) self, _tmp0_, &val, NULL);
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp2_ = val;
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp2__length1 = val_length1;
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (_tmp2_ == NULL) {
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp1_ = TRUE;
-#line 1675 "Settings.c"
+#line 1728 "Settings.c"
 	} else {
 		gchar** _tmp3_ = NULL;
 		gint _tmp3__length1 = 0;
 		const gchar* _tmp4_ = NULL;
 		gint _tmp5_ = 0;
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp3_ = val;
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp3__length1 = val_length1;
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp4_ = _tmp3_[0];
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp5_ = atoi (_tmp4_);
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp1_ = _tmp5_ < 1;
-#line 1691 "Settings.c"
+#line 1744 "Settings.c"
 	}
-#line 123 "/home/nick/work/gala/src/Settings.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (_tmp1_) {
-#line 1695 "Settings.c"
+#line 1748 "Settings.c"
 		MetaShadowParams _tmp6_ = {0};
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		memset (&_tmp6_, 0, sizeof (MetaShadowParams));
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp6_.radius = 1;
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp6_.top_fade = 0;
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp6_.x_offset = 0;
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp6_.y_offset = 0;
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp6_.opacity = (guint8) 0;
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		*result = _tmp6_;
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		val = (_vala_array_free (val, val_length1, (GDestroyNotify) g_free), NULL);
-#line 124 "/home/nick/work/gala/src/Settings.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		return;
-#line 1715 "Settings.c"
+#line 1768 "Settings.c"
 	}
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp7_ = val;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp7__length1 = val_length1;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp8_ = _tmp7_[0];
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp9_ = atoi (_tmp8_);
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp10_ = val;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp10__length1 = val_length1;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp11_ = _tmp10_[1];
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp12_ = atoi (_tmp11_);
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp13_ = val;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp13__length1 = val_length1;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp14_ = _tmp13_[2];
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp15_ = atoi (_tmp14_);
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp16_ = val;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp16__length1 = val_length1;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp17_ = _tmp16_[3];
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp18_ = atoi (_tmp17_);
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp19_ = val;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp19__length1 = val_length1;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp20_ = _tmp19_[4];
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp21_ = atoi (_tmp20_);
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	memset (&_tmp22_, 0, sizeof (MetaShadowParams));
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp22_.radius = _tmp9_;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp22_.top_fade = _tmp12_;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp22_.x_offset = _tmp15_;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp22_.y_offset = _tmp18_;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp22_.opacity = (guint8) _tmp21_;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	*result = _tmp22_;
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	val = (_vala_array_free (val, val_length1, (GDestroyNotify) g_free), NULL);
-#line 126 "/home/nick/work/gala/src/Settings.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return;
-#line 1775 "Settings.c"
+#line 1828 "Settings.c"
 }
 
 
@@ -1781,48 +1834,48 @@ gchar** gala_shadow_settings_get_menu (GalaShadowSettings* self, int* result_len
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_menu;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = self->priv->_menu_length1;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = _tmp0_;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (result_length1) {
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		*result_length1 = _tmp1__length1;
-#line 1799 "Settings.c"
+#line 1852 "Settings.c"
 	}
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp1_;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1805 "Settings.c"
+#line 1858 "Settings.c"
 }
 
 
 static gchar** _vala_array_dup3 (gchar** self, int length) {
 	gchar** result;
 	int i;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = g_new0 (gchar*, length + 1);
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	for (i = 0; i < length; i++) {
-#line 1816 "Settings.c"
+#line 1869 "Settings.c"
 		gchar* _tmp0_ = NULL;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp0_ = g_strdup (self[i]);
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		result[i] = _tmp0_;
-#line 1822 "Settings.c"
+#line 1875 "Settings.c"
 	}
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1826 "Settings.c"
+#line 1879 "Settings.c"
 }
 
 
@@ -1831,27 +1884,27 @@ void gala_shadow_settings_set_menu (GalaShadowSettings* self, gchar** value, int
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = value_length1;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = (_tmp0_ != NULL) ? _vala_array_dup3 (_tmp0_, _tmp0__length1) : ((gpointer) _tmp0_);
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_menu = (_vala_array_free (self->priv->_menu, self->priv->_menu_length1, (GDestroyNotify) g_free), NULL);
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_menu = _tmp1_;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_menu_length1 = _tmp1__length1;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->__menu_size_ = self->priv->_menu_length1;
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "menu");
-#line 1855 "Settings.c"
+#line 1908 "Settings.c"
 }
 
 
@@ -1861,48 +1914,48 @@ gchar** gala_shadow_settings_get_normal_focused (GalaShadowSettings* self, int* 
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_normal_focused;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = self->priv->_normal_focused_length1;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = _tmp0_;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (result_length1) {
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		*result_length1 = _tmp1__length1;
-#line 1879 "Settings.c"
+#line 1932 "Settings.c"
 	}
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp1_;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1885 "Settings.c"
+#line 1938 "Settings.c"
 }
 
 
 static gchar** _vala_array_dup4 (gchar** self, int length) {
 	gchar** result;
 	int i;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = g_new0 (gchar*, length + 1);
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	for (i = 0; i < length; i++) {
-#line 1896 "Settings.c"
+#line 1949 "Settings.c"
 		gchar* _tmp0_ = NULL;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp0_ = g_strdup (self[i]);
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		result[i] = _tmp0_;
-#line 1902 "Settings.c"
+#line 1955 "Settings.c"
 	}
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1906 "Settings.c"
+#line 1959 "Settings.c"
 }
 
 
@@ -1911,27 +1964,27 @@ void gala_shadow_settings_set_normal_focused (GalaShadowSettings* self, gchar** 
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = value_length1;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = (_tmp0_ != NULL) ? _vala_array_dup4 (_tmp0_, _tmp0__length1) : ((gpointer) _tmp0_);
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_normal_focused = (_vala_array_free (self->priv->_normal_focused, self->priv->_normal_focused_length1, (GDestroyNotify) g_free), NULL);
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_normal_focused = _tmp1_;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_normal_focused_length1 = _tmp1__length1;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->__normal_focused_size_ = self->priv->_normal_focused_length1;
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "normal-focused");
-#line 1935 "Settings.c"
+#line 1988 "Settings.c"
 }
 
 
@@ -1941,48 +1994,48 @@ gchar** gala_shadow_settings_get_normal_unfocused (GalaShadowSettings* self, int
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_normal_unfocused;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = self->priv->_normal_unfocused_length1;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = _tmp0_;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (result_length1) {
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		*result_length1 = _tmp1__length1;
-#line 1959 "Settings.c"
+#line 2012 "Settings.c"
 	}
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp1_;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1965 "Settings.c"
+#line 2018 "Settings.c"
 }
 
 
 static gchar** _vala_array_dup5 (gchar** self, int length) {
 	gchar** result;
 	int i;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = g_new0 (gchar*, length + 1);
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	for (i = 0; i < length; i++) {
-#line 1976 "Settings.c"
+#line 2029 "Settings.c"
 		gchar* _tmp0_ = NULL;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp0_ = g_strdup (self[i]);
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		result[i] = _tmp0_;
-#line 1982 "Settings.c"
+#line 2035 "Settings.c"
 	}
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 1986 "Settings.c"
+#line 2039 "Settings.c"
 }
 
 
@@ -1991,27 +2044,27 @@ void gala_shadow_settings_set_normal_unfocused (GalaShadowSettings* self, gchar*
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = value_length1;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = (_tmp0_ != NULL) ? _vala_array_dup5 (_tmp0_, _tmp0__length1) : ((gpointer) _tmp0_);
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_normal_unfocused = (_vala_array_free (self->priv->_normal_unfocused, self->priv->_normal_unfocused_length1, (GDestroyNotify) g_free), NULL);
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_normal_unfocused = _tmp1_;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_normal_unfocused_length1 = _tmp1__length1;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->__normal_unfocused_size_ = self->priv->_normal_unfocused_length1;
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "normal-unfocused");
-#line 2015 "Settings.c"
+#line 2068 "Settings.c"
 }
 
 
@@ -2021,48 +2074,48 @@ gchar** gala_shadow_settings_get_dialog_focused (GalaShadowSettings* self, int* 
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_dialog_focused;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = self->priv->_dialog_focused_length1;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = _tmp0_;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (result_length1) {
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		*result_length1 = _tmp1__length1;
-#line 2039 "Settings.c"
+#line 2092 "Settings.c"
 	}
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp1_;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2045 "Settings.c"
+#line 2098 "Settings.c"
 }
 
 
 static gchar** _vala_array_dup6 (gchar** self, int length) {
 	gchar** result;
 	int i;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = g_new0 (gchar*, length + 1);
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	for (i = 0; i < length; i++) {
-#line 2056 "Settings.c"
+#line 2109 "Settings.c"
 		gchar* _tmp0_ = NULL;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp0_ = g_strdup (self[i]);
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		result[i] = _tmp0_;
-#line 2062 "Settings.c"
+#line 2115 "Settings.c"
 	}
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2066 "Settings.c"
+#line 2119 "Settings.c"
 }
 
 
@@ -2071,27 +2124,27 @@ void gala_shadow_settings_set_dialog_focused (GalaShadowSettings* self, gchar** 
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = value_length1;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = (_tmp0_ != NULL) ? _vala_array_dup6 (_tmp0_, _tmp0__length1) : ((gpointer) _tmp0_);
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dialog_focused = (_vala_array_free (self->priv->_dialog_focused, self->priv->_dialog_focused_length1, (GDestroyNotify) g_free), NULL);
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dialog_focused = _tmp1_;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dialog_focused_length1 = _tmp1__length1;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->__dialog_focused_size_ = self->priv->_dialog_focused_length1;
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "dialog-focused");
-#line 2095 "Settings.c"
+#line 2148 "Settings.c"
 }
 
 
@@ -2101,48 +2154,48 @@ gchar** gala_shadow_settings_get_dialog_unfocused (GalaShadowSettings* self, int
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_dialog_unfocused;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = self->priv->_dialog_unfocused_length1;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = _tmp0_;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (result_length1) {
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		*result_length1 = _tmp1__length1;
-#line 2119 "Settings.c"
+#line 2172 "Settings.c"
 	}
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp1_;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2125 "Settings.c"
+#line 2178 "Settings.c"
 }
 
 
 static gchar** _vala_array_dup7 (gchar** self, int length) {
 	gchar** result;
 	int i;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = g_new0 (gchar*, length + 1);
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	for (i = 0; i < length; i++) {
-#line 2136 "Settings.c"
+#line 2189 "Settings.c"
 		gchar* _tmp0_ = NULL;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp0_ = g_strdup (self[i]);
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		result[i] = _tmp0_;
-#line 2142 "Settings.c"
+#line 2195 "Settings.c"
 	}
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2146 "Settings.c"
+#line 2199 "Settings.c"
 }
 
 
@@ -2151,79 +2204,79 @@ void gala_shadow_settings_set_dialog_unfocused (GalaShadowSettings* self, gchar*
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0__length1 = value_length1;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = (_tmp0_ != NULL) ? _vala_array_dup7 (_tmp0_, _tmp0__length1) : ((gpointer) _tmp0_);
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dialog_unfocused = (_vala_array_free (self->priv->_dialog_unfocused, self->priv->_dialog_unfocused_length1, (GDestroyNotify) g_free), NULL);
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dialog_unfocused = _tmp1_;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dialog_unfocused_length1 = _tmp1__length1;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->__dialog_unfocused_size_ = self->priv->_dialog_unfocused_length1;
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "dialog-unfocused");
-#line 2175 "Settings.c"
+#line 2228 "Settings.c"
 }
 
 
 static void gala_shadow_settings_class_init (GalaShadowSettingsClass * klass) {
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	gala_shadow_settings_parent_class = g_type_class_peek_parent (klass);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_type_class_add_private (klass, sizeof (GalaShadowSettingsPrivate));
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_shadow_settings_get_property;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_shadow_settings_set_property;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_shadow_settings_finalize;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_SHADOW_SETTINGS_MENU, g_param_spec_boxed ("menu", "menu", "menu", G_TYPE_STRV, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_SHADOW_SETTINGS_NORMAL_FOCUSED, g_param_spec_boxed ("normal-focused", "normal-focused", "normal-focused", G_TYPE_STRV, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_SHADOW_SETTINGS_NORMAL_UNFOCUSED, g_param_spec_boxed ("normal-unfocused", "normal-unfocused", "normal-unfocused", G_TYPE_STRV, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_SHADOW_SETTINGS_DIALOG_FOCUSED, g_param_spec_boxed ("dialog-focused", "dialog-focused", "dialog-focused", G_TYPE_STRV, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_SHADOW_SETTINGS_DIALOG_UNFOCUSED, g_param_spec_boxed ("dialog-unfocused", "dialog-unfocused", "dialog-unfocused", G_TYPE_STRV, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 2200 "Settings.c"
+#line 2253 "Settings.c"
 }
 
 
 static void gala_shadow_settings_instance_init (GalaShadowSettings * self) {
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv = GALA_SHADOW_SETTINGS_GET_PRIVATE (self);
-#line 2207 "Settings.c"
+#line 2260 "Settings.c"
 }
 
 
 static void gala_shadow_settings_finalize (GObject* obj) {
 	GalaShadowSettings * self;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_SHADOW_SETTINGS, GalaShadowSettings);
-#line 97 "/home/nick/work/gala/src/Settings.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_menu = (_vala_array_free (self->priv->_menu, self->priv->_menu_length1, (GDestroyNotify) g_free), NULL);
-#line 98 "/home/nick/work/gala/src/Settings.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_normal_focused = (_vala_array_free (self->priv->_normal_focused, self->priv->_normal_focused_length1, (GDestroyNotify) g_free), NULL);
-#line 99 "/home/nick/work/gala/src/Settings.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_normal_unfocused = (_vala_array_free (self->priv->_normal_unfocused, self->priv->_normal_unfocused_length1, (GDestroyNotify) g_free), NULL);
-#line 100 "/home/nick/work/gala/src/Settings.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dialog_focused = (_vala_array_free (self->priv->_dialog_focused, self->priv->_dialog_focused_length1, (GDestroyNotify) g_free), NULL);
-#line 101 "/home/nick/work/gala/src/Settings.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_dialog_unfocused = (_vala_array_free (self->priv->_dialog_unfocused, self->priv->_dialog_unfocused_length1, (GDestroyNotify) g_free), NULL);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (gala_shadow_settings_parent_class)->finalize (obj);
-#line 2227 "Settings.c"
+#line 2280 "Settings.c"
 }
 
 
@@ -2242,70 +2295,70 @@ GType gala_shadow_settings_get_type (void) {
 static void _vala_gala_shadow_settings_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaShadowSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_SHADOW_SETTINGS, GalaShadowSettings);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_SHADOW_SETTINGS_MENU:
-#line 2250 "Settings.c"
-		{
-			int length;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-			g_value_set_boxed (value, gala_shadow_settings_get_menu (self, &length));
-#line 2255 "Settings.c"
-		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		break;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		case GALA_SHADOW_SETTINGS_NORMAL_FOCUSED:
-#line 2261 "Settings.c"
-		{
-			int length;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-			g_value_set_boxed (value, gala_shadow_settings_get_normal_focused (self, &length));
-#line 2266 "Settings.c"
-		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		break;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		case GALA_SHADOW_SETTINGS_NORMAL_UNFOCUSED:
-#line 2272 "Settings.c"
-		{
-			int length;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-			g_value_set_boxed (value, gala_shadow_settings_get_normal_unfocused (self, &length));
-#line 2277 "Settings.c"
-		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		break;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		case GALA_SHADOW_SETTINGS_DIALOG_FOCUSED:
-#line 2283 "Settings.c"
-		{
-			int length;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-			g_value_set_boxed (value, gala_shadow_settings_get_dialog_focused (self, &length));
-#line 2288 "Settings.c"
-		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		break;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		case GALA_SHADOW_SETTINGS_DIALOG_UNFOCUSED:
-#line 2294 "Settings.c"
-		{
-			int length;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-			g_value_set_boxed (value, gala_shadow_settings_get_dialog_unfocused (self, &length));
-#line 2299 "Settings.c"
-		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		break;
 #line 2303 "Settings.c"
-		default:
-#line 95 "/home/nick/work/gala/src/Settings.vala"
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+		{
+			int length;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+			g_value_set_boxed (value, gala_shadow_settings_get_menu (self, &length));
+#line 2308 "Settings.c"
+		}
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 2309 "Settings.c"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		case GALA_SHADOW_SETTINGS_NORMAL_FOCUSED:
+#line 2314 "Settings.c"
+		{
+			int length;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+			g_value_set_boxed (value, gala_shadow_settings_get_normal_focused (self, &length));
+#line 2319 "Settings.c"
+		}
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		case GALA_SHADOW_SETTINGS_NORMAL_UNFOCUSED:
+#line 2325 "Settings.c"
+		{
+			int length;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+			g_value_set_boxed (value, gala_shadow_settings_get_normal_unfocused (self, &length));
+#line 2330 "Settings.c"
+		}
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		case GALA_SHADOW_SETTINGS_DIALOG_FOCUSED:
+#line 2336 "Settings.c"
+		{
+			int length;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+			g_value_set_boxed (value, gala_shadow_settings_get_dialog_focused (self, &length));
+#line 2341 "Settings.c"
+		}
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		case GALA_SHADOW_SETTINGS_DIALOG_UNFOCUSED:
+#line 2347 "Settings.c"
+		{
+			int length;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+			g_value_set_boxed (value, gala_shadow_settings_get_dialog_unfocused (self, &length));
+#line 2352 "Settings.c"
+		}
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 2356 "Settings.c"
+		default:
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
+		break;
+#line 2362 "Settings.c"
 	}
 }
 
@@ -2313,98 +2366,98 @@ static void _vala_gala_shadow_settings_get_property (GObject * object, guint pro
 static void _vala_gala_shadow_settings_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaShadowSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_SHADOW_SETTINGS, GalaShadowSettings);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_SHADOW_SETTINGS_MENU:
-#line 2321 "Settings.c"
+#line 2374 "Settings.c"
 		{
 			gpointer boxed;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			boxed = g_value_get_boxed (value);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			gala_shadow_settings_set_menu (self, boxed, (boxed == NULL) ? 0 : g_strv_length (boxed));
-#line 2328 "Settings.c"
+#line 2381 "Settings.c"
 		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_SHADOW_SETTINGS_NORMAL_FOCUSED:
-#line 2334 "Settings.c"
+#line 2387 "Settings.c"
 		{
 			gpointer boxed;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			boxed = g_value_get_boxed (value);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			gala_shadow_settings_set_normal_focused (self, boxed, (boxed == NULL) ? 0 : g_strv_length (boxed));
-#line 2341 "Settings.c"
+#line 2394 "Settings.c"
 		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_SHADOW_SETTINGS_NORMAL_UNFOCUSED:
-#line 2347 "Settings.c"
+#line 2400 "Settings.c"
 		{
 			gpointer boxed;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			boxed = g_value_get_boxed (value);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			gala_shadow_settings_set_normal_unfocused (self, boxed, (boxed == NULL) ? 0 : g_strv_length (boxed));
-#line 2354 "Settings.c"
+#line 2407 "Settings.c"
 		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_SHADOW_SETTINGS_DIALOG_FOCUSED:
-#line 2360 "Settings.c"
+#line 2413 "Settings.c"
 		{
 			gpointer boxed;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			boxed = g_value_get_boxed (value);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			gala_shadow_settings_set_dialog_focused (self, boxed, (boxed == NULL) ? 0 : g_strv_length (boxed));
-#line 2367 "Settings.c"
+#line 2420 "Settings.c"
 		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_SHADOW_SETTINGS_DIALOG_UNFOCUSED:
-#line 2373 "Settings.c"
+#line 2426 "Settings.c"
 		{
 			gpointer boxed;
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			boxed = g_value_get_boxed (value);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 			gala_shadow_settings_set_dialog_unfocused (self, boxed, (boxed == NULL) ? 0 : g_strv_length (boxed));
-#line 2380 "Settings.c"
+#line 2433 "Settings.c"
 		}
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 2384 "Settings.c"
+#line 2437 "Settings.c"
 		default:
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 95 "/home/nick/work/gala/src/Settings.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 2390 "Settings.c"
+#line 2443 "Settings.c"
 	}
 }
 
 
 static GalaAnimationSettings* gala_animation_settings_construct (GType object_type) {
 	GalaAnimationSettings * self = NULL;
-#line 145 "/home/nick/work/gala/src/Settings.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = (GalaAnimationSettings*) granite_services_settings_construct (object_type, SCHEMA ".animations");
-#line 143 "/home/nick/work/gala/src/Settings.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return self;
-#line 2401 "Settings.c"
+#line 2454 "Settings.c"
 }
 
 
 static GalaAnimationSettings* gala_animation_settings_new (void) {
-#line 143 "/home/nick/work/gala/src/Settings.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return gala_animation_settings_construct (GALA_TYPE_ANIMATION_SETTINGS);
-#line 2408 "Settings.c"
+#line 2461 "Settings.c"
 }
 
 
@@ -2412,276 +2465,276 @@ GalaAnimationSettings* gala_animation_settings_get_default (void) {
 	GalaAnimationSettings* result = NULL;
 	GalaAnimationSettings* _tmp0_ = NULL;
 	GalaAnimationSettings* _tmp2_ = NULL;
-#line 150 "/home/nick/work/gala/src/Settings.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = gala_animation_settings_instance;
-#line 150 "/home/nick/work/gala/src/Settings.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (_tmp0_ == NULL) {
-#line 2420 "Settings.c"
+#line 2473 "Settings.c"
 		GalaAnimationSettings* _tmp1_ = NULL;
-#line 151 "/home/nick/work/gala/src/Settings.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp1_ = gala_animation_settings_new ();
-#line 151 "/home/nick/work/gala/src/Settings.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_g_object_unref0 (gala_animation_settings_instance);
-#line 151 "/home/nick/work/gala/src/Settings.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_animation_settings_instance = _tmp1_;
-#line 2428 "Settings.c"
+#line 2481 "Settings.c"
 	}
-#line 153 "/home/nick/work/gala/src/Settings.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp2_ = gala_animation_settings_instance;
-#line 153 "/home/nick/work/gala/src/Settings.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp2_;
-#line 153 "/home/nick/work/gala/src/Settings.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2436 "Settings.c"
+#line 2489 "Settings.c"
 }
 
 
 gboolean gala_animation_settings_get_enable_animations (GalaAnimationSettings* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 133 "/home/nick/work/gala/src/Settings.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 133 "/home/nick/work/gala/src/Settings.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_enable_animations;
-#line 133 "/home/nick/work/gala/src/Settings.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 133 "/home/nick/work/gala/src/Settings.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2451 "Settings.c"
+#line 2504 "Settings.c"
 }
 
 
 void gala_animation_settings_set_enable_animations (GalaAnimationSettings* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 133 "/home/nick/work/gala/src/Settings.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 133 "/home/nick/work/gala/src/Settings.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 133 "/home/nick/work/gala/src/Settings.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_enable_animations = _tmp0_;
-#line 133 "/home/nick/work/gala/src/Settings.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "enable-animations");
-#line 2465 "Settings.c"
+#line 2518 "Settings.c"
 }
 
 
 gint gala_animation_settings_get_open_duration (GalaAnimationSettings* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 134 "/home/nick/work/gala/src/Settings.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 134 "/home/nick/work/gala/src/Settings.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_open_duration;
-#line 134 "/home/nick/work/gala/src/Settings.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 134 "/home/nick/work/gala/src/Settings.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2480 "Settings.c"
+#line 2533 "Settings.c"
 }
 
 
 void gala_animation_settings_set_open_duration (GalaAnimationSettings* self, gint value) {
 	gint _tmp0_ = 0;
-#line 134 "/home/nick/work/gala/src/Settings.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 134 "/home/nick/work/gala/src/Settings.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 134 "/home/nick/work/gala/src/Settings.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_open_duration = _tmp0_;
-#line 134 "/home/nick/work/gala/src/Settings.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "open-duration");
-#line 2494 "Settings.c"
+#line 2547 "Settings.c"
 }
 
 
 gint gala_animation_settings_get_snap_duration (GalaAnimationSettings* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 135 "/home/nick/work/gala/src/Settings.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 135 "/home/nick/work/gala/src/Settings.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_snap_duration;
-#line 135 "/home/nick/work/gala/src/Settings.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 135 "/home/nick/work/gala/src/Settings.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2509 "Settings.c"
+#line 2562 "Settings.c"
 }
 
 
 void gala_animation_settings_set_snap_duration (GalaAnimationSettings* self, gint value) {
 	gint _tmp0_ = 0;
-#line 135 "/home/nick/work/gala/src/Settings.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 135 "/home/nick/work/gala/src/Settings.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 135 "/home/nick/work/gala/src/Settings.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_snap_duration = _tmp0_;
-#line 135 "/home/nick/work/gala/src/Settings.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "snap-duration");
-#line 2523 "Settings.c"
+#line 2576 "Settings.c"
 }
 
 
 gint gala_animation_settings_get_close_duration (GalaAnimationSettings* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 136 "/home/nick/work/gala/src/Settings.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 136 "/home/nick/work/gala/src/Settings.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_close_duration;
-#line 136 "/home/nick/work/gala/src/Settings.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 136 "/home/nick/work/gala/src/Settings.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2538 "Settings.c"
+#line 2591 "Settings.c"
 }
 
 
 void gala_animation_settings_set_close_duration (GalaAnimationSettings* self, gint value) {
 	gint _tmp0_ = 0;
-#line 136 "/home/nick/work/gala/src/Settings.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 136 "/home/nick/work/gala/src/Settings.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 136 "/home/nick/work/gala/src/Settings.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_close_duration = _tmp0_;
-#line 136 "/home/nick/work/gala/src/Settings.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "close-duration");
-#line 2552 "Settings.c"
+#line 2605 "Settings.c"
 }
 
 
 gint gala_animation_settings_get_minimize_duration (GalaAnimationSettings* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 137 "/home/nick/work/gala/src/Settings.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 137 "/home/nick/work/gala/src/Settings.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_minimize_duration;
-#line 137 "/home/nick/work/gala/src/Settings.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 137 "/home/nick/work/gala/src/Settings.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2567 "Settings.c"
+#line 2620 "Settings.c"
 }
 
 
 void gala_animation_settings_set_minimize_duration (GalaAnimationSettings* self, gint value) {
 	gint _tmp0_ = 0;
-#line 137 "/home/nick/work/gala/src/Settings.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 137 "/home/nick/work/gala/src/Settings.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 137 "/home/nick/work/gala/src/Settings.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_minimize_duration = _tmp0_;
-#line 137 "/home/nick/work/gala/src/Settings.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "minimize-duration");
-#line 2581 "Settings.c"
+#line 2634 "Settings.c"
 }
 
 
 gint gala_animation_settings_get_workspace_switch_duration (GalaAnimationSettings* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 138 "/home/nick/work/gala/src/Settings.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 138 "/home/nick/work/gala/src/Settings.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_workspace_switch_duration;
-#line 138 "/home/nick/work/gala/src/Settings.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 138 "/home/nick/work/gala/src/Settings.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2596 "Settings.c"
+#line 2649 "Settings.c"
 }
 
 
 void gala_animation_settings_set_workspace_switch_duration (GalaAnimationSettings* self, gint value) {
 	gint _tmp0_ = 0;
-#line 138 "/home/nick/work/gala/src/Settings.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 138 "/home/nick/work/gala/src/Settings.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 138 "/home/nick/work/gala/src/Settings.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_workspace_switch_duration = _tmp0_;
-#line 138 "/home/nick/work/gala/src/Settings.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "workspace-switch-duration");
-#line 2610 "Settings.c"
+#line 2663 "Settings.c"
 }
 
 
 gint gala_animation_settings_get_menu_duration (GalaAnimationSettings* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 139 "/home/nick/work/gala/src/Settings.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 139 "/home/nick/work/gala/src/Settings.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_menu_duration;
-#line 139 "/home/nick/work/gala/src/Settings.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 139 "/home/nick/work/gala/src/Settings.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2625 "Settings.c"
+#line 2678 "Settings.c"
 }
 
 
 void gala_animation_settings_set_menu_duration (GalaAnimationSettings* self, gint value) {
 	gint _tmp0_ = 0;
-#line 139 "/home/nick/work/gala/src/Settings.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 139 "/home/nick/work/gala/src/Settings.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 139 "/home/nick/work/gala/src/Settings.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_menu_duration = _tmp0_;
-#line 139 "/home/nick/work/gala/src/Settings.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "menu-duration");
-#line 2639 "Settings.c"
+#line 2692 "Settings.c"
 }
 
 
 static void gala_animation_settings_class_init (GalaAnimationSettingsClass * klass) {
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	gala_animation_settings_parent_class = g_type_class_peek_parent (klass);
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_type_class_add_private (klass, sizeof (GalaAnimationSettingsPrivate));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_animation_settings_get_property;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_animation_settings_set_property;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_animation_settings_finalize;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_SETTINGS_ENABLE_ANIMATIONS, g_param_spec_boolean ("enable-animations", "enable-animations", "enable-animations", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_SETTINGS_OPEN_DURATION, g_param_spec_int ("open-duration", "open-duration", "open-duration", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_SETTINGS_SNAP_DURATION, g_param_spec_int ("snap-duration", "snap-duration", "snap-duration", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_SETTINGS_CLOSE_DURATION, g_param_spec_int ("close-duration", "close-duration", "close-duration", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_SETTINGS_MINIMIZE_DURATION, g_param_spec_int ("minimize-duration", "minimize-duration", "minimize-duration", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_SETTINGS_WORKSPACE_SWITCH_DURATION, g_param_spec_int ("workspace-switch-duration", "workspace-switch-duration", "workspace-switch-duration", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_SETTINGS_MENU_DURATION, g_param_spec_int ("menu-duration", "menu-duration", "menu-duration", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 2668 "Settings.c"
+#line 2721 "Settings.c"
 }
 
 
 static void gala_animation_settings_instance_init (GalaAnimationSettings * self) {
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv = GALA_ANIMATION_SETTINGS_GET_PRIVATE (self);
-#line 2675 "Settings.c"
+#line 2728 "Settings.c"
 }
 
 
 static void gala_animation_settings_finalize (GObject* obj) {
 	GalaAnimationSettings * self;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_ANIMATION_SETTINGS, GalaAnimationSettings);
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (gala_animation_settings_parent_class)->finalize (obj);
-#line 2685 "Settings.c"
+#line 2738 "Settings.c"
 }
 
 
@@ -2700,57 +2753,57 @@ GType gala_animation_settings_get_type (void) {
 static void _vala_gala_animation_settings_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaAnimationSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_ANIMATION_SETTINGS, GalaAnimationSettings);
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_ENABLE_ANIMATIONS:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_boolean (value, gala_animation_settings_get_enable_animations (self));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_OPEN_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_int (value, gala_animation_settings_get_open_duration (self));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_SNAP_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_int (value, gala_animation_settings_get_snap_duration (self));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_CLOSE_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_int (value, gala_animation_settings_get_close_duration (self));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_MINIMIZE_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_int (value, gala_animation_settings_get_minimize_duration (self));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_WORKSPACE_SWITCH_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_int (value, gala_animation_settings_get_workspace_switch_duration (self));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_MENU_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_int (value, gala_animation_settings_get_menu_duration (self));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 2748 "Settings.c"
+#line 2801 "Settings.c"
 		default:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 2754 "Settings.c"
+#line 2807 "Settings.c"
 	}
 }
 
@@ -2758,75 +2811,75 @@ static void _vala_gala_animation_settings_get_property (GObject * object, guint 
 static void _vala_gala_animation_settings_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaAnimationSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_ANIMATION_SETTINGS, GalaAnimationSettings);
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_ENABLE_ANIMATIONS:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_animation_settings_set_enable_animations (self, g_value_get_boolean (value));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_OPEN_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_animation_settings_set_open_duration (self, g_value_get_int (value));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_SNAP_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_animation_settings_set_snap_duration (self, g_value_get_int (value));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_CLOSE_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_animation_settings_set_close_duration (self, g_value_get_int (value));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_MINIMIZE_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_animation_settings_set_minimize_duration (self, g_value_get_int (value));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_WORKSPACE_SWITCH_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_animation_settings_set_workspace_switch_duration (self, g_value_get_int (value));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_ANIMATION_SETTINGS_MENU_DURATION:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_animation_settings_set_menu_duration (self, g_value_get_int (value));
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 2806 "Settings.c"
+#line 2859 "Settings.c"
 		default:
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 131 "/home/nick/work/gala/src/Settings.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 2812 "Settings.c"
+#line 2865 "Settings.c"
 	}
 }
 
 
 static GalaBackgroundSettings* gala_background_settings_construct (GType object_type) {
 	GalaBackgroundSettings * self = NULL;
-#line 170 "/home/nick/work/gala/src/Settings.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = (GalaBackgroundSettings*) granite_services_settings_construct (object_type, "org.gnome.desktop.background");
-#line 168 "/home/nick/work/gala/src/Settings.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return self;
-#line 2823 "Settings.c"
+#line 2876 "Settings.c"
 }
 
 
 static GalaBackgroundSettings* gala_background_settings_new (void) {
-#line 168 "/home/nick/work/gala/src/Settings.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return gala_background_settings_construct (GALA_TYPE_BACKGROUND_SETTINGS);
-#line 2830 "Settings.c"
+#line 2883 "Settings.c"
 }
 
 
@@ -2834,280 +2887,280 @@ GalaBackgroundSettings* gala_background_settings_get_default (void) {
 	GalaBackgroundSettings* result = NULL;
 	GalaBackgroundSettings* _tmp0_ = NULL;
 	GalaBackgroundSettings* _tmp2_ = NULL;
-#line 175 "/home/nick/work/gala/src/Settings.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = gala_background_settings_instance;
-#line 175 "/home/nick/work/gala/src/Settings.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	if (_tmp0_ == NULL) {
-#line 2842 "Settings.c"
+#line 2895 "Settings.c"
 		GalaBackgroundSettings* _tmp1_ = NULL;
-#line 176 "/home/nick/work/gala/src/Settings.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_tmp1_ = gala_background_settings_new ();
-#line 176 "/home/nick/work/gala/src/Settings.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		_g_object_unref0 (gala_background_settings_instance);
-#line 176 "/home/nick/work/gala/src/Settings.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_background_settings_instance = _tmp1_;
-#line 2850 "Settings.c"
+#line 2903 "Settings.c"
 	}
-#line 178 "/home/nick/work/gala/src/Settings.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp2_ = gala_background_settings_instance;
-#line 178 "/home/nick/work/gala/src/Settings.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp2_;
-#line 178 "/home/nick/work/gala/src/Settings.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2858 "Settings.c"
+#line 2911 "Settings.c"
 }
 
 
 const gchar* gala_background_settings_get_picture_options (GalaBackgroundSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_picture_options;
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2873 "Settings.c"
+#line 2926 "Settings.c"
 }
 
 
 void gala_background_settings_set_picture_options (GalaBackgroundSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_picture_options);
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_picture_options = _tmp1_;
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "picture-options");
-#line 2892 "Settings.c"
+#line 2945 "Settings.c"
 }
 
 
 const gchar* gala_background_settings_get_picture_uri (GalaBackgroundSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_picture_uri;
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2907 "Settings.c"
+#line 2960 "Settings.c"
 }
 
 
 void gala_background_settings_set_picture_uri (GalaBackgroundSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_picture_uri);
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_picture_uri = _tmp1_;
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "picture-uri");
-#line 2926 "Settings.c"
+#line 2979 "Settings.c"
 }
 
 
 gint gala_background_settings_get_picture_opacity (GalaBackgroundSettings* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 161 "/home/nick/work/gala/src/Settings.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 161 "/home/nick/work/gala/src/Settings.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_picture_opacity;
-#line 161 "/home/nick/work/gala/src/Settings.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 161 "/home/nick/work/gala/src/Settings.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2941 "Settings.c"
+#line 2994 "Settings.c"
 }
 
 
 void gala_background_settings_set_picture_opacity (GalaBackgroundSettings* self, gint value) {
 	gint _tmp0_ = 0;
-#line 161 "/home/nick/work/gala/src/Settings.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 161 "/home/nick/work/gala/src/Settings.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 161 "/home/nick/work/gala/src/Settings.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_picture_opacity = _tmp0_;
-#line 161 "/home/nick/work/gala/src/Settings.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "picture-opacity");
-#line 2955 "Settings.c"
+#line 3008 "Settings.c"
 }
 
 
 const gchar* gala_background_settings_get_primary_color (GalaBackgroundSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_primary_color;
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 2970 "Settings.c"
+#line 3023 "Settings.c"
 }
 
 
 void gala_background_settings_set_primary_color (GalaBackgroundSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_primary_color);
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_primary_color = _tmp1_;
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "primary-color");
-#line 2989 "Settings.c"
+#line 3042 "Settings.c"
 }
 
 
 const gchar* gala_background_settings_get_secondary_color (GalaBackgroundSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_secondary_color;
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 3004 "Settings.c"
+#line 3057 "Settings.c"
 }
 
 
 void gala_background_settings_set_secondary_color (GalaBackgroundSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_secondary_color);
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_secondary_color = _tmp1_;
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "secondary-color");
-#line 3023 "Settings.c"
+#line 3076 "Settings.c"
 }
 
 
 const gchar* gala_background_settings_get_color_shading_type (GalaBackgroundSettings* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = self->priv->_color_shading_type;
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	result = _tmp0_;
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	return result;
-#line 3038 "Settings.c"
+#line 3091 "Settings.c"
 }
 
 
 void gala_background_settings_set_color_shading_type (GalaBackgroundSettings* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_return_if_fail (self != NULL);
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp0_ = value;
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_color_shading_type);
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv->_color_shading_type = _tmp1_;
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_notify ((GObject *) self, "color-shading-type");
-#line 3057 "Settings.c"
+#line 3110 "Settings.c"
 }
 
 
 static void gala_background_settings_class_init (GalaBackgroundSettingsClass * klass) {
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	gala_background_settings_parent_class = g_type_class_peek_parent (klass);
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_type_class_add_private (klass, sizeof (GalaBackgroundSettingsPrivate));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_background_settings_get_property;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_background_settings_set_property;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_background_settings_finalize;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SETTINGS_PICTURE_OPTIONS, g_param_spec_string ("picture-options", "picture-options", "picture-options", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SETTINGS_PICTURE_URI, g_param_spec_string ("picture-uri", "picture-uri", "picture-uri", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SETTINGS_PICTURE_OPACITY, g_param_spec_int ("picture-opacity", "picture-opacity", "picture-opacity", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SETTINGS_PRIMARY_COLOR, g_param_spec_string ("primary-color", "primary-color", "primary-color", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SETTINGS_SECONDARY_COLOR, g_param_spec_string ("secondary-color", "secondary-color", "secondary-color", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SETTINGS_COLOR_SHADING_TYPE, g_param_spec_string ("color-shading-type", "color-shading-type", "color-shading-type", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 3084 "Settings.c"
+#line 3137 "Settings.c"
 }
 
 
 static void gala_background_settings_instance_init (GalaBackgroundSettings * self) {
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self->priv = GALA_BACKGROUND_SETTINGS_GET_PRIVATE (self);
-#line 3091 "Settings.c"
+#line 3144 "Settings.c"
 }
 
 
 static void gala_background_settings_finalize (GObject* obj) {
 	GalaBackgroundSettings * self;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_BACKGROUND_SETTINGS, GalaBackgroundSettings);
-#line 159 "/home/nick/work/gala/src/Settings.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_picture_options);
-#line 160 "/home/nick/work/gala/src/Settings.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_picture_uri);
-#line 162 "/home/nick/work/gala/src/Settings.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_primary_color);
-#line 163 "/home/nick/work/gala/src/Settings.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_secondary_color);
-#line 164 "/home/nick/work/gala/src/Settings.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	_g_free0 (self->priv->_color_shading_type);
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	G_OBJECT_CLASS (gala_background_settings_parent_class)->finalize (obj);
-#line 3111 "Settings.c"
+#line 3164 "Settings.c"
 }
 
 
@@ -3126,51 +3179,51 @@ GType gala_background_settings_get_type (void) {
 static void _vala_gala_background_settings_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaBackgroundSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_BACKGROUND_SETTINGS, GalaBackgroundSettings);
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_PICTURE_OPTIONS:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_background_settings_get_picture_options (self));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_PICTURE_URI:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_background_settings_get_picture_uri (self));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_PICTURE_OPACITY:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_int (value, gala_background_settings_get_picture_opacity (self));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_PRIMARY_COLOR:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_background_settings_get_primary_color (self));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_SECONDARY_COLOR:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_background_settings_get_secondary_color (self));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_COLOR_SHADING_TYPE:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		g_value_set_string (value, gala_background_settings_get_color_shading_type (self));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 3168 "Settings.c"
+#line 3221 "Settings.c"
 		default:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 3174 "Settings.c"
+#line 3227 "Settings.c"
 	}
 }
 
@@ -3178,67 +3231,67 @@ static void _vala_gala_background_settings_get_property (GObject * object, guint
 static void _vala_gala_background_settings_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaBackgroundSettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_BACKGROUND_SETTINGS, GalaBackgroundSettings);
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 	switch (property_id) {
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_PICTURE_OPTIONS:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_background_settings_set_picture_options (self, g_value_get_string (value));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_PICTURE_URI:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_background_settings_set_picture_uri (self, g_value_get_string (value));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_PICTURE_OPACITY:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_background_settings_set_picture_opacity (self, g_value_get_int (value));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_PRIMARY_COLOR:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_background_settings_set_primary_color (self, g_value_get_string (value));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_SECONDARY_COLOR:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_background_settings_set_secondary_color (self, g_value_get_string (value));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		case GALA_BACKGROUND_SETTINGS_COLOR_SHADING_TYPE:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		gala_background_settings_set_color_shading_type (self, g_value_get_string (value));
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 3220 "Settings.c"
+#line 3273 "Settings.c"
 		default:
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 157 "/home/nick/work/gala/src/Settings.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Settings.vala"
 		break;
-#line 3226 "Settings.c"
+#line 3279 "Settings.c"
 	}
 }
 
 
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if ((array != NULL) && (destroy_func != NULL)) {
-#line 3234 "Settings.c"
+#line 3287 "Settings.c"
 		int i;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		for (i = 0; i < array_length; i = i + 1) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 			if (((gpointer*) array)[i] != NULL) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 				destroy_func (((gpointer*) array)[i]);
-#line 3242 "Settings.c"
+#line 3295 "Settings.c"
 			}
 		}
 	}
@@ -3246,11 +3299,11 @@ static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNoti
 
 
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_vala_array_destroy (array, array_length, destroy_func);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (array);
-#line 3254 "Settings.c"
+#line 3307 "Settings.c"
 }
 
 

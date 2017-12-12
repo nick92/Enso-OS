@@ -129,20 +129,20 @@ static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify 
 GalaAnimation* gala_animation_construct (GType object_type, const gchar* filename) {
 	GalaAnimation * self = NULL;
 	const gchar* _tmp0_ = NULL;
-#line 30 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_val_if_fail (filename != NULL, NULL);
-#line 32 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = filename;
-#line 32 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self = (GalaAnimation*) g_object_new (object_type, "filename", _tmp0_, NULL);
-#line 30 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return self;
 #line 141 "Animation.c"
 }
 
 
 GalaAnimation* gala_animation_new (const gchar* filename) {
-#line 30 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return gala_animation_construct (GALA_TYPE_ANIMATION, filename);
 #line 148 "Animation.c"
 }
@@ -151,16 +151,16 @@ GalaAnimation* gala_animation_new (const gchar* filename) {
 static void gala_animation_load_data_free (gpointer _data) {
 	GalaAnimationLoadData* _data_;
 	_data_ = _data;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_object_unref0 (_data_->self);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_slice_free (GalaAnimationLoadData, _data_);
 #line 159 "Animation.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 166 "Animation.c"
 }
@@ -169,17 +169,17 @@ static gpointer _g_object_ref0 (gpointer self) {
 void gala_animation_load (GalaAnimation* self, GAsyncReadyCallback _callback_, gpointer _user_data_) {
 	GalaAnimationLoadData* _data_;
 	GalaAnimation* _tmp0_ = NULL;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_ = g_slice_new0 (GalaAnimationLoadData);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_async_result = g_simple_async_result_new (G_OBJECT (self), _callback_, _user_data_, gala_animation_load);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_simple_async_result_set_op_res_gpointer (_data_->_async_result, _data_, gala_animation_load_data_free);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = _g_object_ref0 (self);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->self = _tmp0_;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gala_animation_load_co (_data_);
 #line 185 "Animation.c"
 }
@@ -187,16 +187,16 @@ void gala_animation_load (GalaAnimation* self, GAsyncReadyCallback _callback_, g
 
 void gala_animation_load_finish (GalaAnimation* self, GAsyncResult* _res_) {
 	GalaAnimationLoadData* _data_;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_ = g_simple_async_result_get_op_res_gpointer (G_SIMPLE_ASYNC_RESULT (_res_));
 #line 193 "Animation.c"
 }
 
 
 static Block22Data* block22_data_ref (Block22Data* _data22_) {
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_atomic_int_inc (&_data22_->_ref_count_);
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return _data22_;
 #line 202 "Animation.c"
 }
@@ -205,15 +205,15 @@ static Block22Data* block22_data_ref (Block22Data* _data22_) {
 static void block22_data_unref (void * _userdata_) {
 	Block22Data* _data22_;
 	_data22_ = (Block22Data*) _userdata_;
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if (g_atomic_int_dec_and_test (&_data22_->_ref_count_)) {
 #line 211 "Animation.c"
 		GalaAnimation* self;
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		self = _data22_->self;
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_g_object_unref0 (self);
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		g_slice_free (Block22Data, _data22_);
 #line 219 "Animation.c"
 	}
@@ -222,126 +222,126 @@ static void block22_data_unref (void * _userdata_) {
 
 static void __lambda14_ (Block22Data* _data22_, GObject* obj, GAsyncResult* res) {
 	GalaAnimation* self;
-#line 39 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self = _data22_->self;
-#line 39 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_if_fail (res != NULL);
-#line 40 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gala_animation_set_loaded (self, TRUE);
-#line 42 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gala_animation_load_co (_data22_->_async_data_);
 #line 234 "Animation.c"
 }
 
 
 static void ___lambda14__gasync_ready_callback (GObject* source_object, GAsyncResult* res, gpointer self) {
-#line 39 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	__lambda14_ (self, source_object, res);
 #line 241 "Animation.c"
 }
 
 
 static gboolean gala_animation_load_co (GalaAnimationLoadData* _data_) {
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	switch (_data_->_state_) {
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case 0:
 #line 250 "Animation.c"
 		goto _state_0;
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case 1:
 #line 254 "Animation.c"
 		goto _state_1;
 		default:
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		g_assert_not_reached ();
 #line 259 "Animation.c"
 	}
 	_state_0:
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_data22_ = g_slice_new0 (Block22Data);
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_data22_->_ref_count_ = 1;
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_data22_->self = g_object_ref (_data_->self);
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_data22_->_async_data_ = _data_;
-#line 37 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_tmp0_ = NULL;
-#line 37 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_tmp0_ = _data_->self->priv->_filename;
-#line 37 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_tmp1_ = NULL;
-#line 37 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_tmp1_ = gnome_bg_slide_show_new (_data_->_tmp0_);
-#line 37 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_object_unref0 (_data_->self->priv->show);
-#line 37 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->self->priv->show = _data_->_tmp1_;
-#line 39 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_tmp2_ = NULL;
-#line 39 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_tmp2_ = _data_->self->priv->show;
-#line 39 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gnome_bg_slide_show_load_async (_data_->_tmp2_, NULL, ___lambda14__gasync_ready_callback, _data_->_data22_);
-#line 45 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_state_ = 1;
-#line 45 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return FALSE;
 #line 292 "Animation.c"
 	_state_1:
 	;
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	block22_data_unref (_data_->_data22_);
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_data_->_data22_ = NULL;
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if (_data_->_state_ == 0) {
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		g_simple_async_result_complete_in_idle (_data_->_async_result);
 #line 303 "Animation.c"
 	} else {
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		g_simple_async_result_complete (_data_->_async_result);
 #line 307 "Animation.c"
 	}
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_unref (_data_->_async_result);
-#line 35 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return FALSE;
 #line 313 "Animation.c"
 }
 
 
 static void _vala_array_add4 (gchar*** array, int* length, int* size, gchar* value) {
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if ((*length) == (*size)) {
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		*size = (*size) ? (2 * (*size)) : 4;
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
 #line 324 "Animation.c"
 	}
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	(*array)[(*length)++] = value;
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	(*array)[*length] = NULL;
 #line 330 "Animation.c"
 }
 
 
 static void _vala_array_add5 (gchar*** array, int* length, int* size, gchar* value) {
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if ((*length) == (*size)) {
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		*size = (*size) ? (2 * (*size)) : 4;
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		*array = g_renew (gchar*, *array, (*size) + 1);
 #line 341 "Animation.c"
 	}
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	(*array)[(*length)++] = value;
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	(*array)[*length] = NULL;
 #line 347 "Animation.c"
 }
@@ -378,131 +378,131 @@ void gala_animation_update (GalaAnimation* self, MetaRectangle* monitor) {
 	const gchar* _tmp22_ = NULL;
 	gchar** _tmp26_ = NULL;
 	gint _tmp26__length1 = 0;
-#line 48 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_if_fail (self != NULL);
-#line 48 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_if_fail (monitor != NULL);
-#line 50 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = g_new0 (gchar*, 0 + 1);
-#line 50 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	key_frame_files = _tmp0_;
-#line 50 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	key_frame_files_length1 = 0;
-#line 50 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_key_frame_files_size_ = key_frame_files_length1;
-#line 52 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp1_ = self->priv->show;
-#line 52 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if (_tmp1_ == NULL) {
-#line 53 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		key_frame_files = (_vala_array_free (key_frame_files, key_frame_files_length1, (GDestroyNotify) g_free), NULL);
-#line 53 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		return;
 #line 402 "Animation.c"
 	}
-#line 55 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp2_ = self->priv->show;
-#line 55 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp3_ = gnome_bg_slide_show_get_num_slides (_tmp2_);
-#line 55 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if (_tmp3_ < 1) {
-#line 56 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		key_frame_files = (_vala_array_free (key_frame_files, key_frame_files_length1, (GDestroyNotify) g_free), NULL);
-#line 56 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		return;
 #line 414 "Animation.c"
 	}
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp4_ = self->priv->show;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp5_ = *monitor;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp6_ = _tmp5_.width;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp7_ = *monitor;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp8_ = _tmp7_.height;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gnome_bg_slide_show_get_current_slide (_tmp4_, _tmp6_, _tmp8_, &_tmp9_, &_tmp10_, &_tmp11_, &_tmp12_, &_tmp13_);
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	progress = _tmp9_;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	duration = _tmp10_;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	is_fixed = _tmp11_;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_free0 (file1);
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp14_ = g_strdup (_tmp12_);
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	file1 = _tmp14_;
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_free0 (file2);
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp15_ = g_strdup (_tmp13_);
-#line 61 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	file2 = _tmp15_;
-#line 63 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp16_ = duration;
-#line 63 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gala_animation_set_transition_duration (self, _tmp16_);
-#line 64 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp17_ = progress;
-#line 64 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gala_animation_set_transition_progress (self, _tmp17_);
-#line 66 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp18_ = file1;
-#line 66 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if (_tmp18_ != NULL) {
 #line 458 "Animation.c"
 		gchar** _tmp19_ = NULL;
 		gint _tmp19__length1 = 0;
 		const gchar* _tmp20_ = NULL;
 		gchar* _tmp21_ = NULL;
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp19_ = key_frame_files;
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp19__length1 = key_frame_files_length1;
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp20_ = file1;
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp21_ = g_strdup (_tmp20_);
-#line 67 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_vala_array_add4 (&key_frame_files, &key_frame_files_length1, &_key_frame_files_size_, _tmp21_);
 #line 473 "Animation.c"
 	}
-#line 69 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp22_ = file2;
-#line 69 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if (_tmp22_ != NULL) {
 #line 479 "Animation.c"
 		gchar** _tmp23_ = NULL;
 		gint _tmp23__length1 = 0;
 		const gchar* _tmp24_ = NULL;
 		gchar* _tmp25_ = NULL;
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp23_ = key_frame_files;
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp23__length1 = key_frame_files_length1;
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp24_ = file2;
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp25_ = g_strdup (_tmp24_);
-#line 70 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_vala_array_add5 (&key_frame_files, &key_frame_files_length1, &_key_frame_files_size_, _tmp25_);
 #line 494 "Animation.c"
 	}
-#line 72 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp26_ = key_frame_files;
-#line 72 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp26__length1 = key_frame_files_length1;
-#line 72 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gala_animation_set_key_frame_files (self, _tmp26_, _tmp26__length1);
-#line 48 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_free0 (file2);
-#line 48 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_free0 (file1);
-#line 48 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	key_frame_files = (_vala_array_free (key_frame_files, key_frame_files_length1, (GDestroyNotify) g_free), NULL);
 #line 508 "Animation.c"
 }
@@ -511,13 +511,13 @@ void gala_animation_update (GalaAnimation* self, MetaRectangle* monitor) {
 const gchar* gala_animation_get_filename (GalaAnimation* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = self->priv->_filename;
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	result = _tmp0_;
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return result;
 #line 523 "Animation.c"
 }
@@ -526,17 +526,17 @@ const gchar* gala_animation_get_filename (GalaAnimation* self) {
 static void gala_animation_set_filename (GalaAnimation* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_if_fail (self != NULL);
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = value;
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_free0 (self->priv->_filename);
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_filename = _tmp1_;
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_notify ((GObject *) self, "filename");
 #line 542 "Animation.c"
 }
@@ -548,25 +548,25 @@ gchar** gala_animation_get_key_frame_files (GalaAnimation* self, int* result_len
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = self->priv->_key_frame_files;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0__length1 = self->priv->_key_frame_files_length1;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp1_ = _tmp0_;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	if (result_length1) {
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		*result_length1 = _tmp1__length1;
 #line 566 "Animation.c"
 	}
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	result = _tmp1_;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return result;
 #line 572 "Animation.c"
 }
@@ -575,19 +575,19 @@ gchar** gala_animation_get_key_frame_files (GalaAnimation* self, int* result_len
 static gchar** _vala_array_dup8 (gchar** self, int length) {
 	gchar** result;
 	int i;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	result = g_new0 (gchar*, length + 1);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	for (i = 0; i < length; i++) {
 #line 583 "Animation.c"
 		gchar* _tmp0_ = NULL;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		_tmp0_ = g_strdup (self[i]);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		result[i] = _tmp0_;
 #line 589 "Animation.c"
 	}
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return result;
 #line 593 "Animation.c"
 }
@@ -598,25 +598,25 @@ static void gala_animation_set_key_frame_files (GalaAnimation* self, gchar** val
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_if_fail (self != NULL);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = value;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0__length1 = value_length1;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp1_ = (_tmp0_ != NULL) ? _vala_array_dup8 (_tmp0_, _tmp0__length1) : ((gpointer) _tmp0_);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_key_frame_files = (_vala_array_free (self->priv->_key_frame_files, self->priv->_key_frame_files_length1, (GDestroyNotify) g_free), NULL);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_key_frame_files = _tmp1_;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_key_frame_files_length1 = _tmp1__length1;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->__key_frame_files_size_ = self->priv->_key_frame_files_length1;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_notify ((GObject *) self, "key-frame-files");
 #line 622 "Animation.c"
 }
@@ -625,13 +625,13 @@ static void gala_animation_set_key_frame_files (GalaAnimation* self, gchar** val
 gdouble gala_animation_get_transition_progress (GalaAnimation* self) {
 	gdouble result;
 	gdouble _tmp0_ = 0.0;
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_val_if_fail (self != NULL, 0.0);
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = self->priv->_transition_progress;
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	result = _tmp0_;
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return result;
 #line 637 "Animation.c"
 }
@@ -639,13 +639,13 @@ gdouble gala_animation_get_transition_progress (GalaAnimation* self) {
 
 static void gala_animation_set_transition_progress (GalaAnimation* self, gdouble value) {
 	gdouble _tmp0_ = 0.0;
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_if_fail (self != NULL);
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = value;
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_transition_progress = _tmp0_;
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_notify ((GObject *) self, "transition-progress");
 #line 651 "Animation.c"
 }
@@ -654,13 +654,13 @@ static void gala_animation_set_transition_progress (GalaAnimation* self, gdouble
 gdouble gala_animation_get_transition_duration (GalaAnimation* self) {
 	gdouble result;
 	gdouble _tmp0_ = 0.0;
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_val_if_fail (self != NULL, 0.0);
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = self->priv->_transition_duration;
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	result = _tmp0_;
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return result;
 #line 666 "Animation.c"
 }
@@ -668,13 +668,13 @@ gdouble gala_animation_get_transition_duration (GalaAnimation* self) {
 
 static void gala_animation_set_transition_duration (GalaAnimation* self, gdouble value) {
 	gdouble _tmp0_ = 0.0;
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_if_fail (self != NULL);
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = value;
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_transition_duration = _tmp0_;
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_notify ((GObject *) self, "transition-duration");
 #line 680 "Animation.c"
 }
@@ -683,13 +683,13 @@ static void gala_animation_set_transition_duration (GalaAnimation* self, gdouble
 gboolean gala_animation_get_loaded (GalaAnimation* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = self->priv->_loaded;
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	result = _tmp0_;
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	return result;
 #line 695 "Animation.c"
 }
@@ -697,38 +697,38 @@ gboolean gala_animation_get_loaded (GalaAnimation* self) {
 
 static void gala_animation_set_loaded (GalaAnimation* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_return_if_fail (self != NULL);
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = value;
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_loaded = _tmp0_;
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_notify ((GObject *) self, "loaded");
 #line 709 "Animation.c"
 }
 
 
 static void gala_animation_class_init (GalaAnimationClass * klass) {
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	gala_animation_parent_class = g_type_class_peek_parent (klass);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_type_class_add_private (klass, sizeof (GalaAnimationPrivate));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_animation_get_property;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_animation_set_property;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_animation_finalize;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_FILENAME, g_param_spec_string ("filename", "filename", "filename", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_KEY_FRAME_FILES, g_param_spec_boxed ("key-frame-files", "key-frame-files", "key-frame-files", G_TYPE_STRV, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_TRANSITION_PROGRESS, g_param_spec_double ("transition-progress", "transition-progress", "transition-progress", -G_MAXDOUBLE, G_MAXDOUBLE, 0.0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_TRANSITION_DURATION, g_param_spec_double ("transition-duration", "transition-duration", "transition-duration", -G_MAXDOUBLE, G_MAXDOUBLE, 0.0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_ANIMATION_LOADED, g_param_spec_boolean ("loaded", "loaded", "loaded", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE));
 #line 734 "Animation.c"
 }
@@ -736,23 +736,23 @@ static void gala_animation_class_init (GalaAnimationClass * klass) {
 
 static void gala_animation_instance_init (GalaAnimation * self) {
 	gchar** _tmp0_ = NULL;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv = GALA_ANIMATION_GET_PRIVATE (self);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_tmp0_ = g_new0 (gchar*, 0 + 1);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_key_frame_files = _tmp0_;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_key_frame_files_length1 = 0;
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->__key_frame_files_size_ = self->priv->_key_frame_files_length1;
-#line 24 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_transition_progress = 0.0;
-#line 25 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_transition_duration = 0.0;
-#line 26 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_loaded = FALSE;
-#line 28 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->show = NULL;
 #line 758 "Animation.c"
 }
@@ -760,15 +760,15 @@ static void gala_animation_instance_init (GalaAnimation * self) {
 
 static void gala_animation_finalize (GObject* obj) {
 	GalaAnimation * self;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_ANIMATION, GalaAnimation);
-#line 22 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_free0 (self->priv->_filename);
-#line 23 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	self->priv->_key_frame_files = (_vala_array_free (self->priv->_key_frame_files, self->priv->_key_frame_files_length1, (GDestroyNotify) g_free), NULL);
-#line 28 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	_g_object_unref0 (self->priv->show);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	G_OBJECT_CLASS (gala_animation_parent_class)->finalize (obj);
 #line 774 "Animation.c"
 }
@@ -789,48 +789,48 @@ GType gala_animation_get_type (void) {
 static void _vala_gala_animation_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaAnimation * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_ANIMATION, GalaAnimation);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_FILENAME:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		g_value_set_string (value, gala_animation_get_filename (self));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_KEY_FRAME_FILES:
 #line 803 "Animation.c"
 		{
 			int length;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 			g_value_set_boxed (value, gala_animation_get_key_frame_files (self, &length));
 #line 808 "Animation.c"
 		}
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_TRANSITION_PROGRESS:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		g_value_set_double (value, gala_animation_get_transition_progress (self));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_TRANSITION_DURATION:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		g_value_set_double (value, gala_animation_get_transition_duration (self));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_LOADED:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		g_value_set_boolean (value, gala_animation_get_loaded (self));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
 #line 830 "Animation.c"
 		default:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
 #line 836 "Animation.c"
 	}
@@ -840,50 +840,50 @@ static void _vala_gala_animation_get_property (GObject * object, guint property_
 static void _vala_gala_animation_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaAnimation * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_ANIMATION, GalaAnimation);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_FILENAME:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		gala_animation_set_filename (self, g_value_get_string (value));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_KEY_FRAME_FILES:
 #line 854 "Animation.c"
 		{
 			gpointer boxed;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 			boxed = g_value_get_boxed (value);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 			gala_animation_set_key_frame_files (self, boxed, (boxed == NULL) ? 0 : g_strv_length (boxed));
 #line 861 "Animation.c"
 		}
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_TRANSITION_PROGRESS:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		gala_animation_set_transition_progress (self, g_value_get_double (value));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_TRANSITION_DURATION:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		gala_animation_set_transition_duration (self, g_value_get_double (value));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		case GALA_ANIMATION_LOADED:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		gala_animation_set_loaded (self, g_value_get_boolean (value));
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
 #line 883 "Animation.c"
 		default:
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/Background/Animation.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/Animation.vala"
 		break;
 #line 889 "Animation.c"
 	}
@@ -891,15 +891,15 @@ static void _vala_gala_animation_set_property (GObject * object, guint property_
 
 
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if ((array != NULL) && (destroy_func != NULL)) {
 #line 897 "Animation.c"
 		int i;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		for (i = 0; i < array_length; i = i + 1) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 			if (((gpointer*) array)[i] != NULL) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 				destroy_func (((gpointer*) array)[i]);
 #line 905 "Animation.c"
 			}
@@ -909,9 +909,9 @@ static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNoti
 
 
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_vala_array_destroy (array, array_length, destroy_func);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (array);
 #line 917 "Animation.c"
 }

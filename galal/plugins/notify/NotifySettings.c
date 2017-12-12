@@ -75,16 +75,16 @@ static void _vala_gala_plugins_notify_notify_settings_set_property (GObject * ob
 
 static GalaPluginsNotifyNotifySettings* gala_plugins_notify_notify_settings_construct (GType object_type) {
 	GalaPluginsNotifyNotifySettings * self = NULL;
-#line 31 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	self = (GalaPluginsNotifyNotifySettings*) granite_services_settings_construct (object_type, SCHEMA ".notifications");
-#line 29 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	return self;
 #line 83 "NotifySettings.c"
 }
 
 
 static GalaPluginsNotifyNotifySettings* gala_plugins_notify_notify_settings_new (void) {
-#line 29 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	return gala_plugins_notify_notify_settings_construct (GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SETTINGS);
 #line 90 "NotifySettings.c"
 }
@@ -94,25 +94,25 @@ GalaPluginsNotifyNotifySettings* gala_plugins_notify_notify_settings_get_default
 	GalaPluginsNotifyNotifySettings* result = NULL;
 	GalaPluginsNotifyNotifySettings* _tmp0_ = NULL;
 	GalaPluginsNotifyNotifySettings* _tmp2_ = NULL;
-#line 36 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	_tmp0_ = gala_plugins_notify_notify_settings_instance;
-#line 36 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	if (_tmp0_ == NULL) {
 #line 102 "NotifySettings.c"
 		GalaPluginsNotifyNotifySettings* _tmp1_ = NULL;
-#line 37 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		_tmp1_ = gala_plugins_notify_notify_settings_new ();
-#line 37 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		_g_object_unref0 (gala_plugins_notify_notify_settings_instance);
-#line 37 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		gala_plugins_notify_notify_settings_instance = _tmp1_;
 #line 110 "NotifySettings.c"
 	}
-#line 39 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	_tmp2_ = gala_plugins_notify_notify_settings_instance;
-#line 39 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	result = _tmp2_;
-#line 39 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	return result;
 #line 118 "NotifySettings.c"
 }
@@ -121,13 +121,13 @@ GalaPluginsNotifyNotifySettings* gala_plugins_notify_notify_settings_get_default
 gboolean gala_plugins_notify_notify_settings_get_do_not_disturb (GalaPluginsNotifyNotifySettings* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 25 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 25 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	_tmp0_ = self->priv->_do_not_disturb;
-#line 25 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	result = _tmp0_;
-#line 25 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	return result;
 #line 133 "NotifySettings.c"
 }
@@ -135,37 +135,37 @@ gboolean gala_plugins_notify_notify_settings_get_do_not_disturb (GalaPluginsNoti
 
 void gala_plugins_notify_notify_settings_set_do_not_disturb (GalaPluginsNotifyNotifySettings* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 25 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	g_return_if_fail (self != NULL);
-#line 25 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	_tmp0_ = value;
-#line 25 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	self->priv->_do_not_disturb = _tmp0_;
-#line 25 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	g_object_notify ((GObject *) self, "do-not-disturb");
 #line 147 "NotifySettings.c"
 }
 
 
 static void gala_plugins_notify_notify_settings_class_init (GalaPluginsNotifyNotifySettingsClass * klass) {
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	gala_plugins_notify_notify_settings_parent_class = g_type_class_peek_parent (klass);
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	g_type_class_add_private (klass, sizeof (GalaPluginsNotifyNotifySettingsPrivate));
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_plugins_notify_notify_settings_get_property;
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_plugins_notify_notify_settings_set_property;
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_plugins_notify_notify_settings_finalize;
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_NOTIFY_SETTINGS_DO_NOT_DISTURB, g_param_spec_boolean ("do-not-disturb", "do-not-disturb", "do-not-disturb", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
 #line 164 "NotifySettings.c"
 }
 
 
 static void gala_plugins_notify_notify_settings_instance_init (GalaPluginsNotifyNotifySettings * self) {
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	self->priv = GALA_PLUGINS_NOTIFY_NOTIFY_SETTINGS_GET_PRIVATE (self);
 #line 171 "NotifySettings.c"
 }
@@ -173,9 +173,9 @@ static void gala_plugins_notify_notify_settings_instance_init (GalaPluginsNotify
 
 static void gala_plugins_notify_notify_settings_finalize (GObject* obj) {
 	GalaPluginsNotifyNotifySettings * self;
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SETTINGS, GalaPluginsNotifyNotifySettings);
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	G_OBJECT_CLASS (gala_plugins_notify_notify_settings_parent_class)->finalize (obj);
 #line 181 "NotifySettings.c"
 }
@@ -196,19 +196,19 @@ GType gala_plugins_notify_notify_settings_get_type (void) {
 static void _vala_gala_plugins_notify_notify_settings_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaPluginsNotifyNotifySettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SETTINGS, GalaPluginsNotifyNotifySettings);
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	switch (property_id) {
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		case GALA_PLUGINS_NOTIFY_NOTIFY_SETTINGS_DO_NOT_DISTURB:
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		g_value_set_boolean (value, gala_plugins_notify_notify_settings_get_do_not_disturb (self));
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		break;
 #line 208 "NotifySettings.c"
 		default:
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		break;
 #line 214 "NotifySettings.c"
 	}
@@ -218,19 +218,19 @@ static void _vala_gala_plugins_notify_notify_settings_get_property (GObject * ob
 static void _vala_gala_plugins_notify_notify_settings_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaPluginsNotifyNotifySettings * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SETTINGS, GalaPluginsNotifyNotifySettings);
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 	switch (property_id) {
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		case GALA_PLUGINS_NOTIFY_NOTIFY_SETTINGS_DO_NOT_DISTURB:
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		gala_plugins_notify_notify_settings_set_do_not_disturb (self, g_value_get_boolean (value));
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		break;
 #line 230 "NotifySettings.c"
 		default:
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 23 "/home/nick/work/gala/plugins/notify/NotifySettings.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifySettings.vala"
 		break;
 #line 236 "NotifySettings.c"
 	}

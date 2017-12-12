@@ -316,7 +316,7 @@ static const GDBusInterfaceInfo _gala_dbus_dbus_interface_info = {-1, "org.panth
 static const GDBusInterfaceVTable _gala_dbus_dbus_interface_vtable = {gala_dbus_dbus_interface_method_call, gala_dbus_dbus_interface_get_property, gala_dbus_dbus_interface_set_property};
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 29 "/home/nick/work/gala/src/DBus.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 322 "DBus.c"
 }
@@ -325,32 +325,32 @@ static gpointer _g_object_ref0 (gpointer self) {
 static void __lambda4_ (GDBusConnection* connection) {
 	GalaDBus* _tmp0_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 32 "/home/nick/work/gala/src/DBus.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_return_if_fail (connection != NULL);
-#line 33 "/home/nick/work/gala/src/DBus.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp0_ = gala_dbus_instance;
-#line 33 "/home/nick/work/gala/src/DBus.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_tmp0_ == NULL) {
 #line 335 "DBus.c"
 		GalaDBus* _tmp1_ = NULL;
-#line 34 "/home/nick/work/gala/src/DBus.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp1_ = gala_dbus_new ();
-#line 34 "/home/nick/work/gala/src/DBus.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_gala_dbus_unref0 (gala_dbus_instance);
-#line 34 "/home/nick/work/gala/src/DBus.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		gala_dbus_instance = _tmp1_;
 #line 343 "DBus.c"
 	}
 	{
 		GDBusConnection* _tmp2_ = NULL;
 		GalaDBus* _tmp3_ = NULL;
-#line 37 "/home/nick/work/gala/src/DBus.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp2_ = connection;
-#line 37 "/home/nick/work/gala/src/DBus.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp3_ = gala_dbus_instance;
-#line 37 "/home/nick/work/gala/src/DBus.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		gala_dbus_register_object (_tmp3_, _tmp2_, "/org/pantheon/gala", &_inner_error_);
-#line 37 "/home/nick/work/gala/src/DBus.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 356 "DBus.c"
 			goto __catch0_g_error;
@@ -362,28 +362,28 @@ static void __lambda4_ (GDBusConnection* connection) {
 		GError* e = NULL;
 		GError* _tmp4_ = NULL;
 		const gchar* _tmp5_ = NULL;
-#line 36 "/home/nick/work/gala/src/DBus.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		e = _inner_error_;
-#line 36 "/home/nick/work/gala/src/DBus.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_inner_error_ = NULL;
-#line 38 "/home/nick/work/gala/src/DBus.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp4_ = e;
-#line 38 "/home/nick/work/gala/src/DBus.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp5_ = _tmp4_->message;
-#line 38 "/home/nick/work/gala/src/DBus.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_warning ("DBus.vala:38: %s", _tmp5_);
-#line 36 "/home/nick/work/gala/src/DBus.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_g_error_free0 (e);
 #line 378 "DBus.c"
 	}
 	__finally0:
-#line 36 "/home/nick/work/gala/src/DBus.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 36 "/home/nick/work/gala/src/DBus.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 36 "/home/nick/work/gala/src/DBus.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_clear_error (&_inner_error_);
-#line 36 "/home/nick/work/gala/src/DBus.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		return;
 #line 389 "DBus.c"
 	}
@@ -391,7 +391,7 @@ static void __lambda4_ (GDBusConnection* connection) {
 
 
 static void ___lambda4__gbus_acquired_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 31 "/home/nick/work/gala/src/DBus.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda4_ (connection);
 #line 397 "DBus.c"
 }
@@ -402,21 +402,21 @@ static void __lambda5_ (void) {
 
 
 static void ___lambda5__gbus_name_acquired_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 31 "/home/nick/work/gala/src/DBus.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda5_ ();
 #line 408 "DBus.c"
 }
 
 
 static void __lambda6_ (void) {
-#line 41 "/home/nick/work/gala/src/DBus.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_warning ("DBus.vala:41: Could not acquire name\n");
 #line 415 "DBus.c"
 }
 
 
 static void ___lambda6__gbus_name_lost_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 31 "/home/nick/work/gala/src/DBus.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda6_ ();
 #line 422 "DBus.c"
 }
@@ -424,7 +424,7 @@ static void ___lambda6__gbus_name_lost_callback (GDBusConnection* connection, co
 
 static void __lambda7_ (GDBusConnection* connection) {
 	GError * _inner_error_ = NULL;
-#line 44 "/home/nick/work/gala/src/DBus.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_return_if_fail (connection != NULL);
 #line 430 "DBus.c"
 	{
@@ -434,28 +434,28 @@ static void __lambda7_ (GDBusConnection* connection) {
 		GDBusConnection* _tmp3_ = NULL;
 		GalaWindowManager* _tmp4_ = NULL;
 		GalaScreenshotManager* _tmp5_ = NULL;
-#line 46 "/home/nick/work/gala/src/DBus.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp0_ = connection;
-#line 46 "/home/nick/work/gala/src/DBus.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp1_ = gala_dbus_wm;
-#line 46 "/home/nick/work/gala/src/DBus.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp2_ = gala_dbus_accelerator_init (_tmp1_);
-#line 46 "/home/nick/work/gala/src/DBus.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		gala_dbus_accelerator_register_object (_tmp2_, _tmp0_, "/org/gnome/Shell", &_inner_error_);
-#line 46 "/home/nick/work/gala/src/DBus.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 448 "DBus.c"
 			goto __catch1_g_error;
 		}
-#line 47 "/home/nick/work/gala/src/DBus.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp3_ = connection;
-#line 47 "/home/nick/work/gala/src/DBus.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp4_ = gala_dbus_wm;
-#line 47 "/home/nick/work/gala/src/DBus.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp5_ = gala_screenshot_manager_init (_tmp4_);
-#line 47 "/home/nick/work/gala/src/DBus.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		gala_screenshot_manager_register_object (_tmp5_, _tmp3_, "/org/gnome/Shell/Screenshot", &_inner_error_);
-#line 47 "/home/nick/work/gala/src/DBus.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 461 "DBus.c"
 			goto __catch1_g_error;
@@ -467,28 +467,28 @@ static void __lambda7_ (GDBusConnection* connection) {
 		GError* e = NULL;
 		GError* _tmp6_ = NULL;
 		const gchar* _tmp7_ = NULL;
-#line 45 "/home/nick/work/gala/src/DBus.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		e = _inner_error_;
-#line 45 "/home/nick/work/gala/src/DBus.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_inner_error_ = NULL;
-#line 48 "/home/nick/work/gala/src/DBus.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp6_ = e;
-#line 48 "/home/nick/work/gala/src/DBus.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp7_ = _tmp6_->message;
-#line 48 "/home/nick/work/gala/src/DBus.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_warning ("DBus.vala:48: %s", _tmp7_);
-#line 45 "/home/nick/work/gala/src/DBus.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_g_error_free0 (e);
 #line 483 "DBus.c"
 	}
 	__finally1:
-#line 45 "/home/nick/work/gala/src/DBus.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 45 "/home/nick/work/gala/src/DBus.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 45 "/home/nick/work/gala/src/DBus.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_clear_error (&_inner_error_);
-#line 45 "/home/nick/work/gala/src/DBus.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		return;
 #line 494 "DBus.c"
 	}
@@ -496,7 +496,7 @@ static void __lambda7_ (GDBusConnection* connection) {
 
 
 static void ___lambda7__gbus_acquired_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 43 "/home/nick/work/gala/src/DBus.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda7_ (connection);
 #line 502 "DBus.c"
 }
@@ -507,21 +507,21 @@ static void __lambda9_ (void) {
 
 
 static void ___lambda9__gbus_name_acquired_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 43 "/home/nick/work/gala/src/DBus.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda9_ ();
 #line 513 "DBus.c"
 }
 
 
 static void __lambda10_ (void) {
-#line 51 "/home/nick/work/gala/src/DBus.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_critical ("DBus.vala:51: Could not acquire name");
 #line 520 "DBus.c"
 }
 
 
 static void ___lambda10__gbus_name_lost_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 43 "/home/nick/work/gala/src/DBus.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda10_ ();
 #line 527 "DBus.c"
 }
@@ -532,7 +532,7 @@ static void __lambda11_ (void) {
 
 
 static void ___lambda11__gbus_acquired_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 53 "/home/nick/work/gala/src/DBus.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda11_ ();
 #line 538 "DBus.c"
 }
@@ -543,21 +543,21 @@ static void __lambda12_ (void) {
 
 
 static void ___lambda12__gbus_name_acquired_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 53 "/home/nick/work/gala/src/DBus.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda12_ ();
 #line 549 "DBus.c"
 }
 
 
 static void __lambda13_ (void) {
-#line 56 "/home/nick/work/gala/src/DBus.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_critical ("DBus.vala:56: Could not acquire name");
 #line 556 "DBus.c"
 }
 
 
 static void ___lambda13__gbus_name_lost_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 53 "/home/nick/work/gala/src/DBus.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda13_ ();
 #line 563 "DBus.c"
 }
@@ -566,35 +566,35 @@ static void ___lambda13__gbus_name_lost_callback (GDBusConnection* connection, c
 void gala_dbus_init (GalaWindowManager* _wm) {
 	GalaWindowManager* _tmp0_ = NULL;
 	GalaWindowManager* _tmp1_ = NULL;
-#line 27 "/home/nick/work/gala/src/DBus.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_return_if_fail (_wm != NULL);
-#line 29 "/home/nick/work/gala/src/DBus.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp0_ = _wm;
-#line 29 "/home/nick/work/gala/src/DBus.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 29 "/home/nick/work/gala/src/DBus.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_g_object_unref0 (gala_dbus_wm);
-#line 29 "/home/nick/work/gala/src/DBus.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	gala_dbus_wm = _tmp1_;
-#line 31 "/home/nick/work/gala/src/DBus.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_bus_own_name_with_closures (G_BUS_TYPE_SESSION, "org.pantheon.gala", G_BUS_NAME_OWNER_FLAGS_NONE, (GClosure*) ((___lambda4__gbus_acquired_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda4__gbus_acquired_callback, NULL, NULL)), (GClosure*) ((___lambda5__gbus_name_acquired_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda5__gbus_name_acquired_callback, NULL, NULL)), (GClosure*) ((___lambda6__gbus_name_lost_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda6__gbus_name_lost_callback, NULL, NULL)));
-#line 43 "/home/nick/work/gala/src/DBus.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_bus_own_name_with_closures (G_BUS_TYPE_SESSION, "org.gnome.Shell", G_BUS_NAME_OWNER_FLAGS_NONE, (GClosure*) ((___lambda7__gbus_acquired_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda7__gbus_acquired_callback, NULL, NULL)), (GClosure*) ((___lambda9__gbus_name_acquired_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda9__gbus_name_acquired_callback, NULL, NULL)), (GClosure*) ((___lambda10__gbus_name_lost_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda10__gbus_name_lost_callback, NULL, NULL)));
-#line 53 "/home/nick/work/gala/src/DBus.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_bus_own_name_with_closures (G_BUS_TYPE_SESSION, "org.gnome.Shell.Screenshot", G_BUS_NAME_OWNER_FLAGS_REPLACE, (GClosure*) ((___lambda11__gbus_acquired_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda11__gbus_acquired_callback, NULL, NULL)), (GClosure*) ((___lambda12__gbus_name_acquired_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda12__gbus_name_acquired_callback, NULL, NULL)), (GClosure*) ((___lambda13__gbus_name_lost_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda13__gbus_name_lost_callback, NULL, NULL)));
 #line 586 "DBus.c"
 }
 
 
 static void ___lambda28_ (GalaDBus* self) {
-#line 62 "/home/nick/work/gala/src/DBus.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_signal_emit_by_name (self, "background-changed");
 #line 593 "DBus.c"
 }
 
 
 static void ____lambda28__gala_background_container_changed (GalaBackgroundContainer* _sender, gpointer self) {
-#line 62 "/home/nick/work/gala/src/DBus.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	___lambda28_ ((GalaDBus*) self);
 #line 600 "DBus.c"
 }
@@ -605,42 +605,42 @@ static GalaDBus* gala_dbus_construct (GType object_type) {
 	GalaWindowManager* _tmp0_ = NULL;
 	MetaBackgroundGroup* _tmp1_ = NULL;
 	MetaBackgroundGroup* _tmp2_ = NULL;
-#line 59 "/home/nick/work/gala/src/DBus.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	self = (GalaDBus*) g_type_create_instance (object_type);
-#line 61 "/home/nick/work/gala/src/DBus.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp0_ = gala_dbus_wm;
-#line 61 "/home/nick/work/gala/src/DBus.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp1_ = gala_window_manager_get_background_group (_tmp0_);
-#line 61 "/home/nick/work/gala/src/DBus.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp2_ = _tmp1_;
-#line 61 "/home/nick/work/gala/src/DBus.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_tmp2_ != NULL) {
 #line 619 "DBus.c"
 		GalaWindowManager* _tmp3_ = NULL;
 		MetaBackgroundGroup* _tmp4_ = NULL;
 		MetaBackgroundGroup* _tmp5_ = NULL;
-#line 62 "/home/nick/work/gala/src/DBus.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp3_ = gala_dbus_wm;
-#line 62 "/home/nick/work/gala/src/DBus.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp4_ = gala_window_manager_get_background_group (_tmp3_);
-#line 62 "/home/nick/work/gala/src/DBus.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp5_ = _tmp4_;
-#line 62 "/home/nick/work/gala/src/DBus.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_signal_connect (G_TYPE_CHECK_INSTANCE_TYPE (_tmp5_, GALA_TYPE_BACKGROUND_CONTAINER) ? ((GalaBackgroundContainer*) _tmp5_) : NULL, "changed", (GCallback) ____lambda28__gala_background_container_changed, self);
 #line 631 "DBus.c"
 	} else {
-#line 64 "/home/nick/work/gala/src/DBus.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_assert_not_reached ();
 #line 635 "DBus.c"
 	}
-#line 59 "/home/nick/work/gala/src/DBus.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return self;
 #line 639 "DBus.c"
 }
 
 
 static GalaDBus* gala_dbus_new (void) {
-#line 59 "/home/nick/work/gala/src/DBus.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return gala_dbus_construct (GALA_TYPE_DBUS);
 #line 646 "DBus.c"
 }
@@ -649,13 +649,13 @@ static GalaDBus* gala_dbus_new (void) {
 void gala_dbus_perform_action (GalaDBus* self, GalaActionType type) {
 	GalaWindowManager* _tmp0_ = NULL;
 	GalaActionType _tmp1_ = 0;
-#line 67 "/home/nick/work/gala/src/DBus.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_return_if_fail (self != NULL);
-#line 69 "/home/nick/work/gala/src/DBus.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp0_ = gala_dbus_wm;
-#line 69 "/home/nick/work/gala/src/DBus.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp1_ = type;
-#line 69 "/home/nick/work/gala/src/DBus.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	gala_window_manager_perform_action (_tmp0_, _tmp1_);
 #line 661 "DBus.c"
 }
@@ -664,16 +664,16 @@ void gala_dbus_perform_action (GalaDBus* self, GalaActionType type) {
 static void gala_dbus_get_background_color_information_data_free (gpointer _data) {
 	GalaDbusGetBackgroundColorInformationData* _data_;
 	_data_ = _data;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_gala_dbus_unref0 (_data_->self);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_slice_free (GalaDbusGetBackgroundColorInformationData, _data_);
 #line 672 "DBus.c"
 }
 
 
 static gpointer _gala_dbus_ref0 (gpointer self) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return self ? gala_dbus_ref (self) : NULL;
 #line 679 "DBus.c"
 }
@@ -687,37 +687,37 @@ void gala_dbus_get_background_color_information (GalaDBus* self, gint monitor, g
 	gint _tmp3_ = 0;
 	gint _tmp4_ = 0;
 	gint _tmp5_ = 0;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_ = g_slice_new0 (GalaDbusGetBackgroundColorInformationData);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_async_result = g_simple_async_result_new (NULL, _callback_, _user_data_, gala_dbus_get_background_color_information);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_simple_async_result_set_op_res_gpointer (_data_->_async_result, _data_, gala_dbus_get_background_color_information_data_free);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp0_ = _gala_dbus_ref0 (self);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->self = _tmp0_;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp1_ = monitor;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->monitor = _tmp1_;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp2_ = reference_x;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->reference_x = _tmp2_;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp3_ = reference_y;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->reference_y = _tmp3_;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp4_ = reference_width;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->reference_width = _tmp4_;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp5_ = reference_height;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->reference_height = _tmp5_;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	gala_dbus_get_background_color_information_co (_data_);
 #line 723 "DBus.c"
 }
@@ -725,15 +725,15 @@ void gala_dbus_get_background_color_information (GalaDBus* self, gint monitor, g
 
 void gala_dbus_get_background_color_information_finish (GalaDBus* self, GAsyncResult* _res_, GalaDBusColorInformation* result, GError** error) {
 	GalaDbusGetBackgroundColorInformationData* _data_;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (g_simple_async_result_propagate_error (G_SIMPLE_ASYNC_RESULT (_res_), error)) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		return;
 #line 733 "DBus.c"
 	}
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_ = g_simple_async_result_get_op_res_gpointer (G_SIMPLE_ASYNC_RESULT (_res_));
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	*result = _data_->result;
 #line 739 "DBus.c"
 }
@@ -754,9 +754,9 @@ void gala_dbus_get_background_color_information_finish (GalaDBus* self, GAsyncRe
  * @param reference_height Height of the rectangle
  */
 static Block1Data* block1_data_ref (Block1Data* _data1_) {
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_atomic_int_inc (&_data1_->_ref_count_);
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return _data1_;
 #line 762 "DBus.c"
 }
@@ -765,19 +765,19 @@ static Block1Data* block1_data_ref (Block1Data* _data1_) {
 static void block1_data_unref (void * _userdata_) {
 	Block1Data* _data1_;
 	_data1_ = (Block1Data*) _userdata_;
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (g_atomic_int_dec_and_test (&_data1_->_ref_count_)) {
 #line 771 "DBus.c"
 		GalaDBus* self;
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		self = _data1_->self;
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_g_object_unref0 (_data1_->effect);
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_g_object_unref0 (_data1_->background);
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_gala_dbus_unref0 (self);
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_slice_free (Block1Data, _data1_);
 #line 783 "DBus.c"
 	}
@@ -785,7 +785,7 @@ static void block1_data_unref (void * _userdata_) {
 
 
 static gpointer _cogl_texture_ref0 (gpointer self) {
-#line 145 "/home/nick/work/gala/src/DBus.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return self ? cogl_texture_ref (self) : NULL;
 #line 791 "DBus.c"
 }
@@ -858,123 +858,123 @@ static void __lambda29_ (Block1Data* _data1_) {
 	gdouble _tmp134_ = 0.0;
 	gdouble _tmp135_ = 0.0;
 	gint _tmp136_ = 0;
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	self = _data1_->self;
-#line 142 "/home/nick/work/gala/src/DBus.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp0_ = _data1_->effect;
-#line 142 "/home/nick/work/gala/src/DBus.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp1_ = _data1_->paint_signal_handler;
-#line 142 "/home/nick/work/gala/src/DBus.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_signal_handler_disconnect (_tmp0_, _tmp1_);
-#line 143 "/home/nick/work/gala/src/DBus.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp2_ = _data1_->background;
-#line 143 "/home/nick/work/gala/src/DBus.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp3_ = _data1_->effect;
-#line 143 "/home/nick/work/gala/src/DBus.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	clutter_actor_remove_effect (_tmp2_, (ClutterEffect*) _tmp3_);
-#line 145 "/home/nick/work/gala/src/DBus.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp4_ = _data1_->effect;
-#line 145 "/home/nick/work/gala/src/DBus.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp5_ = clutter_offscreen_effect_get_texture ((ClutterOffscreenEffect*) _tmp4_);
-#line 145 "/home/nick/work/gala/src/DBus.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp6_ = _cogl_texture_ref0 ((CoglHandle*) _tmp5_);
-#line 145 "/home/nick/work/gala/src/DBus.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	texture = _tmp6_;
-#line 146 "/home/nick/work/gala/src/DBus.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp7_ = texture;
-#line 146 "/home/nick/work/gala/src/DBus.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp8_ = cogl_texture_get_width (_tmp7_);
-#line 146 "/home/nick/work/gala/src/DBus.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp9_ = texture;
-#line 146 "/home/nick/work/gala/src/DBus.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp10_ = cogl_texture_get_height (_tmp9_);
-#line 146 "/home/nick/work/gala/src/DBus.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp11_ = g_new0 (guint8, (_tmp8_ * _tmp10_) * 4);
-#line 146 "/home/nick/work/gala/src/DBus.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	pixels = _tmp11_;
-#line 146 "/home/nick/work/gala/src/DBus.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	pixels_length1 = (_tmp8_ * _tmp10_) * 4;
-#line 146 "/home/nick/work/gala/src/DBus.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_pixels_size_ = pixels_length1;
-#line 147 "/home/nick/work/gala/src/DBus.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp12_ = texture;
-#line 147 "/home/nick/work/gala/src/DBus.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp13_ = pixels;
-#line 147 "/home/nick/work/gala/src/DBus.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp13__length1 = pixels_length1;
-#line 147 "/home/nick/work/gala/src/DBus.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	cogl_texture_get_data (_tmp12_, COGL_PIXEL_FORMAT_BGRA_8888_PRE, (guint) 0, _tmp13_);
-#line 149 "/home/nick/work/gala/src/DBus.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp14_ = _data1_->width;
-#line 149 "/home/nick/work/gala/src/DBus.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp15_ = _data1_->height;
-#line 149 "/home/nick/work/gala/src/DBus.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	size = _tmp14_ * _tmp15_;
-#line 151 "/home/nick/work/gala/src/DBus.vala"
+#line 151 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	mean_squares = (gdouble) 0;
-#line 152 "/home/nick/work/gala/src/DBus.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	pixel = (gdouble) 0;
-#line 154 "/home/nick/work/gala/src/DBus.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	scoreTotal = (gdouble) 0;
-#line 155 "/home/nick/work/gala/src/DBus.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	rTotal2 = (gdouble) 0;
-#line 155 "/home/nick/work/gala/src/DBus.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	gTotal2 = (gdouble) 0;
-#line 155 "/home/nick/work/gala/src/DBus.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	bTotal2 = (gdouble) 0;
 #line 926 "DBus.c"
 	{
 		gint y = 0;
 		gint _tmp16_ = 0;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp16_ = _data1_->y_start;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		y = _tmp16_;
 #line 934 "DBus.c"
 		{
 			gboolean _tmp17_ = FALSE;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			_tmp17_ = TRUE;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			while (TRUE) {
 #line 941 "DBus.c"
 				gint _tmp19_ = 0;
 				gint _tmp20_ = 0;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				if (!_tmp17_) {
 #line 946 "DBus.c"
 					gint _tmp18_ = 0;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 					_tmp18_ = y;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 					y = _tmp18_ + 1;
 #line 952 "DBus.c"
 				}
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				_tmp17_ = FALSE;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				_tmp19_ = y;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				_tmp20_ = _data1_->height;
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				if (!(_tmp19_ < _tmp20_)) {
-#line 160 "/home/nick/work/gala/src/DBus.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 					break;
 #line 964 "DBus.c"
 				}
 				{
 					gint x = 0;
 					gint _tmp21_ = 0;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 					_tmp21_ = _data1_->x_start;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 					x = _tmp21_;
 #line 973 "DBus.c"
 					{
 						gboolean _tmp22_ = FALSE;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 						_tmp22_ = TRUE;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 						while (TRUE) {
 #line 980 "DBus.c"
 							gint _tmp24_ = 0;
@@ -1037,185 +1037,185 @@ static void __lambda29_ (Block1Data* _data1_) {
 							gdouble _tmp76_ = 0.0;
 							gdouble _tmp77_ = 0.0;
 							gdouble _tmp78_ = 0.0;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							if (!_tmp22_) {
 #line 1043 "DBus.c"
 								gint _tmp23_ = 0;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 								_tmp23_ = x;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 								x = _tmp23_ + 1;
 #line 1049 "DBus.c"
 							}
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp22_ = FALSE;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp24_ = x;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp25_ = _data1_->width;
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							if (!(_tmp24_ < _tmp25_)) {
-#line 161 "/home/nick/work/gala/src/DBus.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 								break;
 #line 1061 "DBus.c"
 							}
-#line 162 "/home/nick/work/gala/src/DBus.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp26_ = y;
-#line 162 "/home/nick/work/gala/src/DBus.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp27_ = _data1_->width;
-#line 162 "/home/nick/work/gala/src/DBus.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp28_ = x;
-#line 162 "/home/nick/work/gala/src/DBus.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							i = ((_tmp26_ * _tmp27_) * 4) + (_tmp28_ * 4);
-#line 164 "/home/nick/work/gala/src/DBus.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp29_ = pixels;
-#line 164 "/home/nick/work/gala/src/DBus.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp29__length1 = pixels_length1;
-#line 164 "/home/nick/work/gala/src/DBus.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp30_ = i;
-#line 164 "/home/nick/work/gala/src/DBus.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp31_ = _tmp29_[_tmp30_];
-#line 164 "/home/nick/work/gala/src/DBus.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							r = _tmp31_;
-#line 165 "/home/nick/work/gala/src/DBus.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp32_ = pixels;
-#line 165 "/home/nick/work/gala/src/DBus.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp32__length1 = pixels_length1;
-#line 165 "/home/nick/work/gala/src/DBus.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp33_ = i;
-#line 165 "/home/nick/work/gala/src/DBus.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp34_ = _tmp32_[_tmp33_ + 1];
-#line 165 "/home/nick/work/gala/src/DBus.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							g = _tmp34_;
-#line 166 "/home/nick/work/gala/src/DBus.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp35_ = pixels;
-#line 166 "/home/nick/work/gala/src/DBus.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp35__length1 = pixels_length1;
-#line 166 "/home/nick/work/gala/src/DBus.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp36_ = i;
-#line 166 "/home/nick/work/gala/src/DBus.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp37_ = _tmp35_[_tmp36_ + 2];
-#line 166 "/home/nick/work/gala/src/DBus.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							b = _tmp37_;
-#line 168 "/home/nick/work/gala/src/DBus.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp38_ = r;
-#line 168 "/home/nick/work/gala/src/DBus.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp39_ = g;
-#line 168 "/home/nick/work/gala/src/DBus.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp40_ = b;
-#line 168 "/home/nick/work/gala/src/DBus.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							pixel = (((0.3 * _tmp38_) + (0.6 * _tmp39_)) + (0.11 * _tmp40_)) - 128.f;
-#line 170 "/home/nick/work/gala/src/DBus.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp41_ = r;
-#line 170 "/home/nick/work/gala/src/DBus.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp42_ = g;
-#line 170 "/home/nick/work/gala/src/DBus.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp43_ = b;
-#line 170 "/home/nick/work/gala/src/DBus.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp44_ = MIN (_tmp42_, _tmp43_);
-#line 170 "/home/nick/work/gala/src/DBus.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp45_ = MIN (_tmp41_, _tmp44_);
-#line 170 "/home/nick/work/gala/src/DBus.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							min = (gdouble) _tmp45_;
-#line 171 "/home/nick/work/gala/src/DBus.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp46_ = r;
-#line 171 "/home/nick/work/gala/src/DBus.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp47_ = g;
-#line 171 "/home/nick/work/gala/src/DBus.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp48_ = b;
-#line 171 "/home/nick/work/gala/src/DBus.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp49_ = MAX (_tmp47_, _tmp48_);
-#line 171 "/home/nick/work/gala/src/DBus.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp50_ = MAX (_tmp46_, _tmp49_);
-#line 171 "/home/nick/work/gala/src/DBus.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							max = (gdouble) _tmp50_;
-#line 172 "/home/nick/work/gala/src/DBus.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp51_ = max;
-#line 172 "/home/nick/work/gala/src/DBus.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp52_ = min;
-#line 172 "/home/nick/work/gala/src/DBus.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							delta = _tmp51_ - _tmp52_;
-#line 175 "/home/nick/work/gala/src/DBus.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp54_ = delta;
-#line 175 "/home/nick/work/gala/src/DBus.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							if (_tmp54_ == ((gdouble) 0)) {
-#line 175 "/home/nick/work/gala/src/DBus.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 								_tmp53_ = 0.0;
 #line 1145 "DBus.c"
 							} else {
 								gdouble _tmp55_ = 0.0;
 								gdouble _tmp56_ = 0.0;
-#line 175 "/home/nick/work/gala/src/DBus.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 								_tmp55_ = delta;
-#line 175 "/home/nick/work/gala/src/DBus.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 								_tmp56_ = max;
-#line 175 "/home/nick/work/gala/src/DBus.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 								_tmp53_ = _tmp55_ / _tmp56_;
 #line 1155 "DBus.c"
 							}
-#line 175 "/home/nick/work/gala/src/DBus.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							score = GALA_DBUS_SATURATION_WEIGHT * _tmp53_;
-#line 177 "/home/nick/work/gala/src/DBus.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp57_ = _data1_->rTotal;
-#line 177 "/home/nick/work/gala/src/DBus.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp58_ = score;
-#line 177 "/home/nick/work/gala/src/DBus.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp59_ = r;
-#line 177 "/home/nick/work/gala/src/DBus.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_data1_->rTotal = _tmp57_ + (_tmp58_ * _tmp59_);
-#line 178 "/home/nick/work/gala/src/DBus.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp60_ = _data1_->gTotal;
-#line 178 "/home/nick/work/gala/src/DBus.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp61_ = score;
-#line 178 "/home/nick/work/gala/src/DBus.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp62_ = g;
-#line 178 "/home/nick/work/gala/src/DBus.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_data1_->gTotal = _tmp60_ + (_tmp61_ * _tmp62_);
-#line 179 "/home/nick/work/gala/src/DBus.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp63_ = _data1_->bTotal;
-#line 179 "/home/nick/work/gala/src/DBus.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp64_ = score;
-#line 179 "/home/nick/work/gala/src/DBus.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp65_ = b;
-#line 179 "/home/nick/work/gala/src/DBus.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_data1_->bTotal = _tmp63_ + (_tmp64_ * _tmp65_);
-#line 180 "/home/nick/work/gala/src/DBus.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp66_ = scoreTotal;
-#line 180 "/home/nick/work/gala/src/DBus.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp67_ = score;
-#line 180 "/home/nick/work/gala/src/DBus.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							scoreTotal = _tmp66_ + _tmp67_;
-#line 182 "/home/nick/work/gala/src/DBus.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp68_ = _data1_->rTotal;
-#line 182 "/home/nick/work/gala/src/DBus.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp69_ = r;
-#line 182 "/home/nick/work/gala/src/DBus.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_data1_->rTotal = _tmp68_ + _tmp69_;
-#line 183 "/home/nick/work/gala/src/DBus.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp70_ = _data1_->gTotal;
-#line 183 "/home/nick/work/gala/src/DBus.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp71_ = g;
-#line 183 "/home/nick/work/gala/src/DBus.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_data1_->gTotal = _tmp70_ + _tmp71_;
-#line 184 "/home/nick/work/gala/src/DBus.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp72_ = _data1_->bTotal;
-#line 184 "/home/nick/work/gala/src/DBus.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp73_ = b;
-#line 184 "/home/nick/work/gala/src/DBus.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_data1_->bTotal = _tmp72_ + _tmp73_;
-#line 186 "/home/nick/work/gala/src/DBus.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp74_ = _data1_->mean;
-#line 186 "/home/nick/work/gala/src/DBus.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp75_ = pixel;
-#line 186 "/home/nick/work/gala/src/DBus.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_data1_->mean = _tmp74_ + _tmp75_;
-#line 187 "/home/nick/work/gala/src/DBus.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp76_ = mean_squares;
-#line 187 "/home/nick/work/gala/src/DBus.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp77_ = pixel;
-#line 187 "/home/nick/work/gala/src/DBus.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							_tmp78_ = pixel;
-#line 187 "/home/nick/work/gala/src/DBus.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 							mean_squares = _tmp76_ + (_tmp77_ * _tmp78_);
 #line 1221 "DBus.c"
 						}
@@ -1224,33 +1224,33 @@ static void __lambda29_ (Block1Data* _data1_) {
 			}
 		}
 	}
-#line 191 "/home/nick/work/gala/src/DBus.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp79_ = scoreTotal;
-#line 191 "/home/nick/work/gala/src/DBus.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp80_ = size;
-#line 191 "/home/nick/work/gala/src/DBus.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	scoreTotal = _tmp79_ / _tmp80_;
-#line 192 "/home/nick/work/gala/src/DBus.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp81_ = _data1_->bTotal;
-#line 192 "/home/nick/work/gala/src/DBus.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp82_ = size;
-#line 192 "/home/nick/work/gala/src/DBus.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data1_->bTotal = _tmp81_ / _tmp82_;
-#line 193 "/home/nick/work/gala/src/DBus.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp83_ = _data1_->gTotal;
-#line 193 "/home/nick/work/gala/src/DBus.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp84_ = size;
-#line 193 "/home/nick/work/gala/src/DBus.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data1_->gTotal = _tmp83_ / _tmp84_;
-#line 194 "/home/nick/work/gala/src/DBus.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp85_ = _data1_->rTotal;
-#line 194 "/home/nick/work/gala/src/DBus.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp86_ = size;
-#line 194 "/home/nick/work/gala/src/DBus.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data1_->rTotal = _tmp85_ / _tmp86_;
-#line 196 "/home/nick/work/gala/src/DBus.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp87_ = scoreTotal;
-#line 196 "/home/nick/work/gala/src/DBus.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_tmp87_ > 0.0) {
 #line 1256 "DBus.c"
 		gdouble _tmp88_ = 0.0;
@@ -1259,47 +1259,47 @@ static void __lambda29_ (Block1Data* _data1_) {
 		gdouble _tmp91_ = 0.0;
 		gdouble _tmp92_ = 0.0;
 		gdouble _tmp93_ = 0.0;
-#line 197 "/home/nick/work/gala/src/DBus.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp88_ = _data1_->bTotal;
-#line 197 "/home/nick/work/gala/src/DBus.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp89_ = scoreTotal;
-#line 197 "/home/nick/work/gala/src/DBus.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->bTotal = _tmp88_ / _tmp89_;
-#line 198 "/home/nick/work/gala/src/DBus.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp90_ = _data1_->gTotal;
-#line 198 "/home/nick/work/gala/src/DBus.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp91_ = scoreTotal;
-#line 198 "/home/nick/work/gala/src/DBus.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->gTotal = _tmp90_ / _tmp91_;
-#line 199 "/home/nick/work/gala/src/DBus.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp92_ = _data1_->rTotal;
-#line 199 "/home/nick/work/gala/src/DBus.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp93_ = scoreTotal;
-#line 199 "/home/nick/work/gala/src/DBus.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->rTotal = _tmp92_ / _tmp93_;
 #line 1281 "DBus.c"
 	}
-#line 202 "/home/nick/work/gala/src/DBus.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp94_ = bTotal2;
-#line 202 "/home/nick/work/gala/src/DBus.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp95_ = size;
-#line 202 "/home/nick/work/gala/src/DBus.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	bTotal2 = _tmp94_ / (_tmp95_ * G_MAXUINT8);
-#line 203 "/home/nick/work/gala/src/DBus.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp96_ = gTotal2;
-#line 203 "/home/nick/work/gala/src/DBus.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp97_ = size;
-#line 203 "/home/nick/work/gala/src/DBus.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	gTotal2 = _tmp96_ / (_tmp97_ * G_MAXUINT8);
-#line 204 "/home/nick/work/gala/src/DBus.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp98_ = rTotal2;
-#line 204 "/home/nick/work/gala/src/DBus.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp99_ = size;
-#line 204 "/home/nick/work/gala/src/DBus.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	rTotal2 = _tmp98_ / (_tmp99_ * G_MAXUINT8);
-#line 209 "/home/nick/work/gala/src/DBus.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp100_ = scoreTotal;
-#line 209 "/home/nick/work/gala/src/DBus.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_tmp100_ <= GALA_DBUS_WEIGHT_THRESHOLD) {
 #line 1305 "DBus.c"
 		gdouble f = 0.0;
@@ -1318,61 +1318,61 @@ static void __lambda29_ (Block1Data* _data1_) {
 		gdouble _tmp112_ = 0.0;
 		gdouble _tmp113_ = 0.0;
 		gdouble _tmp114_ = 0.0;
-#line 210 "/home/nick/work/gala/src/DBus.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp101_ = scoreTotal;
-#line 210 "/home/nick/work/gala/src/DBus.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		f = (1.0 / GALA_DBUS_WEIGHT_THRESHOLD) * _tmp101_;
-#line 211 "/home/nick/work/gala/src/DBus.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp102_ = f;
-#line 211 "/home/nick/work/gala/src/DBus.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		rf = 1.0 - _tmp102_;
-#line 212 "/home/nick/work/gala/src/DBus.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp103_ = _data1_->bTotal;
-#line 212 "/home/nick/work/gala/src/DBus.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp104_ = f;
-#line 212 "/home/nick/work/gala/src/DBus.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp105_ = bTotal2;
-#line 212 "/home/nick/work/gala/src/DBus.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp106_ = rf;
-#line 212 "/home/nick/work/gala/src/DBus.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->bTotal = (_tmp103_ * _tmp104_) + (_tmp105_ * _tmp106_);
-#line 213 "/home/nick/work/gala/src/DBus.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp107_ = _data1_->gTotal;
-#line 213 "/home/nick/work/gala/src/DBus.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp108_ = f;
-#line 213 "/home/nick/work/gala/src/DBus.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp109_ = gTotal2;
-#line 213 "/home/nick/work/gala/src/DBus.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp110_ = rf;
-#line 213 "/home/nick/work/gala/src/DBus.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->gTotal = (_tmp107_ * _tmp108_) + (_tmp109_ * _tmp110_);
-#line 214 "/home/nick/work/gala/src/DBus.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp111_ = _data1_->rTotal;
-#line 214 "/home/nick/work/gala/src/DBus.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp112_ = f;
-#line 214 "/home/nick/work/gala/src/DBus.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp113_ = rTotal2;
-#line 214 "/home/nick/work/gala/src/DBus.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp114_ = rf;
-#line 214 "/home/nick/work/gala/src/DBus.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->rTotal = (_tmp111_ * _tmp112_) + (_tmp113_ * _tmp114_);
 #line 1360 "DBus.c"
 	}
-#line 218 "/home/nick/work/gala/src/DBus.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp115_ = _data1_->rTotal;
-#line 218 "/home/nick/work/gala/src/DBus.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp116_ = _data1_->gTotal;
-#line 218 "/home/nick/work/gala/src/DBus.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp117_ = _data1_->bTotal;
-#line 218 "/home/nick/work/gala/src/DBus.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp118_ = MAX (_tmp116_, _tmp117_);
-#line 218 "/home/nick/work/gala/src/DBus.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp119_ = MAX (_tmp115_, _tmp118_);
-#line 218 "/home/nick/work/gala/src/DBus.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	max_val = _tmp119_;
-#line 219 "/home/nick/work/gala/src/DBus.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp120_ = max_val;
-#line 219 "/home/nick/work/gala/src/DBus.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_tmp120_ > 1.0) {
 #line 1378 "DBus.c"
 		gdouble _tmp121_ = 0.0;
@@ -1381,470 +1381,470 @@ static void __lambda29_ (Block1Data* _data1_) {
 		gdouble _tmp124_ = 0.0;
 		gdouble _tmp125_ = 0.0;
 		gdouble _tmp126_ = 0.0;
-#line 220 "/home/nick/work/gala/src/DBus.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp121_ = _data1_->bTotal;
-#line 220 "/home/nick/work/gala/src/DBus.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp122_ = max_val;
-#line 220 "/home/nick/work/gala/src/DBus.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->bTotal = _tmp121_ / _tmp122_;
-#line 221 "/home/nick/work/gala/src/DBus.vala"
+#line 221 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp123_ = _data1_->gTotal;
-#line 221 "/home/nick/work/gala/src/DBus.vala"
+#line 221 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp124_ = max_val;
-#line 221 "/home/nick/work/gala/src/DBus.vala"
+#line 221 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->gTotal = _tmp123_ / _tmp124_;
-#line 222 "/home/nick/work/gala/src/DBus.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp125_ = _data1_->rTotal;
-#line 222 "/home/nick/work/gala/src/DBus.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_tmp126_ = max_val;
-#line 222 "/home/nick/work/gala/src/DBus.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data1_->rTotal = _tmp125_ / _tmp126_;
 #line 1403 "DBus.c"
 	}
-#line 225 "/home/nick/work/gala/src/DBus.vala"
+#line 225 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp127_ = _data1_->mean;
-#line 225 "/home/nick/work/gala/src/DBus.vala"
+#line 225 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp128_ = size;
-#line 225 "/home/nick/work/gala/src/DBus.vala"
+#line 225 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data1_->mean = _tmp127_ / _tmp128_;
-#line 226 "/home/nick/work/gala/src/DBus.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp129_ = mean_squares;
-#line 226 "/home/nick/work/gala/src/DBus.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp130_ = mean_squares;
-#line 226 "/home/nick/work/gala/src/DBus.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp131_ = size;
-#line 226 "/home/nick/work/gala/src/DBus.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	mean_squares = _tmp129_ * (_tmp130_ / _tmp131_);
-#line 228 "/home/nick/work/gala/src/DBus.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp132_ = mean_squares;
-#line 228 "/home/nick/work/gala/src/DBus.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp133_ = _data1_->mean;
-#line 228 "/home/nick/work/gala/src/DBus.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp134_ = _data1_->mean;
-#line 228 "/home/nick/work/gala/src/DBus.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp135_ = sqrt (_tmp132_ - (_tmp133_ * _tmp134_));
-#line 228 "/home/nick/work/gala/src/DBus.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_tmp136_ = size;
-#line 228 "/home/nick/work/gala/src/DBus.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data1_->variance = _tmp135_ / ((gdouble) _tmp136_);
-#line 230 "/home/nick/work/gala/src/DBus.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	gala_dbus_get_background_color_information_co (_data1_->_async_data_);
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	pixels = (g_free (pixels), NULL);
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_cogl_texture_unref0 (texture);
 #line 1437 "DBus.c"
 }
 
 
 static void ___lambda29__gala_dbus_dummy_offscreen_effect_done_painting (GalaDBusDummyOffscreenEffect* _sender, gpointer self) {
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	__lambda29_ (self);
 #line 1444 "DBus.c"
 }
 
 
 static gboolean gala_dbus_get_background_color_information_co (GalaDbusGetBackgroundColorInformationData* _data_) {
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	switch (_data_->_state_) {
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		case 0:
 #line 1453 "DBus.c"
 		goto _state_0;
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		case 1:
 #line 1457 "DBus.c"
 		goto _state_1;
 		default:
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_assert_not_reached ();
 #line 1462 "DBus.c"
 	}
 	_state_0:
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_ = g_slice_new0 (Block1Data);
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->_ref_count_ = 1;
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->self = gala_dbus_ref (_data_->self);
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->_async_data_ = _data_;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp0_ = NULL;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp0_ = gala_dbus_wm;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp1_ = NULL;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp1_ = gala_window_manager_get_background_group (_data_->_tmp0_);
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp2_ = NULL;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp2_ = _data_->_tmp1_;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp3_ = 0;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp3_ = _data_->monitor;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp4_ = NULL;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp4_ = clutter_actor_get_child_at_index ((ClutterActor*) _data_->_tmp2_, _data_->_tmp3_);
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp5_ = NULL;
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp5_ = _g_object_ref0 (_data_->_tmp4_);
-#line 119 "/home/nick/work/gala/src/DBus.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->background = _data_->_tmp5_;
-#line 120 "/home/nick/work/gala/src/DBus.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp6_ = NULL;
-#line 120 "/home/nick/work/gala/src/DBus.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp6_ = _data_->_data1_->background;
-#line 120 "/home/nick/work/gala/src/DBus.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_data_->_tmp6_ == NULL) {
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp7_ = NULL;
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp7_ = g_error_new_literal (G_DBUS_ERROR, G_DBUS_ERROR_INVALID_ARGS, "Invalid monitor requested");
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_inner_error_ = _data_->_tmp7_;
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		if (_data_->_inner_error_->domain == G_DBUS_ERROR) {
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_simple_async_result_set_from_error (_data_->_async_result, _data_->_inner_error_);
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_error_free (_data_->_inner_error_);
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			block1_data_unref (_data_->_data1_);
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			_data_->_data1_ = NULL;
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			if (_data_->_state_ == 0) {
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				g_simple_async_result_complete_in_idle (_data_->_async_result);
 #line 1525 "DBus.c"
 			} else {
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				g_simple_async_result_complete (_data_->_async_result);
 #line 1529 "DBus.c"
 			}
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_object_unref (_data_->_async_result);
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			return FALSE;
 #line 1535 "DBus.c"
 		} else {
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			block1_data_unref (_data_->_data1_);
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			_data_->_data1_ = NULL;
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _data_->_inner_error_->message, g_quark_to_string (_data_->_inner_error_->domain), _data_->_inner_error_->code);
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_clear_error (&_data_->_inner_error_);
-#line 121 "/home/nick/work/gala/src/DBus.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			return FALSE;
 #line 1547 "DBus.c"
 		}
 	}
-#line 123 "/home/nick/work/gala/src/DBus.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp8_ = NULL;
-#line 123 "/home/nick/work/gala/src/DBus.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp8_ = gala_dbus_dummy_offscreen_effect_new ();
-#line 123 "/home/nick/work/gala/src/DBus.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_object_ref_sink (_data_->_tmp8_);
-#line 123 "/home/nick/work/gala/src/DBus.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->effect = _data_->_tmp8_;
-#line 124 "/home/nick/work/gala/src/DBus.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp9_ = NULL;
-#line 124 "/home/nick/work/gala/src/DBus.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp9_ = _data_->_data1_->background;
-#line 124 "/home/nick/work/gala/src/DBus.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp10_ = NULL;
-#line 124 "/home/nick/work/gala/src/DBus.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp10_ = _data_->_data1_->effect;
-#line 124 "/home/nick/work/gala/src/DBus.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	clutter_actor_add_effect (_data_->_tmp9_, (ClutterEffect*) _data_->_tmp10_);
-#line 126 "/home/nick/work/gala/src/DBus.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp11_ = NULL;
-#line 126 "/home/nick/work/gala/src/DBus.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp11_ = _data_->_data1_->background;
-#line 126 "/home/nick/work/gala/src/DBus.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp12_ = 0.0F;
-#line 126 "/home/nick/work/gala/src/DBus.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp12_ = clutter_actor_get_width (_data_->_tmp11_);
-#line 126 "/home/nick/work/gala/src/DBus.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp13_ = 0.0F;
-#line 126 "/home/nick/work/gala/src/DBus.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp13_ = _data_->_tmp12_;
-#line 126 "/home/nick/work/gala/src/DBus.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->tex_width = (gint) _data_->_tmp13_;
-#line 127 "/home/nick/work/gala/src/DBus.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp14_ = NULL;
-#line 127 "/home/nick/work/gala/src/DBus.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp14_ = _data_->_data1_->background;
-#line 127 "/home/nick/work/gala/src/DBus.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp15_ = 0.0F;
-#line 127 "/home/nick/work/gala/src/DBus.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp15_ = clutter_actor_get_height (_data_->_tmp14_);
-#line 127 "/home/nick/work/gala/src/DBus.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp16_ = 0.0F;
-#line 127 "/home/nick/work/gala/src/DBus.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp16_ = _data_->_tmp15_;
-#line 127 "/home/nick/work/gala/src/DBus.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->tex_height = (gint) _data_->_tmp16_;
-#line 129 "/home/nick/work/gala/src/DBus.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp17_ = 0;
-#line 129 "/home/nick/work/gala/src/DBus.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp17_ = _data_->reference_x;
-#line 129 "/home/nick/work/gala/src/DBus.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->x_start = _data_->_tmp17_;
-#line 130 "/home/nick/work/gala/src/DBus.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp18_ = 0;
-#line 130 "/home/nick/work/gala/src/DBus.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp18_ = _data_->reference_y;
-#line 130 "/home/nick/work/gala/src/DBus.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->y_start = _data_->_tmp18_;
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp19_ = 0;
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp19_ = _data_->tex_width;
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp20_ = 0;
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp20_ = _data_->reference_x;
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp21_ = 0;
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp21_ = _data_->reference_width;
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp22_ = 0;
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp22_ = MIN (_data_->_tmp19_ - _data_->_tmp20_, _data_->_tmp21_);
-#line 131 "/home/nick/work/gala/src/DBus.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->width = _data_->_tmp22_;
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp23_ = 0;
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp23_ = _data_->tex_height;
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp24_ = 0;
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp24_ = _data_->reference_y;
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp25_ = 0;
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp25_ = _data_->reference_height;
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp26_ = 0;
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp26_ = MIN (_data_->_tmp23_ - _data_->_tmp24_, _data_->_tmp25_);
-#line 132 "/home/nick/work/gala/src/DBus.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->height = _data_->_tmp26_;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp30_ = 0;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp30_ = _data_->_data1_->x_start;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp31_ = 0;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp31_ = _data_->tex_width;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_data_->_tmp30_ > _data_->_tmp31_) {
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp29_ = TRUE;
 #line 1656 "DBus.c"
 	} else {
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp32_ = 0;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp32_ = _data_->_data1_->x_start;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp33_ = 0;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp33_ = _data_->tex_height;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp29_ = _data_->_tmp32_ > _data_->_tmp33_;
 #line 1668 "DBus.c"
 	}
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_data_->_tmp29_) {
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp28_ = TRUE;
 #line 1674 "DBus.c"
 	} else {
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp34_ = 0;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp34_ = _data_->_data1_->width;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp28_ = _data_->_tmp34_ <= 0;
 #line 1682 "DBus.c"
 	}
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_data_->_tmp28_) {
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp27_ = TRUE;
 #line 1688 "DBus.c"
 	} else {
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp35_ = 0;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp35_ = _data_->_data1_->height;
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp27_ = _data_->_tmp35_ <= 0;
 #line 1696 "DBus.c"
 	}
-#line 134 "/home/nick/work/gala/src/DBus.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_data_->_tmp27_) {
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp36_ = NULL;
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_tmp36_ = g_error_new_literal (G_DBUS_ERROR, G_DBUS_ERROR_INVALID_ARGS, "Invalid rectangle specified");
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		_data_->_inner_error_ = _data_->_tmp36_;
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		if (_data_->_inner_error_->domain == G_DBUS_ERROR) {
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_simple_async_result_set_from_error (_data_->_async_result, _data_->_inner_error_);
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_error_free (_data_->_inner_error_);
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			block1_data_unref (_data_->_data1_);
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			_data_->_data1_ = NULL;
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			if (_data_->_state_ == 0) {
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				g_simple_async_result_complete_in_idle (_data_->_async_result);
 #line 1720 "DBus.c"
 			} else {
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 				g_simple_async_result_complete (_data_->_async_result);
 #line 1724 "DBus.c"
 			}
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_object_unref (_data_->_async_result);
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			return FALSE;
 #line 1730 "DBus.c"
 		} else {
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			block1_data_unref (_data_->_data1_);
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			_data_->_data1_ = NULL;
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _data_->_inner_error_->message, g_quark_to_string (_data_->_inner_error_->domain), _data_->_inner_error_->code);
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			g_clear_error (&_data_->_inner_error_);
-#line 135 "/home/nick/work/gala/src/DBus.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			return FALSE;
 #line 1742 "DBus.c"
 		}
 	}
-#line 137 "/home/nick/work/gala/src/DBus.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->variance = (gdouble) 0;
-#line 137 "/home/nick/work/gala/src/DBus.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->mean = (gdouble) 0;
-#line 138 "/home/nick/work/gala/src/DBus.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->rTotal = (gdouble) 0;
-#line 138 "/home/nick/work/gala/src/DBus.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->gTotal = (gdouble) 0;
-#line 138 "/home/nick/work/gala/src/DBus.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->bTotal = (gdouble) 0;
-#line 140 "/home/nick/work/gala/src/DBus.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->paint_signal_handler = (gulong) 0;
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp37_ = NULL;
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp37_ = _data_->_data1_->effect;
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp38_ = 0UL;
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp38_ = g_signal_connect_data (_data_->_tmp37_, "done-painting", (GCallback) ___lambda29__gala_dbus_dummy_offscreen_effect_done_painting, block1_data_ref (_data_->_data1_), (GClosureNotify) block1_data_unref, 0);
-#line 141 "/home/nick/work/gala/src/DBus.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_->paint_signal_handler = _data_->_tmp38_;
-#line 233 "/home/nick/work/gala/src/DBus.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp39_ = NULL;
-#line 233 "/home/nick/work/gala/src/DBus.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp39_ = _data_->_data1_->background;
-#line 233 "/home/nick/work/gala/src/DBus.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	clutter_actor_queue_redraw (_data_->_tmp39_);
-#line 235 "/home/nick/work/gala/src/DBus.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_state_ = 1;
-#line 235 "/home/nick/work/gala/src/DBus.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return FALSE;
 #line 1777 "DBus.c"
 	_state_1:
 	;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp40_ = 0.0;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp40_ = _data_->_data1_->rTotal;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp41_ = 0.0;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp41_ = _data_->_data1_->gTotal;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp42_ = 0.0;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp42_ = _data_->_data1_->bTotal;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp43_ = 0.0;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp43_ = _data_->_data1_->mean;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp44_ = 0.0;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp44_ = _data_->_data1_->variance;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	memset (&_data_->_tmp45_, 0, sizeof (GalaDBusColorInformation));
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp45_.average_red = _data_->_tmp40_;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp45_.average_green = _data_->_tmp41_;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp45_.average_blue = _data_->_tmp42_;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp45_.mean = _data_->_tmp43_;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_tmp45_.variance = _data_->_tmp44_;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->result = _data_->_tmp45_;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	block1_data_unref (_data_->_data1_);
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_ = NULL;
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_data_->_state_ == 0) {
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_simple_async_result_complete_in_idle (_data_->_async_result);
 #line 1822 "DBus.c"
 	} else {
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_simple_async_result_complete (_data_->_async_result);
 #line 1826 "DBus.c"
 	}
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_object_unref (_data_->_async_result);
-#line 237 "/home/nick/work/gala/src/DBus.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return FALSE;
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	block1_data_unref (_data_->_data1_);
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	_data_->_data1_ = NULL;
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (_data_->_state_ == 0) {
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_simple_async_result_complete_in_idle (_data_->_async_result);
 #line 1840 "DBus.c"
 	} else {
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_simple_async_result_complete (_data_->_async_result);
 #line 1844 "DBus.c"
 	}
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_object_unref (_data_->_async_result);
-#line 115 "/home/nick/work/gala/src/DBus.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return FALSE;
 #line 1850 "DBus.c"
 }
@@ -1852,11 +1852,11 @@ static gboolean gala_dbus_get_background_color_information_co (GalaDbusGetBackgr
 
 static void gala_dbus_dummy_offscreen_effect_real_post_paint (ClutterEffect* base) {
 	GalaDBusDummyOffscreenEffect * self;
-#line 77 "/home/nick/work/gala/src/DBus.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	self = (GalaDBusDummyOffscreenEffect*) base;
-#line 79 "/home/nick/work/gala/src/DBus.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	CLUTTER_EFFECT_CLASS (gala_dbus_dummy_offscreen_effect_parent_class)->post_paint ((ClutterEffect*) G_TYPE_CHECK_INSTANCE_CAST (self, clutter_offscreen_effect_get_type (), ClutterOffscreenEffect));
-#line 80 "/home/nick/work/gala/src/DBus.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_signal_emit_by_name (self, "done-painting");
 #line 1862 "DBus.c"
 }
@@ -1864,27 +1864,27 @@ static void gala_dbus_dummy_offscreen_effect_real_post_paint (ClutterEffect* bas
 
 static GalaDBusDummyOffscreenEffect* gala_dbus_dummy_offscreen_effect_construct (GType object_type) {
 	GalaDBusDummyOffscreenEffect * self = NULL;
-#line 75 "/home/nick/work/gala/src/DBus.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	self = (GalaDBusDummyOffscreenEffect*) g_object_new (object_type, NULL);
-#line 75 "/home/nick/work/gala/src/DBus.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return self;
 #line 1872 "DBus.c"
 }
 
 
 static GalaDBusDummyOffscreenEffect* gala_dbus_dummy_offscreen_effect_new (void) {
-#line 75 "/home/nick/work/gala/src/DBus.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return gala_dbus_dummy_offscreen_effect_construct (GALA_DBUS_TYPE_DUMMY_OFFSCREEN_EFFECT);
 #line 1879 "DBus.c"
 }
 
 
 static void gala_dbus_dummy_offscreen_effect_class_init (GalaDBusDummyOffscreenEffectClass * klass) {
-#line 75 "/home/nick/work/gala/src/DBus.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	gala_dbus_dummy_offscreen_effect_parent_class = g_type_class_peek_parent (klass);
-#line 75 "/home/nick/work/gala/src/DBus.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	((ClutterEffectClass *) klass)->post_paint = gala_dbus_dummy_offscreen_effect_real_post_paint;
-#line 75 "/home/nick/work/gala/src/DBus.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_signal_new ("done_painting", GALA_DBUS_TYPE_DUMMY_OFFSCREEN_EFFECT, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 #line 1890 "DBus.c"
 }
@@ -1908,18 +1908,18 @@ static GType gala_dbus_dummy_offscreen_effect_get_type (void) {
 
 GalaDBusColorInformation* gala_dbus_color_information_dup (const GalaDBusColorInformation* self) {
 	GalaDBusColorInformation* dup;
-#line 84 "/home/nick/work/gala/src/DBus.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	dup = g_new0 (GalaDBusColorInformation, 1);
-#line 84 "/home/nick/work/gala/src/DBus.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	memcpy (dup, self, sizeof (GalaDBusColorInformation));
-#line 84 "/home/nick/work/gala/src/DBus.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return dup;
 #line 1918 "DBus.c"
 }
 
 
 void gala_dbus_color_information_free (GalaDBusColorInformation* self) {
-#line 84 "/home/nick/work/gala/src/DBus.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_free (self);
 #line 1925 "DBus.c"
 }
@@ -1937,16 +1937,16 @@ GType gala_dbus_color_information_get_type (void) {
 
 
 static void gala_value_dbus_init (GValue* value) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	value->data[0].v_pointer = NULL;
 #line 1943 "DBus.c"
 }
 
 
 static void gala_value_dbus_free_value (GValue* value) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (value->data[0].v_pointer) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		gala_dbus_unref (value->data[0].v_pointer);
 #line 1952 "DBus.c"
 	}
@@ -1954,13 +1954,13 @@ static void gala_value_dbus_free_value (GValue* value) {
 
 
 static void gala_value_dbus_copy_value (const GValue* src_value, GValue* dest_value) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (src_value->data[0].v_pointer) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		dest_value->data[0].v_pointer = gala_dbus_ref (src_value->data[0].v_pointer);
 #line 1962 "DBus.c"
 	} else {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		dest_value->data[0].v_pointer = NULL;
 #line 1966 "DBus.c"
 	}
@@ -1968,37 +1968,37 @@ static void gala_value_dbus_copy_value (const GValue* src_value, GValue* dest_va
 
 
 static gpointer gala_value_dbus_peek_pointer (const GValue* value) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return value->data[0].v_pointer;
 #line 1974 "DBus.c"
 }
 
 
 static gchar* gala_value_dbus_collect_value (GValue* value, guint n_collect_values, GTypeCValue* collect_values, guint collect_flags) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (collect_values[0].v_pointer) {
 #line 1981 "DBus.c"
 		GalaDBus* object;
 		object = collect_values[0].v_pointer;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		if (object->parent_instance.g_class == NULL) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			return g_strconcat ("invalid unclassed object pointer for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
 #line 1988 "DBus.c"
 		} else if (!g_value_type_compatible (G_TYPE_FROM_INSTANCE (object), G_VALUE_TYPE (value))) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 			return g_strconcat ("invalid object type `", g_type_name (G_TYPE_FROM_INSTANCE (object)), "' for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
 #line 1992 "DBus.c"
 		}
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		value->data[0].v_pointer = gala_dbus_ref (object);
 #line 1996 "DBus.c"
 	} else {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		value->data[0].v_pointer = NULL;
 #line 2000 "DBus.c"
 	}
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return NULL;
 #line 2004 "DBus.c"
 }
@@ -2007,27 +2007,27 @@ static gchar* gala_value_dbus_collect_value (GValue* value, guint n_collect_valu
 static gchar* gala_value_dbus_lcopy_value (const GValue* value, guint n_collect_values, GTypeCValue* collect_values, guint collect_flags) {
 	GalaDBus** object_p;
 	object_p = collect_values[0].v_pointer;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (!object_p) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		return g_strdup_printf ("value location for `%s' passed as NULL", G_VALUE_TYPE_NAME (value));
 #line 2015 "DBus.c"
 	}
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (!value->data[0].v_pointer) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		*object_p = NULL;
 #line 2021 "DBus.c"
 	} else if (collect_flags & G_VALUE_NOCOPY_CONTENTS) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		*object_p = value->data[0].v_pointer;
 #line 2025 "DBus.c"
 	} else {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		*object_p = gala_dbus_ref (value->data[0].v_pointer);
 #line 2029 "DBus.c"
 	}
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return NULL;
 #line 2033 "DBus.c"
 }
@@ -2035,22 +2035,22 @@ static gchar* gala_value_dbus_lcopy_value (const GValue* value, guint n_collect_
 
 GParamSpec* gala_param_spec_dbus (const gchar* name, const gchar* nick, const gchar* blurb, GType object_type, GParamFlags flags) {
 	GalaParamSpecDBus* spec;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_return_val_if_fail (g_type_is_a (object_type, GALA_TYPE_DBUS), NULL);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	spec = g_param_spec_internal (G_TYPE_PARAM_OBJECT, name, nick, blurb, flags);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	G_PARAM_SPEC (spec)->value_type = object_type;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return G_PARAM_SPEC (spec);
 #line 2047 "DBus.c"
 }
 
 
 gpointer gala_value_get_dbus (const GValue* value) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_return_val_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_DBUS), NULL);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return value->data[0].v_pointer;
 #line 2056 "DBus.c"
 }
@@ -2058,29 +2058,29 @@ gpointer gala_value_get_dbus (const GValue* value) {
 
 void gala_value_set_dbus (GValue* value, gpointer v_object) {
 	GalaDBus* old;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_return_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_DBUS));
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	old = value->data[0].v_pointer;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (v_object) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_return_if_fail (G_TYPE_CHECK_INSTANCE_TYPE (v_object, GALA_TYPE_DBUS));
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_return_if_fail (g_value_type_compatible (G_TYPE_FROM_INSTANCE (v_object), G_VALUE_TYPE (value)));
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		value->data[0].v_pointer = v_object;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		gala_dbus_ref (value->data[0].v_pointer);
 #line 2076 "DBus.c"
 	} else {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		value->data[0].v_pointer = NULL;
 #line 2080 "DBus.c"
 	}
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (old) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		gala_dbus_unref (old);
 #line 2086 "DBus.c"
 	}
@@ -2089,27 +2089,27 @@ void gala_value_set_dbus (GValue* value, gpointer v_object) {
 
 void gala_value_take_dbus (GValue* value, gpointer v_object) {
 	GalaDBus* old;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_return_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_DBUS));
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	old = value->data[0].v_pointer;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (v_object) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_return_if_fail (G_TYPE_CHECK_INSTANCE_TYPE (v_object, GALA_TYPE_DBUS));
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_return_if_fail (g_value_type_compatible (G_TYPE_FROM_INSTANCE (v_object), G_VALUE_TYPE (value)));
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		value->data[0].v_pointer = v_object;
 #line 2105 "DBus.c"
 	} else {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		value->data[0].v_pointer = NULL;
 #line 2109 "DBus.c"
 	}
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (old) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		gala_dbus_unref (old);
 #line 2115 "DBus.c"
 	}
@@ -2117,9 +2117,9 @@ void gala_value_take_dbus (GValue* value, gpointer v_object) {
 
 
 static void gala_dbus_class_init (GalaDBusClass * klass) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	gala_dbus_parent_class = g_type_class_peek_parent (klass);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	((GalaDBusClass *) klass)->finalize = gala_dbus_finalize;
 #line 2125 "DBus.c"
 	/**
@@ -2128,14 +2128,14 @@ static void gala_dbus_class_init (GalaDBusClass * klass) {
 	 * that this signal will be emitted only once per group of changes as often
 	 * done by GUIs. The change may not be visible to the user.
 	 */
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_signal_new ("background_changed", GALA_TYPE_DBUS, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 #line 2134 "DBus.c"
 }
 
 
 static void gala_dbus_instance_init (GalaDBus * self) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	self->ref_count = 1;
 #line 2141 "DBus.c"
 }
@@ -2143,9 +2143,9 @@ static void gala_dbus_instance_init (GalaDBus * self) {
 
 static void gala_dbus_finalize (GalaDBus* obj) {
 	GalaDBus * self;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_DBUS, GalaDBus);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_signal_handlers_destroy (self);
 #line 2151 "DBus.c"
 }
@@ -2169,9 +2169,9 @@ GType gala_dbus_get_type (void) {
 gpointer gala_dbus_ref (gpointer instance) {
 	GalaDBus* self;
 	self = instance;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	g_atomic_int_inc (&self->ref_count);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	return instance;
 #line 2177 "DBus.c"
 }
@@ -2180,11 +2180,11 @@ gpointer gala_dbus_ref (gpointer instance) {
 void gala_dbus_unref (gpointer instance) {
 	GalaDBus* self;
 	self = instance;
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 	if (g_atomic_int_dec_and_test (&self->ref_count)) {
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		GALA_DBUS_GET_CLASS (self)->finalize (self);
-#line 21 "/home/nick/work/gala/src/DBus.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/DBus.vala"
 		g_type_free_instance ((GTypeInstance *) self);
 #line 2190 "DBus.c"
 	}

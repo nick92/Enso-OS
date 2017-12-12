@@ -337,20 +337,20 @@ GType gala_plugins_notify_notification_closed_reason_get_type (void) {
 
 
 guint32 gala_plugins_notify_dbus_get_connection_unix_process_id (GalaPluginsNotifyDBus* self, const gchar* name, GError** error) {
-#line 44 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (self != NULL, 0U);
-#line 44 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return GALA_PLUGINS_NOTIFY_DBUS_GET_INTERFACE (self)->get_connection_unix_process_id (self, name, error);
 #line 345 "NotifyServer.c"
 }
 
 
 static void gala_plugins_notify_dbus_base_init (GalaPluginsNotifyDBusIface * iface) {
-#line 41 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static gboolean initialized = FALSE;
-#line 41 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (!initialized) {
-#line 41 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		initialized = TRUE;
 #line 356 "NotifyServer.c"
 	}
@@ -515,20 +515,20 @@ static void _gala_plugins_notify_dbus_unregister_object (gpointer user_data) {
 GalaPluginsNotifyNotifyServer* gala_plugins_notify_notify_server_construct (GType object_type, GalaPluginsNotifyNotificationStack* stack) {
 	GalaPluginsNotifyNotifyServer * self = NULL;
 	GalaPluginsNotifyNotificationStack* _tmp0_ = NULL;
-#line 73 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (stack != NULL, NULL);
-#line 75 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = stack;
-#line 75 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self = (GalaPluginsNotifyNotifyServer*) g_object_new (object_type, "stack", _tmp0_, NULL);
-#line 73 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return self;
 #line 527 "NotifyServer.c"
 }
 
 
 GalaPluginsNotifyNotifyServer* gala_plugins_notify_notify_server_new (GalaPluginsNotifyNotificationStack* stack) {
-#line 73 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return gala_plugins_notify_notify_server_construct (GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SERVER, stack);
 #line 534 "NotifyServer.c"
 }
@@ -545,47 +545,47 @@ gchar** gala_plugins_notify_notify_server_get_capabilities (GalaPluginsNotifyNot
 	gchar** _tmp6_ = NULL;
 	gchar** _tmp7_ = NULL;
 	gint _tmp7__length1 = 0;
-#line 100 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = g_strdup ("body");
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = g_strdup ("body-markup");
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp2_ = g_strdup ("sound");
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = g_strdup ("actions");
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp4_ = g_strdup (GALA_PLUGINS_NOTIFY_X_CANONICAL_PRIVATE_SYNCHRONOUS);
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp5_ = g_strdup (GALA_PLUGINS_NOTIFY_X_CANONICAL_PRIVATE_ICON_ONLY);
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_ = g_new0 (gchar*, 6 + 1);
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_[0] = _tmp0_;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_[1] = _tmp1_;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_[2] = _tmp2_;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_[3] = _tmp3_;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_[4] = _tmp4_;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_[5] = _tmp5_;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp7_ = _tmp6_;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp7__length1 = 6;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (result_length1) {
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		*result_length1 = _tmp7__length1;
 #line 585 "NotifyServer.c"
 	}
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = _tmp7_;
-#line 102 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 591 "NotifyServer.c"
 }
@@ -600,69 +600,69 @@ void gala_plugins_notify_notify_server_get_server_information (GalaPluginsNotify
 	gchar* _tmp1_ = NULL;
 	gchar* _tmp2_ = NULL;
 	gchar* _tmp3_ = NULL;
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (self != NULL);
-#line 119 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = g_strdup ("pantheon-notify");
-#line 119 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (_vala_name);
-#line 119 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_vala_name = _tmp0_;
-#line 120 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = g_strdup ("elementaryOS");
-#line 120 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (_vala_vendor);
-#line 120 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_vala_vendor = _tmp1_;
-#line 121 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp2_ = g_strdup ("0.1");
-#line 121 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (_vala_version);
-#line 121 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_vala_version = _tmp2_;
-#line 122 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = g_strdup ("1.2");
-#line 122 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (_vala_spec_version);
-#line 122 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_vala_spec_version = _tmp3_;
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (name) {
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		*name = _vala_name;
 #line 634 "NotifyServer.c"
 	} else {
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (_vala_name);
 #line 638 "NotifyServer.c"
 	}
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (vendor) {
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		*vendor = _vala_vendor;
 #line 644 "NotifyServer.c"
 	} else {
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (_vala_vendor);
 #line 648 "NotifyServer.c"
 	}
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (version) {
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		*version = _vala_version;
 #line 654 "NotifyServer.c"
 	} else {
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (_vala_version);
 #line 658 "NotifyServer.c"
 	}
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (spec_version) {
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		*spec_version = _vala_spec_version;
 #line 664 "NotifyServer.c"
 	} else {
-#line 116 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (_vala_spec_version);
 #line 668 "NotifyServer.c"
 	}
@@ -679,23 +679,23 @@ void gala_plugins_notify_notify_server_close_notification (GalaPluginsNotifyNoti
 	GList* _tmp1_ = NULL;
 	GError* _tmp10_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 130 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (self != NULL);
-#line 132 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = self->priv->_stack;
-#line 132 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = clutter_actor_get_children ((ClutterActor*) _tmp0_);
 #line 689 "NotifyServer.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 132 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		child_collection = _tmp1_;
-#line 132 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 697 "NotifyServer.c"
 			ClutterActor* child = NULL;
-#line 132 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			child = (ClutterActor*) child_it->data;
 #line 701 "NotifyServer.c"
 			{
@@ -708,62 +708,62 @@ void gala_plugins_notify_notify_server_close_notification (GalaPluginsNotifyNoti
 				GalaPluginsNotifyNotification* _tmp7_ = NULL;
 				guint32 _tmp8_ = 0U;
 				GalaPluginsNotifyNotification* _tmp9_ = NULL;
-#line 133 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp2_ = child;
-#line 133 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				notification = G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, GALA_PLUGINS_NOTIFY_TYPE_NOTIFICATION, GalaPluginsNotifyNotification);
-#line 134 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp3_ = notification;
-#line 134 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp4_ = gala_plugins_notify_notification_get_id (_tmp3_);
-#line 134 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp5_ = _tmp4_;
-#line 134 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp6_ = id;
-#line 134 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp5_ != _tmp6_) {
-#line 135 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					continue;
 #line 728 "NotifyServer.c"
 				}
-#line 137 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp7_ = notification;
-#line 137 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp8_ = id;
-#line 137 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				gala_plugins_notify_notify_server_notification_closed_callback (self, _tmp7_, _tmp8_, (guint32) GALA_PLUGINS_NOTIFY_NOTIFICATION_CLOSED_REASON_CLOSE_NOTIFICATION_CALL);
-#line 139 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp9_ = notification;
-#line 139 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				gala_plugins_notify_notification_close (_tmp9_);
-#line 141 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_list_free0 (child_collection);
-#line 141 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				return;
 #line 744 "NotifyServer.c"
 			}
 		}
-#line 132 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_list_free0 (child_collection);
 #line 749 "NotifyServer.c"
 	}
-#line 146 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp10_ = g_error_new_literal (G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "");
-#line 146 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_inner_error_ = _tmp10_;
-#line 146 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_inner_error_->domain == G_DBUS_ERROR) {
-#line 146 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_propagate_error (error, _inner_error_);
-#line 146 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return;
 #line 761 "NotifyServer.c"
 	} else {
-#line 146 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 146 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_clear_error (&_inner_error_);
-#line 146 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return;
 #line 769 "NotifyServer.c"
 	}
@@ -891,14 +891,14 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 
 
 static void _gala_plugins_notify_notify_server_notification_action_invoked_callback_gala_plugins_notify_notification_action_invoked (GalaPluginsNotifyNotification* _sender, guint32 id, const gchar* action, gpointer self) {
-#line 291 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gala_plugins_notify_notify_server_notification_action_invoked_callback ((GalaPluginsNotifyNotifyServer*) self, _sender, id, action);
 #line 897 "NotifyServer.c"
 }
 
 
 static void _gala_plugins_notify_notify_server_notification_closed_callback_gala_plugins_notify_notification_closed (GalaPluginsNotifyNotification* _sender, guint32 id, guint32 reason, gpointer self) {
-#line 292 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gala_plugins_notify_notify_server_notification_closed_callback ((GalaPluginsNotifyNotifyServer*) self, _sender, id, reason);
 #line 904 "NotifyServer.c"
 }
@@ -952,53 +952,53 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 	GList* _tmp96_ = NULL;
 	gboolean _tmp133_ = FALSE;
 	GError * _inner_error_ = NULL;
-#line 149 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (self != NULL, 0U);
-#line 149 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (app_name != NULL, 0U);
-#line 149 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (app_icon != NULL, 0U);
-#line 149 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (summary != NULL, 0U);
-#line 149 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (body != NULL, 0U);
-#line 149 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (hints != NULL, 0U);
-#line 149 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (sender != NULL, 0U);
-#line 152 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = NULL;
-#line 154 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	app_info = NULL;
-#line 156 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = hints;
-#line 156 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp2_ = g_hash_table_lookup (_tmp1_, "desktop-entry");
-#line 156 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = (GVariant*) _tmp2_;
-#line 156 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = variant;
-#line 156 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp3_ != NULL) {
 #line 984 "NotifyServer.c"
 		GVariant* _tmp4_ = NULL;
 		const GVariantType* _tmp5_ = NULL;
 		gboolean _tmp6_ = FALSE;
-#line 157 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp4_ = variant;
-#line 157 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp5_ = G_VARIANT_TYPE_STRING;
-#line 157 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp6_ = g_variant_is_of_type (_tmp4_, _tmp5_);
-#line 157 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp0_ = _tmp6_;
 #line 996 "NotifyServer.c"
 	} else {
-#line 156 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp0_ = FALSE;
 #line 1000 "NotifyServer.c"
 	}
-#line 156 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp0_) {
 #line 1004 "NotifyServer.c"
 		gchar* desktop_id = NULL;
@@ -1009,237 +1009,237 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 		gboolean _tmp11_ = FALSE;
 		const gchar* _tmp14_ = NULL;
 		GDesktopAppInfo* _tmp15_ = NULL;
-#line 158 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp7_ = variant;
-#line 158 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp8_ = g_variant_get_string (_tmp7_, NULL);
-#line 158 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp9_ = g_strdup (_tmp8_);
-#line 158 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		desktop_id = _tmp9_;
-#line 159 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp10_ = desktop_id;
-#line 159 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp11_ = g_str_has_suffix (_tmp10_, ".desktop");
-#line 159 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (!_tmp11_) {
 #line 1027 "NotifyServer.c"
 			const gchar* _tmp12_ = NULL;
 			gchar* _tmp13_ = NULL;
-#line 160 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp12_ = desktop_id;
-#line 160 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp13_ = g_strconcat (_tmp12_, ".desktop", NULL);
-#line 160 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (desktop_id);
-#line 160 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			desktop_id = _tmp13_;
 #line 1038 "NotifyServer.c"
 		}
-#line 162 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp14_ = desktop_id;
-#line 162 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp15_ = g_desktop_app_info_new (_tmp14_);
-#line 162 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (app_info);
-#line 162 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		app_info = (GAppInfo*) _tmp15_;
-#line 156 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (desktop_id);
 #line 1050 "NotifyServer.c"
 	} else {
 		const gchar* _tmp16_ = NULL;
 		GAppInfo* _tmp17_ = NULL;
-#line 164 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp16_ = app_name;
-#line 164 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp17_ = gala_plugins_notify_notify_server_get_appinfo_from_app_name (self, _tmp16_);
-#line 164 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (app_info);
-#line 164 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		app_info = _tmp17_;
 #line 1062 "NotifyServer.c"
 	}
-#line 168 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp18_ = app_icon;
-#line 168 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp19_ = g_strdup (_tmp18_);
-#line 168 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	icon = _tmp19_;
-#line 169 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp21_ = app_icon;
-#line 169 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (g_strcmp0 (_tmp21_, "") == 0) {
 #line 1074 "NotifyServer.c"
 		GAppInfo* _tmp22_ = NULL;
-#line 169 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp22_ = app_info;
-#line 169 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp20_ = _tmp22_ != NULL;
 #line 1080 "NotifyServer.c"
 	} else {
-#line 169 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp20_ = FALSE;
 #line 1084 "NotifyServer.c"
 	}
-#line 169 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp20_) {
 #line 1088 "NotifyServer.c"
 		GAppInfo* _tmp23_ = NULL;
 		GIcon* _tmp24_ = NULL;
 		gchar* _tmp25_ = NULL;
-#line 170 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp23_ = app_info;
-#line 170 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp24_ = g_app_info_get_icon (_tmp23_);
-#line 170 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp25_ = g_icon_to_string (_tmp24_);
-#line 170 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (icon);
-#line 170 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		icon = _tmp25_;
 #line 1102 "NotifyServer.c"
 	}
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp27_ = replaces_id;
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp27_ != ((guint32) 0)) {
 #line 1108 "NotifyServer.c"
 		guint32 _tmp28_ = 0U;
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp28_ = replaces_id;
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp26_ = _tmp28_;
 #line 1114 "NotifyServer.c"
 	} else {
 		guint32 _tmp29_ = 0U;
 		guint32 _tmp30_ = 0U;
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp29_ = self->priv->id_counter;
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		self->priv->id_counter = _tmp29_ + 1;
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp30_ = self->priv->id_counter;
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp26_ = _tmp30_;
 #line 1126 "NotifyServer.c"
 	}
-#line 172 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	id = _tmp26_;
-#line 173 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp31_ = app_name;
-#line 173 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp32_ = icon;
-#line 173 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp33_ = hints;
-#line 173 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp34_ = gala_plugins_notify_notify_server_get_pixbuf (_tmp31_, _tmp32_, _tmp33_);
-#line 173 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	pixbuf = _tmp34_;
-#line 174 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp36_ = expire_timeout;
-#line 174 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (((guint32) _tmp36_) == G_MAXUINT32) {
-#line 174 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp35_ = GALA_PLUGINS_NOTIFY_NOTIFY_SERVER_DEFAULT_TMEOUT;
 #line 1146 "NotifyServer.c"
 	} else {
 		gint32 _tmp37_ = 0;
-#line 174 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp37_ = expire_timeout;
-#line 174 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp35_ = (gint) _tmp37_;
 #line 1153 "NotifyServer.c"
 	}
-#line 174 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	timeout = _tmp35_;
-#line 176 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	urgency = GALA_PLUGINS_NOTIFY_NOTIFICATION_URGENCY_NORMAL;
-#line 177 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp38_ = hints;
-#line 177 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp39_ = g_hash_table_lookup (_tmp38_, "urgency");
-#line 177 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = (GVariant*) _tmp39_;
-#line 177 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp40_ = variant;
-#line 177 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp40_ != NULL) {
 #line 1169 "NotifyServer.c"
 		GVariant* _tmp41_ = NULL;
 		guint8 _tmp42_ = 0U;
-#line 178 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp41_ = variant;
-#line 178 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp42_ = g_variant_get_byte (_tmp41_);
-#line 178 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		urgency = (GalaPluginsNotifyNotificationUrgency) _tmp42_;
 #line 1178 "NotifyServer.c"
 	}
-#line 180 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp43_ = hints;
-#line 180 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp44_ = g_hash_table_contains (_tmp43_, GALA_PLUGINS_NOTIFY_X_CANONICAL_PRIVATE_ICON_ONLY);
-#line 180 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	icon_only = _tmp44_;
-#line 181 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp45_ = hints;
-#line 181 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp46_ = g_hash_table_contains (_tmp45_, GALA_PLUGINS_NOTIFY_X_CANONICAL_PRIVATE_SYNCHRONOUS);
-#line 181 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	confirmation = _tmp46_;
-#line 182 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp48_ = confirmation;
-#line 182 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp48_) {
 #line 1196 "NotifyServer.c"
 		GHashTable* _tmp49_ = NULL;
 		gboolean _tmp50_ = FALSE;
-#line 182 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp49_ = hints;
-#line 182 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp50_ = g_hash_table_contains (_tmp49_, "value");
-#line 182 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp47_ = _tmp50_;
 #line 1205 "NotifyServer.c"
 	} else {
-#line 182 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp47_ = FALSE;
 #line 1209 "NotifyServer.c"
 	}
-#line 182 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	progress = _tmp47_;
-#line 184 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp51_ = gala_plugins_notify_notify_settings_get_default ();
-#line 184 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	notify_settings = _tmp51_;
-#line 187 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	allow_bubble = TRUE;
-#line 188 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 188 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	allow_sound = TRUE;
-#line 190 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp52_ = confirmation;
-#line 190 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (!_tmp52_) {
 #line 1225 "NotifyServer.c"
 		GalaPluginsNotifyNotifySettings* _tmp53_ = NULL;
 		gboolean _tmp54_ = FALSE;
 		gboolean _tmp55_ = FALSE;
-#line 191 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp53_ = notify_settings;
-#line 191 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp54_ = gala_plugins_notify_notify_settings_get_do_not_disturb (_tmp53_);
-#line 191 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp55_ = _tmp54_;
-#line 191 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (_tmp55_) {
 #line 1237 "NotifyServer.c"
 			gboolean _tmp56_ = FALSE;
-#line 192 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			allow_sound = FALSE;
-#line 192 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp56_ = allow_sound;
-#line 192 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			allow_bubble = _tmp56_;
 #line 1245 "NotifyServer.c"
 		} else {
@@ -1254,87 +1254,87 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 			gpointer _tmp69_ = NULL;
 			GSettings* _tmp70_ = NULL;
 			GSettings* _tmp82_ = NULL;
-#line 194 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp57_ = g_strdup ("");
-#line 194 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			app_id = _tmp57_;
-#line 195 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			has_notifications_key = FALSE;
-#line 197 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp58_ = app_info;
-#line 197 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (_tmp58_ != NULL) {
 #line 1268 "NotifyServer.c"
 				GAppInfo* _tmp59_ = NULL;
 				const gchar* _tmp60_ = NULL;
 				gchar* _tmp61_ = NULL;
 				GAppInfo* _tmp62_ = NULL;
-#line 198 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp59_ = app_info;
-#line 198 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp60_ = g_app_info_get_id (_tmp59_);
-#line 198 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp61_ = string_replace (_tmp60_, ".desktop", "");
-#line 198 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_free0 (app_id);
-#line 198 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				app_id = _tmp61_;
-#line 199 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp62_ = app_info;
-#line 199 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (G_TYPE_CHECK_INSTANCE_TYPE (_tmp62_, G_TYPE_DESKTOP_APP_INFO)) {
 #line 1287 "NotifyServer.c"
 					GAppInfo* _tmp63_ = NULL;
 					gboolean _tmp64_ = FALSE;
-#line 200 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp63_ = app_info;
-#line 200 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp64_ = g_desktop_app_info_get_boolean (G_TYPE_CHECK_INSTANCE_CAST (_tmp63_, G_TYPE_DESKTOP_APP_INFO, GDesktopAppInfo), "X-GNOME-UsesNotifications");
-#line 200 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					has_notifications_key = _tmp64_;
 #line 1296 "NotifyServer.c"
 				}
 			}
-#line 203 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp65_ = has_notifications_key;
-#line 203 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (!_tmp65_) {
 #line 1303 "NotifyServer.c"
 				gchar* _tmp66_ = NULL;
-#line 204 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp66_ = g_strdup (GALA_PLUGINS_NOTIFY_NOTIFY_SERVER_FALLBACK_APP_ID);
-#line 204 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_free0 (app_id);
-#line 204 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				app_id = _tmp66_;
 #line 1311 "NotifyServer.c"
 			}
-#line 206 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp67_ = self->priv->app_settings_cache;
-#line 206 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp68_ = app_id;
-#line 206 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp69_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp67_, _tmp68_);
-#line 206 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			app_settings = (GSettings*) _tmp69_;
-#line 207 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp70_ = app_settings;
-#line 207 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (_tmp70_ == NULL) {
 #line 1325 "NotifyServer.c"
 				GSettingsSchema* schema = NULL;
 				GSettingsSchemaSource* _tmp71_ = NULL;
 				GSettingsSchema* _tmp72_ = NULL;
 				GSettingsSchema* _tmp73_ = NULL;
-#line 208 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp71_ = g_settings_schema_source_get_default ();
-#line 208 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp72_ = g_settings_schema_source_lookup (_tmp71_, "org.pantheon.desktop.gala.notifications.application", FALSE);
-#line 208 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				schema = _tmp72_;
-#line 209 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp73_ = schema;
-#line 209 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp73_ != NULL) {
 #line 1340 "NotifyServer.c"
 					GSettingsSchema* _tmp74_ = NULL;
@@ -1345,67 +1345,67 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 					GeeHashMap* _tmp79_ = NULL;
 					const gchar* _tmp80_ = NULL;
 					GSettings* _tmp81_ = NULL;
-#line 210 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp74_ = schema;
-#line 210 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp75_ = app_id;
-#line 210 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp76_ = g_strdup_printf ("/org/pantheon/desktop/gala/notifications/applications/%s/", _tmp75_);
-#line 210 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp77_ = _tmp76_;
-#line 210 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp78_ = g_settings_new_full (_tmp74_, NULL, _tmp77_);
-#line 210 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (app_settings);
-#line 210 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					app_settings = _tmp78_;
-#line 210 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_free0 (_tmp77_);
-#line 211 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp79_ = self->priv->app_settings_cache;
-#line 211 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp80_ = app_id;
-#line 211 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp81_ = app_settings;
-#line 211 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					gee_abstract_map_set ((GeeAbstractMap*) _tmp79_, _tmp80_, _tmp81_);
 #line 1373 "NotifyServer.c"
 				}
-#line 207 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_settings_schema_unref0 (schema);
 #line 1377 "NotifyServer.c"
 			}
-#line 215 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 215 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp82_ = app_settings;
-#line 215 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 215 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (_tmp82_ != NULL) {
 #line 1383 "NotifyServer.c"
 				GSettings* _tmp83_ = NULL;
 				gboolean _tmp84_ = FALSE;
 				GSettings* _tmp85_ = NULL;
 				gboolean _tmp86_ = FALSE;
-#line 216 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp83_ = app_settings;
-#line 216 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp84_ = g_settings_get_boolean (_tmp83_, "bubbles");
-#line 216 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				allow_bubble = _tmp84_;
-#line 217 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 217 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp85_ = app_settings;
-#line 217 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 217 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp86_ = g_settings_get_boolean (_tmp85_, "sounds");
-#line 217 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 217 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				allow_sound = _tmp86_;
 #line 1400 "NotifyServer.c"
 			}
-#line 191 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_object_unref0 (app_settings);
-#line 191 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (app_id);
 #line 1406 "NotifyServer.c"
 		}
 	}
-#line 237 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	pid = (guint32) 0;
 #line 1411 "NotifyServer.c"
 	{
@@ -1413,20 +1413,20 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 		GalaPluginsNotifyDBus* _tmp88_ = NULL;
 		const char* _tmp89_ = NULL;
 		guint32 _tmp90_ = 0U;
-#line 239 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp88_ = self->priv->bus_proxy;
-#line 239 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp89_ = sender;
-#line 239 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp90_ = gala_plugins_notify_dbus_get_connection_unix_process_id (_tmp88_, (const gchar*) _tmp89_, &_inner_error_);
-#line 239 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp87_ = _tmp90_;
-#line 239 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1427 "NotifyServer.c"
 			goto __catch7_g_error;
 		}
-#line 239 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		pid = _tmp87_;
 #line 1432 "NotifyServer.c"
 	}
@@ -1436,64 +1436,64 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 		GError* e = NULL;
 		GError* _tmp91_ = NULL;
 		const gchar* _tmp92_ = NULL;
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		e = _inner_error_;
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_inner_error_ = NULL;
-#line 240 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp91_ = e;
-#line 240 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp92_ = _tmp91_->message;
-#line 240 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_warning ("NotifyServer.vala:240: %s", _tmp92_);
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_error_free0 (e);
 #line 1452 "NotifyServer.c"
 	}
 	__finally7:
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (pixbuf);
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (icon);
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (app_info);
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_clear_error (&_inner_error_);
-#line 238 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return 0U;
 #line 1469 "NotifyServer.c"
 	}
-#line 242 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp93_ = allow_sound;
-#line 242 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp93_) {
 #line 1475 "NotifyServer.c"
 		GHashTable* _tmp94_ = NULL;
-#line 243 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 243 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp94_ = hints;
-#line 243 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 243 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		gala_plugins_notify_notify_server_handle_sounds (self, _tmp94_);
 #line 1481 "NotifyServer.c"
 	}
-#line 245 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp95_ = self->priv->_stack;
-#line 245 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp96_ = clutter_actor_get_children ((ClutterActor*) _tmp95_);
 #line 1487 "NotifyServer.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 245 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		child_collection = _tmp96_;
-#line 245 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 1495 "NotifyServer.c"
 			ClutterActor* child = NULL;
-#line 245 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			child = (ClutterActor*) child_it->data;
 #line 1499 "NotifyServer.c"
 			{
@@ -1511,43 +1511,43 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 				gboolean _tmp119_ = FALSE;
 				gboolean _tmp120_ = FALSE;
 				gboolean _tmp121_ = FALSE;
-#line 246 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp97_ = child;
-#line 246 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				notification = G_TYPE_CHECK_INSTANCE_CAST (_tmp97_, GALA_PLUGINS_NOTIFY_TYPE_NOTIFICATION, GalaPluginsNotifyNotification);
-#line 248 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp98_ = notification;
-#line 248 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp99_ = gala_plugins_notify_notification_get_being_destroyed (_tmp98_);
-#line 248 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp100_ = _tmp99_;
-#line 248 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp100_) {
-#line 249 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					continue;
 #line 1529 "NotifyServer.c"
 				}
-#line 253 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp101_ = notification;
-#line 253 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				confirmation_notification = G_TYPE_CHECK_INSTANCE_TYPE (_tmp101_, GALA_PLUGINS_NOTIFY_TYPE_CONFIRMATION_NOTIFICATION) ? ((GalaPluginsNotifyConfirmationNotification*) _tmp101_) : NULL;
-#line 254 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp103_ = confirmation;
-#line 254 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp103_) {
 #line 1539 "NotifyServer.c"
 					GalaPluginsNotifyConfirmationNotification* _tmp104_ = NULL;
-#line 255 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp104_ = confirmation_notification;
-#line 255 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp102_ = _tmp104_ != NULL;
 #line 1545 "NotifyServer.c"
 				} else {
-#line 254 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp102_ = FALSE;
 #line 1549 "NotifyServer.c"
 				}
-#line 254 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp102_) {
 #line 1553 "NotifyServer.c"
 					gint _tmp105_ = 0;
@@ -1560,107 +1560,107 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 					gconstpointer _tmp115_ = NULL;
 					const gchar* _tmp116_ = NULL;
 					gboolean _tmp117_ = FALSE;
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp106_ = progress;
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					if (_tmp106_) {
 #line 1568 "NotifyServer.c"
 						GHashTable* _tmp107_ = NULL;
 						gconstpointer _tmp108_ = NULL;
 						gint32 _tmp109_ = 0;
 						gint _tmp110_ = 0;
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp107_ = hints;
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp108_ = g_hash_table_lookup (_tmp107_, "value");
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp109_ = g_variant_get_int32 ((GVariant*) _tmp108_);
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp110_ = MAX ((gint) _tmp109_, 0);
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp105_ = _tmp110_;
 #line 1583 "NotifyServer.c"
 					} else {
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp105_ = -1;
 #line 1587 "NotifyServer.c"
 					}
-#line 260 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					progress_value = _tmp105_;
-#line 262 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp111_ = confirmation_notification;
-#line 262 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp112_ = pixbuf;
-#line 262 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp113_ = progress_value;
-#line 262 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp114_ = hints;
-#line 262 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp115_ = g_hash_table_lookup (_tmp114_, GALA_PLUGINS_NOTIFY_X_CANONICAL_PRIVATE_SYNCHRONOUS);
-#line 262 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp116_ = g_variant_get_string ((GVariant*) _tmp115_, NULL);
-#line 262 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp117_ = icon_only;
-#line 262 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					gala_plugins_notify_confirmation_notification_update (_tmp111_, _tmp112_, _tmp113_, _tmp116_, _tmp117_);
-#line 267 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					result = id;
-#line 267 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_list_free0 (child_collection);
-#line 267 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (pixbuf);
-#line 267 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_free0 (icon);
-#line 267 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (app_info);
-#line 267 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					return result;
 #line 1619 "NotifyServer.c"
 				}
-#line 270 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp118_ = notification;
-#line 270 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				normal_notification = G_TYPE_CHECK_INSTANCE_TYPE (_tmp118_, GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION) ? ((GalaPluginsNotifyNormalNotification*) _tmp118_) : NULL;
-#line 271 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp121_ = confirmation;
-#line 271 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (!_tmp121_) {
 #line 1629 "NotifyServer.c"
 					GalaPluginsNotifyNotification* _tmp122_ = NULL;
 					guint32 _tmp123_ = 0U;
 					guint32 _tmp124_ = 0U;
 					guint32 _tmp125_ = 0U;
-#line 272 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp122_ = notification;
-#line 272 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp123_ = gala_plugins_notify_notification_get_id (_tmp122_);
-#line 272 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp124_ = _tmp123_;
-#line 272 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp125_ = id;
-#line 272 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp120_ = _tmp124_ == _tmp125_;
 #line 1644 "NotifyServer.c"
 				} else {
-#line 271 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp120_ = FALSE;
 #line 1648 "NotifyServer.c"
 				}
-#line 271 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp120_) {
 #line 1652 "NotifyServer.c"
 					GalaPluginsNotifyNormalNotification* _tmp126_ = NULL;
-#line 273 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 273 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp126_ = normal_notification;
-#line 273 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 273 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp119_ = _tmp126_ != NULL;
 #line 1658 "NotifyServer.c"
 				} else {
-#line 271 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp119_ = FALSE;
 #line 1662 "NotifyServer.c"
 				}
-#line 271 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp119_) {
 #line 1666 "NotifyServer.c"
 					GalaPluginsNotifyNormalNotification* _tmp127_ = NULL;
@@ -1670,45 +1670,45 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 					gint _tmp131_ = 0;
 					gchar** _tmp132_ = NULL;
 					gint _tmp132__length1 = 0;
-#line 275 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp127_ = normal_notification;
-#line 275 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp128_ = summary;
-#line 275 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp129_ = body;
-#line 275 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp130_ = pixbuf;
-#line 275 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp131_ = timeout;
-#line 275 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp132_ = actions;
-#line 275 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp132__length1 = actions_length1;
-#line 275 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					gala_plugins_notify_normal_notification_update (_tmp127_, _tmp128_, _tmp129_, _tmp130_, (gint32) _tmp131_, _tmp132_, _tmp132__length1);
-#line 277 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					result = id;
-#line 277 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_list_free0 (child_collection);
-#line 277 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (pixbuf);
-#line 277 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_free0 (icon);
-#line 277 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (app_info);
-#line 277 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					return result;
 #line 1702 "NotifyServer.c"
 				}
 			}
 		}
-#line 245 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_list_free0 (child_collection);
 #line 1708 "NotifyServer.c"
 	}
-#line 281 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp133_ = allow_bubble;
-#line 281 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp133_) {
 #line 1714 "NotifyServer.c"
 		GalaPluginsNotifyNotification* notification = NULL;
@@ -1717,9 +1717,9 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 		GalaPluginsNotifyNotification* _tmp160_ = NULL;
 		GalaPluginsNotifyNotificationStack* _tmp161_ = NULL;
 		GalaPluginsNotifyNotification* _tmp162_ = NULL;
-#line 283 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp134_ = confirmation;
-#line 283 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (_tmp134_) {
 #line 1725 "NotifyServer.c"
 			gint32 _tmp135_ = 0;
@@ -1731,47 +1731,47 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 			gconstpointer _tmp144_ = NULL;
 			const gchar* _tmp145_ = NULL;
 			GalaPluginsNotifyConfirmationNotification* _tmp146_ = NULL;
-#line 285 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp136_ = progress;
-#line 285 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (_tmp136_) {
 #line 1739 "NotifyServer.c"
 				GHashTable* _tmp137_ = NULL;
 				gconstpointer _tmp138_ = NULL;
 				gint32 _tmp139_ = 0;
-#line 285 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp137_ = hints;
-#line 285 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp138_ = g_hash_table_lookup (_tmp137_, "value");
-#line 285 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp139_ = g_variant_get_int32 ((GVariant*) _tmp138_);
-#line 285 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp135_ = _tmp139_;
 #line 1751 "NotifyServer.c"
 			} else {
-#line 285 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp135_ = (gint32) -1;
 #line 1755 "NotifyServer.c"
 			}
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp140_ = id;
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp141_ = pixbuf;
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp142_ = icon_only;
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp143_ = hints;
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp144_ = g_hash_table_lookup (_tmp143_, GALA_PLUGINS_NOTIFY_X_CANONICAL_PRIVATE_SYNCHRONOUS);
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp145_ = g_variant_get_string ((GVariant*) _tmp144_, NULL);
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp146_ = gala_plugins_notify_confirmation_notification_new (_tmp140_, _tmp141_, _tmp142_, (gint) _tmp135_, _tmp145_);
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			g_object_ref_sink (_tmp146_);
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_object_unref0 (notification);
-#line 284 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			notification = (GalaPluginsNotifyNotification*) _tmp146_;
 #line 1777 "NotifyServer.c"
 		} else {
@@ -1788,74 +1788,74 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 			gchar** _tmp157_ = NULL;
 			gint _tmp157__length1 = 0;
 			GalaPluginsNotifyNormalNotification* _tmp158_ = NULL;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp147_ = self->priv->_stack;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp148_ = gala_plugins_notify_notification_stack_get_screen (_tmp147_);
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp149_ = _tmp148_;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp150_ = id;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp151_ = summary;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp152_ = body;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp153_ = pixbuf;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp154_ = urgency;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp155_ = timeout;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp156_ = pid;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp157_ = actions;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp157__length1 = actions_length1;
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp158_ = gala_plugins_notify_normal_notification_new (_tmp149_, _tmp150_, _tmp151_, _tmp152_, _tmp153_, _tmp154_, (gint32) _tmp155_, _tmp156_, _tmp157_, _tmp157__length1);
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			g_object_ref_sink (_tmp158_);
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_object_unref0 (notification);
-#line 288 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			notification = (GalaPluginsNotifyNotification*) _tmp158_;
 #line 1824 "NotifyServer.c"
 		}
-#line 291 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp159_ = notification;
-#line 291 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_signal_connect_object (_tmp159_, "action-invoked", (GCallback) _gala_plugins_notify_notify_server_notification_action_invoked_callback_gala_plugins_notify_notification_action_invoked, self, 0);
-#line 292 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp160_ = notification;
-#line 292 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_signal_connect_object (_tmp160_, "closed", (GCallback) _gala_plugins_notify_notify_server_notification_closed_callback_gala_plugins_notify_notification_closed, self, 0);
-#line 293 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp161_ = self->priv->_stack;
-#line 293 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp162_ = notification;
-#line 293 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		gala_plugins_notify_notification_stack_show_notification (_tmp161_, _tmp162_);
-#line 281 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (notification);
 #line 1842 "NotifyServer.c"
 	} else {
 		guint32 _tmp163_ = 0U;
-#line 295 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp163_ = id;
-#line 295 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_signal_emit_by_name (self, "notification-closed", _tmp163_, (guint32) GALA_PLUGINS_NOTIFY_NOTIFICATION_CLOSED_REASON_EXPIRED);
 #line 1849 "NotifyServer.c"
 	}
-#line 298 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = id;
-#line 298 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (pixbuf);
-#line 298 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (icon);
-#line 298 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (app_info);
-#line 298 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 1861 "NotifyServer.c"
 }
@@ -1863,18 +1863,18 @@ guint32 gala_plugins_notify_notify_server_notify (GalaPluginsNotifyNotifyServer*
 
 static GdkRGBA* _gdk_rgba_dup (GdkRGBA* self) {
 	GdkRGBA* dup;
-#line 304 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	dup = g_new0 (GdkRGBA, 1);
-#line 304 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	memcpy (dup, self, sizeof (GdkRGBA));
-#line 304 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return dup;
 #line 1873 "NotifyServer.c"
 }
 
 
 static gpointer __gdk_rgba_dup0 (gpointer self) {
-#line 304 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return self ? _gdk_rgba_dup (self) : NULL;
 #line 1880 "NotifyServer.c"
 }
@@ -1905,35 +1905,35 @@ static GdkRGBA* gala_plugins_notify_notify_server_get_icon_fg_color (void) {
 	GdkRGBA* _tmp22_ = NULL;
 	GdkRGBA* _tmp23_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 303 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 303 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = gala_plugins_notify_notify_server_icon_fg_color;
-#line 303 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 303 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp0_ != NULL) {
 #line 1913 "NotifyServer.c"
 		GdkRGBA* _tmp1_ = NULL;
 		GdkRGBA* _tmp2_ = NULL;
-#line 304 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp1_ = gala_plugins_notify_notify_server_icon_fg_color;
-#line 304 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp2_ = __gdk_rgba_dup0 (_tmp1_);
-#line 304 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		result = _tmp2_;
-#line 304 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return result;
 #line 1924 "NotifyServer.c"
 	}
-#line 306 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = gtk_css_provider_new ();
-#line 306 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	default_css = _tmp3_;
 #line 1930 "NotifyServer.c"
 	{
 		GtkCssProvider* _tmp4_ = NULL;
-#line 308 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp4_ = default_css;
-#line 308 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		gtk_css_provider_load_from_path (_tmp4_, PKGDATADIR "/gala.css", &_inner_error_);
-#line 308 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1939 "NotifyServer.c"
 			goto __catch8_g_error;
@@ -1945,107 +1945,107 @@ static GdkRGBA* gala_plugins_notify_notify_server_get_icon_fg_color (void) {
 		GError* e = NULL;
 		GError* _tmp5_ = NULL;
 		const gchar* _tmp6_ = NULL;
-#line 307 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		e = _inner_error_;
-#line 307 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_inner_error_ = NULL;
-#line 310 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp5_ = e;
-#line 310 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp6_ = _tmp5_->message;
-#line 310 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_warning ("NotifyServer.vala:310: Loading default styles failed: %s", _tmp6_);
-#line 307 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_error_free0 (e);
 #line 1961 "NotifyServer.c"
 	}
 	__finally8:
-#line 307 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 307 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (default_css);
-#line 307 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 307 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_clear_error (&_inner_error_);
-#line 307 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return NULL;
 #line 1974 "NotifyServer.c"
 	}
-#line 313 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp7_ = gtk_widget_path_new ();
-#line 313 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	style_path = _tmp7_;
-#line 314 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp8_ = style_path;
-#line 314 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_widget_path_append_type (_tmp8_, gtk_window_get_type ());
-#line 315 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 315 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp9_ = style_path;
-#line 315 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 315 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_widget_path_append_type (_tmp9_, gtk_event_box_get_type ());
-#line 316 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 316 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp10_ = style_path;
-#line 316 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 316 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_widget_path_iter_add_class (_tmp10_, 1, "gala-notification");
-#line 317 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp11_ = style_path;
-#line 317 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_widget_path_append_type (_tmp11_, gtk_label_get_type ());
-#line 319 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 319 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp12_ = gtk_style_context_new ();
-#line 319 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 319 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	label_style_context = _tmp12_;
-#line 320 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp13_ = label_style_context;
-#line 320 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp14_ = default_css;
-#line 320 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_style_context_add_provider (_tmp13_, (GtkStyleProvider*) _tmp14_, (guint) GTK_STYLE_PROVIDER_PRIORITY_FALLBACK);
-#line 321 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 321 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp15_ = label_style_context;
-#line 321 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 321 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp16_ = style_path;
-#line 321 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 321 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_style_context_set_path (_tmp15_, _tmp16_);
-#line 322 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 322 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp17_ = label_style_context;
-#line 322 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 322 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_style_context_add_class (_tmp17_, "label");
-#line 323 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 323 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp18_ = label_style_context;
-#line 323 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 323 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_style_context_set_state (_tmp18_, GTK_STATE_FLAG_NORMAL);
-#line 324 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp19_ = label_style_context;
-#line 324 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gtk_style_context_get_color (_tmp19_, GTK_STATE_FLAG_NORMAL, &_tmp20_);
-#line 324 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp21_ = __gdk_rgba_dup0 (&_tmp20_);
-#line 324 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (gala_plugins_notify_notify_server_icon_fg_color);
-#line 324 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gala_plugins_notify_notify_server_icon_fg_color = _tmp21_;
-#line 326 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp22_ = gala_plugins_notify_notify_server_icon_fg_color;
-#line 326 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp23_ = __gdk_rgba_dup0 (_tmp22_);
-#line 326 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = _tmp23_;
-#line 326 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (label_style_context);
-#line 326 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_gtk_widget_path_unref0 (style_path);
-#line 326 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (default_css);
-#line 326 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 2044 "NotifyServer.c"
 }
 
 
 static gpointer _g_variant_ref0 (gpointer self) {
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return self ? g_variant_ref (self) : NULL;
 #line 2051 "NotifyServer.c"
 }
@@ -2068,41 +2068,41 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 	GVariant* _tmp6_ = NULL;
 	GdkPixbuf* _tmp84_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 329 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 329 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (app_name != NULL, NULL);
-#line 329 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 329 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (app_icon != NULL, NULL);
-#line 329 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 329 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (hints != NULL, NULL);
-#line 339 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 339 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	pixbuf = NULL;
-#line 340 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = NULL;
-#line 341 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 341 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	size = GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE;
-#line 342 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 342 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	mask_offset = 4;
-#line 343 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 343 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = mask_offset;
-#line 343 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 343 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	mask_size_offset = _tmp0_ * 2;
-#line 344 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 344 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	has_mask = FALSE;
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = hints;
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp4_ = g_hash_table_lookup (_tmp3_, "image-data");
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp5_ = _g_variant_ref0 ((GVariant*) _tmp4_);
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_unref0 (variant);
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = _tmp5_;
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_ = variant;
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp6_ != NULL) {
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp2_ = TRUE;
 #line 2108 "NotifyServer.c"
 	} else {
@@ -2110,25 +2110,25 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 		gconstpointer _tmp8_ = NULL;
 		GVariant* _tmp9_ = NULL;
 		GVariant* _tmp10_ = NULL;
-#line 347 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp7_ = hints;
-#line 347 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp8_ = g_hash_table_lookup (_tmp7_, "image_data");
-#line 347 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp9_ = _g_variant_ref0 ((GVariant*) _tmp8_);
-#line 347 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_variant_unref0 (variant);
-#line 347 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		variant = _tmp9_;
-#line 347 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp10_ = variant;
-#line 347 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp2_ = _tmp10_ != NULL;
 #line 2128 "NotifyServer.c"
 	}
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp2_) {
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp1_ = TRUE;
 #line 2134 "NotifyServer.c"
 	} else {
@@ -2136,23 +2136,23 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 		gconstpointer _tmp12_ = NULL;
 		GVariant* _tmp13_ = NULL;
 		GVariant* _tmp14_ = NULL;
-#line 348 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 348 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp11_ = hints;
-#line 348 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 348 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp12_ = g_hash_table_lookup (_tmp11_, "icon_data");
-#line 348 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 348 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp13_ = _g_variant_ref0 ((GVariant*) _tmp12_);
-#line 348 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 348 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_variant_unref0 (variant);
-#line 348 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 348 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		variant = _tmp13_;
-#line 348 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 348 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp14_ = variant;
-#line 348 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 348 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp1_ = _tmp14_ != NULL;
 #line 2154 "NotifyServer.c"
 	}
-#line 346 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp1_) {
 #line 2158 "NotifyServer.c"
 		gint _tmp15_ = 0;
@@ -2160,23 +2160,23 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 		GVariant* _tmp17_ = NULL;
 		gint _tmp18_ = 0;
 		GdkPixbuf* _tmp19_ = NULL;
-#line 350 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 350 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		has_mask = TRUE;
-#line 351 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 351 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp15_ = size;
-#line 351 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 351 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp16_ = mask_size_offset;
-#line 351 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 351 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		size = _tmp15_ - _tmp16_;
-#line 353 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 353 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp17_ = variant;
-#line 353 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 353 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp18_ = size;
-#line 353 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 353 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp19_ = gala_plugins_notify_notify_server_load_from_variant_at_size (_tmp17_, _tmp18_);
-#line 353 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 353 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (pixbuf);
-#line 353 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 353 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		pixbuf = _tmp19_;
 #line 2182 "NotifyServer.c"
 	} else {
@@ -2185,21 +2185,21 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 		gconstpointer _tmp22_ = NULL;
 		GVariant* _tmp23_ = NULL;
 		GVariant* _tmp24_ = NULL;
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp21_ = hints;
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp22_ = g_hash_table_lookup (_tmp21_, "image-path");
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp23_ = _g_variant_ref0 ((GVariant*) _tmp22_);
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_variant_unref0 (variant);
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		variant = _tmp23_;
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp24_ = variant;
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (_tmp24_ != NULL) {
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp20_ = TRUE;
 #line 2205 "NotifyServer.c"
 		} else {
@@ -2207,63 +2207,63 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 			gconstpointer _tmp26_ = NULL;
 			GVariant* _tmp27_ = NULL;
 			GVariant* _tmp28_ = NULL;
-#line 356 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp25_ = hints;
-#line 356 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp26_ = g_hash_table_lookup (_tmp25_, "image_path");
-#line 356 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp27_ = _g_variant_ref0 ((GVariant*) _tmp26_);
-#line 356 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_variant_unref0 (variant);
-#line 356 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			variant = _tmp27_;
-#line 356 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp28_ = variant;
-#line 356 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp20_ = _tmp28_ != NULL;
 #line 2225 "NotifyServer.c"
 		}
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (_tmp20_) {
 #line 2229 "NotifyServer.c"
 			gchar* image_path = NULL;
 			GVariant* _tmp29_ = NULL;
 			const gchar* _tmp30_ = NULL;
 			gchar* _tmp31_ = NULL;
-#line 358 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 358 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp29_ = variant;
-#line 358 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 358 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp30_ = g_variant_get_string (_tmp29_, NULL);
-#line 358 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 358 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp31_ = g_strdup (_tmp30_);
-#line 358 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 358 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			image_path = _tmp31_;
 #line 2242 "NotifyServer.c"
 			{
 				gboolean _tmp32_ = FALSE;
 				const gchar* _tmp33_ = NULL;
 				gboolean _tmp34_ = FALSE;
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp33_ = image_path;
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp34_ = g_str_has_prefix (_tmp33_, "file://");
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp34_) {
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp32_ = TRUE;
 #line 2255 "NotifyServer.c"
 				} else {
 					const gchar* _tmp35_ = NULL;
 					gboolean _tmp36_ = FALSE;
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp35_ = image_path;
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp36_ = g_str_has_prefix (_tmp35_, "/");
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp32_ = _tmp36_;
 #line 2265 "NotifyServer.c"
 				}
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp32_) {
 #line 2269 "NotifyServer.c"
 					gint _tmp37_ = 0;
@@ -2280,56 +2280,56 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 					gint _tmp47_ = 0;
 					GdkPixbuf* _tmp48_ = NULL;
 					GdkPixbuf* _tmp49_ = NULL;
-#line 362 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 362 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					has_mask = TRUE;
-#line 363 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 363 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp37_ = size;
-#line 363 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 363 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp38_ = mask_size_offset;
-#line 363 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 363 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					size = _tmp37_ - _tmp38_;
-#line 365 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp39_ = image_path;
-#line 365 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp40_ = g_file_new_for_commandline_arg (_tmp39_);
-#line 365 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp41_ = _tmp40_;
-#line 365 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp42_ = g_file_get_path (_tmp41_);
-#line 365 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp43_ = _tmp42_;
-#line 365 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (_tmp41_);
-#line 365 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					file_path = _tmp43_;
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp45_ = file_path;
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp46_ = size;
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp47_ = size;
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp48_ = gdk_pixbuf_new_from_file_at_scale (_tmp45_, _tmp46_, _tmp47_, TRUE, &_inner_error_);
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp44_ = _tmp48_;
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_g_free0 (file_path);
 #line 2320 "NotifyServer.c"
 						goto __catch9_g_error;
 					}
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp49_ = _tmp44_;
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp44_ = NULL;
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (pixbuf);
-#line 366 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					pixbuf = _tmp49_;
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (_tmp44_);
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_free0 (file_path);
 #line 2335 "NotifyServer.c"
 				} else {
@@ -2339,30 +2339,30 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 					gint _tmp53_ = 0;
 					GdkPixbuf* _tmp54_ = NULL;
 					GdkPixbuf* _tmp55_ = NULL;
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp51_ = gtk_icon_theme_get_default ();
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp52_ = image_path;
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp53_ = size;
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp54_ = gtk_icon_theme_load_icon (_tmp51_, _tmp52_, _tmp53_, 0, &_inner_error_);
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp50_ = _tmp54_;
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 2355 "NotifyServer.c"
 						goto __catch9_g_error;
 					}
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp55_ = _tmp50_;
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp50_ = NULL;
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (pixbuf);
-#line 368 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 368 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					pixbuf = _tmp55_;
-#line 361 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (_tmp50_);
 #line 2368 "NotifyServer.c"
 				}
@@ -2373,45 +2373,45 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 				GError* e = NULL;
 				GError* _tmp56_ = NULL;
 				const gchar* _tmp57_ = NULL;
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				e = _inner_error_;
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_inner_error_ = NULL;
-#line 370 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 370 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp56_ = e;
-#line 370 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 370 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp57_ = _tmp56_->message;
-#line 370 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 370 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				g_warning ("NotifyServer.vala:370: %s", _tmp57_);
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_error_free0 (e);
 #line 2389 "NotifyServer.c"
 			}
 			__finally9:
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_free0 (image_path);
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_variant_unref0 (variant);
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_object_unref0 (pixbuf);
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				g_clear_error (&_inner_error_);
-#line 360 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				return NULL;
 #line 2406 "NotifyServer.c"
 			}
-#line 355 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (image_path);
 #line 2410 "NotifyServer.c"
 		} else {
 			const gchar* _tmp58_ = NULL;
-#line 372 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp58_ = app_icon;
-#line 372 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (g_strcmp0 (_tmp58_, "") != 0) {
 #line 2417 "NotifyServer.c"
 				{
@@ -2424,25 +2424,25 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 					gint _tmp63_ = 0;
 					GtkIconInfo* _tmp64_ = NULL;
 					GtkIconInfo* _tmp65_ = NULL;
-#line 375 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 375 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp59_ = app_icon;
-#line 375 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 375 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp60_ = (GThemedIcon*) g_themed_icon_new_with_default_fallbacks (_tmp59_);
-#line 375 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 375 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					themed = _tmp60_;
-#line 376 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 376 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp61_ = gtk_icon_theme_get_default ();
-#line 376 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 376 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp62_ = themed;
-#line 376 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 376 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp63_ = size;
-#line 376 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 376 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp64_ = gtk_icon_theme_lookup_by_gicon (_tmp61_, (GIcon*) _tmp62_, _tmp63_, 0);
-#line 376 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 376 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					info = _tmp64_;
-#line 377 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 377 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp65_ = info;
-#line 377 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 377 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					if (_tmp65_ != NULL) {
 #line 2448 "NotifyServer.c"
 						GdkPixbuf* _tmp66_ = NULL;
@@ -2457,75 +2457,75 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 						gint _tmp75_ = 0;
 						gint _tmp76_ = 0;
 						gint _tmp77_ = 0;
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp67_ = info;
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp68_ = gala_plugins_notify_notify_server_get_icon_fg_color ();
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp69_ = _tmp68_;
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp70_ = *_tmp69_;
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp71_ = gtk_icon_info_load_symbolic (_tmp67_, &_tmp70_, NULL, NULL, NULL, NULL, &_inner_error_);
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp72_ = _tmp71_;
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_g_free0 (_tmp69_);
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp66_ = _tmp72_;
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 							_gtk_icon_info_free0 (info);
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 							_g_object_unref0 (themed);
 #line 2483 "NotifyServer.c"
 							goto __catch10_g_error;
 						}
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp73_ = _tmp66_;
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp66_ = NULL;
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_g_object_unref0 (pixbuf);
-#line 378 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						pixbuf = _tmp73_;
-#line 380 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp74_ = pixbuf;
-#line 380 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp75_ = gdk_pixbuf_get_height (_tmp74_);
-#line 380 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp76_ = _tmp75_;
-#line 380 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_tmp77_ = size;
-#line 380 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						if (_tmp76_ != _tmp77_) {
 #line 2504 "NotifyServer.c"
 							GdkPixbuf* _tmp78_ = NULL;
 							gint _tmp79_ = 0;
 							gint _tmp80_ = 0;
 							GdkPixbuf* _tmp81_ = NULL;
-#line 381 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 							_tmp78_ = pixbuf;
-#line 381 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 							_tmp79_ = size;
-#line 381 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 							_tmp80_ = size;
-#line 381 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 							_tmp81_ = gdk_pixbuf_scale_simple (_tmp78_, _tmp79_, _tmp80_, GDK_INTERP_HYPER);
-#line 381 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 							_g_object_unref0 (pixbuf);
-#line 381 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 							pixbuf = _tmp81_;
 #line 2521 "NotifyServer.c"
 						}
-#line 377 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 377 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 						_g_object_unref0 (_tmp66_);
 #line 2525 "NotifyServer.c"
 					}
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_gtk_icon_info_free0 (info);
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (themed);
 #line 2531 "NotifyServer.c"
 				}
@@ -2535,41 +2535,41 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 					GError* e = NULL;
 					GError* _tmp82_ = NULL;
 					const gchar* _tmp83_ = NULL;
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					e = _inner_error_;
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_inner_error_ = NULL;
-#line 384 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp82_ = e;
-#line 384 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp83_ = _tmp82_->message;
-#line 384 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					g_warning ("NotifyServer.vala:384: %s", _tmp83_);
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_error_free0 (e);
 #line 2551 "NotifyServer.c"
 				}
 				__finally10:
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_variant_unref0 (variant);
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (pixbuf);
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					g_clear_error (&_inner_error_);
-#line 374 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					return NULL;
 #line 2566 "NotifyServer.c"
 				}
 			}
 		}
 	}
-#line 388 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 388 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp84_ = pixbuf;
-#line 388 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 388 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp84_ == NULL) {
 #line 2575 "NotifyServer.c"
 		{
@@ -2585,33 +2585,33 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 			gint _tmp92_ = 0;
 			GtkIconInfo* _tmp93_ = NULL;
 			GtkIconInfo* _tmp94_ = NULL;
-#line 391 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp85_ = app_name;
-#line 391 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp86_ = g_utf8_strdown (_tmp85_, (gssize) -1);
-#line 391 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp87_ = _tmp86_;
-#line 391 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp88_ = (GThemedIcon*) g_themed_icon_new (_tmp87_);
-#line 391 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp89_ = _tmp88_;
-#line 391 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (_tmp87_);
-#line 391 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			themed = _tmp89_;
-#line 392 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 392 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp90_ = gtk_icon_theme_get_default ();
-#line 392 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 392 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp91_ = themed;
-#line 392 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 392 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp92_ = size;
-#line 392 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 392 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp93_ = gtk_icon_theme_lookup_by_gicon (_tmp90_, (GIcon*) _tmp91_, _tmp92_, 0);
-#line 392 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 392 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			info = _tmp93_;
-#line 393 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 393 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp94_ = info;
-#line 393 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 393 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (_tmp94_ != NULL) {
 #line 2617 "NotifyServer.c"
 				GdkPixbuf* _tmp95_ = NULL;
@@ -2626,75 +2626,75 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 				gint _tmp104_ = 0;
 				gint _tmp105_ = 0;
 				gint _tmp106_ = 0;
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp96_ = info;
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp97_ = gala_plugins_notify_notify_server_get_icon_fg_color ();
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp98_ = _tmp97_;
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp99_ = *_tmp98_;
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp100_ = gtk_icon_info_load_symbolic (_tmp96_, &_tmp99_, NULL, NULL, NULL, NULL, &_inner_error_);
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp101_ = _tmp100_;
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_free0 (_tmp98_);
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp95_ = _tmp101_;
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_gtk_icon_info_free0 (info);
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (themed);
 #line 2652 "NotifyServer.c"
 					goto __catch11_g_error;
 				}
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp102_ = _tmp95_;
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp95_ = NULL;
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_object_unref0 (pixbuf);
-#line 394 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				pixbuf = _tmp102_;
-#line 396 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp103_ = pixbuf;
-#line 396 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp104_ = gdk_pixbuf_get_height (_tmp103_);
-#line 396 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp105_ = _tmp104_;
-#line 396 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp106_ = size;
-#line 396 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp105_ != _tmp106_) {
 #line 2673 "NotifyServer.c"
 					GdkPixbuf* _tmp107_ = NULL;
 					gint _tmp108_ = 0;
 					gint _tmp109_ = 0;
 					GdkPixbuf* _tmp110_ = NULL;
-#line 397 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp107_ = pixbuf;
-#line 397 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp108_ = size;
-#line 397 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp109_ = size;
-#line 397 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp110_ = gdk_pixbuf_scale_simple (_tmp107_, _tmp108_, _tmp109_, GDK_INTERP_HYPER);
-#line 397 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (pixbuf);
-#line 397 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					pixbuf = _tmp110_;
 #line 2690 "NotifyServer.c"
 				}
-#line 393 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 393 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_object_unref0 (_tmp95_);
 #line 2694 "NotifyServer.c"
 			}
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_gtk_icon_info_free0 (info);
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_object_unref0 (themed);
 #line 2700 "NotifyServer.c"
 		}
@@ -2702,9 +2702,9 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 		__catch11_g_error:
 		{
 			GError* e = NULL;
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			e = _inner_error_;
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_inner_error_ = NULL;
 #line 2710 "NotifyServer.c"
 			{
@@ -2713,28 +2713,28 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 				gint _tmp113_ = 0;
 				GdkPixbuf* _tmp114_ = NULL;
 				GdkPixbuf* _tmp115_ = NULL;
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp112_ = gtk_icon_theme_get_default ();
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp113_ = size;
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp114_ = gtk_icon_theme_load_icon (_tmp112_, GALA_PLUGINS_NOTIFY_NOTIFY_SERVER_FALLBACK_ICON, _tmp113_, 0, &_inner_error_);
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp111_ = _tmp114_;
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 2727 "NotifyServer.c"
 					goto __catch12_g_error;
 				}
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp115_ = _tmp111_;
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp111_ = NULL;
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_object_unref0 (pixbuf);
-#line 402 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				pixbuf = _tmp115_;
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_object_unref0 (_tmp111_);
 #line 2740 "NotifyServer.c"
 			}
@@ -2744,63 +2744,63 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 				GError* e = NULL;
 				GError* _tmp116_ = NULL;
 				const gchar* _tmp117_ = NULL;
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				e = _inner_error_;
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_inner_error_ = NULL;
-#line 403 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 403 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp116_ = e;
-#line 403 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 403 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp117_ = _tmp116_->message;
-#line 403 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 403 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				g_warning ("NotifyServer.vala:403: %s", _tmp117_);
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_error_free0 (e);
 #line 2760 "NotifyServer.c"
 			}
 			__finally12:
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_error_free0 (e);
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_error_free0 (e);
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_variant_unref0 (variant);
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_object_unref0 (pixbuf);
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				g_clear_error (&_inner_error_);
-#line 401 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				return NULL;
 #line 2779 "NotifyServer.c"
 			}
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_error_free0 (e);
 #line 2783 "NotifyServer.c"
 		}
 		__finally11:
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_variant_unref0 (variant);
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_object_unref0 (pixbuf);
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			g_clear_error (&_inner_error_);
-#line 390 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 390 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			return NULL;
 #line 2798 "NotifyServer.c"
 		}
 	} else {
 		gboolean _tmp118_ = FALSE;
-#line 405 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp118_ = has_mask;
-#line 405 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (_tmp118_) {
 #line 2806 "NotifyServer.c"
 			gint mask_size = 0;
@@ -2835,67 +2835,67 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 			gint _tmp149_ = 0;
 			gint _tmp150_ = 0;
 			GdkPixbuf* _tmp151_ = NULL;
-#line 406 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			mask_size = GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE;
-#line 407 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 407 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp119_ = mask_offset;
-#line 407 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 407 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			offset_x = _tmp119_;
-#line 408 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 408 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp120_ = mask_offset;
-#line 408 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 408 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			offset_y = _tmp120_ + 1;
-#line 410 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 410 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp121_ = mask_size;
-#line 410 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 410 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp122_ = mask_size;
-#line 410 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 410 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp123_ = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, _tmp121_, _tmp122_);
-#line 410 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 410 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			surface = _tmp123_;
-#line 411 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 411 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp124_ = surface;
-#line 411 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 411 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp125_ = cairo_create (_tmp124_);
-#line 411 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 411 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			cr = _tmp125_;
-#line 413 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 413 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp126_ = cr;
-#line 413 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 413 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp127_ = offset_x;
-#line 413 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 413 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp128_ = offset_y;
-#line 413 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 413 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp129_ = size;
-#line 413 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 413 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp130_ = size;
-#line 413 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 413 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			granite_drawing_utilities_cairo_rounded_rectangle (_tmp126_, (gdouble) _tmp127_, (gdouble) _tmp128_, (gdouble) _tmp129_, (gdouble) _tmp130_, (gdouble) 4);
-#line 415 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp131_ = cr;
-#line 415 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			cairo_clip (_tmp131_);
-#line 417 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 417 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp132_ = cr;
-#line 417 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 417 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp133_ = pixbuf;
-#line 417 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 417 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp134_ = offset_x;
-#line 417 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 417 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp135_ = offset_y;
-#line 417 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 417 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			gdk_cairo_set_source_pixbuf (_tmp132_, _tmp133_, (gdouble) _tmp134_, (gdouble) _tmp135_);
-#line 418 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 418 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp136_ = cr;
-#line 418 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 418 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			cairo_paint (_tmp136_);
-#line 420 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp137_ = cr;
-#line 420 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			cairo_reset_clip (_tmp137_);
-#line 422 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 422 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp138_ = gala_plugins_notify_notify_server_image_mask_pixbuf;
-#line 422 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 422 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (_tmp138_ == NULL) {
 #line 2901 "NotifyServer.c"
 				{
@@ -2903,26 +2903,26 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 					gint _tmp140_ = 0;
 					GdkPixbuf* _tmp141_ = NULL;
 					GdkPixbuf* _tmp142_ = NULL;
-#line 424 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp140_ = mask_size;
-#line 424 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp141_ = gdk_pixbuf_new_from_file_at_scale (PKGDATADIR "/image-mask.svg", -1, _tmp140_, TRUE, &_inner_error_);
-#line 424 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp139_ = _tmp141_;
-#line 424 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 2915 "NotifyServer.c"
 						goto __catch13_g_error;
 					}
-#line 424 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp142_ = _tmp139_;
-#line 424 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp139_ = NULL;
-#line 424 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (gala_plugins_notify_notify_server_image_mask_pixbuf);
-#line 424 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					gala_plugins_notify_notify_server_image_mask_pixbuf = _tmp142_;
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (_tmp139_);
 #line 2928 "NotifyServer.c"
 				}
@@ -2932,74 +2932,74 @@ static GdkPixbuf* gala_plugins_notify_notify_server_get_pixbuf (const gchar* app
 					GError* e = NULL;
 					GError* _tmp143_ = NULL;
 					const gchar* _tmp144_ = NULL;
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					e = _inner_error_;
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_inner_error_ = NULL;
-#line 426 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp143_ = e;
-#line 426 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp144_ = _tmp143_->message;
-#line 426 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					g_warning ("NotifyServer.vala:426: %s", _tmp144_);
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_error_free0 (e);
 #line 2948 "NotifyServer.c"
 				}
 				__finally13:
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_cairo_destroy0 (cr);
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_cairo_surface_destroy0 (surface);
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_variant_unref0 (variant);
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_g_object_unref0 (pixbuf);
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					g_clear_error (&_inner_error_);
-#line 423 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					return NULL;
 #line 2967 "NotifyServer.c"
 				}
 			}
-#line 430 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 430 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp145_ = cr;
-#line 430 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 430 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp146_ = gala_plugins_notify_notify_server_image_mask_pixbuf;
-#line 430 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 430 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			gdk_cairo_set_source_pixbuf (_tmp145_, _tmp146_, (gdouble) 0, (gdouble) 0);
-#line 431 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 431 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp147_ = cr;
-#line 431 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 431 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			cairo_paint (_tmp147_);
-#line 433 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp148_ = surface;
-#line 433 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp149_ = mask_size;
-#line 433 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp150_ = mask_size;
-#line 433 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp151_ = gdk_pixbuf_get_from_surface (_tmp148_, 0, 0, _tmp149_, _tmp150_);
-#line 433 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_object_unref0 (pixbuf);
-#line 433 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			pixbuf = _tmp151_;
-#line 405 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_cairo_destroy0 (cr);
-#line 405 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_cairo_surface_destroy0 (surface);
 #line 2996 "NotifyServer.c"
 		}
 	}
-#line 436 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = pixbuf;
-#line 436 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_unref0 (variant);
-#line 436 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 3005 "NotifyServer.c"
 }
@@ -3040,83 +3040,83 @@ static GdkPixbuf* gala_plugins_notify_notify_server_load_from_variant_at_size (G
 	gint _tmp18_ = 0;
 	gint _tmp19_ = 0;
 	GdkPixbuf* _tmp20_ = NULL;
-#line 439 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 439 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (variant != NULL, NULL);
-#line 441 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = variant;
-#line 441 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = g_variant_type_new ("(iiibiiay)");
-#line 441 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp2_ = _tmp1_;
-#line 441 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = g_variant_is_of_type (_tmp0_, _tmp2_);
-#line 441 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp4_ = !_tmp3_;
-#line 441 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_type_free0 (_tmp2_);
-#line 441 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp4_) {
-#line 442 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 442 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_critical ("NotifyServer.vala:442: notify icon/image-data format invalid");
-#line 443 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 443 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		result = NULL;
-#line 443 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 443 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return result;
 #line 3066 "NotifyServer.c"
 	}
-#line 449 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 449 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp5_ = variant;
-#line 449 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 449 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_variant_get (_tmp5_, "(iiibiiay)", &width, &height, &rowstride, &has_alpha, &bits_per_sample, &n_channels, NULL, NULL);
-#line 452 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_ = variant;
-#line 452 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp7_ = g_variant_get_child_value (_tmp6_, (gsize) 6);
-#line 452 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	data = _tmp7_;
-#line 453 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp8_ = data;
-#line 453 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp9_ = g_variant_get_data (_tmp8_);
-#line 453 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	pixel_data = (guint8*) _tmp9_;
-#line 453 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	pixel_data_length1 = -1;
-#line 453 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_pixel_data_size_ = pixel_data_length1;
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp10_ = pixel_data;
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp10__length1 = pixel_data_length1;
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp11_ = has_alpha;
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp12_ = bits_per_sample;
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp13_ = width;
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp14_ = height;
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp15_ = rowstride;
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp16_ = gdk_pixbuf_new_from_data (_tmp10_, GDK_COLORSPACE_RGB, _tmp11_, _tmp12_, _tmp13_, _tmp14_, _tmp15_, (GdkPixbufDestroyNotify) NULL, NULL);
-#line 455 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	pixbuf = _tmp16_;
-#line 458 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp17_ = pixbuf;
-#line 458 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp18_ = size;
-#line 458 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp19_ = size;
-#line 458 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp20_ = gdk_pixbuf_scale_simple (_tmp17_, _tmp18_, _tmp19_, GDK_INTERP_BILINEAR);
-#line 458 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = _tmp20_;
-#line 458 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (pixbuf);
-#line 458 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_unref0 (data);
-#line 458 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 3122 "NotifyServer.c"
 }
@@ -3148,82 +3148,82 @@ static void gala_plugins_notify_notify_server_handle_sounds (GalaPluginsNotifyNo
 	GVariant* _tmp29_ = NULL;
 	gboolean _tmp33_ = FALSE;
 	gboolean _tmp44_ = FALSE;
-#line 461 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 461 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (self != NULL);
-#line 461 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 461 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (hints != NULL);
-#line 463 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 463 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = self->priv->ca_context;
-#line 463 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 463 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp0_ == NULL) {
-#line 464 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return;
 #line 3162 "NotifyServer.c"
 	}
-#line 466 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 466 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = NULL;
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp2_ = hints;
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = g_hash_table_lookup (_tmp2_, "suppress-sound");
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp4_ = _g_variant_ref0 ((GVariant*) _tmp3_);
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_unref0 (variant);
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = _tmp4_;
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp5_ = variant;
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp5_ != NULL) {
 #line 3180 "NotifyServer.c"
 		GVariant* _tmp6_ = NULL;
 		gboolean _tmp7_ = FALSE;
-#line 470 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp6_ = variant;
-#line 470 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp7_ = g_variant_get_boolean (_tmp6_);
-#line 470 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp1_ = _tmp7_;
 #line 3189 "NotifyServer.c"
 	} else {
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp1_ = FALSE;
 #line 3193 "NotifyServer.c"
 	}
-#line 469 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp1_) {
-#line 471 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 471 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_variant_unref0 (variant);
-#line 471 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 471 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return;
 #line 3201 "NotifyServer.c"
 	}
-#line 474 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 474 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	ca_proplist_create (&_tmp8_);
-#line 474 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 474 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_ca_proplist_destroy0 (props);
-#line 474 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 474 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	props = _tmp8_;
-#line 475 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 475 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp9_ = props;
-#line 475 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 475 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	ca_proplist_sets (_tmp9_, CA_PROP_CANBERRA_CACHE_CONTROL, "volatile");
-#line 477 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	play_sound = FALSE;
-#line 480 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp10_ = hints;
-#line 480 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp11_ = g_hash_table_lookup (_tmp10_, GALA_PLUGINS_NOTIFY_X_CANONICAL_PRIVATE_SYNCHRONOUS);
-#line 480 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp12_ = _g_variant_ref0 ((GVariant*) _tmp11_);
-#line 480 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_unref0 (variant);
-#line 480 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = _tmp12_;
-#line 480 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp13_ = variant;
-#line 480 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp13_ != NULL) {
 #line 3229 "NotifyServer.c"
 		gchar* confirmation_type = NULL;
@@ -3232,101 +3232,101 @@ static void gala_plugins_notify_notify_server_handle_sounds (GalaPluginsNotifyNo
 		gchar* _tmp16_ = NULL;
 		const gchar* _tmp17_ = NULL;
 		ca_proplist* _tmp18_ = NULL;
-#line 481 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp14_ = variant;
-#line 481 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp15_ = g_variant_get_string (_tmp14_, NULL);
-#line 481 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp16_ = g_strdup (_tmp15_);
-#line 481 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		confirmation_type = _tmp16_;
-#line 485 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 485 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp17_ = confirmation_type;
-#line 485 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 485 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (g_strcmp0 (_tmp17_, "indicator-sound") != 0) {
-#line 486 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (confirmation_type);
-#line 486 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_ca_proplist_destroy0 (props);
-#line 486 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_variant_unref0 (variant);
-#line 486 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			return;
 #line 3256 "NotifyServer.c"
 		}
-#line 488 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 488 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp18_ = props;
-#line 488 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 488 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		ca_proplist_sets (_tmp18_, CA_PROP_EVENT_ID, "audio-volume-change");
-#line 489 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		play_sound = TRUE;
-#line 480 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (confirmation_type);
 #line 3266 "NotifyServer.c"
 	}
-#line 492 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp19_ = hints;
-#line 492 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp20_ = g_hash_table_lookup (_tmp19_, "sound-name");
-#line 492 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp21_ = _g_variant_ref0 ((GVariant*) _tmp20_);
-#line 492 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_unref0 (variant);
-#line 492 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = _tmp21_;
-#line 492 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp22_ = variant;
-#line 492 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp22_ != NULL) {
 #line 3282 "NotifyServer.c"
 		ca_proplist* _tmp23_ = NULL;
 		GVariant* _tmp24_ = NULL;
 		const gchar* _tmp25_ = NULL;
-#line 493 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 493 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp23_ = props;
-#line 493 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 493 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp24_ = variant;
-#line 493 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 493 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp25_ = g_variant_get_string (_tmp24_, NULL);
-#line 493 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 493 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		ca_proplist_sets (_tmp23_, CA_PROP_EVENT_ID, _tmp25_);
-#line 494 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 494 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		play_sound = TRUE;
 #line 3296 "NotifyServer.c"
 	}
-#line 497 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp26_ = hints;
-#line 497 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp27_ = g_hash_table_lookup (_tmp26_, "sound-file");
-#line 497 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp28_ = _g_variant_ref0 ((GVariant*) _tmp27_);
-#line 497 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_unref0 (variant);
-#line 497 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	variant = _tmp28_;
-#line 497 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp29_ = variant;
-#line 497 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp29_ != NULL) {
 #line 3312 "NotifyServer.c"
 		ca_proplist* _tmp30_ = NULL;
 		GVariant* _tmp31_ = NULL;
 		const gchar* _tmp32_ = NULL;
-#line 498 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 498 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp30_ = props;
-#line 498 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 498 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp31_ = variant;
-#line 498 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 498 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp32_ = g_variant_get_string (_tmp31_, NULL);
-#line 498 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 498 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		ca_proplist_sets (_tmp30_, CA_PROP_MEDIA_FILENAME, _tmp32_);
-#line 499 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 499 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		play_sound = TRUE;
 #line 3326 "NotifyServer.c"
 	}
-#line 503 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 503 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp33_ = play_sound;
-#line 503 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 503 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (!_tmp33_) {
 #line 3332 "NotifyServer.c"
 		GHashTable* _tmp34_ = NULL;
@@ -3335,76 +3335,76 @@ static void gala_plugins_notify_notify_server_handle_sounds (GalaPluginsNotifyNo
 		const gchar* sound_name = NULL;
 		GVariant* _tmp37_ = NULL;
 		const gchar* _tmp41_ = NULL;
-#line 504 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp34_ = hints;
-#line 504 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp35_ = g_hash_table_lookup (_tmp34_, "category");
-#line 504 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp36_ = _g_variant_ref0 ((GVariant*) _tmp35_);
-#line 504 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_variant_unref0 (variant);
-#line 504 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		variant = _tmp36_;
-#line 505 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 505 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		sound_name = NULL;
-#line 507 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp37_ = variant;
-#line 507 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (_tmp37_ != NULL) {
 #line 3355 "NotifyServer.c"
 			GVariant* _tmp38_ = NULL;
 			const gchar* _tmp39_ = NULL;
 			const gchar* _tmp40_ = NULL;
-#line 508 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 508 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp38_ = variant;
-#line 508 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 508 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp39_ = g_variant_get_string (_tmp38_, NULL);
-#line 508 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 508 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp40_ = gala_plugins_notify_notify_server_category_to_sound (_tmp39_);
-#line 508 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 508 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			sound_name = _tmp40_;
 #line 3367 "NotifyServer.c"
 		} else {
-#line 510 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			sound_name = "dialog-information";
 #line 3371 "NotifyServer.c"
 		}
-#line 512 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp41_ = sound_name;
-#line 512 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (_tmp41_ != NULL) {
 #line 3377 "NotifyServer.c"
 			ca_proplist* _tmp42_ = NULL;
 			const gchar* _tmp43_ = NULL;
-#line 513 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp42_ = props;
-#line 513 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp43_ = sound_name;
-#line 513 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			ca_proplist_sets (_tmp42_, CA_PROP_EVENT_ID, _tmp43_);
-#line 514 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			play_sound = TRUE;
 #line 3388 "NotifyServer.c"
 		}
 	}
-#line 518 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 518 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp44_ = play_sound;
-#line 518 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 518 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp44_) {
 #line 3395 "NotifyServer.c"
 		ca_context* _tmp45_ = NULL;
 		ca_proplist* _tmp46_ = NULL;
-#line 519 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp45_ = self->priv->ca_context;
-#line 519 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp46_ = props;
-#line 519 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		ca_context_play_full (_tmp45_, (guint32) 0, _tmp46_, NULL, NULL);
 #line 3404 "NotifyServer.c"
 	}
-#line 461 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 461 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_ca_proplist_destroy0 (props);
-#line 461 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 461 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_variant_unref0 (variant);
 #line 3410 "NotifyServer.c"
 }
@@ -3416,196 +3416,196 @@ static const gchar* gala_plugins_notify_notify_server_category_to_sound (const g
 	const gchar* _tmp0_ = NULL;
 	const gchar* _tmp1_ = NULL;
 	GQuark _tmp3_ = 0U;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label0 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label1 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label2 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label3 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label4 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label5 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label6 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label7 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label8 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label9 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label10 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label11 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label12 = 0;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	static GQuark _tmp2_label13 = 0;
 #line 3448 "NotifyServer.c"
 	const gchar* _tmp4_ = NULL;
-#line 522 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 522 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (category != NULL, NULL);
-#line 524 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 524 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	sound = NULL;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = category;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = _tmp0_;
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = (NULL == _tmp1_) ? 0 : g_quark_from_string (_tmp1_);
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp3_ == ((0 != _tmp2_label0) ? _tmp2_label0 : (_tmp2_label0 = g_quark_from_static_string ("device.added")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3464 "NotifyServer.c"
 			default:
 			{
-#line 528 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "device-added";
-#line 529 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3471 "NotifyServer.c"
 			}
 		}
 	} else if (_tmp3_ == ((0 != _tmp2_label1) ? _tmp2_label1 : (_tmp2_label1 = g_quark_from_static_string ("device.removed")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3477 "NotifyServer.c"
 			default:
 			{
-#line 531 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "device-removed";
-#line 532 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3484 "NotifyServer.c"
 			}
 		}
 	} else if (_tmp3_ == ((0 != _tmp2_label2) ? _tmp2_label2 : (_tmp2_label2 = g_quark_from_static_string ("im")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3490 "NotifyServer.c"
 			default:
 			{
-#line 534 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 534 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "message";
-#line 535 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3497 "NotifyServer.c"
 			}
 		}
 	} else if (_tmp3_ == ((0 != _tmp2_label3) ? _tmp2_label3 : (_tmp2_label3 = g_quark_from_static_string ("im.received")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3503 "NotifyServer.c"
 			default:
 			{
-#line 537 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "message-new-instant";
-#line 538 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3510 "NotifyServer.c"
 			}
 		}
 	} else if (_tmp3_ == ((0 != _tmp2_label4) ? _tmp2_label4 : (_tmp2_label4 = g_quark_from_static_string ("network.connected")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3516 "NotifyServer.c"
 			default:
 			{
-#line 540 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "network-connectivity-established";
-#line 541 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 541 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3523 "NotifyServer.c"
 			}
 		}
 	} else if (_tmp3_ == ((0 != _tmp2_label5) ? _tmp2_label5 : (_tmp2_label5 = g_quark_from_static_string ("network.disconnected")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3529 "NotifyServer.c"
 			default:
 			{
-#line 543 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "network-connectivity-lost";
-#line 544 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 544 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3536 "NotifyServer.c"
 			}
 		}
 	} else if (_tmp3_ == ((0 != _tmp2_label6) ? _tmp2_label6 : (_tmp2_label6 = g_quark_from_static_string ("presence.online")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3542 "NotifyServer.c"
 			default:
 			{
-#line 546 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "service-login";
-#line 547 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 547 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3549 "NotifyServer.c"
 			}
 		}
 	} else if (_tmp3_ == ((0 != _tmp2_label7) ? _tmp2_label7 : (_tmp2_label7 = g_quark_from_static_string ("presence.offline")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3555 "NotifyServer.c"
 			default:
 			{
-#line 549 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 549 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "service-logout";
-#line 550 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 550 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3562 "NotifyServer.c"
 			}
 		}
 	} else if (_tmp3_ == ((0 != _tmp2_label8) ? _tmp2_label8 : (_tmp2_label8 = g_quark_from_static_string ("x-gnome.music")))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3568 "NotifyServer.c"
 			default:
 			{
-#line 553 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 553 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = NULL;
-#line 554 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 554 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3575 "NotifyServer.c"
 			}
 		}
 	} else if (((((_tmp3_ == ((0 != _tmp2_label9) ? _tmp2_label9 : (_tmp2_label9 = g_quark_from_static_string ("device.error")))) || (_tmp3_ == ((0 != _tmp2_label10) ? _tmp2_label10 : (_tmp2_label10 = g_quark_from_static_string ("email.bounced"))))) || (_tmp3_ == ((0 != _tmp2_label11) ? _tmp2_label11 : (_tmp2_label11 = g_quark_from_static_string ("im.error"))))) || (_tmp3_ == ((0 != _tmp2_label12) ? _tmp2_label12 : (_tmp2_label12 = g_quark_from_static_string ("network.error"))))) || (_tmp3_ == ((0 != _tmp2_label13) ? _tmp2_label13 : (_tmp2_label13 = g_quark_from_static_string ("transfer.error"))))) {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3581 "NotifyServer.c"
 			default:
 			{
-#line 561 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 561 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "dialog-error";
-#line 562 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3588 "NotifyServer.c"
 			}
 		}
 	} else {
-#line 526 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		switch (0) {
 #line 3594 "NotifyServer.c"
 			default:
 			{
-#line 571 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 571 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				sound = "dialog-information";
-#line 572 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 572 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3601 "NotifyServer.c"
 			}
 		}
 	}
-#line 575 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 575 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp4_ = sound;
-#line 575 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 575 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = _tmp4_;
-#line 575 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 575 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 3611 "NotifyServer.c"
 }
@@ -3618,27 +3618,27 @@ static void gala_plugins_notify_notify_server_notification_closed_callback (Gala
 	guint _tmp3_ = 0U;
 	guint32 _tmp4_ = 0U;
 	guint32 _tmp5_ = 0U;
-#line 578 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 578 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (self != NULL);
-#line 578 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 578 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (notification != NULL);
-#line 580 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 580 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = notification;
-#line 580 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 580 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_parse_name ("action-invoked", GALA_PLUGINS_NOTIFY_TYPE_NOTIFICATION, &_tmp1_, NULL, FALSE);
-#line 580 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 580 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_handlers_disconnect_matched (_tmp0_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp1_, 0, NULL, (GCallback) _gala_plugins_notify_notify_server_notification_action_invoked_callback_gala_plugins_notify_notification_action_invoked, self);
-#line 581 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 581 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp2_ = notification;
-#line 581 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 581 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_parse_name ("closed", GALA_PLUGINS_NOTIFY_TYPE_NOTIFICATION, &_tmp3_, NULL, FALSE);
-#line 581 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 581 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_handlers_disconnect_matched (_tmp2_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp3_, 0, NULL, (GCallback) _gala_plugins_notify_notify_server_notification_closed_callback_gala_plugins_notify_notification_closed, self);
-#line 583 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 583 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp4_ = id;
-#line 583 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 583 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp5_ = reason;
-#line 583 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 583 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_emit_by_name (self, "notification-closed", _tmp4_, _tmp5_);
 #line 3644 "NotifyServer.c"
 }
@@ -3647,17 +3647,17 @@ static void gala_plugins_notify_notify_server_notification_closed_callback (Gala
 static void gala_plugins_notify_notify_server_notification_action_invoked_callback (GalaPluginsNotifyNotifyServer* self, GalaPluginsNotifyNotification* notification, guint32 id, const gchar* action) {
 	guint32 _tmp0_ = 0U;
 	const gchar* _tmp1_ = NULL;
-#line 586 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 586 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (self != NULL);
-#line 586 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 586 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (notification != NULL);
-#line 586 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 586 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (action != NULL);
-#line 588 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 588 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = id;
-#line 588 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 588 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = action;
-#line 588 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 588 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_emit_by_name (self, "action-invoked", _tmp0_, _tmp1_);
 #line 3663 "NotifyServer.c"
 }
@@ -3687,23 +3687,23 @@ static gchar* string_strip (const gchar* self) {
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 604 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 604 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 3693 "NotifyServer.c"
 }
 
 
 static void _g_object_unref0_ (gpointer var) {
-#line 600 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	(var == NULL) ? NULL : (var = (g_object_unref (var), NULL));
 #line 3700 "NotifyServer.c"
 }
 
 
 static void _g_list_free__g_object_unref0_ (GList* self) {
-#line 600 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_list_foreach (self, (GFunc) _g_object_unref0_, NULL);
-#line 600 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_list_free (self);
 #line 3709 "NotifyServer.c"
 }
@@ -3724,59 +3724,59 @@ static GAppInfo* gala_plugins_notify_notify_server_get_appinfo_from_app_name (Ga
 	GeeHashMap* _tmp16_ = NULL;
 	const gchar* _tmp17_ = NULL;
 	GAppInfo* _tmp18_ = NULL;
-#line 591 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 591 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 591 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 591 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (app_name != NULL, NULL);
-#line 593 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 593 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = app_name;
-#line 593 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 593 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = string_strip (_tmp0_);
-#line 593 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 593 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp2_ = _tmp1_;
-#line 593 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 593 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = g_strcmp0 (_tmp2_, "") == 0;
-#line 593 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 593 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (_tmp2_);
-#line 593 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 593 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp3_) {
-#line 594 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 594 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		result = NULL;
-#line 594 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 594 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return result;
 #line 3748 "NotifyServer.c"
 	}
-#line 596 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 596 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp4_ = self->priv->app_info_cache;
-#line 596 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 596 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp5_ = app_name;
-#line 596 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 596 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp4_, _tmp5_);
-#line 596 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 596 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	app_info = (GAppInfo*) _tmp6_;
-#line 597 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 597 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp7_ = app_info;
-#line 597 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 597 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp7_ != NULL) {
-#line 598 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		result = app_info;
-#line 598 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return result;
 #line 3766 "NotifyServer.c"
 	}
-#line 600 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp8_ = g_app_info_get_all ();
 #line 3770 "NotifyServer.c"
 	{
 		GList* info_collection = NULL;
 		GList* info_it = NULL;
-#line 600 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		info_collection = _tmp8_;
-#line 600 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		for (info_it = info_collection; info_it != NULL; info_it = info_it->next) {
 #line 3778 "NotifyServer.c"
 			GAppInfo* info = NULL;
-#line 600 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			info = (GAppInfo*) info_it->data;
 #line 3782 "NotifyServer.c"
 			{
@@ -3784,61 +3784,61 @@ static GAppInfo* gala_plugins_notify_notify_server_get_appinfo_from_app_name (Ga
 				GAppInfo* _tmp10_ = NULL;
 				GAppInfo* _tmp14_ = NULL;
 				GAppInfo* _tmp15_ = NULL;
-#line 601 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp10_ = info;
-#line 601 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp10_ == NULL) {
-#line 601 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp9_ = TRUE;
 #line 3794 "NotifyServer.c"
 				} else {
 					GAppInfo* _tmp11_ = NULL;
 					const gchar* _tmp12_ = NULL;
 					gboolean _tmp13_ = FALSE;
-#line 601 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp11_ = info;
-#line 601 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp12_ = app_name;
-#line 601 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp13_ = gala_plugins_notify_notify_server_validate (_tmp11_, _tmp12_);
-#line 601 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					_tmp9_ = !_tmp13_;
 #line 3807 "NotifyServer.c"
 				}
-#line 601 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				if (_tmp9_) {
-#line 602 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 602 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 					continue;
 #line 3813 "NotifyServer.c"
 				}
-#line 604 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 604 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp14_ = info;
-#line 604 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 604 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_tmp15_ = _g_object_ref0 (_tmp14_);
-#line 604 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 604 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				_g_object_unref0 (app_info);
-#line 604 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 604 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				app_info = _tmp15_;
-#line 605 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 605 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 				break;
 #line 3825 "NotifyServer.c"
 			}
 		}
-#line 600 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		__g_list_free__g_object_unref0_0 (info_collection);
 #line 3830 "NotifyServer.c"
 	}
-#line 608 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 608 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp16_ = self->priv->app_info_cache;
-#line 608 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 608 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp17_ = app_name;
-#line 608 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 608 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp18_ = app_info;
-#line 608 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 608 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gee_abstract_map_set ((GeeAbstractMap*) _tmp16_, _tmp17_, _tmp18_);
-#line 610 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 610 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = app_info;
-#line 610 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 610 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 3844 "NotifyServer.c"
 }
@@ -3906,131 +3906,131 @@ static gboolean gala_plugins_notify_notify_server_validate (GAppInfo* appinfo, c
 	const gchar* _tmp41_ = NULL;
 	gboolean _tmp42_ = FALSE;
 	GError * _inner_error_ = NULL;
-#line 613 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 613 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (appinfo != NULL, FALSE);
-#line 613 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 613 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (name != NULL, FALSE);
-#line 615 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = appinfo;
-#line 615 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = g_app_info_get_executable (_tmp0_);
-#line 615 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp2_ = g_strdup (_tmp1_);
-#line 615 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	app_executable = _tmp2_;
-#line 616 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 616 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp3_ = appinfo;
-#line 616 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 616 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp4_ = g_app_info_get_name (_tmp3_);
-#line 616 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 616 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp5_ = g_strdup (_tmp4_);
-#line 616 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 616 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	app_name = _tmp5_;
-#line 617 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 617 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_ = appinfo;
-#line 617 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 617 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp7_ = g_app_info_get_display_name (_tmp6_);
-#line 617 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 617 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp8_ = g_strdup (_tmp7_);
-#line 617 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 617 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	app_display_name = _tmp8_;
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp11_ = app_name;
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp11_ == NULL) {
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp10_ = TRUE;
 #line 3944 "NotifyServer.c"
 	} else {
 		const gchar* _tmp12_ = NULL;
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp12_ = app_executable;
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp10_ = _tmp12_ == NULL;
 #line 3951 "NotifyServer.c"
 	}
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp10_) {
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp9_ = TRUE;
 #line 3957 "NotifyServer.c"
 	} else {
 		const gchar* _tmp13_ = NULL;
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp13_ = app_display_name;
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp9_ = _tmp13_ == NULL;
 #line 3964 "NotifyServer.c"
 	}
-#line 619 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 619 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp9_) {
-#line 620 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 620 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		result = FALSE;
-#line 620 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 620 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (app_display_name);
-#line 620 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 620 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (app_name);
-#line 620 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 620 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (app_executable);
-#line 620 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 620 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return result;
 #line 3978 "NotifyServer.c"
 	}
-#line 622 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 622 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp14_ = name;
-#line 622 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 622 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp15_ = g_utf8_strdown (_tmp14_, (gssize) -1);
-#line 622 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 622 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp16_ = _tmp15_;
-#line 622 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 622 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp17_ = string_strip (_tmp16_);
-#line 622 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 622 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp18_ = _tmp17_;
-#line 622 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 622 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (_tmp16_);
-#line 622 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 622 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	token = _tmp18_;
-#line 623 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 623 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp19_ = token;
-#line 623 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 623 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp20_ = g_strdup (_tmp19_);
-#line 623 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 623 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	token_executable = _tmp20_;
-#line 624 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 624 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp21_ = token_executable;
-#line 624 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 624 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp22_ = g_str_has_prefix (_tmp21_, G_DIR_SEPARATOR_S);
-#line 624 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 624 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (!_tmp22_) {
 #line 4006 "NotifyServer.c"
 		const gchar* _tmp23_ = NULL;
 		gchar* _tmp24_ = NULL;
-#line 625 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 625 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp23_ = token_executable;
-#line 625 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 625 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp24_ = g_find_program_in_path (_tmp23_);
-#line 625 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 625 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (token_executable);
-#line 625 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 625 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		token_executable = _tmp24_;
 #line 4017 "NotifyServer.c"
 	}
-#line 627 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 627 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp25_ = app_executable;
-#line 627 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 627 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp26_ = g_str_has_prefix (_tmp25_, G_DIR_SEPARATOR_S);
-#line 627 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 627 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (!_tmp26_) {
 #line 4025 "NotifyServer.c"
 		const gchar* _tmp27_ = NULL;
 		gchar* _tmp28_ = NULL;
-#line 628 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 628 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp27_ = app_executable;
-#line 628 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 628 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp28_ = g_find_program_in_path (_tmp27_);
-#line 628 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 628 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (app_executable);
-#line 628 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 628 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		app_executable = _tmp28_;
 #line 4036 "NotifyServer.c"
 	}
@@ -4039,44 +4039,44 @@ static gboolean gala_plugins_notify_notify_server_validate (GAppInfo* appinfo, c
 		const gchar* _tmp30_ = NULL;
 		gchar** _tmp31_ = NULL;
 		gint _tmp32_ = 0;
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp29_ = appinfo;
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp30_ = g_app_info_get_commandline (_tmp29_);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_shell_parse_argv (_tmp30_, &_tmp32_, &_tmp31_, &_inner_error_);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		args = _tmp31_;
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		args_length1 = _tmp32_;
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_args_size_ = args_length1;
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			if (_inner_error_->domain == G_SHELL_ERROR) {
 #line 4061 "NotifyServer.c"
 				goto __catch14_g_shell_error;
 			}
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (token_executable);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (token);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (app_display_name);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (app_name);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_g_free0 (app_executable);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			g_clear_error (&_inner_error_);
-#line 633 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			return FALSE;
 #line 4082 "NotifyServer.c"
 		}
@@ -4087,114 +4087,114 @@ static gboolean gala_plugins_notify_notify_server_validate (GAppInfo* appinfo, c
 		GError* e = NULL;
 		GError* _tmp33_ = NULL;
 		const gchar* _tmp34_ = NULL;
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		e = _inner_error_;
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_inner_error_ = NULL;
-#line 635 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 635 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp33_ = e;
-#line 635 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 635 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp34_ = _tmp33_->message;
-#line 635 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 635 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_warning ("NotifyServer.vala:635: %s", _tmp34_);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_error_free0 (e);
 #line 4103 "NotifyServer.c"
 	}
 	__finally14:
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (token_executable);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (token);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (app_display_name);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (app_name);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (app_executable);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_clear_error (&_inner_error_);
-#line 632 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		return FALSE;
 #line 4126 "NotifyServer.c"
 	}
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp38_ = app_name;
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp39_ = g_utf8_strdown (_tmp38_, (gssize) -1);
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp40_ = _tmp39_;
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp41_ = token;
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp42_ = g_strcmp0 (_tmp40_, _tmp41_) == 0;
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (_tmp40_);
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp42_) {
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp37_ = TRUE;
 #line 4144 "NotifyServer.c"
 	} else {
 		const gchar* _tmp43_ = NULL;
 		const gchar* _tmp44_ = NULL;
-#line 639 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 639 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp43_ = token_executable;
-#line 639 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 639 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp44_ = app_executable;
-#line 639 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 639 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp37_ = g_strcmp0 (_tmp43_, _tmp44_) == 0;
 #line 4154 "NotifyServer.c"
 	}
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp37_) {
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp36_ = TRUE;
 #line 4160 "NotifyServer.c"
 	} else {
 		gboolean _tmp45_ = FALSE;
 		gchar** _tmp46_ = NULL;
 		gint _tmp46__length1 = 0;
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp46_ = args;
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp46__length1 = args_length1;
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (_tmp46__length1 > 0) {
 #line 4171 "NotifyServer.c"
 			gchar** _tmp47_ = NULL;
 			gint _tmp47__length1 = 0;
 			const gchar* _tmp48_ = NULL;
 			const gchar* _tmp49_ = NULL;
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp47_ = args;
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp47__length1 = args_length1;
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp48_ = _tmp47_[0];
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp49_ = token;
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp45_ = g_strcmp0 (_tmp48_, _tmp49_) == 0;
 #line 4186 "NotifyServer.c"
 		} else {
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 			_tmp45_ = FALSE;
 #line 4190 "NotifyServer.c"
 		}
-#line 640 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 640 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp36_ = _tmp45_;
 #line 4194 "NotifyServer.c"
 	}
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (_tmp36_) {
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp35_ = TRUE;
 #line 4200 "NotifyServer.c"
 	} else {
@@ -4203,37 +4203,37 @@ static gboolean gala_plugins_notify_notify_server_validate (GAppInfo* appinfo, c
 		gchar* _tmp52_ = NULL;
 		const gchar* _tmp53_ = NULL;
 		gboolean _tmp54_ = FALSE;
-#line 641 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 641 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp50_ = app_display_name;
-#line 641 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 641 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp51_ = g_utf8_strdown (_tmp50_, (gssize) -1);
-#line 641 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 641 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp52_ = _tmp51_;
-#line 641 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 641 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp53_ = token;
-#line 641 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 641 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp54_ = string_contains (_tmp52_, _tmp53_);
-#line 641 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 641 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp35_ = _tmp54_;
-#line 641 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 641 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_free0 (_tmp52_);
 #line 4221 "NotifyServer.c"
 	}
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = _tmp35_;
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	args = (_vala_array_free (args, args_length1, (GDestroyNotify) g_free), NULL);
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (token_executable);
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (token);
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (app_display_name);
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (app_name);
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (app_executable);
-#line 638 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 4239 "NotifyServer.c"
 }
@@ -4242,13 +4242,13 @@ static gboolean gala_plugins_notify_notify_server_validate (GAppInfo* appinfo, c
 GalaPluginsNotifyNotificationStack* gala_plugins_notify_notify_server_get_stack (GalaPluginsNotifyNotifyServer* self) {
 	GalaPluginsNotifyNotificationStack* result;
 	GalaPluginsNotifyNotificationStack* _tmp0_ = NULL;
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = self->priv->_stack;
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	result = _tmp0_;
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return result;
 #line 4254 "NotifyServer.c"
 }
@@ -4257,17 +4257,17 @@ GalaPluginsNotifyNotificationStack* gala_plugins_notify_notify_server_get_stack 
 static void gala_plugins_notify_notify_server_set_stack (GalaPluginsNotifyNotifyServer* self, GalaPluginsNotifyNotificationStack* value) {
 	GalaPluginsNotifyNotificationStack* _tmp0_ = NULL;
 	GalaPluginsNotifyNotificationStack* _tmp1_ = NULL;
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (self != NULL);
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp0_ = value;
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (self->priv->_stack);
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self->priv->_stack = _tmp1_;
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_object_notify ((GObject *) self, "stack");
 #line 4273 "NotifyServer.c"
 }
@@ -4280,25 +4280,25 @@ static void g_cclosure_user_marshal_VOID__UINT_UINT (GClosure * closure, GValue 
 	register gpointer data1;
 	register gpointer data2;
 	cc = (GCClosure *) closure;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (n_param_values == 3);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (G_CCLOSURE_SWAP_DATA (closure)) {
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		data1 = closure->data;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		data2 = param_values->data[0].v_pointer;
 #line 4292 "NotifyServer.c"
 	} else {
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		data1 = param_values->data[0].v_pointer;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		data2 = closure->data;
 #line 4298 "NotifyServer.c"
 	}
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	callback = (GMarshalFunc_VOID__UINT_UINT) (marshal_data ? marshal_data : cc->callback);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	callback (data1, g_value_get_uint (param_values + 1), g_value_get_uint (param_values + 2), data2);
 #line 4304 "NotifyServer.c"
 }
@@ -4311,25 +4311,25 @@ static void g_cclosure_user_marshal_VOID__UINT_STRING (GClosure * closure, GValu
 	register gpointer data1;
 	register gpointer data2;
 	cc = (GCClosure *) closure;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_return_if_fail (n_param_values == 3);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (G_CCLOSURE_SWAP_DATA (closure)) {
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		data1 = closure->data;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		data2 = param_values->data[0].v_pointer;
 #line 4323 "NotifyServer.c"
 	} else {
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		data1 = param_values->data[0].v_pointer;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		data2 = closure->data;
 #line 4329 "NotifyServer.c"
 	}
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	callback = (GMarshalFunc_VOID__UINT_STRING) (marshal_data ? marshal_data : cc->callback);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	callback (data1, g_value_get_uint (param_values + 1), g_value_get_string (param_values + 2), data2);
 #line 4335 "NotifyServer.c"
 }
@@ -4349,35 +4349,35 @@ static GObject * gala_plugins_notify_notify_server_constructor (GType type, guin
 	GeeHashMap* _tmp11_ = NULL;
 	GeeHashMap* _tmp12_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 78 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	parent_class = G_OBJECT_CLASS (gala_plugins_notify_notify_server_parent_class);
-#line 78 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 78 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SERVER, GalaPluginsNotifyNotifyServer);
 #line 4359 "NotifyServer.c"
 	{
 		GalaPluginsNotifyDBus* _tmp0_ = NULL;
 		GalaPluginsNotifyDBus* _tmp1_ = NULL;
 		GalaPluginsNotifyDBus* _tmp2_ = NULL;
-#line 81 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp1_ = g_initable_new (GALA_PLUGINS_NOTIFY_TYPE_DBUS_PROXY, NULL, &_inner_error_, "g-flags", 0, "g-name", "org.freedesktop.DBus", "g-bus-type", G_BUS_TYPE_SESSION, "g-object-path", "/", "g-interface-name", "org.freedesktop.DBus", "g-interface-info", g_type_get_qdata (GALA_PLUGINS_NOTIFY_TYPE_DBUS, g_quark_from_static_string ("vala-dbus-interface-info")), NULL);
-#line 81 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp0_ = (GalaPluginsNotifyDBus*) _tmp1_;
-#line 81 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 4370 "NotifyServer.c"
 			goto __catch15_g_error;
 		}
-#line 81 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp2_ = _tmp0_;
-#line 81 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp0_ = NULL;
-#line 81 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (self->priv->bus_proxy);
-#line 81 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		self->priv->bus_proxy = _tmp2_;
-#line 80 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (_tmp0_);
 #line 4383 "NotifyServer.c"
 	}
@@ -4387,106 +4387,106 @@ static GObject * gala_plugins_notify_notify_server_constructor (GType type, guin
 		GError* e = NULL;
 		GError* _tmp3_ = NULL;
 		const gchar* _tmp4_ = NULL;
-#line 80 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		e = _inner_error_;
-#line 80 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_inner_error_ = NULL;
-#line 83 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp3_ = e;
-#line 83 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_tmp4_ = _tmp3_->message;
-#line 83 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_warning ("NotifyServer.vala:83: %s", _tmp4_);
-#line 84 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_object_unref0 (self->priv->bus_proxy);
-#line 84 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		self->priv->bus_proxy = NULL;
-#line 80 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		_g_error_free0 (e);
 #line 4407 "NotifyServer.c"
 	}
 	__finally15:
-#line 80 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 80 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 80 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_clear_error (&_inner_error_);
 #line 4416 "NotifyServer.c"
 	}
-#line 87 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp5_ = setlocale (LC_MESSAGES, NULL);
-#line 87 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp6_ = g_strdup (_tmp5_);
-#line 87 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	locale = _tmp6_;
-#line 88 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp7_ = ca_gtk_context_get ();
-#line 88 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self->priv->ca_context = _tmp7_;
-#line 89 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp8_ = self->priv->ca_context;
-#line 89 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp9_ = locale;
-#line 89 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	ca_context_change_props (_tmp8_, CA_PROP_APPLICATION_NAME, "Gala", CA_PROP_APPLICATION_ID, "org.pantheon.gala", CA_PROP_APPLICATION_NAME, "start-here", CA_PROP_APPLICATION_LANGUAGE, _tmp9_, NULL, NULL);
-#line 94 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp10_ = self->priv->ca_context;
-#line 94 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	ca_context_open (_tmp10_);
-#line 96 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp11_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, G_TYPE_SETTINGS, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 96 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (self->priv->app_settings_cache);
-#line 96 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self->priv->app_settings_cache = _tmp11_;
-#line 97 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_tmp12_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, g_app_info_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 97 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (self->priv->app_info_cache);
-#line 97 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self->priv->app_info_cache = _tmp12_;
-#line 78 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_free0 (locale);
-#line 78 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	return obj;
 #line 4454 "NotifyServer.c"
 }
 
 
 static void gala_plugins_notify_notify_server_class_init (GalaPluginsNotifyNotifyServerClass * klass) {
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	gala_plugins_notify_notify_server_parent_class = g_type_class_peek_parent (klass);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_type_class_add_private (klass, sizeof (GalaPluginsNotifyNotifyServerPrivate));
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_plugins_notify_notify_server_get_property;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_plugins_notify_notify_server_set_property;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_plugins_notify_notify_server_constructor;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_plugins_notify_notify_server_finalize;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_NOTIFY_SERVER_STACK, g_param_spec_object ("stack", "stack", "stack", GALA_PLUGINS_NOTIFY_TYPE_NOTIFICATION_STACK, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_new ("show_notification", GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SERVER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__OBJECT, G_TYPE_NONE, 1, GALA_PLUGINS_NOTIFY_TYPE_NOTIFICATION);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_new ("notification_closed", GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SERVER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__UINT_UINT, G_TYPE_NONE, 2, G_TYPE_UINT, G_TYPE_UINT);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	g_signal_new ("action_invoked", GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SERVER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__UINT_STRING, G_TYPE_NONE, 2, G_TYPE_UINT, G_TYPE_STRING);
 #line 4479 "NotifyServer.c"
 }
 
 
 static void gala_plugins_notify_notify_server_instance_init (GalaPluginsNotifyNotifyServer * self) {
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self->priv = GALA_PLUGINS_NOTIFY_NOTIFY_SERVER_GET_PRIVATE (self);
-#line 66 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self->priv->id_counter = (guint32) 0;
-#line 68 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self->priv->bus_proxy = NULL;
-#line 69 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self->priv->ca_context = NULL;
 #line 4492 "NotifyServer.c"
 }
@@ -4494,17 +4494,17 @@ static void gala_plugins_notify_notify_server_instance_init (GalaPluginsNotifyNo
 
 static void gala_plugins_notify_notify_server_finalize (GObject* obj) {
 	GalaPluginsNotifyNotifyServer * self;
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SERVER, GalaPluginsNotifyNotifyServer);
-#line 64 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (self->priv->_stack);
-#line 68 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (self->priv->bus_proxy);
-#line 70 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (self->priv->app_settings_cache);
-#line 71 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	_g_object_unref0 (self->priv->app_info_cache);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	G_OBJECT_CLASS (gala_plugins_notify_notify_server_parent_class)->finalize (obj);
 #line 4510 "NotifyServer.c"
 }
@@ -4526,19 +4526,19 @@ GType gala_plugins_notify_notify_server_get_type (void) {
 static void _vala_gala_plugins_notify_notify_server_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaPluginsNotifyNotifyServer * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SERVER, GalaPluginsNotifyNotifyServer);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	switch (property_id) {
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		case GALA_PLUGINS_NOTIFY_NOTIFY_SERVER_STACK:
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		g_value_set_object (value, gala_plugins_notify_notify_server_get_stack (self));
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		break;
 #line 4538 "NotifyServer.c"
 		default:
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		break;
 #line 4544 "NotifyServer.c"
 	}
@@ -4548,19 +4548,19 @@ static void _vala_gala_plugins_notify_notify_server_get_property (GObject * obje
 static void _vala_gala_plugins_notify_notify_server_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaPluginsNotifyNotifyServer * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_PLUGINS_NOTIFY_TYPE_NOTIFY_SERVER, GalaPluginsNotifyNotifyServer);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 	switch (property_id) {
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		case GALA_PLUGINS_NOTIFY_NOTIFY_SERVER_STACK:
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		gala_plugins_notify_notify_server_set_stack (self, g_value_get_object (value));
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		break;
 #line 4560 "NotifyServer.c"
 		default:
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 48 "/home/nick/work/gala/plugins/notify/NotifyServer.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NotifyServer.vala"
 		break;
 #line 4566 "NotifyServer.c"
 	}

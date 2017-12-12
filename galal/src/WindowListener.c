@@ -84,8 +84,8 @@ void gala_window_listener_init (MetaScreen* screen);
 static GalaWindowListener* gala_window_listener_new (void);
 static GalaWindowListener* gala_window_listener_construct (GType object_type);
 static void gala_window_listener_monitor_window (GalaWindowListener* self, MetaWindow* window);
-static void __lambda45_ (MetaWindow* window);
-static void ___lambda45__meta_display_window_created (MetaDisplay* _sender, MetaWindow* object, gpointer self);
+static void __lambda49_ (MetaWindow* window);
+static void ___lambda49__meta_display_window_created (MetaDisplay* _sender, MetaWindow* object, gpointer self);
 GalaWindowListener* gala_window_listener_get_default (void);
 static void gala_window_listener_window_notify (GalaWindowListener* self, GObject* object, GParamSpec* pspec);
 static void _gala_window_listener_window_notify_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self);
@@ -99,18 +99,18 @@ static void gala_window_listener_finalize (GObject* obj);
 
 GalaWindowGeometry* gala_window_geometry_dup (const GalaWindowGeometry* self) {
 	GalaWindowGeometry* dup;
-#line 23 "/home/nick/work/gala/src/WindowListener.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	dup = g_new0 (GalaWindowGeometry, 1);
-#line 23 "/home/nick/work/gala/src/WindowListener.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	memcpy (dup, self, sizeof (GalaWindowGeometry));
-#line 23 "/home/nick/work/gala/src/WindowListener.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	return dup;
 #line 109 "WindowListener.c"
 }
 
 
 void gala_window_geometry_free (GalaWindowGeometry* self) {
-#line 23 "/home/nick/work/gala/src/WindowListener.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_free (self);
 #line 116 "WindowListener.c"
 }
@@ -127,37 +127,37 @@ GType gala_window_geometry_get_type (void) {
 }
 
 
-static void __lambda45_ (MetaWindow* window) {
+static void __lambda49_ (MetaWindow* window) {
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindowType _tmp1_ = 0;
 	MetaWindowType _tmp2_ = 0;
-#line 48 "/home/nick/work/gala/src/WindowListener.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (window != NULL);
-#line 49 "/home/nick/work/gala/src/WindowListener.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = window;
-#line 49 "/home/nick/work/gala/src/WindowListener.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp1_ = meta_window_get_window_type (_tmp0_);
-#line 49 "/home/nick/work/gala/src/WindowListener.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp2_ = _tmp1_;
-#line 49 "/home/nick/work/gala/src/WindowListener.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	if (_tmp2_ == META_WINDOW_NORMAL) {
 #line 145 "WindowListener.c"
 		GalaWindowListener* _tmp3_ = NULL;
 		MetaWindow* _tmp4_ = NULL;
-#line 50 "/home/nick/work/gala/src/WindowListener.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		_tmp3_ = gala_window_listener_instance;
-#line 50 "/home/nick/work/gala/src/WindowListener.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		_tmp4_ = window;
-#line 50 "/home/nick/work/gala/src/WindowListener.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		gala_window_listener_monitor_window (_tmp3_, _tmp4_);
 #line 154 "WindowListener.c"
 	}
 }
 
 
-static void ___lambda45__meta_display_window_created (MetaDisplay* _sender, MetaWindow* object, gpointer self) {
-#line 48 "/home/nick/work/gala/src/WindowListener.vala"
-	__lambda45_ (object);
+static void ___lambda49__meta_display_window_created (MetaDisplay* _sender, MetaWindow* object, gpointer self) {
+#line 48 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
+	__lambda49_ (object);
 #line 162 "WindowListener.c"
 }
 
@@ -169,37 +169,37 @@ void gala_window_listener_init (MetaScreen* screen) {
 	GList* _tmp3_ = NULL;
 	MetaScreen* _tmp13_ = NULL;
 	MetaDisplay* _tmp14_ = NULL;
-#line 32 "/home/nick/work/gala/src/WindowListener.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (screen != NULL);
-#line 34 "/home/nick/work/gala/src/WindowListener.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = gala_window_listener_instance;
-#line 34 "/home/nick/work/gala/src/WindowListener.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	if (_tmp0_ != NULL) {
-#line 35 "/home/nick/work/gala/src/WindowListener.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		return;
 #line 181 "WindowListener.c"
 	}
-#line 37 "/home/nick/work/gala/src/WindowListener.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp1_ = gala_window_listener_new ();
-#line 37 "/home/nick/work/gala/src/WindowListener.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_g_object_unref0 (gala_window_listener_instance);
-#line 37 "/home/nick/work/gala/src/WindowListener.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	gala_window_listener_instance = _tmp1_;
-#line 39 "/home/nick/work/gala/src/WindowListener.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp2_ = screen;
-#line 39 "/home/nick/work/gala/src/WindowListener.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp3_ = meta_get_window_actors (_tmp2_);
 #line 193 "WindowListener.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 39 "/home/nick/work/gala/src/WindowListener.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		actor_collection = _tmp3_;
-#line 39 "/home/nick/work/gala/src/WindowListener.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
 #line 201 "WindowListener.c"
 			MetaWindowActor* actor = NULL;
-#line 39 "/home/nick/work/gala/src/WindowListener.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 			actor = (MetaWindowActor*) actor_it->data;
 #line 205 "WindowListener.c"
 			{
@@ -211,50 +211,50 @@ void gala_window_listener_init (MetaScreen* screen) {
 				MetaWindow* _tmp8_ = NULL;
 				MetaWindowType _tmp9_ = 0;
 				MetaWindowType _tmp10_ = 0;
-#line 40 "/home/nick/work/gala/src/WindowListener.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp4_ = actor;
-#line 40 "/home/nick/work/gala/src/WindowListener.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp5_ = meta_window_actor_is_destroyed (_tmp4_);
-#line 40 "/home/nick/work/gala/src/WindowListener.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				if (_tmp5_) {
-#line 41 "/home/nick/work/gala/src/WindowListener.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 					continue;
 #line 223 "WindowListener.c"
 				}
-#line 43 "/home/nick/work/gala/src/WindowListener.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp6_ = actor;
-#line 43 "/home/nick/work/gala/src/WindowListener.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp7_ = meta_window_actor_get_meta_window (_tmp6_);
-#line 43 "/home/nick/work/gala/src/WindowListener.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				window = _tmp7_;
-#line 44 "/home/nick/work/gala/src/WindowListener.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp8_ = window;
-#line 44 "/home/nick/work/gala/src/WindowListener.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp9_ = meta_window_get_window_type (_tmp8_);
-#line 44 "/home/nick/work/gala/src/WindowListener.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp10_ = _tmp9_;
-#line 44 "/home/nick/work/gala/src/WindowListener.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				if (_tmp10_ == META_WINDOW_NORMAL) {
 #line 239 "WindowListener.c"
 					GalaWindowListener* _tmp11_ = NULL;
 					MetaWindow* _tmp12_ = NULL;
-#line 45 "/home/nick/work/gala/src/WindowListener.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 					_tmp11_ = gala_window_listener_instance;
-#line 45 "/home/nick/work/gala/src/WindowListener.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 					_tmp12_ = window;
-#line 45 "/home/nick/work/gala/src/WindowListener.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 					gala_window_listener_monitor_window (_tmp11_, _tmp12_);
 #line 248 "WindowListener.c"
 				}
 			}
 		}
 	}
-#line 48 "/home/nick/work/gala/src/WindowListener.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp13_ = screen;
-#line 48 "/home/nick/work/gala/src/WindowListener.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp14_ = meta_screen_get_display (_tmp13_);
-#line 48 "/home/nick/work/gala/src/WindowListener.vala"
-	g_signal_connect (_tmp14_, "window-created", (GCallback) ___lambda45__meta_display_window_created, NULL);
+#line 48 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
+	g_signal_connect (_tmp14_, "window-created", (GCallback) ___lambda49__meta_display_window_created, NULL);
 #line 259 "WindowListener.c"
 }
 
@@ -263,15 +263,15 @@ GalaWindowListener* gala_window_listener_get_default (void) {
 	GalaWindowListener* result = NULL;
 	GalaWindowListener* _tmp0_ = NULL;
 	GalaWindowListener* _tmp1_ = NULL;
-#line 54 "/home/nick/work/gala/src/WindowListener.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = gala_window_listener_instance;
-#line 54 "/home/nick/work/gala/src/WindowListener.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_vala_return_val_if_fail (_tmp0_ != NULL, "instance != null", NULL);
-#line 57 "/home/nick/work/gala/src/WindowListener.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp1_ = gala_window_listener_instance;
-#line 57 "/home/nick/work/gala/src/WindowListener.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	result = _tmp1_;
-#line 57 "/home/nick/work/gala/src/WindowListener.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	return result;
 #line 277 "WindowListener.c"
 }
@@ -280,36 +280,36 @@ GalaWindowListener* gala_window_listener_get_default (void) {
 static GalaWindowListener* gala_window_listener_construct (GType object_type) {
 	GalaWindowListener * self = NULL;
 	GeeHashMap* _tmp0_ = NULL;
-#line 64 "/home/nick/work/gala/src/WindowListener.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	self = (GalaWindowListener*) g_object_new (object_type, NULL);
-#line 66 "/home/nick/work/gala/src/WindowListener.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = gee_hash_map_new (meta_window_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, GALA_TYPE_WINDOW_GEOMETRY, (GBoxedCopyFunc) gala_window_geometry_dup, gala_window_geometry_free, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 66 "/home/nick/work/gala/src/WindowListener.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_g_object_unref0 (self->priv->unmaximized_state_geometry);
-#line 66 "/home/nick/work/gala/src/WindowListener.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	self->priv->unmaximized_state_geometry = _tmp0_;
-#line 64 "/home/nick/work/gala/src/WindowListener.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	return self;
 #line 294 "WindowListener.c"
 }
 
 
 static GalaWindowListener* gala_window_listener_new (void) {
-#line 64 "/home/nick/work/gala/src/WindowListener.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	return gala_window_listener_construct (GALA_TYPE_WINDOW_LISTENER);
 #line 301 "WindowListener.c"
 }
 
 
 static void _gala_window_listener_window_notify_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
-#line 71 "/home/nick/work/gala/src/WindowListener.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	gala_window_listener_window_notify ((GalaWindowListener*) self, _sender, pspec);
 #line 308 "WindowListener.c"
 }
 
 
 static void _gala_window_listener_window_removed_meta_window_unmanaged (MetaWindow* _sender, gpointer self) {
-#line 72 "/home/nick/work/gala/src/WindowListener.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	gala_window_listener_window_removed ((GalaWindowListener*) self, _sender);
 #line 315 "WindowListener.c"
 }
@@ -319,28 +319,28 @@ static void gala_window_listener_monitor_window (GalaWindowListener* self, MetaW
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
 	MetaWindow* _tmp2_ = NULL;
-#line 69 "/home/nick/work/gala/src/WindowListener.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (self != NULL);
-#line 69 "/home/nick/work/gala/src/WindowListener.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (window != NULL);
-#line 71 "/home/nick/work/gala/src/WindowListener.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = window;
-#line 71 "/home/nick/work/gala/src/WindowListener.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_signal_connect_object ((GObject*) _tmp0_, "notify", (GCallback) _gala_window_listener_window_notify_g_object_notify, self, 0);
-#line 72 "/home/nick/work/gala/src/WindowListener.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp1_ = window;
-#line 72 "/home/nick/work/gala/src/WindowListener.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_signal_connect_object (_tmp1_, "unmanaged", (GCallback) _gala_window_listener_window_removed_meta_window_unmanaged, self, 0);
-#line 74 "/home/nick/work/gala/src/WindowListener.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp2_ = window;
-#line 74 "/home/nick/work/gala/src/WindowListener.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	gala_window_listener_window_maximized_changed (self, _tmp2_);
 #line 339 "WindowListener.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 79 "/home/nick/work/gala/src/WindowListener.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 346 "WindowListener.c"
 }
@@ -354,67 +354,67 @@ static void gala_window_listener_window_notify (GalaWindowListener* self, GObjec
 	const gchar* _tmp3_ = NULL;
 	const gchar* _tmp4_ = NULL;
 	GQuark _tmp6_ = 0U;
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	static GQuark _tmp5_label0 = 0;
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	static GQuark _tmp5_label1 = 0;
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	static GQuark _tmp5_label2 = 0;
-#line 77 "/home/nick/work/gala/src/WindowListener.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (self != NULL);
-#line 77 "/home/nick/work/gala/src/WindowListener.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (object != NULL);
-#line 77 "/home/nick/work/gala/src/WindowListener.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (pspec != NULL);
-#line 79 "/home/nick/work/gala/src/WindowListener.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = object;
-#line 79 "/home/nick/work/gala/src/WindowListener.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, meta_window_get_type (), MetaWindow));
-#line 79 "/home/nick/work/gala/src/WindowListener.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	window = _tmp1_;
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp2_ = pspec;
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp3_ = _tmp2_->name;
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp4_ = _tmp3_;
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp6_ = (NULL == _tmp4_) ? 0 : g_quark_from_string (_tmp4_);
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	if ((_tmp6_ == ((0 != _tmp5_label0) ? _tmp5_label0 : (_tmp5_label0 = g_quark_from_static_string ("maximized-horizontally")))) || (_tmp6_ == ((0 != _tmp5_label1) ? _tmp5_label1 : (_tmp5_label1 = g_quark_from_static_string ("maximized-vertically"))))) {
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		switch (0) {
 #line 388 "WindowListener.c"
 			default:
 			{
 				MetaWindow* _tmp7_ = NULL;
-#line 84 "/home/nick/work/gala/src/WindowListener.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp7_ = window;
-#line 84 "/home/nick/work/gala/src/WindowListener.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				gala_window_listener_window_maximized_changed (self, _tmp7_);
-#line 85 "/home/nick/work/gala/src/WindowListener.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				break;
 #line 398 "WindowListener.c"
 			}
 		}
 	} else if (_tmp6_ == ((0 != _tmp5_label2) ? _tmp5_label2 : (_tmp5_label2 = g_quark_from_static_string ("on-all-workspaces")))) {
-#line 81 "/home/nick/work/gala/src/WindowListener.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		switch (0) {
 #line 404 "WindowListener.c"
 			default:
 			{
 				MetaWindow* _tmp8_ = NULL;
-#line 87 "/home/nick/work/gala/src/WindowListener.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				_tmp8_ = window;
-#line 87 "/home/nick/work/gala/src/WindowListener.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				gala_window_listener_window_on_all_workspaces_changed (self, _tmp8_);
-#line 88 "/home/nick/work/gala/src/WindowListener.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 				break;
 #line 414 "WindowListener.c"
 			}
 		}
 	}
-#line 77 "/home/nick/work/gala/src/WindowListener.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_g_object_unref0 (window);
 #line 420 "WindowListener.c"
 }
@@ -425,25 +425,25 @@ static void gala_window_listener_window_on_all_workspaces_changed (GalaWindowLis
 	gboolean _tmp1_ = FALSE;
 	gboolean _tmp2_ = FALSE;
 	MetaWindow* _tmp3_ = NULL;
-#line 92 "/home/nick/work/gala/src/WindowListener.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (self != NULL);
-#line 92 "/home/nick/work/gala/src/WindowListener.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (window != NULL);
-#line 94 "/home/nick/work/gala/src/WindowListener.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = window;
-#line 94 "/home/nick/work/gala/src/WindowListener.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_object_get (_tmp0_, "on-all-workspaces", &_tmp1_, NULL);
-#line 94 "/home/nick/work/gala/src/WindowListener.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp2_ = _tmp1_;
-#line 94 "/home/nick/work/gala/src/WindowListener.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	if (_tmp2_) {
-#line 95 "/home/nick/work/gala/src/WindowListener.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		return;
 #line 443 "WindowListener.c"
 	}
-#line 97 "/home/nick/work/gala/src/WindowListener.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp3_ = window;
-#line 97 "/home/nick/work/gala/src/WindowListener.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_signal_emit_by_name (self, "window-no-longer-on-all-workspaces", _tmp3_);
 #line 449 "WindowListener.c"
 }
@@ -463,62 +463,62 @@ static void gala_window_listener_window_maximized_changed (GalaWindowListener* s
 	GeeHashMap* _tmp12_ = NULL;
 	MetaWindow* _tmp13_ = NULL;
 	GalaWindowGeometry _tmp14_ = {0};
-#line 100 "/home/nick/work/gala/src/WindowListener.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (self != NULL);
-#line 100 "/home/nick/work/gala/src/WindowListener.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (window != NULL);
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp1_ = window;
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_object_get (_tmp1_, "maximized-vertically", &_tmp2_, NULL);
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp3_ = _tmp2_;
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	if (!_tmp3_) {
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		_tmp0_ = TRUE;
 #line 481 "WindowListener.c"
 	} else {
 		MetaWindow* _tmp4_ = NULL;
 		gboolean _tmp5_ = FALSE;
 		gboolean _tmp6_ = FALSE;
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		_tmp4_ = window;
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		g_object_get (_tmp4_, "maximized-horizontally", &_tmp5_, NULL);
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		_tmp6_ = _tmp5_;
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		_tmp0_ = !_tmp6_;
 #line 494 "WindowListener.c"
 	}
-#line 103 "/home/nick/work/gala/src/WindowListener.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	if (_tmp0_) {
-#line 104 "/home/nick/work/gala/src/WindowListener.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 		return;
 #line 500 "WindowListener.c"
 	}
-#line 106 "/home/nick/work/gala/src/WindowListener.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	window_geometry = _tmp7_;
-#line 107 "/home/nick/work/gala/src/WindowListener.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp8_ = window;
-#line 107 "/home/nick/work/gala/src/WindowListener.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	meta_window_get_frame_rect (_tmp8_, &_tmp9_);
-#line 107 "/home/nick/work/gala/src/WindowListener.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	window_geometry.inner = _tmp9_;
-#line 108 "/home/nick/work/gala/src/WindowListener.vala"
+#line 108 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp10_ = window;
-#line 108 "/home/nick/work/gala/src/WindowListener.vala"
+#line 108 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	meta_window_get_buffer_rect (_tmp10_, &_tmp11_);
-#line 108 "/home/nick/work/gala/src/WindowListener.vala"
+#line 108 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	window_geometry.outer = _tmp11_;
-#line 110 "/home/nick/work/gala/src/WindowListener.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp12_ = self->priv->unmaximized_state_geometry;
-#line 110 "/home/nick/work/gala/src/WindowListener.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp13_ = window;
-#line 110 "/home/nick/work/gala/src/WindowListener.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp14_ = window_geometry;
-#line 110 "/home/nick/work/gala/src/WindowListener.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	gee_abstract_map_set ((GeeAbstractMap*) _tmp12_, _tmp13_, &_tmp14_);
 #line 524 "WindowListener.c"
 }
@@ -529,19 +529,19 @@ GalaWindowGeometry* gala_window_listener_get_unmaximized_state_geometry (GalaWin
 	GeeHashMap* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
 	gpointer _tmp2_ = NULL;
-#line 113 "/home/nick/work/gala/src/WindowListener.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 113 "/home/nick/work/gala/src/WindowListener.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_val_if_fail (window != NULL, NULL);
-#line 115 "/home/nick/work/gala/src/WindowListener.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = self->priv->unmaximized_state_geometry;
-#line 115 "/home/nick/work/gala/src/WindowListener.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp1_ = window;
-#line 115 "/home/nick/work/gala/src/WindowListener.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp2_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp0_, _tmp1_);
-#line 115 "/home/nick/work/gala/src/WindowListener.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	result = (GalaWindowGeometry*) _tmp2_;
-#line 115 "/home/nick/work/gala/src/WindowListener.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	return result;
 #line 547 "WindowListener.c"
 }
@@ -552,41 +552,41 @@ static void gala_window_listener_window_removed (GalaWindowListener* self, MetaW
 	guint _tmp1_ = 0U;
 	MetaWindow* _tmp2_ = NULL;
 	guint _tmp3_ = 0U;
-#line 118 "/home/nick/work/gala/src/WindowListener.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (self != NULL);
-#line 118 "/home/nick/work/gala/src/WindowListener.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_return_if_fail (window != NULL);
-#line 120 "/home/nick/work/gala/src/WindowListener.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp0_ = window;
-#line 120 "/home/nick/work/gala/src/WindowListener.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_signal_parse_name ("notify", G_TYPE_OBJECT, &_tmp1_, NULL, FALSE);
-#line 120 "/home/nick/work/gala/src/WindowListener.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_signal_handlers_disconnect_matched ((GObject*) _tmp0_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp1_, 0, NULL, (GCallback) _gala_window_listener_window_notify_g_object_notify, self);
-#line 121 "/home/nick/work/gala/src/WindowListener.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_tmp2_ = window;
-#line 121 "/home/nick/work/gala/src/WindowListener.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_signal_parse_name ("unmanaged", meta_window_get_type (), &_tmp3_, NULL, FALSE);
-#line 121 "/home/nick/work/gala/src/WindowListener.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_signal_handlers_disconnect_matched (_tmp2_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp3_, 0, NULL, (GCallback) _gala_window_listener_window_removed_meta_window_unmanaged, self);
 #line 572 "WindowListener.c"
 }
 
 
 static void gala_window_listener_class_init (GalaWindowListenerClass * klass) {
-#line 28 "/home/nick/work/gala/src/WindowListener.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	gala_window_listener_parent_class = g_type_class_peek_parent (klass);
-#line 28 "/home/nick/work/gala/src/WindowListener.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_type_class_add_private (klass, sizeof (GalaWindowListenerPrivate));
-#line 28 "/home/nick/work/gala/src/WindowListener.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_window_listener_finalize;
-#line 28 "/home/nick/work/gala/src/WindowListener.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	g_signal_new ("window_no_longer_on_all_workspaces", GALA_TYPE_WINDOW_LISTENER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__OBJECT, G_TYPE_NONE, 1, meta_window_get_type ());
 #line 585 "WindowListener.c"
 }
 
 
 static void gala_window_listener_instance_init (GalaWindowListener * self) {
-#line 28 "/home/nick/work/gala/src/WindowListener.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	self->priv = GALA_WINDOW_LISTENER_GET_PRIVATE (self);
 #line 592 "WindowListener.c"
 }
@@ -594,11 +594,11 @@ static void gala_window_listener_instance_init (GalaWindowListener * self) {
 
 static void gala_window_listener_finalize (GObject* obj) {
 	GalaWindowListener * self;
-#line 28 "/home/nick/work/gala/src/WindowListener.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_LISTENER, GalaWindowListener);
-#line 62 "/home/nick/work/gala/src/WindowListener.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	_g_object_unref0 (self->priv->unmaximized_state_geometry);
-#line 28 "/home/nick/work/gala/src/WindowListener.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowListener.vala"
 	G_OBJECT_CLASS (gala_window_listener_parent_class)->finalize (obj);
 #line 604 "WindowListener.c"
 }

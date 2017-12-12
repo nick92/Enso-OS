@@ -132,37 +132,37 @@ GalaBackgroundSource* gala_background_source_construct (GType object_type, MetaS
 	const gchar* _tmp1_ = NULL;
 	GSettings* _tmp2_ = NULL;
 	GSettings* _tmp3_ = NULL;
-#line 31 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_val_if_fail (screen != NULL, NULL);
-#line 31 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_val_if_fail (settings_schema != NULL, NULL);
-#line 33 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = screen;
-#line 33 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp1_ = settings_schema;
-#line 33 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp2_ = g_settings_new (_tmp1_);
-#line 33 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp3_ = _tmp2_;
-#line 33 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self = (GalaBackgroundSource*) g_object_new (object_type, "screen", _tmp0_, "settings", _tmp3_, NULL);
-#line 33 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_object_unref0 (_tmp3_);
-#line 31 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return self;
 #line 154 "BackgroundSource.c"
 }
 
 
 GalaBackgroundSource* gala_background_source_new (MetaScreen* screen, const gchar* settings_schema) {
-#line 31 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return gala_background_source_construct (GALA_TYPE_BACKGROUND_SOURCE, screen, settings_schema);
 #line 161 "BackgroundSource.c"
 }
 
 
 static void _gala_background_source_background_changed_gala_background_changed (GalaBackground* _sender, gpointer self) {
-#line 57 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	gala_background_source_background_changed ((GalaBackgroundSource*) self, _sender);
 #line 168 "BackgroundSource.c"
 }
@@ -173,15 +173,15 @@ static void gala_background_source_monitors_changed (GalaBackgroundSource* self)
 	MetaScreen* _tmp0_ = NULL;
 	gint _tmp1_ = 0;
 	gint i = 0;
-#line 46 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (self != NULL);
-#line 48 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = self->priv->_screen;
-#line 48 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp1_ = meta_screen_get_n_monitors (_tmp0_);
-#line 48 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	n = _tmp1_;
-#line 49 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	i = 0;
 #line 187 "BackgroundSource.c"
 	{
@@ -192,23 +192,23 @@ static void gala_background_source_monitors_changed (GalaBackgroundSource* self)
 		GeeCollection* _tmp5_ = NULL;
 		GeeIterator* _tmp6_ = NULL;
 		GeeIterator* _tmp7_ = NULL;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp2_ = self->priv->backgrounds;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp3_ = gee_abstract_map_get_values ((GeeMap*) _tmp2_);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp4_ = _tmp3_;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp5_ = _tmp4_;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp6_ = gee_iterable_iterator ((GeeIterable*) _tmp5_);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp7_ = _tmp6_;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_g_object_unref0 (_tmp5_);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_background_it = _tmp7_;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		while (TRUE) {
 #line 214 "BackgroundSource.c"
 			GeeIterator* _tmp8_ = NULL;
@@ -223,63 +223,63 @@ static void gala_background_source_monitors_changed (GalaBackgroundSource* self)
 			GalaBackground* _tmp17_ = NULL;
 			GeeHashMap* _tmp18_ = NULL;
 			gint _tmp19_ = 0;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp8_ = _background_it;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp9_ = gee_iterator_next (_tmp8_);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			if (!_tmp9_) {
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 				break;
 #line 235 "BackgroundSource.c"
 			}
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp10_ = _background_it;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp11_ = gee_iterator_get (_tmp10_);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			background = (GalaBackground*) _tmp11_;
-#line 52 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp12_ = i;
-#line 52 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			i = _tmp12_ + 1;
-#line 52 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp13_ = n;
-#line 52 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			if (_tmp12_ < _tmp13_) {
 #line 251 "BackgroundSource.c"
 				GalaBackground* _tmp14_ = NULL;
-#line 53 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 				_tmp14_ = background;
-#line 53 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 				gala_background_update_resolution (_tmp14_);
-#line 54 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 				_g_object_unref0 (background);
-#line 54 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 				continue;
 #line 261 "BackgroundSource.c"
 			}
-#line 57 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp15_ = background;
-#line 57 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			g_signal_parse_name ("changed", GALA_TYPE_BACKGROUND, &_tmp16_, NULL, FALSE);
-#line 57 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			g_signal_handlers_disconnect_matched (_tmp15_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp16_, 0, NULL, (GCallback) _gala_background_source_background_changed_gala_background_changed, self);
-#line 58 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp17_ = background;
-#line 58 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			gala_background_destroy (_tmp17_);
-#line 60 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp18_ = self->priv->backgrounds;
-#line 60 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp19_ = i;
-#line 60 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			gee_abstract_map_unset ((GeeAbstractMap*) _tmp18_, (gpointer) ((gintptr) _tmp19_), NULL);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_g_object_unref0 (background);
 #line 281 "BackgroundSource.c"
 		}
-#line 51 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_g_object_unref0 (_background_it);
 #line 285 "BackgroundSource.c"
 	}
@@ -301,19 +301,19 @@ GalaBackground* gala_background_source_get_background (GalaBackgroundSource* sel
 	GeeHashMap* _tmp31_ = NULL;
 	gint _tmp32_ = 0;
 	gpointer _tmp33_ = NULL;
-#line 64 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 66 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	filename = NULL;
-#line 68 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = self->priv->_settings;
-#line 68 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp1_ = g_settings_get_enum (_tmp0_, "picture-options");
-#line 68 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	style = _tmp1_;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp2_ = style;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	if (_tmp2_ != ((gint) G_DESKTOP_BACKGROUND_STYLE_NONE)) {
 #line 319 "BackgroundSource.c"
 		gchar* uri = NULL;
@@ -323,92 +323,92 @@ GalaBackground* gala_background_source_get_background (GalaBackgroundSource* sel
 		gchar* _tmp6_ = NULL;
 		gchar* _tmp7_ = NULL;
 		gboolean _tmp8_ = FALSE;
-#line 70 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp3_ = self->priv->_settings;
-#line 70 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp4_ = g_settings_get_string (_tmp3_, "picture-uri");
-#line 70 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		uri = _tmp4_;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp5_ = uri;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp6_ = g_uri_parse_scheme (_tmp5_);
-#line 71 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp7_ = _tmp6_;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp8_ = _tmp7_ != NULL;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_g_free0 (_tmp7_);
-#line 71 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		if (_tmp8_) {
 #line 345 "BackgroundSource.c"
 			const gchar* _tmp9_ = NULL;
 			GFile* _tmp10_ = NULL;
 			GFile* _tmp11_ = NULL;
 			gchar* _tmp12_ = NULL;
-#line 72 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp9_ = uri;
-#line 72 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp10_ = g_file_new_for_uri (_tmp9_);
-#line 72 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp11_ = _tmp10_;
-#line 72 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp12_ = g_file_get_path (_tmp11_);
-#line 72 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_g_free0 (filename);
-#line 72 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			filename = _tmp12_;
-#line 72 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_g_object_unref0 (_tmp11_);
 #line 364 "BackgroundSource.c"
 		} else {
 			const gchar* _tmp13_ = NULL;
 			gchar* _tmp14_ = NULL;
-#line 74 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp13_ = uri;
-#line 74 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp14_ = g_strdup (_tmp13_);
-#line 74 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_g_free0 (filename);
-#line 74 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			filename = _tmp14_;
 #line 376 "BackgroundSource.c"
 		}
-#line 69 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_g_free0 (uri);
 #line 380 "BackgroundSource.c"
 	}
-#line 81 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp16_ = filename;
-#line 81 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	if (_tmp16_ == NULL) {
-#line 81 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp15_ = TRUE;
 #line 388 "BackgroundSource.c"
 	} else {
 		const gchar* _tmp17_ = NULL;
 		gboolean _tmp18_ = FALSE;
-#line 81 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp17_ = filename;
-#line 81 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp18_ = g_str_has_suffix (_tmp17_, ".xml");
-#line 81 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp15_ = !_tmp18_;
 #line 398 "BackgroundSource.c"
 	}
-#line 81 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	if (_tmp15_) {
-#line 82 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		monitor_index = 0;
 #line 404 "BackgroundSource.c"
 	}
-#line 84 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp19_ = self->priv->backgrounds;
-#line 84 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp20_ = monitor_index;
-#line 84 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp21_ = gee_abstract_map_has_key ((GeeAbstractMap*) _tmp19_, (gpointer) ((gintptr) _tmp20_));
-#line 84 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	if (!_tmp21_) {
 #line 414 "BackgroundSource.c"
 		GalaBackground* background = NULL;
@@ -421,45 +421,45 @@ GalaBackground* gala_background_source_get_background (GalaBackgroundSource* sel
 		GeeHashMap* _tmp28_ = NULL;
 		gint _tmp29_ = 0;
 		GalaBackground* _tmp30_ = NULL;
-#line 85 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp22_ = self->priv->_screen;
-#line 85 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp23_ = monitor_index;
-#line 85 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp24_ = filename;
-#line 85 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp25_ = style;
-#line 85 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp26_ = gala_background_new (_tmp22_, _tmp23_, _tmp24_, self, (GDesktopBackgroundStyle) _tmp25_);
-#line 85 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		background = _tmp26_;
-#line 86 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp27_ = background;
-#line 86 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		g_signal_connect_object (_tmp27_, "changed", (GCallback) _gala_background_source_background_changed_gala_background_changed, self, 0);
-#line 87 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp28_ = self->priv->backgrounds;
-#line 87 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp29_ = monitor_index;
-#line 87 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp30_ = background;
-#line 87 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		gee_abstract_map_set ((GeeAbstractMap*) _tmp28_, (gpointer) ((gintptr) _tmp29_), _tmp30_);
-#line 84 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_g_object_unref0 (background);
 #line 451 "BackgroundSource.c"
 	}
-#line 90 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp31_ = self->priv->backgrounds;
-#line 90 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp32_ = monitor_index;
-#line 90 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp33_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp31_, (gpointer) ((gintptr) _tmp32_));
-#line 90 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	result = (GalaBackground*) _tmp33_;
-#line 90 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_free0 (filename);
-#line 90 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return result;
 #line 465 "BackgroundSource.c"
 }
@@ -473,43 +473,43 @@ static void gala_background_source_background_changed (GalaBackgroundSource* sel
 	GalaBackground* _tmp4_ = NULL;
 	gint _tmp5_ = 0;
 	gint _tmp6_ = 0;
-#line 93 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (self != NULL);
-#line 93 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (background != NULL);
-#line 95 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = background;
-#line 95 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_signal_parse_name ("changed", GALA_TYPE_BACKGROUND, &_tmp1_, NULL, FALSE);
-#line 95 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_signal_handlers_disconnect_matched (_tmp0_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp1_, 0, NULL, (GCallback) _gala_background_source_background_changed_gala_background_changed, self);
-#line 96 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp2_ = background;
-#line 96 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	gala_background_destroy (_tmp2_);
-#line 97 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp3_ = self->priv->backgrounds;
-#line 97 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp4_ = background;
-#line 97 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp5_ = gala_background_get_monitor_index (_tmp4_);
-#line 97 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp6_ = _tmp5_;
-#line 97 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	gee_abstract_map_unset ((GeeAbstractMap*) _tmp3_, (gpointer) ((gintptr) _tmp6_), NULL);
 #line 501 "BackgroundSource.c"
 }
 
 
 static void _gala_background_source_monitors_changed_meta_screen_monitors_changed (MetaScreen* _sender, gpointer self) {
-#line 102 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	gala_background_source_monitors_changed ((GalaBackgroundSource*) self);
 #line 508 "BackgroundSource.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 515 "BackgroundSource.c"
 }
@@ -518,13 +518,13 @@ static gpointer _g_object_ref0 (gpointer self) {
 void gala_background_source_destroy (GalaBackgroundSource* self) {
 	MetaScreen* _tmp0_ = NULL;
 	guint _tmp1_ = 0U;
-#line 100 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (self != NULL);
-#line 102 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = self->priv->_screen;
-#line 102 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_signal_parse_name ("monitors-changed", meta_screen_get_type (), &_tmp1_, NULL, FALSE);
-#line 102 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_signal_handlers_disconnect_matched (_tmp0_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp1_, 0, NULL, (GCallback) _gala_background_source_monitors_changed_meta_screen_monitors_changed, self);
 #line 530 "BackgroundSource.c"
 	{
@@ -536,23 +536,23 @@ void gala_background_source_destroy (GalaBackgroundSource* self) {
 		gint _tmp5_ = 0;
 		gint _tmp6_ = 0;
 		gint _background_index = 0;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp2_ = self->priv->backgrounds;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp3_ = _g_object_ref0 (_tmp2_);
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_background_list = _tmp3_;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp4_ = _background_list;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp5_ = gee_abstract_map_get_size ((GeeMap*) _tmp4_);
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_tmp6_ = _tmp5_;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_background_size = _tmp6_;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_background_index = -1;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		while (TRUE) {
 #line 558 "BackgroundSource.c"
 			gint _tmp7_ = 0;
@@ -565,43 +565,43 @@ void gala_background_source_destroy (GalaBackgroundSource* self) {
 			GalaBackground* _tmp13_ = NULL;
 			guint _tmp14_ = 0U;
 			GalaBackground* _tmp15_ = NULL;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp7_ = _background_index;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_background_index = _tmp7_ + 1;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp8_ = _background_index;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp9_ = _background_size;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			if (!(_tmp8_ < _tmp9_)) {
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 				break;
 #line 581 "BackgroundSource.c"
 			}
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp10_ = _background_list;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp11_ = _background_index;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp12_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp10_, (gpointer) ((gintptr) _tmp11_));
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			background = (GalaBackground*) _tmp12_;
-#line 105 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp13_ = background;
-#line 105 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			g_signal_parse_name ("changed", GALA_TYPE_BACKGROUND, &_tmp14_, NULL, FALSE);
-#line 105 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			g_signal_handlers_disconnect_matched (_tmp13_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp14_, 0, NULL, (GCallback) _gala_background_source_background_changed_gala_background_changed, self);
-#line 106 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_tmp15_ = background;
-#line 106 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			gala_background_destroy (_tmp15_);
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			_g_object_unref0 (background);
 #line 603 "BackgroundSource.c"
 		}
-#line 104 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		_g_object_unref0 (_background_list);
 #line 607 "BackgroundSource.c"
 	}
@@ -610,16 +610,16 @@ void gala_background_source_destroy (GalaBackgroundSource* self) {
 
 static gboolean _vala_string_array_contains (const gchar** stack, int stack_length, const gchar* needle) {
 	int i;
-#line 133 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	for (i = 0; i < stack_length; i++) {
-#line 133 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		if (g_strcmp0 (stack[i], needle) == 0) {
-#line 133 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 			return TRUE;
 #line 620 "BackgroundSource.c"
 		}
 	}
-#line 133 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return FALSE;
 #line 625 "BackgroundSource.c"
 }
@@ -630,33 +630,33 @@ static void gala_background_source_settings_changed (GalaBackgroundSource* self,
 	GalaBackgroundSourceSettingsHashCache current = {0};
 	GalaBackgroundSourceSettingsHashCache _tmp1_ = {0};
 	gint _tmp2_ = 0;
-#line 131 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (self != NULL);
-#line 131 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (key != NULL);
-#line 133 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = key;
-#line 133 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	if (!_vala_string_array_contains (GALA_BACKGROUND_SOURCE_options, G_N_ELEMENTS (GALA_BACKGROUND_SOURCE_options), _tmp0_)) {
-#line 134 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		return;
 #line 644 "BackgroundSource.c"
 	}
-#line 136 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	gala_background_source_get_current_settings_hash_cache (self, &_tmp1_);
-#line 136 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	current = _tmp1_;
-#line 138 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp2_ = memcmp (&self->priv->settings_hash_cache, &current, (gsize) sizeof (GalaBackgroundSourceSettingsHashCache));
-#line 138 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	if (_tmp2_ == 0) {
-#line 139 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		return;
 #line 656 "BackgroundSource.c"
 	}
-#line 142 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	memcpy (&self->priv->settings_hash_cache, &current, (gsize) sizeof (GalaBackgroundSourceSettingsHashCache));
-#line 144 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_signal_emit_by_name (self, "changed");
 #line 662 "BackgroundSource.c"
 }
@@ -689,85 +689,85 @@ static void gala_background_source_get_current_settings_hash_cache (GalaBackgrou
 	guint _tmp23_ = 0U;
 	GalaBackgroundSourceSettingsHashCache _tmp24_ = {0};
 	GalaBackgroundSourceSettingsHashCache _tmp25_ = {0};
-#line 147 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (self != NULL);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = self->priv->_settings;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp1_ = g_settings_get_value (_tmp0_, "color-shading-type");
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp2_ = _tmp1_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp3_ = g_variant_hash (_tmp2_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp4_ = self->priv->_settings;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp5_ = g_settings_get_value (_tmp4_, "picture-opacity");
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp6_ = _tmp5_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp7_ = g_variant_hash (_tmp6_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp8_ = self->priv->_settings;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp9_ = g_settings_get_value (_tmp8_, "picture-options");
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp10_ = _tmp9_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp11_ = g_variant_hash (_tmp10_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp12_ = self->priv->_settings;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp13_ = g_settings_get_value (_tmp12_, "picture-uri");
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp14_ = _tmp13_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp15_ = g_variant_hash (_tmp14_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp16_ = self->priv->_settings;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp17_ = g_settings_get_value (_tmp16_, "primary-color");
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp18_ = _tmp17_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp19_ = g_variant_hash (_tmp18_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp20_ = self->priv->_settings;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp21_ = g_settings_get_value (_tmp20_, "secondary-color");
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp22_ = _tmp21_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp23_ = g_variant_hash (_tmp22_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp24_.color_shading_type = _tmp3_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp24_.picture_opacity = _tmp7_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp24_.picture_options = _tmp11_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp24_.picture_uri = _tmp15_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp24_.primar_color = _tmp19_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp24_.secondary_color = _tmp23_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp25_ = _tmp24_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_variant_unref0 (_tmp22_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_variant_unref0 (_tmp18_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_variant_unref0 (_tmp14_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_variant_unref0 (_tmp10_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_variant_unref0 (_tmp6_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_variant_unref0 (_tmp2_);
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	*result = _tmp25_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return;
 #line 773 "BackgroundSource.c"
 }
@@ -776,13 +776,13 @@ static void gala_background_source_get_current_settings_hash_cache (GalaBackgrou
 MetaScreen* gala_background_source_get_screen (GalaBackgroundSource* self) {
 	MetaScreen* result;
 	MetaScreen* _tmp0_ = NULL;
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = self->priv->_screen;
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	result = _tmp0_;
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return result;
 #line 788 "BackgroundSource.c"
 }
@@ -791,17 +791,17 @@ MetaScreen* gala_background_source_get_screen (GalaBackgroundSource* self) {
 static void gala_background_source_set_screen (GalaBackgroundSource* self, MetaScreen* value) {
 	MetaScreen* _tmp0_ = NULL;
 	MetaScreen* _tmp1_ = NULL;
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (self != NULL);
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = value;
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_object_unref0 (self->priv->_screen);
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self->priv->_screen = _tmp1_;
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_object_notify ((GObject *) self, "screen");
 #line 807 "BackgroundSource.c"
 }
@@ -810,13 +810,13 @@ static void gala_background_source_set_screen (GalaBackgroundSource* self, MetaS
 GSettings* gala_background_source_get_settings (GalaBackgroundSource* self) {
 	GSettings* result;
 	GSettings* _tmp0_ = NULL;
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = self->priv->_settings;
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	result = _tmp0_;
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return result;
 #line 822 "BackgroundSource.c"
 }
@@ -825,17 +825,17 @@ GSettings* gala_background_source_get_settings (GalaBackgroundSource* self) {
 static void gala_background_source_set_settings (GalaBackgroundSource* self, GSettings* value) {
 	GSettings* _tmp0_ = NULL;
 	GSettings* _tmp1_ = NULL;
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (self != NULL);
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = value;
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_object_unref0 (self->priv->_settings);
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self->priv->_settings = _tmp1_;
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_object_notify ((GObject *) self, "settings");
 #line 841 "BackgroundSource.c"
 }
@@ -844,13 +844,13 @@ static void gala_background_source_set_settings (GalaBackgroundSource* self, GSe
 gint gala_background_source_get_use_count (GalaBackgroundSource* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = self->priv->_use_count;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	result = _tmp0_;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return result;
 #line 856 "BackgroundSource.c"
 }
@@ -858,20 +858,20 @@ gint gala_background_source_get_use_count (GalaBackgroundSource* self) {
 
 void gala_background_source_set_use_count (GalaBackgroundSource* self, gint value) {
 	gint _tmp0_ = 0;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_return_if_fail (self != NULL);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = value;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self->priv->_use_count = _tmp0_;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_object_notify ((GObject *) self, "use-count");
 #line 870 "BackgroundSource.c"
 }
 
 
 static void _gala_background_source_settings_changed_g_settings_changed (GSettings* _sender, const gchar* key, gpointer self) {
-#line 43 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	gala_background_source_settings_changed ((GalaBackgroundSource*) self, key);
 #line 877 "BackgroundSource.c"
 }
@@ -885,31 +885,31 @@ static GObject * gala_background_source_constructor (GType type, guint n_constru
 	MetaScreen* _tmp1_ = NULL;
 	GalaBackgroundSourceSettingsHashCache _tmp2_ = {0};
 	GSettings* _tmp3_ = NULL;
-#line 36 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	parent_class = G_OBJECT_CLASS (gala_background_source_parent_class);
-#line 36 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 36 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_BACKGROUND_SOURCE, GalaBackgroundSource);
-#line 38 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp0_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, GALA_TYPE_BACKGROUND, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 38 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_object_unref0 (self->priv->backgrounds);
-#line 38 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self->priv->backgrounds = _tmp0_;
-#line 40 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp1_ = self->priv->_screen;
-#line 40 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_signal_connect_object (_tmp1_, "monitors-changed", (GCallback) _gala_background_source_monitors_changed_meta_screen_monitors_changed, self, 0);
-#line 42 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	gala_background_source_get_current_settings_hash_cache (self, &_tmp2_);
-#line 42 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self->priv->settings_hash_cache = _tmp2_;
-#line 43 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_tmp3_ = self->priv->_settings;
-#line 43 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_signal_connect_object (_tmp3_, "changed", (GCallback) _gala_background_source_settings_changed_g_settings_changed, self, 0);
-#line 36 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return obj;
 #line 915 "BackgroundSource.c"
 }
@@ -917,18 +917,18 @@ static GObject * gala_background_source_constructor (GType type, guint n_constru
 
 static GalaBackgroundSourceSettingsHashCache* gala_background_source_settings_hash_cache_dup (const GalaBackgroundSourceSettingsHashCache* self) {
 	GalaBackgroundSourceSettingsHashCache* dup;
-#line 115 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	dup = g_new0 (GalaBackgroundSourceSettingsHashCache, 1);
-#line 115 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	memcpy (dup, self, sizeof (GalaBackgroundSourceSettingsHashCache));
-#line 115 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	return dup;
 #line 927 "BackgroundSource.c"
 }
 
 
 static void gala_background_source_settings_hash_cache_free (GalaBackgroundSourceSettingsHashCache* self) {
-#line 115 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_free (self);
 #line 934 "BackgroundSource.c"
 }
@@ -946,34 +946,34 @@ static GType gala_background_source_settings_hash_cache_get_type (void) {
 
 
 static void gala_background_source_class_init (GalaBackgroundSourceClass * klass) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	gala_background_source_parent_class = g_type_class_peek_parent (klass);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_type_class_add_private (klass, sizeof (GalaBackgroundSourcePrivate));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_background_source_get_property;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_background_source_set_property;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_background_source_constructor;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_background_source_finalize;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SOURCE_SCREEN, g_param_spec_object ("screen", "screen", "screen", meta_screen_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SOURCE_SETTINGS, g_param_spec_object ("settings", "settings", "settings", G_TYPE_SETTINGS, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_SOURCE_USE_COUNT, g_param_spec_int ("use-count", "use-count", "use-count", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	g_signal_new ("changed", GALA_TYPE_BACKGROUND_SOURCE, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 #line 970 "BackgroundSource.c"
 }
 
 
 static void gala_background_source_instance_init (GalaBackgroundSource * self) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self->priv = GALA_BACKGROUND_SOURCE_GET_PRIVATE (self);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self->priv->_use_count = 0;
 #line 979 "BackgroundSource.c"
 }
@@ -981,15 +981,15 @@ static void gala_background_source_instance_init (GalaBackgroundSource * self) {
 
 static void gala_background_source_finalize (GObject* obj) {
 	GalaBackgroundSource * self;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_BACKGROUND_SOURCE, GalaBackgroundSource);
-#line 24 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_object_unref0 (self->priv->_screen);
-#line 25 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_object_unref0 (self->priv->_settings);
-#line 29 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	_g_object_unref0 (self->priv->backgrounds);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	G_OBJECT_CLASS (gala_background_source_parent_class)->finalize (obj);
 #line 995 "BackgroundSource.c"
 }
@@ -1010,31 +1010,31 @@ GType gala_background_source_get_type (void) {
 static void _vala_gala_background_source_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaBackgroundSource * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_BACKGROUND_SOURCE, GalaBackgroundSource);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		case GALA_BACKGROUND_SOURCE_SCREEN:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		g_value_set_object (value, gala_background_source_get_screen (self));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		case GALA_BACKGROUND_SOURCE_SETTINGS:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		g_value_set_object (value, gala_background_source_get_settings (self));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		case GALA_BACKGROUND_SOURCE_USE_COUNT:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		g_value_set_int (value, gala_background_source_get_use_count (self));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		break;
 #line 1034 "BackgroundSource.c"
 		default:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		break;
 #line 1040 "BackgroundSource.c"
 	}
@@ -1044,31 +1044,31 @@ static void _vala_gala_background_source_get_property (GObject * object, guint p
 static void _vala_gala_background_source_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaBackgroundSource * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_BACKGROUND_SOURCE, GalaBackgroundSource);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		case GALA_BACKGROUND_SOURCE_SCREEN:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		gala_background_source_set_screen (self, g_value_get_object (value));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		case GALA_BACKGROUND_SOURCE_SETTINGS:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		gala_background_source_set_settings (self, g_value_get_object (value));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		case GALA_BACKGROUND_SOURCE_USE_COUNT:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		gala_background_source_set_use_count (self, g_value_get_int (value));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		break;
 #line 1068 "BackgroundSource.c"
 		default:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundSource.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundSource.vala"
 		break;
 #line 1074 "BackgroundSource.c"
 	}

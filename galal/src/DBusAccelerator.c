@@ -159,24 +159,24 @@ void gala_accelerator_copy (const GalaAccelerator* self, GalaAccelerator* dest) 
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
 	guint _tmp2_ = 0U;
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp0_ = (*self).name;
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_free0 ((*dest).name);
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	(*dest).name = _tmp1_;
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp2_ = (*self).flags;
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	(*dest).flags = _tmp2_;
 #line 175 "DBusAccelerator.c"
 }
 
 
 void gala_accelerator_destroy (GalaAccelerator* self) {
-#line 22 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_free0 ((*self).name);
 #line 182 "DBusAccelerator.c"
 }
@@ -184,20 +184,20 @@ void gala_accelerator_destroy (GalaAccelerator* self) {
 
 GalaAccelerator* gala_accelerator_dup (const GalaAccelerator* self) {
 	GalaAccelerator* dup;
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	dup = g_new0 (GalaAccelerator, 1);
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	gala_accelerator_copy (self, dup);
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return dup;
 #line 194 "DBusAccelerator.c"
 }
 
 
 void gala_accelerator_free (GalaAccelerator* self) {
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	gala_accelerator_destroy (self);
-#line 20 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_free (self);
 #line 203 "DBusAccelerator.c"
 }
@@ -218,51 +218,51 @@ GalaDBusAccelerator* gala_dbus_accelerator_init (GalaWindowManager* wm) {
 	GalaDBusAccelerator* result = NULL;
 	GalaDBusAccelerator* _tmp0_ = NULL;
 	GalaDBusAccelerator* _tmp3_ = NULL;
-#line 32 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_val_if_fail (wm != NULL, NULL);
-#line 34 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp0_ = gala_dbus_accelerator_instance;
-#line 34 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (_tmp0_ == NULL) {
 #line 228 "DBusAccelerator.c"
 		GalaWindowManager* _tmp1_ = NULL;
 		GalaDBusAccelerator* _tmp2_ = NULL;
-#line 35 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp1_ = wm;
-#line 35 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp2_ = gala_dbus_accelerator_new (_tmp1_);
-#line 35 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_gala_dbus_accelerator_unref0 (gala_dbus_accelerator_instance);
-#line 35 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		gala_dbus_accelerator_instance = _tmp2_;
 #line 239 "DBusAccelerator.c"
 	}
-#line 37 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp3_ = gala_dbus_accelerator_instance;
-#line 37 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	result = _tmp3_;
-#line 37 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return result;
 #line 247 "DBusAccelerator.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 51 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 254 "DBusAccelerator.c"
 }
 
 
 static void _g_free0_ (gpointer var) {
-#line 52 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	var = (g_free (var), NULL);
 #line 261 "DBusAccelerator.c"
 }
 
 
 static void _gala_dbus_accelerator_on_accelerator_activated_meta_display_accelerator_activated (MetaDisplay* _sender, guint object, guint p0, guint p1, gpointer self) {
-#line 54 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	gala_dbus_accelerator_on_accelerator_activated ((GalaDBusAccelerator*) self, object, p0, p1);
 #line 268 "DBusAccelerator.c"
 }
@@ -278,69 +278,69 @@ static GalaDBusAccelerator* gala_dbus_accelerator_construct (GType object_type, 
 	GalaWindowManager* _tmp5_ = NULL;
 	MetaScreen* _tmp6_ = NULL;
 	MetaDisplay* _tmp7_ = NULL;
-#line 49 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_val_if_fail (_wm != NULL, NULL);
-#line 49 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	self = (GalaDBusAccelerator*) g_type_create_instance (object_type);
-#line 51 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp0_ = _wm;
-#line 51 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 51 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_object_unref0 (self->priv->wm);
-#line 51 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	self->priv->wm = _tmp1_;
-#line 52 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp2_ = g_str_hash;
-#line 52 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp3_ = g_str_equal;
-#line 52 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp4_ = g_hash_table_new_full (_tmp2_, _tmp3_, _g_free0_, NULL);
-#line 52 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_hash_table_unref0 (self->priv->grabbed_accelerators);
-#line 52 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	self->priv->grabbed_accelerators = _tmp4_;
-#line 54 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp5_ = self->priv->wm;
-#line 54 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp6_ = meta_plugin_get_screen ((MetaPlugin*) _tmp5_);
-#line 54 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp7_ = meta_screen_get_display (_tmp6_);
-#line 54 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_signal_connect (_tmp7_, "accelerator-activated", (GCallback) _gala_dbus_accelerator_on_accelerator_activated_meta_display_accelerator_activated, self);
-#line 49 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return self;
 #line 314 "DBusAccelerator.c"
 }
 
 
 static GalaDBusAccelerator* gala_dbus_accelerator_new (GalaWindowManager* _wm) {
-#line 49 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return gala_dbus_accelerator_construct (GALA_TYPE_DBUS_ACCELERATOR, _wm);
 #line 321 "DBusAccelerator.c"
 }
 
 
 static gboolean _uint_equal (const guint* s1, const guint* s2) {
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (s1 == s2) {
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		return TRUE;
 #line 330 "DBusAccelerator.c"
 	}
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (s1 == NULL) {
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		return FALSE;
 #line 336 "DBusAccelerator.c"
 	}
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (s2 == NULL) {
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		return FALSE;
 #line 342 "DBusAccelerator.c"
 	}
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return (*s1) == (*s2);
 #line 346 "DBusAccelerator.c"
 }
@@ -349,26 +349,26 @@ static gboolean _uint_equal (const guint* s1, const guint* s2) {
 static void gala_dbus_accelerator_on_accelerator_activated (GalaDBusAccelerator* self, guint action, guint device_id, guint timestamp) {
 	GHashTable* _tmp0_ = NULL;
 	GList* _tmp1_ = NULL;
-#line 57 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_if_fail (self != NULL);
-#line 59 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp0_ = self->priv->grabbed_accelerators;
-#line 59 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp1_ = g_hash_table_get_keys (_tmp0_);
 #line 359 "DBusAccelerator.c"
 	{
 		GList* accelerator_collection = NULL;
 		GList* accelerator_it = NULL;
-#line 59 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		accelerator_collection = _tmp1_;
-#line 59 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		for (accelerator_it = accelerator_collection; accelerator_it != NULL; accelerator_it = accelerator_it->next) {
 #line 367 "DBusAccelerator.c"
 			gchar* _tmp2_ = NULL;
 			gchar* accelerator = NULL;
-#line 59 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			_tmp2_ = g_strdup ((const gchar*) accelerator_it->data);
-#line 59 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			accelerator = _tmp2_;
 #line 374 "DBusAccelerator.c"
 			{
@@ -376,36 +376,36 @@ static void gala_dbus_accelerator_on_accelerator_activated (GalaDBusAccelerator*
 				const gchar* _tmp4_ = NULL;
 				gconstpointer _tmp5_ = NULL;
 				guint _tmp6_ = 0U;
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp3_ = self->priv->grabbed_accelerators;
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp4_ = accelerator;
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp5_ = g_hash_table_lookup (_tmp3_, _tmp4_);
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp6_ = action;
-#line 60 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				if (_uint_equal ((guint*) _tmp5_, &_tmp6_) == TRUE) {
 #line 390 "DBusAccelerator.c"
 					guint _tmp7_ = 0U;
 					guint _tmp8_ = 0U;
 					guint _tmp9_ = 0U;
-#line 68 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp7_ = action;
-#line 68 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp8_ = device_id;
-#line 68 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp9_ = timestamp;
-#line 68 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					g_signal_emit_by_name (self, "accelerator-activated", _tmp7_, _tmp8_, _tmp9_);
 #line 402 "DBusAccelerator.c"
 				}
-#line 59 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_g_free0 (accelerator);
 #line 406 "DBusAccelerator.c"
 			}
 		}
-#line 59 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_g_list_free0 (accelerator_collection);
 #line 411 "DBusAccelerator.c"
 	}
@@ -414,18 +414,18 @@ static void gala_dbus_accelerator_on_accelerator_activated (GalaDBusAccelerator*
 
 static guint* _uint_dup (guint* self) {
 	guint* dup;
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	dup = g_new0 (guint, 1);
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	memcpy (dup, self, sizeof (guint));
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return dup;
 #line 424 "DBusAccelerator.c"
 }
 
 
 static gpointer __uint_dup0 (gpointer self) {
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return self ? _uint_dup (self) : NULL;
 #line 431 "DBusAccelerator.c"
 }
@@ -441,23 +441,23 @@ guint gala_dbus_accelerator_grab_accelerator (GalaDBusAccelerator* self, const g
 	guint* _tmp4_ = NULL;
 	guint* _tmp17_ = NULL;
 	guint _tmp18_ = 0U;
-#line 74 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_val_if_fail (self != NULL, 0U);
-#line 74 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_val_if_fail (accelerator != NULL, 0U);
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp0_ = self->priv->grabbed_accelerators;
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp1_ = accelerator;
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp2_ = g_hash_table_lookup (_tmp0_, _tmp1_);
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp3_ = __uint_dup0 ((guint*) _tmp2_);
-#line 76 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	action = _tmp3_;
-#line 78 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp4_ = action;
-#line 78 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (_tmp4_ == NULL) {
 #line 463 "DBusAccelerator.c"
 		GalaWindowManager* _tmp5_ = NULL;
@@ -467,25 +467,25 @@ guint gala_dbus_accelerator_grab_accelerator (GalaDBusAccelerator* self, const g
 		guint _tmp9_ = 0U;
 		guint* _tmp10_ = NULL;
 		guint* _tmp11_ = NULL;
-#line 79 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp5_ = self->priv->wm;
-#line 79 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp6_ = meta_plugin_get_screen ((MetaPlugin*) _tmp5_);
-#line 79 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp7_ = meta_screen_get_display (_tmp6_);
-#line 79 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp8_ = accelerator;
-#line 79 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp9_ = meta_display_grab_accelerator (_tmp7_, _tmp8_);
-#line 79 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp10_ = __uint_dup0 (&_tmp9_);
-#line 79 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_g_free0 (action);
-#line 79 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		action = _tmp10_;
-#line 80 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp11_ = action;
-#line 80 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		if ((*_tmp11_) > ((guint) 0)) {
 #line 491 "DBusAccelerator.c"
 			GHashTable* _tmp12_ = NULL;
@@ -493,45 +493,45 @@ guint gala_dbus_accelerator_grab_accelerator (GalaDBusAccelerator* self, const g
 			gchar* _tmp14_ = NULL;
 			guint* _tmp15_ = NULL;
 			guint* _tmp16_ = NULL;
-#line 81 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			_tmp12_ = self->priv->grabbed_accelerators;
-#line 81 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			_tmp13_ = accelerator;
-#line 81 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			_tmp14_ = g_strdup (_tmp13_);
-#line 81 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			_tmp15_ = action;
-#line 81 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			_tmp16_ = __uint_dup0 (_tmp15_);
-#line 81 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			g_hash_table_insert (_tmp12_, _tmp14_, _tmp16_);
 #line 509 "DBusAccelerator.c"
 		}
 	}
-#line 85 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp17_ = action;
-#line 85 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp18_ = *_tmp17_;
-#line 85 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_free0 (_tmp17_);
-#line 85 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	result = _tmp18_;
-#line 85 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return result;
 #line 522 "DBusAccelerator.c"
 }
 
 
 static void _vala_array_add1 (guint** array, int* length, int* size, guint value) {
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if ((*length) == (*size)) {
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		*size = (*size) ? (2 * (*size)) : 4;
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		*array = g_renew (guint, *array, *size);
 #line 533 "DBusAccelerator.c"
 	}
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	(*array)[(*length)++] = value;
 #line 537 "DBusAccelerator.c"
 }
@@ -547,19 +547,19 @@ guint* gala_dbus_accelerator_grab_accelerators (GalaDBusAccelerator* self, GalaA
 	gint _tmp1__length1 = 0;
 	guint* _tmp8_ = NULL;
 	gint _tmp8__length1 = 0;
-#line 88 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 90 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp0_ = g_new0 (guint, 0);
-#line 90 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	actions = _tmp0_;
-#line 90 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	actions_length1 = 0;
-#line 90 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_actions_size_ = actions_length1;
-#line 92 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp1_ = accelerators;
-#line 92 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp1__length1 = accelerators_length1;
 #line 565 "DBusAccelerator.c"
 	{
@@ -567,15 +567,15 @@ guint* gala_dbus_accelerator_grab_accelerators (GalaDBusAccelerator* self, GalaA
 		gint accelerator_collection_length1 = 0;
 		gint _accelerator_collection_size_ = 0;
 		gint accelerator_it = 0;
-#line 92 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		accelerator_collection = _tmp1_;
-#line 92 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		accelerator_collection_length1 = _tmp1__length1;
-#line 92 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		for (accelerator_it = 0; accelerator_it < _tmp1__length1; accelerator_it = accelerator_it + 1) {
 #line 577 "DBusAccelerator.c"
 			GalaAccelerator* accelerator = NULL;
-#line 92 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			accelerator = &accelerator_collection[accelerator_it];
 #line 581 "DBusAccelerator.c"
 			{
@@ -586,39 +586,39 @@ guint* gala_dbus_accelerator_grab_accelerators (GalaDBusAccelerator* self, GalaA
 				GalaAccelerator* _tmp5_ = NULL;
 				guint _tmp6_ = 0U;
 				guint _tmp7_ = 0U;
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp2_ = actions;
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp2__length1 = actions_length1;
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp3_ = accelerator;
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp4_ = (*_tmp3_).name;
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp5_ = accelerator;
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp6_ = (*_tmp5_).flags;
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp7_ = gala_dbus_accelerator_grab_accelerator (self, _tmp4_, _tmp6_);
-#line 93 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_vala_array_add1 (&actions, &actions_length1, &_actions_size_, _tmp7_);
 #line 606 "DBusAccelerator.c"
 			}
 		}
 	}
-#line 96 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp8_ = actions;
-#line 96 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp8__length1 = actions_length1;
-#line 96 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (result_length1) {
-#line 96 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		*result_length1 = _tmp8__length1;
 #line 618 "DBusAccelerator.c"
 	}
-#line 96 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	result = _tmp8_;
-#line 96 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return result;
 #line 624 "DBusAccelerator.c"
 }
@@ -629,25 +629,25 @@ gboolean gala_dbus_accelerator_ungrab_accelerator (GalaDBusAccelerator* self, gu
 	gboolean ret = FALSE;
 	GHashTable* _tmp0_ = NULL;
 	GList* _tmp1_ = NULL;
-#line 99 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 101 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	ret = FALSE;
-#line 103 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp0_ = self->priv->grabbed_accelerators;
-#line 103 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp1_ = g_hash_table_get_keys (_tmp0_);
 #line 641 "DBusAccelerator.c"
 	{
 		GList* accelerator_collection = NULL;
 		GList* accelerator_it = NULL;
-#line 103 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		accelerator_collection = _tmp1_;
-#line 103 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		for (accelerator_it = accelerator_collection; accelerator_it != NULL; accelerator_it = accelerator_it->next) {
 #line 649 "DBusAccelerator.c"
 			const gchar* accelerator = NULL;
-#line 103 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			accelerator = (const gchar*) accelerator_it->data;
 #line 653 "DBusAccelerator.c"
 			{
@@ -655,15 +655,15 @@ gboolean gala_dbus_accelerator_ungrab_accelerator (GalaDBusAccelerator* self, gu
 				const gchar* _tmp3_ = NULL;
 				gconstpointer _tmp4_ = NULL;
 				guint _tmp5_ = 0U;
-#line 104 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp2_ = self->priv->grabbed_accelerators;
-#line 104 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp3_ = accelerator;
-#line 104 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp4_ = g_hash_table_lookup (_tmp2_, _tmp3_);
-#line 104 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				_tmp5_ = action;
-#line 104 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 				if (_uint_equal ((guint*) _tmp4_, &_tmp5_) == TRUE) {
 #line 669 "DBusAccelerator.c"
 					GalaWindowManager* _tmp6_ = NULL;
@@ -673,37 +673,37 @@ gboolean gala_dbus_accelerator_ungrab_accelerator (GalaDBusAccelerator* self, gu
 					gboolean _tmp10_ = FALSE;
 					GHashTable* _tmp11_ = NULL;
 					const gchar* _tmp12_ = NULL;
-#line 105 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp6_ = self->priv->wm;
-#line 105 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp7_ = meta_plugin_get_screen ((MetaPlugin*) _tmp6_);
-#line 105 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp8_ = meta_screen_get_display (_tmp7_);
-#line 105 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp9_ = action;
-#line 105 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp10_ = meta_display_ungrab_accelerator (_tmp8_, _tmp9_);
-#line 105 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					ret = _tmp10_;
-#line 106 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp11_ = self->priv->grabbed_accelerators;
-#line 106 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					_tmp12_ = accelerator;
-#line 106 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					g_hash_table_remove (_tmp11_, _tmp12_);
-#line 107 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 					break;
 #line 697 "DBusAccelerator.c"
 				}
 			}
 		}
-#line 103 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_g_list_free0 (accelerator_collection);
 #line 703 "DBusAccelerator.c"
 	}
-#line 111 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	result = ret;
-#line 111 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return result;
 #line 709 "DBusAccelerator.c"
 }
@@ -726,121 +726,121 @@ void gala_dbus_accelerator_show_osd (GalaDBusAccelerator* self, GHashTable* para
 	gboolean _tmp20_ = FALSE;
 	const gchar* _tmp24_ = NULL;
 	gint32 _tmp25_ = 0;
-#line 115 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_if_fail (self != NULL);
-#line 115 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_if_fail (parameters != NULL);
-#line 117 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	monitor_index = (gint32) -1;
-#line 118 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp0_ = parameters;
-#line 118 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp1_ = g_hash_table_contains (_tmp0_, "monitor");
-#line 118 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (_tmp1_) {
 #line 742 "DBusAccelerator.c"
 		GHashTable* _tmp2_ = NULL;
 		gconstpointer _tmp3_ = NULL;
 		gint32 _tmp4_ = 0;
-#line 119 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp2_ = parameters;
-#line 119 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp3_ = g_hash_table_lookup (_tmp2_, "monitor");
-#line 119 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp4_ = g_variant_get_int32 ((GVariant*) _tmp3_);
-#line 119 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		monitor_index = _tmp4_;
 #line 754 "DBusAccelerator.c"
 	}
-#line 120 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp5_ = g_strdup ("");
-#line 120 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	icon = _tmp5_;
-#line 121 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp6_ = parameters;
-#line 121 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp7_ = g_hash_table_contains (_tmp6_, "icon");
-#line 121 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (_tmp7_) {
 #line 766 "DBusAccelerator.c"
 		GHashTable* _tmp8_ = NULL;
 		gconstpointer _tmp9_ = NULL;
 		const gchar* _tmp10_ = NULL;
 		gchar* _tmp11_ = NULL;
-#line 122 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp8_ = parameters;
-#line 122 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp9_ = g_hash_table_lookup (_tmp8_, "icon");
-#line 122 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp10_ = g_variant_get_string ((GVariant*) _tmp9_, NULL);
-#line 122 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp11_ = g_strdup (_tmp10_);
-#line 122 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_g_free0 (icon);
-#line 122 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		icon = _tmp11_;
 #line 783 "DBusAccelerator.c"
 	}
-#line 123 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp12_ = g_strdup ("");
-#line 123 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	label = _tmp12_;
-#line 124 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp13_ = parameters;
-#line 124 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp14_ = g_hash_table_contains (_tmp13_, "label");
-#line 124 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (_tmp14_) {
 #line 795 "DBusAccelerator.c"
 		GHashTable* _tmp15_ = NULL;
 		gconstpointer _tmp16_ = NULL;
 		const gchar* _tmp17_ = NULL;
 		gchar* _tmp18_ = NULL;
-#line 125 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp15_ = parameters;
-#line 125 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp16_ = g_hash_table_lookup (_tmp15_, "label");
-#line 125 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp17_ = g_variant_get_string ((GVariant*) _tmp16_, NULL);
-#line 125 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp18_ = g_strdup (_tmp17_);
-#line 125 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_g_free0 (label);
-#line 125 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		label = _tmp18_;
 #line 812 "DBusAccelerator.c"
 	}
-#line 126 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	level = (gint32) 0;
-#line 127 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp19_ = parameters;
-#line 127 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp20_ = g_hash_table_contains (_tmp19_, "level");
-#line 127 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (_tmp20_) {
 #line 822 "DBusAccelerator.c"
 		GHashTable* _tmp21_ = NULL;
 		gconstpointer _tmp22_ = NULL;
 		gint32 _tmp23_ = 0;
-#line 128 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp21_ = parameters;
-#line 128 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp22_ = g_hash_table_lookup (_tmp21_, "level");
-#line 128 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		_tmp23_ = g_variant_get_int32 ((GVariant*) _tmp22_);
-#line 128 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		level = _tmp23_;
 #line 834 "DBusAccelerator.c"
 	}
-#line 133 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp24_ = icon;
-#line 133 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_tmp25_ = level;
-#line 133 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	gala_media_feedback_send (_tmp24_, (gint) _tmp25_);
-#line 115 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_free0 (label);
-#line 115 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_free0 (icon);
 #line 846 "DBusAccelerator.c"
 }
@@ -853,41 +853,41 @@ static void g_cclosure_user_marshal_VOID__UINT_UINT_UINT (GClosure * closure, GV
 	register gpointer data1;
 	register gpointer data2;
 	cc = (GCClosure *) closure;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_if_fail (n_param_values == 4);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (G_CCLOSURE_SWAP_DATA (closure)) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		data1 = closure->data;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		data2 = param_values->data[0].v_pointer;
 #line 865 "DBusAccelerator.c"
 	} else {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		data1 = param_values->data[0].v_pointer;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		data2 = closure->data;
 #line 871 "DBusAccelerator.c"
 	}
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	callback = (GMarshalFunc_VOID__UINT_UINT_UINT) (marshal_data ? marshal_data : cc->callback);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	callback (data1, g_value_get_uint (param_values + 1), g_value_get_uint (param_values + 2), g_value_get_uint (param_values + 3), data2);
 #line 877 "DBusAccelerator.c"
 }
 
 
 static void gala_value_dbus_accelerator_init (GValue* value) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	value->data[0].v_pointer = NULL;
 #line 884 "DBusAccelerator.c"
 }
 
 
 static void gala_value_dbus_accelerator_free_value (GValue* value) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (value->data[0].v_pointer) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		gala_dbus_accelerator_unref (value->data[0].v_pointer);
 #line 893 "DBusAccelerator.c"
 	}
@@ -895,13 +895,13 @@ static void gala_value_dbus_accelerator_free_value (GValue* value) {
 
 
 static void gala_value_dbus_accelerator_copy_value (const GValue* src_value, GValue* dest_value) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (src_value->data[0].v_pointer) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		dest_value->data[0].v_pointer = gala_dbus_accelerator_ref (src_value->data[0].v_pointer);
 #line 903 "DBusAccelerator.c"
 	} else {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		dest_value->data[0].v_pointer = NULL;
 #line 907 "DBusAccelerator.c"
 	}
@@ -909,37 +909,37 @@ static void gala_value_dbus_accelerator_copy_value (const GValue* src_value, GVa
 
 
 static gpointer gala_value_dbus_accelerator_peek_pointer (const GValue* value) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return value->data[0].v_pointer;
 #line 915 "DBusAccelerator.c"
 }
 
 
 static gchar* gala_value_dbus_accelerator_collect_value (GValue* value, guint n_collect_values, GTypeCValue* collect_values, guint collect_flags) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (collect_values[0].v_pointer) {
 #line 922 "DBusAccelerator.c"
 		GalaDBusAccelerator* object;
 		object = collect_values[0].v_pointer;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		if (object->parent_instance.g_class == NULL) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			return g_strconcat ("invalid unclassed object pointer for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
 #line 929 "DBusAccelerator.c"
 		} else if (!g_value_type_compatible (G_TYPE_FROM_INSTANCE (object), G_VALUE_TYPE (value))) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 			return g_strconcat ("invalid object type `", g_type_name (G_TYPE_FROM_INSTANCE (object)), "' for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
 #line 933 "DBusAccelerator.c"
 		}
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		value->data[0].v_pointer = gala_dbus_accelerator_ref (object);
 #line 937 "DBusAccelerator.c"
 	} else {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		value->data[0].v_pointer = NULL;
 #line 941 "DBusAccelerator.c"
 	}
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return NULL;
 #line 945 "DBusAccelerator.c"
 }
@@ -948,27 +948,27 @@ static gchar* gala_value_dbus_accelerator_collect_value (GValue* value, guint n_
 static gchar* gala_value_dbus_accelerator_lcopy_value (const GValue* value, guint n_collect_values, GTypeCValue* collect_values, guint collect_flags) {
 	GalaDBusAccelerator** object_p;
 	object_p = collect_values[0].v_pointer;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (!object_p) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		return g_strdup_printf ("value location for `%s' passed as NULL", G_VALUE_TYPE_NAME (value));
 #line 956 "DBusAccelerator.c"
 	}
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (!value->data[0].v_pointer) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		*object_p = NULL;
 #line 962 "DBusAccelerator.c"
 	} else if (collect_flags & G_VALUE_NOCOPY_CONTENTS) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		*object_p = value->data[0].v_pointer;
 #line 966 "DBusAccelerator.c"
 	} else {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		*object_p = gala_dbus_accelerator_ref (value->data[0].v_pointer);
 #line 970 "DBusAccelerator.c"
 	}
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return NULL;
 #line 974 "DBusAccelerator.c"
 }
@@ -976,22 +976,22 @@ static gchar* gala_value_dbus_accelerator_lcopy_value (const GValue* value, guin
 
 GParamSpec* gala_param_spec_dbus_accelerator (const gchar* name, const gchar* nick, const gchar* blurb, GType object_type, GParamFlags flags) {
 	GalaParamSpecDBusAccelerator* spec;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_val_if_fail (g_type_is_a (object_type, GALA_TYPE_DBUS_ACCELERATOR), NULL);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	spec = g_param_spec_internal (G_TYPE_PARAM_OBJECT, name, nick, blurb, flags);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	G_PARAM_SPEC (spec)->value_type = object_type;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return G_PARAM_SPEC (spec);
 #line 988 "DBusAccelerator.c"
 }
 
 
 gpointer gala_value_get_dbus_accelerator (const GValue* value) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_val_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_DBUS_ACCELERATOR), NULL);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return value->data[0].v_pointer;
 #line 997 "DBusAccelerator.c"
 }
@@ -999,29 +999,29 @@ gpointer gala_value_get_dbus_accelerator (const GValue* value) {
 
 void gala_value_set_dbus_accelerator (GValue* value, gpointer v_object) {
 	GalaDBusAccelerator* old;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_DBUS_ACCELERATOR));
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	old = value->data[0].v_pointer;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (v_object) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		g_return_if_fail (G_TYPE_CHECK_INSTANCE_TYPE (v_object, GALA_TYPE_DBUS_ACCELERATOR));
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		g_return_if_fail (g_value_type_compatible (G_TYPE_FROM_INSTANCE (v_object), G_VALUE_TYPE (value)));
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		value->data[0].v_pointer = v_object;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		gala_dbus_accelerator_ref (value->data[0].v_pointer);
 #line 1017 "DBusAccelerator.c"
 	} else {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		value->data[0].v_pointer = NULL;
 #line 1021 "DBusAccelerator.c"
 	}
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (old) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		gala_dbus_accelerator_unref (old);
 #line 1027 "DBusAccelerator.c"
 	}
@@ -1030,27 +1030,27 @@ void gala_value_set_dbus_accelerator (GValue* value, gpointer v_object) {
 
 void gala_value_take_dbus_accelerator (GValue* value, gpointer v_object) {
 	GalaDBusAccelerator* old;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_return_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_DBUS_ACCELERATOR));
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	old = value->data[0].v_pointer;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (v_object) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		g_return_if_fail (G_TYPE_CHECK_INSTANCE_TYPE (v_object, GALA_TYPE_DBUS_ACCELERATOR));
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		g_return_if_fail (g_value_type_compatible (G_TYPE_FROM_INSTANCE (v_object), G_VALUE_TYPE (value)));
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		value->data[0].v_pointer = v_object;
 #line 1046 "DBusAccelerator.c"
 	} else {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		value->data[0].v_pointer = NULL;
 #line 1050 "DBusAccelerator.c"
 	}
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (old) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		gala_dbus_accelerator_unref (old);
 #line 1056 "DBusAccelerator.c"
 	}
@@ -1058,22 +1058,22 @@ void gala_value_take_dbus_accelerator (GValue* value, gpointer v_object) {
 
 
 static void gala_dbus_accelerator_class_init (GalaDBusAcceleratorClass * klass) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	gala_dbus_accelerator_parent_class = g_type_class_peek_parent (klass);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	((GalaDBusAcceleratorClass *) klass)->finalize = gala_dbus_accelerator_finalize;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_type_class_add_private (klass, sizeof (GalaDBusAcceleratorPrivate));
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_signal_new ("accelerator_activated", GALA_TYPE_DBUS_ACCELERATOR, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__UINT_UINT_UINT, G_TYPE_NONE, 3, G_TYPE_UINT, G_TYPE_UINT, G_TYPE_UINT);
 #line 1070 "DBusAccelerator.c"
 }
 
 
 static void gala_dbus_accelerator_instance_init (GalaDBusAccelerator * self) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	self->priv = GALA_DBUS_ACCELERATOR_GET_PRIVATE (self);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	self->ref_count = 1;
 #line 1079 "DBusAccelerator.c"
 }
@@ -1081,13 +1081,13 @@ static void gala_dbus_accelerator_instance_init (GalaDBusAccelerator * self) {
 
 static void gala_dbus_accelerator_finalize (GalaDBusAccelerator* obj) {
 	GalaDBusAccelerator * self;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_DBUS_ACCELERATOR, GalaDBusAccelerator);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_signal_handlers_destroy (self);
-#line 46 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_object_unref0 (self->priv->wm);
-#line 47 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	_g_hash_table_unref0 (self->priv->grabbed_accelerators);
 #line 1093 "DBusAccelerator.c"
 }
@@ -1111,9 +1111,9 @@ GType gala_dbus_accelerator_get_type (void) {
 gpointer gala_dbus_accelerator_ref (gpointer instance) {
 	GalaDBusAccelerator* self;
 	self = instance;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	g_atomic_int_inc (&self->ref_count);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	return instance;
 #line 1119 "DBusAccelerator.c"
 }
@@ -1122,11 +1122,11 @@ gpointer gala_dbus_accelerator_ref (gpointer instance) {
 void gala_dbus_accelerator_unref (gpointer instance) {
 	GalaDBusAccelerator* self;
 	self = instance;
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 	if (g_atomic_int_dec_and_test (&self->ref_count)) {
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		GALA_DBUS_ACCELERATOR_GET_CLASS (self)->finalize (self);
-#line 27 "/home/nick/work/gala/src/DBusAccelerator.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/DBusAccelerator.vala"
 		g_type_free_instance ((GTypeInstance *) self);
 #line 1132 "DBusAccelerator.c"
 	}

@@ -117,7 +117,7 @@ void register_plugin (GalaPluginInfo* result);
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 32 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 123 "Main.c"
 }
@@ -125,30 +125,30 @@ static gpointer _g_object_ref0 (gpointer self) {
 
 static void __lambda13_ (GalaPluginsNotifyMain* self, gboolean running) {
 	gboolean _tmp0_ = FALSE;
-#line 40 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp0_ = running;
-#line 40 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	gala_plugin_set_freeze_track ((GalaPlugin*) self, _tmp0_);
 #line 133 "Main.c"
 }
 
 
 static void ___lambda13__gala_plugins_notify_notification_stack_animations_changed (GalaPluginsNotifyNotificationStack* _sender, gboolean running, gpointer self) {
-#line 39 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	__lambda13_ ((GalaPluginsNotifyMain*) self, running);
 #line 140 "Main.c"
 }
 
 
 static void _gala_plugins_notify_main_update_position_meta_screen_monitors_changed (MetaScreen* _sender, gpointer self) {
-#line 46 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	gala_plugins_notify_main_update_position ((GalaPluginsNotifyMain*) self);
 #line 147 "Main.c"
 }
 
 
 static void _gala_plugins_notify_main_update_position_meta_screen_workareas_changed (MetaScreen* _sender, gpointer self) {
-#line 47 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	gala_plugins_notify_main_update_position ((GalaPluginsNotifyMain*) self);
 #line 154 "Main.c"
 }
@@ -156,19 +156,19 @@ static void _gala_plugins_notify_main_update_position_meta_screen_workareas_chan
 
 static void __lambda14_ (GalaPluginsNotifyMain* self, GDBusConnection* connection) {
 	GError * _inner_error_ = NULL;
-#line 50 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_return_if_fail (connection != NULL);
 #line 162 "Main.c"
 	{
 		GDBusConnection* _tmp0_ = NULL;
 		GalaPluginsNotifyNotifyServer* _tmp1_ = NULL;
-#line 52 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		_tmp0_ = connection;
-#line 52 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		_tmp1_ = self->priv->server;
-#line 52 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		gala_plugins_notify_notify_server_register_object (_tmp1_, _tmp0_, "/org/freedesktop/Notifications", &_inner_error_);
-#line 52 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 174 "Main.c"
 			goto __catch0_g_error;
@@ -180,30 +180,30 @@ static void __lambda14_ (GalaPluginsNotifyMain* self, GDBusConnection* connectio
 		GError* e = NULL;
 		GError* _tmp2_ = NULL;
 		const gchar* _tmp3_ = NULL;
-#line 51 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		e = _inner_error_;
-#line 51 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		_inner_error_ = NULL;
-#line 54 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		_tmp2_ = e;
-#line 54 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		_tmp3_ = _tmp2_->message;
-#line 54 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		g_warning ("Main.vala:54: Registring notification server failed: %s", _tmp3_);
-#line 55 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		gala_plugin_destroy ((GalaPlugin*) self);
-#line 51 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		_g_error_free0 (e);
 #line 198 "Main.c"
 	}
 	__finally0:
-#line 51 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 51 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 51 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		g_clear_error (&_inner_error_);
-#line 51 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		return;
 #line 209 "Main.c"
 	}
@@ -211,7 +211,7 @@ static void __lambda14_ (GalaPluginsNotifyMain* self, GDBusConnection* connectio
 
 
 static void ___lambda14__gbus_acquired_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 49 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	__lambda14_ ((GalaPluginsNotifyMain*) self, connection);
 #line 217 "Main.c"
 }
@@ -222,7 +222,7 @@ static void __lambda15_ (GalaPluginsNotifyMain* self) {
 
 
 static void ___lambda15__gbus_name_acquired_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 49 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	__lambda15_ ((GalaPluginsNotifyMain*) self);
 #line 228 "Main.c"
 }
@@ -230,22 +230,22 @@ static void ___lambda15__gbus_name_acquired_callback (GDBusConnection* connectio
 
 static void __lambda16_ (GalaPluginsNotifyMain* self, GDBusConnection* con, const gchar* name) {
 	const gchar* _tmp0_ = NULL;
-#line 59 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_return_if_fail (con != NULL);
-#line 59 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_return_if_fail (name != NULL);
-#line 60 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp0_ = name;
-#line 60 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_warning ("Main.vala:60: Could not aquire bus %s", _tmp0_);
-#line 61 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	gala_plugin_destroy ((GalaPlugin*) self);
 #line 244 "Main.c"
 }
 
 
 static void ___lambda16__gbus_name_lost_callback (GDBusConnection* connection, const gchar* name, gpointer self) {
-#line 49 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	__lambda16_ ((GalaPluginsNotifyMain*) self, connection, name);
 #line 251 "Main.c"
 }
@@ -270,73 +270,73 @@ static void gala_plugins_notify_main_real_initialize (GalaPlugin* base, GalaWind
 	GalaPluginsNotifyNotificationStack* _tmp13_ = NULL;
 	GalaPluginsNotifyNotificationStack* _tmp14_ = NULL;
 	GalaPluginsNotifyNotifyServer* _tmp15_ = NULL;
-#line 30 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self = (GalaPluginsNotifyMain*) base;
-#line 30 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_return_if_fail (wm != NULL);
-#line 32 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp0_ = wm;
-#line 32 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 32 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_object_unref0 (self->priv->wm);
-#line 32 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self->priv->wm = _tmp1_;
-#line 33 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp2_ = wm;
-#line 33 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp3_ = meta_plugin_get_screen ((MetaPlugin*) _tmp2_);
-#line 33 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 33 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	screen = _tmp4_;
-#line 35 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp5_ = wm;
-#line 35 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp6_ = meta_plugin_get_screen ((MetaPlugin*) _tmp5_);
-#line 35 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp7_ = gala_plugins_notify_notification_stack_new (_tmp6_);
-#line 35 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_object_ref_sink (_tmp7_);
-#line 35 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_object_unref0 (self->priv->stack);
-#line 35 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self->priv->stack = _tmp7_;
-#line 36 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp8_ = wm;
-#line 36 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp9_ = gala_window_manager_get_ui_group (_tmp8_);
-#line 36 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp10_ = _tmp9_;
-#line 36 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp11_ = self->priv->stack;
-#line 36 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	clutter_actor_add_child (_tmp10_, (ClutterActor*) _tmp11_);
-#line 37 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp12_ = self->priv->stack;
-#line 37 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	gala_plugin_track_actor ((GalaPlugin*) self, (ClutterActor*) _tmp12_);
-#line 39 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp13_ = self->priv->stack;
-#line 39 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_signal_connect_object (_tmp13_, "animations-changed", (GCallback) ___lambda13__gala_plugins_notify_notification_stack_animations_changed, self, 0);
-#line 43 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp14_ = self->priv->stack;
-#line 43 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp15_ = gala_plugins_notify_notify_server_new (_tmp14_);
-#line 43 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_object_unref0 (self->priv->server);
-#line 43 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self->priv->server = _tmp15_;
-#line 45 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	gala_plugins_notify_main_update_position (self);
-#line 46 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_signal_connect_object (screen, "monitors-changed", (GCallback) _gala_plugins_notify_main_update_position_meta_screen_monitors_changed, self, 0);
-#line 47 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_signal_connect_object (screen, "workareas-changed", (GCallback) _gala_plugins_notify_main_update_position_meta_screen_workareas_changed, self, 0);
-#line 49 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_bus_own_name_with_closures (G_BUS_TYPE_SESSION, "org.freedesktop.Notifications", G_BUS_NAME_OWNER_FLAGS_NONE, (GClosure*) ((___lambda14__gbus_acquired_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda14__gbus_acquired_callback, g_object_ref (self), g_object_unref)), (GClosure*) ((___lambda15__gbus_name_acquired_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda15__gbus_name_acquired_callback, g_object_ref (self), g_object_unref)), (GClosure*) ((___lambda16__gbus_name_lost_callback == NULL) ? NULL : g_cclosure_new ((GCallback) ___lambda16__gbus_name_lost_callback, g_object_ref (self), g_object_unref)));
-#line 30 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_object_unref0 (screen);
 #line 342 "Main.c"
 }
@@ -363,53 +363,53 @@ static void gala_plugins_notify_main_update_position (GalaPluginsNotifyMain* sel
 	GalaPluginsNotifyNotificationStack* _tmp14_ = NULL;
 	MetaRectangle _tmp15_ = {0};
 	gint _tmp16_ = 0;
-#line 65 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_return_if_fail (self != NULL);
-#line 67 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp0_ = self->priv->wm;
-#line 67 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 67 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 67 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	screen = _tmp2_;
-#line 68 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp3_ = meta_screen_get_primary_monitor (screen);
-#line 68 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	primary = _tmp3_;
-#line 69 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp4_ = meta_screen_get_active_workspace (screen);
-#line 69 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	meta_workspace_get_work_area_for_monitor (_tmp4_, primary, &_tmp5_);
-#line 69 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	area = _tmp5_;
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp6_ = self->priv->stack;
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp7_ = area;
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp8_ = _tmp7_.x;
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp9_ = area;
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp10_ = _tmp9_.width;
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp11_ = self->priv->stack;
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp12_ = clutter_actor_get_width ((ClutterActor*) _tmp11_);
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp13_ = _tmp12_;
-#line 71 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	clutter_actor_set_x ((ClutterActor*) _tmp6_, (_tmp8_ + _tmp10_) - _tmp13_);
-#line 72 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp14_ = self->priv->stack;
-#line 72 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp15_ = area;
-#line 72 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp16_ = _tmp15_.y;
-#line 72 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	clutter_actor_set_y ((ClutterActor*) _tmp14_, (gfloat) _tmp16_);
-#line 65 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_object_unref0 (screen);
 #line 415 "Main.c"
 }
@@ -420,23 +420,23 @@ static void gala_plugins_notify_main_real_destroy (GalaPlugin* base) {
 	GalaWindowManager* _tmp0_ = NULL;
 	GalaPluginsNotifyNotificationStack* _tmp1_ = NULL;
 	GalaPluginsNotifyNotificationStack* _tmp2_ = NULL;
-#line 75 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self = (GalaPluginsNotifyMain*) base;
-#line 77 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp0_ = self->priv->wm;
-#line 77 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	if (_tmp0_ == NULL) {
-#line 78 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 		return;
 #line 432 "Main.c"
 	}
-#line 80 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp1_ = self->priv->stack;
-#line 80 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	gala_plugin_untrack_actor ((GalaPlugin*) self, (ClutterActor*) _tmp1_);
-#line 81 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp2_ = self->priv->stack;
-#line 81 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	clutter_actor_destroy ((ClutterActor*) _tmp2_);
 #line 442 "Main.c"
 }
@@ -444,40 +444,40 @@ static void gala_plugins_notify_main_real_destroy (GalaPlugin* base) {
 
 GalaPluginsNotifyMain* gala_plugins_notify_main_construct (GType object_type) {
 	GalaPluginsNotifyMain * self = NULL;
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self = (GalaPluginsNotifyMain*) gala_plugin_construct (object_type);
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	return self;
 #line 452 "Main.c"
 }
 
 
 GalaPluginsNotifyMain* gala_plugins_notify_main_new (void) {
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	return gala_plugins_notify_main_construct (GALA_PLUGINS_NOTIFY_TYPE_MAIN);
 #line 459 "Main.c"
 }
 
 
 static void gala_plugins_notify_main_class_init (GalaPluginsNotifyMainClass * klass) {
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	gala_plugins_notify_main_parent_class = g_type_class_peek_parent (klass);
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	g_type_class_add_private (klass, sizeof (GalaPluginsNotifyMainPrivate));
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	((GalaPluginClass *) klass)->initialize = gala_plugins_notify_main_real_initialize;
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	((GalaPluginClass *) klass)->destroy = gala_plugins_notify_main_real_destroy;
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_plugins_notify_main_finalize;
 #line 474 "Main.c"
 }
 
 
 static void gala_plugins_notify_main_instance_init (GalaPluginsNotifyMain * self) {
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self->priv = GALA_PLUGINS_NOTIFY_MAIN_GET_PRIVATE (self);
-#line 25 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self->priv->wm = NULL;
 #line 483 "Main.c"
 }
@@ -485,15 +485,15 @@ static void gala_plugins_notify_main_instance_init (GalaPluginsNotifyMain * self
 
 static void gala_plugins_notify_main_finalize (GObject* obj) {
 	GalaPluginsNotifyMain * self;
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_MAIN, GalaPluginsNotifyMain);
-#line 25 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_object_unref0 (self->priv->wm);
-#line 27 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_object_unref0 (self->priv->server);
-#line 28 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_object_unref0 (self->priv->stack);
-#line 23 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	G_OBJECT_CLASS (gala_plugins_notify_main_parent_class)->finalize (obj);
 #line 499 "Main.c"
 }
@@ -515,29 +515,29 @@ void register_plugin (GalaPluginInfo* result) {
 	gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
 	GalaPluginInfo _tmp2_ = {0};
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp0_ = g_strdup ("Notify");
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp1_ = g_strdup ("Gala Developers");
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	memset (&_tmp2_, 0, sizeof (GalaPluginInfo));
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_free0 (_tmp2_.name);
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp2_.name = _tmp0_;
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_g_free0 (_tmp2_.author);
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp2_.author = _tmp1_;
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp2_.plugin_type = GALA_PLUGINS_NOTIFY_TYPE_MAIN;
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp2_.provides = GALA_PLUGIN_FUNCTION_ADDITION;
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	_tmp2_.load_priority = GALA_LOAD_PRIORITY_IMMEDIATE;
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	*result = _tmp2_;
-#line 88 "/home/nick/work/gala/plugins/notify/Main.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/plugins/notify/Main.vala"
 	return;
 #line 543 "Main.c"
 }

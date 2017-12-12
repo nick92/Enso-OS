@@ -84,35 +84,35 @@ GalaTextShadowEffect* gala_text_shadow_effect_construct (GType object_type, gint
 	gint _tmp0_ = 0;
 	gint _tmp1_ = 0;
 	guint8 _tmp2_ = 0U;
-#line 40 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self = (GalaTextShadowEffect*) g_object_new (object_type, NULL);
-#line 42 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = offset_x;
-#line 42 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self->priv->_offset_x = _tmp0_;
-#line 43 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp1_ = offset_y;
-#line 43 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self->priv->_offset_y = _tmp1_;
-#line 44 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp2_ = opacity;
-#line 44 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self->priv->_opacity = _tmp2_;
-#line 40 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	return self;
 #line 104 "TextShadowEffect.c"
 }
 
 
 GalaTextShadowEffect* gala_text_shadow_effect_new (gint offset_x, gint offset_y, guint8 opacity) {
-#line 40 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	return gala_text_shadow_effect_construct (GALA_TYPE_TEXT_SHADOW_EFFECT, offset_x, offset_y, opacity);
 #line 111 "TextShadowEffect.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 49 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 118 "TextShadowEffect.c"
 }
@@ -132,37 +132,37 @@ static gboolean gala_text_shadow_effect_real_pre_paint (ClutterEffect* base) {
 	guint8 _tmp7_ = 0U;
 	guint8 _tmp8_ = 0U;
 	CoglColor _tmp9_ = {0};
-#line 47 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self = (GalaTextShadowEffect*) base;
-#line 49 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = clutter_actor_meta_get_actor ((ClutterActorMeta*) self);
-#line 49 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp1_ = clutter_text_get_layout (G_TYPE_CHECK_INSTANCE_CAST (_tmp0_, clutter_text_get_type (), ClutterText));
-#line 49 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 49 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	layout = _tmp2_;
-#line 50 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp3_ = gala_text_shadow_effect_get_offset_x (self);
-#line 50 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp4_ = _tmp3_;
-#line 50 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp5_ = gala_text_shadow_effect_get_offset_y (self);
-#line 50 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp6_ = _tmp5_;
-#line 50 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp7_ = gala_text_shadow_effect_get_opacity (self);
-#line 50 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp8_ = _tmp7_;
-#line 50 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	cogl_color_init_from_4ub (&_tmp9_, (guint8) 0, (guint8) 0, (guint8) 0, _tmp8_);
-#line 50 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	cogl_pango_render_layout (layout, _tmp4_, _tmp6_, &_tmp9_, 0);
-#line 52 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	result = TRUE;
-#line 52 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_g_object_unref0 (layout);
-#line 52 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	return result;
 #line 168 "TextShadowEffect.c"
 }
@@ -170,17 +170,17 @@ static gboolean gala_text_shadow_effect_real_pre_paint (ClutterEffect* base) {
 
 void gala_text_shadow_effect_update (GalaTextShadowEffect* self) {
 	ClutterActor* _tmp0_ = NULL;
-#line 55 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_return_if_fail (self != NULL);
-#line 57 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = clutter_actor_meta_get_actor ((ClutterActorMeta*) self);
-#line 57 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	if (_tmp0_ != NULL) {
 #line 180 "TextShadowEffect.c"
 		ClutterActor* _tmp1_ = NULL;
-#line 58 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		_tmp1_ = clutter_actor_meta_get_actor ((ClutterActorMeta*) self);
-#line 58 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		clutter_actor_queue_redraw (_tmp1_);
 #line 186 "TextShadowEffect.c"
 	}
@@ -190,13 +190,13 @@ void gala_text_shadow_effect_update (GalaTextShadowEffect* self) {
 gint gala_text_shadow_effect_get_offset_y (GalaTextShadowEffect* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 24 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 24 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = self->priv->_offset_y;
-#line 24 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	result = _tmp0_;
-#line 24 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 24 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	return result;
 #line 202 "TextShadowEffect.c"
 }
@@ -204,15 +204,15 @@ gint gala_text_shadow_effect_get_offset_y (GalaTextShadowEffect* self) {
 
 void gala_text_shadow_effect_set_offset_y (GalaTextShadowEffect* self, gint value) {
 	gint _tmp0_ = 0;
-#line 25 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_return_if_fail (self != NULL);
-#line 25 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = value;
-#line 25 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self->priv->_offset_y = _tmp0_;
-#line 25 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	gala_text_shadow_effect_update (self);
-#line 25 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_object_notify ((GObject *) self, "offset-y");
 #line 218 "TextShadowEffect.c"
 }
@@ -221,13 +221,13 @@ void gala_text_shadow_effect_set_offset_y (GalaTextShadowEffect* self, gint valu
 gint gala_text_shadow_effect_get_offset_x (GalaTextShadowEffect* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 30 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 30 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = self->priv->_offset_x;
-#line 30 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	result = _tmp0_;
-#line 30 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	return result;
 #line 233 "TextShadowEffect.c"
 }
@@ -235,15 +235,15 @@ gint gala_text_shadow_effect_get_offset_x (GalaTextShadowEffect* self) {
 
 void gala_text_shadow_effect_set_offset_x (GalaTextShadowEffect* self, gint value) {
 	gint _tmp0_ = 0;
-#line 31 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_return_if_fail (self != NULL);
-#line 31 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = value;
-#line 31 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self->priv->_offset_x = _tmp0_;
-#line 31 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	gala_text_shadow_effect_update (self);
-#line 31 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_object_notify ((GObject *) self, "offset-x");
 #line 249 "TextShadowEffect.c"
 }
@@ -252,13 +252,13 @@ void gala_text_shadow_effect_set_offset_x (GalaTextShadowEffect* self, gint valu
 guint8 gala_text_shadow_effect_get_opacity (GalaTextShadowEffect* self) {
 	guint8 result;
 	guint8 _tmp0_ = 0U;
-#line 36 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_return_val_if_fail (self != NULL, 0U);
-#line 36 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = self->priv->_opacity;
-#line 36 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	result = _tmp0_;
-#line 36 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	return result;
 #line 264 "TextShadowEffect.c"
 }
@@ -266,45 +266,45 @@ guint8 gala_text_shadow_effect_get_opacity (GalaTextShadowEffect* self) {
 
 void gala_text_shadow_effect_set_opacity (GalaTextShadowEffect* self, guint8 value) {
 	guint8 _tmp0_ = 0U;
-#line 37 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_return_if_fail (self != NULL);
-#line 37 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	_tmp0_ = value;
-#line 37 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self->priv->_opacity = _tmp0_;
-#line 37 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	gala_text_shadow_effect_update (self);
-#line 37 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_object_notify ((GObject *) self, "opacity");
 #line 280 "TextShadowEffect.c"
 }
 
 
 static void gala_text_shadow_effect_class_init (GalaTextShadowEffectClass * klass) {
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	gala_text_shadow_effect_parent_class = g_type_class_peek_parent (klass);
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_type_class_add_private (klass, sizeof (GalaTextShadowEffectPrivate));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	((ClutterEffectClass *) klass)->pre_paint = gala_text_shadow_effect_real_pre_paint;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_text_shadow_effect_get_property;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_text_shadow_effect_set_property;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_text_shadow_effect_finalize;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_TEXT_SHADOW_EFFECT_OFFSET_Y, g_param_spec_int ("offset-y", "offset-y", "offset-y", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_TEXT_SHADOW_EFFECT_OFFSET_X, g_param_spec_int ("offset-x", "offset-x", "offset-x", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_TEXT_SHADOW_EFFECT_OPACITY, g_param_spec_uchar ("opacity", "opacity", "opacity", 0, G_MAXUINT8, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
 #line 303 "TextShadowEffect.c"
 }
 
 
 static void gala_text_shadow_effect_instance_init (GalaTextShadowEffect * self) {
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self->priv = GALA_TEXT_SHADOW_EFFECT_GET_PRIVATE (self);
 #line 310 "TextShadowEffect.c"
 }
@@ -312,9 +312,9 @@ static void gala_text_shadow_effect_instance_init (GalaTextShadowEffect * self) 
 
 static void gala_text_shadow_effect_finalize (GObject* obj) {
 	GalaTextShadowEffect * self;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_TEXT_SHADOW_EFFECT, GalaTextShadowEffect);
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	G_OBJECT_CLASS (gala_text_shadow_effect_parent_class)->finalize (obj);
 #line 320 "TextShadowEffect.c"
 }
@@ -335,31 +335,31 @@ GType gala_text_shadow_effect_get_type (void) {
 static void _vala_gala_text_shadow_effect_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaTextShadowEffect * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_TEXT_SHADOW_EFFECT, GalaTextShadowEffect);
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		case GALA_TEXT_SHADOW_EFFECT_OFFSET_Y:
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		g_value_set_int (value, gala_text_shadow_effect_get_offset_y (self));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		case GALA_TEXT_SHADOW_EFFECT_OFFSET_X:
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		g_value_set_int (value, gala_text_shadow_effect_get_offset_x (self));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		case GALA_TEXT_SHADOW_EFFECT_OPACITY:
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		g_value_set_uchar (value, gala_text_shadow_effect_get_opacity (self));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		break;
 #line 359 "TextShadowEffect.c"
 		default:
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		break;
 #line 365 "TextShadowEffect.c"
 	}
@@ -369,31 +369,31 @@ static void _vala_gala_text_shadow_effect_get_property (GObject * object, guint 
 static void _vala_gala_text_shadow_effect_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaTextShadowEffect * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_TEXT_SHADOW_EFFECT, GalaTextShadowEffect);
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		case GALA_TEXT_SHADOW_EFFECT_OFFSET_Y:
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		gala_text_shadow_effect_set_offset_y (self, g_value_get_int (value));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		case GALA_TEXT_SHADOW_EFFECT_OFFSET_X:
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		gala_text_shadow_effect_set_offset_x (self, g_value_get_int (value));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		case GALA_TEXT_SHADOW_EFFECT_OPACITY:
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		gala_text_shadow_effect_set_opacity (self, g_value_get_uchar (value));
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		break;
 #line 393 "TextShadowEffect.c"
 		default:
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/TextShadowEffect.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/TextShadowEffect.vala"
 		break;
 #line 399 "TextShadowEffect.c"
 	}

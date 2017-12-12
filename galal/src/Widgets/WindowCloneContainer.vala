@@ -27,10 +27,10 @@ namespace Gala
 	{
 		public signal void window_selected (Window window);
 
-		public int padding_top { get; set; default = 12; }
-		public int padding_left { get; set; default = 12; }
-		public int padding_right { get; set; default = 12; }
-		public int padding_bottom { get; set; default = 12; }
+		public int padding_top { get; set; default = 2; }
+		public int padding_left { get; set; default = 2; }
+		public int padding_right { get; set; default = 2; }
+		public int padding_bottom { get; set; default = 2; }
 
 		public bool overview_mode { get; construct; }
 
@@ -62,7 +62,7 @@ namespace Gala
 		{
 			unowned Meta.Display display = window.get_display ();
 			var children = get_children ();
-			
+
 			GLib.SList<unowned Meta.Window> windows = new GLib.SList<unowned Meta.Window> ();
 			foreach (unowned Actor child in children) {
 				unowned WindowClone tw = (WindowClone) child;
@@ -70,9 +70,9 @@ namespace Gala
 			}
 			windows.prepend (window);
 			windows.reverse ();
-			
+
 			var windows_ordered = display.sort_windows_by_stacking (windows);
-			
+
 			var new_window = new WindowClone (window, overview_mode);
 
 			new_window.selected.connect (window_selected_cb);
@@ -321,9 +321,9 @@ namespace Gala
 		{
 			if (opened)
 				return;
-			
+
 			opened = true;
-			
+
 			// hide the highlight when opened
 			if (selected_window != null) {
 				foreach (var child in get_children ()) {
@@ -354,7 +354,7 @@ namespace Gala
 		{
 			if (!opened)
 				return;
-			
+
 			opened = false;
 
 			foreach (var window in get_children ())
@@ -362,4 +362,3 @@ namespace Gala
 		}
 	}
 }
-

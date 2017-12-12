@@ -154,37 +154,37 @@ GalaScreenshotManager* gala_screenshot_manager_init (GalaWindowManager* wm) {
 	GalaScreenshotManager* result = NULL;
 	GalaScreenshotManager* _tmp0_ = NULL;
 	GalaScreenshotManager* _tmp3_ = NULL;
-#line 26 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_val_if_fail (wm != NULL, NULL);
-#line 28 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp0_ = gala_screenshot_manager_instance;
-#line 28 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (_tmp0_ == NULL) {
 #line 164 "ScreenshotManager.c"
 		GalaWindowManager* _tmp1_ = NULL;
 		GalaScreenshotManager* _tmp2_ = NULL;
-#line 29 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp1_ = wm;
-#line 29 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp2_ = gala_screenshot_manager_new (_tmp1_);
-#line 29 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_g_object_unref0 (gala_screenshot_manager_instance);
-#line 29 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		gala_screenshot_manager_instance = _tmp2_;
 #line 175 "ScreenshotManager.c"
 	}
-#line 31 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp3_ = gala_screenshot_manager_instance;
-#line 31 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	result = _tmp3_;
-#line 31 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	return result;
 #line 183 "ScreenshotManager.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 38 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 190 "ScreenshotManager.c"
 }
@@ -194,35 +194,35 @@ static GalaScreenshotManager* gala_screenshot_manager_construct (GType object_ty
 	GalaScreenshotManager * self = NULL;
 	GalaWindowManager* _tmp0_ = NULL;
 	GalaWindowManager* _tmp1_ = NULL;
-#line 36 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_val_if_fail (_wm != NULL, NULL);
-#line 36 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	self = (GalaScreenshotManager*) g_object_new (object_type, NULL);
-#line 38 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp0_ = _wm;
-#line 38 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 38 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_g_object_unref0 (self->priv->wm);
-#line 38 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	self->priv->wm = _tmp1_;
-#line 36 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	return self;
 #line 212 "ScreenshotManager.c"
 }
 
 
 static GalaScreenshotManager* gala_screenshot_manager_new (GalaWindowManager* _wm) {
-#line 36 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	return gala_screenshot_manager_construct (GALA_TYPE_SCREENSHOT_MANAGER, _wm);
 #line 219 "ScreenshotManager.c"
 }
 
 
 void gala_screenshot_manager_flash_area (GalaScreenshotManager* self, gint x, gint y, gint width, gint height) {
-#line 41 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_if_fail (self != NULL);
-#line 43 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_warning ("ScreenshotManager.vala:43: FlashArea not implemented");
 #line 228 "ScreenshotManager.c"
 }
@@ -242,51 +242,51 @@ void gala_screenshot_manager_screenshot (GalaScreenshotManager* self, gboolean i
 	const gchar* _tmp5_ = NULL;
 	gchar* _tmp6_ = NULL;
 	gboolean _tmp7_ = FALSE;
-#line 46 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_if_fail (self != NULL);
-#line 46 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_if_fail (filename != NULL);
-#line 48 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_debug ("ScreenshotManager.vala:48: Taking screenshot");
-#line 51 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp0_ = self->priv->wm;
-#line 51 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 51 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	meta_screen_get_size (_tmp1_, &_tmp2_, &_tmp3_);
-#line 51 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	width = _tmp2_;
-#line 51 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	height = _tmp3_;
-#line 53 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp4_ = gala_screenshot_manager_take_screenshot (self, 0, 0, width, height);
-#line 53 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	image = _tmp4_;
-#line 54 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp5_ = filename;
-#line 54 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp7_ = gala_screenshot_manager_save_image (image, _tmp5_, &_tmp6_);
-#line 54 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_g_free0 (_vala_filename_used);
-#line 54 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_filename_used = _tmp6_;
-#line 54 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_success = _tmp7_;
-#line 46 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_cairo_surface_destroy0 (image);
-#line 46 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (success) {
-#line 46 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*success = _vala_success;
 #line 282 "ScreenshotManager.c"
 	}
-#line 46 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (filename_used) {
-#line 46 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*filename_used = _vala_filename_used;
 #line 288 "ScreenshotManager.c"
 	} else {
-#line 46 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_g_free0 (_vala_filename_used);
 #line 292 "ScreenshotManager.c"
 	}
@@ -299,53 +299,53 @@ void gala_screenshot_manager_screenshot_area (GalaScreenshotManager* self, gint 
 	gchar* _tmp0_ = NULL;
 	GError* _tmp1_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 57 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_if_fail (self != NULL);
-#line 57 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_if_fail (filename != NULL);
-#line 59 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_warning ("ScreenshotManager.vala:59: ScreenShotArea not implemented");
-#line 60 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp0_ = g_strdup ("");
-#line 60 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_g_free0 (_vala_filename_used);
-#line 60 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_filename_used = _tmp0_;
-#line 61 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_success = FALSE;
-#line 63 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp1_ = g_error_new_literal (G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "ScreenShotArea not implemented");
-#line 63 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_inner_error_ = _tmp1_;
-#line 63 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (_inner_error_->domain == G_DBUS_ERROR) {
-#line 63 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		g_propagate_error (error, _inner_error_);
-#line 63 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		return;
 #line 327 "ScreenshotManager.c"
 	} else {
-#line 63 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 63 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		g_clear_error (&_inner_error_);
-#line 63 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		return;
 #line 335 "ScreenshotManager.c"
 	}
-#line 57 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (success) {
-#line 57 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*success = _vala_success;
 #line 341 "ScreenshotManager.c"
 	}
-#line 57 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (filename_used) {
-#line 57 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*filename_used = _vala_filename_used;
 #line 347 "ScreenshotManager.c"
 	} else {
-#line 57 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_g_free0 (_vala_filename_used);
 #line 351 "ScreenshotManager.c"
 	}
@@ -396,137 +396,137 @@ void gala_screenshot_manager_screenshot_window (GalaScreenshotManager* self, gbo
 	const gchar* _tmp33_ = NULL;
 	gchar* _tmp34_ = NULL;
 	gboolean _tmp35_ = FALSE;
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_if_fail (self != NULL);
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_if_fail (filename != NULL);
-#line 68 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_debug ("ScreenshotManager.vala:68: Taking window screenshot");
-#line 70 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp0_ = self->priv->wm;
-#line 70 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 70 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp2_ = meta_screen_get_display (_tmp1_);
-#line 70 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp3_ = meta_display_get_focus_window (_tmp2_);
-#line 70 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 70 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	window = _tmp4_;
-#line 71 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp5_ = window;
-#line 71 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp6_ = meta_window_get_compositor_private (_tmp5_);
-#line 71 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp7_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp6_, meta_window_actor_get_type (), MetaWindowActor));
-#line 71 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	window_actor = _tmp7_;
-#line 72 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp8_ = window_actor;
-#line 72 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp9_ = meta_window_actor_get_texture (_tmp8_);
-#line 72 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	window_texture = G_TYPE_CHECK_INSTANCE_CAST (_tmp9_, meta_shaped_texture_get_type (), MetaShapedTexture);
-#line 75 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp10_ = window_actor;
-#line 75 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	clutter_actor_get_position ((ClutterActor*) _tmp10_, &_tmp11_, &_tmp12_);
-#line 75 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	actor_x = _tmp11_;
-#line 75 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	actor_y = _tmp12_;
-#line 77 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp13_ = window;
-#line 77 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	meta_window_get_frame_rect (_tmp13_, &_tmp14_);
-#line 77 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	rect = _tmp14_;
-#line 78 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp15_ = include_frame;
-#line 78 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (_tmp15_) {
 #line 450 "ScreenshotManager.c"
 		MetaWindow* _tmp16_ = NULL;
 		MetaRectangle _tmp17_ = {0};
 		MetaRectangle _tmp18_ = {0};
-#line 79 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp16_ = window;
-#line 79 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp17_ = rect;
-#line 79 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		meta_window_frame_rect_to_client_rect (_tmp16_, &_tmp17_, &_tmp18_);
-#line 79 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		rect = _tmp18_;
 #line 462 "ScreenshotManager.c"
 	}
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp19_ = rect;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp20_ = _tmp19_.x;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp21_ = actor_x;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp22_ = rect;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp23_ = _tmp22_.y;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp24_ = actor_y;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp25_ = rect;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp26_ = _tmp25_.width;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp27_ = rect;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp28_ = _tmp27_.height;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp29_.x = _tmp20_ - ((gint) _tmp21_);
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp29_.y = _tmp23_ - ((gint) _tmp24_);
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp29_.width = _tmp26_;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp29_.height = _tmp28_;
-#line 82 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	clip = _tmp29_;
-#line 83 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp30_ = window_texture;
-#line 83 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp31_ = clip;
-#line 83 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp32_ = meta_shaped_texture_get_image (_tmp30_, &_tmp31_);
-#line 83 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	image = (cairo_surface_t*) _tmp32_;
-#line 84 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp33_ = filename;
-#line 84 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp35_ = gala_screenshot_manager_save_image (image, _tmp33_, &_tmp34_);
-#line 84 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_g_free0 (_vala_filename_used);
-#line 84 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_filename_used = _tmp34_;
-#line 84 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_success = _tmp35_;
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_cairo_surface_destroy0 (image);
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_g_object_unref0 (window_actor);
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_g_object_unref0 (window);
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (success) {
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*success = _vala_success;
 #line 522 "ScreenshotManager.c"
 	}
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (filename_used) {
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*filename_used = _vala_filename_used;
 #line 528 "ScreenshotManager.c"
 	} else {
-#line 66 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_g_free0 (_vala_filename_used);
 #line 532 "ScreenshotManager.c"
 	}
@@ -540,59 +540,59 @@ void gala_screenshot_manager_select_area (GalaScreenshotManager* self, gint* x, 
 	gint _vala_height = 0;
 	GError* _tmp0_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_if_fail (self != NULL);
-#line 89 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_warning ("ScreenshotManager.vala:89: SelectArea not implemented");
-#line 90 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_height = 0;
-#line 90 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_width = _vala_height;
-#line 90 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_y = _vala_width;
-#line 90 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_vala_x = _vala_y;
-#line 92 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp0_ = g_error_new_literal (G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "SelectArea not implemented");
-#line 92 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_inner_error_ = _tmp0_;
-#line 92 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (_inner_error_->domain == G_DBUS_ERROR) {
-#line 92 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		g_propagate_error (error, _inner_error_);
-#line 92 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		return;
 #line 566 "ScreenshotManager.c"
 	} else {
-#line 92 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 92 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		g_clear_error (&_inner_error_);
-#line 92 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		return;
 #line 574 "ScreenshotManager.c"
 	}
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (x) {
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*x = _vala_x;
 #line 580 "ScreenshotManager.c"
 	}
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (y) {
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*y = _vala_y;
 #line 586 "ScreenshotManager.c"
 	}
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (width) {
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*width = _vala_width;
 #line 592 "ScreenshotManager.c"
 	}
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (height) {
-#line 87 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		*height = _vala_height;
 #line 598 "ScreenshotManager.c"
 	}
@@ -605,15 +605,15 @@ static gboolean gala_screenshot_manager_save_image (cairo_surface_t* image, cons
 	const gchar* _tmp0_ = NULL;
 	gboolean _tmp1_ = FALSE;
 	GError * _inner_error_ = NULL;
-#line 95 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_val_if_fail (image != NULL, FALSE);
-#line 95 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_val_if_fail (filename != NULL, FALSE);
-#line 97 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp0_ = filename;
-#line 97 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp1_ = g_path_is_absolute (_tmp0_);
-#line 97 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	if (!_tmp1_) {
 #line 619 "ScreenshotManager.c"
 		gchar* path = NULL;
@@ -623,36 +623,36 @@ static gboolean gala_screenshot_manager_save_image (cairo_surface_t* image, cons
 		gboolean _tmp5_ = FALSE;
 		const gchar* _tmp8_ = NULL;
 		gboolean _tmp9_ = FALSE;
-#line 98 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp2_ = g_get_user_special_dir (G_USER_DIRECTORY_PICTURES);
-#line 98 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp3_ = g_strdup (_tmp2_);
-#line 98 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		path = _tmp3_;
-#line 99 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp4_ = path;
-#line 99 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp5_ = g_file_test (_tmp4_, G_FILE_TEST_EXISTS);
-#line 99 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		if (!_tmp5_) {
 #line 639 "ScreenshotManager.c"
 			const gchar* _tmp6_ = NULL;
 			gchar* _tmp7_ = NULL;
-#line 100 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp6_ = g_get_home_dir ();
-#line 100 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp7_ = g_strdup (_tmp6_);
-#line 100 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_g_free0 (path);
-#line 100 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			path = _tmp7_;
 #line 650 "ScreenshotManager.c"
 		}
-#line 103 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp8_ = filename;
-#line 103 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp9_ = g_str_has_suffix (_tmp8_, ".png");
-#line 103 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		if (!_tmp9_) {
 #line 658 "ScreenshotManager.c"
 			const gchar* _tmp10_ = NULL;
@@ -660,52 +660,52 @@ static gboolean gala_screenshot_manager_save_image (cairo_surface_t* image, cons
 			gchar* _tmp12_ = NULL;
 			gchar* _tmp13_ = NULL;
 			gchar* _tmp14_ = NULL;
-#line 104 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp10_ = path;
-#line 104 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp11_ = filename;
-#line 104 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp12_ = g_strconcat (_tmp11_, ".png", NULL);
-#line 104 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp13_ = _tmp12_;
-#line 104 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp14_ = g_build_filename (_tmp10_, _tmp13_, NULL, NULL);
-#line 104 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_g_free0 (_vala_used_filename);
-#line 104 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_vala_used_filename = _tmp14_;
-#line 104 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_g_free0 (_tmp13_);
 #line 680 "ScreenshotManager.c"
 		} else {
 			const gchar* _tmp15_ = NULL;
 			const gchar* _tmp16_ = NULL;
 			gchar* _tmp17_ = NULL;
-#line 106 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp15_ = path;
-#line 106 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp16_ = filename;
-#line 106 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_tmp17_ = g_build_filename (_tmp15_, _tmp16_, NULL, NULL);
-#line 106 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_g_free0 (_vala_used_filename);
-#line 106 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_vala_used_filename = _tmp17_;
 #line 695 "ScreenshotManager.c"
 		}
-#line 97 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_g_free0 (path);
 #line 699 "ScreenshotManager.c"
 	} else {
 		const gchar* _tmp18_ = NULL;
 		gchar* _tmp19_ = NULL;
-#line 109 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp18_ = filename;
-#line 109 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp19_ = g_strdup (_tmp18_);
-#line 109 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_g_free0 (_vala_used_filename);
-#line 109 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_vala_used_filename = _tmp19_;
 #line 711 "ScreenshotManager.c"
 	}
@@ -718,46 +718,46 @@ static gboolean gala_screenshot_manager_save_image (cairo_surface_t* image, cons
 		gint _tmp24_ = 0;
 		GdkPixbuf* _tmp25_ = NULL;
 		const gchar* _tmp26_ = NULL;
-#line 113 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp20_ = image;
-#line 113 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp21_ = image;
-#line 113 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp22_ = cairo_image_surface_get_width (_tmp21_);
-#line 113 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp23_ = image;
-#line 113 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp24_ = cairo_image_surface_get_height (_tmp23_);
-#line 113 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp25_ = gdk_pixbuf_get_from_surface (_tmp20_, 0, 0, _tmp22_, _tmp24_);
-#line 113 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		screenshot = _tmp25_;
-#line 114 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_tmp26_ = _vala_used_filename;
-#line 114 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		gdk_pixbuf_save (screenshot, _tmp26_, "png", &_inner_error_, NULL);
-#line 114 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 114 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_g_object_unref0 (screenshot);
 #line 744 "ScreenshotManager.c"
 			goto __catch12_g_error;
 		}
-#line 115 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		result = TRUE;
-#line 115 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_g_object_unref0 (screenshot);
-#line 115 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		if (used_filename) {
-#line 115 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			*used_filename = _vala_used_filename;
 #line 755 "ScreenshotManager.c"
 		} else {
-#line 115 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_g_free0 (_vala_used_filename);
 #line 759 "ScreenshotManager.c"
 		}
-#line 115 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		return result;
 #line 763 "ScreenshotManager.c"
 	}
@@ -765,34 +765,34 @@ static gboolean gala_screenshot_manager_save_image (cairo_surface_t* image, cons
 	__catch12_g_error:
 	{
 		GError* e = NULL;
-#line 112 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		e = _inner_error_;
-#line 112 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_inner_error_ = NULL;
-#line 117 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		result = FALSE;
-#line 117 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		_g_error_free0 (e);
-#line 117 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		if (used_filename) {
-#line 117 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			*used_filename = _vala_used_filename;
 #line 781 "ScreenshotManager.c"
 		} else {
-#line 117 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 			_g_free0 (_vala_used_filename);
 #line 785 "ScreenshotManager.c"
 		}
-#line 117 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 		return result;
 #line 789 "ScreenshotManager.c"
 	}
 	__finally12:
-#line 112 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 112 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_clear_error (&_inner_error_);
-#line 112 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	return FALSE;
 #line 798 "ScreenshotManager.c"
 }
@@ -817,71 +817,71 @@ static cairo_surface_t* gala_screenshot_manager_take_screenshot (GalaScreenshotM
 	CoglFramebuffer* _tmp10_ = NULL;
 	gint _tmp11_ = 0;
 	gint _tmp12_ = 0;
-#line 121 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 135 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp0_ = clutter_get_default_backend ();
-#line 135 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	backend = _tmp0_;
-#line 136 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp1_ = clutter_backend_get_cogl_context (backend);
-#line 136 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	context = _tmp1_;
-#line 138 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp2_ = width;
-#line 138 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp3_ = height;
-#line 138 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp4_ = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, _tmp2_, _tmp3_);
-#line 138 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_cairo_surface_destroy0 (image);
-#line 138 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	image = _tmp4_;
-#line 139 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp5_ = width;
-#line 139 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp6_ = height;
-#line 139 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp7_ = cairo_image_surface_get_stride (image);
-#line 139 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp8_ = cairo_image_surface_get_data (image);
-#line 139 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp9_ = cogl_bitmap_new_for_data (context, _tmp5_, _tmp6_, COGL_PIXEL_FORMAT_BGRA_8888_PRE, _tmp7_, _tmp8_);
-#line 139 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	bitmap = _tmp9_;
-#line 140 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp10_ = cogl_get_draw_framebuffer ();
-#line 140 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp11_ = x;
-#line 140 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_tmp12_ = y;
-#line 140 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	cogl_framebuffer_read_pixels_into_bitmap (_tmp10_, _tmp11_, _tmp12_, COGL_READ_PIXELS_COLOR_BUFFER, bitmap);
-#line 141 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	cairo_surface_mark_dirty (image);
-#line 144 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	result = image;
-#line 144 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_cogl_handle_unref0 (bitmap);
-#line 144 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	return result;
 #line 869 "ScreenshotManager.c"
 }
 
 
 static void gala_screenshot_manager_class_init (GalaScreenshotManagerClass * klass) {
-#line 21 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	gala_screenshot_manager_parent_class = g_type_class_peek_parent (klass);
-#line 21 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	g_type_class_add_private (klass, sizeof (GalaScreenshotManagerPrivate));
-#line 21 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_screenshot_manager_finalize;
 #line 880 "ScreenshotManager.c"
 }
 
 
 static void gala_screenshot_manager_instance_init (GalaScreenshotManager * self) {
-#line 21 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	self->priv = GALA_SCREENSHOT_MANAGER_GET_PRIVATE (self);
 #line 887 "ScreenshotManager.c"
 }
@@ -889,11 +889,11 @@ static void gala_screenshot_manager_instance_init (GalaScreenshotManager * self)
 
 static void gala_screenshot_manager_finalize (GObject* obj) {
 	GalaScreenshotManager * self;
-#line 21 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_SCREENSHOT_MANAGER, GalaScreenshotManager);
-#line 34 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	_g_object_unref0 (self->priv->wm);
-#line 21 "/home/nick/work/gala/src/ScreenshotManager.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenshotManager.vala"
 	G_OBJECT_CLASS (gala_screenshot_manager_parent_class)->finalize (obj);
 #line 899 "ScreenshotManager.c"
 }
@@ -926,47 +926,47 @@ static void _dbus_gala_screenshot_manager_flash_area (GalaScreenshotManager* sel
 	GDBusMessage* _reply_message;
 	GVariant* _reply;
 	GVariantBuilder _reply_builder;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_arguments_iter, _parameters_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp51_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	x = g_variant_get_int32 (_tmp51_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp51_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp52_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	y = g_variant_get_int32 (_tmp52_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp52_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp53_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	width = g_variant_get_int32 (_tmp53_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp53_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp54_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	height = g_variant_get_int32 (_tmp54_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp54_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	gala_screenshot_manager_flash_area (self, x, y, width, height);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply_message = g_dbus_message_new_method_reply (g_dbus_method_invocation_get_message (invocation));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_reply_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply = g_variant_builder_end (&_reply_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_message_set_body (_reply_message, _reply);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_connection_send_message (g_dbus_method_invocation_get_connection (invocation), _reply_message, G_DBUS_SEND_MESSAGE_FLAGS_NONE, NULL, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (invocation);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (_reply_message);
 #line 972 "ScreenshotManager.c"
 }
@@ -986,49 +986,49 @@ static void _dbus_gala_screenshot_manager_screenshot (GalaScreenshotManager* sel
 	GVariantBuilder _reply_builder;
 	gboolean success = FALSE;
 	gchar* filename_used = NULL;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_arguments_iter, _parameters_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp55_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	include_cursor = g_variant_get_boolean (_tmp55_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp55_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp56_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	flash = g_variant_get_boolean (_tmp56_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp56_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp57_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	filename = g_variant_dup_string (_tmp57_, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp57_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	gala_screenshot_manager_screenshot (self, include_cursor, flash, filename, &success, &filename_used);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply_message = g_dbus_message_new_method_reply (g_dbus_method_invocation_get_message (invocation));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_reply_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_boolean (success));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_string (filename_used));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply = g_variant_builder_end (&_reply_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_message_set_body (_reply_message, _reply);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_g_free0 (filename);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_g_free0 (filename_used);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_connection_send_message (g_dbus_method_invocation_get_connection (invocation), _reply_message, G_DBUS_SEND_MESSAGE_FLAGS_NONE, NULL, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (invocation);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (_reply_message);
 #line 1034 "ScreenshotManager.c"
 }
@@ -1054,75 +1054,75 @@ static void _dbus_gala_screenshot_manager_screenshot_area (GalaScreenshotManager
 	GVariantBuilder _reply_builder;
 	gboolean success = FALSE;
 	gchar* filename_used = NULL;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_arguments_iter, _parameters_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp58_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	x = g_variant_get_int32 (_tmp58_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp58_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp59_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	y = g_variant_get_int32 (_tmp59_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp59_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp60_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	width = g_variant_get_int32 (_tmp60_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp60_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp61_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	height = g_variant_get_int32 (_tmp61_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp61_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp62_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	flash = g_variant_get_boolean (_tmp62_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp62_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp63_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	filename = g_variant_dup_string (_tmp63_, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp63_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	gala_screenshot_manager_screenshot_area (self, x, y, width, height, flash, filename, &success, &filename_used, &error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (error) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		g_dbus_method_invocation_return_gerror (invocation, error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		return;
 #line 1104 "ScreenshotManager.c"
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply_message = g_dbus_message_new_method_reply (g_dbus_method_invocation_get_message (invocation));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_reply_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_boolean (success));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_string (filename_used));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply = g_variant_builder_end (&_reply_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_message_set_body (_reply_message, _reply);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_g_free0 (filename);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_g_free0 (filename_used);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_connection_send_message (g_dbus_method_invocation_get_connection (invocation), _reply_message, G_DBUS_SEND_MESSAGE_FLAGS_NONE, NULL, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (invocation);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (_reply_message);
 #line 1128 "ScreenshotManager.c"
 }
@@ -1144,55 +1144,55 @@ static void _dbus_gala_screenshot_manager_screenshot_window (GalaScreenshotManag
 	GVariantBuilder _reply_builder;
 	gboolean success = FALSE;
 	gchar* filename_used = NULL;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_arguments_iter, _parameters_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp64_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	include_frame = g_variant_get_boolean (_tmp64_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp64_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp65_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	include_cursor = g_variant_get_boolean (_tmp65_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp65_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp66_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	flash = g_variant_get_boolean (_tmp66_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp66_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp67_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	filename = g_variant_dup_string (_tmp67_, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp67_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	gala_screenshot_manager_screenshot_window (self, include_frame, include_cursor, flash, filename, &success, &filename_used);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply_message = g_dbus_message_new_method_reply (g_dbus_method_invocation_get_message (invocation));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_reply_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_boolean (success));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_string (filename_used));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply = g_variant_builder_end (&_reply_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_message_set_body (_reply_message, _reply);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_g_free0 (filename);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_g_free0 (filename_used);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_connection_send_message (g_dbus_method_invocation_get_connection (invocation), _reply_message, G_DBUS_SEND_MESSAGE_FLAGS_NONE, NULL, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (invocation);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (_reply_message);
 #line 1198 "ScreenshotManager.c"
 }
@@ -1208,39 +1208,39 @@ static void _dbus_gala_screenshot_manager_select_area (GalaScreenshotManager* se
 	gint y = 0;
 	gint width = 0;
 	gint height = 0;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_arguments_iter, _parameters_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	gala_screenshot_manager_select_area (self, &x, &y, &width, &height, &error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (error) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		g_dbus_method_invocation_return_gerror (invocation, error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		return;
 #line 1222 "ScreenshotManager.c"
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply_message = g_dbus_message_new_method_reply (g_dbus_method_invocation_get_message (invocation));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_reply_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_int32 (x));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_int32 (y));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_int32 (width));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_int32 (height));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply = g_variant_builder_end (&_reply_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_message_set_body (_reply_message, _reply);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_connection_send_message (g_dbus_method_invocation_get_connection (invocation), _reply_message, G_DBUS_SEND_MESSAGE_FLAGS_NONE, NULL, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (invocation);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (_reply_message);
 #line 1246 "ScreenshotManager.c"
 }
@@ -1251,29 +1251,29 @@ static void gala_screenshot_manager_dbus_interface_method_call (GDBusConnection*
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (strcmp (method_name, "FlashArea") == 0) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		_dbus_gala_screenshot_manager_flash_area (object, parameters, invocation);
 #line 1259 "ScreenshotManager.c"
 	} else if (strcmp (method_name, "Screenshot") == 0) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		_dbus_gala_screenshot_manager_screenshot (object, parameters, invocation);
 #line 1263 "ScreenshotManager.c"
 	} else if (strcmp (method_name, "ScreenshotArea") == 0) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		_dbus_gala_screenshot_manager_screenshot_area (object, parameters, invocation);
 #line 1267 "ScreenshotManager.c"
 	} else if (strcmp (method_name, "ScreenshotWindow") == 0) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		_dbus_gala_screenshot_manager_screenshot_window (object, parameters, invocation);
 #line 1271 "ScreenshotManager.c"
 	} else if (strcmp (method_name, "SelectArea") == 0) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		_dbus_gala_screenshot_manager_select_area (object, parameters, invocation);
 #line 1275 "ScreenshotManager.c"
 	} else {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		g_object_unref (invocation);
 #line 1279 "ScreenshotManager.c"
 	}
@@ -1285,7 +1285,7 @@ static GVariant* gala_screenshot_manager_dbus_interface_get_property (GDBusConne
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return NULL;
 #line 1291 "ScreenshotManager.c"
 }
@@ -1296,7 +1296,7 @@ static gboolean gala_screenshot_manager_dbus_interface_set_property (GDBusConnec
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return FALSE;
 #line 1302 "ScreenshotManager.c"
 }
@@ -1305,23 +1305,23 @@ static gboolean gala_screenshot_manager_dbus_interface_set_property (GDBusConnec
 guint gala_screenshot_manager_register_object (gpointer object, GDBusConnection* connection, const gchar* path, GError** error) {
 	guint result;
 	gpointer *data;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data = g_new (gpointer, 3);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[0] = g_object_ref (object);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[1] = g_object_ref (connection);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[2] = g_strdup (path);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	result = g_dbus_connection_register_object (connection, path, (GDBusInterfaceInfo *) (&_gala_screenshot_manager_dbus_interface_info), &_gala_screenshot_manager_dbus_interface_vtable, data, _gala_screenshot_manager_unregister_object, error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (!result) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		return 0;
 #line 1323 "ScreenshotManager.c"
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return result;
 #line 1327 "ScreenshotManager.c"
 }
@@ -1330,13 +1330,13 @@ guint gala_screenshot_manager_register_object (gpointer object, GDBusConnection*
 static void _gala_screenshot_manager_unregister_object (gpointer user_data) {
 	gpointer* data;
 	data = user_data;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (data[0]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (data[1]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (data[2]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (data);
 #line 1342 "ScreenshotManager.c"
 }

@@ -589,4 +589,3 @@ namespace Gala
 		}
 	}
 }
-

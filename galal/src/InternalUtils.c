@@ -216,32 +216,32 @@ gboolean gala_internal_utils_workspaces_only_on_primary (void) {
 	gboolean result = FALSE;
 	gboolean _tmp0_ = FALSE;
 	gboolean _tmp1_ = FALSE;
-#line 33 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = meta_prefs_get_dynamic_workspaces ();
-#line 33 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (_tmp1_) {
 #line 224 "InternalUtils.c"
 		gboolean _tmp2_ = FALSE;
-#line 34 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp2_ = meta_prefs_get_workspaces_only_on_primary ();
-#line 34 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp0_ = _tmp2_;
 #line 230 "InternalUtils.c"
 	} else {
-#line 33 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp0_ = FALSE;
 #line 234 "InternalUtils.c"
 	}
-#line 33 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	result = _tmp0_;
-#line 33 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return result;
 #line 240 "InternalUtils.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 42 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 247 "InternalUtils.c"
 }
@@ -269,77 +269,77 @@ void gala_internal_utils_reload_shadow (void) {
 	MetaShadowParams _tmp15_ = {0};
 	MetaShadowParams _tmp16_ = {0};
 	MetaShadowParams _tmp17_ = {0};
-#line 42 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = meta_shadow_factory_get_default ();
-#line 42 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 42 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	factory = _tmp1_;
-#line 43 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = gala_shadow_settings_get_default ();
-#line 43 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp3_ = _g_object_ref0 (_tmp2_);
-#line 43 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	settings = _tmp3_;
-#line 47 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_shadow_settings_get_shadowparams (settings, "normal_focused", &_tmp4_);
-#line 47 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	shadow = _tmp4_;
-#line 48 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp5_ = shadow;
-#line 48 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "normal", TRUE, &_tmp5_);
-#line 51 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_shadow_settings_get_shadowparams (settings, "normal_unfocused", &_tmp6_);
-#line 51 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	shadow = _tmp6_;
-#line 52 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp7_ = shadow;
-#line 52 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "normal", FALSE, &_tmp7_);
-#line 55 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_shadow_settings_get_shadowparams (settings, "menu", &_tmp8_);
-#line 55 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	shadow = _tmp8_;
-#line 56 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp9_ = shadow;
-#line 56 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "menu", FALSE, &_tmp9_);
-#line 57 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp10_ = shadow;
-#line 57 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "dropdown-menu", FALSE, &_tmp10_);
-#line 58 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp11_ = shadow;
-#line 58 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "popup-menu", FALSE, &_tmp11_);
-#line 61 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_shadow_settings_get_shadowparams (settings, "dialog_focused", &_tmp12_);
-#line 61 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	shadow = _tmp12_;
-#line 62 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp13_ = shadow;
-#line 62 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "dialog", TRUE, &_tmp13_);
-#line 63 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp14_ = shadow;
-#line 63 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "modal_dialog", FALSE, &_tmp14_);
-#line 66 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_shadow_settings_get_shadowparams (settings, "normal_unfocused", &_tmp15_);
-#line 66 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	shadow = _tmp15_;
-#line 67 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp16_ = shadow;
-#line 67 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "dialog", FALSE, &_tmp16_);
-#line 68 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp17_ = shadow;
-#line 68 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_shadow_factory_set_params (factory, "modal_dialog", FALSE, &_tmp17_);
-#line 40 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_g_object_unref0 (settings);
-#line 40 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_g_object_unref0 (factory);
 #line 345 "InternalUtils.c"
 }
@@ -349,15 +349,15 @@ void gala_internal_utils_reload_shadow (void) {
  * set the area where clutter can receive events
  **/
 static void _vala_array_add2 (XRectangle** array, int* length, int* size, XRectangle value) {
-#line 107 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if ((*length) == (*size)) {
-#line 107 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		*size = (*size) ? (2 * (*size)) : 4;
-#line 107 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		*array = g_renew (XRectangle, *array, *size);
 #line 359 "InternalUtils.c"
 	}
-#line 107 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	(*array)[(*length)++] = value;
 #line 363 "InternalUtils.c"
 }
@@ -391,47 +391,47 @@ void gala_internal_utils_set_input_area (MetaScreen* screen, GalaInputArea area)
 	XserverRegion _tmp86_ = {0};
 	MetaScreen* _tmp87_ = NULL;
 	XserverRegion _tmp88_ = {0};
-#line 74 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_if_fail (screen != NULL);
-#line 76 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = screen;
-#line 76 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = meta_screen_get_display (_tmp0_);
-#line 76 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 76 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	display = _tmp2_;
-#line 78 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp3_ = g_new0 (XRectangle, 0);
-#line 78 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	rects = _tmp3_;
-#line 78 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	rects_length1 = 0;
-#line 78 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_rects_size_ = rects_length1;
-#line 80 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp4_ = screen;
-#line 80 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_screen_get_size (_tmp4_, &_tmp5_, &_tmp6_);
-#line 80 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	width = _tmp5_;
-#line 80 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	height = _tmp6_;
-#line 81 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp7_ = screen;
-#line 81 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp8_ = screen;
-#line 81 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp9_ = meta_screen_get_primary_monitor (_tmp8_);
-#line 81 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_screen_get_monitor_geometry (_tmp7_, _tmp9_, &_tmp10_);
-#line 81 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	geometry = _tmp10_;
-#line 83 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp11_ = area;
-#line 83 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	switch (_tmp11_) {
-#line 83 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		case GALA_INPUT_AREA_FULLSCREEN:
 #line 437 "InternalUtils.c"
 		{
@@ -441,39 +441,39 @@ void gala_internal_utils_set_input_area (MetaScreen* screen, GalaInputArea area)
 			XRectangle _tmp14_ = {0};
 			XRectangle _tmp15_ = {0};
 			XRectangle* _tmp16_ = NULL;
-#line 85 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp12_ = width;
-#line 85 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp13_ = height;
-#line 85 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp14_.x = (gshort) 0;
-#line 85 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp14_.y = (gshort) 0;
-#line 85 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp14_.width = (gushort) _tmp12_;
-#line 85 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp14_.height = (gushort) _tmp13_;
-#line 85 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			rect = _tmp14_;
-#line 86 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp15_ = rect;
-#line 86 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp16_ = g_new0 (XRectangle, 1);
-#line 86 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp16_[0] = _tmp15_;
-#line 86 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			rects = (g_free (rects), NULL);
-#line 86 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			rects = _tmp16_;
-#line 86 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			rects_length1 = 1;
-#line 86 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_rects_size_ = rects_length1;
-#line 87 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			break;
 #line 475 "InternalUtils.c"
 		}
-#line 83 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		case GALA_INPUT_AREA_DEFAULT:
 #line 479 "InternalUtils.c"
 		{
@@ -545,226 +545,226 @@ void gala_internal_utils_set_input_area (MetaScreen* screen, GalaInputArea area)
 			XRectangle* _tmp73_ = NULL;
 			gboolean _tmp74_ = FALSE;
 			GalaInputArea _tmp75_ = 0;
-#line 89 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp17_ = gala_behavior_settings_get_default ();
-#line 89 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp18_ = granite_services_settings_get_schema ((GraniteServicesSettings*) _tmp17_);
-#line 89 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp19_ = _tmp18_;
-#line 89 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp20_ = _g_object_ref0 (_tmp19_);
-#line 89 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			schema = _tmp20_;
-#line 92 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp22_ = schema;
-#line 92 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp23_ = g_settings_get_enum (_tmp22_, "hotcorner-topleft");
-#line 92 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			if (_tmp23_ != ((gint) GALA_ACTION_TYPE_NONE)) {
-#line 92 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp21_ = 1;
 #line 567 "InternalUtils.c"
 			} else {
-#line 92 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp21_ = 0;
 #line 571 "InternalUtils.c"
 			}
-#line 92 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			tl_size = (gushort) _tmp21_;
-#line 93 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp25_ = schema;
-#line 93 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp26_ = g_settings_get_enum (_tmp25_, "hotcorner-topright");
-#line 93 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			if (_tmp26_ != ((gint) GALA_ACTION_TYPE_NONE)) {
-#line 93 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp24_ = 1;
 #line 583 "InternalUtils.c"
 			} else {
-#line 93 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp24_ = 0;
 #line 587 "InternalUtils.c"
 			}
-#line 93 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			tr_size = (gushort) _tmp24_;
-#line 94 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp28_ = schema;
-#line 94 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp29_ = g_settings_get_enum (_tmp28_, "hotcorner-bottomleft");
-#line 94 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			if (_tmp29_ != ((gint) GALA_ACTION_TYPE_NONE)) {
-#line 94 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp27_ = 1;
 #line 599 "InternalUtils.c"
 			} else {
-#line 94 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp27_ = 0;
 #line 603 "InternalUtils.c"
 			}
-#line 94 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			bl_size = (gushort) _tmp27_;
-#line 95 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp31_ = schema;
-#line 95 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp32_ = g_settings_get_enum (_tmp31_, "hotcorner-bottomright");
-#line 95 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			if (_tmp32_ != ((gint) GALA_ACTION_TYPE_NONE)) {
-#line 95 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp30_ = 1;
 #line 615 "InternalUtils.c"
 			} else {
-#line 95 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp30_ = 0;
 #line 619 "InternalUtils.c"
 			}
-#line 95 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			br_size = (gushort) _tmp30_;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp33_ = geometry;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp34_ = _tmp33_.x;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp35_ = geometry;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp36_ = _tmp35_.y;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp37_ = tl_size;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp38_ = tl_size;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp39_.x = (gshort) _tmp34_;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp39_.y = (gshort) _tmp36_;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp39_.width = _tmp37_;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp39_.height = _tmp38_;
-#line 97 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			topleft = _tmp39_;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp40_ = geometry;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp41_ = _tmp40_.x;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp42_ = geometry;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp43_ = _tmp42_.width;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp44_ = geometry;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp45_ = _tmp44_.y;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp46_ = tr_size;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp47_ = tr_size;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp48_.x = (gshort) ((_tmp41_ + _tmp43_) - 1);
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp48_.y = (gshort) _tmp45_;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp48_.width = _tmp46_;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp48_.height = _tmp47_;
-#line 98 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			topright = _tmp48_;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp49_ = geometry;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp50_ = _tmp49_.x;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp51_ = geometry;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp52_ = _tmp51_.y;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp53_ = geometry;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp54_ = _tmp53_.height;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp55_ = bl_size;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp56_ = bl_size;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp57_.x = (gshort) _tmp50_;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp57_.y = (gshort) ((_tmp52_ + _tmp54_) - 1);
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp57_.width = _tmp55_;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp57_.height = _tmp56_;
-#line 99 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			bottomleft = _tmp57_;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp58_ = geometry;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp59_ = _tmp58_.x;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp60_ = geometry;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp61_ = _tmp60_.width;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp62_ = geometry;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp63_ = _tmp62_.y;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp64_ = geometry;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp65_ = _tmp64_.height;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp66_ = br_size;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp67_ = br_size;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp68_.x = (gshort) ((_tmp59_ + _tmp61_) - 1);
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp68_.y = (gshort) ((_tmp63_ + _tmp65_) - 1);
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp68_.width = _tmp66_;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp68_.height = _tmp67_;
-#line 100 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			bottomright = _tmp68_;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp69_ = topleft;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp70_ = topright;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp71_ = bottomleft;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp72_ = bottomright;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp73_ = g_new0 (XRectangle, 4);
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp73_[0] = _tmp69_;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp73_[1] = _tmp70_;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp73_[2] = _tmp71_;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp73_[3] = _tmp72_;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			rects = (g_free (rects), NULL);
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			rects = _tmp73_;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			rects_length1 = 4;
-#line 102 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_rects_size_ = rects_length1;
-#line 105 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp75_ = area;
-#line 105 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			if (_tmp75_ == GALA_INPUT_AREA_FULLSCREEN) {
-#line 105 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp74_ = TRUE;
 #line 759 "InternalUtils.c"
 			} else {
 				GalaInputArea _tmp76_ = 0;
-#line 105 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp76_ = area;
-#line 105 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp74_ = _tmp76_ == GALA_INPUT_AREA_DEFAULT;
 #line 766 "InternalUtils.c"
 			}
-#line 105 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			if (_tmp74_) {
 #line 770 "InternalUtils.c"
 				GalaPluginManager* _tmp77_ = NULL;
@@ -772,13 +772,13 @@ void gala_internal_utils_set_input_area (MetaScreen* screen, GalaInputArea area)
 				gint _tmp78__length1 = 0;
 				XRectangle* _tmp79_ = NULL;
 				gint _tmp79__length1 = 0;
-#line 106 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp77_ = gala_plugin_manager_get_default ();
-#line 106 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp78_ = gala_plugin_manager_get_regions (_tmp77_, &_tmp78__length1);
-#line 106 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp79_ = _tmp78_;
-#line 106 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp79__length1 = _tmp78__length1;
 #line 784 "InternalUtils.c"
 				{
@@ -786,80 +786,80 @@ void gala_internal_utils_set_input_area (MetaScreen* screen, GalaInputArea area)
 					gint rect_collection_length1 = 0;
 					gint _rect_collection_size_ = 0;
 					gint rect_it = 0;
-#line 106 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					rect_collection = _tmp79_;
-#line 106 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					rect_collection_length1 = _tmp79__length1;
-#line 106 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					for (rect_it = 0; rect_it < _tmp79__length1; rect_it = rect_it + 1) {
 #line 796 "InternalUtils.c"
 						XRectangle rect = {0};
-#line 106 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						rect = rect_collection[rect_it];
 #line 800 "InternalUtils.c"
 						{
 							XRectangle* _tmp80_ = NULL;
 							gint _tmp80__length1 = 0;
 							XRectangle _tmp81_ = {0};
-#line 107 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp80_ = rects;
-#line 107 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp80__length1 = rects_length1;
-#line 107 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp81_ = rect;
-#line 107 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_vala_array_add2 (&rects, &rects_length1, &_rects_size_, _tmp81_);
 #line 813 "InternalUtils.c"
 						}
 					}
 				}
 			}
-#line 110 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_g_object_unref0 (schema);
-#line 110 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			break;
 #line 822 "InternalUtils.c"
 		}
 		default:
-#line 83 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		case GALA_INPUT_AREA_NONE:
 #line 827 "InternalUtils.c"
 		{
 			MetaScreen* _tmp82_ = NULL;
-#line 113 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp82_ = screen;
-#line 113 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			meta_empty_stage_input_region (_tmp82_);
-#line 114 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			rects = (g_free (rects), NULL);
-#line 114 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_g_object_unref0 (display);
-#line 114 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			return;
 #line 840 "InternalUtils.c"
 		}
 	}
-#line 117 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp83_ = display;
-#line 117 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp84_ = meta_display_get_xdisplay (_tmp83_);
-#line 117 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp85_ = rects;
-#line 117 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp85__length1 = rects_length1;
-#line 117 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp86_ = XFixesCreateRegion (_tmp84_, _tmp85_, _tmp85__length1);
-#line 117 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	xregion = _tmp86_;
-#line 118 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp87_ = screen;
-#line 118 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp88_ = xregion;
-#line 118 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_set_stage_input_region (_tmp87_, _tmp88_);
-#line 74 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	rects = (g_free (rects), NULL);
-#line 74 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_g_object_unref0 (display);
 #line 865 "InternalUtils.c"
 }
@@ -875,81 +875,71 @@ gchar* gala_internal_utils_get_system_background_path (void) {
 	gchar* default_file = NULL;
 	gchar* _tmp4_ = NULL;
 	const gchar* _tmp5_ = NULL;
-	const gchar* _tmp6_ = NULL;
-	const gchar* _tmp7_ = NULL;
-#line 123 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = gala_appearance_settings_get_default ();
-#line 123 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = gala_appearance_settings_get_workspace_switcher_background (_tmp0_);
-#line 123 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = _tmp1_;
-#line 123 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp3_ = g_strdup (_tmp2_);
-#line 123 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	filename = _tmp3_;
-#line 124 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp4_ = g_strdup (PKGDATADIR "/texture.png");
-#line 124 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	default_file = _tmp4_;
-#line 125 "/home/nick/work/gala/src/InternalUtils.vala"
-	_tmp5_ = default_file;
-#line 125 "/home/nick/work/gala/src/InternalUtils.vala"
-	g_message ("InternalUtils.vala:125: %s", _tmp5_);
-#line 126 "/home/nick/work/gala/src/InternalUtils.vala"
-	_tmp6_ = filename;
-#line 126 "/home/nick/work/gala/src/InternalUtils.vala"
-	g_message ("InternalUtils.vala:126: %s", _tmp6_);
-#line 127 "/home/nick/work/gala/src/InternalUtils.vala"
-	_tmp7_ = filename;
-#line 127 "/home/nick/work/gala/src/InternalUtils.vala"
-	if (g_strcmp0 (_tmp7_, "") == 0) {
-#line 907 "InternalUtils.c"
-		const gchar* _tmp8_ = NULL;
-		gchar* _tmp9_ = NULL;
-#line 128 "/home/nick/work/gala/src/InternalUtils.vala"
-		_tmp8_ = default_file;
-#line 128 "/home/nick/work/gala/src/InternalUtils.vala"
-		_tmp9_ = g_strdup (_tmp8_);
-#line 128 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+	_tmp5_ = filename;
+#line 126 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+	if (g_strcmp0 (_tmp5_, "") == 0) {
+#line 897 "InternalUtils.c"
+		const gchar* _tmp6_ = NULL;
+		gchar* _tmp7_ = NULL;
+#line 127 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+		_tmp6_ = default_file;
+#line 127 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+		_tmp7_ = g_strdup (_tmp6_);
+#line 127 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_g_free0 (filename);
-#line 128 "/home/nick/work/gala/src/InternalUtils.vala"
-		filename = _tmp9_;
-#line 918 "InternalUtils.c"
+#line 127 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+		filename = _tmp7_;
+#line 908 "InternalUtils.c"
 	} else {
-		const gchar* _tmp10_ = NULL;
-		gboolean _tmp11_ = FALSE;
-#line 129 "/home/nick/work/gala/src/InternalUtils.vala"
-		_tmp10_ = filename;
-#line 129 "/home/nick/work/gala/src/InternalUtils.vala"
-		_tmp11_ = g_file_test (_tmp10_, G_FILE_TEST_IS_REGULAR);
-#line 129 "/home/nick/work/gala/src/InternalUtils.vala"
-		if (!_tmp11_) {
-#line 928 "InternalUtils.c"
-			const gchar* _tmp12_ = NULL;
-			const gchar* _tmp13_ = NULL;
-			gchar* _tmp14_ = NULL;
-#line 130 "/home/nick/work/gala/src/InternalUtils.vala"
-			_tmp12_ = filename;
-#line 130 "/home/nick/work/gala/src/InternalUtils.vala"
-			g_warning ("InternalUtils.vala:130: Failed to load %s", _tmp12_);
-#line 131 "/home/nick/work/gala/src/InternalUtils.vala"
-			_tmp13_ = default_file;
-#line 131 "/home/nick/work/gala/src/InternalUtils.vala"
-			_tmp14_ = g_strdup (_tmp13_);
-#line 131 "/home/nick/work/gala/src/InternalUtils.vala"
+		const gchar* _tmp8_ = NULL;
+		gboolean _tmp9_ = FALSE;
+#line 128 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+		_tmp8_ = filename;
+#line 128 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+		_tmp9_ = g_file_test (_tmp8_, G_FILE_TEST_IS_REGULAR);
+#line 128 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+		if (!_tmp9_) {
+#line 918 "InternalUtils.c"
+			const gchar* _tmp10_ = NULL;
+			const gchar* _tmp11_ = NULL;
+			gchar* _tmp12_ = NULL;
+#line 129 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+			_tmp10_ = filename;
+#line 129 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+			g_warning ("InternalUtils.vala:129: Failed to load %s", _tmp10_);
+#line 130 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+			_tmp11_ = default_file;
+#line 130 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+			_tmp12_ = g_strdup (_tmp11_);
+#line 130 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_g_free0 (filename);
-#line 131 "/home/nick/work/gala/src/InternalUtils.vala"
-			filename = _tmp14_;
-#line 944 "InternalUtils.c"
+#line 130 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+			filename = _tmp12_;
+#line 934 "InternalUtils.c"
 		}
 	}
-#line 134 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	result = filename;
-#line 134 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_g_free0 (default_file);
-#line 134 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return result;
-#line 953 "InternalUtils.c"
+#line 943 "InternalUtils.c"
 }
 
 
@@ -974,47 +964,47 @@ void gala_internal_utils_insert_workspace_with_window (gint index, MetaWindow* n
 	GList* _tmp8_ = NULL;
 	GalaWorkspaceManager* _tmp27_ = NULL;
 	GalaWorkspaceManager* _tmp28_ = NULL;
-#line 144 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_if_fail (new_window != NULL);
-#line 146 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = new_window;
-#line 146 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = meta_window_get_screen (_tmp0_);
-#line 146 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = meta_get_window_actors (_tmp1_);
-#line 146 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	actors = _tmp2_;
-#line 148 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp3_ = gala_workspace_manager_get_default ();
-#line 148 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 148 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	workspace_manager = _tmp4_;
-#line 149 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp5_ = workspace_manager;
-#line 149 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_workspace_manager_freeze_remove (_tmp5_);
-#line 151 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp6_ = new_window;
-#line 151 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp7_ = index;
-#line 151 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	meta_window_change_workspace_by_index (_tmp6_, _tmp7_, FALSE);
-#line 153 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp8_ = actors;
-#line 1006 "InternalUtils.c"
+#line 996 "InternalUtils.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 153 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		actor_collection = _tmp8_;
-#line 153 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
-#line 1014 "InternalUtils.c"
+#line 1004 "InternalUtils.c"
 			MetaWindowActor* actor = NULL;
-#line 153 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			actor = (MetaWindowActor*) actor_it->data;
-#line 1018 "InternalUtils.c"
+#line 1008 "InternalUtils.c"
 			{
 				MetaWindow* window = NULL;
 				MetaWindowActor* _tmp9_ = NULL;
@@ -1030,97 +1020,97 @@ void gala_internal_utils_insert_workspace_with_window (gint index, MetaWindow* n
 				MetaWindow* _tmp18_ = NULL;
 				gboolean _tmp19_ = FALSE;
 				gboolean _tmp20_ = FALSE;
-#line 154 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp9_ = actor;
-#line 154 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp10_ = meta_window_actor_get_meta_window (_tmp9_);
-#line 154 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				window = _tmp10_;
-#line 155 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp11_ = actor;
-#line 155 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp12_ = meta_window_actor_is_destroyed (_tmp11_);
-#line 155 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (_tmp12_) {
-#line 156 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					continue;
-#line 1048 "InternalUtils.c"
+#line 1038 "InternalUtils.c"
 				}
-#line 158 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp13_ = window;
-#line 158 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp14_ = meta_window_get_workspace (_tmp13_);
-#line 158 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp15_ = meta_workspace_index (_tmp14_);
-#line 158 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				window_index = _tmp15_;
-#line 160 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp18_ = window;
-#line 160 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				g_object_get (_tmp18_, "on-all-workspaces", &_tmp19_, NULL);
-#line 160 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp20_ = _tmp19_;
-#line 160 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (!_tmp20_) {
-#line 1066 "InternalUtils.c"
+#line 1056 "InternalUtils.c"
 					MetaWindow* _tmp21_ = NULL;
 					MetaWindow* _tmp22_ = NULL;
-#line 161 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp21_ = window;
-#line 161 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp22_ = new_window;
-#line 161 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp17_ = _tmp21_ != _tmp22_;
-#line 1075 "InternalUtils.c"
+#line 1065 "InternalUtils.c"
 				} else {
-#line 160 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp17_ = FALSE;
-#line 1079 "InternalUtils.c"
+#line 1069 "InternalUtils.c"
 				}
-#line 160 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (_tmp17_) {
-#line 1083 "InternalUtils.c"
+#line 1073 "InternalUtils.c"
 					gint _tmp23_ = 0;
 					gint _tmp24_ = 0;
-#line 162 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp23_ = window_index;
-#line 162 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp24_ = index;
-#line 162 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp16_ = _tmp23_ >= _tmp24_;
-#line 1092 "InternalUtils.c"
+#line 1082 "InternalUtils.c"
 				} else {
-#line 160 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp16_ = FALSE;
-#line 1096 "InternalUtils.c"
+#line 1086 "InternalUtils.c"
 				}
-#line 160 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (_tmp16_) {
-#line 1100 "InternalUtils.c"
+#line 1090 "InternalUtils.c"
 					MetaWindow* _tmp25_ = NULL;
 					gint _tmp26_ = 0;
-#line 163 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp25_ = window;
-#line 163 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp26_ = window_index;
-#line 163 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					meta_window_change_workspace_by_index (_tmp25_, _tmp26_ + 1, TRUE);
-#line 1109 "InternalUtils.c"
+#line 1099 "InternalUtils.c"
 				}
 			}
 		}
 	}
-#line 167 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp27_ = workspace_manager;
-#line 167 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_workspace_manager_thaw_remove (_tmp27_);
-#line 168 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp28_ = workspace_manager;
-#line 168 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_workspace_manager_cleanup (_tmp28_);
-#line 144 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_g_object_unref0 (workspace_manager);
-#line 1124 "InternalUtils.c"
+#line 1114 "InternalUtils.c"
 }
 
 
@@ -1136,84 +1126,84 @@ static gint gala_internal_utils_squared_distance (GdkPoint* a, GdkPoint* b) {
 	gint _tmp5_ = 0;
 	GdkPoint _tmp6_ = {0};
 	gint _tmp7_ = 0;
-#line 180 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_val_if_fail (a != NULL, 0);
-#line 180 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_val_if_fail (b != NULL, 0);
-#line 182 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = *b;
-#line 182 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = _tmp0_.x;
-#line 182 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = *a;
-#line 182 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp3_ = _tmp2_.x;
-#line 182 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	k1 = _tmp1_ - _tmp3_;
-#line 183 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp4_ = *b;
-#line 183 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp5_ = _tmp4_.y;
-#line 183 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp6_ = *a;
-#line 183 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp7_ = _tmp6_.y;
-#line 183 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	k2 = _tmp5_ - _tmp7_;
-#line 185 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	result = (k1 * k1) + (k2 * k2);
-#line 185 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return result;
-#line 1168 "InternalUtils.c"
+#line 1158 "InternalUtils.c"
 }
 
 
 static gboolean _meta_rectangle_equal (const MetaRectangle* s1, const MetaRectangle* s2) {
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1 == s2) {
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return TRUE;
-#line 1177 "InternalUtils.c"
+#line 1167 "InternalUtils.c"
 	}
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1 == NULL) {
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1183 "InternalUtils.c"
+#line 1173 "InternalUtils.c"
 	}
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s2 == NULL) {
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1189 "InternalUtils.c"
+#line 1179 "InternalUtils.c"
 	}
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1->x != s2->x) {
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1195 "InternalUtils.c"
+#line 1185 "InternalUtils.c"
 	}
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1->y != s2->y) {
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1201 "InternalUtils.c"
+#line 1191 "InternalUtils.c"
 	}
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1->width != s2->width) {
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1207 "InternalUtils.c"
+#line 1197 "InternalUtils.c"
 	}
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1->height != s2->height) {
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1213 "InternalUtils.c"
+#line 1203 "InternalUtils.c"
 	}
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return TRUE;
-#line 1217 "InternalUtils.c"
+#line 1207 "InternalUtils.c"
 }
 
 
@@ -1223,78 +1213,78 @@ static gboolean gala_internal_utils_rect_is_overlapping_any (MetaRectangle* rect
 	gboolean _tmp1_ = FALSE;
 	MetaRectangle* _tmp2_ = NULL;
 	gint _tmp2__length1 = 0;
-#line 188 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_val_if_fail (rect != NULL, FALSE);
-#line 188 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_val_if_fail (border != NULL, FALSE);
-#line 190 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = *rect;
-#line 190 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = meta_rectangle_contains_rect (border, &_tmp0_);
-#line 190 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (!_tmp1_) {
-#line 191 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		result = TRUE;
-#line 191 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return result;
-#line 1241 "InternalUtils.c"
+#line 1231 "InternalUtils.c"
 	}
-#line 192 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = rects;
-#line 192 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2__length1 = rects_length1;
-#line 1247 "InternalUtils.c"
+#line 1237 "InternalUtils.c"
 	{
 		MetaRectangle* comp_collection = NULL;
 		gint comp_collection_length1 = 0;
 		gint _comp_collection_size_ = 0;
 		gint comp_it = 0;
-#line 192 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		comp_collection = _tmp2_;
-#line 192 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		comp_collection_length1 = _tmp2__length1;
-#line 192 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		for (comp_it = 0; comp_it < _tmp2__length1; comp_it = comp_it + 1) {
-#line 1259 "InternalUtils.c"
+#line 1249 "InternalUtils.c"
 			MetaRectangle comp = {0};
-#line 192 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			comp = comp_collection[comp_it];
-#line 1263 "InternalUtils.c"
+#line 1253 "InternalUtils.c"
 			{
 				MetaRectangle _tmp3_ = {0};
 				MetaRectangle _tmp4_ = {0};
 				MetaRectangle _tmp5_ = {0};
 				gboolean _tmp6_ = FALSE;
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp3_ = comp;
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp4_ = *rect;
-#line 193 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (_meta_rectangle_equal (&_tmp3_, &_tmp4_) == TRUE) {
-#line 194 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					continue;
-#line 1277 "InternalUtils.c"
+#line 1267 "InternalUtils.c"
 				}
-#line 196 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp5_ = comp;
-#line 196 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp6_ = meta_rectangle_overlap (rect, &_tmp5_);
-#line 196 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (_tmp6_) {
-#line 197 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					result = TRUE;
-#line 197 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					return result;
-#line 1289 "InternalUtils.c"
+#line 1279 "InternalUtils.c"
 				}
 			}
 		}
 	}
-#line 200 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	result = FALSE;
-#line 200 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return result;
-#line 1298 "InternalUtils.c"
+#line 1288 "InternalUtils.c"
 }
 
 
@@ -1314,49 +1304,49 @@ static void gala_internal_utils_rect_adjusted (MetaRectangle* rect, gint dx1, gi
 	gint _tmp12_ = 0;
 	gint _tmp13_ = 0;
 	MetaRectangle _tmp14_ = {0};
-#line 203 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_if_fail (rect != NULL);
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = *rect;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = _tmp0_.x;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = dx1;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp3_ = *rect;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp4_ = _tmp3_.y;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp5_ = dy1;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp6_ = *rect;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp7_ = _tmp6_.width;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp8_ = dx1;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp9_ = dx2;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp10_ = *rect;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp11_ = _tmp10_.height;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp12_ = dy1;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp13_ = dy2;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp14_.x = _tmp1_ + _tmp2_;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp14_.y = _tmp4_ + _tmp5_;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp14_.width = _tmp7_ + ((-_tmp8_) + _tmp9_);
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp14_.height = _tmp11_ + ((-_tmp12_) + _tmp13_);
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	*result = _tmp14_;
-#line 205 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return;
-#line 1360 "InternalUtils.c"
+#line 1350 "InternalUtils.c"
 }
 
 
@@ -1370,93 +1360,93 @@ static void gala_internal_utils_rect_center (MetaRectangle* rect, GdkPoint* resu
 	MetaRectangle _tmp6_ = {0};
 	gint _tmp7_ = 0;
 	GdkPoint _tmp8_ = {0};
-#line 208 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_if_fail (rect != NULL);
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = *rect;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = _tmp0_.x;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = *rect;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp3_ = _tmp2_.width;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp4_ = *rect;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp5_ = _tmp4_.y;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp6_ = *rect;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp7_ = _tmp6_.height;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp8_.x = _tmp1_ + (_tmp3_ / 2);
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp8_.y = _tmp5_ + (_tmp7_ / 2);
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	*result = _tmp8_;
-#line 210 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return;
-#line 1400 "InternalUtils.c"
+#line 1390 "InternalUtils.c"
 }
 
 
 static gpointer _gala_internal_utils_tilable_window_dup0 (gpointer self) {
-#line 247 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return self ? gala_internal_utils_tilable_window_dup (self) : NULL;
-#line 1407 "InternalUtils.c"
+#line 1397 "InternalUtils.c"
 }
 
 
 static gboolean _gala_internal_utils_tilable_window_equal (const GalaInternalUtilsTilableWindow* s1, const GalaInternalUtilsTilableWindow* s2) {
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1 == s2) {
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return TRUE;
-#line 1416 "InternalUtils.c"
+#line 1406 "InternalUtils.c"
 	}
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1 == NULL) {
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1422 "InternalUtils.c"
+#line 1412 "InternalUtils.c"
 	}
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s2 == NULL) {
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1428 "InternalUtils.c"
+#line 1418 "InternalUtils.c"
 	}
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (!_meta_rectangle_equal (&s1->rect, &s2->rect)) {
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1434 "InternalUtils.c"
+#line 1424 "InternalUtils.c"
 	}
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (s1->id != s2->id) {
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return FALSE;
-#line 1440 "InternalUtils.c"
+#line 1430 "InternalUtils.c"
 	}
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return TRUE;
-#line 1444 "InternalUtils.c"
+#line 1434 "InternalUtils.c"
 }
 
 
 static void _gala_internal_utils_tilable_window_free0_ (gpointer var) {
-#line 219 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	(var == NULL) ? NULL : (var = (gala_internal_utils_tilable_window_free (var), NULL));
-#line 1451 "InternalUtils.c"
+#line 1441 "InternalUtils.c"
 }
 
 
 static void _g_list_free__gala_internal_utils_tilable_window_free0_ (GList* self) {
-#line 219 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_list_foreach (self, (GFunc) _gala_internal_utils_tilable_window_free0_, NULL);
-#line 219 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_list_free (self);
-#line 1460 "InternalUtils.c"
+#line 1450 "InternalUtils.c"
 }
 
 
@@ -1503,139 +1493,139 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 	guint _tmp104_ = 0U;
 	gint _tmp105_ = 0;
 	gint _tmp106_ = 0;
-#line 219 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_val_if_fail (area != NULL, NULL);
-#line 222 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 221 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp0_ = windows;
-#line 222 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 221 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp1_ = g_list_length (_tmp0_);
-#line 222 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 221 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	window_count = _tmp1_;
-#line 223 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp2_ = window_count;
-#line 223 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp3_ = sqrt ((gdouble) _tmp2_);
-#line 223 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp4_ = ceil (_tmp3_);
-#line 223 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	columns = (gint) _tmp4_;
-#line 224 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp5_ = window_count;
-#line 224 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp6_ = columns;
-#line 224 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp7_ = ceil (_tmp5_ / ((gdouble) _tmp6_));
-#line 224 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	rows = (gint) _tmp7_;
-#line 227 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp8_ = *area;
-#line 227 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp9_ = _tmp8_.width;
-#line 227 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp10_ = columns;
-#line 227 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	slot_width = _tmp9_ / _tmp10_;
-#line 228 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp11_ = *area;
-#line 228 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp12_ = _tmp11_.height;
-#line 228 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp13_ = rows;
-#line 228 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	slot_height = _tmp12_ / _tmp13_;
-#line 230 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp14_ = g_new0 (GalaInternalUtilsTilableWindow*, 0);
-#line 230 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	taken_slots = _tmp14_;
-#line 230 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	taken_slots_length1 = 0;
-#line 230 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_taken_slots_size_ = taken_slots_length1;
-#line 231 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp15_ = rows;
-#line 231 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp16_ = columns;
-#line 231 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp17_ = _tmp15_ * _tmp16_;
-#line 231 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	taken_slots = g_renew (GalaInternalUtilsTilableWindow*, taken_slots, _tmp15_ * _tmp16_);
-#line 231 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	(_tmp17_ > taken_slots_length1) ? memset (taken_slots + taken_slots_length1, 0, sizeof (GalaInternalUtilsTilableWindow*) * (_tmp17_ - taken_slots_length1)) : NULL;
-#line 231 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	taken_slots_length1 = _tmp17_;
-#line 231 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_taken_slots_size_ = _tmp17_;
-#line 234 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp18_ = g_new0 (GdkPoint, 0);
-#line 234 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	slot_centers = _tmp18_;
-#line 234 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	slot_centers_length1 = 0;
-#line 234 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_slot_centers_size_ = slot_centers_length1;
-#line 235 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp19_ = rows;
-#line 235 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp20_ = columns;
-#line 235 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp21_ = _tmp19_ * _tmp20_;
-#line 235 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	slot_centers = g_renew (GdkPoint, slot_centers, _tmp19_ * _tmp20_);
-#line 235 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	(_tmp21_ > slot_centers_length1) ? memset (slot_centers + slot_centers_length1, 0, sizeof (GdkPoint) * (_tmp21_ - slot_centers_length1)) : NULL;
-#line 235 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	slot_centers_length1 = _tmp21_;
-#line 235 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_slot_centers_size_ = _tmp21_;
-#line 1591 "InternalUtils.c"
+#line 1581 "InternalUtils.c"
 	{
 		gint x = 0;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		x = 0;
-#line 1596 "InternalUtils.c"
+#line 1586 "InternalUtils.c"
 		{
 			gboolean _tmp22_ = FALSE;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp22_ = TRUE;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			while (TRUE) {
-#line 1603 "InternalUtils.c"
+#line 1593 "InternalUtils.c"
 				gint _tmp24_ = 0;
 				gint _tmp25_ = 0;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (!_tmp22_) {
-#line 1608 "InternalUtils.c"
+#line 1598 "InternalUtils.c"
 					gint _tmp23_ = 0;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp23_ = x;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					x = _tmp23_ + 1;
-#line 1614 "InternalUtils.c"
+#line 1604 "InternalUtils.c"
 				}
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp22_ = FALSE;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp24_ = x;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp25_ = columns;
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (!(_tmp24_ < _tmp25_)) {
-#line 236 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					break;
-#line 1626 "InternalUtils.c"
+#line 1616 "InternalUtils.c"
 				}
 				{
 					gint y = 0;
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					y = 0;
-#line 1632 "InternalUtils.c"
+#line 1622 "InternalUtils.c"
 					{
 						gboolean _tmp26_ = FALSE;
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp26_ = TRUE;
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						while (TRUE) {
-#line 1639 "InternalUtils.c"
+#line 1629 "InternalUtils.c"
 							gint _tmp28_ = 0;
 							gint _tmp29_ = 0;
 							GdkPoint* _tmp30_ = NULL;
@@ -1655,82 +1645,82 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 							gint _tmp43_ = 0;
 							GdkPoint _tmp44_ = {0};
 							GdkPoint _tmp45_ = {0};
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							if (!_tmp26_) {
-#line 1661 "InternalUtils.c"
+#line 1651 "InternalUtils.c"
 								gint _tmp27_ = 0;
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 								_tmp27_ = y;
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 								y = _tmp27_ + 1;
-#line 1667 "InternalUtils.c"
+#line 1657 "InternalUtils.c"
 							}
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp26_ = FALSE;
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp28_ = y;
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp29_ = rows;
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							if (!(_tmp28_ < _tmp29_)) {
-#line 237 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 								break;
-#line 1679 "InternalUtils.c"
+#line 1669 "InternalUtils.c"
 							}
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp30_ = slot_centers;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp30__length1 = slot_centers_length1;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp31_ = x;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp32_ = y;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp33_ = columns;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp34_ = *area;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp35_ = _tmp34_.x;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp36_ = slot_width;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp37_ = x;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp38_ = slot_width;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp39_ = *area;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp40_ = _tmp39_.y;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp41_ = slot_height;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp42_ = y;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp43_ = slot_height;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp44_.x = (_tmp35_ + (_tmp36_ * _tmp37_)) + (_tmp38_ / 2);
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp44_.y = (_tmp40_ + (_tmp41_ * _tmp42_)) + (_tmp43_ / 2);
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp30_[_tmp31_ + (_tmp32_ * _tmp33_)] = _tmp44_;
-#line 238 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp45_ = _tmp30_[_tmp31_ + (_tmp32_ * _tmp33_)];
-#line 1719 "InternalUtils.c"
+#line 1709 "InternalUtils.c"
 						}
 					}
 				}
 			}
 		}
 	}
-#line 244 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 243 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp46_ = windows;
-#line 244 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 243 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp47_ = g_list_copy (_tmp46_);
-#line 244 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 243 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	tmplist = _tmp47_;
-#line 245 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	while (TRUE) {
-#line 1734 "InternalUtils.c"
+#line 1724 "InternalUtils.c"
 		GList* _tmp48_ = NULL;
 		guint _tmp49_ = 0U;
 		GList* link = NULL;
@@ -1760,59 +1750,59 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 		GalaInternalUtilsTilableWindow* _tmp101_ = NULL;
 		GalaInternalUtilsTilableWindow* _tmp102_ = NULL;
 		GalaInternalUtilsTilableWindow* _tmp103_ = NULL;
-#line 245 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp48_ = tmplist;
-#line 245 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp49_ = g_list_length (_tmp48_);
-#line 245 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		if (!(_tmp49_ > ((guint) 0))) {
-#line 245 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			break;
-#line 1772 "InternalUtils.c"
+#line 1762 "InternalUtils.c"
 		}
-#line 246 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp50_ = tmplist;
-#line 246 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp51_ = g_list_nth (_tmp50_, (guint) 0);
-#line 246 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		link = _tmp51_;
-#line 247 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp52_ = link;
-#line 247 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp53_ = _tmp52_->data;
-#line 247 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp54_ = _gala_internal_utils_tilable_window_dup0 ((GalaInternalUtilsTilableWindow*) _tmp53_);
-#line 247 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		window = _tmp54_;
-#line 248 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp55_ = window;
-#line 248 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp56_ = (*_tmp55_).rect;
-#line 248 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		rect = _tmp56_;
-#line 250 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		slot_candidate = -1;
-#line 251 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 250 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		slot_candidate_distance = G_MAXINT;
-#line 252 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp57_ = rect;
-#line 252 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		gala_internal_utils_rect_center (&_tmp57_, &_tmp58_);
-#line 252 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		pos = _tmp58_;
-#line 1804 "InternalUtils.c"
+#line 1794 "InternalUtils.c"
 		{
 			gint i = 0;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			i = 0;
-#line 1809 "InternalUtils.c"
+#line 1799 "InternalUtils.c"
 			{
 				gboolean _tmp59_ = FALSE;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp59_ = TRUE;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				while (TRUE) {
-#line 1816 "InternalUtils.c"
+#line 1806 "InternalUtils.c"
 					gint _tmp61_ = 0;
 					gint _tmp62_ = 0;
 					gint _tmp63_ = 0;
@@ -1827,61 +1817,61 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 					gint _tmp70_ = 0;
 					gint _tmp71_ = 0;
 					gint _tmp72_ = 0;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					if (!_tmp59_) {
-#line 1833 "InternalUtils.c"
+#line 1823 "InternalUtils.c"
 						gint _tmp60_ = 0;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp60_ = i;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						i = _tmp60_ + 1;
-#line 1839 "InternalUtils.c"
+#line 1829 "InternalUtils.c"
 					}
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp59_ = FALSE;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp61_ = i;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp62_ = columns;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp63_ = rows;
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					if (!(_tmp61_ < (_tmp62_ * _tmp63_))) {
-#line 255 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+						break;
+#line 1843 "InternalUtils.c"
+					}
+#line 255 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+					_tmp64_ = i;
+#line 255 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+					_tmp65_ = window_count;
+#line 255 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
+					if (((guint) _tmp64_) > (_tmp65_ - 1)) {
+#line 256 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						break;
 #line 1853 "InternalUtils.c"
 					}
-#line 256 "/home/nick/work/gala/src/InternalUtils.vala"
-					_tmp64_ = i;
-#line 256 "/home/nick/work/gala/src/InternalUtils.vala"
-					_tmp65_ = window_count;
-#line 256 "/home/nick/work/gala/src/InternalUtils.vala"
-					if (((guint) _tmp64_) > (_tmp65_ - 1)) {
-#line 257 "/home/nick/work/gala/src/InternalUtils.vala"
-						break;
-#line 1863 "InternalUtils.c"
-					}
-#line 259 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp66_ = pos;
-#line 259 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp67_ = slot_centers;
-#line 259 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp67__length1 = slot_centers_length1;
-#line 259 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp68_ = i;
-#line 259 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp69_ = _tmp67_[_tmp68_];
-#line 259 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp70_ = gala_internal_utils_squared_distance (&_tmp66_, &_tmp69_);
-#line 259 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					dist = _tmp70_;
-#line 261 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp71_ = dist;
-#line 261 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp72_ = slot_candidate_distance;
-#line 261 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					if (_tmp71_ < _tmp72_) {
-#line 1885 "InternalUtils.c"
+#line 1875 "InternalUtils.c"
 						GalaInternalUtilsTilableWindow* occupier = NULL;
 						GalaInternalUtilsTilableWindow** _tmp73_ = NULL;
 						gint _tmp73__length1 = 0;
@@ -1892,37 +1882,37 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 						GalaInternalUtilsTilableWindow* _tmp78_ = NULL;
 						gboolean _tmp79_ = FALSE;
 						GalaInternalUtilsTilableWindow* _tmp80_ = NULL;
-#line 263 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp73_ = taken_slots;
-#line 263 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp73__length1 = taken_slots_length1;
-#line 263 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp74_ = i;
-#line 263 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp75_ = _tmp73_[_tmp74_];
-#line 263 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp76_ = _gala_internal_utils_tilable_window_dup0 (_tmp75_);
-#line 263 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						occupier = _tmp76_;
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp77_ = occupier;
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp78_ = window;
-#line 264 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						if (_gala_internal_utils_tilable_window_equal (_tmp77_, _tmp78_) == TRUE) {
-#line 265 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_gala_internal_utils_tilable_window_free0 (occupier);
-#line 265 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							continue;
-#line 1918 "InternalUtils.c"
+#line 1908 "InternalUtils.c"
 						}
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_tmp80_ = occupier;
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						if (_tmp80_ == NULL) {
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp79_ = TRUE;
-#line 1926 "InternalUtils.c"
+#line 1916 "InternalUtils.c"
 						} else {
 							gint _tmp81_ = 0;
 							GalaInternalUtilsTilableWindow* _tmp82_ = NULL;
@@ -1933,134 +1923,134 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 							gint _tmp86_ = 0;
 							GdkPoint _tmp87_ = {0};
 							gint _tmp88_ = 0;
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp81_ = dist;
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp82_ = occupier;
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp83_ = (*_tmp82_).rect;
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							gala_internal_utils_rect_center (&_tmp83_, &_tmp84_);
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp85_ = slot_centers;
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp85__length1 = slot_centers_length1;
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp86_ = i;
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp87_ = _tmp85_[_tmp86_];
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp88_ = gala_internal_utils_squared_distance (&_tmp84_, &_tmp87_);
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp79_ = _tmp81_ < _tmp88_;
-#line 1957 "InternalUtils.c"
+#line 1947 "InternalUtils.c"
 						}
-#line 267 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						if (_tmp79_) {
-#line 1961 "InternalUtils.c"
+#line 1951 "InternalUtils.c"
 							gint _tmp89_ = 0;
 							gint _tmp90_ = 0;
-#line 269 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 268 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp89_ = i;
-#line 269 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 268 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							slot_candidate = _tmp89_;
-#line 270 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							_tmp90_ = dist;
-#line 270 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 							slot_candidate_distance = _tmp90_;
-#line 1972 "InternalUtils.c"
+#line 1962 "InternalUtils.c"
 						}
-#line 261 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 						_gala_internal_utils_tilable_window_free0 (occupier);
-#line 1976 "InternalUtils.c"
+#line 1966 "InternalUtils.c"
 					}
 				}
 			}
 		}
-#line 275 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp91_ = slot_candidate;
-#line 275 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		if (_tmp91_ == -1) {
-#line 276 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_gala_internal_utils_tilable_window_free0 (window);
-#line 276 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			continue;
-#line 1989 "InternalUtils.c"
+#line 1979 "InternalUtils.c"
 		}
-#line 278 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp92_ = taken_slots;
-#line 278 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp92__length1 = taken_slots_length1;
-#line 278 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp93_ = slot_candidate;
-#line 278 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp94_ = _tmp92_[_tmp93_];
-#line 278 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		if (_tmp94_ != NULL) {
-#line 2001 "InternalUtils.c"
+#line 1991 "InternalUtils.c"
 			GalaInternalUtilsTilableWindow** _tmp95_ = NULL;
 			gint _tmp95__length1 = 0;
 			gint _tmp96_ = 0;
 			GalaInternalUtilsTilableWindow* _tmp97_ = NULL;
-#line 279 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp95_ = taken_slots;
-#line 279 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp95__length1 = taken_slots_length1;
-#line 279 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp96_ = slot_candidate;
-#line 279 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp97_ = _tmp95_[_tmp96_];
-#line 279 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			tmplist = g_list_prepend (tmplist, _tmp97_);
-#line 2016 "InternalUtils.c"
+#line 2006 "InternalUtils.c"
 		}
-#line 281 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 280 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp98_ = link;
-#line 281 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 280 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		tmplist = g_list_remove_link (tmplist, _tmp98_);
-#line 282 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp99_ = taken_slots;
-#line 282 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp99__length1 = taken_slots_length1;
-#line 282 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp100_ = slot_candidate;
-#line 282 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp101_ = window;
-#line 282 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp102_ = _gala_internal_utils_tilable_window_dup0 (_tmp101_);
-#line 282 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_gala_internal_utils_tilable_window_free0 (_tmp99_[_tmp100_]);
-#line 282 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp99_[_tmp100_] = _tmp102_;
-#line 282 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_tmp103_ = _tmp99_[_tmp100_];
-#line 245 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		_gala_internal_utils_tilable_window_free0 (window);
-#line 2040 "InternalUtils.c"
+#line 2030 "InternalUtils.c"
 	}
-#line 285 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_result_ = NULL;
-#line 288 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp104_ = window_count;
-#line 288 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp105_ = columns;
-#line 288 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_tmp106_ = rows;
-#line 288 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	left_over = ((gint) _tmp104_) - (_tmp105_ * (_tmp106_ - 1));
-#line 2052 "InternalUtils.c"
+#line 2042 "InternalUtils.c"
 	{
 		gint slot = 0;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		slot = 0;
-#line 2057 "InternalUtils.c"
+#line 2047 "InternalUtils.c"
 		{
 			gboolean _tmp107_ = FALSE;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			_tmp107_ = TRUE;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			while (TRUE) {
-#line 2064 "InternalUtils.c"
+#line 2054 "InternalUtils.c"
 				gint _tmp109_ = 0;
 				gint _tmp110_ = 0;
 				gint _tmp111_ = 0;
@@ -2108,117 +2098,117 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 				void* _tmp206_ = NULL;
 				GalaInternalUtilsTilableWindow _tmp207_ = {0};
 				GalaInternalUtilsTilableWindow* _tmp208_ = NULL;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (!_tmp107_) {
-#line 2114 "InternalUtils.c"
+#line 2104 "InternalUtils.c"
 					gint _tmp108_ = 0;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp108_ = slot;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					slot = _tmp108_ + 1;
-#line 2120 "InternalUtils.c"
+#line 2110 "InternalUtils.c"
 				}
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp107_ = FALSE;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp109_ = slot;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp110_ = columns;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp111_ = rows;
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (!(_tmp109_ < (_tmp110_ * _tmp111_))) {
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					break;
-#line 2134 "InternalUtils.c"
+#line 2124 "InternalUtils.c"
 				}
-#line 291 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp112_ = taken_slots;
-#line 291 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp112__length1 = taken_slots_length1;
-#line 291 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp113_ = slot;
-#line 291 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp114_ = _tmp112_[_tmp113_];
-#line 291 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp115_ = _gala_internal_utils_tilable_window_dup0 (_tmp114_);
-#line 291 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				window = _tmp115_;
-#line 293 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp116_ = window;
-#line 293 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (_tmp116_ == NULL) {
-#line 294 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_gala_internal_utils_tilable_window_free0 (window);
-#line 294 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					continue;
-#line 2156 "InternalUtils.c"
+#line 2146 "InternalUtils.c"
 				}
-#line 296 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp117_ = window;
-#line 296 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp118_ = (*_tmp117_).rect;
-#line 296 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				rect = _tmp118_;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp119_ = *area;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp120_ = _tmp119_.x;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp121_ = slot;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp122_ = columns;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp123_ = slot_width;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp124_ = *area;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp125_ = _tmp124_.y;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp126_ = slot;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp127_ = columns;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp128_ = slot_height;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp129_ = slot_width;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp130_ = slot_height;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp131_.x = _tmp120_ + ((_tmp121_ % _tmp122_) * _tmp123_);
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp131_.y = _tmp125_ + ((_tmp126_ / _tmp127_) * _tmp128_);
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp131_.width = _tmp129_;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp131_.height = _tmp130_;
-#line 299 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				target = _tmp131_;
-#line 303 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 302 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp132_ = target;
-#line 303 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 302 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				gala_internal_utils_rect_adjusted (&_tmp132_, 10, 10, -10, -10, &_tmp133_);
-#line 303 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 302 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				target = _tmp133_;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp134_ = target;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp135_ = _tmp134_.width;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp136_ = rect;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp137_ = _tmp136_.width;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp138_ = target;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp139_ = _tmp138_.height;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp140_ = rect;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp141_ = _tmp140_.height;
-#line 306 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if ((_tmp135_ / ((gdouble) _tmp137_)) < (_tmp139_ / ((gdouble) _tmp141_))) {
-#line 2222 "InternalUtils.c"
+#line 2212 "InternalUtils.c"
 					MetaRectangle _tmp142_ = {0};
 					gint _tmp143_ = 0;
 					MetaRectangle _tmp144_ = {0};
@@ -2233,41 +2223,41 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 					gint _tmp153_ = 0;
 					gfloat _tmp154_ = 0.0F;
 					gfloat _tmp155_ = 0.0F;
-#line 308 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp142_ = target;
-#line 308 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp143_ = _tmp142_.width;
-#line 308 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp144_ = rect;
-#line 308 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp145_ = _tmp144_.width;
-#line 308 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					scale = _tmp143_ / ((gfloat) _tmp145_);
-#line 309 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp146_ = target.y;
-#line 309 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp147_ = target;
-#line 309 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp148_ = _tmp147_.height;
-#line 309 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp149_ = rect;
-#line 309 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp150_ = _tmp149_.height;
-#line 309 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp151_ = scale;
-#line 309 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					target.y = _tmp146_ + ((_tmp148_ - ((gint) (_tmp150_ * _tmp151_))) / 2);
-#line 310 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp152_ = rect;
-#line 310 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp153_ = _tmp152_.height;
-#line 310 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp154_ = scale;
-#line 310 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp155_ = floorf (_tmp153_ * _tmp154_);
-#line 310 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					target.height = (gint) _tmp155_;
-#line 2271 "InternalUtils.c"
+#line 2261 "InternalUtils.c"
 				} else {
 					MetaRectangle _tmp156_ = {0};
 					gint _tmp157_ = 0;
@@ -2283,47 +2273,47 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 					gint _tmp167_ = 0;
 					gfloat _tmp168_ = 0.0F;
 					gfloat _tmp169_ = 0.0F;
-#line 313 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp156_ = target;
-#line 313 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp157_ = _tmp156_.height;
-#line 313 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp158_ = rect;
-#line 313 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp159_ = _tmp158_.height;
-#line 313 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					scale = _tmp157_ / ((gfloat) _tmp159_);
-#line 314 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp160_ = target.x;
-#line 314 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp161_ = target;
-#line 314 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp162_ = _tmp161_.width;
-#line 314 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp163_ = rect;
-#line 314 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp164_ = _tmp163_.width;
-#line 314 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp165_ = scale;
-#line 314 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					target.x = _tmp160_ + ((_tmp162_ - ((gint) (_tmp164_ * _tmp165_))) / 2);
-#line 315 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp166_ = rect;
-#line 315 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp167_ = _tmp166_.width;
-#line 315 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp168_ = scale;
-#line 315 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp169_ = floorf (_tmp167_ * _tmp168_);
-#line 315 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					target.width = (gint) _tmp169_;
-#line 2321 "InternalUtils.c"
+#line 2311 "InternalUtils.c"
 				}
-#line 319 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 318 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp170_ = scale;
-#line 319 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 318 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (((gdouble) _tmp170_) > 1.0) {
-#line 2327 "InternalUtils.c"
+#line 2317 "InternalUtils.c"
 					MetaRectangle _tmp171_ = {0};
 					GdkPoint _tmp172_ = {0};
 					gint _tmp173_ = 0;
@@ -2347,176 +2337,176 @@ GList* gala_internal_utils_calculate_grid_placement (MetaRectangle* area, GList*
 					gint _tmp191_ = 0;
 					gfloat _tmp192_ = 0.0F;
 					MetaRectangle _tmp193_ = {0};
-#line 320 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 319 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					scale = 1.0f;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp171_ = target;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					gala_internal_utils_rect_center (&_tmp171_, &_tmp172_);
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp173_ = _tmp172_.x;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp174_ = rect;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp175_ = _tmp174_.width;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp176_ = scale;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp177_ = floorf (_tmp175_ * _tmp176_);
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp178_ = target;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					gala_internal_utils_rect_center (&_tmp178_, &_tmp179_);
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp180_ = _tmp179_.y;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp181_ = rect;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp182_ = _tmp181_.height;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp183_ = scale;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp184_ = floorf (_tmp182_ * _tmp183_);
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp185_ = scale;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp186_ = rect;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp187_ = _tmp186_.width;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp188_ = floorf (_tmp185_ * _tmp187_);
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp189_ = scale;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp190_ = rect;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp191_ = _tmp190_.height;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp192_ = floorf (_tmp189_ * _tmp191_);
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp193_.x = _tmp173_ - (((gint) _tmp177_) / 2);
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp193_.y = _tmp180_ - (((gint) _tmp184_) / 2);
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp193_.width = (gint) _tmp188_;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp193_.height = (gint) _tmp192_;
-#line 321 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					target = _tmp193_;
-#line 2407 "InternalUtils.c"
+#line 2397 "InternalUtils.c"
 				}
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp195_ = left_over;
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp196_ = columns;
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (_tmp195_ != _tmp196_) {
-#line 2415 "InternalUtils.c"
+#line 2405 "InternalUtils.c"
 					gint _tmp197_ = 0;
 					gint _tmp198_ = 0;
 					gint _tmp199_ = 0;
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp197_ = slot;
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp198_ = columns;
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp199_ = rows;
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp194_ = _tmp197_ >= (_tmp198_ * (_tmp199_ - 1));
-#line 2427 "InternalUtils.c"
+#line 2417 "InternalUtils.c"
 				} else {
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp194_ = FALSE;
-#line 2431 "InternalUtils.c"
+#line 2421 "InternalUtils.c"
 				}
-#line 328 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				if (_tmp194_) {
-#line 2435 "InternalUtils.c"
+#line 2425 "InternalUtils.c"
 					gint _tmp200_ = 0;
 					gint _tmp201_ = 0;
 					gint _tmp202_ = 0;
 					gint _tmp203_ = 0;
-#line 329 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp200_ = target.x;
-#line 329 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp201_ = columns;
-#line 329 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp202_ = left_over;
-#line 329 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					_tmp203_ = slot_width;
-#line 329 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 					target.x = _tmp200_ + (((_tmp201_ - _tmp202_) * _tmp203_) / 2);
-#line 2450 "InternalUtils.c"
+#line 2440 "InternalUtils.c"
 				}
-#line 331 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp204_ = target;
-#line 331 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp205_ = window;
-#line 331 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp206_ = (*_tmp205_).id;
-#line 331 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp207_.rect = _tmp204_;
-#line 331 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp207_.id = _tmp206_;
-#line 331 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_tmp208_ = _gala_internal_utils_tilable_window_dup0 (&_tmp207_);
-#line 331 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_result_ = g_list_prepend (_result_, _tmp208_);
-#line 290 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 				_gala_internal_utils_tilable_window_free0 (window);
-#line 2468 "InternalUtils.c"
+#line 2458 "InternalUtils.c"
 			}
 		}
 	}
-#line 334 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 333 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_result_ = g_list_reverse (_result_);
-#line 335 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	result = _result_;
-#line 335 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	_g_list_free0 (tmplist);
-#line 335 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	slot_centers = (g_free (slot_centers), NULL);
-#line 335 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	taken_slots = (_vala_array_free (taken_slots, taken_slots_length1, (GDestroyNotify) gala_internal_utils_tilable_window_free), NULL);
-#line 335 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return result;
-#line 2484 "InternalUtils.c"
+#line 2474 "InternalUtils.c"
 }
 
 
 GalaInternalUtils* gala_internal_utils_construct (GType object_type) {
 	GalaInternalUtils* self = NULL;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	self = (GalaInternalUtils*) g_type_create_instance (object_type);
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return self;
-#line 2494 "InternalUtils.c"
+#line 2484 "InternalUtils.c"
 }
 
 
 GalaInternalUtils* gala_internal_utils_new (void) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return gala_internal_utils_construct (GALA_TYPE_INTERNAL_UTILS);
-#line 2501 "InternalUtils.c"
+#line 2491 "InternalUtils.c"
 }
 
 
 GalaInternalUtilsTilableWindow* gala_internal_utils_tilable_window_dup (const GalaInternalUtilsTilableWindow* self) {
 	GalaInternalUtilsTilableWindow* dup;
-#line 213 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	dup = g_new0 (GalaInternalUtilsTilableWindow, 1);
-#line 213 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	memcpy (dup, self, sizeof (GalaInternalUtilsTilableWindow));
-#line 213 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return dup;
-#line 2513 "InternalUtils.c"
+#line 2503 "InternalUtils.c"
 }
 
 
 void gala_internal_utils_tilable_window_free (GalaInternalUtilsTilableWindow* self) {
-#line 213 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_free (self);
-#line 2520 "InternalUtils.c"
+#line 2510 "InternalUtils.c"
 }
 
 
@@ -2532,208 +2522,208 @@ GType gala_internal_utils_tilable_window_get_type (void) {
 
 
 static void gala_value_internal_utils_init (GValue* value) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	value->data[0].v_pointer = NULL;
-#line 2538 "InternalUtils.c"
+#line 2528 "InternalUtils.c"
 }
 
 
 static void gala_value_internal_utils_free_value (GValue* value) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (value->data[0].v_pointer) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		gala_internal_utils_unref (value->data[0].v_pointer);
-#line 2547 "InternalUtils.c"
+#line 2537 "InternalUtils.c"
 	}
 }
 
 
 static void gala_value_internal_utils_copy_value (const GValue* src_value, GValue* dest_value) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (src_value->data[0].v_pointer) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		dest_value->data[0].v_pointer = gala_internal_utils_ref (src_value->data[0].v_pointer);
-#line 2557 "InternalUtils.c"
+#line 2547 "InternalUtils.c"
 	} else {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		dest_value->data[0].v_pointer = NULL;
-#line 2561 "InternalUtils.c"
+#line 2551 "InternalUtils.c"
 	}
 }
 
 
 static gpointer gala_value_internal_utils_peek_pointer (const GValue* value) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return value->data[0].v_pointer;
-#line 2569 "InternalUtils.c"
+#line 2559 "InternalUtils.c"
 }
 
 
 static gchar* gala_value_internal_utils_collect_value (GValue* value, guint n_collect_values, GTypeCValue* collect_values, guint collect_flags) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (collect_values[0].v_pointer) {
-#line 2576 "InternalUtils.c"
+#line 2566 "InternalUtils.c"
 		GalaInternalUtils* object;
 		object = collect_values[0].v_pointer;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		if (object->parent_instance.g_class == NULL) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			return g_strconcat ("invalid unclassed object pointer for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
-#line 2583 "InternalUtils.c"
+#line 2573 "InternalUtils.c"
 		} else if (!g_value_type_compatible (G_TYPE_FROM_INSTANCE (object), G_VALUE_TYPE (value))) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 			return g_strconcat ("invalid object type `", g_type_name (G_TYPE_FROM_INSTANCE (object)), "' for value type `", G_VALUE_TYPE_NAME (value), "'", NULL);
-#line 2587 "InternalUtils.c"
+#line 2577 "InternalUtils.c"
 		}
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		value->data[0].v_pointer = gala_internal_utils_ref (object);
-#line 2591 "InternalUtils.c"
+#line 2581 "InternalUtils.c"
 	} else {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		value->data[0].v_pointer = NULL;
-#line 2595 "InternalUtils.c"
+#line 2585 "InternalUtils.c"
 	}
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return NULL;
-#line 2599 "InternalUtils.c"
+#line 2589 "InternalUtils.c"
 }
 
 
 static gchar* gala_value_internal_utils_lcopy_value (const GValue* value, guint n_collect_values, GTypeCValue* collect_values, guint collect_flags) {
 	GalaInternalUtils** object_p;
 	object_p = collect_values[0].v_pointer;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (!object_p) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		return g_strdup_printf ("value location for `%s' passed as NULL", G_VALUE_TYPE_NAME (value));
-#line 2610 "InternalUtils.c"
+#line 2600 "InternalUtils.c"
 	}
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (!value->data[0].v_pointer) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		*object_p = NULL;
-#line 2616 "InternalUtils.c"
+#line 2606 "InternalUtils.c"
 	} else if (collect_flags & G_VALUE_NOCOPY_CONTENTS) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		*object_p = value->data[0].v_pointer;
-#line 2620 "InternalUtils.c"
+#line 2610 "InternalUtils.c"
 	} else {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		*object_p = gala_internal_utils_ref (value->data[0].v_pointer);
-#line 2624 "InternalUtils.c"
+#line 2614 "InternalUtils.c"
 	}
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return NULL;
-#line 2628 "InternalUtils.c"
+#line 2618 "InternalUtils.c"
 }
 
 
 GParamSpec* gala_param_spec_internal_utils (const gchar* name, const gchar* nick, const gchar* blurb, GType object_type, GParamFlags flags) {
 	GalaParamSpecInternalUtils* spec;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_val_if_fail (g_type_is_a (object_type, GALA_TYPE_INTERNAL_UTILS), NULL);
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	spec = g_param_spec_internal (G_TYPE_PARAM_OBJECT, name, nick, blurb, flags);
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	G_PARAM_SPEC (spec)->value_type = object_type;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return G_PARAM_SPEC (spec);
-#line 2642 "InternalUtils.c"
+#line 2632 "InternalUtils.c"
 }
 
 
 gpointer gala_value_get_internal_utils (const GValue* value) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_val_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_INTERNAL_UTILS), NULL);
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return value->data[0].v_pointer;
-#line 2651 "InternalUtils.c"
+#line 2641 "InternalUtils.c"
 }
 
 
 void gala_value_set_internal_utils (GValue* value, gpointer v_object) {
 	GalaInternalUtils* old;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_INTERNAL_UTILS));
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	old = value->data[0].v_pointer;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (v_object) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		g_return_if_fail (G_TYPE_CHECK_INSTANCE_TYPE (v_object, GALA_TYPE_INTERNAL_UTILS));
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		g_return_if_fail (g_value_type_compatible (G_TYPE_FROM_INSTANCE (v_object), G_VALUE_TYPE (value)));
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		value->data[0].v_pointer = v_object;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		gala_internal_utils_ref (value->data[0].v_pointer);
-#line 2671 "InternalUtils.c"
+#line 2661 "InternalUtils.c"
 	} else {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		value->data[0].v_pointer = NULL;
-#line 2675 "InternalUtils.c"
+#line 2665 "InternalUtils.c"
 	}
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (old) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		gala_internal_utils_unref (old);
-#line 2681 "InternalUtils.c"
+#line 2671 "InternalUtils.c"
 	}
 }
 
 
 void gala_value_take_internal_utils (GValue* value, gpointer v_object) {
 	GalaInternalUtils* old;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_return_if_fail (G_TYPE_CHECK_VALUE_TYPE (value, GALA_TYPE_INTERNAL_UTILS));
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	old = value->data[0].v_pointer;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (v_object) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		g_return_if_fail (G_TYPE_CHECK_INSTANCE_TYPE (v_object, GALA_TYPE_INTERNAL_UTILS));
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		g_return_if_fail (g_value_type_compatible (G_TYPE_FROM_INSTANCE (v_object), G_VALUE_TYPE (value)));
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		value->data[0].v_pointer = v_object;
-#line 2700 "InternalUtils.c"
+#line 2690 "InternalUtils.c"
 	} else {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		value->data[0].v_pointer = NULL;
-#line 2704 "InternalUtils.c"
+#line 2694 "InternalUtils.c"
 	}
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (old) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		gala_internal_utils_unref (old);
-#line 2710 "InternalUtils.c"
+#line 2700 "InternalUtils.c"
 	}
 }
 
 
 static void gala_internal_utils_class_init (GalaInternalUtilsClass * klass) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	gala_internal_utils_parent_class = g_type_class_peek_parent (klass);
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	((GalaInternalUtilsClass *) klass)->finalize = gala_internal_utils_finalize;
-#line 2720 "InternalUtils.c"
+#line 2710 "InternalUtils.c"
 }
 
 
 static void gala_internal_utils_instance_init (GalaInternalUtils * self) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	self->ref_count = 1;
-#line 2727 "InternalUtils.c"
+#line 2717 "InternalUtils.c"
 }
 
 
 static void gala_internal_utils_finalize (GalaInternalUtils* obj) {
 	GalaInternalUtils * self;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_INTERNAL_UTILS, GalaInternalUtils);
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_signal_handlers_destroy (self);
-#line 2737 "InternalUtils.c"
+#line 2727 "InternalUtils.c"
 }
 
 
@@ -2754,24 +2744,24 @@ GType gala_internal_utils_get_type (void) {
 gpointer gala_internal_utils_ref (gpointer instance) {
 	GalaInternalUtils* self;
 	self = instance;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	g_atomic_int_inc (&self->ref_count);
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	return instance;
-#line 2762 "InternalUtils.c"
+#line 2752 "InternalUtils.c"
 }
 
 
 void gala_internal_utils_unref (gpointer instance) {
 	GalaInternalUtils* self;
 	self = instance;
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 	if (g_atomic_int_dec_and_test (&self->ref_count)) {
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		GALA_INTERNAL_UTILS_GET_CLASS (self)->finalize (self);
-#line 29 "/home/nick/work/gala/src/InternalUtils.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/InternalUtils.vala"
 		g_type_free_instance ((GTypeInstance *) self);
-#line 2775 "InternalUtils.c"
+#line 2765 "InternalUtils.c"
 	}
 }
 

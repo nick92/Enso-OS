@@ -77,8 +77,8 @@ void gala_window_icon_actor_place (GalaWindowIconActor* self, gfloat x, gfloat y
 void gala_window_icon_actor_set_icon_size (GalaWindowIconActor* self, gint value);
 static void gala_window_icon_actor_fade_new_icon (GalaWindowIconActor* self);
 gint gala_window_icon_actor_get_icon_size (GalaWindowIconActor* self);
-static void ____lambda63_ (GalaWindowIconActor* self);
-static void _____lambda63__clutter_timeline_completed (ClutterTimeline* _sender, gpointer self);
+static void ____lambda66_ (GalaWindowIconActor* self);
+static void _____lambda66__clutter_timeline_completed (ClutterTimeline* _sender, gpointer self);
 static void gala_window_icon_actor_set_window (GalaWindowIconActor* self, MetaWindow* value);
 gboolean gala_window_icon_actor_get_temporary (GalaWindowIconActor* self);
 void gala_window_icon_actor_set_temporary (GalaWindowIconActor* self, gboolean value);
@@ -89,7 +89,7 @@ static void _vala_gala_window_icon_actor_set_property (GObject * object, guint p
 
 
 static void _gala_window_icon_actor_on_all_workspaces_changed_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
-#line 120 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	gala_window_icon_actor_on_all_workspaces_changed ((GalaWindowIconActor*) self);
 #line 95 "WindowIconActor.c"
 }
@@ -98,20 +98,20 @@ static void _gala_window_icon_actor_on_all_workspaces_changed_g_object_notify (G
 GalaWindowIconActor* gala_window_icon_actor_construct (GType object_type, MetaWindow* window) {
 	GalaWindowIconActor * self = NULL;
 	MetaWindow* _tmp0_ = NULL;
-#line 104 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_val_if_fail (window != NULL, NULL);
-#line 106 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = window;
-#line 106 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self = (GalaWindowIconActor*) g_object_new (object_type, "window", _tmp0_, NULL);
-#line 104 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	return self;
 #line 110 "WindowIconActor.c"
 }
 
 
 GalaWindowIconActor* gala_window_icon_actor_new (MetaWindow* window) {
-#line 104 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	return gala_window_icon_actor_construct (GALA_TYPE_WINDOW_ICON_ACTOR, window);
 #line 117 "WindowIconActor.c"
 }
@@ -121,17 +121,17 @@ static void gala_window_icon_actor_on_all_workspaces_changed (GalaWindowIconActo
 	MetaWindow* _tmp0_ = NULL;
 	gboolean _tmp1_ = FALSE;
 	gboolean _tmp2_ = FALSE;
-#line 123 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_if_fail (self != NULL);
-#line 126 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->_window;
-#line 126 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_get (_tmp0_, "on-all-workspaces", &_tmp1_, NULL);
-#line 126 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp2_ = _tmp1_;
-#line 126 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	if (_tmp2_) {
-#line 127 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		clutter_actor_destroy ((ClutterActor*) self);
 #line 137 "WindowIconActor.c"
 	}
@@ -151,35 +151,35 @@ void gala_window_icon_actor_place (GalaWindowIconActor* self, gfloat x, gfloat y
 	gfloat _tmp2_ = 0.0F;
 	gint _tmp3_ = 0;
 	gboolean _tmp4_ = FALSE;
-#line 137 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_if_fail (self != NULL);
-#line 139 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->initial;
-#line 139 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	if (_tmp0_) {
-#line 140 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		clutter_actor_save_easing_state ((ClutterActor*) self);
-#line 141 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		clutter_actor_set_easing_duration ((ClutterActor*) self, (guint) 10);
 #line 165 "WindowIconActor.c"
 	}
-#line 144 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp1_ = x;
-#line 144 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp2_ = y;
-#line 144 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_position ((ClutterActor*) self, _tmp1_, _tmp2_);
-#line 145 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp3_ = size;
-#line 145 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	gala_window_icon_actor_set_icon_size (self, _tmp3_);
-#line 147 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp4_ = self->priv->initial;
-#line 147 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	if (_tmp4_) {
-#line 148 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		clutter_actor_restore_easing_state ((ClutterActor*) self);
-#line 149 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		self->priv->initial = FALSE;
 #line 185 "WindowIconActor.c"
 	}
@@ -190,29 +190,29 @@ void gala_window_icon_actor_place (GalaWindowIconActor* self, gfloat x, gfloat y
  * Fades out the old icon and fades in the new icon
  */
 static gpointer _g_object_ref0 (gpointer self) {
-#line 168 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 196 "WindowIconActor.c"
 }
 
 
-static void ____lambda63_ (GalaWindowIconActor* self) {
+static void ____lambda66_ (GalaWindowIconActor* self) {
 	GalaWindowIcon* _tmp0_ = NULL;
-#line 180 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->old_icon;
-#line 180 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_destroy ((ClutterActor*) _tmp0_);
-#line 181 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_g_object_unref0 (self->priv->old_icon);
-#line 181 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv->old_icon = NULL;
 #line 210 "WindowIconActor.c"
 }
 
 
-static void _____lambda63__clutter_timeline_completed (ClutterTimeline* _sender, gpointer self) {
-#line 179 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
-	____lambda63_ ((GalaWindowIconActor*) self);
+static void _____lambda66__clutter_timeline_completed (ClutterTimeline* _sender, gpointer self) {
+#line 179 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
+	____lambda66_ ((GalaWindowIconActor*) self);
 #line 217 "WindowIconActor.c"
 }
 
@@ -235,84 +235,84 @@ static void gala_window_icon_actor_fade_new_icon (GalaWindowIconActor* self) {
 	GalaWindowIcon* _tmp17_ = NULL;
 	GalaWindowIcon* _tmp25_ = NULL;
 	GalaWindowIcon* _tmp26_ = NULL;
-#line 156 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_if_fail (self != NULL);
-#line 158 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->_window;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp1_ = gala_window_icon_actor_get_icon_size (self);
-#line 158 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp2_ = _tmp1_;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp3_ = gala_window_icon_new (_tmp0_, _tmp2_, FALSE);
-#line 158 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_ref_sink (_tmp3_);
-#line 158 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	new_icon = _tmp3_;
-#line 159 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp4_ = new_icon;
-#line 159 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp5_ = (ClutterBindConstraint*) clutter_bind_constraint_new ((ClutterActor*) self, CLUTTER_BIND_SIZE, (gfloat) 0);
-#line 159 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_ref_sink (_tmp5_);
-#line 159 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp6_ = _tmp5_;
-#line 159 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_add_constraint ((ClutterActor*) _tmp4_, (ClutterConstraint*) _tmp6_);
-#line 159 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_g_object_unref0 (_tmp6_);
-#line 160 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp7_ = new_icon;
-#line 160 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_opacity ((ClutterActor*) _tmp7_, (guint) 0);
-#line 162 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp8_ = new_icon;
-#line 162 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_add_child ((ClutterActor*) self, (ClutterActor*) _tmp8_);
-#line 164 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp9_ = new_icon;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_easing_mode ((ClutterActor*) _tmp9_, CLUTTER_EASE_OUT_QUAD);
-#line 165 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp10_ = new_icon;
-#line 165 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_easing_duration ((ClutterActor*) _tmp10_, (guint) 500);
-#line 167 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp11_ = self->priv->icon;
-#line 167 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	if (_tmp11_ == NULL) {
 #line 285 "WindowIconActor.c"
 		GalaWindowIcon* _tmp12_ = NULL;
 		GalaWindowIcon* _tmp13_ = NULL;
-#line 168 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp12_ = new_icon;
-#line 168 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp13_ = _g_object_ref0 (_tmp12_);
-#line 168 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_g_object_unref0 (self->priv->icon);
-#line 168 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		self->priv->icon = _tmp13_;
 #line 296 "WindowIconActor.c"
 	} else {
 		GalaWindowIcon* _tmp14_ = NULL;
 		GalaWindowIcon* _tmp15_ = NULL;
-#line 170 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp14_ = self->priv->icon;
-#line 170 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp15_ = _g_object_ref0 (_tmp14_);
-#line 170 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_g_object_unref0 (self->priv->old_icon);
-#line 170 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		self->priv->old_icon = _tmp15_;
 #line 308 "WindowIconActor.c"
 	}
-#line 173 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp16_ = new_icon;
-#line 173 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_opacity ((ClutterActor*) _tmp16_, (guint) 255);
-#line 175 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp17_ = self->priv->old_icon;
-#line 175 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	if (_tmp17_ != NULL) {
 #line 318 "WindowIconActor.c"
 		GalaWindowIcon* _tmp18_ = NULL;
@@ -321,54 +321,54 @@ static void gala_window_icon_actor_fade_new_icon (GalaWindowIconActor* self) {
 		ClutterTransition* _tmp20_ = NULL;
 		ClutterTransition* _tmp21_ = NULL;
 		ClutterTransition* _tmp22_ = NULL;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp18_ = self->priv->old_icon;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		clutter_actor_set_opacity ((ClutterActor*) _tmp18_, (guint) 0);
-#line 177 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp19_ = self->priv->old_icon;
-#line 177 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp20_ = clutter_actor_get_transition ((ClutterActor*) _tmp19_, "opacity");
-#line 177 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp21_ = _g_object_ref0 (_tmp20_);
-#line 177 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		transition = _tmp21_;
-#line 178 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp22_ = transition;
-#line 178 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		if (_tmp22_ != NULL) {
 #line 341 "WindowIconActor.c"
 			ClutterTransition* _tmp23_ = NULL;
-#line 179 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp23_ = transition;
-#line 179 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
-			g_signal_connect_object ((ClutterTimeline*) _tmp23_, "completed", (GCallback) _____lambda63__clutter_timeline_completed, self, 0);
+#line 179 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
+			g_signal_connect_object ((ClutterTimeline*) _tmp23_, "completed", (GCallback) _____lambda66__clutter_timeline_completed, self, 0);
 #line 347 "WindowIconActor.c"
 		} else {
 			GalaWindowIcon* _tmp24_ = NULL;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp24_ = self->priv->old_icon;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_actor_destroy ((ClutterActor*) _tmp24_);
-#line 185 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_g_object_unref0 (self->priv->old_icon);
-#line 185 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			self->priv->old_icon = NULL;
 #line 358 "WindowIconActor.c"
 		}
-#line 175 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_g_object_unref0 (transition);
 #line 362 "WindowIconActor.c"
 	}
-#line 189 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp25_ = new_icon;
-#line 189 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp26_ = _g_object_ref0 (_tmp25_);
-#line 189 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_g_object_unref0 (self->priv->icon);
-#line 189 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv->icon = _tmp26_;
-#line 156 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_g_object_unref0 (new_icon);
 #line 374 "WindowIconActor.c"
 }
@@ -377,13 +377,13 @@ static void gala_window_icon_actor_fade_new_icon (GalaWindowIconActor* self) {
 MetaWindow* gala_window_icon_actor_get_window (GalaWindowIconActor* self) {
 	MetaWindow* result;
 	MetaWindow* _tmp0_ = NULL;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->_window;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	result = _tmp0_;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	return result;
 #line 389 "WindowIconActor.c"
 }
@@ -392,17 +392,17 @@ MetaWindow* gala_window_icon_actor_get_window (GalaWindowIconActor* self) {
 static void gala_window_icon_actor_set_window (GalaWindowIconActor* self, MetaWindow* value) {
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_if_fail (self != NULL);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = value;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_g_object_unref0 (self->priv->_window);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv->_window = _tmp1_;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_notify ((GObject *) self, "window");
 #line 408 "WindowIconActor.c"
 }
@@ -411,13 +411,13 @@ static void gala_window_icon_actor_set_window (GalaWindowIconActor* self, MetaWi
 gint gala_window_icon_actor_get_icon_size (GalaWindowIconActor* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 38 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 39 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->_icon_size;
-#line 39 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	result = _tmp0_;
-#line 39 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	return result;
 #line 423 "WindowIconActor.c"
 }
@@ -429,31 +429,31 @@ void gala_window_icon_actor_set_icon_size (GalaWindowIconActor* self, gint value
 	gint _tmp2_ = 0;
 	gint _tmp3_ = 0;
 	gint _tmp4_ = 0;
-#line 41 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_if_fail (self != NULL);
-#line 42 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = value;
-#line 42 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp1_ = self->priv->_icon_size;
-#line 42 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	if (_tmp0_ == _tmp1_) {
-#line 43 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		return;
 #line 443 "WindowIconActor.c"
 	}
-#line 45 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp2_ = value;
-#line 45 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv->_icon_size = _tmp2_;
-#line 47 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp3_ = self->priv->_icon_size;
-#line 47 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp4_ = self->priv->_icon_size;
-#line 47 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_size ((ClutterActor*) self, (gfloat) _tmp3_, (gfloat) _tmp4_);
-#line 49 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	gala_window_icon_actor_fade_new_icon (self);
-#line 41 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_notify ((GObject *) self, "icon-size");
 #line 459 "WindowIconActor.c"
 }
@@ -462,13 +462,13 @@ void gala_window_icon_actor_set_icon_size (GalaWindowIconActor* self, gint value
 gboolean gala_window_icon_actor_get_temporary (GalaWindowIconActor* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 60 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 61 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->_temporary;
-#line 61 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	result = _tmp0_;
-#line 61 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	return result;
 #line 474 "WindowIconActor.c"
 }
@@ -478,49 +478,49 @@ void gala_window_icon_actor_set_temporary (GalaWindowIconActor* self, gboolean v
 	gboolean _tmp0_ = FALSE;
 	gboolean _tmp1_ = FALSE;
 	gboolean _tmp36_ = FALSE;
-#line 63 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_return_if_fail (self != NULL);
-#line 64 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp1_ = self->priv->_temporary;
-#line 64 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	if (_tmp1_) {
 #line 488 "WindowIconActor.c"
 		gboolean _tmp2_ = FALSE;
-#line 64 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp2_ = value;
-#line 64 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp0_ = !_tmp2_;
 #line 494 "WindowIconActor.c"
 	} else {
-#line 64 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp0_ = FALSE;
 #line 498 "WindowIconActor.c"
 	}
-#line 64 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	if (_tmp0_) {
-#line 65 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		clutter_actor_remove_transition ((ClutterActor*) self, "pulse");
 #line 504 "WindowIconActor.c"
 	} else {
 		gboolean _tmp3_ = FALSE;
 		gboolean _tmp4_ = FALSE;
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		_tmp4_ = self->priv->_temporary;
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		if (!_tmp4_) {
 #line 512 "WindowIconActor.c"
 			gboolean _tmp5_ = FALSE;
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp5_ = value;
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp3_ = _tmp5_;
 #line 518 "WindowIconActor.c"
 		} else {
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp3_ = FALSE;
 #line 522 "WindowIconActor.c"
 		}
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		if (_tmp3_) {
 #line 526 "WindowIconActor.c"
 			ClutterTransitionGroup* transition = NULL;
@@ -557,148 +557,148 @@ void gala_window_icon_actor_set_temporary (GalaWindowIconActor* self, gboolean v
 			ClutterTransitionGroup* _tmp33_ = NULL;
 			ClutterPropertyTransition* _tmp34_ = NULL;
 			ClutterTransitionGroup* _tmp35_ = NULL;
-#line 67 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp6_ = (ClutterTransitionGroup*) clutter_transition_group_new ();
-#line 67 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			transition = _tmp6_;
-#line 68 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp7_ = transition;
-#line 68 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_timeline_set_duration ((ClutterTimeline*) _tmp7_, (guint) 800);
-#line 69 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp8_ = transition;
-#line 69 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_timeline_set_auto_reverse ((ClutterTimeline*) _tmp8_, TRUE);
-#line 70 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp9_ = transition;
-#line 70 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_timeline_set_repeat_count ((ClutterTimeline*) _tmp9_, -1);
-#line 71 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp10_ = transition;
-#line 71 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_timeline_set_progress_mode ((ClutterTimeline*) _tmp10_, CLUTTER_LINEAR);
-#line 73 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp11_ = (ClutterPropertyTransition*) clutter_property_transition_new ("opacity");
-#line 73 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			opacity_transition = _tmp11_;
-#line 74 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp12_ = opacity_transition;
-#line 74 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_init (&_tmp13_, G_TYPE_INT);
-#line 74 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_set_int (&_tmp13_, 100);
-#line 74 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_set_from_value ((ClutterTransition*) _tmp12_, &_tmp13_);
-#line 74 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			G_IS_VALUE (&_tmp13_) ? (g_value_unset (&_tmp13_), NULL) : NULL;
-#line 75 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp14_ = opacity_transition;
-#line 75 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_init (&_tmp15_, G_TYPE_INT);
-#line 75 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_set_int (&_tmp15_, 255);
-#line 75 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_set_to_value ((ClutterTransition*) _tmp14_, &_tmp15_);
-#line 75 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			G_IS_VALUE (&_tmp15_) ? (g_value_unset (&_tmp15_), NULL) : NULL;
-#line 76 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp16_ = opacity_transition;
-#line 76 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_timeline_set_auto_reverse ((ClutterTimeline*) _tmp16_, TRUE);
-#line 78 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp17_ = (ClutterPropertyTransition*) clutter_property_transition_new ("scale-x");
-#line 78 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			scale_x_transition = _tmp17_;
-#line 79 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp18_ = scale_x_transition;
-#line 79 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_init (&_tmp19_, G_TYPE_DOUBLE);
-#line 79 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_set_double (&_tmp19_, 0.8);
-#line 79 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_set_from_value ((ClutterTransition*) _tmp18_, &_tmp19_);
-#line 79 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			G_IS_VALUE (&_tmp19_) ? (g_value_unset (&_tmp19_), NULL) : NULL;
-#line 80 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp20_ = scale_x_transition;
-#line 80 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_init (&_tmp21_, G_TYPE_DOUBLE);
-#line 80 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_set_double (&_tmp21_, 1.1);
-#line 80 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_set_to_value ((ClutterTransition*) _tmp20_, &_tmp21_);
-#line 80 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			G_IS_VALUE (&_tmp21_) ? (g_value_unset (&_tmp21_), NULL) : NULL;
-#line 81 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp22_ = scale_x_transition;
-#line 81 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_timeline_set_auto_reverse ((ClutterTimeline*) _tmp22_, TRUE);
-#line 83 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp23_ = (ClutterPropertyTransition*) clutter_property_transition_new ("scale-y");
-#line 83 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			scale_y_transition = _tmp23_;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp24_ = scale_y_transition;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_init (&_tmp25_, G_TYPE_DOUBLE);
-#line 84 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_set_double (&_tmp25_, 0.8);
-#line 84 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_set_from_value ((ClutterTransition*) _tmp24_, &_tmp25_);
-#line 84 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			G_IS_VALUE (&_tmp25_) ? (g_value_unset (&_tmp25_), NULL) : NULL;
-#line 85 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp26_ = scale_y_transition;
-#line 85 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_init (&_tmp27_, G_TYPE_DOUBLE);
-#line 85 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			g_value_set_double (&_tmp27_, 1.1);
-#line 85 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_set_to_value ((ClutterTransition*) _tmp26_, &_tmp27_);
-#line 85 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			G_IS_VALUE (&_tmp27_) ? (g_value_unset (&_tmp27_), NULL) : NULL;
-#line 86 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp28_ = scale_y_transition;
-#line 86 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_timeline_set_auto_reverse ((ClutterTimeline*) _tmp28_, TRUE);
-#line 88 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp29_ = transition;
-#line 88 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp30_ = opacity_transition;
-#line 88 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_group_add_transition (_tmp29_, (ClutterTransition*) _tmp30_);
-#line 89 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp31_ = transition;
-#line 89 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp32_ = scale_x_transition;
-#line 89 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_group_add_transition (_tmp31_, (ClutterTransition*) _tmp32_);
-#line 90 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp33_ = transition;
-#line 90 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp34_ = scale_y_transition;
-#line 90 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_transition_group_add_transition (_tmp33_, (ClutterTransition*) _tmp34_);
-#line 92 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_tmp35_ = transition;
-#line 92 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			clutter_actor_add_transition ((ClutterActor*) self, "pulse", (ClutterTransition*) _tmp35_);
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_g_object_unref0 (scale_y_transition);
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_g_object_unref0 (scale_x_transition);
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_g_object_unref0 (opacity_transition);
-#line 66 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 			_g_object_unref0 (transition);
 #line 695 "WindowIconActor.c"
 		}
 	}
-#line 95 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp36_ = value;
-#line 95 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv->_temporary = _tmp36_;
-#line 63 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_notify ((GObject *) self, "temporary");
 #line 704 "WindowIconActor.c"
 }
@@ -709,49 +709,49 @@ static GObject * gala_window_icon_actor_constructor (GType type, guint n_constru
 	GObjectClass * parent_class;
 	GalaWindowIconActor * self;
 	MetaWindow* _tmp0_ = NULL;
-#line 109 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	parent_class = G_OBJECT_CLASS (gala_window_icon_actor_parent_class);
-#line 109 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 109 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_ICON_ACTOR, GalaWindowIconActor);
-#line 111 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_pivot_point ((ClutterActor*) self, 0.5f, 0.5f);
-#line 112 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_easing_mode ((ClutterActor*) self, CLUTTER_EASE_OUT_ELASTIC);
-#line 113 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	clutter_actor_set_easing_duration ((ClutterActor*) self, (guint) 800);
-#line 115 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->_window;
-#line 115 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_signal_connect_object ((GObject*) _tmp0_, "notify::on-all-workspaces", (GCallback) _gala_window_icon_actor_on_all_workspaces_changed_g_object_notify, self, 0);
-#line 109 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	return obj;
 #line 731 "WindowIconActor.c"
 }
 
 
 static void gala_window_icon_actor_class_init (GalaWindowIconActorClass * klass) {
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	gala_window_icon_actor_parent_class = g_type_class_peek_parent (klass);
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_type_class_add_private (klass, sizeof (GalaWindowIconActorPrivate));
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_window_icon_actor_get_property;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_window_icon_actor_set_property;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_window_icon_actor_constructor;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_window_icon_actor_finalize;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_ICON_ACTOR_WINDOW, g_param_spec_object ("window", "window", "window", meta_window_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 #line 750 "WindowIconActor.c"
 	/**
 	 * The icon size of the WindowIcon. Once set the new icon will be
 	 * faded over the old one and the actor animates to the new size.
 	 */
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_ICON_ACTOR_ICON_SIZE, g_param_spec_int ("icon-size", "icon-size", "icon-size", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
 #line 757 "WindowIconActor.c"
 	/**
@@ -759,20 +759,20 @@ static void gala_window_icon_actor_class_init (GalaWindowIconActorClass * klass)
 	 * animation will be played on the actor. Used while DnDing window thumbs
 	 * over the group.
 	 */
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_ICON_ACTOR_TEMPORARY, g_param_spec_boolean ("temporary", "temporary", "temporary", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
 #line 765 "WindowIconActor.c"
 }
 
 
 static void gala_window_icon_actor_instance_init (GalaWindowIconActor * self) {
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv = GALA_WINDOW_ICON_ACTOR_GET_PRIVATE (self);
-#line 99 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv->initial = TRUE;
-#line 101 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv->icon = NULL;
-#line 102 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self->priv->old_icon = NULL;
 #line 778 "WindowIconActor.c"
 }
@@ -783,21 +783,21 @@ static void gala_window_icon_actor_finalize (GObject* obj) {
 	MetaWindow* _tmp0_ = NULL;
 	guint _tmp1_ = 0U;
 	GQuark _tmp2_ = 0U;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_ICON_ACTOR, GalaWindowIconActor);
-#line 120 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_tmp0_ = self->priv->_window;
-#line 120 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_signal_parse_name ("notify::on-all-workspaces", G_TYPE_OBJECT, &_tmp1_, &_tmp2_, TRUE);
-#line 120 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	g_signal_handlers_disconnect_matched ((GObject*) _tmp0_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_DETAIL | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp1_, _tmp2_, NULL, (GCallback) _gala_window_icon_actor_on_all_workspaces_changed_g_object_notify, self);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_g_object_unref0 (self->priv->_window);
-#line 101 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_g_object_unref0 (self->priv->icon);
-#line 102 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	_g_object_unref0 (self->priv->old_icon);
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	G_OBJECT_CLASS (gala_window_icon_actor_parent_class)->finalize (obj);
 #line 803 "WindowIconActor.c"
 }
@@ -823,31 +823,31 @@ GType gala_window_icon_actor_get_type (void) {
 static void _vala_gala_window_icon_actor_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaWindowIconActor * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_ICON_ACTOR, GalaWindowIconActor);
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	switch (property_id) {
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		case GALA_WINDOW_ICON_ACTOR_WINDOW:
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		g_value_set_object (value, gala_window_icon_actor_get_window (self));
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		case GALA_WINDOW_ICON_ACTOR_ICON_SIZE:
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		g_value_set_int (value, gala_window_icon_actor_get_icon_size (self));
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		case GALA_WINDOW_ICON_ACTOR_TEMPORARY:
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		g_value_set_boolean (value, gala_window_icon_actor_get_temporary (self));
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		break;
 #line 847 "WindowIconActor.c"
 		default:
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		break;
 #line 853 "WindowIconActor.c"
 	}
@@ -857,31 +857,31 @@ static void _vala_gala_window_icon_actor_get_property (GObject * object, guint p
 static void _vala_gala_window_icon_actor_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaWindowIconActor * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_ICON_ACTOR, GalaWindowIconActor);
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 	switch (property_id) {
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		case GALA_WINDOW_ICON_ACTOR_WINDOW:
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		gala_window_icon_actor_set_window (self, g_value_get_object (value));
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		case GALA_WINDOW_ICON_ACTOR_ICON_SIZE:
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		gala_window_icon_actor_set_icon_size (self, g_value_get_int (value));
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		case GALA_WINDOW_ICON_ACTOR_TEMPORARY:
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		gala_window_icon_actor_set_temporary (self, g_value_get_boolean (value));
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		break;
 #line 881 "WindowIconActor.c"
 		default:
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 28 "/home/nick/work/gala/src/Widgets/WindowIconActor.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowIconActor.vala"
 		break;
 #line 887 "WindowIconActor.c"
 	}

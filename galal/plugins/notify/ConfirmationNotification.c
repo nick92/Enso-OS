@@ -116,9 +116,9 @@ static void gala_plugins_notify_confirmation_notification_real_update_allocation
 static void gala_plugins_notify_confirmation_notification_real_draw_content (GalaPluginsNotifyNotification* base, cairo_t* cr);
 gboolean gala_plugins_notify_confirmation_notification_get_has_progress (GalaPluginsNotifyConfirmationNotification* self);
 #define GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN 12
-#define GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING 20
-#define GALA_PLUGINS_NOTIFY_NOTIFICATION_SPACING 10
-#define GALA_PLUGINS_NOTIFY_NOTIFICATION_WIDTH 350
+#define GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING 4
+#define GALA_PLUGINS_NOTIFY_NOTIFICATION_SPACING 6
+#define GALA_PLUGINS_NOTIFY_NOTIFICATION_WIDTH 300
 gboolean gala_plugins_notify_notification_get_transitioning (GalaPluginsNotifyNotification* self);
 static void gala_plugins_notify_confirmation_notification_draw_progress_bar (GalaPluginsNotifyConfirmationNotification* self, cairo_t* cr, gint x, gfloat y, gint width, gint progress);
 gint gala_plugins_notify_confirmation_notification_get_progress (GalaPluginsNotifyConfirmationNotification* self);
@@ -143,38 +143,38 @@ GalaPluginsNotifyConfirmationNotification* gala_plugins_notify_confirmation_noti
 	gint _tmp3_ = 0;
 	gint _tmp4_ = 0;
 	const gchar* _tmp5_ = NULL;
-#line 45 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_val_if_fail (confirmation_type != NULL, NULL);
-#line 48 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = id;
-#line 48 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp1_ = icon;
-#line 48 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self = (GalaPluginsNotifyConfirmationNotification*) g_object_new (object_type, "id", _tmp0_, "icon", _tmp1_, "urgency", GALA_PLUGINS_NOTIFY_NOTIFICATION_URGENCY_LOW, "expire-timeout", GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_DURATION, NULL);
-#line 50 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp2_ = icon_only;
-#line 50 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	gala_plugins_notify_notification_set_icon_only ((GalaPluginsNotifyNotification*) self, _tmp2_);
-#line 51 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp3_ = progress;
-#line 51 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	gala_plugins_notify_confirmation_notification_set_has_progress (self, _tmp3_ > -1);
-#line 52 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp4_ = progress;
-#line 52 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	gala_plugins_notify_confirmation_notification_set_progress (self, _tmp4_);
-#line 53 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp5_ = confirmation_type;
-#line 53 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	gala_plugins_notify_confirmation_notification_set_confirmation_type (self, _tmp5_);
-#line 45 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	return self;
 #line 173 "ConfirmationNotification.c"
 }
 
 
 GalaPluginsNotifyConfirmationNotification* gala_plugins_notify_confirmation_notification_new (guint32 id, GdkPixbuf* icon, gboolean icon_only, gint progress, const gchar* confirmation_type) {
-#line 45 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	return gala_plugins_notify_confirmation_notification_construct (GALA_PLUGINS_NOTIFY_TYPE_CONFIRMATION_NOTIFICATION, id, icon, icon_only, progress, confirmation_type);
 #line 180 "ConfirmationNotification.c"
 }
@@ -183,13 +183,13 @@ GalaPluginsNotifyConfirmationNotification* gala_plugins_notify_confirmation_noti
 static void gala_plugins_notify_confirmation_notification_real_update_allocation (GalaPluginsNotifyNotification* base, gfloat* content_height, ClutterAllocationFlags flags) {
 	GalaPluginsNotifyConfirmationNotification * self;
 	gfloat _vala_content_height = 0.0F;
-#line 56 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self = (GalaPluginsNotifyConfirmationNotification*) base;
-#line 58 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_vala_content_height = (gfloat) GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE;
-#line 56 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	if (content_height) {
-#line 56 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		*content_height = _vala_content_height;
 #line 195 "ConfirmationNotification.c"
 	}
@@ -205,31 +205,31 @@ static void gala_plugins_notify_confirmation_notification_real_draw_content (Gal
 	gint _tmp1_ = 0;
 	gboolean _tmp2_ = FALSE;
 	gboolean _tmp3_ = FALSE;
-#line 61 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self = (GalaPluginsNotifyConfirmationNotification*) base;
-#line 61 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_if_fail (cr != NULL);
-#line 63 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = self->priv->_has_progress;
-#line 63 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	if (!_tmp0_) {
-#line 64 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		return;
 #line 219 "ConfirmationNotification.c"
 	}
-#line 66 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	x = ((GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN + GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING) + GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE) + GALA_PLUGINS_NOTIFY_NOTIFICATION_SPACING;
-#line 67 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	y = (GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN + GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING) + ((GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE - GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_PROGRESS_HEIGHT) / 2);
-#line 68 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp1_ = x;
-#line 68 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	width = (GALA_PLUGINS_NOTIFY_NOTIFICATION_WIDTH - _tmp1_) - GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN;
-#line 70 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp2_ = gala_plugins_notify_notification_get_transitioning ((GalaPluginsNotifyNotification*) self);
-#line 70 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp3_ = _tmp2_;
-#line 70 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	if (!_tmp3_) {
 #line 235 "ConfirmationNotification.c"
 		cairo_t* _tmp4_ = NULL;
@@ -238,19 +238,19 @@ static void gala_plugins_notify_confirmation_notification_real_draw_content (Gal
 		gint _tmp7_ = 0;
 		gint _tmp8_ = 0;
 		gint _tmp9_ = 0;
-#line 71 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp4_ = cr;
-#line 71 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp5_ = x;
-#line 71 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp6_ = y;
-#line 71 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp7_ = width;
-#line 71 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp8_ = gala_plugins_notify_confirmation_notification_get_progress (self);
-#line 71 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp9_ = _tmp8_;
-#line 71 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_confirmation_notification_draw_progress_bar (self, _tmp4_, _tmp5_, (gfloat) _tmp6_, _tmp7_, _tmp9_);
 #line 256 "ConfirmationNotification.c"
 	} else {
@@ -274,55 +274,55 @@ static void gala_plugins_notify_confirmation_notification_real_draw_content (Gal
 		gint _tmp27_ = 0;
 		gint _tmp28_ = 0;
 		cairo_t* _tmp29_ = NULL;
-#line 73 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp10_ = cr;
-#line 73 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		granite_drawing_utilities_cairo_rounded_rectangle (_tmp10_, (gdouble) GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN, (gdouble) GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN, (gdouble) (GALA_PLUGINS_NOTIFY_NOTIFICATION_WIDTH - (GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN * 2)), (gdouble) (GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE + (GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING * 2)), (gdouble) 4);
-#line 74 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp11_ = cr;
-#line 74 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		cairo_clip (_tmp11_);
-#line 76 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp12_ = cr;
-#line 76 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp13_ = x;
-#line 76 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp14_ = y;
-#line 76 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp15_ = gala_plugins_notify_notification_get_animation_slide_y_offset ((GalaPluginsNotifyNotification*) self);
-#line 76 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp16_ = _tmp15_;
-#line 76 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp17_ = width;
-#line 76 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp18_ = self->priv->old_progress;
-#line 76 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_confirmation_notification_draw_progress_bar (self, _tmp12_, _tmp13_, _tmp14_ + _tmp16_, _tmp17_, _tmp18_);
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp19_ = cr;
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp20_ = x;
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp21_ = y;
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp22_ = gala_plugins_notify_notification_get_animation_slide_y_offset ((GalaPluginsNotifyNotification*) self);
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp23_ = _tmp22_;
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp24_ = gala_plugins_notify_notification_get_animation_slide_height ((GalaPluginsNotifyNotification*) self);
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp25_ = _tmp24_;
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp26_ = width;
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp27_ = gala_plugins_notify_confirmation_notification_get_progress (self);
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp28_ = _tmp27_;
-#line 77 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_confirmation_notification_draw_progress_bar (self, _tmp19_, _tmp20_, (_tmp21_ + _tmp23_) - _tmp25_, _tmp26_, _tmp28_);
-#line 79 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp29_ = cr;
-#line 79 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		cairo_reset_clip (_tmp29_);
 #line 328 "ConfirmationNotification.c"
 	}
@@ -342,41 +342,41 @@ static void gala_plugins_notify_confirmation_notification_draw_progress_bar (Gal
 	cairo_t* _tmp8_ = NULL;
 	cairo_t* _tmp9_ = NULL;
 	gint _tmp10_ = 0;
-#line 83 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 83 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_if_fail (cr != NULL);
-#line 85 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = progress;
-#line 85 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp1_ = CLAMP (_tmp0_, 0, 100);
-#line 85 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp2_ = width;
-#line 85 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp3_ = floor ((_tmp1_ / 100.0) * _tmp2_);
-#line 85 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	fraction = (gint) _tmp3_;
-#line 87 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp4_ = cr;
-#line 87 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp5_ = x;
-#line 87 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp6_ = y;
-#line 87 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp7_ = width;
-#line 87 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	granite_drawing_utilities_cairo_rounded_rectangle (_tmp4_, (gdouble) _tmp5_, (gdouble) _tmp6_, (gdouble) _tmp7_, (gdouble) GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_PROGRESS_HEIGHT, (gdouble) (GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_PROGRESS_HEIGHT / 2));
-#line 89 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp8_ = cr;
-#line 89 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	cairo_set_source_rgb (_tmp8_, 0.8, 0.8, 0.8);
-#line 90 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp9_ = cr;
-#line 90 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	cairo_fill (_tmp9_);
-#line 92 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp10_ = progress;
-#line 92 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	if (_tmp10_ > 0) {
 #line 382 "ConfirmationNotification.c"
 		cairo_t* _tmp11_ = NULL;
@@ -385,23 +385,23 @@ static void gala_plugins_notify_confirmation_notification_draw_progress_bar (Gal
 		gint _tmp14_ = 0;
 		cairo_t* _tmp15_ = NULL;
 		cairo_t* _tmp16_ = NULL;
-#line 93 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp11_ = cr;
-#line 93 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp12_ = x;
-#line 93 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp13_ = y;
-#line 93 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp14_ = fraction;
-#line 93 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		granite_drawing_utilities_cairo_rounded_rectangle (_tmp11_, (gdouble) _tmp12_, (gdouble) _tmp13_, (gdouble) _tmp14_, (gdouble) GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_PROGRESS_HEIGHT, (gdouble) (GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_PROGRESS_HEIGHT / 2));
-#line 95 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp15_ = cr;
-#line 95 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		cairo_set_source_rgb (_tmp15_, 0.3, 0.3, 0.3);
-#line 96 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp16_ = cr;
-#line 96 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		cairo_fill (_tmp16_);
 #line 407 "ConfirmationNotification.c"
 	}
@@ -412,13 +412,13 @@ static void gala_plugins_notify_confirmation_notification_real_update_slide_anim
 	GalaPluginsNotifyConfirmationNotification * self;
 	ClutterContent* _tmp0_ = NULL;
 	ClutterContent* _tmp1_ = NULL;
-#line 100 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self = (GalaPluginsNotifyConfirmationNotification*) base;
-#line 103 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = clutter_actor_get_content ((ClutterActor*) self);
-#line 103 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp1_ = _tmp0_;
-#line 103 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	clutter_content_invalidate (_tmp1_);
 #line 424 "ConfirmationNotification.c"
 }
@@ -433,63 +433,63 @@ void gala_plugins_notify_confirmation_notification_update (GalaPluginsNotifyConf
 	gint _tmp9_ = 0;
 	gint _tmp10_ = 0;
 	GdkPixbuf* _tmp11_ = NULL;
-#line 106 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 106 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_if_fail (confirmation_type != NULL);
-#line 109 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = self->priv->_confirmation_type;
-#line 109 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp1_ = confirmation_type;
-#line 109 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	if (g_strcmp0 (_tmp0_, _tmp1_) != 0) {
 #line 447 "ConfirmationNotification.c"
 		const gchar* _tmp2_ = NULL;
 		gint _tmp3_ = 0;
 		gint _tmp4_ = 0;
-#line 110 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp2_ = confirmation_type;
-#line 110 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_confirmation_notification_set_confirmation_type (self, _tmp2_);
-#line 112 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp3_ = gala_plugins_notify_confirmation_notification_get_progress (self);
-#line 112 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp4_ = _tmp3_;
-#line 112 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		self->priv->old_progress = _tmp4_;
-#line 114 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_notification_play_update_transition ((GalaPluginsNotifyNotification*) self, (gfloat) (GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE + (GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING * 2)));
 #line 463 "ConfirmationNotification.c"
 	}
-#line 117 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp5_ = gala_plugins_notify_notification_get_icon_only ((GalaPluginsNotifyNotification*) self);
-#line 117 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp6_ = _tmp5_;
-#line 117 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp7_ = icon_only;
-#line 117 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	if (_tmp6_ != _tmp7_) {
 #line 473 "ConfirmationNotification.c"
 		gboolean _tmp8_ = FALSE;
-#line 118 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		_tmp8_ = icon_only;
-#line 118 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_notification_set_icon_only ((GalaPluginsNotifyNotification*) self, _tmp8_);
-#line 119 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		clutter_actor_queue_relayout ((ClutterActor*) self);
 #line 481 "ConfirmationNotification.c"
 	}
-#line 122 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp9_ = progress;
-#line 122 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	gala_plugins_notify_confirmation_notification_set_has_progress (self, _tmp9_ > -1);
-#line 123 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp10_ = progress;
-#line 123 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	gala_plugins_notify_confirmation_notification_set_progress (self, _tmp10_);
-#line 125 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp11_ = icon;
-#line 125 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	gala_plugins_notify_notification_update_base ((GalaPluginsNotifyNotification*) self, _tmp11_, (gint32) GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_DURATION);
 #line 495 "ConfirmationNotification.c"
 }
@@ -498,13 +498,13 @@ void gala_plugins_notify_confirmation_notification_update (GalaPluginsNotifyConf
 gboolean gala_plugins_notify_confirmation_notification_get_has_progress (GalaPluginsNotifyConfirmationNotification* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 28 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 28 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = self->priv->_has_progress;
-#line 28 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	result = _tmp0_;
-#line 28 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	return result;
 #line 510 "ConfirmationNotification.c"
 }
@@ -512,13 +512,13 @@ gboolean gala_plugins_notify_confirmation_notification_get_has_progress (GalaPlu
 
 static void gala_plugins_notify_confirmation_notification_set_has_progress (GalaPluginsNotifyConfirmationNotification* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 28 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 28 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = value;
-#line 28 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self->priv->_has_progress = _tmp0_;
-#line 28 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_object_notify ((GObject *) self, "has-progress");
 #line 524 "ConfirmationNotification.c"
 }
@@ -527,13 +527,13 @@ static void gala_plugins_notify_confirmation_notification_set_has_progress (Gala
 gint gala_plugins_notify_confirmation_notification_get_progress (GalaPluginsNotifyConfirmationNotification* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 32 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 33 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = self->priv->_progress;
-#line 33 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	result = _tmp0_;
-#line 33 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	return result;
 #line 539 "ConfirmationNotification.c"
 }
@@ -543,19 +543,19 @@ static void gala_plugins_notify_confirmation_notification_set_progress (GalaPlug
 	gint _tmp0_ = 0;
 	ClutterContent* _tmp1_ = NULL;
 	ClutterContent* _tmp2_ = NULL;
-#line 35 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 36 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = value;
-#line 36 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self->priv->_progress = _tmp0_;
-#line 37 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp1_ = clutter_actor_get_content ((ClutterActor*) self);
-#line 37 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp2_ = _tmp1_;
-#line 37 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	clutter_content_invalidate (_tmp2_);
-#line 35 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_object_notify ((GObject *) self, "progress");
 #line 561 "ConfirmationNotification.c"
 }
@@ -564,13 +564,13 @@ static void gala_plugins_notify_confirmation_notification_set_progress (GalaPlug
 const gchar* gala_plugins_notify_confirmation_notification_get_confirmation_type (GalaPluginsNotifyConfirmationNotification* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = self->priv->_confirmation_type;
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	result = _tmp0_;
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	return result;
 #line 576 "ConfirmationNotification.c"
 }
@@ -579,51 +579,51 @@ const gchar* gala_plugins_notify_confirmation_notification_get_confirmation_type
 static void gala_plugins_notify_confirmation_notification_set_confirmation_type (GalaPluginsNotifyConfirmationNotification* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp0_ = value;
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_g_free0 (self->priv->_confirmation_type);
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self->priv->_confirmation_type = _tmp1_;
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_object_notify ((GObject *) self, "confirmation-type");
 #line 595 "ConfirmationNotification.c"
 }
 
 
 static void gala_plugins_notify_confirmation_notification_class_init (GalaPluginsNotifyConfirmationNotificationClass * klass) {
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	gala_plugins_notify_confirmation_notification_parent_class = g_type_class_peek_parent (klass);
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_type_class_add_private (klass, sizeof (GalaPluginsNotifyConfirmationNotificationPrivate));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	((GalaPluginsNotifyNotificationClass *) klass)->update_allocation = gala_plugins_notify_confirmation_notification_real_update_allocation;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	((GalaPluginsNotifyNotificationClass *) klass)->draw_content = gala_plugins_notify_confirmation_notification_real_draw_content;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	((GalaPluginsNotifyNotificationClass *) klass)->update_slide_animation = gala_plugins_notify_confirmation_notification_real_update_slide_animation;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_plugins_notify_confirmation_notification_get_property;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_plugins_notify_confirmation_notification_set_property;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_plugins_notify_confirmation_notification_finalize;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_HAS_PROGRESS, g_param_spec_boolean ("has-progress", "has-progress", "has-progress", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_PROGRESS, g_param_spec_int ("progress", "progress", "progress", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_CONFIRMATION_TYPE, g_param_spec_string ("confirmation-type", "confirmation-type", "confirmation-type", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE));
 #line 622 "ConfirmationNotification.c"
 }
 
 
 static void gala_plugins_notify_confirmation_notification_instance_init (GalaPluginsNotifyConfirmationNotification * self) {
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self->priv = GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_GET_PRIVATE (self);
 #line 629 "ConfirmationNotification.c"
 }
@@ -631,11 +631,11 @@ static void gala_plugins_notify_confirmation_notification_instance_init (GalaPlu
 
 static void gala_plugins_notify_confirmation_notification_finalize (GObject* obj) {
 	GalaPluginsNotifyConfirmationNotification * self;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_CONFIRMATION_NOTIFICATION, GalaPluginsNotifyConfirmationNotification);
-#line 41 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	_g_free0 (self->priv->_confirmation_type);
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	G_OBJECT_CLASS (gala_plugins_notify_confirmation_notification_parent_class)->finalize (obj);
 #line 641 "ConfirmationNotification.c"
 }
@@ -656,31 +656,31 @@ GType gala_plugins_notify_confirmation_notification_get_type (void) {
 static void _vala_gala_plugins_notify_confirmation_notification_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaPluginsNotifyConfirmationNotification * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_PLUGINS_NOTIFY_TYPE_CONFIRMATION_NOTIFICATION, GalaPluginsNotifyConfirmationNotification);
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	switch (property_id) {
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		case GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_HAS_PROGRESS:
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		g_value_set_boolean (value, gala_plugins_notify_confirmation_notification_get_has_progress (self));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		break;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		case GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_PROGRESS:
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		g_value_set_int (value, gala_plugins_notify_confirmation_notification_get_progress (self));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		break;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		case GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_CONFIRMATION_TYPE:
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		g_value_set_string (value, gala_plugins_notify_confirmation_notification_get_confirmation_type (self));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		break;
 #line 680 "ConfirmationNotification.c"
 		default:
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		break;
 #line 686 "ConfirmationNotification.c"
 	}
@@ -690,31 +690,31 @@ static void _vala_gala_plugins_notify_confirmation_notification_get_property (GO
 static void _vala_gala_plugins_notify_confirmation_notification_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaPluginsNotifyConfirmationNotification * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_PLUGINS_NOTIFY_TYPE_CONFIRMATION_NOTIFICATION, GalaPluginsNotifyConfirmationNotification);
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 	switch (property_id) {
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		case GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_HAS_PROGRESS:
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_confirmation_notification_set_has_progress (self, g_value_get_boolean (value));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		break;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		case GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_PROGRESS:
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_confirmation_notification_set_progress (self, g_value_get_int (value));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		break;
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		case GALA_PLUGINS_NOTIFY_CONFIRMATION_NOTIFICATION_CONFIRMATION_TYPE:
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		gala_plugins_notify_confirmation_notification_set_confirmation_type (self, g_value_get_string (value));
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		break;
 #line 714 "ConfirmationNotification.c"
 		default:
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 23 "/home/nick/work/gala/plugins/notify/ConfirmationNotification.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/plugins/notify/ConfirmationNotification.vala"
 		break;
 #line 720 "ConfirmationNotification.c"
 	}

@@ -85,7 +85,7 @@ static gint _vala_array_length (gpointer array);
 static gboolean _gala_keyboard_manager_handle_modifiers_accelerator_activated_meta_display_modifiers_accelerator_activated (MetaDisplay* _sender, gpointer self) {
 	gboolean result;
 	result = gala_keyboard_manager_handle_modifiers_accelerator_activated (_sender, (GalaKeyboardManager*) self);
-#line 32 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	return result;
 #line 91 "KeyboardManager.c"
 }
@@ -96,27 +96,27 @@ void gala_keyboard_manager_init (MetaDisplay* display) {
 	GalaKeyboardManager* _tmp1_ = NULL;
 	MetaDisplay* _tmp2_ = NULL;
 	GalaKeyboardManager* _tmp3_ = NULL;
-#line 25 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 25 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_if_fail (display != NULL);
-#line 27 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp0_ = gala_keyboard_manager_instance;
-#line 27 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (_tmp0_ != NULL) {
-#line 28 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		return;
 #line 108 "KeyboardManager.c"
 	}
-#line 30 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp1_ = gala_keyboard_manager_new ();
-#line 30 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_object_unref0 (gala_keyboard_manager_instance);
-#line 30 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	gala_keyboard_manager_instance = _tmp1_;
-#line 32 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp2_ = display;
-#line 32 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp3_ = gala_keyboard_manager_instance;
-#line 32 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_signal_connect_object (_tmp2_, "modifiers-accelerator-activated", (GCallback) _gala_keyboard_manager_handle_modifiers_accelerator_activated_meta_display_modifiers_accelerator_activated, _tmp3_, 0);
 #line 122 "KeyboardManager.c"
 }
@@ -124,16 +124,16 @@ void gala_keyboard_manager_init (MetaDisplay* display) {
 
 static GalaKeyboardManager* gala_keyboard_manager_construct (GType object_type) {
 	GalaKeyboardManager * self = NULL;
-#line 44 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	self = (GalaKeyboardManager*) g_object_new (object_type, NULL);
-#line 42 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	return self;
 #line 132 "KeyboardManager.c"
 }
 
 
 static GalaKeyboardManager* gala_keyboard_manager_new (void) {
-#line 42 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	return gala_keyboard_manager_construct (GALA_TYPE_KEYBOARD_MANAGER);
 #line 139 "KeyboardManager.c"
 }
@@ -160,69 +160,69 @@ static gboolean gala_keyboard_manager_handle_modifiers_accelerator_activated (Me
 	GSettings* _tmp13_ = NULL;
 	guint _tmp14_ = 0U;
 	guint _tmp15_ = 0U;
-#line 59 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 59 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_val_if_fail (display != NULL, FALSE);
-#line 61 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp0_ = display;
-#line 61 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp1_ = display;
-#line 61 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp2_ = meta_display_get_current_time (_tmp1_);
-#line 61 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	meta_display_ungrab_keyboard (_tmp0_, _tmp2_);
-#line 63 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp3_ = self->priv->settings;
-#line 63 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp4_ = g_settings_get_value (_tmp3_, "sources");
-#line 63 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	sources = _tmp4_;
-#line 64 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp5_ = sources;
-#line 64 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp6_ = gala_keyboard_manager_sources_variant_type;
-#line 64 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp7_ = g_variant_is_of_type (_tmp5_, _tmp6_);
-#line 64 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_val_if_fail (_tmp7_, TRUE);
-#line 66 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp8_ = sources;
-#line 66 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp9_ = g_variant_n_children (_tmp8_);
-#line 66 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	n_sources = (guint) _tmp9_;
-#line 67 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp10_ = n_sources;
-#line 67 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (_tmp10_ < ((guint) 2)) {
-#line 68 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		result = TRUE;
-#line 68 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_g_variant_unref0 (sources);
-#line 68 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		return result;
 #line 206 "KeyboardManager.c"
 	}
-#line 70 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp11_ = self->priv->settings;
-#line 70 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp12_ = g_settings_get_uint (_tmp11_, "current");
-#line 70 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	current = _tmp12_;
-#line 71 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp13_ = self->priv->settings;
-#line 71 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp14_ = current;
-#line 71 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp15_ = n_sources;
-#line 71 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_settings_set_uint (_tmp13_, "current", (_tmp14_ + 1) % _tmp15_);
-#line 73 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	result = TRUE;
-#line 73 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_variant_unref0 (sources);
-#line 73 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	return result;
 #line 228 "KeyboardManager.c"
 }
@@ -677,104 +677,104 @@ static void gala_keyboard_manager_set_keyboard_layout (GSettings* settings, cons
 	const gchar* _tmp45_ = NULL;
 	const gchar* _tmp46_ = NULL;
 	const gchar* _tmp47_ = NULL;
-#line 77 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_if_fail (self != NULL);
-#line 77 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_if_fail (settings != NULL);
-#line 77 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_if_fail (key != NULL);
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp2_ = key;
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (g_strcmp0 (_tmp2_, "current") == 0) {
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp1_ = TRUE;
 #line 693 "KeyboardManager.c"
 	} else {
 		const gchar* _tmp3_ = NULL;
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp3_ = key;
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp1_ = g_strcmp0 (_tmp3_, "source") == 0;
 #line 700 "KeyboardManager.c"
 	}
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (_tmp1_) {
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp0_ = TRUE;
 #line 706 "KeyboardManager.c"
 	} else {
 		const gchar* _tmp4_ = NULL;
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp4_ = key;
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp0_ = g_strcmp0 (_tmp4_, "xkb-options") == 0;
 #line 713 "KeyboardManager.c"
 	}
-#line 79 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (!_tmp0_) {
-#line 80 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		return;
 #line 719 "KeyboardManager.c"
 	}
-#line 82 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp5_ = g_strdup ("us");
-#line 82 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	layout = _tmp5_;
-#line 82 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp6_ = g_strdup ("");
-#line 82 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	variant = _tmp6_;
-#line 82 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp7_ = g_strdup ("");
-#line 82 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	options = _tmp7_;
-#line 84 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp8_ = settings;
-#line 84 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp9_ = g_settings_get_value (_tmp8_, "sources");
-#line 84 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	sources = _tmp9_;
-#line 85 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp10_ = sources;
-#line 85 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp11_ = gala_keyboard_manager_sources_variant_type;
-#line 85 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp12_ = g_variant_is_of_type (_tmp10_, _tmp11_);
-#line 85 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_if_fail (_tmp12_);
-#line 87 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp13_ = settings;
-#line 87 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp14_ = g_settings_get_uint (_tmp13_, "current");
-#line 87 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	current = _tmp14_;
-#line 88 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	type = NULL;
-#line 88 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	name = NULL;
-#line 89 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp15_ = sources;
-#line 89 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp16_ = g_variant_n_children (_tmp15_);
-#line 89 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp17_ = current;
-#line 89 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (_tmp16_ > ((gsize) _tmp17_)) {
 #line 765 "KeyboardManager.c"
 		GVariant* _tmp18_ = NULL;
 		guint _tmp19_ = 0U;
-#line 90 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp18_ = sources;
-#line 90 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp19_ = current;
-#line 90 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		g_variant_get_child (_tmp18_, (gsize) _tmp19_, "(&s&s)", &type, &name, NULL);
 #line 774 "KeyboardManager.c"
 	}
-#line 91 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp20_ = type;
-#line 91 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (g_strcmp0 (_tmp20_, "xkb") == 0) {
 #line 780 "KeyboardManager.c"
 		gchar** arr = NULL;
@@ -792,143 +792,143 @@ static void gala_keyboard_manager_set_keyboard_layout (GSettings* settings, cons
 		gint _tmp28__length1 = 0;
 		const gchar* _tmp29_ = NULL;
 		gchar* _tmp30_ = NULL;
-#line 92 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp21_ = name;
-#line 92 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp23_ = _tmp22_ = g_strsplit (_tmp21_, "+", 2);
-#line 92 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		arr = _tmp23_;
-#line 92 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		arr_length1 = _vala_array_length (_tmp22_);
-#line 92 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_arr_size_ = arr_length1;
-#line 93 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp24_ = arr;
-#line 93 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp24__length1 = arr_length1;
-#line 93 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp25_ = _tmp24_[0];
-#line 93 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp26_ = g_strdup (_tmp25_);
-#line 93 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_g_free0 (layout);
-#line 93 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		layout = _tmp26_;
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp28_ = arr;
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp28__length1 = arr_length1;
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp29_ = _tmp28_[1];
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp27_ = _tmp29_;
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		if (_tmp27_ == NULL) {
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 			_tmp27_ = "";
 #line 830 "KeyboardManager.c"
 		}
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp30_ = g_strdup (_tmp27_);
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_g_free0 (variant);
-#line 94 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		variant = _tmp30_;
-#line 91 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		arr = (_vala_array_free (arr, arr_length1, (GDestroyNotify) g_free), NULL);
 #line 840 "KeyboardManager.c"
 	}
-#line 97 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp31_ = settings;
-#line 97 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp33_ = _tmp32_ = g_settings_get_strv (_tmp31_, "xkb-options");
-#line 97 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	xkb_options = _tmp33_;
-#line 97 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	xkb_options_length1 = _vala_array_length (_tmp32_);
-#line 97 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_xkb_options_size_ = xkb_options_length1;
-#line 98 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp34_ = xkb_options;
-#line 98 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp34__length1 = xkb_options_length1;
-#line 98 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (_tmp34__length1 > 0) {
 #line 858 "KeyboardManager.c"
 		gchar** _tmp35_ = NULL;
 		gint _tmp35__length1 = 0;
 		gchar* _tmp36_ = NULL;
-#line 99 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp35_ = xkb_options;
-#line 99 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp35__length1 = xkb_options_length1;
-#line 99 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp36_ = _vala_g_strjoinv (",", _tmp35_, _tmp35__length1);
-#line 99 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_g_free0 (options);
-#line 99 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		options = _tmp36_;
 #line 872 "KeyboardManager.c"
 	}
-#line 102 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp38_ = layout;
-#line 102 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (g_strcmp0 (_tmp38_, "us") != 0) {
-#line 102 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp37_ = TRUE;
 #line 880 "KeyboardManager.c"
 	} else {
 		const gchar* _tmp39_ = NULL;
-#line 102 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp39_ = variant;
-#line 102 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp37_ = g_strcmp0 (_tmp39_, "") != 0;
 #line 887 "KeyboardManager.c"
 	}
-#line 102 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	if (_tmp37_) {
 #line 891 "KeyboardManager.c"
 		const gchar* _tmp40_ = NULL;
 		gchar* _tmp41_ = NULL;
 		const gchar* _tmp42_ = NULL;
 		gchar* _tmp43_ = NULL;
-#line 103 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp40_ = layout;
-#line 103 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp41_ = g_strconcat (_tmp40_, ",us", NULL);
-#line 103 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_g_free0 (layout);
-#line 103 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		layout = _tmp41_;
-#line 104 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp42_ = variant;
-#line 104 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_tmp43_ = g_strconcat (_tmp42_, ",", NULL);
-#line 104 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		_g_free0 (variant);
-#line 104 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 		variant = _tmp43_;
 #line 912 "KeyboardManager.c"
 	}
-#line 107 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp44_ = meta_get_backend ();
-#line 107 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp45_ = layout;
-#line 107 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp46_ = variant;
-#line 107 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp47_ = options;
-#line 107 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	meta_backend_set_keymap (_tmp44_, _tmp45_, _tmp46_, _tmp47_);
-#line 77 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	xkb_options = (_vala_array_free (xkb_options, xkb_options_length1, (GDestroyNotify) g_free), NULL);
-#line 77 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_variant_unref0 (sources);
-#line 77 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_free0 (options);
-#line 77 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_free0 (variant);
-#line 77 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_free0 (layout);
 #line 934 "KeyboardManager.c"
 }
@@ -946,41 +946,41 @@ static GObject * gala_keyboard_manager_constructor (GType type, guint n_construc
 	GSettings* _tmp4_ = NULL;
 	GSettings* _tmp5_ = NULL;
 	GSettings* _tmp6_ = NULL;
-#line 47 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	parent_class = G_OBJECT_CLASS (gala_keyboard_manager_parent_class);
-#line 47 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 47 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_KEYBOARD_MANAGER, GalaKeyboardManager);
-#line 49 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp0_ = g_settings_schema_source_get_default ();
-#line 49 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp1_ = g_settings_schema_source_lookup (_tmp0_, "org.gnome.desktop.input-sources", TRUE);
-#line 49 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	schema = _tmp1_;
-#line 50 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp2_ = schema;
-#line 50 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_return_if_fail (_tmp2_ != NULL);
-#line 52 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp3_ = schema;
-#line 52 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp4_ = g_settings_new_full (_tmp3_, NULL, NULL);
-#line 52 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_object_unref0 (self->priv->settings);
-#line 52 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	self->priv->settings = _tmp4_;
-#line 53 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp5_ = self->priv->settings;
-#line 53 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_signal_connect (_tmp5_, "changed", (GCallback) gala_keyboard_manager_set_keyboard_layout, self);
-#line 55 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp6_ = self->priv->settings;
-#line 55 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	gala_keyboard_manager_set_keyboard_layout (_tmp6_, "current", self);
-#line 47 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_settings_schema_unref0 (schema);
-#line 47 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	return obj;
 #line 986 "KeyboardManager.c"
 }
@@ -988,26 +988,26 @@ static GObject * gala_keyboard_manager_constructor (GType type, guint n_construc
 
 static void gala_keyboard_manager_class_init (GalaKeyboardManagerClass * klass) {
 	GVariantType* _tmp0_ = NULL;
-#line 20 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	gala_keyboard_manager_parent_class = g_type_class_peek_parent (klass);
-#line 20 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	g_type_class_add_private (klass, sizeof (GalaKeyboardManagerPrivate));
-#line 20 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_keyboard_manager_constructor;
-#line 20 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_keyboard_manager_finalize;
-#line 37 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_tmp0_ = g_variant_type_new ("a(ss)");
-#line 37 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_variant_type_free0 (gala_keyboard_manager_sources_variant_type);
-#line 37 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	gala_keyboard_manager_sources_variant_type = _tmp0_;
 #line 1006 "KeyboardManager.c"
 }
 
 
 static void gala_keyboard_manager_instance_init (GalaKeyboardManager * self) {
-#line 20 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	self->priv = GALA_KEYBOARD_MANAGER_GET_PRIVATE (self);
 #line 1013 "KeyboardManager.c"
 }
@@ -1015,11 +1015,11 @@ static void gala_keyboard_manager_instance_init (GalaKeyboardManager * self) {
 
 static void gala_keyboard_manager_finalize (GObject* obj) {
 	GalaKeyboardManager * self;
-#line 20 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_KEYBOARD_MANAGER, GalaKeyboardManager);
-#line 40 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	_g_object_unref0 (self->priv->settings);
-#line 20 "/home/nick/work/gala/src/KeyboardManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/KeyboardManager.vala"
 	G_OBJECT_CLASS (gala_keyboard_manager_parent_class)->finalize (obj);
 #line 1025 "KeyboardManager.c"
 }

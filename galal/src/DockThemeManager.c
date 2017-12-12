@@ -74,32 +74,32 @@ GalaDockThemeManager* gala_dock_theme_manager_get_default (void) {
 	GalaDockThemeManager* result = NULL;
 	GalaDockThemeManager* _tmp0_ = NULL;
 	GalaDockThemeManager* _tmp2_ = NULL;
-#line 29 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp0_ = gala_dock_theme_manager_instance;
-#line 29 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	if (_tmp0_ == NULL) {
 #line 82 "DockThemeManager.c"
 		GalaDockThemeManager* _tmp1_ = NULL;
-#line 30 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 		_tmp1_ = gala_dock_theme_manager_new ();
-#line 30 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 		_g_object_unref0 (gala_dock_theme_manager_instance);
-#line 30 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 		gala_dock_theme_manager_instance = _tmp1_;
 #line 90 "DockThemeManager.c"
 	}
-#line 32 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp2_ = gala_dock_theme_manager_instance;
-#line 32 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	result = _tmp2_;
-#line 32 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	return result;
 #line 98 "DockThemeManager.c"
 }
 
 
 static void _gala_dock_theme_manager_load_dock_theme_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
-#line 57 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	gala_dock_theme_manager_load_dock_theme ((GalaDockThemeManager*) self);
 #line 105 "DockThemeManager.c"
 }
@@ -109,33 +109,33 @@ static GalaDockThemeManager* gala_dock_theme_manager_construct (GType object_typ
 	GalaDockThemeManager * self = NULL;
 	PlankDockPreferences* _tmp0_ = NULL;
 	PlankDockPreferences* _tmp1_ = NULL;
-#line 48 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	self = (GalaDockThemeManager*) g_object_new (object_type, NULL);
-#line 51 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp0_ = plank_dock_preferences_new ("dock1");
-#line 51 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_g_object_unref0 (self->priv->dock_settings);
-#line 51 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	self->priv->dock_settings = _tmp0_;
-#line 57 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp1_ = self->priv->dock_settings;
-#line 57 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	g_signal_connect_object ((GObject*) _tmp1_, "notify::Theme", (GCallback) _gala_dock_theme_manager_load_dock_theme_g_object_notify, self, 0);
-#line 48 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	return self;
 #line 127 "DockThemeManager.c"
 }
 
 
 static GalaDockThemeManager* gala_dock_theme_manager_new (void) {
-#line 48 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	return gala_dock_theme_manager_construct (GALA_TYPE_DOCK_THEME_MANAGER);
 #line 134 "DockThemeManager.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 69 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 141 "DockThemeManager.c"
 }
@@ -146,23 +146,23 @@ PlankDockTheme* gala_dock_theme_manager_get_dock_theme (GalaDockThemeManager* se
 	PlankDockTheme* _tmp0_ = NULL;
 	PlankDockTheme* _tmp1_ = NULL;
 	PlankDockTheme* _tmp2_ = NULL;
-#line 61 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 66 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp0_ = self->priv->dock_theme;
-#line 66 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	if (_tmp0_ == NULL) {
-#line 67 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 		gala_dock_theme_manager_load_dock_theme (self);
 #line 158 "DockThemeManager.c"
 	}
-#line 69 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp1_ = self->priv->dock_theme;
-#line 69 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 69 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	result = _tmp2_;
-#line 69 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	return result;
 #line 168 "DockThemeManager.c"
 }
@@ -172,15 +172,15 @@ PlankDockPreferences* gala_dock_theme_manager_get_dock_settings (GalaDockThemeMa
 	PlankDockPreferences* result = NULL;
 	PlankDockPreferences* _tmp0_ = NULL;
 	PlankDockPreferences* _tmp1_ = NULL;
-#line 72 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 74 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp0_ = self->priv->dock_settings;
-#line 74 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 74 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	result = _tmp1_;
-#line 74 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	return result;
 #line 186 "DockThemeManager.c"
 }
@@ -194,31 +194,31 @@ static void gala_dock_theme_manager_load_dock_theme (GalaDockThemeManager* self)
 	PlankDockTheme* _tmp3_ = NULL;
 	PlankDockTheme* _tmp4_ = NULL;
 	PlankDockTheme* _tmp5_ = NULL;
-#line 77 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	g_return_if_fail (self != NULL);
-#line 80 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp0_ = self->priv->dock_settings;
-#line 80 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp1_ = plank_dock_preferences_get_Theme (_tmp0_);
-#line 80 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp2_ = _tmp1_;
-#line 80 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp3_ = plank_dock_theme_new (_tmp2_);
-#line 80 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	new_theme = _tmp3_;
-#line 84 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	plank_theme_load ((PlankTheme*) new_theme, "dock");
-#line 85 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp4_ = self->priv->dock_theme;
-#line 85 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	g_signal_emit_by_name (self, "dock-theme-changed", _tmp4_, new_theme);
-#line 86 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_tmp5_ = _g_object_ref0 (new_theme);
-#line 86 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_g_object_unref0 (self->priv->dock_theme);
-#line 86 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	self->priv->dock_theme = _tmp5_;
-#line 77 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_g_object_unref0 (new_theme);
 #line 224 "DockThemeManager.c"
 }
@@ -231,49 +231,49 @@ static void g_cclosure_user_marshal_VOID__OBJECT_OBJECT (GClosure * closure, GVa
 	register gpointer data1;
 	register gpointer data2;
 	cc = (GCClosure *) closure;
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	g_return_if_fail (n_param_values == 3);
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	if (G_CCLOSURE_SWAP_DATA (closure)) {
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 		data1 = closure->data;
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 		data2 = param_values->data[0].v_pointer;
 #line 243 "DockThemeManager.c"
 	} else {
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 		data1 = param_values->data[0].v_pointer;
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 		data2 = closure->data;
 #line 249 "DockThemeManager.c"
 	}
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	callback = (GMarshalFunc_VOID__OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	callback (data1, g_value_get_object (param_values + 1), g_value_get_object (param_values + 2), data2);
 #line 255 "DockThemeManager.c"
 }
 
 
 static void gala_dock_theme_manager_class_init (GalaDockThemeManagerClass * klass) {
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	gala_dock_theme_manager_parent_class = g_type_class_peek_parent (klass);
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	g_type_class_add_private (klass, sizeof (GalaDockThemeManagerPrivate));
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_dock_theme_manager_finalize;
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	g_signal_new ("dock_theme_changed", GALA_TYPE_DOCK_THEME_MANAGER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__OBJECT_OBJECT, G_TYPE_NONE, 2, PLANK_TYPE_DOCK_THEME, PLANK_TYPE_DOCK_THEME);
 #line 268 "DockThemeManager.c"
 }
 
 
 static void gala_dock_theme_manager_instance_init (GalaDockThemeManager * self) {
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	self->priv = GALA_DOCK_THEME_MANAGER_GET_PRIVATE (self);
-#line 35 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	self->priv->dock_settings = NULL;
-#line 37 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	self->priv->dock_theme = NULL;
 #line 279 "DockThemeManager.c"
 }
@@ -281,13 +281,13 @@ static void gala_dock_theme_manager_instance_init (GalaDockThemeManager * self) 
 
 static void gala_dock_theme_manager_finalize (GObject* obj) {
 	GalaDockThemeManager * self;
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_DOCK_THEME_MANAGER, GalaDockThemeManager);
-#line 35 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_g_object_unref0 (self->priv->dock_settings);
-#line 37 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	_g_object_unref0 (self->priv->dock_theme);
-#line 23 "/home/nick/work/gala/src/DockThemeManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/DockThemeManager.vala"
 	G_OBJECT_CLASS (gala_dock_theme_manager_parent_class)->finalize (obj);
 #line 293 "DockThemeManager.c"
 }

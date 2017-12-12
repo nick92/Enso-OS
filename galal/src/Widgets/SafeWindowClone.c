@@ -76,7 +76,7 @@ static void _vala_gala_safe_window_clone_set_property (GObject * object, guint p
 
 
 static void _gala_safe_window_clone_reset_source_meta_window_unmanaged (MetaWindow* _sender, gpointer self) {
-#line 60 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	gala_safe_window_clone_reset_source ((GalaSafeWindowClone*) self);
 #line 82 "SafeWindowClone.c"
 }
@@ -89,7 +89,7 @@ static void _gala_safe_window_clone_reset_source_meta_window_unmanaged (MetaWind
  * @param destroy_on_unmanaged see destroy_on_unmanaged property
  */
 static gpointer _g_object_ref0 (gpointer self) {
-#line 45 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 95 "SafeWindowClone.c"
 }
@@ -103,32 +103,32 @@ GalaSafeWindowClone* gala_safe_window_clone_construct (GType object_type, MetaWi
 	MetaWindowActor* _tmp2_ = NULL;
 	MetaWindow* _tmp3_ = NULL;
 	gboolean _tmp4_ = FALSE;
-#line 43 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_return_val_if_fail (window != NULL, NULL);
-#line 45 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp0_ = window;
-#line 45 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp1_ = meta_window_get_compositor_private (_tmp0_);
-#line 45 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp2_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp1_, meta_window_actor_get_type (), MetaWindowActor));
-#line 45 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	actor = _tmp2_;
-#line 47 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp3_ = window;
-#line 47 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp4_ = destroy_on_unmanaged;
-#line 47 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	self = (GalaSafeWindowClone*) g_object_new (object_type, "window", _tmp3_, "source", actor, "destroy-on-unmanaged", _tmp4_, NULL);
-#line 43 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_g_object_unref0 (actor);
-#line 43 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	return self;
 #line 127 "SafeWindowClone.c"
 }
 
 
 GalaSafeWindowClone* gala_safe_window_clone_new (MetaWindow* window, gboolean destroy_on_unmanaged) {
-#line 43 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	return gala_safe_window_clone_construct (GALA_TYPE_SAFE_WINDOW_CLONE, window, destroy_on_unmanaged);
 #line 134 "SafeWindowClone.c"
 }
@@ -136,15 +136,15 @@ GalaSafeWindowClone* gala_safe_window_clone_new (MetaWindow* window, gboolean de
 
 static void gala_safe_window_clone_reset_source (GalaSafeWindowClone* self) {
 	gboolean _tmp0_ = FALSE;
-#line 63 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_return_if_fail (self != NULL);
-#line 68 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	clutter_clone_set_source ((ClutterClone*) self, NULL);
-#line 70 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp0_ = self->priv->_destroy_on_unmanaged;
-#line 70 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	if (_tmp0_) {
-#line 71 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		clutter_actor_destroy ((ClutterActor*) self);
 #line 150 "SafeWindowClone.c"
 	}
@@ -154,13 +154,13 @@ static void gala_safe_window_clone_reset_source (GalaSafeWindowClone* self) {
 MetaWindow* gala_safe_window_clone_get_window (GalaSafeWindowClone* self) {
 	MetaWindow* result;
 	MetaWindow* _tmp0_ = NULL;
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp0_ = self->priv->_window;
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	result = _tmp0_;
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	return result;
 #line 166 "SafeWindowClone.c"
 }
@@ -169,17 +169,17 @@ MetaWindow* gala_safe_window_clone_get_window (GalaSafeWindowClone* self) {
 static void gala_safe_window_clone_set_window (GalaSafeWindowClone* self, MetaWindow* value) {
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_return_if_fail (self != NULL);
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp0_ = value;
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_g_object_unref0 (self->priv->_window);
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	self->priv->_window = _tmp1_;
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_object_notify ((GObject *) self, "window");
 #line 185 "SafeWindowClone.c"
 }
@@ -188,13 +188,13 @@ static void gala_safe_window_clone_set_window (GalaSafeWindowClone* self, MetaWi
 gboolean gala_safe_window_clone_get_destroy_on_unmanaged (GalaSafeWindowClone* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp0_ = self->priv->_destroy_on_unmanaged;
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	result = _tmp0_;
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	return result;
 #line 200 "SafeWindowClone.c"
 }
@@ -202,13 +202,13 @@ gboolean gala_safe_window_clone_get_destroy_on_unmanaged (GalaSafeWindowClone* s
 
 void gala_safe_window_clone_set_destroy_on_unmanaged (GalaSafeWindowClone* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_return_if_fail (self != NULL);
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp0_ = value;
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	self->priv->_destroy_on_unmanaged = _tmp0_;
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_object_notify ((GObject *) self, "destroy-on-unmanaged");
 #line 214 "SafeWindowClone.c"
 }
@@ -220,62 +220,62 @@ static GObject * gala_safe_window_clone_constructor (GType type, guint n_constru
 	GalaSafeWindowClone * self;
 	ClutterActor* _tmp0_ = NULL;
 	ClutterActor* _tmp1_ = NULL;
-#line 52 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	parent_class = G_OBJECT_CLASS (gala_safe_window_clone_parent_class);
-#line 52 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 52 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_SAFE_WINDOW_CLONE, GalaSafeWindowClone);
-#line 54 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp0_ = clutter_clone_get_source ((ClutterClone*) self);
-#line 54 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp1_ = _tmp0_;
-#line 54 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	if (_tmp1_ != NULL) {
 #line 236 "SafeWindowClone.c"
 		MetaWindow* _tmp2_ = NULL;
-#line 55 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		_tmp2_ = self->priv->_window;
-#line 55 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		g_signal_connect_object (_tmp2_, "unmanaged", (GCallback) _gala_safe_window_clone_reset_source_meta_window_unmanaged, self, 0);
 #line 242 "SafeWindowClone.c"
 	}
-#line 52 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	return obj;
 #line 246 "SafeWindowClone.c"
 }
 
 
 static void gala_safe_window_clone_class_init (GalaSafeWindowCloneClass * klass) {
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	gala_safe_window_clone_parent_class = g_type_class_peek_parent (klass);
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_type_class_add_private (klass, sizeof (GalaSafeWindowClonePrivate));
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_safe_window_clone_get_property;
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_safe_window_clone_set_property;
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_safe_window_clone_constructor;
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_safe_window_clone_finalize;
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_SAFE_WINDOW_CLONE_WINDOW, g_param_spec_object ("window", "window", "window", meta_window_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 #line 265 "SafeWindowClone.c"
 	/**
 	 * If set to true, the SafeWindowClone will destroy itself when the connected
 	 * window is unmanaged
 	 */
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_SAFE_WINDOW_CLONE_DESTROY_ON_UNMANAGED, g_param_spec_boolean ("destroy-on-unmanaged", "destroy-on-unmanaged", "destroy-on-unmanaged", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
 #line 272 "SafeWindowClone.c"
 }
 
 
 static void gala_safe_window_clone_instance_init (GalaSafeWindowClone * self) {
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	self->priv = GALA_SAFE_WINDOW_CLONE_GET_PRIVATE (self);
-#line 35 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	self->priv->_destroy_on_unmanaged = FALSE;
 #line 281 "SafeWindowClone.c"
 }
@@ -285,17 +285,17 @@ static void gala_safe_window_clone_finalize (GObject* obj) {
 	GalaSafeWindowClone * self;
 	MetaWindow* _tmp0_ = NULL;
 	guint _tmp1_ = 0U;
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_SAFE_WINDOW_CLONE, GalaSafeWindowClone);
-#line 60 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_tmp0_ = self->priv->_window;
-#line 60 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_signal_parse_name ("unmanaged", meta_window_get_type (), &_tmp1_, NULL, FALSE);
-#line 60 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	g_signal_handlers_disconnect_matched (_tmp0_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp1_, 0, NULL, (GCallback) _gala_safe_window_clone_reset_source_meta_window_unmanaged, self);
-#line 29 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	_g_object_unref0 (self->priv->_window);
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	G_OBJECT_CLASS (gala_safe_window_clone_parent_class)->finalize (obj);
 #line 301 "SafeWindowClone.c"
 }
@@ -321,25 +321,25 @@ GType gala_safe_window_clone_get_type (void) {
 static void _vala_gala_safe_window_clone_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaSafeWindowClone * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_SAFE_WINDOW_CLONE, GalaSafeWindowClone);
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	switch (property_id) {
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		case GALA_SAFE_WINDOW_CLONE_WINDOW:
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		g_value_set_object (value, gala_safe_window_clone_get_window (self));
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		break;
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		case GALA_SAFE_WINDOW_CLONE_DESTROY_ON_UNMANAGED:
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		g_value_set_boolean (value, gala_safe_window_clone_get_destroy_on_unmanaged (self));
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		break;
 #line 339 "SafeWindowClone.c"
 		default:
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		break;
 #line 345 "SafeWindowClone.c"
 	}
@@ -349,25 +349,25 @@ static void _vala_gala_safe_window_clone_get_property (GObject * object, guint p
 static void _vala_gala_safe_window_clone_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaSafeWindowClone * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_SAFE_WINDOW_CLONE, GalaSafeWindowClone);
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 	switch (property_id) {
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		case GALA_SAFE_WINDOW_CLONE_WINDOW:
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		gala_safe_window_clone_set_window (self, g_value_get_object (value));
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		break;
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		case GALA_SAFE_WINDOW_CLONE_DESTROY_ON_UNMANAGED:
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		gala_safe_window_clone_set_destroy_on_unmanaged (self, g_value_get_boolean (value));
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		break;
 #line 367 "SafeWindowClone.c"
 		default:
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 27 "/home/nick/work/gala/src/Widgets/SafeWindowClone.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/SafeWindowClone.vala"
 		break;
 #line 373 "SafeWindowClone.c"
 	}

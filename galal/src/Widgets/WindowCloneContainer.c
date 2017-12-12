@@ -111,16 +111,16 @@ static void _gala_window_clone_container_window_destroyed_clutter_actor_destroy 
 void gala_window_clone_container_reflow (GalaWindowCloneContainer* self);
 static void _gala_window_clone_container_reflow_gala_window_clone_request_reposition (GalaWindowClone* _sender, gpointer self);
 void gala_window_clone_container_remove_window (GalaWindowCloneContainer* self, MetaWindow* window);
-static gboolean __lambda66_ (GalaWindowCloneContainer* self);
-static gboolean ___lambda66__gsource_func (gpointer self);
+static gboolean __lambda69_ (GalaWindowCloneContainer* self);
+static gboolean ___lambda69__gsource_func (gpointer self);
 void gala_window_clone_container_restack_windows (GalaWindowCloneContainer* self, MetaScreen* screen);
 GType gala_internal_utils_tilable_window_get_type (void) G_GNUC_CONST;
 GalaInternalUtilsTilableWindow* gala_internal_utils_tilable_window_dup (const GalaInternalUtilsTilableWindow* self);
 void gala_internal_utils_tilable_window_free (GalaInternalUtilsTilableWindow* self);
 static void _gala_internal_utils_tilable_window_free0_ (gpointer var);
 static void _g_list_free__gala_internal_utils_tilable_window_free0_ (GList* self);
-static gint __lambda65_ (GalaInternalUtilsTilableWindow* a, GalaInternalUtilsTilableWindow* b);
-static gint ___lambda65__gcompare_func (gconstpointer a, gconstpointer b);
+static gint __lambda68_ (GalaInternalUtilsTilableWindow* a, GalaInternalUtilsTilableWindow* b);
+static gint ___lambda68__gcompare_func (gconstpointer a, gconstpointer b);
 gint gala_window_clone_container_get_padding_left (GalaWindowCloneContainer* self);
 gint gala_window_clone_container_get_padding_top (GalaWindowCloneContainer* self);
 gint gala_window_clone_container_get_padding_right (GalaWindowCloneContainer* self);
@@ -150,18 +150,18 @@ static void _vala_gala_window_clone_container_set_property (GObject * object, gu
 GalaWindowCloneContainer* gala_window_clone_container_construct (GType object_type, gboolean overview_mode) {
 	GalaWindowCloneContainer * self = NULL;
 	gboolean _tmp0_ = FALSE;
-#line 47 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = overview_mode;
-#line 47 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self = (GalaWindowCloneContainer*) g_object_new (object_type, "overview-mode", _tmp0_, NULL);
-#line 45 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return self;
 #line 160 "WindowCloneContainer.c"
 }
 
 
 GalaWindowCloneContainer* gala_window_clone_container_new (gboolean overview_mode) {
-#line 45 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return gala_window_clone_container_construct (GALA_TYPE_WINDOW_CLONE_CONTAINER, overview_mode);
 #line 167 "WindowCloneContainer.c"
 }
@@ -173,21 +173,21 @@ GalaWindowCloneContainer* gala_window_clone_container_new (gboolean overview_mod
  * @param window The window for which to create the WindowClone for
  */
 static void _gala_window_clone_container_window_selected_cb_gala_window_clone_selected (GalaWindowClone* _sender, gpointer self) {
-#line 78 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_container_window_selected_cb ((GalaWindowCloneContainer*) self, _sender);
 #line 179 "WindowCloneContainer.c"
 }
 
 
 static void _gala_window_clone_container_window_destroyed_clutter_actor_destroy (ClutterActor* _sender, gpointer self) {
-#line 79 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_container_window_destroyed ((GalaWindowCloneContainer*) self, _sender);
 #line 186 "WindowCloneContainer.c"
 }
 
 
 static void _gala_window_clone_container_reflow_gala_window_clone_request_reposition (GalaWindowClone* _sender, gpointer self) {
-#line 80 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_container_reflow ((GalaWindowCloneContainer*) self);
 #line 193 "WindowCloneContainer.c"
 }
@@ -218,35 +218,35 @@ void gala_window_clone_container_add_window (GalaWindowCloneContainer* self, Met
 	GSList* _tmp18_ = NULL;
 	GList* _tmp22_ = NULL;
 	gboolean _tmp30_ = FALSE;
-#line 61 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 61 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (window != NULL);
-#line 63 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = window;
-#line 63 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = meta_window_get_display (_tmp0_);
-#line 63 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	display = _tmp1_;
-#line 64 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp2_ = clutter_actor_get_children ((ClutterActor*) self);
-#line 64 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	children = _tmp2_;
-#line 66 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	windows = NULL;
-#line 67 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp3_ = children;
 #line 240 "WindowCloneContainer.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 67 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		child_collection = _tmp3_;
-#line 67 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 248 "WindowCloneContainer.c"
 			ClutterActor* child = NULL;
-#line 67 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			child = (ClutterActor*) child_it->data;
 #line 252 "WindowCloneContainer.c"
 			{
@@ -255,115 +255,115 @@ void gala_window_clone_container_add_window (GalaWindowCloneContainer* self, Met
 				GalaWindowClone* _tmp5_ = NULL;
 				MetaWindow* _tmp6_ = NULL;
 				MetaWindow* _tmp7_ = NULL;
-#line 68 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp4_ = child;
-#line 68 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				tw = G_TYPE_CHECK_INSTANCE_CAST (_tmp4_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone);
-#line 69 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp5_ = tw;
-#line 69 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp6_ = gala_window_clone_get_window (_tmp5_);
-#line 69 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp7_ = _tmp6_;
-#line 69 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				windows = g_slist_prepend (windows, _tmp7_);
 #line 271 "WindowCloneContainer.c"
 			}
 		}
 	}
-#line 71 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp8_ = window;
-#line 71 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	windows = g_slist_prepend (windows, _tmp8_);
-#line 72 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	windows = g_slist_reverse (windows);
-#line 74 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp9_ = display;
-#line 74 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp10_ = windows;
-#line 74 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp11_ = meta_display_sort_windows_by_stacking (_tmp9_, _tmp10_);
-#line 74 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	windows_ordered = _tmp11_;
-#line 76 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp12_ = window;
-#line 76 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp13_ = self->priv->_overview_mode;
-#line 76 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp14_ = gala_window_clone_new (_tmp12_, _tmp13_);
-#line 76 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_object_ref_sink (_tmp14_);
-#line 76 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	new_window = _tmp14_;
-#line 78 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp15_ = new_window;
-#line 78 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_connect_object (_tmp15_, "selected", (GCallback) _gala_window_clone_container_window_selected_cb_gala_window_clone_selected, self, 0);
-#line 79 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp16_ = new_window;
-#line 79 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_connect_object ((ClutterActor*) _tmp16_, "destroy", (GCallback) _gala_window_clone_container_window_destroyed_clutter_actor_destroy, self, 0);
-#line 80 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp17_ = new_window;
-#line 80 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_connect_object (_tmp17_, "request-reposition", (GCallback) _gala_window_clone_container_reflow_gala_window_clone_request_reposition, self, 0);
-#line 82 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	added = FALSE;
-#line 83 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	target = NULL;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp18_ = windows_ordered;
 #line 317 "WindowCloneContainer.c"
 	{
 		GSList* w_collection = NULL;
 		GSList* w_it = NULL;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		w_collection = _tmp18_;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (w_it = w_collection; w_it != NULL; w_it = w_it->next) {
 #line 325 "WindowCloneContainer.c"
 			MetaWindow* w = NULL;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			w = (MetaWindow*) w_it->data;
 #line 329 "WindowCloneContainer.c"
 			{
 				MetaWindow* _tmp19_ = NULL;
 				MetaWindow* _tmp20_ = NULL;
-#line 85 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp19_ = w;
-#line 85 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp20_ = window;
-#line 85 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				if (_tmp19_ != _tmp20_) {
 #line 339 "WindowCloneContainer.c"
 					MetaWindow* _tmp21_ = NULL;
-#line 86 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp21_ = w;
-#line 86 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					target = _tmp21_;
-#line 87 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					continue;
 #line 347 "WindowCloneContainer.c"
 				}
-#line 89 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				break;
 #line 351 "WindowCloneContainer.c"
 			}
 		}
 	}
-#line 92 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp22_ = children;
 #line 357 "WindowCloneContainer.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 92 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		child_collection = _tmp22_;
-#line 92 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 365 "WindowCloneContainer.c"
 			ClutterActor* child = NULL;
-#line 92 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			child = (ClutterActor*) child_it->data;
 #line 369 "WindowCloneContainer.c"
 			{
@@ -373,59 +373,59 @@ void gala_window_clone_container_add_window (GalaWindowCloneContainer* self, Met
 				GalaWindowClone* _tmp25_ = NULL;
 				MetaWindow* _tmp26_ = NULL;
 				MetaWindow* _tmp27_ = NULL;
-#line 93 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp23_ = child;
-#line 93 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				tw = G_TYPE_CHECK_INSTANCE_CAST (_tmp23_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone);
-#line 94 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp24_ = target;
-#line 94 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp25_ = tw;
-#line 94 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp26_ = gala_window_clone_get_window (_tmp25_);
-#line 94 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp27_ = _tmp26_;
-#line 94 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				if (_tmp24_ == _tmp27_) {
 #line 391 "WindowCloneContainer.c"
 					GalaWindowClone* _tmp28_ = NULL;
 					GalaWindowClone* _tmp29_ = NULL;
-#line 95 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp28_ = new_window;
-#line 95 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp29_ = tw;
-#line 95 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					clutter_actor_insert_child_above ((ClutterActor*) self, (ClutterActor*) _tmp28_, (ClutterActor*) _tmp29_);
-#line 96 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					added = TRUE;
-#line 97 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					break;
 #line 404 "WindowCloneContainer.c"
 				}
 			}
 		}
 	}
-#line 102 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp30_ = added;
-#line 102 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (!_tmp30_) {
 #line 413 "WindowCloneContainer.c"
 		GalaWindowClone* _tmp31_ = NULL;
-#line 103 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_tmp31_ = new_window;
-#line 103 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		clutter_actor_add_child ((ClutterActor*) self, (ClutterActor*) _tmp31_);
 #line 419 "WindowCloneContainer.c"
 	}
-#line 105 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_container_reflow (self);
-#line 61 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_object_unref0 (new_window);
-#line 61 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_slist_free0 (windows_ordered);
-#line 61 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_slist_free0 (windows);
-#line 61 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_list_free0 (children);
 #line 431 "WindowCloneContainer.c"
 }
@@ -436,23 +436,23 @@ void gala_window_clone_container_add_window (GalaWindowCloneContainer* self, Met
  */
 void gala_window_clone_container_remove_window (GalaWindowCloneContainer* self, MetaWindow* window) {
 	GList* _tmp0_ = NULL;
-#line 111 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 111 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (window != NULL);
-#line 113 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 446 "WindowCloneContainer.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 113 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		child_collection = _tmp0_;
-#line 113 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 454 "WindowCloneContainer.c"
 			ClutterActor* child = NULL;
-#line 113 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			child = (ClutterActor*) child_it->data;
 #line 458 "WindowCloneContainer.c"
 			{
@@ -460,33 +460,33 @@ void gala_window_clone_container_remove_window (GalaWindowCloneContainer* self, 
 				MetaWindow* _tmp2_ = NULL;
 				MetaWindow* _tmp3_ = NULL;
 				MetaWindow* _tmp4_ = NULL;
-#line 114 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp1_ = child;
-#line 114 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp2_ = gala_window_clone_get_window (G_TYPE_CHECK_INSTANCE_CAST (_tmp1_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 114 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp3_ = _tmp2_;
-#line 114 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp4_ = window;
-#line 114 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				if (_tmp3_ == _tmp4_) {
 #line 474 "WindowCloneContainer.c"
 					ClutterActor* _tmp5_ = NULL;
-#line 115 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp5_ = child;
-#line 115 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					clutter_actor_remove_child ((ClutterActor*) self, _tmp5_);
-#line 116 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					break;
 #line 482 "WindowCloneContainer.c"
 				}
 			}
 		}
-#line 113 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_list_free0 (child_collection);
 #line 488 "WindowCloneContainer.c"
 	}
-#line 120 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_container_reflow (self);
 #line 492 "WindowCloneContainer.c"
 }
@@ -496,45 +496,45 @@ static void gala_window_clone_container_window_selected_cb (GalaWindowCloneConta
 	GalaWindowClone* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
 	MetaWindow* _tmp2_ = NULL;
-#line 123 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 123 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (tiled != NULL);
-#line 125 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = tiled;
-#line 125 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = gala_window_clone_get_window (_tmp0_);
-#line 125 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp2_ = _tmp1_;
-#line 125 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_emit_by_name (self, "window-selected", _tmp2_);
 #line 512 "WindowCloneContainer.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 130 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 519 "WindowCloneContainer.c"
 }
 
 
-static gboolean __lambda66_ (GalaWindowCloneContainer* self) {
+static gboolean __lambda69_ (GalaWindowCloneContainer* self) {
 	gboolean result = FALSE;
-#line 138 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_container_reflow (self);
-#line 139 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	result = FALSE;
-#line 139 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 531 "WindowCloneContainer.c"
 }
 
 
-static gboolean ___lambda66__gsource_func (gpointer self) {
+static gboolean ___lambda69__gsource_func (gpointer self) {
 	gboolean result;
-	result = __lambda66_ ((GalaWindowCloneContainer*) self);
-#line 137 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+	result = __lambda69_ ((GalaWindowCloneContainer*) self);
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 540 "WindowCloneContainer.c"
 }
@@ -549,41 +549,41 @@ static void gala_window_clone_container_window_destroyed (GalaWindowCloneContain
 	guint _tmp4_ = 0U;
 	GalaWindowClone* _tmp5_ = NULL;
 	guint _tmp6_ = 0U;
-#line 128 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 128 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (actor != NULL);
-#line 130 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = actor;
-#line 130 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_TYPE (_tmp0_, GALA_TYPE_WINDOW_CLONE) ? ((GalaWindowClone*) _tmp0_) : NULL);
-#line 130 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	window = _tmp1_;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp2_ = window;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp2_ == NULL) {
-#line 132 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_object_unref0 (window);
-#line 132 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		return;
 #line 571 "WindowCloneContainer.c"
 	}
-#line 134 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp3_ = window;
-#line 134 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_parse_name ("destroy", clutter_actor_get_type (), &_tmp4_, NULL, FALSE);
-#line 134 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_handlers_disconnect_matched ((ClutterActor*) _tmp3_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp4_, 0, NULL, (GCallback) _gala_window_clone_container_window_destroyed_clutter_actor_destroy, self);
-#line 135 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp5_ = window;
-#line 135 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_parse_name ("selected", GALA_TYPE_WINDOW_CLONE, &_tmp6_, NULL, FALSE);
-#line 135 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_handlers_disconnect_matched (_tmp5_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp6_, 0, NULL, (GCallback) _gala_window_clone_container_window_selected_cb_gala_window_clone_selected, self);
-#line 137 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, ___lambda66__gsource_func, g_object_ref (self), g_object_unref);
-#line 128 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, ___lambda69__gsource_func, g_object_ref (self), g_object_unref);
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_object_unref0 (window);
 #line 589 "WindowCloneContainer.c"
 }
@@ -606,35 +606,35 @@ void gala_window_clone_container_restack_windows (GalaWindowCloneContainer* self
 	GSList* _tmp9_ = NULL;
 	GSList* _tmp10_ = NULL;
 	GSList* _tmp11_ = NULL;
-#line 147 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 147 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (screen != NULL);
-#line 149 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = screen;
-#line 149 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = meta_screen_get_display (_tmp0_);
-#line 149 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	display = _tmp1_;
-#line 150 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp2_ = clutter_actor_get_children ((ClutterActor*) self);
-#line 150 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	children = _tmp2_;
-#line 152 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	windows = NULL;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp3_ = children;
 #line 628 "WindowCloneContainer.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		child_collection = _tmp3_;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 636 "WindowCloneContainer.c"
 			ClutterActor* child = NULL;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			child = (ClutterActor*) child_it->data;
 #line 640 "WindowCloneContainer.c"
 			{
@@ -643,65 +643,65 @@ void gala_window_clone_container_restack_windows (GalaWindowCloneContainer* self
 				GalaWindowClone* _tmp5_ = NULL;
 				MetaWindow* _tmp6_ = NULL;
 				MetaWindow* _tmp7_ = NULL;
-#line 154 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp4_ = child;
-#line 154 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				tw = G_TYPE_CHECK_INSTANCE_CAST (_tmp4_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone);
-#line 155 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp5_ = tw;
-#line 155 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp6_ = gala_window_clone_get_window (_tmp5_);
-#line 155 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp7_ = _tmp6_;
-#line 155 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				windows = g_slist_prepend (windows, _tmp7_);
 #line 659 "WindowCloneContainer.c"
 			}
 		}
 	}
-#line 158 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp8_ = display;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp9_ = windows;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp10_ = meta_display_sort_windows_by_stacking (_tmp8_, _tmp9_);
-#line 158 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	windows_ordered = _tmp10_;
-#line 159 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	windows_ordered = g_slist_reverse (windows_ordered);
-#line 161 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp11_ = windows_ordered;
 #line 675 "WindowCloneContainer.c"
 	{
 		GSList* window_collection = NULL;
 		GSList* window_it = NULL;
-#line 161 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		window_collection = _tmp11_;
-#line 161 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
 #line 683 "WindowCloneContainer.c"
 			MetaWindow* window = NULL;
-#line 161 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			window = (MetaWindow*) window_it->data;
 #line 687 "WindowCloneContainer.c"
 			{
 				gint i = 0;
 				GList* _tmp12_ = NULL;
-#line 162 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				i = 0;
-#line 163 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp12_ = children;
 #line 695 "WindowCloneContainer.c"
 				{
 					GList* child_collection = NULL;
 					GList* child_it = NULL;
-#line 163 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					child_collection = _tmp12_;
-#line 163 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 703 "WindowCloneContainer.c"
 						ClutterActor* child = NULL;
-#line 163 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						child = (ClutterActor*) child_it->data;
 #line 707 "WindowCloneContainer.c"
 						{
@@ -709,36 +709,36 @@ void gala_window_clone_container_restack_windows (GalaWindowCloneContainer* self
 							MetaWindow* _tmp14_ = NULL;
 							MetaWindow* _tmp15_ = NULL;
 							MetaWindow* _tmp16_ = NULL;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp13_ = child;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp14_ = gala_window_clone_get_window (G_TYPE_CHECK_INSTANCE_CAST (_tmp13_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 164 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp15_ = _tmp14_;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp16_ = window;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp15_ == _tmp16_) {
 #line 723 "WindowCloneContainer.c"
 								ClutterActor* _tmp17_ = NULL;
 								gint _tmp18_ = 0;
 								ClutterActor* _tmp19_ = NULL;
 								gint _tmp20_ = 0;
-#line 165 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp17_ = child;
-#line 165 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp18_ = i;
-#line 165 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								clutter_actor_set_child_at_index ((ClutterActor*) self, _tmp17_, _tmp18_);
-#line 166 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp19_ = child;
-#line 166 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								children = g_list_remove (children, _tmp19_);
-#line 167 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp20_ = i;
-#line 167 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								i = _tmp20_ + 1;
-#line 168 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								break;
 #line 744 "WindowCloneContainer.c"
 							}
@@ -748,11 +748,11 @@ void gala_window_clone_container_restack_windows (GalaWindowCloneContainer* self
 			}
 		}
 	}
-#line 147 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_slist_free0 (windows_ordered);
-#line 147 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_slist_free0 (windows);
-#line 147 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_list_free0 (children);
 #line 758 "WindowCloneContainer.c"
 }
@@ -763,29 +763,29 @@ void gala_window_clone_container_restack_windows (GalaWindowCloneContainer* self
  * the resulting spots.
  */
 static gpointer _gala_internal_utils_tilable_window_dup0 (gpointer self) {
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return self ? gala_internal_utils_tilable_window_dup (self) : NULL;
 #line 769 "WindowCloneContainer.c"
 }
 
 
 static void _gala_internal_utils_tilable_window_free0_ (gpointer var) {
-#line 190 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	(var == NULL) ? NULL : (var = (gala_internal_utils_tilable_window_free (var), NULL));
 #line 776 "WindowCloneContainer.c"
 }
 
 
 static void _g_list_free__gala_internal_utils_tilable_window_free0_ (GList* self) {
-#line 190 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_list_foreach (self, (GFunc) _gala_internal_utils_tilable_window_free0_, NULL);
-#line 190 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_list_free (self);
 #line 785 "WindowCloneContainer.c"
 }
 
 
-static gint __lambda65_ (GalaInternalUtilsTilableWindow* a, GalaInternalUtilsTilableWindow* b) {
+static gint __lambda68_ (GalaInternalUtilsTilableWindow* a, GalaInternalUtilsTilableWindow* b) {
 	gint result = 0;
 	guint seq_a = 0U;
 	GalaInternalUtilsTilableWindow* _tmp0_ = NULL;
@@ -799,42 +799,42 @@ static gint __lambda65_ (GalaInternalUtilsTilableWindow* a, GalaInternalUtilsTil
 	MetaWindow* _tmp7_ = NULL;
 	MetaWindow* _tmp8_ = NULL;
 	guint _tmp9_ = 0U;
-#line 196 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = a;
-#line 196 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = (*_tmp0_).id;
-#line 196 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp2_ = gala_window_clone_get_window (G_TYPE_CHECK_INSTANCE_CAST (_tmp1_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 196 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp3_ = _tmp2_;
-#line 196 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp4_ = meta_window_get_stable_sequence (_tmp3_);
-#line 196 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	seq_a = _tmp4_;
-#line 197 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp5_ = b;
-#line 197 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp6_ = (*_tmp5_).id;
-#line 197 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp7_ = gala_window_clone_get_window (G_TYPE_CHECK_INSTANCE_CAST (_tmp6_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 197 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp8_ = _tmp7_;
-#line 197 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp9_ = meta_window_get_stable_sequence (_tmp8_);
-#line 197 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	seq_b = _tmp9_;
-#line 198 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	result = (gint) (seq_b - seq_a);
-#line 198 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 831 "WindowCloneContainer.c"
 }
 
 
-static gint ___lambda65__gcompare_func (gconstpointer a, gconstpointer b) {
+static gint ___lambda68__gcompare_func (gconstpointer a, gconstpointer b) {
 	gint result;
-	result = __lambda65_ ((GalaInternalUtilsTilableWindow*) a, (GalaInternalUtilsTilableWindow*) b);
-#line 195 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+	result = __lambda68_ ((GalaInternalUtilsTilableWindow*) a, (GalaInternalUtilsTilableWindow*) b);
+#line 195 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 840 "WindowCloneContainer.c"
 }
@@ -863,31 +863,31 @@ void gala_window_clone_container_reflow (GalaWindowCloneContainer* self) {
 	GList* _tmp24_ = NULL;
 	GList* _tmp25_ = NULL;
 	GList* _tmp26_ = NULL;
-#line 178 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 180 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->opened;
-#line 180 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (!_tmp0_) {
-#line 181 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		return;
 #line 875 "WindowCloneContainer.c"
 	}
-#line 183 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	windows = NULL;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 881 "WindowCloneContainer.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		child_collection = _tmp1_;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 889 "WindowCloneContainer.c"
 			ClutterActor* child = NULL;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			child = (ClutterActor*) child_it->data;
 #line 893 "WindowCloneContainer.c"
 			{
@@ -900,103 +900,103 @@ void gala_window_clone_container_reflow (GalaWindowCloneContainer* self) {
 				GalaWindowClone* _tmp7_ = NULL;
 				GalaInternalUtilsTilableWindow _tmp8_ = {0};
 				GalaInternalUtilsTilableWindow* _tmp9_ = NULL;
-#line 185 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp2_ = child;
-#line 185 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				window = G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone);
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp3_ = window;
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp4_ = gala_window_clone_get_window (_tmp3_);
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp5_ = _tmp4_;
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				meta_window_get_frame_rect (_tmp5_, &_tmp6_);
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp7_ = window;
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp8_.rect = _tmp6_;
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp8_.id = _tmp7_;
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp9_ = _gala_internal_utils_tilable_window_dup0 (&_tmp8_);
-#line 186 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				windows = g_list_prepend (windows, _tmp9_);
 #line 926 "WindowCloneContainer.c"
 			}
 		}
-#line 184 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_list_free0 (child_collection);
 #line 931 "WindowCloneContainer.c"
 	}
-#line 189 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp10_ = windows;
-#line 189 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp11_ = g_list_length (_tmp10_);
-#line 189 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp11_ < ((guint) 1)) {
-#line 190 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		__g_list_free__gala_internal_utils_tilable_window_free0_0 (windows);
-#line 190 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		return;
 #line 943 "WindowCloneContainer.c"
 	}
-#line 195 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	windows = g_list_sort (windows, ___lambda65__gcompare_func);
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	windows = g_list_sort (windows, ___lambda68__gcompare_func);
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp12_ = self->priv->_padding_left;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp13_ = self->priv->_padding_top;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp14_ = clutter_actor_get_width ((ClutterActor*) self);
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp15_ = _tmp14_;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp16_ = self->priv->_padding_left;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp17_ = self->priv->_padding_right;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp18_ = clutter_actor_get_height ((ClutterActor*) self);
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp19_ = _tmp18_;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp20_ = self->priv->_padding_top;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp21_ = self->priv->_padding_bottom;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp22_.x = _tmp12_;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp22_.y = _tmp13_;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp22_.width = (((gint) _tmp15_) - _tmp16_) - _tmp17_;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp22_.height = (((gint) _tmp19_) - _tmp20_) - _tmp21_;
-#line 201 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	area = _tmp22_;
-#line 208 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp23_ = area;
-#line 208 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp24_ = windows;
-#line 208 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp25_ = gala_internal_utils_calculate_grid_placement (&_tmp23_, _tmp24_);
-#line 208 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	window_positions = _tmp25_;
-#line 210 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp26_ = window_positions;
 #line 987 "WindowCloneContainer.c"
 	{
 		GList* tilable_collection = NULL;
 		GList* tilable_it = NULL;
-#line 210 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		tilable_collection = _tmp26_;
-#line 210 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (tilable_it = tilable_collection; tilable_it != NULL; tilable_it = tilable_it->next) {
 #line 995 "WindowCloneContainer.c"
 			GalaInternalUtilsTilableWindow* _tmp27_ = NULL;
 			GalaInternalUtilsTilableWindow* tilable = NULL;
-#line 210 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			_tmp27_ = _gala_internal_utils_tilable_window_dup0 ((GalaInternalUtilsTilableWindow*) tilable_it->data);
-#line 210 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			tilable = _tmp27_;
 #line 1002 "WindowCloneContainer.c"
 			{
@@ -1013,45 +1013,45 @@ void gala_window_clone_container_reflow (GalaWindowCloneContainer* self) {
 				GalaInternalUtilsTilableWindow* _tmp37_ = NULL;
 				MetaRectangle _tmp38_ = {0};
 				gint _tmp39_ = 0;
-#line 211 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp28_ = tilable;
-#line 211 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp29_ = (*_tmp28_).id;
-#line 211 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				window = G_TYPE_CHECK_INSTANCE_CAST (_tmp29_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone);
-#line 212 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp30_ = window;
-#line 212 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp31_ = tilable;
-#line 212 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp32_ = (*_tmp31_).rect;
-#line 212 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				gala_window_clone_take_slot (_tmp30_, &_tmp32_);
-#line 213 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp33_ = window;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp34_ = tilable;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp35_ = (*_tmp34_).rect;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp36_ = _tmp35_.width;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp37_ = tilable;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp38_ = (*_tmp37_).rect;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp39_ = _tmp38_.height;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				gala_window_clone_place_widgets (_tmp33_, _tmp36_, _tmp39_);
-#line 210 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_gala_internal_utils_tilable_window_free0 (tilable);
 #line 1049 "WindowCloneContainer.c"
 			}
 		}
 	}
-#line 178 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	__g_list_free__gala_internal_utils_tilable_window_free0_0 (window_positions);
-#line 178 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	__g_list_free__gala_internal_utils_tilable_window_free0_0 (windows);
 #line 1057 "WindowCloneContainer.c"
 }
@@ -1065,18 +1065,18 @@ void gala_window_clone_container_reflow (GalaWindowCloneContainer* self) {
  */
 static MetaRectangle* _meta_rectangle_dup (MetaRectangle* self) {
 	MetaRectangle* dup;
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	dup = g_new0 (MetaRectangle, 1);
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	memcpy (dup, self, sizeof (MetaRectangle));
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return dup;
 #line 1075 "WindowCloneContainer.c"
 }
 
 
 static gpointer __meta_rectangle_dup0 (gpointer self) {
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return self ? _meta_rectangle_dup (self) : NULL;
 #line 1082 "WindowCloneContainer.c"
 }
@@ -1097,60 +1097,60 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 	GalaWindowClone* _tmp127_ = NULL;
 	GalaWindowClone* _tmp128_ = NULL;
 	GalaWindowClone* _tmp129_ = NULL;
-#line 223 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 225 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 225 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = clutter_actor_get_n_children ((ClutterActor*) self);
-#line 225 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 225 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp0_ < 1) {
-#line 226 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		return;
 #line 1109 "WindowCloneContainer.c"
 	}
-#line 228 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = self->priv->current_window;
-#line 228 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp1_ == NULL) {
 #line 1115 "WindowCloneContainer.c"
 		ClutterActor* _tmp2_ = NULL;
 		GalaWindowClone* _tmp3_ = NULL;
-#line 229 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_tmp2_ = clutter_actor_get_child_at_index ((ClutterActor*) self, 0);
-#line 229 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_tmp3_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 229 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_object_unref0 (self->priv->current_window);
-#line 229 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		self->priv->current_window = _tmp3_;
-#line 230 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		return;
 #line 1128 "WindowCloneContainer.c"
 	}
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp4_ = self->priv->current_window;
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp5_ = gala_window_clone_get_slot (_tmp4_);
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp6_ = _tmp5_;
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp7_ = __meta_rectangle_dup0 (_tmp6_);
-#line 233 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	current_rect = _tmp7_;
-#line 235 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	closest = NULL;
-#line 236 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp8_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 1144 "WindowCloneContainer.c"
 	{
 		GList* window_collection = NULL;
 		GList* window_it = NULL;
-#line 236 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		window_collection = _tmp8_;
-#line 236 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
 #line 1152 "WindowCloneContainer.c"
 			ClutterActor* window = NULL;
-#line 236 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			window = (ClutterActor*) window_it->data;
 #line 1156 "WindowCloneContainer.c"
 			{
@@ -1162,31 +1162,31 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 				MetaRectangle* _tmp13_ = NULL;
 				MetaRectangle* _tmp14_ = NULL;
 				MetaMotionDirection _tmp15_ = 0;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp9_ = window;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp10_ = self->priv->current_window;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				if (_tmp9_ == G_TYPE_CHECK_INSTANCE_CAST (_tmp10_, clutter_actor_get_type (), ClutterActor)) {
-#line 238 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					continue;
 #line 1174 "WindowCloneContainer.c"
 				}
-#line 240 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp11_ = window;
-#line 240 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp12_ = gala_window_clone_get_slot (G_TYPE_CHECK_INSTANCE_CAST (_tmp11_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 240 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp13_ = _tmp12_;
-#line 240 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp14_ = __meta_rectangle_dup0 (_tmp13_);
-#line 240 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				window_rect = _tmp14_;
-#line 242 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp15_ = direction;
-#line 242 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				switch (_tmp15_) {
-#line 242 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					case META_MOTION_LEFT:
 #line 1192 "WindowCloneContainer.c"
 					{
@@ -1201,33 +1201,33 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 						gint _tmp24_ = 0;
 						MetaRectangle* _tmp25_ = NULL;
 						gint _tmp26_ = 0;
-#line 244 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp16_ = window_rect;
-#line 244 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp17_ = (*_tmp16_).x;
-#line 244 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp18_ = current_rect;
-#line 244 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp19_ = (*_tmp18_).x;
-#line 244 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if (_tmp17_ > _tmp19_) {
-#line 245 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							continue;
 #line 1217 "WindowCloneContainer.c"
 						}
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp21_ = window_rect;
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp22_ = (*_tmp21_).y;
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp23_ = window_rect;
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp24_ = (*_tmp23_).height;
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp25_ = current_rect;
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp26_ = (*_tmp25_).y;
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if ((_tmp22_ + _tmp24_) > _tmp26_) {
 #line 1233 "WindowCloneContainer.c"
 							MetaRectangle* _tmp27_ = NULL;
@@ -1236,36 +1236,36 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 							gint _tmp30_ = 0;
 							MetaRectangle* _tmp31_ = NULL;
 							gint _tmp32_ = 0;
-#line 249 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp27_ = window_rect;
-#line 249 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp28_ = (*_tmp27_).y;
-#line 249 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp29_ = current_rect;
-#line 249 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp30_ = (*_tmp29_).y;
-#line 249 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp31_ = current_rect;
-#line 249 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp32_ = (*_tmp31_).height;
-#line 249 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp20_ = _tmp28_ < (_tmp30_ + _tmp32_);
 #line 1254 "WindowCloneContainer.c"
 						} else {
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp20_ = FALSE;
 #line 1258 "WindowCloneContainer.c"
 						}
-#line 248 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if (_tmp20_) {
 #line 1262 "WindowCloneContainer.c"
 							gboolean _tmp33_ = FALSE;
 							GalaWindowClone* _tmp34_ = NULL;
-#line 251 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp34_ = closest;
-#line 251 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp34_ == NULL) {
-#line 251 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp33_ = TRUE;
 #line 1271 "WindowCloneContainer.c"
 							} else {
@@ -1275,43 +1275,43 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 								gint _tmp38_ = 0;
 								MetaRectangle* _tmp39_ = NULL;
 								gint _tmp40_ = 0;
-#line 252 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp35_ = closest;
-#line 252 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp36_ = gala_window_clone_get_slot (_tmp35_);
-#line 252 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp37_ = _tmp36_;
-#line 252 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp38_ = (*_tmp37_).x;
-#line 252 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp39_ = window_rect;
-#line 252 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp40_ = (*_tmp39_).x;
-#line 252 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp33_ = _tmp38_ < _tmp40_;
 #line 1293 "WindowCloneContainer.c"
 							}
-#line 251 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp33_) {
 #line 1297 "WindowCloneContainer.c"
 								ClutterActor* _tmp41_ = NULL;
 								GalaWindowClone* _tmp42_ = NULL;
-#line 253 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp41_ = window;
-#line 253 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp42_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp41_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 253 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_g_object_unref0 (closest);
-#line 253 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								closest = _tmp42_;
 #line 1308 "WindowCloneContainer.c"
 							}
 						}
-#line 255 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						break;
 #line 1313 "WindowCloneContainer.c"
 					}
-#line 242 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					case META_MOTION_RIGHT:
 #line 1317 "WindowCloneContainer.c"
 					{
@@ -1326,33 +1326,33 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 						gint _tmp51_ = 0;
 						MetaRectangle* _tmp52_ = NULL;
 						gint _tmp53_ = 0;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp43_ = window_rect;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp44_ = (*_tmp43_).x;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp45_ = current_rect;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp46_ = (*_tmp45_).x;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if (_tmp44_ < _tmp46_) {
-#line 258 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							continue;
 #line 1342 "WindowCloneContainer.c"
 						}
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp48_ = window_rect;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp49_ = (*_tmp48_).y;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp50_ = window_rect;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp51_ = (*_tmp50_).height;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp52_ = current_rect;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp53_ = (*_tmp52_).y;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if ((_tmp49_ + _tmp51_) > _tmp53_) {
 #line 1358 "WindowCloneContainer.c"
 							MetaRectangle* _tmp54_ = NULL;
@@ -1361,36 +1361,36 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 							gint _tmp57_ = 0;
 							MetaRectangle* _tmp58_ = NULL;
 							gint _tmp59_ = 0;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp54_ = window_rect;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp55_ = (*_tmp54_).y;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp56_ = current_rect;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp57_ = (*_tmp56_).y;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp58_ = current_rect;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp59_ = (*_tmp58_).height;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp47_ = _tmp55_ < (_tmp57_ + _tmp59_);
 #line 1379 "WindowCloneContainer.c"
 						} else {
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp47_ = FALSE;
 #line 1383 "WindowCloneContainer.c"
 						}
-#line 261 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if (_tmp47_) {
 #line 1387 "WindowCloneContainer.c"
 							gboolean _tmp60_ = FALSE;
 							GalaWindowClone* _tmp61_ = NULL;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp61_ = closest;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp61_ == NULL) {
-#line 264 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp60_ = TRUE;
 #line 1396 "WindowCloneContainer.c"
 							} else {
@@ -1400,43 +1400,43 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 								gint _tmp65_ = 0;
 								MetaRectangle* _tmp66_ = NULL;
 								gint _tmp67_ = 0;
-#line 265 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 265 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp62_ = closest;
-#line 265 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 265 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp63_ = gala_window_clone_get_slot (_tmp62_);
-#line 265 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 265 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp64_ = _tmp63_;
-#line 265 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 265 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp65_ = (*_tmp64_).x;
-#line 265 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 265 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp66_ = window_rect;
-#line 265 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 265 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp67_ = (*_tmp66_).x;
-#line 265 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 265 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp60_ = _tmp65_ > _tmp67_;
 #line 1418 "WindowCloneContainer.c"
 							}
-#line 264 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp60_) {
 #line 1422 "WindowCloneContainer.c"
 								ClutterActor* _tmp68_ = NULL;
 								GalaWindowClone* _tmp69_ = NULL;
-#line 266 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp68_ = window;
-#line 266 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp69_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp68_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 266 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_g_object_unref0 (closest);
-#line 266 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								closest = _tmp69_;
 #line 1433 "WindowCloneContainer.c"
 							}
 						}
-#line 268 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 268 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						break;
 #line 1438 "WindowCloneContainer.c"
 					}
-#line 242 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					case META_MOTION_UP:
 #line 1442 "WindowCloneContainer.c"
 					{
@@ -1451,33 +1451,33 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 						gint _tmp78_ = 0;
 						MetaRectangle* _tmp79_ = NULL;
 						gint _tmp80_ = 0;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp70_ = window_rect;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp71_ = (*_tmp70_).y;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp72_ = current_rect;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp73_ = (*_tmp72_).y;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if (_tmp71_ > _tmp73_) {
-#line 271 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							continue;
 #line 1467 "WindowCloneContainer.c"
 						}
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp75_ = window_rect;
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp76_ = (*_tmp75_).x;
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp77_ = window_rect;
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp78_ = (*_tmp77_).width;
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp79_ = current_rect;
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp80_ = (*_tmp79_).x;
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if ((_tmp76_ + _tmp78_) > _tmp80_) {
 #line 1483 "WindowCloneContainer.c"
 							MetaRectangle* _tmp81_ = NULL;
@@ -1486,36 +1486,36 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 							gint _tmp84_ = 0;
 							MetaRectangle* _tmp85_ = NULL;
 							gint _tmp86_ = 0;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp81_ = window_rect;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp82_ = (*_tmp81_).x;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp83_ = current_rect;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp84_ = (*_tmp83_).x;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp85_ = current_rect;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp86_ = (*_tmp85_).width;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp74_ = _tmp82_ < (_tmp84_ + _tmp86_);
 #line 1504 "WindowCloneContainer.c"
 						} else {
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp74_ = FALSE;
 #line 1508 "WindowCloneContainer.c"
 						}
-#line 274 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if (_tmp74_) {
 #line 1512 "WindowCloneContainer.c"
 							gboolean _tmp87_ = FALSE;
 							GalaWindowClone* _tmp88_ = NULL;
-#line 277 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp88_ = closest;
-#line 277 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp88_ == NULL) {
-#line 277 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp87_ = TRUE;
 #line 1521 "WindowCloneContainer.c"
 							} else {
@@ -1525,43 +1525,43 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 								gint _tmp92_ = 0;
 								MetaRectangle* _tmp93_ = NULL;
 								gint _tmp94_ = 0;
-#line 278 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp89_ = closest;
-#line 278 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp90_ = gala_window_clone_get_slot (_tmp89_);
-#line 278 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp91_ = _tmp90_;
-#line 278 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp92_ = (*_tmp91_).y;
-#line 278 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp93_ = window_rect;
-#line 278 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp94_ = (*_tmp93_).y;
-#line 278 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp87_ = _tmp92_ < _tmp94_;
 #line 1543 "WindowCloneContainer.c"
 							}
-#line 277 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp87_) {
 #line 1547 "WindowCloneContainer.c"
 								ClutterActor* _tmp95_ = NULL;
 								GalaWindowClone* _tmp96_ = NULL;
-#line 279 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp95_ = window;
-#line 279 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp96_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp95_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 279 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_g_object_unref0 (closest);
-#line 279 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								closest = _tmp96_;
 #line 1558 "WindowCloneContainer.c"
 							}
 						}
-#line 281 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						break;
 #line 1563 "WindowCloneContainer.c"
 					}
-#line 242 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					case META_MOTION_DOWN:
 #line 1567 "WindowCloneContainer.c"
 					{
@@ -1576,33 +1576,33 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 						gint _tmp105_ = 0;
 						MetaRectangle* _tmp106_ = NULL;
 						gint _tmp107_ = 0;
-#line 283 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp97_ = window_rect;
-#line 283 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp98_ = (*_tmp97_).y;
-#line 283 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp99_ = current_rect;
-#line 283 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp100_ = (*_tmp99_).y;
-#line 283 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if (_tmp98_ < _tmp100_) {
-#line 284 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							continue;
 #line 1592 "WindowCloneContainer.c"
 						}
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp102_ = window_rect;
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp103_ = (*_tmp102_).x;
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp104_ = window_rect;
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp105_ = (*_tmp104_).width;
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp106_ = current_rect;
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp107_ = (*_tmp106_).x;
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if ((_tmp103_ + _tmp105_) > _tmp107_) {
 #line 1608 "WindowCloneContainer.c"
 							MetaRectangle* _tmp108_ = NULL;
@@ -1611,36 +1611,36 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 							gint _tmp111_ = 0;
 							MetaRectangle* _tmp112_ = NULL;
 							gint _tmp113_ = 0;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp108_ = window_rect;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp109_ = (*_tmp108_).x;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp110_ = current_rect;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp111_ = (*_tmp110_).x;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp112_ = current_rect;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp113_ = (*_tmp112_).width;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp101_ = _tmp109_ < (_tmp111_ + _tmp113_);
 #line 1629 "WindowCloneContainer.c"
 						} else {
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp101_ = FALSE;
 #line 1633 "WindowCloneContainer.c"
 						}
-#line 287 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						if (_tmp101_) {
 #line 1637 "WindowCloneContainer.c"
 							gboolean _tmp114_ = FALSE;
 							GalaWindowClone* _tmp115_ = NULL;
-#line 290 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							_tmp115_ = closest;
-#line 290 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp115_ == NULL) {
-#line 290 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp114_ = TRUE;
 #line 1646 "WindowCloneContainer.c"
 							} else {
@@ -1650,95 +1650,95 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
 								gint _tmp119_ = 0;
 								MetaRectangle* _tmp120_ = NULL;
 								gint _tmp121_ = 0;
-#line 291 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp116_ = closest;
-#line 291 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp117_ = gala_window_clone_get_slot (_tmp116_);
-#line 291 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp118_ = _tmp117_;
-#line 291 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp119_ = (*_tmp118_).y;
-#line 291 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp120_ = window_rect;
-#line 291 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp121_ = (*_tmp120_).y;
-#line 291 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp114_ = _tmp119_ > _tmp121_;
 #line 1668 "WindowCloneContainer.c"
 							}
-#line 290 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 							if (_tmp114_) {
 #line 1672 "WindowCloneContainer.c"
 								ClutterActor* _tmp122_ = NULL;
 								GalaWindowClone* _tmp123_ = NULL;
-#line 292 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp122_ = window;
-#line 292 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_tmp123_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp122_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone));
-#line 292 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								_g_object_unref0 (closest);
-#line 292 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 								closest = _tmp123_;
 #line 1683 "WindowCloneContainer.c"
 							}
 						}
-#line 294 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						break;
 #line 1688 "WindowCloneContainer.c"
 					}
 					default:
-#line 242 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					break;
 #line 1693 "WindowCloneContainer.c"
 				}
-#line 236 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_g_free0 (window_rect);
 #line 1697 "WindowCloneContainer.c"
 			}
 		}
-#line 236 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_list_free0 (window_collection);
 #line 1702 "WindowCloneContainer.c"
 	}
-#line 298 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp124_ = closest;
-#line 298 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp124_ == NULL) {
-#line 299 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 299 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_object_unref0 (closest);
-#line 299 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 299 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_free0 (current_rect);
-#line 299 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 299 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		return;
 #line 1714 "WindowCloneContainer.c"
 	}
-#line 301 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 301 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp125_ = self->priv->current_window;
-#line 301 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 301 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp125_ != NULL) {
 #line 1720 "WindowCloneContainer.c"
 		GalaWindowClone* _tmp126_ = NULL;
-#line 302 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 302 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_tmp126_ = self->priv->current_window;
-#line 302 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 302 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		gala_window_clone_set_active (_tmp126_, FALSE);
 #line 1726 "WindowCloneContainer.c"
 	}
-#line 304 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp127_ = closest;
-#line 304 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_set_active (_tmp127_, TRUE);
-#line 305 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp128_ = closest;
-#line 305 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp129_ = _g_object_ref0 (_tmp128_);
-#line 305 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_object_unref0 (self->priv->current_window);
-#line 305 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->current_window = _tmp129_;
-#line 223 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_object_unref0 (closest);
-#line 223 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_free0 (current_rect);
 #line 1744 "WindowCloneContainer.c"
 }
@@ -1749,17 +1749,17 @@ void gala_window_clone_container_select_next_window (GalaWindowCloneContainer* s
  */
 void gala_window_clone_container_activate_selected_window (GalaWindowCloneContainer* self) {
 	GalaWindowClone* _tmp0_ = NULL;
-#line 311 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 311 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 313 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->current_window;
-#line 313 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp0_ != NULL) {
 #line 1759 "WindowCloneContainer.c"
 		GalaWindowClone* _tmp1_ = NULL;
-#line 314 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_tmp1_ = self->priv->current_window;
-#line 314 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		g_signal_emit_by_name (_tmp1_, "selected");
 #line 1765 "WindowCloneContainer.c"
 	}
@@ -1773,38 +1773,38 @@ void gala_window_clone_container_open (GalaWindowCloneContainer* self, MetaWindo
 	gboolean _tmp0_ = FALSE;
 	MetaWindow* _tmp1_ = NULL;
 	GList* _tmp11_ = NULL;
-#line 320 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 322 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 322 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->opened;
-#line 322 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 322 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp0_) {
-#line 323 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 323 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		return;
 #line 1785 "WindowCloneContainer.c"
 	}
-#line 325 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 325 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->opened = TRUE;
-#line 328 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = selected_window;
-#line 328 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (_tmp1_ != NULL) {
 #line 1793 "WindowCloneContainer.c"
 		GList* _tmp2_ = NULL;
 		GalaWindowClone* _tmp10_ = NULL;
-#line 329 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 329 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_tmp2_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 1798 "WindowCloneContainer.c"
 		{
 			GList* child_collection = NULL;
 			GList* child_it = NULL;
-#line 329 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 329 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			child_collection = _tmp2_;
-#line 329 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 329 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 1806 "WindowCloneContainer.c"
 				ClutterActor* child = NULL;
-#line 329 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 329 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				child = (ClutterActor*) child_it->data;
 #line 1810 "WindowCloneContainer.c"
 				{
@@ -1814,82 +1814,82 @@ void gala_window_clone_container_open (GalaWindowCloneContainer* self, MetaWindo
 					MetaWindow* _tmp5_ = NULL;
 					MetaWindow* _tmp6_ = NULL;
 					MetaWindow* _tmp7_ = NULL;
-#line 330 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp3_ = child;
-#line 330 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					tiled_window = G_TYPE_CHECK_INSTANCE_CAST (_tmp3_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone);
-#line 331 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp4_ = tiled_window;
-#line 331 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp5_ = gala_window_clone_get_window (_tmp4_);
-#line 331 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp6_ = _tmp5_;
-#line 331 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					_tmp7_ = selected_window;
-#line 331 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 					if (_tmp6_ == _tmp7_) {
 #line 1832 "WindowCloneContainer.c"
 						GalaWindowClone* _tmp8_ = NULL;
 						GalaWindowClone* _tmp9_ = NULL;
-#line 332 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp8_ = tiled_window;
-#line 332 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_tmp9_ = _g_object_ref0 (_tmp8_);
-#line 332 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						_g_object_unref0 (self->priv->current_window);
-#line 332 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						self->priv->current_window = _tmp9_;
-#line 333 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 333 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 						break;
 #line 1845 "WindowCloneContainer.c"
 					}
 				}
 			}
-#line 329 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 329 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			_g_list_free0 (child_collection);
 #line 1851 "WindowCloneContainer.c"
 		}
-#line 336 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 336 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_tmp10_ = self->priv->current_window;
-#line 336 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 336 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		gala_window_clone_set_active (_tmp10_, FALSE);
 #line 1857 "WindowCloneContainer.c"
 	} else {
-#line 338 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 338 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_object_unref0 (self->priv->current_window);
-#line 338 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 338 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		self->priv->current_window = NULL;
 #line 1863 "WindowCloneContainer.c"
 	}
-#line 343 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 343 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp11_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 1867 "WindowCloneContainer.c"
 	{
 		GList* window_collection = NULL;
 		GList* window_it = NULL;
-#line 343 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 343 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		window_collection = _tmp11_;
-#line 343 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 343 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
 #line 1875 "WindowCloneContainer.c"
 			ClutterActor* window = NULL;
-#line 343 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 343 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			window = (ClutterActor*) window_it->data;
 #line 1879 "WindowCloneContainer.c"
 			{
 				ClutterActor* _tmp12_ = NULL;
-#line 344 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 344 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp12_ = window;
-#line 344 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 344 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				gala_window_clone_transition_to_original_state (G_TYPE_CHECK_INSTANCE_CAST (_tmp12_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone), FALSE);
 #line 1886 "WindowCloneContainer.c"
 			}
 		}
-#line 343 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 343 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_list_free0 (window_collection);
 #line 1891 "WindowCloneContainer.c"
 	}
-#line 346 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_container_reflow (self);
 #line 1895 "WindowCloneContainer.c"
 }
@@ -1902,43 +1902,43 @@ void gala_window_clone_container_open (GalaWindowCloneContainer* self, MetaWindo
 void gala_window_clone_container_close (GalaWindowCloneContainer* self) {
 	gboolean _tmp0_ = FALSE;
 	GList* _tmp1_ = NULL;
-#line 353 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 353 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 355 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->opened;
-#line 355 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	if (!_tmp0_) {
-#line 356 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		return;
 #line 1914 "WindowCloneContainer.c"
 	}
-#line 358 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 358 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->opened = FALSE;
-#line 360 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp1_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 1920 "WindowCloneContainer.c"
 	{
 		GList* window_collection = NULL;
 		GList* window_it = NULL;
-#line 360 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		window_collection = _tmp1_;
-#line 360 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
 #line 1928 "WindowCloneContainer.c"
 			ClutterActor* window = NULL;
-#line 360 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 			window = (ClutterActor*) window_it->data;
 #line 1932 "WindowCloneContainer.c"
 			{
 				ClutterActor* _tmp2_ = NULL;
-#line 361 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				_tmp2_ = window;
-#line 361 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 				gala_window_clone_transition_to_original_state (G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, GALA_TYPE_WINDOW_CLONE, GalaWindowClone), TRUE);
 #line 1939 "WindowCloneContainer.c"
 			}
 		}
-#line 360 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		_g_list_free0 (window_collection);
 #line 1944 "WindowCloneContainer.c"
 	}
@@ -1948,13 +1948,13 @@ void gala_window_clone_container_close (GalaWindowCloneContainer* self) {
 gint gala_window_clone_container_get_padding_top (GalaWindowCloneContainer* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->_padding_top;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	result = _tmp0_;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 1960 "WindowCloneContainer.c"
 }
@@ -1962,13 +1962,13 @@ gint gala_window_clone_container_get_padding_top (GalaWindowCloneContainer* self
 
 void gala_window_clone_container_set_padding_top (GalaWindowCloneContainer* self, gint value) {
 	gint _tmp0_ = 0;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = value;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->_padding_top = _tmp0_;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_object_notify ((GObject *) self, "padding-top");
 #line 1974 "WindowCloneContainer.c"
 }
@@ -1977,13 +1977,13 @@ void gala_window_clone_container_set_padding_top (GalaWindowCloneContainer* self
 gint gala_window_clone_container_get_padding_left (GalaWindowCloneContainer* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->_padding_left;
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	result = _tmp0_;
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 1989 "WindowCloneContainer.c"
 }
@@ -1991,13 +1991,13 @@ gint gala_window_clone_container_get_padding_left (GalaWindowCloneContainer* sel
 
 void gala_window_clone_container_set_padding_left (GalaWindowCloneContainer* self, gint value) {
 	gint _tmp0_ = 0;
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = value;
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->_padding_left = _tmp0_;
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_object_notify ((GObject *) self, "padding-left");
 #line 2003 "WindowCloneContainer.c"
 }
@@ -2006,13 +2006,13 @@ void gala_window_clone_container_set_padding_left (GalaWindowCloneContainer* sel
 gint gala_window_clone_container_get_padding_right (GalaWindowCloneContainer* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->_padding_right;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	result = _tmp0_;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 2018 "WindowCloneContainer.c"
 }
@@ -2020,13 +2020,13 @@ gint gala_window_clone_container_get_padding_right (GalaWindowCloneContainer* se
 
 void gala_window_clone_container_set_padding_right (GalaWindowCloneContainer* self, gint value) {
 	gint _tmp0_ = 0;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = value;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->_padding_right = _tmp0_;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_object_notify ((GObject *) self, "padding-right");
 #line 2032 "WindowCloneContainer.c"
 }
@@ -2035,13 +2035,13 @@ void gala_window_clone_container_set_padding_right (GalaWindowCloneContainer* se
 gint gala_window_clone_container_get_padding_bottom (GalaWindowCloneContainer* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->_padding_bottom;
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	result = _tmp0_;
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 2047 "WindowCloneContainer.c"
 }
@@ -2049,13 +2049,13 @@ gint gala_window_clone_container_get_padding_bottom (GalaWindowCloneContainer* s
 
 void gala_window_clone_container_set_padding_bottom (GalaWindowCloneContainer* self, gint value) {
 	gint _tmp0_ = 0;
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = value;
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->_padding_bottom = _tmp0_;
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_object_notify ((GObject *) self, "padding-bottom");
 #line 2061 "WindowCloneContainer.c"
 }
@@ -2064,13 +2064,13 @@ void gala_window_clone_container_set_padding_bottom (GalaWindowCloneContainer* s
 gboolean gala_window_clone_container_get_overview_mode (GalaWindowCloneContainer* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 35 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 35 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = self->priv->_overview_mode;
-#line 35 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	result = _tmp0_;
-#line 35 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return result;
 #line 2076 "WindowCloneContainer.c"
 }
@@ -2078,13 +2078,13 @@ gboolean gala_window_clone_container_get_overview_mode (GalaWindowCloneContainer
 
 static void gala_window_clone_container_set_overview_mode (GalaWindowCloneContainer* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 35 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_return_if_fail (self != NULL);
-#line 35 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_tmp0_ = value;
-#line 35 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->_overview_mode = _tmp0_;
-#line 35 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_object_notify ((GObject *) self, "overview-mode");
 #line 2090 "WindowCloneContainer.c"
 }
@@ -2094,75 +2094,75 @@ static GObject * gala_window_clone_container_constructor (GType type, guint n_co
 	GObject * obj;
 	GObjectClass * parent_class;
 	GalaWindowCloneContainer * self;
-#line 50 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	parent_class = G_OBJECT_CLASS (gala_window_clone_container_parent_class);
-#line 50 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 50 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_CLONE_CONTAINER, GalaWindowCloneContainer);
-#line 52 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->opened = FALSE;
-#line 53 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_object_unref0 (self->priv->current_window);
-#line 53 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv->current_window = NULL;
-#line 50 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	return obj;
 #line 2112 "WindowCloneContainer.c"
 }
 
 
 static void gala_window_clone_container_class_init (GalaWindowCloneContainerClass * klass) {
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	gala_window_clone_container_parent_class = g_type_class_peek_parent (klass);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_type_class_add_private (klass, sizeof (GalaWindowCloneContainerPrivate));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_window_clone_container_get_property;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_window_clone_container_set_property;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_window_clone_container_constructor;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_window_clone_container_finalize;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_PADDING_TOP, g_param_spec_int ("padding-top", "padding-top", "padding-top", G_MININT, G_MAXINT, 12, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_PADDING_LEFT, g_param_spec_int ("padding-left", "padding-left", "padding-left", G_MININT, G_MAXINT, 12, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_PADDING_RIGHT, g_param_spec_int ("padding-right", "padding-right", "padding-right", G_MININT, G_MAXINT, 12, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_PADDING_BOTTOM, g_param_spec_int ("padding-bottom", "padding-bottom", "padding-bottom", G_MININT, G_MAXINT, 12, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_PADDING_TOP, g_param_spec_int ("padding-top", "padding-top", "padding-top", G_MININT, G_MAXINT, 2, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_PADDING_LEFT, g_param_spec_int ("padding-left", "padding-left", "padding-left", G_MININT, G_MAXINT, 2, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_PADDING_RIGHT, g_param_spec_int ("padding-right", "padding-right", "padding-right", G_MININT, G_MAXINT, 2, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_PADDING_BOTTOM, g_param_spec_int ("padding-bottom", "padding-bottom", "padding-bottom", G_MININT, G_MAXINT, 2, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_CLONE_CONTAINER_OVERVIEW_MODE, g_param_spec_boolean ("overview-mode", "overview-mode", "overview-mode", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	g_signal_new ("window_selected", GALA_TYPE_WINDOW_CLONE_CONTAINER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__OBJECT, G_TYPE_NONE, 1, meta_window_get_type ());
 #line 2141 "WindowCloneContainer.c"
 }
 
 
 static void gala_window_clone_container_instance_init (GalaWindowCloneContainer * self) {
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self->priv = GALA_WINDOW_CLONE_CONTAINER_GET_PRIVATE (self);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	self->priv->_padding_top = 12;
-#line 31 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	self->priv->_padding_left = 12;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	self->priv->_padding_right = 12;
-#line 33 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
-	self->priv->_padding_bottom = 12;
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	self->priv->_padding_top = 2;
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	self->priv->_padding_left = 2;
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	self->priv->_padding_right = 2;
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
+	self->priv->_padding_bottom = 2;
 #line 2156 "WindowCloneContainer.c"
 }
 
 
 static void gala_window_clone_container_finalize (GObject* obj) {
 	GalaWindowCloneContainer * self;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_CLONE_CONTAINER, GalaWindowCloneContainer);
-#line 43 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	_g_object_unref0 (self->priv->current_window);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	G_OBJECT_CLASS (gala_window_clone_container_parent_class)->finalize (obj);
 #line 2168 "WindowCloneContainer.c"
 }
@@ -2186,43 +2186,43 @@ GType gala_window_clone_container_get_type (void) {
 static void _vala_gala_window_clone_container_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaWindowCloneContainer * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_CLONE_CONTAINER, GalaWindowCloneContainer);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	switch (property_id) {
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_PADDING_TOP:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		g_value_set_int (value, gala_window_clone_container_get_padding_top (self));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_PADDING_LEFT:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		g_value_set_int (value, gala_window_clone_container_get_padding_left (self));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_PADDING_RIGHT:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		g_value_set_int (value, gala_window_clone_container_get_padding_right (self));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_PADDING_BOTTOM:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		g_value_set_int (value, gala_window_clone_container_get_padding_bottom (self));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_OVERVIEW_MODE:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		g_value_set_boolean (value, gala_window_clone_container_get_overview_mode (self));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
 #line 2222 "WindowCloneContainer.c"
 		default:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
 #line 2228 "WindowCloneContainer.c"
 	}
@@ -2232,43 +2232,43 @@ static void _vala_gala_window_clone_container_get_property (GObject * object, gu
 static void _vala_gala_window_clone_container_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaWindowCloneContainer * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_CLONE_CONTAINER, GalaWindowCloneContainer);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 	switch (property_id) {
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_PADDING_TOP:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		gala_window_clone_container_set_padding_top (self, g_value_get_int (value));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_PADDING_LEFT:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		gala_window_clone_container_set_padding_left (self, g_value_get_int (value));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_PADDING_RIGHT:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		gala_window_clone_container_set_padding_right (self, g_value_get_int (value));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_PADDING_BOTTOM:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		gala_window_clone_container_set_padding_bottom (self, g_value_get_int (value));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		case GALA_WINDOW_CLONE_CONTAINER_OVERVIEW_MODE:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		gala_window_clone_container_set_overview_mode (self, g_value_get_boolean (value));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
 #line 2268 "WindowCloneContainer.c"
 		default:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowCloneContainer.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowCloneContainer.vala"
 		break;
 #line 2274 "WindowCloneContainer.c"
 	}

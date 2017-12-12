@@ -198,23 +198,23 @@ static void _vala_gala_window_switcher_set_property (GObject * object, guint pro
 
 
 static void _gala_window_switcher_update_dock_meta_screen_monitors_changed (MetaScreen* _sender, gpointer self) {
-#line 119 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_update_dock ((GalaWindowSwitcher*) self);
 #line 204 "WindowSwitcher.c"
 }
 
 
 static void _g_object_unref0_ (gpointer var) {
-#line 32 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	(var == NULL) ? NULL : (var = (g_object_unref (var), NULL));
 #line 211 "WindowSwitcher.c"
 }
 
 
 static void _g_list_free__g_object_unref0_ (GList* self) {
-#line 32 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_list_foreach (self, (GFunc) _g_object_unref0_, NULL);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_list_free (self);
 #line 220 "WindowSwitcher.c"
 }
@@ -223,27 +223,27 @@ static void _g_list_free__g_object_unref0_ (GList* self) {
 GalaWindowSwitcher* gala_window_switcher_construct (GType object_type, GalaWindowManager* wm) {
 	GalaWindowSwitcher * self = NULL;
 	GalaWindowManager* _tmp0_ = NULL;
-#line 57 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (wm != NULL, NULL);
-#line 59 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = wm;
-#line 59 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self = (GalaWindowSwitcher*) g_object_new (object_type, "wm", _tmp0_, NULL);
-#line 57 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return self;
 #line 235 "WindowSwitcher.c"
 }
 
 
 GalaWindowSwitcher* gala_window_switcher_new (GalaWindowManager* wm) {
-#line 57 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return gala_window_switcher_construct (GALA_TYPE_WINDOW_SWITCHER, wm);
 #line 242 "WindowSwitcher.c"
 }
 
 
 static void _gala_window_switcher_update_dock_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
-#line 125 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_update_dock ((GalaWindowSwitcher*) self);
 #line 249 "WindowSwitcher.c"
 }
@@ -257,44 +257,44 @@ static void gala_window_switcher_load_dock_theme (GalaWindowSwitcher* self) {
 	PlankDockTheme* _tmp6_ = NULL;
 	PlankDockTheme* _tmp7_ = NULL;
 	PlankDockTheme* _tmp8_ = NULL;
-#line 122 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 124 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->dock_theme;
-#line 124 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp0_ != NULL) {
 #line 267 "WindowSwitcher.c"
 		PlankDockTheme* _tmp1_ = NULL;
 		guint _tmp2_ = 0U;
-#line 125 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp1_ = self->priv->dock_theme;
-#line 125 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_signal_parse_name ("notify", G_TYPE_OBJECT, &_tmp2_, NULL, FALSE);
-#line 125 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_signal_handlers_disconnect_matched ((GObject*) _tmp1_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp2_, 0, NULL, (GCallback) _gala_window_switcher_update_dock_g_object_notify, self);
 #line 276 "WindowSwitcher.c"
 	}
-#line 128 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = self->priv->dock_settings;
-#line 128 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = plank_dock_preferences_get_Theme (_tmp3_);
-#line 128 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = _tmp4_;
-#line 128 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = plank_dock_theme_new (_tmp5_);
-#line 128 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock_theme);
-#line 128 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->dock_theme = _tmp6_;
-#line 132 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = self->priv->dock_theme;
-#line 132 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	plank_theme_load ((PlankTheme*) _tmp7_, "dock");
-#line 133 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = self->priv->dock_theme;
-#line 133 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_object ((GObject*) _tmp8_, "notify", (GCallback) _gala_window_switcher_update_dock_g_object_notify, self, 0);
-#line 135 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_update_dock (self);
 #line 300 "WindowSwitcher.c"
 }
@@ -304,7 +304,7 @@ static void gala_window_switcher_load_dock_theme (GalaWindowSwitcher* self) {
  * set the values which don't get set every time and need to be updated when the theme changes
  */
 static gpointer _g_object_ref0 (gpointer self) {
-#line 143 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 310 "WindowSwitcher.c"
 }
@@ -381,187 +381,187 @@ static void gala_window_switcher_update_dock (GalaWindowSwitcher* self) {
 	gfloat _tmp55_ = 0.0F;
 	gboolean _tmp56_ = FALSE;
 	GtkPositionType _tmp73_ = 0;
-#line 141 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 143 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->_wm;
-#line 143 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 143 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 143 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	screen = _tmp2_;
-#line 144 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = screen;
-#line 144 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = screen;
-#line 144 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = meta_screen_get_primary_monitor (_tmp4_);
-#line 144 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	meta_screen_get_monitor_geometry (_tmp3_, _tmp5_, &_tmp6_);
-#line 144 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	geometry = _tmp6_;
-#line 145 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = self->priv->dock;
-#line 145 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = clutter_actor_get_layout_manager (_tmp7_);
-#line 145 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp9_ = _tmp8_;
-#line 145 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp10_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp9_, clutter_box_layout_get_type (), ClutterBoxLayout));
-#line 145 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	layout = _tmp10_;
-#line 147 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp11_ = self->priv->dock_settings;
-#line 147 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp12_ = plank_dock_preferences_get_Position (_tmp11_);
-#line 147 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp13_ = _tmp12_;
-#line 147 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	position = _tmp13_;
-#line 148 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp14_ = self->priv->dock_settings;
-#line 148 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp15_ = plank_dock_preferences_get_IconSize (_tmp14_);
-#line 148 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp16_ = _tmp15_;
-#line 148 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	icon_size = _tmp16_;
-#line 149 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp17_ = icon_size;
-#line 149 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	scaled_icon_size = _tmp17_ / 10.0f;
-#line 150 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp18_ = self->priv->dock_settings;
-#line 150 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp19_ = plank_dock_preferences_is_horizontal_dock (_tmp18_);
-#line 150 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	horizontal = _tmp19_;
-#line 152 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp20_ = self->priv->dock_theme;
-#line 152 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp21_ = plank_dock_theme_get_TopPadding (_tmp20_);
-#line 152 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp22_ = _tmp21_;
-#line 152 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp23_ = scaled_icon_size;
-#line 152 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	top_padding = ((gfloat) _tmp22_) * _tmp23_;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp24_ = self->priv->dock_theme;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp25_ = plank_dock_theme_get_BottomPadding (_tmp24_);
-#line 153 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp26_ = _tmp25_;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp27_ = scaled_icon_size;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	bottom_padding = ((gfloat) _tmp26_) * _tmp27_;
-#line 154 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp28_ = self->priv->dock_theme;
-#line 154 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp29_ = plank_dock_theme_get_ItemPadding (_tmp28_);
-#line 154 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp30_ = _tmp29_;
-#line 154 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp31_ = scaled_icon_size;
-#line 154 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	item_padding = ((gfloat) _tmp30_) * _tmp31_;
-#line 155 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp32_ = self->priv->dock_theme;
-#line 155 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp33_ = plank_theme_get_LineWidth ((PlankTheme*) _tmp32_);
-#line 155 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp34_ = _tmp33_;
-#line 155 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	line_width = _tmp34_;
-#line 157 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp35_ = line_width;
-#line 157 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp36_ = top_padding;
-#line 157 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	top_offset = (2 * _tmp35_) + _tmp36_;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp38_ = self->priv->dock_theme;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp39_ = plank_theme_get_BottomRoundness ((PlankTheme*) _tmp38_);
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp40_ = _tmp39_;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp40_ > 0) {
 #line 493 "WindowSwitcher.c"
 		gint _tmp41_ = 0;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp41_ = line_width;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp37_ = 2 * _tmp41_;
 #line 499 "WindowSwitcher.c"
 	} else {
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp37_ = 0;
 #line 503 "WindowSwitcher.c"
 	}
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp42_ = bottom_padding;
-#line 158 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	bottom_offset = _tmp37_ + _tmp42_;
-#line 160 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp43_ = layout;
-#line 160 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp44_ = item_padding;
-#line 160 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_box_layout_set_spacing (_tmp43_, (guint) _tmp44_);
-#line 161 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp46_ = horizontal;
-#line 161 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp46_) {
-#line 161 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp45_ = CLUTTER_ORIENTATION_HORIZONTAL;
 #line 521 "WindowSwitcher.c"
 	} else {
-#line 161 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp45_ = CLUTTER_ORIENTATION_VERTICAL;
 #line 525 "WindowSwitcher.c"
 	}
-#line 161 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp47_ = layout;
-#line 161 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_box_layout_set_orientation (_tmp47_, _tmp45_);
-#line 163 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp48_ = top_offset;
-#line 163 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->dock_y_offset = -_tmp48_;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp49_ = top_offset;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp50_ = bottom_offset;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->dock_height_offset = _tmp49_ + _tmp50_;
-#line 166 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp52_ = top_offset;
-#line 166 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp52_ > ((gfloat) 0)) {
 #line 545 "WindowSwitcher.c"
 		gfloat _tmp53_ = 0.0F;
-#line 166 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp53_ = top_offset;
-#line 166 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp51_ = _tmp53_;
 #line 551 "WindowSwitcher.c"
 	} else {
-#line 166 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp51_ = (gfloat) 0;
 #line 555 "WindowSwitcher.c"
 	}
-#line 166 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp54_ = icon_size;
-#line 166 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp55_ = bottom_offset;
-#line 166 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	height = (_tmp54_ + _tmp51_) + _tmp55_;
-#line 168 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp56_ = horizontal;
-#line 168 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp56_) {
 #line 567 "WindowSwitcher.c"
 		ClutterActor* _tmp57_ = NULL;
@@ -572,25 +572,25 @@ static void gala_window_switcher_update_dock (GalaWindowSwitcher* self) {
 		MetaRectangle _tmp62_ = {0};
 		gint _tmp63_ = 0;
 		gfloat _tmp64_ = 0.0F;
-#line 169 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp57_ = self->priv->dock;
-#line 169 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp58_ = height;
-#line 169 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_height (_tmp57_, _tmp58_);
-#line 170 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp59_ = self->priv->dock;
-#line 170 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp60_ = geometry;
-#line 170 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp61_ = _tmp60_.x;
-#line 170 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp62_ = geometry;
-#line 170 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp63_ = _tmp62_.width;
-#line 170 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp64_ = ceilf (_tmp61_ + (_tmp63_ / 2.0f));
-#line 170 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_x (_tmp59_, _tmp64_);
 #line 596 "WindowSwitcher.c"
 	} else {
@@ -602,33 +602,33 @@ static void gala_window_switcher_update_dock (GalaWindowSwitcher* self) {
 		MetaRectangle _tmp70_ = {0};
 		gint _tmp71_ = 0;
 		gfloat _tmp72_ = 0.0F;
-#line 172 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp65_ = self->priv->dock;
-#line 172 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp66_ = height;
-#line 172 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_width (_tmp65_, _tmp66_);
-#line 173 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp67_ = self->priv->dock;
-#line 173 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp68_ = geometry;
-#line 173 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp69_ = _tmp68_.y;
-#line 173 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp70_ = geometry;
-#line 173 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp71_ = _tmp70_.height;
-#line 173 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp72_ = ceilf (_tmp69_ + (_tmp71_ / 2.0f));
-#line 173 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_y (_tmp67_, _tmp72_);
 #line 626 "WindowSwitcher.c"
 	}
-#line 176 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp73_ = position;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	switch (_tmp73_) {
-#line 176 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_TOP:
 #line 634 "WindowSwitcher.c"
 		{
@@ -636,21 +636,21 @@ static void gala_window_switcher_update_dock (GalaWindowSwitcher* self) {
 			MetaRectangle _tmp75_ = {0};
 			gint _tmp76_ = 0;
 			gfloat _tmp77_ = 0.0F;
-#line 178 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp74_ = self->priv->dock;
-#line 178 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp75_ = geometry;
-#line 178 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp76_ = _tmp75_.y;
-#line 178 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp77_ = ceilf ((gfloat) _tmp76_);
-#line 178 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			clutter_actor_set_y (_tmp74_, _tmp77_);
-#line 179 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 652 "WindowSwitcher.c"
 		}
-#line 176 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_BOTTOM:
 #line 656 "WindowSwitcher.c"
 		{
@@ -661,27 +661,27 @@ static void gala_window_switcher_update_dock (GalaWindowSwitcher* self) {
 			gint _tmp82_ = 0;
 			gfloat _tmp83_ = 0.0F;
 			gfloat _tmp84_ = 0.0F;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp78_ = self->priv->dock;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp79_ = geometry;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp80_ = _tmp79_.y;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp81_ = geometry;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp82_ = _tmp81_.height;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp83_ = height;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp84_ = ceilf ((_tmp80_ + _tmp82_) - _tmp83_);
-#line 181 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			clutter_actor_set_y (_tmp78_, _tmp84_);
-#line 182 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 683 "WindowSwitcher.c"
 		}
-#line 176 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_LEFT:
 #line 687 "WindowSwitcher.c"
 		{
@@ -689,21 +689,21 @@ static void gala_window_switcher_update_dock (GalaWindowSwitcher* self) {
 			MetaRectangle _tmp86_ = {0};
 			gint _tmp87_ = 0;
 			gfloat _tmp88_ = 0.0F;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp85_ = self->priv->dock;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp86_ = geometry;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp87_ = _tmp86_.x;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp88_ = ceilf ((gfloat) _tmp87_);
-#line 184 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			clutter_actor_set_x (_tmp85_, _tmp88_);
-#line 185 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 705 "WindowSwitcher.c"
 		}
-#line 176 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_RIGHT:
 #line 709 "WindowSwitcher.c"
 		{
@@ -714,38 +714,38 @@ static void gala_window_switcher_update_dock (GalaWindowSwitcher* self) {
 			gint _tmp93_ = 0;
 			gfloat _tmp94_ = 0.0F;
 			gfloat _tmp95_ = 0.0F;
-#line 187 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp89_ = self->priv->dock;
-#line 187 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp90_ = geometry;
-#line 187 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp91_ = _tmp90_.x;
-#line 187 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp92_ = geometry;
-#line 187 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp93_ = _tmp92_.width;
-#line 187 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp94_ = height;
-#line 187 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp95_ = ceilf ((_tmp91_ + _tmp93_) - _tmp94_);
-#line 187 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			clutter_actor_set_x (_tmp89_, _tmp95_);
-#line 188 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 188 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 736 "WindowSwitcher.c"
 		}
 		default:
-#line 176 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		break;
 #line 741 "WindowSwitcher.c"
 	}
-#line 191 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock_surface);
-#line 191 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->dock_surface = NULL;
-#line 141 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (layout);
-#line 141 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (screen);
 #line 751 "WindowSwitcher.c"
 }
@@ -782,124 +782,124 @@ static gboolean gala_window_switcher_draw_dock_background (GalaWindowSwitcher* s
 	gfloat _tmp48_ = 0.0F;
 	gfloat _tmp49_ = 0.0F;
 	cairo_t* _tmp50_ = NULL;
-#line 194 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 194 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (cr != NULL, FALSE);
-#line 196 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = cr;
-#line 196 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	cairo_set_operator (_tmp0_, CAIRO_OPERATOR_CLEAR);
-#line 197 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = cr;
-#line 197 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	cairo_paint (_tmp1_);
-#line 198 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = cr;
-#line 198 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	cairo_set_operator (_tmp2_, CAIRO_OPERATOR_OVER);
-#line 200 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = self->priv->dock_settings;
-#line 200 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = plank_dock_preferences_get_Position (_tmp3_);
-#line 200 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = _tmp4_;
-#line 200 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	position = _tmp5_;
-#line 202 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = self->priv->dock;
-#line 202 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = clutter_actor_get_width (_tmp6_);
-#line 202 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = _tmp7_;
-#line 202 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	width = (gint) _tmp8_;
-#line 203 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp9_ = self->priv->dock;
-#line 203 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp10_ = clutter_actor_get_height (_tmp9_);
-#line 203 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp11_ = _tmp10_;
-#line 203 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	height = (gint) _tmp11_;
-#line 205 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp12_ = position;
-#line 205 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	switch (_tmp12_) {
-#line 205 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_RIGHT:
 #line 832 "WindowSwitcher.c"
 		{
 			gint _tmp13_ = 0;
 			gfloat _tmp14_ = 0.0F;
-#line 207 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp13_ = width;
-#line 207 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp14_ = self->priv->dock_height_offset;
-#line 207 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			width = _tmp13_ + ((gint) _tmp14_);
-#line 208 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 844 "WindowSwitcher.c"
 		}
-#line 205 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_LEFT:
 #line 848 "WindowSwitcher.c"
 		{
 			gint _tmp15_ = 0;
 			gfloat _tmp16_ = 0.0F;
-#line 210 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp15_ = width;
-#line 210 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp16_ = self->priv->dock_y_offset;
-#line 210 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			width = _tmp15_ - ((gint) _tmp16_);
-#line 211 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 860 "WindowSwitcher.c"
 		}
-#line 205 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_TOP:
 #line 864 "WindowSwitcher.c"
 		{
 			gint _tmp17_ = 0;
 			gfloat _tmp18_ = 0.0F;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp17_ = height;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp18_ = self->priv->dock_y_offset;
-#line 213 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			height = _tmp17_ - ((gint) _tmp18_);
-#line 214 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 876 "WindowSwitcher.c"
 		}
-#line 205 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_BOTTOM:
 #line 880 "WindowSwitcher.c"
 		{
 			gint _tmp19_ = 0;
 			gfloat _tmp20_ = 0.0F;
-#line 216 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp19_ = height;
-#line 216 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp20_ = self->priv->dock_height_offset;
-#line 216 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			height = _tmp19_ + ((gint) _tmp20_);
-#line 217 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 217 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 892 "WindowSwitcher.c"
 		}
 		default:
-#line 205 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		break;
 #line 897 "WindowSwitcher.c"
 	}
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp23_ = self->priv->dock_surface;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp23_ == NULL) {
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp22_ = TRUE;
 #line 905 "WindowSwitcher.c"
 	} else {
@@ -907,21 +907,21 @@ static gboolean gala_window_switcher_draw_dock_background (GalaWindowSwitcher* s
 		gint _tmp25_ = 0;
 		gint _tmp26_ = 0;
 		gint _tmp27_ = 0;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp24_ = self->priv->dock_surface;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp25_ = plank_surface_get_Width (_tmp24_);
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp26_ = _tmp25_;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp27_ = width;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp22_ = _tmp26_ != _tmp27_;
 #line 921 "WindowSwitcher.c"
 	}
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp22_) {
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp21_ = TRUE;
 #line 927 "WindowSwitcher.c"
 	} else {
@@ -929,19 +929,19 @@ static gboolean gala_window_switcher_draw_dock_background (GalaWindowSwitcher* s
 		gint _tmp29_ = 0;
 		gint _tmp30_ = 0;
 		gint _tmp31_ = 0;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp28_ = self->priv->dock_surface;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp29_ = plank_surface_get_Height (_tmp28_);
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp30_ = _tmp29_;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp31_ = height;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp21_ = _tmp30_ != _tmp31_;
 #line 943 "WindowSwitcher.c"
 	}
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp21_) {
 #line 947 "WindowSwitcher.c"
 		PlankSurface* dummy_surface = NULL;
@@ -954,114 +954,114 @@ static gboolean gala_window_switcher_draw_dock_background (GalaWindowSwitcher* s
 		GtkPositionType _tmp38_ = 0;
 		PlankSurface* _tmp39_ = NULL;
 		PlankSurface* _tmp40_ = NULL;
-#line 222 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp32_ = cr;
-#line 222 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp33_ = cairo_get_target (_tmp32_);
-#line 222 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp34_ = plank_surface_new_with_cairo_surface (1, 1, _tmp33_);
-#line 222 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		dummy_surface = _tmp34_;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp35_ = self->priv->dock_theme;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp36_ = width;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp37_ = height;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp38_ = position;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp39_ = dummy_surface;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp40_ = plank_dock_theme_create_background (_tmp35_, _tmp36_, _tmp37_, _tmp38_, _tmp39_);
-#line 227 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (self->priv->dock_surface);
-#line 227 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->dock_surface = _tmp40_;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (dummy_surface);
 #line 984 "WindowSwitcher.c"
 	}
-#line 230 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	x = (gfloat) 0;
-#line 230 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	y = (gfloat) 0;
-#line 231 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp41_ = position;
-#line 231 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	switch (_tmp41_) {
-#line 231 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_RIGHT:
 #line 996 "WindowSwitcher.c"
 		{
 			gfloat _tmp42_ = 0.0F;
-#line 233 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp42_ = self->priv->dock_y_offset;
-#line 233 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			x = _tmp42_;
-#line 234 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 1005 "WindowSwitcher.c"
 		}
-#line 231 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_BOTTOM:
 #line 1009 "WindowSwitcher.c"
 		{
 			gfloat _tmp43_ = 0.0F;
-#line 236 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp43_ = self->priv->dock_y_offset;
-#line 236 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			y = _tmp43_;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 1018 "WindowSwitcher.c"
 		}
-#line 231 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_LEFT:
 #line 1022 "WindowSwitcher.c"
 		{
-#line 239 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			x = (gfloat) 0;
-#line 240 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 1028 "WindowSwitcher.c"
 		}
-#line 231 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GTK_POS_TOP:
 #line 1032 "WindowSwitcher.c"
 		{
-#line 242 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			y = (gfloat) 0;
-#line 243 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 243 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			break;
 #line 1038 "WindowSwitcher.c"
 		}
 		default:
-#line 231 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		break;
 #line 1043 "WindowSwitcher.c"
 	}
-#line 246 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp44_ = cr;
-#line 246 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp45_ = self->priv->dock_surface;
-#line 246 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp46_ = plank_surface_get_Internal (_tmp45_);
-#line 246 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp47_ = _tmp46_;
-#line 246 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp48_ = x;
-#line 246 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp49_ = y;
-#line 246 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	cairo_set_source_surface (_tmp44_, _tmp47_, (gdouble) _tmp48_, (gdouble) _tmp49_);
-#line 247 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp50_ = cr;
-#line 247 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	cairo_paint (_tmp50_);
-#line 249 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = FALSE;
-#line 249 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 1067 "WindowSwitcher.c"
 }
@@ -1096,122 +1096,122 @@ static void gala_window_switcher_place_dock (GalaWindowSwitcher* self) {
 	PlankDockPreferences* _tmp29_ = NULL;
 	gboolean _tmp30_ = FALSE;
 	ClutterActor* _tmp53_ = NULL;
-#line 252 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 254 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->dock_settings;
-#line 254 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = plank_dock_preferences_get_IconSize (_tmp0_);
-#line 254 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = _tmp1_;
-#line 254 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	icon_size = _tmp2_;
-#line 255 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = icon_size;
-#line 255 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	scaled_icon_size = _tmp3_ / 10.0f;
-#line 256 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 256 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = self->priv->dock_theme;
-#line 256 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 256 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = plank_theme_get_LineWidth ((PlankTheme*) _tmp4_);
-#line 256 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 256 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = _tmp5_;
-#line 256 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 256 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	line_width = _tmp6_;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = self->priv->dock_theme;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = plank_dock_theme_get_HorizPadding (_tmp7_);
-#line 257 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp9_ = _tmp8_;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp10_ = scaled_icon_size;
-#line 257 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	horiz_padding = _tmp9_ * _tmp10_;
-#line 258 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp11_ = self->priv->dock_theme;
-#line 258 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp12_ = plank_dock_theme_get_ItemPadding (_tmp11_);
-#line 258 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp13_ = _tmp12_;
-#line 258 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp14_ = scaled_icon_size;
-#line 258 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	item_padding = ((gfloat) _tmp13_) * _tmp14_;
-#line 259 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp16_ = horiz_padding;
-#line 259 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp16_ > ((gdouble) 0)) {
 #line 1146 "WindowSwitcher.c"
 		gdouble _tmp17_ = 0.0;
-#line 259 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp17_ = horiz_padding;
-#line 259 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp15_ = _tmp17_;
 #line 1152 "WindowSwitcher.c"
 	} else {
-#line 259 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp15_ = (gdouble) 0;
 #line 1156 "WindowSwitcher.c"
 	}
-#line 259 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp18_ = line_width;
-#line 259 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	items_offset = (gint) ((2 * _tmp18_) + _tmp15_);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp19_ = self->priv->n_dock_items;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp19_ > 0) {
 #line 1166 "WindowSwitcher.c"
 		gint _tmp20_ = 0;
 		gfloat _tmp21_ = 0.0F;
 		gint _tmp22_ = 0;
 		gint _tmp23_ = 0;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp20_ = self->priv->n_dock_items;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp21_ = item_padding;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp22_ = icon_size;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp23_ = items_offset;
-#line 262 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->dock_width = (_tmp20_ * (_tmp21_ + _tmp22_)) + (_tmp23_ * 2);
 #line 1181 "WindowSwitcher.c"
 	} else {
 		gfloat _tmp24_ = 0.0F;
 		MetaWindowActor* _tmp25_ = NULL;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp25_ = self->priv->dock_window;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		if (_tmp25_ != NULL) {
 #line 1189 "WindowSwitcher.c"
 			MetaWindowActor* _tmp26_ = NULL;
 			gfloat _tmp27_ = 0.0F;
 			gfloat _tmp28_ = 0.0F;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp26_ = self->priv->dock_window;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp27_ = clutter_actor_get_width ((ClutterActor*) _tmp26_);
-#line 264 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp28_ = _tmp27_;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp24_ = _tmp28_;
 #line 1201 "WindowSwitcher.c"
 		} else {
-#line 264 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp24_ = 300.0f;
 #line 1205 "WindowSwitcher.c"
 		}
-#line 264 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->dock_width = _tmp24_;
 #line 1209 "WindowSwitcher.c"
 	}
-#line 266 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp29_ = self->priv->dock_settings;
-#line 266 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp30_ = plank_dock_preferences_is_horizontal_dock (_tmp29_);
-#line 266 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp30_) {
 #line 1217 "WindowSwitcher.c"
 		ClutterActor* _tmp31_ = NULL;
@@ -1225,35 +1225,35 @@ static void gala_window_switcher_place_dock (GalaWindowSwitcher* self) {
 		ClutterActor* _tmp39_ = NULL;
 		ClutterActor* _tmp40_ = NULL;
 		gint _tmp41_ = 0;
-#line 267 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp31_ = self->priv->dock;
-#line 267 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp32_ = self->priv->dock_width;
-#line 267 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_width (_tmp31_, _tmp32_);
-#line 268 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 268 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp33_ = self->priv->dock;
-#line 268 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 268 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp34_ = self->priv->dock_width;
-#line 268 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 268 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp35_ = ceilf ((-_tmp34_) / 2.0f);
-#line 268 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 268 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_object_set (_tmp33_, "translation-x", _tmp35_, NULL);
-#line 269 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp36_ = self->priv->dock;
-#line 269 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp37_ = clutter_actor_get_first_child (_tmp36_);
-#line 269 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp38_ = items_offset;
-#line 269 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_margin_left (_tmp37_, (gfloat) _tmp38_);
-#line 270 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp39_ = self->priv->dock;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp40_ = clutter_actor_get_last_child (_tmp39_);
-#line 270 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp41_ = items_offset;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_margin_right (_tmp40_, (gfloat) _tmp41_);
 #line 1259 "WindowSwitcher.c"
 	} else {
@@ -1268,41 +1268,41 @@ static void gala_window_switcher_place_dock (GalaWindowSwitcher* self) {
 		ClutterActor* _tmp50_ = NULL;
 		ClutterActor* _tmp51_ = NULL;
 		gint _tmp52_ = 0;
-#line 272 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp42_ = self->priv->dock;
-#line 272 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp43_ = self->priv->dock_width;
-#line 272 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_height (_tmp42_, _tmp43_);
-#line 273 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 273 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp44_ = self->priv->dock;
-#line 273 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 273 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp45_ = self->priv->dock_width;
-#line 273 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 273 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp46_ = ceilf ((-_tmp45_) / 2.0f);
-#line 273 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 273 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_object_set (_tmp44_, "translation-y", _tmp46_, NULL);
-#line 274 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp47_ = self->priv->dock;
-#line 274 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp48_ = clutter_actor_get_first_child (_tmp47_);
-#line 274 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp49_ = items_offset;
-#line 274 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_margin_top (_tmp48_, (gfloat) _tmp49_);
-#line 275 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp50_ = self->priv->dock;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp51_ = clutter_actor_get_last_child (_tmp50_);
-#line 275 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp52_ = items_offset;
-#line 275 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_margin_bottom (_tmp51_, (gfloat) _tmp52_);
 #line 1302 "WindowSwitcher.c"
 	}
-#line 278 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp53_ = self->priv->dock;
-#line 278 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_opacity (_tmp53_, (guint) 255);
 #line 1308 "WindowSwitcher.c"
 }
@@ -1316,25 +1316,25 @@ static void gala_window_switcher_animate_dock_width (GalaWindowSwitcher* self) {
 	PlankDockPreferences* _tmp3_ = NULL;
 	gboolean _tmp4_ = FALSE;
 	ClutterActor* _tmp31_ = NULL;
-#line 281 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 283 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->dock;
-#line 283 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 283 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_save_easing_state (_tmp0_);
-#line 284 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = self->priv->dock;
-#line 284 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_easing_duration (_tmp1_, (guint) 250);
-#line 285 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = self->priv->dock;
-#line 285 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_easing_mode (_tmp2_, CLUTTER_EASE_OUT_CUBIC);
-#line 288 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = self->priv->dock_settings;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = plank_dock_preferences_is_horizontal_dock (_tmp3_);
-#line 288 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp4_) {
 #line 1340 "WindowSwitcher.c"
 		ClutterActor* _tmp5_ = NULL;
@@ -1350,37 +1350,37 @@ static void gala_window_switcher_animate_dock_width (GalaWindowSwitcher* self) {
 		ClutterActor* _tmp15_ = NULL;
 		gfloat _tmp16_ = 0.0F;
 		gfloat _tmp17_ = 0.0F;
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp5_ = self->priv->dock;
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp6_ = clutter_actor_get_layout_manager (_tmp5_);
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp7_ = _tmp6_;
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp8_ = self->priv->dock;
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp9_ = self->priv->dock;
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp10_ = clutter_actor_get_height (_tmp9_);
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp11_ = _tmp10_;
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_layout_manager_get_preferred_width (_tmp7_, (ClutterContainer*) _tmp8_, _tmp11_, NULL, &_tmp12_);
-#line 289 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		dest_width = _tmp12_;
-#line 290 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp13_ = self->priv->dock;
-#line 290 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp14_ = dest_width;
-#line 290 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_width (_tmp13_, _tmp14_);
-#line 291 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp15_ = self->priv->dock;
-#line 291 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp16_ = dest_width;
-#line 291 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp17_ = ceilf ((-_tmp16_) / 2.0f);
-#line 291 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 291 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_object_set (_tmp15_, "translation-x", _tmp17_, NULL);
 #line 1386 "WindowSwitcher.c"
 	} else {
@@ -1397,43 +1397,43 @@ static void gala_window_switcher_animate_dock_width (GalaWindowSwitcher* self) {
 		ClutterActor* _tmp28_ = NULL;
 		gfloat _tmp29_ = 0.0F;
 		gfloat _tmp30_ = 0.0F;
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp18_ = self->priv->dock;
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp19_ = clutter_actor_get_layout_manager (_tmp18_);
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp20_ = _tmp19_;
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp21_ = self->priv->dock;
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp22_ = self->priv->dock;
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp23_ = clutter_actor_get_width (_tmp22_);
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp24_ = _tmp23_;
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_layout_manager_get_preferred_height (_tmp20_, (ClutterContainer*) _tmp21_, _tmp24_, NULL, &_tmp25_);
-#line 293 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		dest_width = _tmp25_;
-#line 294 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp26_ = self->priv->dock;
-#line 294 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp27_ = dest_width;
-#line 294 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_height (_tmp26_, _tmp27_);
-#line 295 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp28_ = self->priv->dock;
-#line 295 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp29_ = dest_width;
-#line 295 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp30_ = ceilf ((-_tmp29_) / 2.0f);
-#line 295 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_object_set (_tmp28_, "translation-y", _tmp30_, NULL);
 #line 1433 "WindowSwitcher.c"
 	}
-#line 298 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp31_ = self->priv->dock;
-#line 298 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_restore_easing_state (_tmp31_);
 #line 1439 "WindowSwitcher.c"
 }
@@ -1445,19 +1445,19 @@ static gboolean ___lambda32_ (GalaWindowSwitcher* self) {
 	MetaScreen* _tmp1_ = NULL;
 	MetaDisplay* _tmp2_ = NULL;
 	guint32 _tmp3_ = 0U;
-#line 310 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->_wm;
-#line 310 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 310 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = meta_screen_get_display (_tmp1_);
-#line 310 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = meta_display_get_current_time (_tmp2_);
-#line 310 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_close (self, (guint) _tmp3_);
-#line 311 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 311 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = FALSE;
-#line 311 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 311 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 1463 "WindowSwitcher.c"
 }
@@ -1466,7 +1466,7 @@ static gboolean ___lambda32_ (GalaWindowSwitcher* self) {
 static gboolean ____lambda32__gsource_func (gpointer self) {
 	gboolean result;
 	result = ___lambda32_ ((GalaWindowSwitcher*) self);
-#line 309 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 1472 "WindowSwitcher.c"
 }
@@ -1479,52 +1479,52 @@ static gboolean gala_window_switcher_clicked_icon (GalaWindowSwitcher* self, Clu
 	ClutterActor* _tmp1_ = NULL;
 	GalaWindowIcon* _tmp2_ = NULL;
 	GalaWindowIcon* _tmp3_ = NULL;
-#line 301 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 301 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 301 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 301 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (event != NULL, FALSE);
-#line 302 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 302 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = *event;
-#line 302 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 302 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = _tmp0_.source;
-#line 302 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 302 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	icon = G_TYPE_CHECK_INSTANCE_CAST (_tmp1_, GALA_TYPE_WINDOW_ICON, GalaWindowIcon);
-#line 304 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = self->priv->current_window;
-#line 304 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = icon;
-#line 304 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp2_ != _tmp3_) {
 #line 1499 "WindowSwitcher.c"
 		GalaWindowIcon* _tmp4_ = NULL;
 		GalaWindowIcon* _tmp5_ = NULL;
-#line 305 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp4_ = icon;
-#line 305 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp5_ = _g_object_ref0 (_tmp4_);
-#line 305 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (self->priv->current_window);
-#line 305 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->current_window = _tmp5_;
-#line 306 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_dim_windows (self);
-#line 309 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 250, ____lambda32__gsource_func, g_object_ref (self), g_object_unref);
 #line 1514 "WindowSwitcher.c"
 	} else {
 		ClutterButtonEvent _tmp6_ = {0};
 		guint32 _tmp7_ = 0U;
-#line 314 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp6_ = *event;
-#line 314 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp7_ = _tmp6_.time;
-#line 314 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_close (self, (guint) _tmp7_);
 #line 1524 "WindowSwitcher.c"
 	}
-#line 316 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 316 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = TRUE;
-#line 316 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 316 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 1530 "WindowSwitcher.c"
 }
@@ -1532,13 +1532,13 @@ static gboolean gala_window_switcher_clicked_icon (GalaWindowSwitcher* self, Clu
 
 static void gala_window_switcher_window_removed (GalaWindowSwitcher* self, ClutterActor* actor) {
 	ClutterActor* _tmp0_ = NULL;
-#line 319 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 319 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 319 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 319 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (actor != NULL);
-#line 321 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 321 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = actor;
-#line 321 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 321 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->clone_sort_order = g_list_remove (self->priv->clone_sort_order, _tmp0_);
 #line 1544 "WindowSwitcher.c"
 }
@@ -1549,81 +1549,81 @@ static void gala_window_switcher_icon_removed (GalaWindowSwitcher* self, Clutter
 	gint _tmp1_ = 0;
 	ClutterActor* _tmp6_ = NULL;
 	GalaWindowIcon* _tmp7_ = NULL;
-#line 324 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 324 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (actor != NULL);
-#line 326 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->dock;
-#line 326 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = clutter_actor_get_n_children (_tmp0_);
-#line 326 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp1_ == 1) {
 #line 1563 "WindowSwitcher.c"
 		GalaWindowManager* _tmp2_ = NULL;
 		MetaScreen* _tmp3_ = NULL;
 		MetaDisplay* _tmp4_ = NULL;
 		guint32 _tmp5_ = 0U;
-#line 327 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp2_ = self->priv->_wm;
-#line 327 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp3_ = meta_plugin_get_screen ((MetaPlugin*) _tmp2_);
-#line 327 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp4_ = meta_screen_get_display (_tmp3_);
-#line 327 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp5_ = meta_display_get_current_time (_tmp4_);
-#line 327 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 327 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_close (self, (guint) _tmp5_);
-#line 328 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return;
 #line 1580 "WindowSwitcher.c"
 	}
-#line 331 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = actor;
-#line 331 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = self->priv->current_window;
-#line 331 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp6_ == G_TYPE_CHECK_INSTANCE_CAST (_tmp7_, clutter_actor_get_type (), ClutterActor)) {
 #line 1588 "WindowSwitcher.c"
 		GalaWindowIcon* _tmp8_ = NULL;
 		ClutterActor* _tmp9_ = NULL;
 		GalaWindowIcon* _tmp10_ = NULL;
 		GalaWindowIcon* _tmp11_ = NULL;
-#line 332 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp8_ = self->priv->current_window;
-#line 332 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp9_ = clutter_actor_get_next_sibling ((ClutterActor*) _tmp8_);
-#line 332 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp10_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp9_, GALA_TYPE_WINDOW_ICON, GalaWindowIcon));
-#line 332 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (self->priv->current_window);
-#line 332 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->current_window = _tmp10_;
-#line 333 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 333 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp11_ = self->priv->current_window;
-#line 333 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 333 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		if (_tmp11_ == NULL) {
 #line 1607 "WindowSwitcher.c"
 			ClutterActor* _tmp12_ = NULL;
 			ClutterActor* _tmp13_ = NULL;
 			GalaWindowIcon* _tmp14_ = NULL;
-#line 334 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp12_ = self->priv->dock;
-#line 334 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp13_ = clutter_actor_get_first_child (_tmp12_);
-#line 334 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp14_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp13_, GALA_TYPE_WINDOW_ICON, GalaWindowIcon));
-#line 334 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_object_unref0 (self->priv->current_window);
-#line 334 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 334 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			self->priv->current_window = _tmp14_;
 #line 1621 "WindowSwitcher.c"
 		}
-#line 336 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 336 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_dim_windows (self);
 #line 1625 "WindowSwitcher.c"
 	}
-#line 339 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 339 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_animate_dock_width (self);
 #line 1629 "WindowSwitcher.c"
 }
@@ -1634,30 +1634,30 @@ static gboolean gala_window_switcher_real_key_release_event (ClutterActor* base,
 	gboolean result = FALSE;
 	GdkModifierType _tmp0_ = 0;
 	guint _tmp1_ = 0U;
-#line 342 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 342 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self = (GalaWindowSwitcher*) base;
-#line 342 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 342 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (event != NULL, FALSE);
-#line 344 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 344 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = gala_window_switcher_get_current_modifiers (self);
-#line 344 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 344 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = self->priv->modifier_mask;
-#line 344 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 344 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if ((_tmp0_ & _tmp1_) == 0) {
 #line 1648 "WindowSwitcher.c"
 		ClutterKeyEvent _tmp2_ = {0};
 		guint32 _tmp3_ = 0U;
-#line 345 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 345 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp2_ = *event;
-#line 345 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 345 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp3_ = _tmp2_.time;
-#line 345 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 345 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_close (self, (guint) _tmp3_);
 #line 1657 "WindowSwitcher.c"
 	}
-#line 347 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = TRUE;
-#line 347 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 1663 "WindowSwitcher.c"
 }
@@ -1669,17 +1669,17 @@ static void gala_window_switcher_real_key_focus_out (ClutterActor* base) {
 	MetaScreen* _tmp1_ = NULL;
 	MetaDisplay* _tmp2_ = NULL;
 	guint32 _tmp3_ = 0U;
-#line 350 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 350 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self = (GalaWindowSwitcher*) base;
-#line 352 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 352 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->_wm;
-#line 352 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 352 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 352 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 352 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = meta_screen_get_display (_tmp1_);
-#line 352 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 352 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = meta_display_get_current_time (_tmp2_);
-#line 352 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 352 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_close (self, (guint) _tmp3_);
 #line 1685 "WindowSwitcher.c"
 }
@@ -1697,74 +1697,74 @@ static gboolean __lambda34_ (GalaWindowSwitcher* self, MetaKeyBinding* binding) 
 	gboolean _tmp6_ = FALSE;
 	gboolean _tmp7_ = FALSE;
 	const gchar* _tmp8_ = NULL;
-#line 398 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (binding != NULL, FALSE);
-#line 400 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 400 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = binding;
-#line 400 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 400 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = meta_key_binding_is_builtin (_tmp0_);
-#line 400 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 400 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (!_tmp1_) {
-#line 401 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		result = TRUE;
-#line 401 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return result;
 #line 1713 "WindowSwitcher.c"
 	}
-#line 404 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 404 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = binding;
-#line 404 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 404 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = meta_key_binding_get_name (_tmp2_);
-#line 404 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 404 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = g_strdup (_tmp3_);
-#line 404 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 404 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	name = _tmp4_;
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = name;
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (g_strcmp0 (_tmp8_, "switch-applications") == 0) {
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp7_ = TRUE;
 #line 1729 "WindowSwitcher.c"
 	} else {
 		const gchar* _tmp9_ = NULL;
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp9_ = name;
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp7_ = g_strcmp0 (_tmp9_, "switch-applications-backward") == 0;
 #line 1736 "WindowSwitcher.c"
 	}
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp7_) {
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp6_ = TRUE;
 #line 1742 "WindowSwitcher.c"
 	} else {
 		const gchar* _tmp10_ = NULL;
-#line 407 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 407 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp10_ = name;
-#line 407 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 407 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp6_ = g_strcmp0 (_tmp10_, "switch-windows") == 0;
 #line 1749 "WindowSwitcher.c"
 	}
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp6_) {
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp5_ = TRUE;
 #line 1755 "WindowSwitcher.c"
 	} else {
 		const gchar* _tmp11_ = NULL;
-#line 407 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 407 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp11_ = name;
-#line 407 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 407 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp5_ = g_strcmp0 (_tmp11_, "switch-windows-backward") == 0;
 #line 1762 "WindowSwitcher.c"
 	}
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = !_tmp5_;
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_free0 (name);
-#line 406 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 406 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 1770 "WindowSwitcher.c"
 }
@@ -1773,7 +1773,7 @@ static gboolean __lambda34_ (GalaWindowSwitcher* self, MetaKeyBinding* binding) 
 static gboolean ___lambda34__gala_keybinding_filter (MetaKeyBinding* binding, gpointer self) {
 	gboolean result;
 	result = __lambda34_ ((GalaWindowSwitcher*) self, binding);
-#line 398 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 1779 "WindowSwitcher.c"
 }
@@ -1815,216 +1815,216 @@ void gala_window_switcher_handle_switch_windows (MetaDisplay* display, MetaScree
 	GalaModalProxy* _tmp34_ = NULL;
 	GdkModifierType _tmp35_ = 0;
 	guint _tmp36_ = 0U;
-#line 356 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 356 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (display != NULL);
-#line 356 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (screen != NULL);
-#line 356 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (event != NULL);
-#line 356 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (binding != NULL);
-#line 359 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 359 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = g_get_monotonic_time ();
-#line 359 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 359 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	now = _tmp0_ / 1000;
-#line 360 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = now;
-#line 360 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = self->priv->last_switch;
-#line 360 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if ((_tmp1_ - _tmp2_) < ((gint64) GALA_WINDOW_SWITCHER_MIN_DELTA)) {
-#line 361 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 361 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return;
 #line 1841 "WindowSwitcher.c"
 	}
-#line 365 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_get ((ClutterActor*) self, "visible", &_tmp4_, NULL);
-#line 365 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = _tmp4_;
-#line 365 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp5_) {
 #line 1849 "WindowSwitcher.c"
 		gboolean _tmp6_ = FALSE;
-#line 365 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp6_ = self->priv->closing;
-#line 365 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp3_ = _tmp6_;
 #line 1855 "WindowSwitcher.c"
 	} else {
-#line 365 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp3_ = FALSE;
 #line 1859 "WindowSwitcher.c"
 	}
-#line 365 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 365 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp3_) {
-#line 366 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 366 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_close_cleanup (self);
 #line 1865 "WindowSwitcher.c"
 	}
-#line 369 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 369 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = now;
-#line 369 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 369 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->last_switch = _tmp7_;
-#line 371 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 371 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = screen;
-#line 371 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 371 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp9_ = meta_screen_get_active_workspace (_tmp8_);
-#line 371 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 371 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp10_ = _g_object_ref0 (_tmp9_);
-#line 371 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 371 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	workspace = _tmp10_;
-#line 372 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp11_ = binding;
-#line 372 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp12_ = meta_key_binding_get_name (_tmp11_);
-#line 372 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp13_ = g_strdup (_tmp12_);
-#line 372 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	binding_name = _tmp13_;
-#line 373 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 373 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp14_ = binding_name;
-#line 373 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 373 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp15_ = g_str_has_suffix (_tmp14_, "-backward");
-#line 373 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 373 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	backward = _tmp15_;
-#line 377 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 377 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp16_ = binding_name;
-#line 377 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 377 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (g_strcmp0 (_tmp16_, "switch-applications") == 0) {
 #line 1897 "WindowSwitcher.c"
 		GdkModifierType _tmp17_ = 0;
-#line 378 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp17_ = gala_window_switcher_get_current_modifiers (self);
-#line 378 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 378 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		backward = (_tmp17_ & CLUTTER_SHIFT_MASK) != 0;
 #line 1903 "WindowSwitcher.c"
 	}
-#line 380 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_get ((ClutterActor*) self, "visible", &_tmp19_, NULL);
-#line 380 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp20_ = _tmp19_;
-#line 380 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp20_) {
 #line 1911 "WindowSwitcher.c"
 		gboolean _tmp21_ = FALSE;
-#line 380 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp21_ = self->priv->closing;
-#line 380 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp18_ = !_tmp21_;
 #line 1917 "WindowSwitcher.c"
 	} else {
-#line 380 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp18_ = FALSE;
 #line 1921 "WindowSwitcher.c"
 	}
-#line 380 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 380 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp18_) {
 #line 1925 "WindowSwitcher.c"
 		MetaWorkspace* _tmp22_ = NULL;
 		gboolean _tmp23_ = FALSE;
 		GalaWindowIcon* _tmp24_ = NULL;
-#line 381 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp22_ = workspace;
-#line 381 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp23_ = backward;
-#line 381 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp24_ = gala_window_switcher_next_window (self, _tmp22_, _tmp23_);
-#line 381 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (self->priv->current_window);
-#line 381 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 381 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->current_window = _tmp24_;
-#line 382 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 382 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_dim_windows (self);
-#line 383 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 383 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_free0 (binding_name);
-#line 383 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 383 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (workspace);
-#line 383 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 383 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return;
 #line 1947 "WindowSwitcher.c"
 	}
-#line 386 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp25_ = workspace;
-#line 386 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp26_ = gala_window_switcher_collect_windows (self, _tmp25_);
-#line 386 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (!_tmp26_) {
-#line 387 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 387 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_free0 (binding_name);
-#line 387 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 387 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (workspace);
-#line 387 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 387 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return;
 #line 1961 "WindowSwitcher.c"
 	}
-#line 389 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 389 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp27_ = binding;
-#line 389 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 389 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp28_ = meta_key_binding_get_mask (_tmp27_);
-#line 389 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 389 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_set_primary_modifier (self, _tmp28_);
-#line 391 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp29_ = workspace;
-#line 391 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp30_ = backward;
-#line 391 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp31_ = gala_window_switcher_next_window (self, _tmp29_, _tmp30_);
-#line 391 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->current_window);
-#line 391 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->current_window = _tmp31_;
-#line 393 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 393 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_place_dock (self);
-#line 395 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 395 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_set ((ClutterActor*) self, "visible", TRUE, NULL);
-#line 396 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->closing = FALSE;
-#line 397 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp32_ = self->priv->_wm;
-#line 397 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp33_ = gala_window_manager_push_modal (_tmp32_);
-#line 397 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->modal_proxy);
-#line 397 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->modal_proxy = _tmp33_;
-#line 398 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp34_ = self->priv->modal_proxy;
-#line 398 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_modal_proxy_set_keybinding_filter (_tmp34_, ___lambda34__gala_keybinding_filter, g_object_ref (self), g_object_unref);
-#line 410 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 410 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_animate_dock_width (self);
-#line 412 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 412 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_dim_windows (self);
-#line 413 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 413 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_grab_key_focus ((ClutterActor*) self);
-#line 415 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp35_ = gala_window_switcher_get_current_modifiers (self);
-#line 415 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp36_ = self->priv->modifier_mask;
-#line 415 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if ((_tmp35_ & _tmp36_) == 0) {
 #line 2009 "WindowSwitcher.c"
 		GalaWindowManager* _tmp37_ = NULL;
 		MetaScreen* _tmp38_ = NULL;
 		MetaDisplay* _tmp39_ = NULL;
 		guint32 _tmp40_ = 0U;
-#line 416 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 416 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp37_ = self->priv->_wm;
-#line 416 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 416 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp38_ = meta_plugin_get_screen ((MetaPlugin*) _tmp37_);
-#line 416 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 416 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp39_ = meta_screen_get_display (_tmp38_);
-#line 416 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 416 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp40_ = meta_display_get_current_time (_tmp39_);
-#line 416 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 416 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_close (self, (guint) _tmp40_);
 #line 2024 "WindowSwitcher.c"
 	}
-#line 356 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_free0 (binding_name);
-#line 356 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (workspace);
 #line 2030 "WindowSwitcher.c"
 }
@@ -2043,55 +2043,55 @@ static void gala_window_switcher_close_cleanup (GalaWindowSwitcher* self) {
 	ClutterActor* _tmp7_ = NULL;
 	MetaScreen* _tmp8_ = NULL;
 	GList* _tmp9_ = NULL;
-#line 419 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 419 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 421 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 421 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->_wm;
-#line 421 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 421 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 421 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 421 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 421 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 421 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	screen = _tmp2_;
-#line 422 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 422 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = screen;
-#line 422 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 422 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = meta_screen_get_active_workspace (_tmp3_);
-#line 422 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 422 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = _g_object_ref0 (_tmp4_);
-#line 422 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 422 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	workspace = _tmp5_;
-#line 424 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = self->priv->dock;
-#line 424 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_destroy_all_children (_tmp6_);
-#line 426 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock_window);
-#line 426 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->dock_window = NULL;
-#line 427 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 427 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_set ((ClutterActor*) self, "visible", FALSE, NULL);
-#line 428 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 428 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->closing = FALSE;
-#line 430 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 430 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = self->priv->window_clones;
-#line 430 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 430 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_destroy_all_children (_tmp7_);
-#line 433 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = screen;
-#line 433 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp9_ = meta_get_window_actors (_tmp8_);
 #line 2085 "WindowSwitcher.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 433 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		actor_collection = _tmp9_;
-#line 433 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
 #line 2093 "WindowSwitcher.c"
 			MetaWindowActor* actor = NULL;
-#line 433 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			actor = (MetaWindowActor*) actor_it->data;
 #line 2097 "WindowSwitcher.c"
 			{
@@ -2104,75 +2104,75 @@ static void gala_window_switcher_close_cleanup (GalaWindowSwitcher* self) {
 				MetaWindow* _tmp15_ = NULL;
 				MetaWorkspace* _tmp16_ = NULL;
 				MetaWorkspace* _tmp17_ = NULL;
-#line 434 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 434 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp10_ = actor;
-#line 434 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 434 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp11_ = meta_window_actor_is_destroyed (_tmp10_);
-#line 434 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 434 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp11_) {
-#line 435 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 435 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					continue;
 #line 2116 "WindowSwitcher.c"
 				}
-#line 437 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 437 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp12_ = actor;
-#line 437 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 437 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp13_ = meta_window_actor_get_meta_window (_tmp12_);
-#line 437 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 437 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				window = _tmp13_;
-#line 438 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 438 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp15_ = window;
-#line 438 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 438 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp16_ = meta_window_get_workspace (_tmp15_);
-#line 438 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 438 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp17_ = workspace;
-#line 438 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 438 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp16_ == _tmp17_) {
 #line 2132 "WindowSwitcher.c"
 					MetaWindow* _tmp18_ = NULL;
 					gboolean _tmp19_ = FALSE;
-#line 439 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 439 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp18_ = window;
-#line 439 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 439 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp19_ = meta_window_showing_on_its_workspace (_tmp18_);
-#line 439 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 439 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp14_ = _tmp19_;
 #line 2141 "WindowSwitcher.c"
 				} else {
-#line 438 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 438 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp14_ = FALSE;
 #line 2145 "WindowSwitcher.c"
 				}
-#line 438 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 438 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp14_) {
 #line 2149 "WindowSwitcher.c"
 					MetaWindowActor* _tmp20_ = NULL;
-#line 440 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 440 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp20_ = actor;
-#line 440 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 440 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_show ((ClutterActor*) _tmp20_);
 #line 2155 "WindowSwitcher.c"
 				}
 			}
 		}
 	}
-#line 419 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 419 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (workspace);
-#line 419 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 419 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (screen);
 #line 2164 "WindowSwitcher.c"
 }
 
 
 static void ___lambda33_ (GalaWindowSwitcher* self) {
-#line 512 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_close_cleanup (self);
 #line 2171 "WindowSwitcher.c"
 }
 
 
 static void ____lambda33__clutter_timeline_completed (ClutterTimeline* _sender, gpointer self) {
-#line 512 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	___lambda33_ ((GalaWindowSwitcher*) self);
 #line 2178 "WindowSwitcher.c"
 }
@@ -2202,36 +2202,36 @@ static void gala_window_switcher_close (GalaWindowSwitcher* self, guint time) {
 	ClutterTransition* _tmp61_ = NULL;
 	ClutterTransition* _tmp62_ = NULL;
 	ClutterTransition* _tmp63_ = NULL;
-#line 444 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 446 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 446 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->closing;
-#line 446 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 446 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp0_) {
-#line 447 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 447 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return;
 #line 2214 "WindowSwitcher.c"
 	}
-#line 449 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 449 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->closing = TRUE;
-#line 450 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 450 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->last_switch = (gint64) 0;
-#line 452 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = self->priv->clone_sort_order;
 #line 2222 "WindowSwitcher.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 452 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		actor_collection = _tmp1_;
-#line 452 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
 #line 2230 "WindowSwitcher.c"
 			ClutterActor* _tmp2_ = NULL;
 			ClutterActor* actor = NULL;
-#line 452 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp2_ = _g_object_ref0 ((ClutterActor*) actor_it->data);
-#line 452 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			actor = _tmp2_;
 #line 2237 "WindowSwitcher.c"
 			{
@@ -2250,47 +2250,47 @@ static void gala_window_switcher_close (GalaWindowSwitcher* self, guint time) {
 				MetaWindow* _tmp14_ = NULL;
 				gboolean _tmp15_ = FALSE;
 				gboolean _tmp16_ = FALSE;
-#line 453 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp3_ = actor;
-#line 453 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clone = G_TYPE_CHECK_INSTANCE_CAST (_tmp3_, GALA_TYPE_SAFE_WINDOW_CLONE, GalaSafeWindowClone);
-#line 456 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp4_ = clone;
-#line 456 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp5_ = gala_safe_window_clone_get_window (_tmp4_);
-#line 456 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp6_ = _tmp5_;
-#line 456 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp7_ = self->priv->current_window;
-#line 456 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp8_ = gala_window_icon_get_window (_tmp7_);
-#line 456 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp9_ = _tmp8_;
-#line 456 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp6_ == _tmp9_) {
-#line 457 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 457 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_g_object_unref0 (actor);
-#line 457 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 457 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					continue;
 #line 2276 "WindowSwitcher.c"
 				}
-#line 460 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp10_ = self->priv->window_clones;
-#line 460 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp11_ = clone;
-#line 460 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_set_child_below_sibling (_tmp10_, (ClutterActor*) _tmp11_, NULL);
-#line 462 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp12_ = clone;
-#line 462 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp13_ = gala_safe_window_clone_get_window (_tmp12_);
-#line 462 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp14_ = _tmp13_;
-#line 462 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				g_object_get (_tmp14_, "minimized", &_tmp15_, NULL);
-#line 462 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp16_ = _tmp15_;
-#line 462 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (!_tmp16_) {
 #line 2296 "WindowSwitcher.c"
 					GalaSafeWindowClone* _tmp17_ = NULL;
@@ -2299,106 +2299,106 @@ static void gala_window_switcher_close (GalaWindowSwitcher* self, guint time) {
 					GalaSafeWindowClone* _tmp20_ = NULL;
 					GalaSafeWindowClone* _tmp21_ = NULL;
 					GalaSafeWindowClone* _tmp22_ = NULL;
-#line 463 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 463 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp17_ = clone;
-#line 463 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 463 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_save_easing_state ((ClutterActor*) _tmp17_);
-#line 464 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp18_ = clone;
-#line 464 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_easing_duration ((ClutterActor*) _tmp18_, (guint) 150);
-#line 465 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp19_ = clone;
-#line 465 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_easing_mode ((ClutterActor*) _tmp19_, CLUTTER_EASE_OUT_CUBIC);
-#line 466 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 466 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp20_ = clone;
-#line 466 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 466 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_z_position ((ClutterActor*) _tmp20_, (gfloat) 0);
-#line 467 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 467 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp21_ = clone;
-#line 467 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 467 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_opacity ((ClutterActor*) _tmp21_, (guint) 255);
-#line 468 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 468 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp22_ = clone;
-#line 468 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 468 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_restore_easing_state ((ClutterActor*) _tmp22_);
 #line 2327 "WindowSwitcher.c"
 				}
-#line 452 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_g_object_unref0 (actor);
 #line 2331 "WindowSwitcher.c"
 			}
 		}
 	}
-#line 472 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 472 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp23_ = self->priv->current_window;
-#line 472 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 472 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp23_ != NULL) {
 #line 2339 "WindowSwitcher.c"
 		GalaWindowIcon* _tmp24_ = NULL;
 		MetaWindow* _tmp25_ = NULL;
 		MetaWindow* _tmp26_ = NULL;
 		guint _tmp27_ = 0U;
-#line 473 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 473 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp24_ = self->priv->current_window;
-#line 473 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 473 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp25_ = gala_window_icon_get_window (_tmp24_);
-#line 473 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 473 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp26_ = _tmp25_;
-#line 473 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 473 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp27_ = time;
-#line 473 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 473 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		meta_window_activate (_tmp26_, (guint32) _tmp27_);
-#line 474 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 474 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (self->priv->current_window);
-#line 474 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 474 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->current_window = NULL;
 #line 2358 "WindowSwitcher.c"
 	}
-#line 477 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp28_ = self->priv->_wm;
-#line 477 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp29_ = self->priv->modal_proxy;
-#line 477 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_manager_pop_modal (_tmp28_, _tmp29_);
-#line 479 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 479 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp30_ = self->priv->dock_window;
-#line 479 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 479 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp30_ != NULL) {
 #line 2370 "WindowSwitcher.c"
 		MetaWindowActor* _tmp31_ = NULL;
-#line 480 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp31_ = self->priv->dock_window;
-#line 480 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_opacity ((ClutterActor*) _tmp31_, (guint) 0);
 #line 2376 "WindowSwitcher.c"
 	}
-#line 482 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 482 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp33_ = self->priv->dock_width;
-#line 482 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 482 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp33_ > ((gfloat) 0)) {
 #line 2382 "WindowSwitcher.c"
 		gfloat _tmp34_ = 0.0F;
-#line 482 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 482 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp34_ = self->priv->dock_width;
-#line 482 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 482 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp32_ = _tmp34_;
 #line 2388 "WindowSwitcher.c"
 	} else {
-#line 482 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 482 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp32_ = 600.0f;
 #line 2392 "WindowSwitcher.c"
 	}
-#line 482 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 482 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	dest_width = _tmp32_;
-#line 484 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 484 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp35_ = self->priv->dock;
-#line 484 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 484 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_child_above_sibling ((ClutterActor*) self, _tmp35_, NULL);
-#line 486 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp36_ = self->priv->dock_window;
-#line 486 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp36_ != NULL) {
 #line 2404 "WindowSwitcher.c"
 		MetaWindowActor* _tmp37_ = NULL;
@@ -2407,49 +2407,49 @@ static void gala_window_switcher_close (GalaWindowSwitcher* self, guint time) {
 		MetaWindowActor* _tmp40_ = NULL;
 		MetaWindowActor* _tmp41_ = NULL;
 		MetaWindowActor* _tmp42_ = NULL;
-#line 487 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 487 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp37_ = self->priv->dock_window;
-#line 487 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 487 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_show ((ClutterActor*) _tmp37_);
-#line 488 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 488 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp38_ = self->priv->dock_window;
-#line 488 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 488 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_save_easing_state ((ClutterActor*) _tmp38_);
-#line 489 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp39_ = self->priv->dock_window;
-#line 489 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_easing_mode ((ClutterActor*) _tmp39_, CLUTTER_LINEAR);
-#line 490 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp40_ = self->priv->dock_window;
-#line 490 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_easing_duration ((ClutterActor*) _tmp40_, (guint) 250);
-#line 491 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 491 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp41_ = self->priv->dock_window;
-#line 491 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 491 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_opacity ((ClutterActor*) _tmp41_, (guint) 255);
-#line 492 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp42_ = self->priv->dock_window;
-#line 492 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_restore_easing_state ((ClutterActor*) _tmp42_);
 #line 2435 "WindowSwitcher.c"
 	}
-#line 495 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 495 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp43_ = self->priv->dock;
-#line 495 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 495 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_save_easing_state (_tmp43_);
-#line 496 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 496 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp44_ = self->priv->dock;
-#line 496 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 496 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_easing_duration (_tmp44_, (guint) 250);
-#line 497 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp45_ = self->priv->dock;
-#line 497 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_easing_mode (_tmp45_, CLUTTER_EASE_OUT_CUBIC);
-#line 499 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 499 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp46_ = self->priv->dock_settings;
-#line 499 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 499 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp47_ = plank_dock_preferences_is_horizontal_dock (_tmp46_);
-#line 499 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 499 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp47_) {
 #line 2455 "WindowSwitcher.c"
 		ClutterActor* _tmp48_ = NULL;
@@ -2457,19 +2457,19 @@ static void gala_window_switcher_close (GalaWindowSwitcher* self, guint time) {
 		ClutterActor* _tmp50_ = NULL;
 		gfloat _tmp51_ = 0.0F;
 		gfloat _tmp52_ = 0.0F;
-#line 500 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 500 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp48_ = self->priv->dock;
-#line 500 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 500 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp49_ = dest_width;
-#line 500 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 500 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_width (_tmp48_, _tmp49_);
-#line 501 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 501 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp50_ = self->priv->dock;
-#line 501 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 501 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp51_ = dest_width;
-#line 501 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 501 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp52_ = ceilf ((-_tmp51_) / 2.0f);
-#line 501 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 501 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_object_set (_tmp50_, "translation-x", _tmp52_, NULL);
 #line 2475 "WindowSwitcher.c"
 	} else {
@@ -2478,55 +2478,55 @@ static void gala_window_switcher_close (GalaWindowSwitcher* self, guint time) {
 		ClutterActor* _tmp55_ = NULL;
 		gfloat _tmp56_ = 0.0F;
 		gfloat _tmp57_ = 0.0F;
-#line 503 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 503 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp53_ = self->priv->dock;
-#line 503 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 503 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp54_ = dest_width;
-#line 503 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 503 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		clutter_actor_set_height (_tmp53_, _tmp54_);
-#line 504 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp55_ = self->priv->dock;
-#line 504 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp56_ = dest_width;
-#line 504 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp57_ = ceilf ((-_tmp56_) / 2.0f);
-#line 504 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_object_set (_tmp55_, "translation-y", _tmp57_, NULL);
 #line 2496 "WindowSwitcher.c"
 	}
-#line 507 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp58_ = self->priv->dock;
-#line 507 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_opacity (_tmp58_, (guint) 0);
-#line 508 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 508 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp59_ = self->priv->dock;
-#line 508 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 508 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_restore_easing_state (_tmp59_);
-#line 510 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp60_ = self->priv->dock;
-#line 510 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp61_ = clutter_actor_get_transition (_tmp60_, "opacity");
-#line 510 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp62_ = _g_object_ref0 (_tmp61_);
-#line 510 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	transition = _tmp62_;
-#line 511 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 511 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp63_ = transition;
-#line 511 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 511 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp63_ != NULL) {
 #line 2518 "WindowSwitcher.c"
 		ClutterTransition* _tmp64_ = NULL;
-#line 512 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp64_ = transition;
-#line 512 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_signal_connect_object ((ClutterTimeline*) _tmp64_, "completed", (GCallback) ____lambda33__clutter_timeline_completed, self, 0);
 #line 2524 "WindowSwitcher.c"
 	} else {
-#line 514 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_close_cleanup (self);
 #line 2528 "WindowSwitcher.c"
 	}
-#line 444 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (transition);
 #line 2532 "WindowSwitcher.c"
 }
@@ -2535,7 +2535,7 @@ static void gala_window_switcher_close (GalaWindowSwitcher* self, guint time) {
 static gboolean _gala_window_switcher_clicked_icon_clutter_actor_button_release_event (ClutterActor* _sender, ClutterButtonEvent* event, gpointer self) {
 	gboolean result;
 	result = gala_window_switcher_clicked_icon ((GalaWindowSwitcher*) self, event);
-#line 538 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 2541 "WindowSwitcher.c"
 }
@@ -2577,123 +2577,123 @@ static GalaWindowIcon* gala_window_switcher_add_window (GalaWindowSwitcher* self
 	GalaWindowIcon* _tmp28_ = NULL;
 	ClutterActor* _tmp29_ = NULL;
 	GalaWindowIcon* _tmp30_ = NULL;
-#line 517 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 517 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (window != NULL, NULL);
-#line 519 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = window;
-#line 519 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = meta_window_get_compositor_private (_tmp0_);
-#line 519 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_TYPE (_tmp1_, meta_window_actor_get_type ()) ? ((MetaWindowActor*) _tmp1_) : NULL);
-#line 519 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	actor = _tmp2_;
-#line 520 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 520 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = actor;
-#line 520 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 520 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp3_ == NULL) {
-#line 521 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 521 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		result = NULL;
-#line 521 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 521 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (actor);
-#line 521 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 521 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return result;
 #line 2603 "WindowSwitcher.c"
 	}
-#line 523 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 523 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = actor;
-#line 523 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 523 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_hide ((ClutterActor*) _tmp4_);
-#line 525 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = window;
-#line 525 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = gala_safe_window_clone_new (_tmp5_, TRUE);
-#line 525 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_ref_sink (_tmp6_);
-#line 525 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clone = _tmp6_;
-#line 526 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = clone;
-#line 526 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = actor;
-#line 526 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp9_ = clutter_actor_get_x ((ClutterActor*) _tmp8_);
-#line 526 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp10_ = _tmp9_;
-#line 526 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_x ((ClutterActor*) _tmp7_, _tmp10_);
-#line 527 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 527 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp11_ = clone;
-#line 527 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 527 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp12_ = actor;
-#line 527 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 527 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp13_ = clutter_actor_get_y ((ClutterActor*) _tmp12_);
-#line 527 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 527 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp14_ = _tmp13_;
-#line 527 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 527 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_y ((ClutterActor*) _tmp11_, _tmp14_);
-#line 529 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp15_ = self->priv->window_clones;
-#line 529 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp16_ = clone;
-#line 529 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_add_child (_tmp15_, (ClutterActor*) _tmp16_);
-#line 531 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp17_ = window;
-#line 531 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp18_ = self->priv->dock_settings;
-#line 531 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp19_ = plank_dock_preferences_get_IconSize (_tmp18_);
-#line 531 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp20_ = _tmp19_;
-#line 531 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp21_ = gala_window_icon_new (_tmp17_, _tmp20_, TRUE);
-#line 531 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_ref_sink (_tmp21_);
-#line 531 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	icon = _tmp21_;
-#line 532 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp22_ = icon;
-#line 532 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_reactive ((ClutterActor*) _tmp22_, TRUE);
-#line 533 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 533 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp23_ = icon;
-#line 533 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 533 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_opacity ((ClutterActor*) _tmp23_, (guint) 100);
-#line 534 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 534 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp24_ = icon;
-#line 534 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 534 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_x_expand ((ClutterActor*) _tmp24_, TRUE);
-#line 535 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp25_ = icon;
-#line 535 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_y_expand ((ClutterActor*) _tmp25_, TRUE);
-#line 536 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 536 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp26_ = icon;
-#line 536 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 536 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_x_align ((ClutterActor*) _tmp26_, CLUTTER_ACTOR_ALIGN_CENTER);
-#line 537 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp27_ = icon;
-#line 537 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_y_align ((ClutterActor*) _tmp27_, CLUTTER_ACTOR_ALIGN_CENTER);
-#line 538 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp28_ = icon;
-#line 538 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_object ((ClutterActor*) _tmp28_, "button-release-event", (GCallback) _gala_window_switcher_clicked_icon_clutter_actor_button_release_event, self, 0);
-#line 540 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp29_ = self->priv->dock;
-#line 540 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp30_ = icon;
-#line 540 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_add_child (_tmp29_, (ClutterActor*) _tmp30_);
-#line 542 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 542 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = icon;
-#line 542 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 542 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (clone);
-#line 542 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 542 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (actor);
-#line 542 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 542 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 2699 "WindowSwitcher.c"
 }
@@ -2709,33 +2709,33 @@ static void gala_window_switcher_dim_windows (GalaWindowSwitcher* self) {
 	GList* _tmp5_ = NULL;
 	ClutterActor* _tmp24_ = NULL;
 	GList* _tmp25_ = NULL;
-#line 545 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 545 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 547 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 547 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = gala_appearance_settings_get_default ();
-#line 547 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 547 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = gala_appearance_settings_get_alt_tab_window_opacity (_tmp0_);
-#line 547 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 547 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = _tmp1_;
-#line 547 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 547 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = floor (_tmp2_ * 255);
-#line 547 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 547 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	window_opacity = (gint) _tmp3_;
-#line 549 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 549 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = self->priv->window_clones;
-#line 549 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 549 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = clutter_actor_get_children (_tmp4_);
 #line 2729 "WindowSwitcher.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 549 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 549 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		actor_collection = _tmp5_;
-#line 549 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 549 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
 #line 2737 "WindowSwitcher.c"
 			ClutterActor* actor = NULL;
-#line 549 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 549 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			actor = (ClutterActor*) actor_it->data;
 #line 2741 "WindowSwitcher.c"
 			{
@@ -2751,98 +2751,98 @@ static void gala_window_switcher_dim_windows (GalaWindowSwitcher* self) {
 				MetaWindow* _tmp14_ = NULL;
 				MetaWindow* _tmp15_ = NULL;
 				ClutterActor* _tmp23_ = NULL;
-#line 550 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 550 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp6_ = actor;
-#line 550 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 550 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clone = G_TYPE_CHECK_INSTANCE_CAST (_tmp6_, GALA_TYPE_SAFE_WINDOW_CLONE, GalaSafeWindowClone);
-#line 552 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 552 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp7_ = actor;
-#line 552 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 552 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_save_easing_state (_tmp7_);
-#line 553 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 553 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp8_ = actor;
-#line 553 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 553 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_set_easing_duration (_tmp8_, (guint) 250);
-#line 554 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 554 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp9_ = actor;
-#line 554 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 554 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_set_easing_mode (_tmp9_, CLUTTER_EASE_OUT_QUAD);
-#line 556 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 556 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp10_ = clone;
-#line 556 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 556 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp11_ = gala_safe_window_clone_get_window (_tmp10_);
-#line 556 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 556 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp12_ = _tmp11_;
-#line 556 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 556 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp13_ = self->priv->current_window;
-#line 556 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 556 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp14_ = gala_window_icon_get_window (_tmp13_);
-#line 556 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 556 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp15_ = _tmp14_;
-#line 556 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 556 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp12_ == _tmp15_) {
 #line 2785 "WindowSwitcher.c"
 					ClutterActor* _tmp16_ = NULL;
 					ClutterActor* _tmp17_ = NULL;
 					ClutterActor* _tmp18_ = NULL;
 					ClutterActor* _tmp19_ = NULL;
-#line 557 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 557 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp16_ = self->priv->window_clones;
-#line 557 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 557 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp17_ = actor;
-#line 557 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 557 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_child_above_sibling (_tmp16_, _tmp17_, NULL);
-#line 558 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp18_ = actor;
-#line 558 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_z_position (_tmp18_, (gfloat) 0);
-#line 559 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 559 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp19_ = actor;
-#line 559 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 559 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_opacity (_tmp19_, (guint) 255);
 #line 2804 "WindowSwitcher.c"
 				} else {
 					ClutterActor* _tmp20_ = NULL;
 					ClutterActor* _tmp21_ = NULL;
 					gint _tmp22_ = 0;
-#line 561 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 561 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp20_ = actor;
-#line 561 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 561 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_z_position (_tmp20_, (gfloat) -200);
-#line 562 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp21_ = actor;
-#line 562 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp22_ = window_opacity;
-#line 562 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_opacity (_tmp21_, (guint) _tmp22_);
 #line 2819 "WindowSwitcher.c"
 				}
-#line 565 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 565 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp23_ = actor;
-#line 565 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 565 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_restore_easing_state (_tmp23_);
 #line 2825 "WindowSwitcher.c"
 			}
 		}
-#line 549 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 549 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_list_free0 (actor_collection);
 #line 2830 "WindowSwitcher.c"
 	}
-#line 568 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 568 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp24_ = self->priv->dock;
-#line 568 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 568 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp25_ = clutter_actor_get_children (_tmp24_);
 #line 2836 "WindowSwitcher.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 568 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 568 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		actor_collection = _tmp25_;
-#line 568 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 568 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
 #line 2844 "WindowSwitcher.c"
 			ClutterActor* actor = NULL;
-#line 568 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 568 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			actor = (ClutterActor*) actor_it->data;
 #line 2848 "WindowSwitcher.c"
 			{
@@ -2854,51 +2854,51 @@ static void gala_window_switcher_dim_windows (GalaWindowSwitcher* self) {
 				GalaWindowIcon* _tmp30_ = NULL;
 				GalaWindowIcon* _tmp31_ = NULL;
 				GalaWindowIcon* _tmp34_ = NULL;
-#line 569 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 569 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp26_ = actor;
-#line 569 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 569 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				icon = G_TYPE_CHECK_INSTANCE_CAST (_tmp26_, GALA_TYPE_WINDOW_ICON, GalaWindowIcon);
-#line 570 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 570 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp27_ = icon;
-#line 570 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 570 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_save_easing_state ((ClutterActor*) _tmp27_);
-#line 571 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 571 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp28_ = icon;
-#line 571 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 571 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_set_easing_duration ((ClutterActor*) _tmp28_, (guint) 100);
-#line 572 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 572 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp29_ = icon;
-#line 572 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 572 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_set_easing_mode ((ClutterActor*) _tmp29_, CLUTTER_LINEAR);
-#line 574 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 574 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp30_ = icon;
-#line 574 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 574 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp31_ = self->priv->current_window;
-#line 574 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 574 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp30_ == _tmp31_) {
 #line 2880 "WindowSwitcher.c"
 					GalaWindowIcon* _tmp32_ = NULL;
-#line 575 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 575 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp32_ = icon;
-#line 575 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 575 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_opacity ((ClutterActor*) _tmp32_, (guint) 255);
 #line 2886 "WindowSwitcher.c"
 				} else {
 					GalaWindowIcon* _tmp33_ = NULL;
-#line 577 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 577 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp33_ = icon;
-#line 577 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 577 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_set_opacity ((ClutterActor*) _tmp33_, (guint) 100);
 #line 2893 "WindowSwitcher.c"
 				}
-#line 579 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 579 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp34_ = icon;
-#line 579 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 579 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clutter_actor_restore_easing_state ((ClutterActor*) _tmp34_);
 #line 2899 "WindowSwitcher.c"
 			}
 		}
-#line 568 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 568 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_list_free0 (actor_collection);
 #line 2904 "WindowSwitcher.c"
 	}
@@ -2913,16 +2913,16 @@ static void gala_window_switcher_dim_windows (GalaWindowSwitcher* self) {
  */
 static gboolean _vala_string_array_contains (gchar** stack, int stack_length, gchar* needle) {
 	int i;
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	for (i = 0; i < stack_length; i++) {
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		if (g_strcmp0 (stack[i], needle) == 0) {
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			return TRUE;
 #line 2923 "WindowSwitcher.c"
 		}
 	}
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return FALSE;
 #line 2928 "WindowSwitcher.c"
 }
@@ -2959,69 +2959,69 @@ static gboolean gala_window_switcher_collect_windows (GalaWindowSwitcher* self, 
 	GalaWindowIcon* _tmp39_ = NULL;
 	MetaScreen* _tmp43_ = NULL;
 	GList* _tmp44_ = NULL;
-#line 589 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 589 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 589 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 589 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (workspace != NULL, FALSE);
-#line 591 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 591 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = workspace;
-#line 591 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 591 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = meta_workspace_get_screen (_tmp0_);
-#line 591 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 591 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 591 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 591 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	screen = _tmp2_;
-#line 592 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 592 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = screen;
-#line 592 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 592 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = meta_screen_get_display (_tmp3_);
-#line 592 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 592 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = _g_object_ref0 (_tmp4_);
-#line 592 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 592 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	display = _tmp5_;
-#line 594 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 594 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = display;
-#line 594 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 594 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = workspace;
-#line 594 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 594 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = meta_display_get_tab_list (_tmp6_, META_TAB_LIST_NORMAL, _tmp7_);
-#line 594 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 594 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	windows = _tmp8_;
-#line 595 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 595 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp9_ = display;
-#line 595 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 595 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp10_ = workspace;
-#line 595 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 595 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp11_ = meta_display_get_tab_current (_tmp9_, META_TAB_LIST_NORMAL, _tmp10_);
-#line 595 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 595 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp12_ = _g_object_ref0 (_tmp11_);
-#line 595 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 595 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	current = _tmp12_;
-#line 597 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 597 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp13_ = windows;
-#line 597 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 597 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp14_ = g_list_length (_tmp13_);
-#line 597 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 597 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp14_ < ((guint) 1)) {
-#line 598 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		result = FALSE;
-#line 598 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (current);
-#line 598 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_list_free0 (windows);
-#line 598 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (display);
-#line 598 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (screen);
-#line 598 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return result;
 #line 3019 "WindowSwitcher.c"
 	}
-#line 600 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp15_ = windows;
-#line 600 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp16_ = g_list_length (_tmp15_);
-#line 600 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 600 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp16_ == ((guint) 1)) {
 #line 3027 "WindowSwitcher.c"
 		MetaWindow* window = NULL;
@@ -3034,74 +3034,74 @@ static gboolean gala_window_switcher_collect_windows (GalaWindowSwitcher* self, 
 		MetaWindow* _tmp25_ = NULL;
 		MetaDisplay* _tmp26_ = NULL;
 		guint32 _tmp27_ = 0U;
-#line 601 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp17_ = windows;
-#line 601 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp18_ = _tmp17_->data;
-#line 601 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp19_ = _g_object_ref0 ((MetaWindow*) _tmp18_);
-#line 601 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 601 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		window = _tmp19_;
-#line 602 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 602 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp20_ = window;
-#line 602 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 602 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_object_get (_tmp20_, "minimized", &_tmp21_, NULL);
-#line 602 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 602 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp22_ = _tmp21_;
-#line 602 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 602 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		if (_tmp22_) {
 #line 3054 "WindowSwitcher.c"
 			MetaWindow* _tmp23_ = NULL;
-#line 603 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 603 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp23_ = window;
-#line 603 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 603 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			meta_window_unminimize (_tmp23_);
 #line 3060 "WindowSwitcher.c"
 		} else {
 			MetaScreen* _tmp24_ = NULL;
-#line 605 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 605 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp24_ = screen;
-#line 605 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 605 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			gala_utils_bell (_tmp24_);
 #line 3067 "WindowSwitcher.c"
 		}
-#line 607 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 607 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp25_ = window;
-#line 607 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 607 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp26_ = display;
-#line 607 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 607 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp27_ = meta_display_get_current_time (_tmp26_);
-#line 607 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 607 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		meta_window_activate (_tmp25_, _tmp27_);
-#line 609 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		result = FALSE;
-#line 609 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (window);
-#line 609 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (current);
-#line 609 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_list_free0 (windows);
-#line 609 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (display);
-#line 609 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (screen);
-#line 609 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return result;
 #line 3091 "WindowSwitcher.c"
 	}
-#line 612 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 612 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp28_ = windows;
 #line 3095 "WindowSwitcher.c"
 	{
 		GList* window_collection = NULL;
 		GList* window_it = NULL;
-#line 612 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 612 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		window_collection = _tmp28_;
-#line 612 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 612 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
 #line 3103 "WindowSwitcher.c"
 			MetaWindow* window = NULL;
-#line 612 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 612 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			window = (MetaWindow*) window_it->data;
 #line 3107 "WindowSwitcher.c"
 			{
@@ -3110,86 +3110,86 @@ static gboolean gala_window_switcher_collect_windows (GalaWindowSwitcher* self, 
 				GalaWindowIcon* _tmp30_ = NULL;
 				MetaWindow* _tmp31_ = NULL;
 				MetaWindow* _tmp32_ = NULL;
-#line 613 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 613 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp29_ = window;
-#line 613 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 613 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp30_ = gala_window_switcher_add_window (self, _tmp29_);
-#line 613 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 613 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				clone = _tmp30_;
-#line 614 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 614 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp31_ = window;
-#line 614 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 614 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp32_ = current;
-#line 614 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 614 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp31_ == _tmp32_) {
 #line 3126 "WindowSwitcher.c"
 					GalaWindowIcon* _tmp33_ = NULL;
 					GalaWindowIcon* _tmp34_ = NULL;
-#line 615 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp33_ = clone;
-#line 615 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp34_ = _g_object_ref0 (_tmp33_);
-#line 615 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_g_object_unref0 (self->priv->current_window);
-#line 615 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					self->priv->current_window = _tmp34_;
 #line 3137 "WindowSwitcher.c"
 				}
-#line 612 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 612 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_g_object_unref0 (clone);
 #line 3141 "WindowSwitcher.c"
 			}
 		}
 	}
-#line 618 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 618 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp35_ = self->priv->window_clones;
-#line 618 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 618 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp36_ = clutter_actor_get_children (_tmp35_);
-#line 618 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 618 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp37_ = _tmp36_;
-#line 618 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 618 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp38_ = g_list_copy (_tmp37_);
-#line 618 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 618 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->clone_sort_order);
-#line 618 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 618 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->clone_sort_order = _tmp38_;
-#line 618 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 618 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_list_free0 (_tmp37_);
-#line 620 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 620 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp39_ = self->priv->current_window;
-#line 620 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 620 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp39_ == NULL) {
 #line 3163 "WindowSwitcher.c"
 		ClutterActor* _tmp40_ = NULL;
 		ClutterActor* _tmp41_ = NULL;
 		GalaWindowIcon* _tmp42_ = NULL;
-#line 621 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 621 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp40_ = self->priv->dock;
-#line 621 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 621 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp41_ = clutter_actor_get_child_at_index (_tmp40_, 0);
-#line 621 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 621 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp42_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp41_, GALA_TYPE_WINDOW_ICON, GalaWindowIcon));
-#line 621 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 621 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (self->priv->current_window);
-#line 621 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 621 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->current_window = _tmp42_;
 #line 3177 "WindowSwitcher.c"
 	}
-#line 624 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 624 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp43_ = screen;
-#line 624 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 624 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp44_ = meta_get_window_actors (_tmp43_);
 #line 3183 "WindowSwitcher.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 624 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 624 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		actor_collection = _tmp44_;
-#line 624 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 624 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
 #line 3191 "WindowSwitcher.c"
 			MetaWindowActor* actor = NULL;
-#line 624 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 624 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			actor = (MetaWindowActor*) actor_it->data;
 #line 3195 "WindowSwitcher.c"
 			{
@@ -3214,132 +3214,132 @@ static gboolean gala_window_switcher_collect_windows (GalaWindowSwitcher* self, 
 				gint _tmp63__length1 = 0;
 				gchar** _tmp64_ = NULL;
 				gint _tmp64__length1 = 0;
-#line 625 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 625 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp45_ = actor;
-#line 625 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 625 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp46_ = meta_window_actor_is_destroyed (_tmp45_);
-#line 625 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 625 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp46_) {
-#line 626 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 626 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					continue;
 #line 3226 "WindowSwitcher.c"
 				}
-#line 628 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 628 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp47_ = actor;
-#line 628 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 628 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp48_ = meta_window_actor_get_meta_window (_tmp47_);
-#line 628 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 628 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				window = _tmp48_;
-#line 629 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 629 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp49_ = window;
-#line 629 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 629 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp50_ = meta_window_get_window_type (_tmp49_);
-#line 629 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 629 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp51_ = _tmp50_;
-#line 629 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 629 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				type = _tmp51_;
-#line 631 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 631 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp54_ = type;
-#line 631 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 631 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp54_ != META_WINDOW_DOCK) {
 #line 3246 "WindowSwitcher.c"
 					MetaWindowType _tmp55_ = 0;
-#line 632 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp55_ = type;
-#line 632 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp53_ = _tmp55_ != META_WINDOW_DESKTOP;
 #line 3252 "WindowSwitcher.c"
 				} else {
-#line 631 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 631 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp53_ = FALSE;
 #line 3256 "WindowSwitcher.c"
 				}
-#line 631 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 631 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp53_) {
 #line 3260 "WindowSwitcher.c"
 					MetaWindowType _tmp56_ = 0;
-#line 633 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp56_ = type;
-#line 633 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp52_ = _tmp56_ != META_WINDOW_NOTIFICATION;
 #line 3266 "WindowSwitcher.c"
 				} else {
-#line 631 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 631 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp52_ = FALSE;
 #line 3270 "WindowSwitcher.c"
 				}
-#line 631 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 631 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp52_) {
 #line 3274 "WindowSwitcher.c"
 					MetaWindowActor* _tmp57_ = NULL;
-#line 634 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 634 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp57_ = actor;
-#line 634 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 634 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_hide ((ClutterActor*) _tmp57_);
 #line 3280 "WindowSwitcher.c"
 				}
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp59_ = window;
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp60_ = meta_window_get_title (_tmp59_);
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp61_ = _tmp60_;
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp62_ = gala_behavior_settings_get_default ();
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp63_ = gala_behavior_settings_get_dock_names (_tmp62_, &_tmp63__length1);
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp64_ = _tmp63_;
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_tmp64__length1 = _tmp63__length1;
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_vala_string_array_contains (_tmp64_, _tmp64__length1, _tmp61_)) {
 #line 3298 "WindowSwitcher.c"
 					MetaWindowType _tmp65_ = 0;
-#line 637 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 637 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp65_ = type;
-#line 637 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 637 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp58_ = _tmp65_ == META_WINDOW_DOCK;
 #line 3304 "WindowSwitcher.c"
 				} else {
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp58_ = FALSE;
 #line 3308 "WindowSwitcher.c"
 				}
-#line 636 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 636 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				if (_tmp58_) {
 #line 3312 "WindowSwitcher.c"
 					MetaWindowActor* _tmp66_ = NULL;
 					MetaWindowActor* _tmp67_ = NULL;
 					MetaWindowActor* _tmp68_ = NULL;
-#line 638 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp66_ = actor;
-#line 638 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp67_ = _g_object_ref0 (_tmp66_);
-#line 638 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_g_object_unref0 (self->priv->dock_window);
-#line 638 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 638 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					self->priv->dock_window = _tmp67_;
-#line 639 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 639 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					_tmp68_ = self->priv->dock_window;
-#line 639 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 639 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 					clutter_actor_hide ((ClutterActor*) _tmp68_);
 #line 3328 "WindowSwitcher.c"
 				}
 			}
 		}
 	}
-#line 643 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 643 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = TRUE;
-#line 643 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 643 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (current);
-#line 643 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 643 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_list_free0 (windows);
-#line 643 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 643 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (display);
-#line 643 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 643 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (screen);
-#line 643 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 643 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 3345 "WindowSwitcher.c"
 }
@@ -3351,46 +3351,46 @@ static GalaWindowIcon* gala_window_switcher_next_window (GalaWindowSwitcher* sel
 	gboolean _tmp0_ = FALSE;
 	ClutterActor* _tmp15_ = NULL;
 	GalaWindowIcon* _tmp16_ = NULL;
-#line 646 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 646 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 646 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 646 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (workspace != NULL, NULL);
-#line 649 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 649 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = backward;
-#line 649 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 649 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (!_tmp0_) {
 #line 3363 "WindowSwitcher.c"
 		GalaWindowIcon* _tmp1_ = NULL;
 		ClutterActor* _tmp2_ = NULL;
 		ClutterActor* _tmp3_ = NULL;
 		ClutterActor* _tmp4_ = NULL;
-#line 650 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 650 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp1_ = self->priv->current_window;
-#line 650 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 650 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp2_ = clutter_actor_get_next_sibling ((ClutterActor*) _tmp1_);
-#line 650 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 650 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp3_ = _g_object_ref0 (_tmp2_);
-#line 650 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 650 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (actor);
-#line 650 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 650 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		actor = _tmp3_;
-#line 651 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 651 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp4_ = actor;
-#line 651 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 651 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		if (_tmp4_ == NULL) {
 #line 3382 "WindowSwitcher.c"
 			ClutterActor* _tmp5_ = NULL;
 			ClutterActor* _tmp6_ = NULL;
 			ClutterActor* _tmp7_ = NULL;
-#line 652 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 652 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp5_ = self->priv->dock;
-#line 652 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 652 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp6_ = clutter_actor_get_first_child (_tmp5_);
-#line 652 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 652 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp7_ = _g_object_ref0 (_tmp6_);
-#line 652 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 652 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_object_unref0 (actor);
-#line 652 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 652 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			actor = _tmp7_;
 #line 3396 "WindowSwitcher.c"
 		}
@@ -3399,46 +3399,46 @@ static GalaWindowIcon* gala_window_switcher_next_window (GalaWindowSwitcher* sel
 		ClutterActor* _tmp9_ = NULL;
 		ClutterActor* _tmp10_ = NULL;
 		ClutterActor* _tmp11_ = NULL;
-#line 654 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 654 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp8_ = self->priv->current_window;
-#line 654 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 654 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp9_ = clutter_actor_get_previous_sibling ((ClutterActor*) _tmp8_);
-#line 654 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 654 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp10_ = _g_object_ref0 (_tmp9_);
-#line 654 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 654 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (actor);
-#line 654 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 654 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		actor = _tmp10_;
-#line 655 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 655 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp11_ = actor;
-#line 655 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 655 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		if (_tmp11_ == NULL) {
 #line 3417 "WindowSwitcher.c"
 			ClutterActor* _tmp12_ = NULL;
 			ClutterActor* _tmp13_ = NULL;
 			ClutterActor* _tmp14_ = NULL;
-#line 656 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 656 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp12_ = self->priv->dock;
-#line 656 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 656 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp13_ = clutter_actor_get_last_child (_tmp12_);
-#line 656 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 656 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp14_ = _g_object_ref0 (_tmp13_);
-#line 656 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 656 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_object_unref0 (actor);
-#line 656 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 656 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			actor = _tmp14_;
 #line 3431 "WindowSwitcher.c"
 		}
 	}
-#line 659 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 659 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp15_ = actor;
-#line 659 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 659 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp16_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp15_, GALA_TYPE_WINDOW_ICON, GalaWindowIcon));
-#line 659 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 659 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = _tmp16_;
-#line 659 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 659 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (actor);
-#line 659 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 659 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 3444 "WindowSwitcher.c"
 }
@@ -3452,39 +3452,39 @@ static GalaWindowIcon* gala_window_switcher_next_window (GalaWindowSwitcher* sel
  */
 static void gala_window_switcher_set_primary_modifier (GalaWindowSwitcher* self, guint mask) {
 	guint _tmp0_ = 0U;
-#line 668 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 668 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 670 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 670 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = mask;
-#line 670 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 670 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp0_ == ((guint) 0)) {
-#line 671 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 671 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->modifier_mask = (guint) 0;
 #line 3464 "WindowSwitcher.c"
 	} else {
-#line 673 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 673 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self->priv->modifier_mask = (guint) 1;
-#line 674 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 674 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		while (TRUE) {
 #line 3470 "WindowSwitcher.c"
 			guint _tmp1_ = 0U;
 			guint _tmp2_ = 0U;
 			guint _tmp3_ = 0U;
-#line 674 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 674 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp1_ = mask;
-#line 674 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 674 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			if (!(_tmp1_ > ((guint) 1))) {
-#line 674 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 674 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				break;
 #line 3480 "WindowSwitcher.c"
 			}
-#line 675 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 675 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp2_ = mask;
-#line 675 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 675 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			mask = _tmp2_ >> 1;
-#line 676 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 676 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp3_ = self->priv->modifier_mask;
-#line 676 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 676 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			self->priv->modifier_mask = _tmp3_ << 1;
 #line 3490 "WindowSwitcher.c"
 		}
@@ -3501,51 +3501,51 @@ static void gala_window_switcher_update_n_dock_items (GalaWindowSwitcher* self, 
 	gint count = 0;
 	gint _tmp14_ = 0;
 	GError * _inner_error_ = NULL;
-#line 684 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 684 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 684 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 684 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (folder != NULL);
-#line 686 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 686 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = event;
-#line 686 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 686 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp1_ != G_FILE_MONITOR_EVENT_CREATED) {
 #line 3513 "WindowSwitcher.c"
 		GFileMonitorEvent _tmp2_ = 0;
-#line 686 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 686 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp2_ = event;
-#line 686 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 686 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp0_ = _tmp2_ != G_FILE_MONITOR_EVENT_DELETED;
 #line 3519 "WindowSwitcher.c"
 	} else {
-#line 686 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 686 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp0_ = FALSE;
 #line 3523 "WindowSwitcher.c"
 	}
-#line 686 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 686 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp0_) {
-#line 687 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 687 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return;
 #line 3529 "WindowSwitcher.c"
 	}
-#line 689 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 689 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	count = 0;
 #line 3533 "WindowSwitcher.c"
 	{
 		GFileEnumerator* children = NULL;
 		GFile* _tmp3_ = NULL;
 		GFileEnumerator* _tmp4_ = NULL;
-#line 692 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 692 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp3_ = folder;
-#line 692 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 692 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp4_ = g_file_enumerate_children (_tmp3_, "", 0, NULL, &_inner_error_);
-#line 692 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 692 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		children = _tmp4_;
-#line 692 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 692 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 3546 "WindowSwitcher.c"
-			goto __catch24_g_error;
+			goto __catch27_g_error;
 		}
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		while (TRUE) {
 #line 3551 "WindowSwitcher.c"
 			GFileInfo* _tmp5_ = NULL;
@@ -3555,83 +3555,83 @@ static void gala_window_switcher_update_n_dock_items (GalaWindowSwitcher* self, 
 			GFileInfo* _tmp9_ = NULL;
 			gboolean _tmp10_ = FALSE;
 			gint _tmp11_ = 0;
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp6_ = children;
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp7_ = g_file_enumerator_next_file (_tmp6_, NULL, &_inner_error_);
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp5_ = _tmp7_;
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_g_object_unref0 (children);
 #line 3569 "WindowSwitcher.c"
-				goto __catch24_g_error;
+				goto __catch27_g_error;
 			}
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp8_ = _tmp5_;
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp5_ = NULL;
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp9_ = _tmp8_;
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp10_ = !(_tmp9_ != NULL);
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_object_unref0 (_tmp9_);
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			if (_tmp10_) {
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				_g_object_unref0 (_tmp5_);
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 				break;
 #line 3588 "WindowSwitcher.c"
 			}
-#line 694 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 694 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp11_ = count;
-#line 694 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 694 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			count = _tmp11_ + 1;
-#line 693 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 693 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_object_unref0 (_tmp5_);
 #line 3596 "WindowSwitcher.c"
 		}
-#line 691 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 691 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (children);
 #line 3600 "WindowSwitcher.c"
 	}
-	goto __finally24;
-	__catch24_g_error:
+	goto __finally27;
+	__catch27_g_error:
 	{
 		GError* e = NULL;
 		GError* _tmp12_ = NULL;
 		const gchar* _tmp13_ = NULL;
-#line 691 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 691 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		e = _inner_error_;
-#line 691 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 691 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_inner_error_ = NULL;
-#line 696 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 696 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp12_ = e;
-#line 696 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 696 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp13_ = _tmp12_->message;
-#line 696 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 696 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_warning ("WindowSwitcher.vala:696: %s", _tmp13_);
-#line 691 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 691 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_error_free0 (e);
 #line 3620 "WindowSwitcher.c"
 	}
-	__finally24:
-#line 691 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+	__finally27:
+#line 691 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 691 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 691 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 691 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 691 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_clear_error (&_inner_error_);
-#line 691 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 691 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		return;
 #line 3631 "WindowSwitcher.c"
 	}
-#line 698 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 698 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp14_ = count;
-#line 698 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 698 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->n_dock_items = _tmp14_;
 #line 3637 "WindowSwitcher.c"
 }
@@ -3649,33 +3649,33 @@ static GdkModifierType gala_window_switcher_get_current_modifiers (GalaWindowSwi
 	GdkDevice* _tmp3_ = NULL;
 	GdkWindow* _tmp4_ = NULL;
 	GdkModifierType _tmp5_ = 0;
-#line 701 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 701 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 704 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 704 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = g_new0 (gdouble, 0);
-#line 704 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 704 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	axes = _tmp0_;
-#line 704 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 704 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	axes_length1 = 0;
-#line 704 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 704 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_axes_size_ = axes_length1;
-#line 705 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 705 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = gdk_display_get_default ();
-#line 705 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 705 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = gdk_display_get_device_manager (_tmp1_);
-#line 705 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 705 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = gdk_device_manager_get_client_pointer (_tmp2_);
-#line 705 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 705 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = gdk_get_default_root_window ();
-#line 705 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 705 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gdk_device_get_state (_tmp3_, _tmp4_, axes, &_tmp5_);
-#line 705 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 705 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	modifiers = _tmp5_;
-#line 708 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 708 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = modifiers;
-#line 708 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 708 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	axes = (g_free (axes), NULL);
-#line 708 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 708 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 3681 "WindowSwitcher.c"
 }
@@ -3684,13 +3684,13 @@ static GdkModifierType gala_window_switcher_get_current_modifiers (GalaWindowSwi
 GalaWindowManager* gala_window_switcher_get_wm (GalaWindowSwitcher* self) {
 	GalaWindowManager* result;
 	GalaWindowManager* _tmp0_ = NULL;
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->_wm;
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	result = _tmp0_;
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 3696 "WindowSwitcher.c"
 }
@@ -3699,26 +3699,26 @@ GalaWindowManager* gala_window_switcher_get_wm (GalaWindowSwitcher* self) {
 static void gala_window_switcher_set_wm (GalaWindowSwitcher* self, GalaWindowManager* value) {
 	GalaWindowManager* _tmp0_ = NULL;
 	GalaWindowManager* _tmp1_ = NULL;
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_return_if_fail (self != NULL);
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = value;
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->_wm);
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->_wm = _tmp1_;
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_notify ((GObject *) self, "wm");
 #line 3715 "WindowSwitcher.c"
 }
 
 
 static Block40Data* block40_data_ref (Block40Data* _data40_) {
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_atomic_int_inc (&_data40_->_ref_count_);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return _data40_;
 #line 3724 "WindowSwitcher.c"
 }
@@ -3727,17 +3727,17 @@ static Block40Data* block40_data_ref (Block40Data* _data40_) {
 static void block40_data_unref (void * _userdata_) {
 	Block40Data* _data40_;
 	_data40_ = (Block40Data*) _userdata_;
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (g_atomic_int_dec_and_test (&_data40_->_ref_count_)) {
 #line 3733 "WindowSwitcher.c"
 		GalaWindowSwitcher* self;
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		self = _data40_->self;
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (_data40_->dock_canvas);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_g_object_unref0 (self);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_slice_free (Block40Data, _data40_);
 #line 3743 "WindowSwitcher.c"
 	}
@@ -3745,14 +3745,14 @@ static void block40_data_unref (void * _userdata_) {
 
 
 static void _gala_window_switcher_load_dock_theme_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
-#line 72 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_load_dock_theme ((GalaWindowSwitcher*) self);
 #line 3751 "WindowSwitcher.c"
 }
 
 
 static void _gala_window_switcher_update_n_dock_items_g_file_monitor_changed (GFileMonitor* _sender, GFile* file, GFile* other_file, GFileMonitorEvent event_type, gpointer self) {
-#line 83 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_update_n_dock_items ((GalaWindowSwitcher*) self, file, other_file, event_type);
 #line 3758 "WindowSwitcher.c"
 }
@@ -3761,14 +3761,14 @@ static void _gala_window_switcher_update_n_dock_items_g_file_monitor_changed (GF
 static gboolean _gala_window_switcher_draw_dock_background_clutter_canvas_draw (ClutterCanvas* _sender, cairo_t* cr, gint width, gint height, gpointer self) {
 	gboolean result;
 	result = gala_window_switcher_draw_dock_background ((GalaWindowSwitcher*) self, cr);
-#line 94 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return result;
 #line 3767 "WindowSwitcher.c"
 }
 
 
 static void _gala_window_switcher_icon_removed_clutter_container_actor_removed (ClutterContainer* _sender, ClutterActor* actor, gpointer self) {
-#line 97 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_icon_removed ((GalaWindowSwitcher*) self, actor);
 #line 3774 "WindowSwitcher.c"
 }
@@ -3783,37 +3783,37 @@ static void _gala_window_switcher___lambda35_ (Block40Data* _data40_) {
 	ClutterActor* _tmp4_ = NULL;
 	gfloat _tmp5_ = 0.0F;
 	gfloat _tmp6_ = 0.0F;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self = _data40_->self;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = _data40_->dock_canvas;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = self->priv->dock;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = clutter_actor_get_width (_tmp1_);
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = _tmp2_;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = self->priv->dock;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = clutter_actor_get_height (_tmp4_);
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = _tmp5_;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_canvas_set_size (_tmp0_, (gint) _tmp3_, (gint) _tmp6_);
 #line 3805 "WindowSwitcher.c"
 }
 
 
 static void __gala_window_switcher___lambda35__g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_gala_window_switcher___lambda35_ (self);
 #line 3812 "WindowSwitcher.c"
 }
 
 
 static void _gala_window_switcher_window_removed_clutter_container_actor_removed (ClutterContainer* _sender, ClutterActor* actor, gpointer self) {
-#line 104 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_window_removed ((GalaWindowSwitcher*) self, actor);
 #line 3819 "WindowSwitcher.c"
 }
@@ -3853,53 +3853,53 @@ static GObject * gala_window_switcher_constructor (GType type, guint n_construct
 	GalaWindowManager* _tmp33_ = NULL;
 	MetaScreen* _tmp34_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	parent_class = G_OBJECT_CLASS (gala_window_switcher_parent_class);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_SWITCHER, GalaWindowSwitcher);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_data40_ = g_slice_new0 (Block40Data);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_data40_->_ref_count_ = 1;
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_data40_->self = g_object_ref (self);
-#line 66 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = plank_dock_preferences_new ("dock1");
-#line 66 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock_settings);
-#line 66 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->dock_settings = _tmp0_;
-#line 71 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp1_ = self->priv->dock_settings;
-#line 71 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_object ((GObject*) _tmp1_, "notify", (GCallback) _gala_window_switcher_update_dock_g_object_notify, self, 0);
-#line 72 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = self->priv->dock_settings;
-#line 72 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_object ((GObject*) _tmp2_, "notify::Theme", (GCallback) _gala_window_switcher_load_dock_theme_g_object_notify, self, 0);
-#line 75 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = plank_paths_get_AppConfigFolder ();
-#line 75 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp4_ = _tmp3_;
-#line 75 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp5_ = g_file_get_child (_tmp4_, "dock1");
-#line 75 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp6_ = _tmp5_;
-#line 75 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp7_ = g_file_get_child (_tmp6_, "launchers");
-#line 75 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp8_ = _tmp7_;
-#line 75 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (_tmp6_);
-#line 75 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	launcher_folder = _tmp8_;
-#line 80 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp9_ = launcher_folder;
-#line 80 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp10_ = g_file_query_exists (_tmp9_, NULL);
-#line 80 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp10_) {
 #line 3905 "WindowSwitcher.c"
 		GFile* _tmp18_ = NULL;
@@ -3909,193 +3909,193 @@ static GObject * gala_window_switcher_constructor (GType type, guint n_construct
 			GFileMonitor* _tmp13_ = NULL;
 			GFileMonitor* _tmp14_ = NULL;
 			GFileMonitor* _tmp15_ = NULL;
-#line 82 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp12_ = launcher_folder;
-#line 82 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp13_ = g_file_monitor (_tmp12_, G_FILE_MONITOR_NONE, NULL, &_inner_error_);
-#line 82 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp11_ = _tmp13_;
-#line 82 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 3921 "WindowSwitcher.c"
-				goto __catch25_g_error;
+				goto __catch28_g_error;
 			}
-#line 82 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp14_ = _tmp11_;
-#line 82 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp11_ = NULL;
-#line 82 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_object_unref0 (self->priv->monitor);
-#line 82 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			self->priv->monitor = _tmp14_;
-#line 83 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp15_ = self->priv->monitor;
-#line 83 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			g_signal_connect_object (_tmp15_, "changed", (GCallback) _gala_window_switcher_update_n_dock_items_g_file_monitor_changed, self, 0);
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_object_unref0 (_tmp11_);
 #line 3938 "WindowSwitcher.c"
 		}
-		goto __finally25;
-		__catch25_g_error:
+		goto __finally28;
+		__catch28_g_error:
 		{
 			GError* e = NULL;
 			GError* _tmp16_ = NULL;
 			const gchar* _tmp17_ = NULL;
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			e = _inner_error_;
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_inner_error_ = NULL;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp16_ = e;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_tmp17_ = _tmp16_->message;
-#line 84 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			g_warning ("WindowSwitcher.vala:84: %s", _tmp17_);
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_error_free0 (e);
 #line 3958 "WindowSwitcher.c"
 		}
-		__finally25:
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+		__finally28:
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_g_object_unref0 (launcher_folder);
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			block40_data_unref (_data40_);
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			_data40_ = NULL;
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 81 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 			g_clear_error (&_inner_error_);
 #line 3973 "WindowSwitcher.c"
 		}
-#line 87 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp18_ = launcher_folder;
-#line 87 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_update_n_dock_items (self, _tmp18_, NULL, G_FILE_MONITOR_EVENT_CREATED);
 #line 3979 "WindowSwitcher.c"
 	}
-#line 90 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp19_ = clutter_actor_new ();
-#line 90 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_ref_sink (_tmp19_);
-#line 90 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock);
-#line 90 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->dock = _tmp19_;
-#line 91 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp20_ = self->priv->dock;
-#line 91 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp21_ = (ClutterBoxLayout*) clutter_box_layout_new ();
-#line 91 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_ref_sink (_tmp21_);
-#line 91 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp22_ = _tmp21_;
-#line 91 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_layout_manager (_tmp20_, (ClutterLayoutManager*) _tmp22_);
-#line 91 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (_tmp22_);
-#line 93 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp23_ = clutter_canvas_new ();
-#line 93 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_data40_->dock_canvas = _tmp23_;
-#line 94 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp24_ = _data40_->dock_canvas;
-#line 94 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_object (_tmp24_, "draw", (GCallback) _gala_window_switcher_draw_dock_background_clutter_canvas_draw, self, 0);
-#line 96 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp25_ = self->priv->dock;
-#line 96 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp26_ = _data40_->dock_canvas;
-#line 96 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_set_content (_tmp25_, (ClutterContent*) _tmp26_);
-#line 97 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp27_ = self->priv->dock;
-#line 97 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_object ((ClutterContainer*) _tmp27_, "actor-removed", (GCallback) _gala_window_switcher_icon_removed_clutter_container_actor_removed, self, 0);
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp28_ = self->priv->dock;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_data ((GObject*) _tmp28_, "notify::allocation", (GCallback) __gala_window_switcher___lambda35__g_object_notify, block40_data_ref (_data40_), (GClosureNotify) block40_data_unref, 0);
-#line 101 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_load_dock_theme (self);
-#line 103 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp29_ = clutter_actor_new ();
-#line 103 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_ref_sink (_tmp29_);
-#line 103 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->window_clones);
-#line 103 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->window_clones = _tmp29_;
-#line 104 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp30_ = self->priv->window_clones;
-#line 104 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_object ((ClutterContainer*) _tmp30_, "actor-removed", (GCallback) _gala_window_switcher_window_removed_clutter_container_actor_removed, self, 0);
-#line 106 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp31_ = self->priv->window_clones;
-#line 106 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_add_child ((ClutterActor*) self, _tmp31_);
-#line 107 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp32_ = self->priv->dock;
-#line 107 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	clutter_actor_add_child ((ClutterActor*) self, _tmp32_);
-#line 109 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp33_ = self->priv->_wm;
-#line 109 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp34_ = meta_plugin_get_screen ((MetaPlugin*) _tmp33_);
-#line 109 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_connect_object (_tmp34_, "monitors-changed", (GCallback) _gala_window_switcher_update_dock_meta_screen_monitors_changed, self, 0);
-#line 111 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_set ((ClutterActor*) self, "visible", FALSE, NULL);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (launcher_folder);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	block40_data_unref (_data40_);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_data40_ = NULL;
-#line 62 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	return obj;
 #line 4061 "WindowSwitcher.c"
 }
 
 
 static void gala_window_switcher_class_init (GalaWindowSwitcherClass * klass) {
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	gala_window_switcher_parent_class = g_type_class_peek_parent (klass);
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_type_class_add_private (klass, sizeof (GalaWindowSwitcherPrivate));
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	((ClutterActorClass *) klass)->key_release_event = gala_window_switcher_real_key_release_event;
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	((ClutterActorClass *) klass)->key_focus_out = gala_window_switcher_real_key_focus_out;
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_window_switcher_get_property;
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_window_switcher_set_property;
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_window_switcher_constructor;
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_window_switcher_finalize;
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_SWITCHER_WM, g_param_spec_object ("wm", "wm", "wm", GALA_TYPE_WINDOW_MANAGER, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 #line 4084 "WindowSwitcher.c"
 }
 
 
 static void gala_window_switcher_instance_init (GalaWindowSwitcher * self) {
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv = GALA_WINDOW_SWITCHER_GET_PRIVATE (self);
-#line 29 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->current_window = NULL;
-#line 49 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->last_switch = (gint64) 0;
-#line 50 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->closing = FALSE;
-#line 54 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->dock_width = 0.0f;
-#line 55 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self->priv->n_dock_items = 0;
 #line 4101 "WindowSwitcher.c"
 }
@@ -4107,51 +4107,51 @@ static void gala_window_switcher_finalize (GObject* obj) {
 	GalaWindowManager* _tmp2_ = NULL;
 	MetaScreen* _tmp3_ = NULL;
 	guint _tmp4_ = 0U;
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_SWITCHER, GalaWindowSwitcher);
-#line 116 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp0_ = self->priv->monitor;
-#line 116 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	if (_tmp0_ != NULL) {
 #line 4117 "WindowSwitcher.c"
 		GFileMonitor* _tmp1_ = NULL;
-#line 117 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		_tmp1_ = self->priv->monitor;
-#line 117 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_file_monitor_cancel (_tmp1_);
 #line 4123 "WindowSwitcher.c"
 	}
-#line 119 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp2_ = self->priv->_wm;
-#line 119 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_tmp3_ = meta_plugin_get_screen ((MetaPlugin*) _tmp2_);
-#line 119 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_parse_name ("monitors-changed", meta_screen_get_type (), &_tmp4_, NULL, FALSE);
-#line 119 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	g_signal_handlers_disconnect_matched (_tmp3_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp4_, 0, NULL, (GCallback) _gala_window_switcher_update_dock_meta_screen_monitors_changed, self);
-#line 27 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->_wm);
-#line 29 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->current_window);
-#line 31 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->window_clones);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->clone_sort_order);
-#line 34 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock_window);
-#line 35 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock);
-#line 37 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock_surface);
-#line 38 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock_theme);
-#line 43 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->dock_settings);
-#line 46 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->monitor);
-#line 51 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	_g_object_unref0 (self->priv->modal_proxy);
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	G_OBJECT_CLASS (gala_window_switcher_parent_class)->finalize (obj);
 #line 4157 "WindowSwitcher.c"
 }
@@ -4172,19 +4172,19 @@ GType gala_window_switcher_get_type (void) {
 static void _vala_gala_window_switcher_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaWindowSwitcher * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_SWITCHER, GalaWindowSwitcher);
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	switch (property_id) {
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GALA_WINDOW_SWITCHER_WM:
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		g_value_set_object (value, gala_window_switcher_get_wm (self));
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		break;
 #line 4184 "WindowSwitcher.c"
 		default:
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		break;
 #line 4190 "WindowSwitcher.c"
 	}
@@ -4194,19 +4194,19 @@ static void _vala_gala_window_switcher_get_property (GObject * object, guint pro
 static void _vala_gala_window_switcher_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaWindowSwitcher * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_SWITCHER, GalaWindowSwitcher);
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 	switch (property_id) {
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		case GALA_WINDOW_SWITCHER_WM:
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		gala_window_switcher_set_wm (self, g_value_get_object (value));
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		break;
 #line 4206 "WindowSwitcher.c"
 		default:
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 23 "/home/nick/work/gala/src/Widgets/WindowSwitcher.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowSwitcher.vala"
 		break;
 #line 4212 "WindowSwitcher.c"
 	}

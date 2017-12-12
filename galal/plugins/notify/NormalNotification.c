@@ -164,9 +164,9 @@ static void gala_plugins_notify_normal_notification_content_get_allocation_value
 static void gala_plugins_notify_normal_notification_content_real_allocate (ClutterActor* base, ClutterActorBox* box, ClutterAllocationFlags flags);
 #define GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE 48
 #define GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN 12
-#define GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING 20
-#define GALA_PLUGINS_NOTIFY_NOTIFICATION_SPACING 10
-#define GALA_PLUGINS_NOTIFY_NOTIFICATION_WIDTH 350
+#define GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING 4
+#define GALA_PLUGINS_NOTIFY_NOTIFICATION_SPACING 6
+#define GALA_PLUGINS_NOTIFY_NOTIFICATION_WIDTH 300
 GalaPluginsNotifyNormalNotificationContent* gala_plugins_notify_normal_notification_content_new (void);
 GalaPluginsNotifyNormalNotificationContent* gala_plugins_notify_normal_notification_content_construct (GType object_type);
 static GObject * gala_plugins_notify_normal_notification_content_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
@@ -231,41 +231,41 @@ void gala_plugins_notify_normal_notification_content_set_values (GalaPluginsNoti
 	const gchar* _tmp7_ = NULL;
 	gchar* _tmp8_ = NULL;
 	gchar* _tmp9_ = NULL;
-#line 96 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 96 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (summary != NULL);
-#line 96 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (body != NULL);
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->summary_label;
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = summary;
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp2_ = gala_plugins_notify_normal_notification_content_fix_markup (self, _tmp1_);
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp3_ = _tmp2_;
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp4_ = g_strdup_printf ("<b>%s</b>", _tmp3_);
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp5_ = _tmp4_;
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_markup (_tmp0_, _tmp5_);
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_free0 (_tmp5_);
-#line 98 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_free0 (_tmp3_);
-#line 99 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp6_ = self->priv->body_label;
-#line 99 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp7_ = body;
-#line 99 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp8_ = gala_plugins_notify_normal_notification_content_fix_markup (self, _tmp7_);
-#line 99 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp9_ = _tmp8_;
-#line 99 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_markup (_tmp6_, _tmp9_);
-#line 99 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_free0 (_tmp9_);
 #line 271 "NormalNotification.c"
 }
@@ -277,25 +277,25 @@ static void gala_plugins_notify_normal_notification_content_real_get_preferred_h
 	gfloat _vala_nat_height = 0.0F;
 	gfloat label_height = 0.0F;
 	gfloat _tmp0_ = 0.0F;
-#line 102 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = (GalaPluginsNotifyNormalNotificationContent*) base;
-#line 105 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gala_plugins_notify_normal_notification_content_get_allocation_values (self, NULL, NULL, NULL, NULL, &_tmp0_, NULL);
-#line 105 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	label_height = _tmp0_;
-#line 107 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_nat_height = label_height;
-#line 107 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_min_height = _vala_nat_height;
-#line 102 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (min_height) {
-#line 102 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*min_height = _vala_min_height;
 #line 295 "NormalNotification.c"
 	}
-#line 102 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (nat_height) {
-#line 102 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*nat_height = _vala_nat_height;
 #line 301 "NormalNotification.c"
 	}
@@ -326,57 +326,57 @@ static void gala_plugins_notify_normal_notification_content_real_allocate (Clutt
 	ClutterAllocationFlags _tmp11_ = 0;
 	ClutterActorBox _tmp12_ = {0};
 	ClutterAllocationFlags _tmp13_ = 0;
-#line 110 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = (GalaPluginsNotifyNormalNotificationContent*) base;
-#line 110 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (box != NULL);
-#line 113 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gala_plugins_notify_normal_notification_content_get_allocation_values (self, &_tmp0_, &_tmp1_, &_tmp2_, &_tmp3_, &_tmp4_, &_tmp5_);
-#line 113 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	label_x = _tmp0_;
-#line 113 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	label_width = _tmp1_;
-#line 113 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	summary_height = _tmp2_;
-#line 113 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	body_height = _tmp3_;
-#line 113 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	label_height = _tmp4_;
-#line 113 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	label_y = _tmp5_;
-#line 116 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	memset (&summary_alloc, 0, sizeof (ClutterActorBox));
-#line 117 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_box_set_origin (&summary_alloc, label_x, label_y);
-#line 118 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_box_set_size (&summary_alloc, label_width, summary_height);
-#line 119 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp6_ = self->priv->summary_label;
-#line 119 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp7_ = summary_alloc;
-#line 119 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp8_ = flags;
-#line 119 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_allocate ((ClutterActor*) _tmp6_, &_tmp7_, _tmp8_);
-#line 121 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	memset (&body_alloc, 0, sizeof (ClutterActorBox));
-#line 122 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_box_set_origin (&body_alloc, label_x, (label_y + summary_height) + GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_CONTENT_LABEL_SPACING);
-#line 123 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_box_set_size (&body_alloc, label_width, body_height);
-#line 124 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp9_ = self->priv->body_label;
-#line 124 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp10_ = body_alloc;
-#line 124 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp11_ = flags;
-#line 124 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_allocate ((ClutterActor*) _tmp9_, &_tmp10_, _tmp11_);
-#line 126 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp12_ = *box;
-#line 126 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp13_ = flags;
-#line 126 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	CLUTTER_ACTOR_CLASS (gala_plugins_notify_normal_notification_content_parent_class)->allocate (G_TYPE_CHECK_INSTANCE_CAST (self, clutter_actor_get_type (), ClutterActor), &_tmp12_, _tmp13_);
 #line 382 "NormalNotification.c"
 }
@@ -402,100 +402,100 @@ static void gala_plugins_notify_normal_notification_content_get_allocation_value
 	gfloat _tmp9_ = 0.0F;
 	gfloat _tmp10_ = 0.0F;
 	gint _tmp11_ = 0;
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 132 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	height = GALA_PLUGINS_NOTIFY_NOTIFICATION_ICON_SIZE;
-#line 134 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = height;
-#line 134 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_label_x = (gfloat) (((GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN + GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING) + _tmp0_) + GALA_PLUGINS_NOTIFY_NOTIFICATION_SPACING);
-#line 135 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = _vala_label_x;
-#line 135 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_label_width = ((GALA_PLUGINS_NOTIFY_NOTIFICATION_WIDTH - _tmp1_) - GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN) - GALA_PLUGINS_NOTIFY_NOTIFICATION_SPACING;
-#line 137 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp2_ = self->priv->summary_label;
-#line 137 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp3_ = _vala_label_width;
-#line 137 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_get_preferred_height ((ClutterActor*) _tmp2_, _tmp3_, NULL, &_tmp4_);
-#line 137 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_summary_height = _tmp4_;
-#line 138 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp5_ = self->priv->body_label;
-#line 138 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp6_ = _vala_label_width;
-#line 138 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_get_preferred_height ((ClutterActor*) _tmp5_, _tmp6_, NULL, &_tmp7_);
-#line 138 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_body_height = _tmp7_;
-#line 140 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp8_ = _vala_summary_height;
-#line 140 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp9_ = _vala_body_height;
-#line 140 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 140 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_label_height = (_tmp8_ + GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_CONTENT_LABEL_SPACING) + _tmp9_;
-#line 141 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_label_y = (gfloat) (GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN + GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING);
-#line 143 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp10_ = _vala_label_height;
-#line 143 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp11_ = height;
-#line 143 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (_tmp10_ < ((gfloat) _tmp11_)) {
 #line 448 "NormalNotification.c"
 		gfloat _tmp12_ = 0.0F;
 		gint _tmp13_ = 0;
 		gfloat _tmp14_ = 0.0F;
 		gint _tmp15_ = 0;
-#line 144 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp12_ = _vala_label_y;
-#line 144 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp13_ = height;
-#line 144 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp14_ = _vala_label_height;
-#line 144 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_vala_label_y = _tmp12_ + ((_tmp13_ - ((gint) _tmp14_)) / 2);
-#line 145 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp15_ = height;
-#line 145 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_vala_label_height = (gfloat) _tmp15_;
 #line 465 "NormalNotification.c"
 	}
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (label_x) {
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*label_x = _vala_label_x;
 #line 471 "NormalNotification.c"
 	}
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (label_width) {
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*label_width = _vala_label_width;
 #line 477 "NormalNotification.c"
 	}
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (summary_height) {
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*summary_height = _vala_summary_height;
 #line 483 "NormalNotification.c"
 	}
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (body_height) {
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*body_height = _vala_body_height;
 #line 489 "NormalNotification.c"
 	}
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (label_height) {
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*label_height = _vala_label_height;
 #line 495 "NormalNotification.c"
 	}
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (label_y) {
-#line 129 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*label_y = _vala_label_y;
 #line 501 "NormalNotification.c"
 	}
@@ -511,15 +511,15 @@ static gchar* gala_plugins_notify_normal_notification_content_fix_markup (GalaPl
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 152 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 152 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (markup != NULL, NULL);
-#line 154 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = markup;
-#line 154 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 154 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	text = _tmp1_;
 #line 525 "NormalNotification.c"
 	{
@@ -539,65 +539,65 @@ static gchar* gala_plugins_notify_normal_notification_content_fix_markup (GalaPl
 		gint _tmp15_ = 0;
 		gchar* _tmp16_ = NULL;
 		gchar* _tmp17_ = NULL;
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp3_ = gala_plugins_notify_normal_notification_content_entity_regex;
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp4_ = markup;
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp5_ = markup;
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp6_ = strlen (_tmp5_);
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp7_ = _tmp6_;
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp8_ = g_regex_replace (_tmp3_, _tmp4_, (gssize) _tmp7_, 0, "&amp;", 0, &_inner_error_);
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp2_ = _tmp8_;
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 559 "NormalNotification.c"
 			goto __catch1_g_error;
 		}
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp9_ = _tmp2_;
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp2_ = NULL;
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_free0 (text);
-#line 157 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		text = _tmp9_;
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp11_ = gala_plugins_notify_normal_notification_content_tag_regex;
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp12_ = text;
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp13_ = text;
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp14_ = strlen (_tmp13_);
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp15_ = _tmp14_;
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp16_ = g_regex_replace (_tmp11_, _tmp12_, (gssize) _tmp15_, 0, "&lt;", 0, &_inner_error_);
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp10_ = _tmp16_;
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_g_free0 (_tmp2_);
 #line 588 "NormalNotification.c"
 			goto __catch1_g_error;
 		}
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp17_ = _tmp10_;
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp10_ = NULL;
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_free0 (text);
-#line 158 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		text = _tmp17_;
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_free0 (_tmp10_);
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_free0 (_tmp2_);
 #line 603 "NormalNotification.c"
 	}
@@ -605,30 +605,30 @@ static gchar* gala_plugins_notify_normal_notification_content_fix_markup (GalaPl
 	__catch1_g_error:
 	{
 		GError* e = NULL;
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		e = _inner_error_;
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_inner_error_ = NULL;
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_error_free0 (e);
 #line 615 "NormalNotification.c"
 	}
 	__finally1:
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_free0 (text);
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_clear_error (&_inner_error_);
-#line 156 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		return NULL;
 #line 628 "NormalNotification.c"
 	}
-#line 161 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	result = text;
-#line 161 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return result;
 #line 634 "NormalNotification.c"
 }
@@ -636,16 +636,16 @@ static gchar* gala_plugins_notify_normal_notification_content_fix_markup (GalaPl
 
 GalaPluginsNotifyNormalNotificationContent* gala_plugins_notify_normal_notification_content_construct (GType object_type) {
 	GalaPluginsNotifyNormalNotificationContent * self = NULL;
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = (GalaPluginsNotifyNormalNotificationContent*) g_object_new (object_type, NULL);
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return self;
 #line 644 "NormalNotification.c"
 }
 
 
 GalaPluginsNotifyNormalNotificationContent* gala_plugins_notify_normal_notification_content_new (void) {
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return gala_plugins_notify_normal_notification_content_construct (GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION_CONTENT);
 #line 651 "NormalNotification.c"
 }
@@ -708,193 +708,193 @@ static GObject * gala_plugins_notify_normal_notification_content_constructor (GT
 	GtkStyleContext* _tmp47_ = NULL;
 	ClutterText* _tmp48_ = NULL;
 	ClutterText* _tmp49_ = NULL;
-#line 46 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	parent_class = G_OBJECT_CLASS (gala_plugins_notify_normal_notification_content_parent_class);
-#line 46 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 46 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION_CONTENT, GalaPluginsNotifyNormalNotificationContent);
-#line 48 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = (ClutterText*) clutter_text_new_with_text (NULL, "");
-#line 48 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_ref_sink (_tmp0_);
-#line 48 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->summary_label);
-#line 48 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->summary_label = _tmp0_;
-#line 49 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = self->priv->summary_label;
-#line 49 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_line_wrap (_tmp1_, TRUE);
-#line 50 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp2_ = self->priv->summary_label;
-#line 50 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_use_markup (_tmp2_, TRUE);
-#line 51 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp3_ = self->priv->summary_label;
-#line 51 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_line_wrap_mode (_tmp3_, PANGO_WRAP_WORD_CHAR);
-#line 53 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp4_ = (ClutterText*) clutter_text_new_with_text (NULL, "");
-#line 53 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_ref_sink (_tmp4_);
-#line 53 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->body_label);
-#line 53 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->body_label = _tmp4_;
-#line 54 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp5_ = self->priv->body_label;
-#line 54 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_line_wrap (_tmp5_, TRUE);
-#line 55 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp6_ = self->priv->body_label;
-#line 55 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_use_markup (_tmp6_, TRUE);
-#line 56 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp7_ = self->priv->body_label;
-#line 56 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_line_wrap_mode (_tmp7_, PANGO_WRAP_WORD_CHAR);
-#line 58 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp8_ = gtk_widget_path_new ();
-#line 58 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	style_path = _tmp8_;
-#line 59 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp9_ = style_path;
-#line 59 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_widget_path_append_type (_tmp9_, gtk_window_get_type ());
-#line 60 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp10_ = style_path;
-#line 60 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_widget_path_append_type (_tmp10_, gtk_event_box_get_type ());
-#line 61 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp11_ = style_path;
-#line 61 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_widget_path_iter_add_class (_tmp11_, 1, "gala-notification");
-#line 62 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp12_ = style_path;
-#line 62 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_widget_path_append_type (_tmp12_, gtk_label_get_type ());
-#line 64 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp13_ = gtk_style_context_new ();
-#line 64 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	label_style_context = _tmp13_;
-#line 65 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp14_ = label_style_context;
-#line 65 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp15_ = gala_plugins_notify_notification_default_css;
-#line 65 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_add_provider (_tmp14_, (GtkStyleProvider*) _tmp15_, (guint) GTK_STYLE_PROVIDER_PRIORITY_FALLBACK);
-#line 66 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp16_ = label_style_context;
-#line 66 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp17_ = style_path;
-#line 66 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_set_path (_tmp16_, _tmp17_);
-#line 70 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp18_ = label_style_context;
-#line 70 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_save (_tmp18_);
-#line 71 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp19_ = label_style_context;
-#line 71 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_add_class (_tmp19_, "title");
-#line 72 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp20_ = label_style_context;
-#line 72 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_get_color (_tmp20_, GTK_STATE_FLAG_NORMAL, &_tmp21_);
-#line 72 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	color = _tmp21_;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp22_ = self->priv->summary_label;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp23_ = color;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp24_ = _tmp23_.red;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp25_ = color;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp26_ = _tmp25_.green;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp27_ = color;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp28_ = _tmp27_.blue;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp29_ = color;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp30_ = _tmp29_.alpha;
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp31_.red = (guint8) (_tmp24_ * 255);
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp31_.green = (guint8) (_tmp26_ * 255);
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp31_.blue = (guint8) (_tmp28_ * 255);
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp31_.alpha = (guint8) (_tmp30_ * 255);
-#line 73 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_color (_tmp22_, &_tmp31_);
-#line 79 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp32_ = label_style_context;
-#line 79 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_restore (_tmp32_);
-#line 81 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp33_ = label_style_context;
-#line 81 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_save (_tmp33_);
-#line 82 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp34_ = label_style_context;
-#line 82 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_add_class (_tmp34_, "label");
-#line 83 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp35_ = label_style_context;
-#line 83 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_get_color (_tmp35_, GTK_STATE_FLAG_NORMAL, &_tmp36_);
-#line 83 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	color = _tmp36_;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp37_ = self->priv->body_label;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp38_ = color;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp39_ = _tmp38_.red;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp40_ = color;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp41_ = _tmp40_.green;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp42_ = color;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp43_ = _tmp42_.blue;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp44_ = color;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp45_ = _tmp44_.alpha;
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp46_.red = (guint8) (_tmp39_ * 255);
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp46_.green = (guint8) (_tmp41_ * 255);
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp46_.blue = (guint8) (_tmp43_ * 255);
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp46_.alpha = (guint8) (_tmp45_ * 255);
-#line 84 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_text_set_color (_tmp37_, &_tmp46_);
-#line 90 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp47_ = label_style_context;
-#line 90 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gtk_style_context_restore (_tmp47_);
-#line 92 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp48_ = self->priv->summary_label;
-#line 92 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_add_child ((ClutterActor*) self, (ClutterActor*) _tmp48_);
-#line 93 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp49_ = self->priv->body_label;
-#line 93 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 93 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_add_child ((ClutterActor*) self, (ClutterActor*) _tmp49_);
-#line 46 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (label_style_context);
-#line 46 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_gtk_widget_path_unref0 (style_path);
-#line 46 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return obj;
 #line 900 "NormalNotification.c"
 }
@@ -902,17 +902,17 @@ static GObject * gala_plugins_notify_normal_notification_content_constructor (GT
 
 static void gala_plugins_notify_normal_notification_content_class_init (GalaPluginsNotifyNormalNotificationContentClass * klass) {
 	GError * _inner_error_ = NULL;
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gala_plugins_notify_normal_notification_content_parent_class = g_type_class_peek_parent (klass);
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_type_class_add_private (klass, sizeof (GalaPluginsNotifyNormalNotificationContentPrivate));
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	((ClutterActorClass *) klass)->get_preferred_height = gala_plugins_notify_normal_notification_content_real_get_preferred_height;
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	((ClutterActorClass *) klass)->allocate = gala_plugins_notify_normal_notification_content_real_allocate;
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_plugins_notify_normal_notification_content_constructor;
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_plugins_notify_normal_notification_content_finalize;
 #line 918 "NormalNotification.c"
 	{
@@ -922,45 +922,45 @@ static void gala_plugins_notify_normal_notification_content_class_init (GalaPlug
 		GRegex* _tmp3_ = NULL;
 		GRegex* _tmp4_ = NULL;
 		GRegex* _tmp5_ = NULL;
-#line 36 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp1_ = g_regex_new ("&(?!amp;|quot;|apos;|lt;|gt;)", 0, 0, &_inner_error_);
-#line 36 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp0_ = _tmp1_;
-#line 36 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 932 "NormalNotification.c"
 			goto __catch2_g_error;
 		}
-#line 36 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp2_ = _tmp0_;
-#line 36 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp0_ = NULL;
-#line 36 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_regex_unref0 (gala_plugins_notify_normal_notification_content_entity_regex);
-#line 36 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_content_entity_regex = _tmp2_;
-#line 37 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp4_ = g_regex_new ("<(?!\\/?[biu]>)", 0, 0, &_inner_error_);
-#line 37 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp3_ = _tmp4_;
-#line 37 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 37 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_g_regex_unref0 (_tmp0_);
 #line 951 "NormalNotification.c"
 			goto __catch2_g_error;
 		}
-#line 37 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp5_ = _tmp3_;
-#line 37 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp3_ = NULL;
-#line 37 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_regex_unref0 (gala_plugins_notify_normal_notification_content_tag_regex);
-#line 37 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_content_tag_regex = _tmp5_;
-#line 35 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_regex_unref0 (_tmp3_);
-#line 35 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_regex_unref0 (_tmp0_);
 #line 966 "NormalNotification.c"
 	}
@@ -968,20 +968,20 @@ static void gala_plugins_notify_normal_notification_content_class_init (GalaPlug
 	__catch2_g_error:
 	{
 		GError* e = NULL;
-#line 35 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		e = _inner_error_;
-#line 35 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_inner_error_ = NULL;
-#line 35 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_error_free0 (e);
 #line 978 "NormalNotification.c"
 	}
 	__finally2:
-#line 35 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 35 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 35 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_clear_error (&_inner_error_);
 #line 987 "NormalNotification.c"
 	}
@@ -989,7 +989,7 @@ static void gala_plugins_notify_normal_notification_content_class_init (GalaPlug
 
 
 static void gala_plugins_notify_normal_notification_content_instance_init (GalaPluginsNotifyNormalNotificationContent * self) {
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv = GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_CONTENT_GET_PRIVATE (self);
 #line 995 "NormalNotification.c"
 }
@@ -997,13 +997,13 @@ static void gala_plugins_notify_normal_notification_content_instance_init (GalaP
 
 static void gala_plugins_notify_normal_notification_content_finalize (GObject* obj) {
 	GalaPluginsNotifyNormalNotificationContent * self;
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION_CONTENT, GalaPluginsNotifyNormalNotificationContent);
-#line 43 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->summary_label);
-#line 44 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->body_label);
-#line 28 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	G_OBJECT_CLASS (gala_plugins_notify_normal_notification_content_parent_class)->finalize (obj);
 #line 1009 "NormalNotification.c"
 }
@@ -1038,42 +1038,42 @@ GalaPluginsNotifyNormalNotification* gala_plugins_notify_normal_notification_con
 	guint32 _tmp7_ = 0U;
 	gchar** _tmp8_ = NULL;
 	gint _tmp8__length1 = 0;
-#line 177 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (screen != NULL, NULL);
-#line 177 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (summary != NULL, NULL);
-#line 177 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (body != NULL, NULL);
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = id;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = icon;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp2_ = urgency;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp3_ = expire_timeout;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp4_ = screen;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp5_ = summary;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp6_ = body;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp7_ = pid;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp8_ = actions;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp8__length1 = actions_length1;
-#line 180 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = (GalaPluginsNotifyNormalNotification*) g_object_new (object_type, "id", _tmp0_, "icon", _tmp1_, "urgency", _tmp2_, "expire-timeout", _tmp3_, "screen", _tmp4_, "summary", _tmp5_, "body", _tmp6_, "sender-pid", _tmp7_, "notification-actions", _tmp8_, NULL);
-#line 177 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return self;
 #line 1072 "NormalNotification.c"
 }
 
 
 GalaPluginsNotifyNormalNotification* gala_plugins_notify_normal_notification_new (MetaScreen* screen, guint32 id, const gchar* summary, const gchar* body, GdkPixbuf* icon, GalaPluginsNotifyNotificationUrgency urgency, gint32 expire_timeout, guint32 pid, gchar** actions, int actions_length1) {
-#line 177 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return gala_plugins_notify_normal_notification_construct (GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION, screen, id, summary, body, icon, urgency, expire_timeout, pid, actions, actions_length1);
 #line 1079 "NormalNotification.c"
 }
@@ -1081,28 +1081,28 @@ GalaPluginsNotifyNormalNotification* gala_plugins_notify_normal_notification_new
 
 static void ___lambda12_ (GalaPluginsNotifyNormalNotification* self) {
 	GalaPluginsNotifyNormalNotificationContent* _tmp0_ = NULL;
-#line 231 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->old_notification_content;
-#line 231 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (_tmp0_ != NULL) {
 #line 1089 "NormalNotification.c"
 		GalaPluginsNotifyNormalNotificationContent* _tmp1_ = NULL;
-#line 232 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 232 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp1_ = self->priv->old_notification_content;
-#line 232 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 232 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		clutter_actor_destroy ((ClutterActor*) _tmp1_);
 #line 1095 "NormalNotification.c"
 	}
-#line 233 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->old_notification_content);
-#line 233 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->old_notification_content = NULL;
 #line 1101 "NormalNotification.c"
 }
 
 
 static void ____lambda12__clutter_timeline_completed (ClutterTimeline* _sender, gpointer self) {
-#line 230 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	___lambda12_ ((GalaPluginsNotifyNormalNotification*) self);
 #line 1108 "NormalNotification.c"
 }
@@ -1118,37 +1118,37 @@ void gala_plugins_notify_normal_notification_update (GalaPluginsNotifyNormalNoti
 	gint _tmp28__length1 = 0;
 	GdkPixbuf* _tmp29_ = NULL;
 	gint32 _tmp30_ = 0;
-#line 204 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 204 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (summary != NULL);
-#line 204 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (body != NULL);
-#line 207 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = self->priv->_summary;
-#line 207 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp2_ = summary;
-#line 207 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (g_strcmp0 (_tmp1_, _tmp2_) != 0) {
-#line 207 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp0_ = TRUE;
 #line 1136 "NormalNotification.c"
 	} else {
 		const gchar* _tmp3_ = NULL;
 		const gchar* _tmp4_ = NULL;
-#line 207 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp3_ = self->priv->_body;
-#line 207 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp4_ = body;
-#line 207 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp0_ = g_strcmp0 (_tmp3_, _tmp4_) != 0;
 #line 1146 "NormalNotification.c"
 	}
-#line 207 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 207 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	visible_change = _tmp0_;
-#line 209 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp5_ = visible_change;
-#line 209 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (_tmp5_) {
 #line 1154 "NormalNotification.c"
 		GalaPluginsNotifyNormalNotificationContent* _tmp6_ = NULL;
@@ -1174,97 +1174,97 @@ void gala_plugins_notify_normal_notification_update (GalaPluginsNotifyNormalNoti
 		gfloat _tmp25_ = 0.0F;
 		gfloat _tmp26_ = 0.0F;
 		ClutterTransition* _tmp27_ = NULL;
-#line 210 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp6_ = self->priv->old_notification_content;
-#line 210 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		if (_tmp6_ != NULL) {
 #line 1182 "NormalNotification.c"
 			GalaPluginsNotifyNormalNotificationContent* _tmp7_ = NULL;
-#line 211 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_tmp7_ = self->priv->old_notification_content;
-#line 211 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			clutter_actor_destroy ((ClutterActor*) _tmp7_);
 #line 1188 "NormalNotification.c"
 		}
-#line 213 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp8_ = gala_plugins_notify_normal_notification_content_new ();
-#line 213 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_object_ref_sink (_tmp8_);
-#line 213 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_g_object_unref0 (self->priv->old_notification_content);
-#line 213 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		self->priv->old_notification_content = _tmp8_;
-#line 214 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp9_ = self->priv->old_notification_content;
-#line 214 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp10_ = self->priv->_summary;
-#line 214 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp11_ = self->priv->_body;
-#line 214 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_content_set_values (_tmp9_, _tmp10_, _tmp11_);
-#line 216 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp12_ = self->priv->content_container;
-#line 216 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp13_ = self->priv->old_notification_content;
-#line 216 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		clutter_actor_add_child (_tmp12_, (ClutterActor*) _tmp13_);
-#line 218 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp14_ = summary;
-#line 218 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 218 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_set_summary (self, _tmp14_);
-#line 219 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp15_ = body;
-#line 219 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_set_body (self, _tmp15_);
-#line 220 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp16_ = self->priv->notification_content;
-#line 220 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp17_ = summary;
-#line 220 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp18_ = body;
-#line 220 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_content_set_values (_tmp16_, _tmp17_, _tmp18_);
-#line 223 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp19_ = self->priv->notification_content;
-#line 223 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		clutter_actor_get_preferred_height ((ClutterActor*) _tmp19_, (gfloat) 0, NULL, &_tmp20_);
-#line 223 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		content_height = _tmp20_;
-#line 224 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 224 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp21_ = self->priv->old_notification_content;
-#line 224 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 224 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		clutter_actor_get_preferred_height ((ClutterActor*) _tmp21_, (gfloat) 0, NULL, &_tmp22_);
-#line 224 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 224 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		old_content_height = _tmp22_;
-#line 226 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp23_ = content_height;
-#line 226 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp24_ = old_content_height;
-#line 226 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp25_ = MAX (_tmp23_, _tmp24_);
-#line 226 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		content_height = _tmp25_;
-#line 228 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp26_ = content_height;
-#line 228 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_notification_play_update_transition ((GalaPluginsNotifyNotification*) self, _tmp26_ + (GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING * 2));
-#line 230 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp27_ = clutter_actor_get_transition ((ClutterActor*) self, "switch");
-#line 230 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_signal_connect_object ((ClutterTimeline*) _tmp27_, "completed", (GCallback) ____lambda12__clutter_timeline_completed, self, 0);
 #line 1256 "NormalNotification.c"
 	}
-#line 237 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp28_ = actions;
-#line 237 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp28__length1 = actions_length1;
-#line 237 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gala_plugins_notify_normal_notification_set_notification_actions (self, _tmp28_, _tmp28__length1);
-#line 238 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp29_ = icon;
-#line 238 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp30_ = expire_timeout;
-#line 238 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gala_plugins_notify_notification_update_base ((GalaPluginsNotifyNotification*) self, _tmp29_, _tmp30_);
 #line 1270 "NormalNotification.c"
 }
@@ -1278,37 +1278,37 @@ static void gala_plugins_notify_normal_notification_real_update_slide_animation 
 	gfloat _tmp6_ = 0.0F;
 	gfloat _tmp7_ = 0.0F;
 	gfloat _tmp8_ = 0.0F;
-#line 241 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 241 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = (GalaPluginsNotifyNormalNotification*) base;
-#line 243 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 243 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->old_notification_content;
-#line 243 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 243 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (_tmp0_ != NULL) {
 #line 1288 "NormalNotification.c"
 		GalaPluginsNotifyNormalNotificationContent* _tmp1_ = NULL;
 		gfloat _tmp2_ = 0.0F;
 		gfloat _tmp3_ = 0.0F;
-#line 244 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp1_ = self->priv->old_notification_content;
-#line 244 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp2_ = gala_plugins_notify_notification_get_animation_slide_y_offset ((GalaPluginsNotifyNotification*) self);
-#line 244 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp3_ = _tmp2_;
-#line 244 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		clutter_actor_set_y ((ClutterActor*) _tmp1_, _tmp3_);
 #line 1300 "NormalNotification.c"
 	}
-#line 246 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp4_ = self->priv->notification_content;
-#line 246 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp5_ = gala_plugins_notify_notification_get_animation_slide_y_offset ((GalaPluginsNotifyNotification*) self);
-#line 246 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp6_ = _tmp5_;
-#line 246 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp7_ = gala_plugins_notify_notification_get_animation_slide_height ((GalaPluginsNotifyNotification*) self);
-#line 246 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp8_ = _tmp7_;
-#line 246 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_set_y ((ClutterActor*) _tmp4_, _tmp6_ - _tmp8_);
 #line 1314 "NormalNotification.c"
 }
@@ -1328,43 +1328,43 @@ static void gala_plugins_notify_normal_notification_real_update_allocation (Gala
 	GalaPluginsNotifyNormalNotificationContent* _tmp7_ = NULL;
 	gfloat _tmp8_ = 0.0F;
 	ClutterActor* _tmp9_ = NULL;
-#line 249 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = (GalaPluginsNotifyNormalNotification*) base;
-#line 251 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	memset (&box, 0, sizeof (ClutterActorBox));
-#line 252 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_box_set_origin (&box, (gfloat) 0, (gfloat) 0);
-#line 253 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = clutter_actor_get_width ((ClutterActor*) self);
-#line 253 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = _tmp0_;
-#line 253 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp2_ = clutter_actor_get_height ((ClutterActor*) self);
-#line 253 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp3_ = _tmp2_;
-#line 253 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_box_set_size (&box, _tmp1_, _tmp3_);
-#line 255 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp4_ = self->priv->content_container;
-#line 255 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp5_ = box;
-#line 255 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp6_ = flags;
-#line 255 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_allocate (_tmp4_, &_tmp5_, _tmp6_);
-#line 259 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp7_ = self->priv->notification_content;
-#line 259 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_get_preferred_height ((ClutterActor*) _tmp7_, (gfloat) 0, NULL, &_tmp8_);
-#line 259 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 259 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_content_height = _tmp8_;
-#line 261 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp9_ = self->priv->content_container;
-#line 261 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_set_clip (_tmp9_, (gfloat) GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN, (gfloat) GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN, (gfloat) ((GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN * 2) + GALA_PLUGINS_NOTIFY_NOTIFICATION_WIDTH), _vala_content_height + (GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING * 2));
-#line 249 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (content_height) {
-#line 249 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 249 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*content_height = _vala_content_height;
 #line 1370 "NormalNotification.c"
 	}
@@ -1379,29 +1379,29 @@ static void gala_plugins_notify_normal_notification_real_get_preferred_height (C
 	GalaPluginsNotifyNormalNotificationContent* _tmp0_ = NULL;
 	gfloat _tmp1_ = 0.0F;
 	gfloat _tmp2_ = 0.0F;
-#line 264 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = (GalaPluginsNotifyNormalNotification*) base;
-#line 267 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->notification_content;
-#line 267 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = for_width;
-#line 267 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_get_preferred_height ((ClutterActor*) _tmp0_, _tmp1_, NULL, &_tmp2_);
-#line 267 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	content_height = _tmp2_;
-#line 269 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_nat_height = content_height + ((GALA_PLUGINS_NOTIFY_NOTIFICATION_MARGIN + GALA_PLUGINS_NOTIFY_NOTIFICATION_PADDING) * 2);
-#line 269 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_vala_min_height = _vala_nat_height;
-#line 264 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (min_height) {
-#line 264 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*min_height = _vala_min_height;
 #line 1401 "NormalNotification.c"
 	}
-#line 264 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (nat_height) {
-#line 264 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*nat_height = _vala_nat_height;
 #line 1407 "NormalNotification.c"
 	}
@@ -1413,19 +1413,19 @@ static void gala_plugins_notify_normal_notification_real_activate (GalaPluginsNo
 	MetaWindow* window = NULL;
 	MetaWindow* _tmp11_ = NULL;
 	MetaWindow* _tmp12_ = NULL;
-#line 272 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 272 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = (GalaPluginsNotifyNormalNotification*) base;
 #line 1419 "NormalNotification.c"
 	{
 		gint i = 0;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		i = 0;
 #line 1424 "NormalNotification.c"
 		{
 			gboolean _tmp0_ = FALSE;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_tmp0_ = TRUE;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			while (TRUE) {
 #line 1431 "NormalNotification.c"
 				gint _tmp2_ = 0;
@@ -1439,69 +1439,69 @@ static void gala_plugins_notify_normal_notification_real_activate (GalaPluginsNo
 				gint _tmp6__length1 = 0;
 				gint _tmp7_ = 0;
 				const gchar* _tmp8_ = NULL;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				if (!_tmp0_) {
 #line 1445 "NormalNotification.c"
 					gint _tmp1_ = 0;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					_tmp1_ = i;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					i = _tmp1_ + 2;
 #line 1451 "NormalNotification.c"
 				}
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp0_ = FALSE;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp2_ = i;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp3_ = gala_plugins_notify_normal_notification_get_notification_actions (self, &_tmp3__length1);
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp4_ = _tmp3_;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp4__length1 = _tmp3__length1;
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				if (!(_tmp2_ < _tmp4__length1)) {
-#line 276 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					break;
 #line 1467 "NormalNotification.c"
 				}
-#line 277 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp5_ = gala_plugins_notify_normal_notification_get_notification_actions (self, &_tmp5__length1);
-#line 277 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp6_ = _tmp5_;
-#line 277 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp6__length1 = _tmp5__length1;
-#line 277 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp7_ = i;
-#line 277 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp8_ = _tmp6_[_tmp7_];
-#line 277 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				if (g_strcmp0 (_tmp8_, "default") == 0) {
 #line 1481 "NormalNotification.c"
 					guint32 _tmp9_ = 0U;
 					guint32 _tmp10_ = 0U;
-#line 278 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					_tmp9_ = gala_plugins_notify_notification_get_id ((GalaPluginsNotifyNotification*) self);
-#line 278 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					_tmp10_ = _tmp9_;
-#line 278 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 278 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					g_signal_emit_by_name ((GalaPluginsNotifyNotification*) self, "action-invoked", _tmp10_, "default");
-#line 279 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					gala_plugins_notify_normal_notification_dismiss (self);
-#line 281 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					return;
 #line 1494 "NormalNotification.c"
 				}
 			}
 		}
 	}
-#line 287 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp11_ = gala_plugins_notify_normal_notification_get_window (self);
-#line 287 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 287 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	window = _tmp11_;
-#line 288 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp12_ = window;
-#line 288 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (_tmp12_ != NULL) {
 #line 1507 "NormalNotification.c"
 		MetaWorkspace* workspace = NULL;
@@ -1514,53 +1514,53 @@ static void gala_plugins_notify_normal_notification_real_activate (GalaPluginsNo
 		MetaWorkspace* _tmp18_ = NULL;
 		MetaScreen* _tmp19_ = NULL;
 		MetaWorkspace* _tmp20_ = NULL;
-#line 289 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp13_ = window;
-#line 289 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp14_ = meta_window_get_workspace (_tmp13_);
-#line 289 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 289 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		workspace = _tmp14_;
-#line 290 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp15_ = self->priv->_screen;
-#line 290 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp16_ = meta_screen_get_display (_tmp15_);
-#line 290 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp17_ = meta_display_get_current_time (_tmp16_);
-#line 290 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		time = _tmp17_;
-#line 292 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp18_ = workspace;
-#line 292 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp19_ = self->priv->_screen;
-#line 292 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp20_ = meta_screen_get_active_workspace (_tmp19_);
-#line 292 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		if (_tmp18_ != _tmp20_) {
 #line 1540 "NormalNotification.c"
 			MetaWorkspace* _tmp21_ = NULL;
 			MetaWindow* _tmp22_ = NULL;
 			guint32 _tmp23_ = 0U;
-#line 293 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_tmp21_ = workspace;
-#line 293 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_tmp22_ = window;
-#line 293 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_tmp23_ = time;
-#line 293 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			meta_workspace_activate_with_focus (_tmp21_, _tmp22_, _tmp23_);
 #line 1552 "NormalNotification.c"
 		} else {
 			MetaWindow* _tmp24_ = NULL;
 			guint32 _tmp25_ = 0U;
-#line 295 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_tmp24_ = window;
-#line 295 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			_tmp25_ = time;
-#line 295 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			meta_window_activate (_tmp24_, _tmp25_);
 #line 1562 "NormalNotification.c"
 		}
-#line 297 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 297 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_dismiss (self);
 #line 1566 "NormalNotification.c"
 	}
@@ -1572,33 +1572,33 @@ static MetaWindow* gala_plugins_notify_normal_notification_get_window (GalaPlugi
 	guint32 _tmp0_ = 0U;
 	MetaScreen* _tmp1_ = NULL;
 	GList* _tmp2_ = NULL;
-#line 301 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 301 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 303 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 303 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->_sender_pid;
-#line 303 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 303 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (_tmp0_ == ((guint32) 0)) {
-#line 304 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		result = NULL;
-#line 304 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		return result;
 #line 1586 "NormalNotification.c"
 	}
-#line 306 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = self->priv->_screen;
-#line 306 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp2_ = meta_get_window_actors (_tmp1_);
 #line 1592 "NormalNotification.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 306 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		actor_collection = _tmp2_;
-#line 306 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
 #line 1600 "NormalNotification.c"
 			MetaWindowActor* actor = NULL;
-#line 306 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			actor = (MetaWindowActor*) actor_it->data;
 #line 1604 "NormalNotification.c"
 			{
@@ -1610,46 +1610,46 @@ static MetaWindow* gala_plugins_notify_normal_notification_get_window (GalaPlugi
 				MetaWindow* _tmp7_ = NULL;
 				gint _tmp8_ = 0;
 				guint32 _tmp9_ = 0U;
-#line 307 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp3_ = actor;
-#line 307 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp4_ = meta_window_actor_is_destroyed (_tmp3_);
-#line 307 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				if (_tmp4_) {
-#line 308 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					continue;
 #line 1622 "NormalNotification.c"
 				}
-#line 310 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp5_ = actor;
-#line 310 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp6_ = meta_window_actor_get_meta_window (_tmp5_);
-#line 310 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				window = _tmp6_;
-#line 315 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 315 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp7_ = window;
-#line 315 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 315 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp8_ = meta_window_get_pid (_tmp7_);
-#line 315 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 315 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				_tmp9_ = self->priv->_sender_pid;
-#line 315 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 315 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 				if (((guint32) _tmp8_) == _tmp9_) {
 #line 1638 "NormalNotification.c"
 					MetaWindow* _tmp10_ = NULL;
-#line 316 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 316 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					_tmp10_ = window;
-#line 316 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 316 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					result = _tmp10_;
-#line 316 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 316 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 					return result;
 #line 1646 "NormalNotification.c"
 				}
 			}
 		}
 	}
-#line 319 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 319 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	result = NULL;
-#line 319 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 319 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return result;
 #line 1655 "NormalNotification.c"
 }
@@ -1658,15 +1658,15 @@ static MetaWindow* gala_plugins_notify_normal_notification_get_window (GalaPlugi
 static void gala_plugins_notify_normal_notification_dismiss (GalaPluginsNotifyNormalNotification* self) {
 	guint32 _tmp0_ = 0U;
 	guint32 _tmp1_ = 0U;
-#line 322 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 322 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 324 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = gala_plugins_notify_notification_get_id ((GalaPluginsNotifyNotification*) self);
-#line 324 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = _tmp0_;
-#line 324 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_signal_emit_by_name ((GalaPluginsNotifyNotification*) self, "closed", _tmp1_, (guint32) GALA_PLUGINS_NOTIFY_NOTIFICATION_CLOSED_REASON_DISMISSED);
-#line 325 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 325 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gala_plugins_notify_notification_close ((GalaPluginsNotifyNotification*) self);
 #line 1672 "NormalNotification.c"
 }
@@ -1675,13 +1675,13 @@ static void gala_plugins_notify_normal_notification_dismiss (GalaPluginsNotifyNo
 const gchar* gala_plugins_notify_normal_notification_get_summary (GalaPluginsNotifyNormalNotification* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->_summary;
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	result = _tmp0_;
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return result;
 #line 1687 "NormalNotification.c"
 }
@@ -1690,17 +1690,17 @@ const gchar* gala_plugins_notify_normal_notification_get_summary (GalaPluginsNot
 void gala_plugins_notify_normal_notification_set_summary (GalaPluginsNotifyNormalNotification* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = value;
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_free0 (self->priv->_summary);
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->_summary = _tmp1_;
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_notify ((GObject *) self, "summary");
 #line 1706 "NormalNotification.c"
 }
@@ -1709,13 +1709,13 @@ void gala_plugins_notify_normal_notification_set_summary (GalaPluginsNotifyNorma
 const gchar* gala_plugins_notify_normal_notification_get_body (GalaPluginsNotifyNormalNotification* self) {
 	const gchar* result;
 	const gchar* _tmp0_ = NULL;
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->_body;
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	result = _tmp0_;
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return result;
 #line 1721 "NormalNotification.c"
 }
@@ -1724,17 +1724,17 @@ const gchar* gala_plugins_notify_normal_notification_get_body (GalaPluginsNotify
 void gala_plugins_notify_normal_notification_set_body (GalaPluginsNotifyNormalNotification* self, const gchar* value) {
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = value;
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_free0 (self->priv->_body);
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->_body = _tmp1_;
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_notify ((GObject *) self, "body");
 #line 1740 "NormalNotification.c"
 }
@@ -1743,13 +1743,13 @@ void gala_plugins_notify_normal_notification_set_body (GalaPluginsNotifyNormalNo
 guint32 gala_plugins_notify_normal_notification_get_sender_pid (GalaPluginsNotifyNormalNotification* self) {
 	guint32 result;
 	guint32 _tmp0_ = 0U;
-#line 169 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (self != NULL, 0U);
-#line 169 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->_sender_pid;
-#line 169 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	result = _tmp0_;
-#line 169 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return result;
 #line 1755 "NormalNotification.c"
 }
@@ -1757,13 +1757,13 @@ guint32 gala_plugins_notify_normal_notification_get_sender_pid (GalaPluginsNotif
 
 static void gala_plugins_notify_normal_notification_set_sender_pid (GalaPluginsNotifyNormalNotification* self, guint32 value) {
 	guint32 _tmp0_ = 0U;
-#line 169 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 169 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = value;
-#line 169 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->_sender_pid = _tmp0_;
-#line 169 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_notify ((GObject *) self, "sender-pid");
 #line 1769 "NormalNotification.c"
 }
@@ -1775,25 +1775,25 @@ gchar** gala_plugins_notify_normal_notification_get_notification_actions (GalaPl
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->_notification_actions;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0__length1 = self->priv->_notification_actions_length1;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = _tmp0_;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	if (result_length1) {
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		*result_length1 = _tmp1__length1;
 #line 1793 "NormalNotification.c"
 	}
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	result = _tmp1_;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return result;
 #line 1799 "NormalNotification.c"
 }
@@ -1802,19 +1802,19 @@ gchar** gala_plugins_notify_normal_notification_get_notification_actions (GalaPl
 static gchar** _vala_array_dup1 (gchar** self, int length) {
 	gchar** result;
 	int i;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	result = g_new0 (gchar*, length + 1);
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	for (i = 0; i < length; i++) {
 #line 1810 "NormalNotification.c"
 		gchar* _tmp0_ = NULL;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		_tmp0_ = g_strdup (self[i]);
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		result[i] = _tmp0_;
 #line 1816 "NormalNotification.c"
 	}
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return result;
 #line 1820 "NormalNotification.c"
 }
@@ -1825,25 +1825,25 @@ void gala_plugins_notify_normal_notification_set_notification_actions (GalaPlugi
 	gint _tmp0__length1 = 0;
 	gchar** _tmp1_ = NULL;
 	gint _tmp1__length1 = 0;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = value;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0__length1 = value_length1;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = (_tmp0_ != NULL) ? _vala_array_dup1 (_tmp0_, _tmp0__length1) : ((gpointer) _tmp0_);
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1__length1 = _tmp0__length1;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->_notification_actions = (_vala_array_free (self->priv->_notification_actions, self->priv->_notification_actions_length1, (GDestroyNotify) g_free), NULL);
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->_notification_actions = _tmp1_;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->_notification_actions_length1 = _tmp1__length1;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->__notification_actions_size_ = self->priv->_notification_actions_length1;
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_notify ((GObject *) self, "notification-actions");
 #line 1849 "NormalNotification.c"
 }
@@ -1852,20 +1852,20 @@ void gala_plugins_notify_normal_notification_set_notification_actions (GalaPlugi
 MetaScreen* gala_plugins_notify_normal_notification_get_screen (GalaPluginsNotifyNormalNotification* self) {
 	MetaScreen* result;
 	MetaScreen* _tmp0_ = NULL;
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = self->priv->_screen;
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	result = _tmp0_;
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return result;
 #line 1864 "NormalNotification.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 1871 "NormalNotification.c"
 }
@@ -1874,17 +1874,17 @@ static gpointer _g_object_ref0 (gpointer self) {
 static void gala_plugins_notify_normal_notification_set_screen (GalaPluginsNotifyNormalNotification* self, MetaScreen* value) {
 	MetaScreen* _tmp0_ = NULL;
 	MetaScreen* _tmp1_ = NULL;
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_return_if_fail (self != NULL);
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = value;
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->_screen);
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->_screen = _tmp1_;
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_notify ((GObject *) self, "screen");
 #line 1890 "NormalNotification.c"
 }
@@ -1902,91 +1902,91 @@ static GObject * gala_plugins_notify_normal_notification_constructor (GType type
 	ClutterActor* _tmp5_ = NULL;
 	GalaPluginsNotifyNormalNotificationContent* _tmp6_ = NULL;
 	ClutterActor* _tmp7_ = NULL;
-#line 193 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	parent_class = G_OBJECT_CLASS (gala_plugins_notify_normal_notification_parent_class);
-#line 193 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 193 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION, GalaPluginsNotifyNormalNotification);
-#line 195 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp0_ = clutter_actor_new ();
-#line 195 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_ref_sink (_tmp0_);
-#line 195 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->content_container);
-#line 195 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->content_container = _tmp0_;
-#line 197 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp1_ = gala_plugins_notify_normal_notification_content_new ();
-#line 197 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_ref_sink (_tmp1_);
-#line 197 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->notification_content);
-#line 197 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->notification_content = _tmp1_;
-#line 198 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp2_ = self->priv->notification_content;
-#line 198 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp3_ = self->priv->_summary;
-#line 198 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp4_ = self->priv->_body;
-#line 198 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gala_plugins_notify_normal_notification_content_set_values (_tmp2_, _tmp3_, _tmp4_);
-#line 200 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp5_ = self->priv->content_container;
-#line 200 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp6_ = self->priv->notification_content;
-#line 200 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 200 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_add_child (_tmp5_, (ClutterActor*) _tmp6_);
-#line 201 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_tmp7_ = self->priv->content_container;
-#line 201 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 201 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	clutter_actor_insert_child_below ((ClutterActor*) self, _tmp7_, NULL);
-#line 193 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	return obj;
 #line 1948 "NormalNotification.c"
 }
 
 
 static void gala_plugins_notify_normal_notification_class_init (GalaPluginsNotifyNormalNotificationClass * klass) {
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	gala_plugins_notify_normal_notification_parent_class = g_type_class_peek_parent (klass);
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_type_class_add_private (klass, sizeof (GalaPluginsNotifyNormalNotificationPrivate));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	((GalaPluginsNotifyNotificationClass *) klass)->update_slide_animation = gala_plugins_notify_normal_notification_real_update_slide_animation;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	((GalaPluginsNotifyNotificationClass *) klass)->update_allocation = gala_plugins_notify_normal_notification_real_update_allocation;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	((ClutterActorClass *) klass)->get_preferred_height = gala_plugins_notify_normal_notification_real_get_preferred_height;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	((GalaPluginsNotifyNotificationClass *) klass)->activate = gala_plugins_notify_normal_notification_real_activate;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_plugins_notify_normal_notification_get_property;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_plugins_notify_normal_notification_set_property;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_plugins_notify_normal_notification_constructor;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_plugins_notify_normal_notification_finalize;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SUMMARY, g_param_spec_string ("summary", "summary", "summary", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_BODY, g_param_spec_string ("body", "body", "body", NULL, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SENDER_PID, g_param_spec_uint ("sender-pid", "sender-pid", "sender-pid", 0, G_MAXUINT, 0U, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_NOTIFICATION_ACTIONS, g_param_spec_boxed ("notification-actions", "notification-actions", "notification-actions", G_TYPE_STRV, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SCREEN, g_param_spec_object ("screen", "screen", "screen", meta_screen_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 #line 1983 "NormalNotification.c"
 }
 
 
 static void gala_plugins_notify_normal_notification_instance_init (GalaPluginsNotifyNormalNotification * self) {
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv = GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_GET_PRIVATE (self);
-#line 175 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->old_notification_content = NULL;
 #line 1992 "NormalNotification.c"
 }
@@ -1994,23 +1994,23 @@ static void gala_plugins_notify_normal_notification_instance_init (GalaPluginsNo
 
 static void gala_plugins_notify_normal_notification_finalize (GObject* obj) {
 	GalaPluginsNotifyNormalNotification * self;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION, GalaPluginsNotifyNormalNotification);
-#line 167 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_free0 (self->priv->_summary);
-#line 168 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_free0 (self->priv->_body);
-#line 170 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 170 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	self->priv->_notification_actions = (_vala_array_free (self->priv->_notification_actions, self->priv->_notification_actions_length1, (GDestroyNotify) g_free), NULL);
-#line 171 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->_screen);
-#line 173 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 173 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->content_container);
-#line 174 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->notification_content);
-#line 175 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	_g_object_unref0 (self->priv->old_notification_content);
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	G_OBJECT_CLASS (gala_plugins_notify_normal_notification_parent_class)->finalize (obj);
 #line 2016 "NormalNotification.c"
 }
@@ -2031,48 +2031,48 @@ GType gala_plugins_notify_normal_notification_get_type (void) {
 static void _vala_gala_plugins_notify_normal_notification_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaPluginsNotifyNormalNotification * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION, GalaPluginsNotifyNormalNotification);
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	switch (property_id) {
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SUMMARY:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_value_set_string (value, gala_plugins_notify_normal_notification_get_summary (self));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_BODY:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_value_set_string (value, gala_plugins_notify_normal_notification_get_body (self));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SENDER_PID:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_value_set_uint (value, gala_plugins_notify_normal_notification_get_sender_pid (self));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_NOTIFICATION_ACTIONS:
 #line 2057 "NormalNotification.c"
 		{
 			int length;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			g_value_set_boxed (value, gala_plugins_notify_normal_notification_get_notification_actions (self, &length));
 #line 2062 "NormalNotification.c"
 		}
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SCREEN:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		g_value_set_object (value, gala_plugins_notify_normal_notification_get_screen (self));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
 #line 2072 "NormalNotification.c"
 		default:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
 #line 2078 "NormalNotification.c"
 	}
@@ -2082,50 +2082,50 @@ static void _vala_gala_plugins_notify_normal_notification_get_property (GObject 
 static void _vala_gala_plugins_notify_normal_notification_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaPluginsNotifyNormalNotification * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_PLUGINS_NOTIFY_TYPE_NORMAL_NOTIFICATION, GalaPluginsNotifyNormalNotification);
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 	switch (property_id) {
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SUMMARY:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_set_summary (self, g_value_get_string (value));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_BODY:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_set_body (self, g_value_get_string (value));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SENDER_PID:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_set_sender_pid (self, g_value_get_uint (value));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_NOTIFICATION_ACTIONS:
 #line 2108 "NormalNotification.c"
 		{
 			gpointer boxed;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			boxed = g_value_get_boxed (value);
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 			gala_plugins_notify_normal_notification_set_notification_actions (self, boxed, (boxed == NULL) ? 0 : g_strv_length (boxed));
 #line 2115 "NormalNotification.c"
 		}
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		case GALA_PLUGINS_NOTIFY_NORMAL_NOTIFICATION_SCREEN:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		gala_plugins_notify_normal_notification_set_screen (self, g_value_get_object (value));
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
 #line 2125 "NormalNotification.c"
 		default:
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 165 "/home/nick/work/gala/plugins/notify/NormalNotification.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/plugins/notify/NormalNotification.vala"
 		break;
 #line 2131 "NormalNotification.c"
 	}

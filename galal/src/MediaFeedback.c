@@ -158,20 +158,20 @@ static const GDBusInterfaceInfo _gala_dbus_notifications_dbus_interface_info = {
 static const GDBusInterfaceVTable _gala_dbus_notifications_dbus_interface_vtable = {gala_dbus_notifications_dbus_interface_method_call, gala_dbus_notifications_dbus_interface_get_property, gala_dbus_notifications_dbus_interface_set_property};
 
 guint32 gala_dbus_notifications_notify (GalaDBusNotifications* self, const gchar* app_name, guint32 replaces_id, const gchar* app_icon, const gchar* summary, const gchar* body, gchar** actions, int actions_length1, GHashTable* hints, gint32 expire_timeout, GError** error) {
-#line 23 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_val_if_fail (self != NULL, 0U);
-#line 23 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return GALA_DBUS_NOTIFICATIONS_GET_INTERFACE (self)->notify (self, app_name, replaces_id, app_icon, summary, body, actions, actions_length1, hints, expire_timeout, error);
 #line 166 "MediaFeedback.c"
 }
 
 
 static void gala_dbus_notifications_base_init (GalaDBusNotificationsIface * iface) {
-#line 21 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	static gboolean initialized = FALSE;
-#line 21 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (!initialized) {
-#line 21 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		initialized = TRUE;
 #line 177 "MediaFeedback.c"
 	}
@@ -436,17 +436,17 @@ static void _gala_dbus_notifications_unregister_object (gpointer user_data) {
 
 void gala_media_feedback_init (void) {
 	GalaMediaFeedback* _tmp0_ = NULL;
-#line 47 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp0_ = gala_media_feedback_instance;
-#line 47 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (_tmp0_ == NULL) {
 #line 444 "MediaFeedback.c"
 		GalaMediaFeedback* _tmp1_ = NULL;
-#line 48 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp1_ = gala_media_feedback_new ();
-#line 48 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_object_unref0 (gala_media_feedback_instance);
-#line 48 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		gala_media_feedback_instance = _tmp1_;
 #line 452 "MediaFeedback.c"
 	}
@@ -457,13 +457,13 @@ void gala_media_feedback_send (const gchar* icon, gint val) {
 	GalaMediaFeedback* _tmp0_ = NULL;
 	GThreadPool* _tmp1_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 51 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (icon != NULL);
-#line 51 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp0_ = gala_media_feedback_instance;
-#line 51 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp1_ = gala_media_feedback_pool;
-#line 51 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_vala_return_if_fail ((_tmp0_ != NULL) && (_tmp1_ != NULL), "instance != null && pool != null");
 #line 469 "MediaFeedback.c"
 	{
@@ -471,28 +471,28 @@ void gala_media_feedback_send (const gchar* icon, gint val) {
 		const gchar* _tmp3_ = NULL;
 		gint _tmp4_ = 0;
 		GalaMediaFeedbackFeedback* _tmp5_ = NULL;
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp2_ = gala_media_feedback_pool;
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp3_ = icon;
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp4_ = val;
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp5_ = gala_media_feedback_feedback_new (_tmp3_, (gint32) _tmp4_);
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_thread_pool_push (_tmp2_, _tmp5_, &_inner_error_);
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			if (_inner_error_->domain == G_THREAD_ERROR) {
 #line 489 "MediaFeedback.c"
 				goto __catch3_g_thread_error;
 			}
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_clear_error (&_inner_error_);
-#line 55 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			return;
 #line 498 "MediaFeedback.c"
 		}
@@ -501,22 +501,22 @@ void gala_media_feedback_send (const gchar* icon, gint val) {
 	__catch3_g_thread_error:
 	{
 		GError* e = NULL;
-#line 54 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		e = _inner_error_;
-#line 54 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_inner_error_ = NULL;
-#line 54 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_error_free0 (e);
 #line 511 "MediaFeedback.c"
 	}
 	__finally3:
-#line 54 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 54 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 54 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_clear_error (&_inner_error_);
-#line 54 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		return;
 #line 522 "MediaFeedback.c"
 	}
@@ -525,32 +525,32 @@ void gala_media_feedback_send (const gchar* icon, gint val) {
 
 static GalaMediaFeedback* gala_media_feedback_construct (GType object_type) {
 	GalaMediaFeedback * self = NULL;
-#line 67 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self = (GalaMediaFeedback*) g_object_new (object_type, NULL);
-#line 65 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return self;
 #line 533 "MediaFeedback.c"
 }
 
 
 static GalaMediaFeedback* gala_media_feedback_new (void) {
-#line 65 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return gala_media_feedback_construct (GALA_TYPE_MEDIA_FEEDBACK);
 #line 540 "MediaFeedback.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 547 "MediaFeedback.c"
 }
 
 
 static Block2Data* block2_data_ref (Block2Data* _data2_) {
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_atomic_int_inc (&_data2_->_ref_count_);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return _data2_;
 #line 556 "MediaFeedback.c"
 }
@@ -559,17 +559,17 @@ static Block2Data* block2_data_ref (Block2Data* _data2_) {
 static void block2_data_unref (void * _userdata_) {
 	Block2Data* _data2_;
 	_data2_ = (Block2Data*) _userdata_;
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (g_atomic_int_dec_and_test (&_data2_->_ref_count_)) {
 #line 565 "MediaFeedback.c"
 		GalaMediaFeedback* self;
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		self = _data2_->self;
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_object_unref0 (_data2_->connection);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_object_unref0 (self);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_slice_free (Block2Data, _data2_);
 #line 575 "MediaFeedback.c"
 	}
@@ -580,14 +580,14 @@ static void* ___lambda8_ (Block2Data* _data2_) {
 	GalaMediaFeedback* self;
 	void* result = NULL;
 	GError * _inner_error_ = NULL;
-#line 98 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self = _data2_->self;
 #line 586 "MediaFeedback.c"
 	{
 		GalaDBusNotifications* _tmp0_ = NULL;
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp0_ = self->priv->notifications;
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_rec_mutex_lock (&self->priv->__lock_notifications);
 #line 593 "MediaFeedback.c"
 		{
@@ -596,26 +596,26 @@ static void* ___lambda8_ (Block2Data* _data2_) {
 				GDBusConnection* _tmp2_ = NULL;
 				GalaDBusNotifications* _tmp3_ = NULL;
 				GalaDBusNotifications* _tmp4_ = NULL;
-#line 101 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_tmp2_ = _data2_->connection;
-#line 101 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_tmp3_ = g_initable_new (GALA_TYPE_DBUS_NOTIFICATIONS_PROXY, NULL, &_inner_error_, "g-flags", G_DBUS_PROXY_FLAGS_NONE, "g-name", "org.freedesktop.Notifications", "g-connection", _tmp2_, "g-object-path", "/org/freedesktop/Notifications", "g-interface-name", "org.freedesktop.Notifications", "g-interface-info", g_type_get_qdata (GALA_TYPE_DBUS_NOTIFICATIONS, g_quark_from_static_string ("vala-dbus-interface-info")), NULL);
-#line 101 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_tmp1_ = (GalaDBusNotifications*) _tmp3_;
-#line 101 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 608 "MediaFeedback.c"
 					goto __catch5_g_error;
 				}
-#line 101 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_tmp4_ = _tmp1_;
-#line 101 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_tmp1_ = NULL;
-#line 101 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_g_object_unref0 (self->priv->notifications);
-#line 101 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				self->priv->notifications = _tmp4_;
-#line 100 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_g_object_unref0 (_tmp1_);
 #line 621 "MediaFeedback.c"
 			}
@@ -623,35 +623,35 @@ static void* ___lambda8_ (Block2Data* _data2_) {
 			__catch5_g_error:
 			{
 				GError* e = NULL;
-#line 100 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				e = _inner_error_;
-#line 100 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_inner_error_ = NULL;
-#line 104 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_g_object_unref0 (self->priv->notifications);
-#line 104 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				self->priv->notifications = NULL;
-#line 100 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_g_error_free0 (e);
 #line 637 "MediaFeedback.c"
 			}
 			__finally5:
-#line 100 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 642 "MediaFeedback.c"
 				{
 					GalaDBusNotifications* _tmp5_ = NULL;
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					_tmp5_ = self->priv->notifications;
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					g_rec_mutex_unlock (&self->priv->__lock_notifications);
 #line 649 "MediaFeedback.c"
 				}
-#line 100 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 100 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				g_clear_error (&_inner_error_);
-#line 100 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				return NULL;
 #line 657 "MediaFeedback.c"
 			}
@@ -659,26 +659,26 @@ static void* ___lambda8_ (Block2Data* _data2_) {
 		__finally4:
 		{
 			GalaDBusNotifications* _tmp6_ = NULL;
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			_tmp6_ = self->priv->notifications;
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_rec_mutex_unlock (&self->priv->__lock_notifications);
 #line 667 "MediaFeedback.c"
 		}
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_clear_error (&_inner_error_);
-#line 99 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			return NULL;
 #line 677 "MediaFeedback.c"
 		}
 	}
-#line 107 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	result = NULL;
-#line 107 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return result;
 #line 684 "MediaFeedback.c"
 }
@@ -687,9 +687,9 @@ static void* ___lambda8_ (Block2Data* _data2_) {
 static gpointer ____lambda8__gthread_func (gpointer self) {
 	gpointer result;
 	result = ___lambda8_ (self);
-#line 98 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	block2_data_unref (self);
-#line 98 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return result;
 #line 695 "MediaFeedback.c"
 }
@@ -707,175 +707,175 @@ static void gala_media_feedback_handle_name_owner_changed (GDBusConnection* conn
 	gboolean _tmp4_ = FALSE;
 	const gchar* _tmp5_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (self != NULL);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (connection != NULL);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (sender_name != NULL);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (object_path != NULL);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (interface_name != NULL);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (signal_name != NULL);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (parameters != NULL);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_data2_ = g_slice_new0 (Block2Data);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_data2_->_ref_count_ = 1;
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_data2_->self = g_object_ref (self);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp0_ = connection;
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_object_unref0 (_data2_->connection);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_data2_->connection = _tmp1_;
-#line 92 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp2_ = parameters;
-#line 92 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_variant_get (_tmp2_, "(sss)", &name, &before, &after, NULL);
-#line 94 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp3_ = name;
-#line 94 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (g_strcmp0 (_tmp3_, "org.freedesktop.Notifications") != 0) {
-#line 95 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_free0 (after);
-#line 95 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_free0 (before);
-#line 95 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_free0 (name);
-#line 95 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		block2_data_unref (_data2_);
-#line 95 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_data2_ = NULL;
-#line 95 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		return;
 #line 759 "MediaFeedback.c"
 	}
-#line 97 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp5_ = after;
-#line 97 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (g_strcmp0 (_tmp5_, "") != 0) {
 #line 765 "MediaFeedback.c"
 		const gchar* _tmp6_ = NULL;
-#line 97 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp6_ = before;
-#line 97 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp4_ = g_strcmp0 (_tmp6_, "") == 0;
 #line 771 "MediaFeedback.c"
 	} else {
-#line 97 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp4_ = FALSE;
 #line 775 "MediaFeedback.c"
 	}
-#line 97 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (_tmp4_) {
 #line 779 "MediaFeedback.c"
 		GThread* _tmp7_ = NULL;
 		GThread* _tmp8_ = NULL;
-#line 98 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp7_ = g_thread_new (NULL, ____lambda8__gthread_func, block2_data_ref (_data2_));
-#line 98 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp8_ = _tmp7_;
-#line 98 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_thread_unref0 (_tmp8_);
 #line 788 "MediaFeedback.c"
 	} else {
 		gboolean _tmp9_ = FALSE;
 		const gchar* _tmp10_ = NULL;
-#line 109 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp10_ = before;
-#line 109 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		if (g_strcmp0 (_tmp10_, "") != 0) {
 #line 796 "MediaFeedback.c"
 			const gchar* _tmp11_ = NULL;
-#line 109 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			_tmp11_ = after;
-#line 109 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			_tmp9_ = g_strcmp0 (_tmp11_, "") == 0;
 #line 802 "MediaFeedback.c"
 		} else {
-#line 109 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			_tmp9_ = FALSE;
 #line 806 "MediaFeedback.c"
 		}
-#line 109 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		if (_tmp9_) {
 #line 810 "MediaFeedback.c"
 			{
 				GalaDBusNotifications* _tmp12_ = NULL;
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				_tmp12_ = self->priv->notifications;
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				g_rec_mutex_lock (&self->priv->__lock_notifications);
 #line 817 "MediaFeedback.c"
 				{
-#line 111 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					_g_object_unref0 (self->priv->notifications);
-#line 111 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					self->priv->notifications = NULL;
 #line 823 "MediaFeedback.c"
 				}
 				__finally6:
 				{
 					GalaDBusNotifications* _tmp13_ = NULL;
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					_tmp13_ = self->priv->notifications;
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					g_rec_mutex_unlock (&self->priv->__lock_notifications);
 #line 832 "MediaFeedback.c"
 				}
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					_g_free0 (after);
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					_g_free0 (before);
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					_g_free0 (name);
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					block2_data_unref (_data2_);
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					_data2_ = NULL;
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					g_clear_error (&_inner_error_);
-#line 110 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 					return;
 #line 852 "MediaFeedback.c"
 				}
 			}
 		}
 	}
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_free0 (after);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_free0 (before);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_free0 (name);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	block2_data_unref (_data2_);
-#line 88 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_data2_ = NULL;
 #line 867 "MediaFeedback.c"
 }
 
 
 static void _g_free0_ (gpointer var) {
-#line 118 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	var = (g_free (var), NULL);
 #line 874 "MediaFeedback.c"
 }
 
 
 static void _g_variant_unref0_ (gpointer var) {
-#line 118 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	(var == NULL) ? NULL : (var = (g_variant_unref (var), NULL));
 #line 881 "MediaFeedback.c"
 }
@@ -891,33 +891,33 @@ static void gala_media_feedback_send_feedback (GalaMediaFeedbackFeedback* feedba
 	gint32 _tmp5_ = 0;
 	GVariant* _tmp6_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 116 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (self != NULL);
-#line 116 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_if_fail (feedback != NULL);
-#line 118 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp0_ = g_hash_table_new_full (NULL, NULL, _g_free0_, _g_variant_unref0_);
-#line 118 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	hints = _tmp0_;
-#line 119 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp1_ = g_strdup ("x-canonical-private-synchronous");
-#line 119 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp2_ = g_variant_new_string ("gala-feedback");
-#line 119 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_variant_ref_sink (_tmp2_);
-#line 119 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_hash_table_insert (hints, _tmp1_, _tmp2_);
-#line 120 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp3_ = g_strdup ("value");
-#line 120 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp4_ = feedback;
-#line 120 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp5_ = _tmp4_->level;
-#line 120 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp6_ = g_variant_new_int32 (_tmp5_);
-#line 120 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_variant_ref_sink (_tmp6_);
-#line 120 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_hash_table_insert (hints, _tmp3_, _tmp6_);
 #line 923 "MediaFeedback.c"
 	{
@@ -931,48 +931,48 @@ static void gala_media_feedback_send_feedback (GalaMediaFeedbackFeedback* feedba
 		gint _tmp13__length1 = 0;
 		guint32 _tmp14_ = 0U;
 		guint32 _tmp15_ = 0U;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp8_ = self->priv->notifications;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp9_ = self->priv->notification_id;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp10_ = feedback;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp11_ = _tmp10_->icon;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp12_ = g_new0 (gchar*, 0 + 1);
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp13_ = _tmp12_;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp13__length1 = 0;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp14_ = gala_dbus_notifications_notify (_tmp8_, "gala-feedback", _tmp9_, _tmp11_, "", "", _tmp13_, 0, hints, (gint32) 2000, &_inner_error_);
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp15_ = _tmp14_;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp13_ = (_vala_array_free (_tmp13_, _tmp13__length1, (GDestroyNotify) g_free), NULL);
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp7_ = _tmp15_;
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			if (_inner_error_->domain == G_IO_ERROR) {
 #line 961 "MediaFeedback.c"
 				goto __catch7_g_io_error;
 			}
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			_g_hash_table_unref0 (hints);
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			_gala_media_feedback_feedback_free0 (feedback);
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_clear_error (&_inner_error_);
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			return;
 #line 974 "MediaFeedback.c"
 		}
-#line 123 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		self->priv->notification_id = _tmp7_;
 #line 978 "MediaFeedback.c"
 	}
@@ -982,38 +982,38 @@ static void gala_media_feedback_send_feedback (GalaMediaFeedbackFeedback* feedba
 		GError* e = NULL;
 		GError* _tmp16_ = NULL;
 		const gchar* _tmp17_ = NULL;
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		e = _inner_error_;
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_inner_error_ = NULL;
-#line 125 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp16_ = e;
-#line 125 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp17_ = _tmp16_->message;
-#line 125 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_critical ("MediaFeedback.vala:125: %s", _tmp17_);
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_error_free0 (e);
 #line 998 "MediaFeedback.c"
 	}
 	__finally7:
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_hash_table_unref0 (hints);
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_gala_media_feedback_feedback_free0 (feedback);
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_clear_error (&_inner_error_);
-#line 122 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		return;
 #line 1013 "MediaFeedback.c"
 	}
-#line 116 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_hash_table_unref0 (hints);
-#line 116 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_gala_media_feedback_feedback_free0 (feedback);
 #line 1019 "MediaFeedback.c"
 }
@@ -1024,43 +1024,43 @@ static GObject * gala_media_feedback_constructor (GType type, guint n_construct_
 	GObjectClass * parent_class;
 	GalaMediaFeedback * self;
 	GError * _inner_error_ = NULL;
-#line 70 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	parent_class = G_OBJECT_CLASS (gala_media_feedback_parent_class);
-#line 70 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 70 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_MEDIA_FEEDBACK, GalaMediaFeedback);
 #line 1034 "MediaFeedback.c"
 	{
 		GThreadPool* _tmp0_ = NULL;
 		GThreadPool* _tmp1_ = NULL;
 		GThreadPool* _tmp2_ = NULL;
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp1_ = g_thread_pool_new ((GFunc) gala_media_feedback_send_feedback, self, 1, FALSE, &_inner_error_);
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp0_ = _tmp1_;
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			if (_inner_error_->domain == G_THREAD_ERROR) {
 #line 1047 "MediaFeedback.c"
 				goto __catch8_g_thread_error;
 			}
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_clear_error (&_inner_error_);
 #line 1054 "MediaFeedback.c"
 		}
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp2_ = _tmp0_;
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp0_ = NULL;
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_thread_pool_free0 (gala_media_feedback_pool);
-#line 73 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		gala_media_feedback_pool = _tmp2_;
-#line 72 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_thread_pool_free0 (_tmp0_);
 #line 1066 "MediaFeedback.c"
 	}
@@ -1070,30 +1070,30 @@ static GObject * gala_media_feedback_constructor (GType type, guint n_construct_
 		GError* e = NULL;
 		GError* _tmp3_ = NULL;
 		const gchar* _tmp4_ = NULL;
-#line 72 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		e = _inner_error_;
-#line 72 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_inner_error_ = NULL;
-#line 75 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp3_ = e;
-#line 75 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp4_ = _tmp3_->message;
-#line 75 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_critical ("MediaFeedback.vala:75: %s", _tmp4_);
-#line 76 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_thread_pool_free0 (gala_media_feedback_pool);
-#line 76 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		gala_media_feedback_pool = NULL;
-#line 72 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_error_free0 (e);
 #line 1090 "MediaFeedback.c"
 	}
 	__finally8:
-#line 72 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 72 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 72 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_clear_error (&_inner_error_);
 #line 1099 "MediaFeedback.c"
 	}
@@ -1103,38 +1103,38 @@ static GObject * gala_media_feedback_constructor (GType type, guint n_construct_
 		GDBusConnection* _tmp7_ = NULL;
 		GDBusConnection* _tmp8_ = NULL;
 		guint _tmp9_ = 0U;
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp6_ = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &_inner_error_);
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp5_ = _tmp6_;
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			if (_inner_error_->domain == G_IO_ERROR) {
 #line 1115 "MediaFeedback.c"
 				goto __catch9_g_io_error;
 			}
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 			g_clear_error (&_inner_error_);
 #line 1122 "MediaFeedback.c"
 		}
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp7_ = _tmp5_;
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp5_ = NULL;
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_object_unref0 (self->priv->connection);
-#line 80 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		self->priv->connection = _tmp7_;
-#line 81 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp8_ = self->priv->connection;
-#line 81 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_tmp9_ = g_dbus_connection_signal_subscribe (_tmp8_, "org.freedesktop.DBus", "org.freedesktop.DBus", "NameOwnerChanged", "/org/freedesktop/DBus", NULL, G_DBUS_SIGNAL_FLAGS_NONE, (GDBusSignalCallback) gala_media_feedback_handle_name_owner_changed, g_object_ref (self), NULL);
-#line 81 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		self->priv->dbus_name_owner_changed_signal_id = _tmp9_;
-#line 79 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_object_unref0 (_tmp5_);
 #line 1140 "MediaFeedback.c"
 	}
@@ -1142,24 +1142,24 @@ static GObject * gala_media_feedback_constructor (GType type, guint n_construct_
 	__catch9_g_io_error:
 	{
 		GError* e = NULL;
-#line 79 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		e = _inner_error_;
-#line 79 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_inner_error_ = NULL;
-#line 79 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		_g_error_free0 (e);
 #line 1152 "MediaFeedback.c"
 	}
 	__finally9:
-#line 79 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 79 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 79 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 		g_clear_error (&_inner_error_);
 #line 1161 "MediaFeedback.c"
 	}
-#line 70 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return obj;
 #line 1165 "MediaFeedback.c"
 }
@@ -1170,25 +1170,25 @@ static GalaMediaFeedbackFeedback* gala_media_feedback_feedback_new (const gchar*
 	const gchar* _tmp0_ = NULL;
 	gchar* _tmp1_ = NULL;
 	gint32 _tmp2_ = 0;
-#line 35 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_return_val_if_fail (_icon != NULL, NULL);
-#line 35 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self = g_slice_new0 (GalaMediaFeedbackFeedback);
-#line 35 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	gala_media_feedback_feedback_instance_init (self);
-#line 37 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp0_ = _icon;
-#line 37 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 37 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_free0 (self->icon);
-#line 37 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self->icon = _tmp1_;
-#line 38 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_tmp2_ = _level;
-#line 38 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self->level = _tmp2_;
-#line 35 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	return self;
 #line 1194 "MediaFeedback.c"
 }
@@ -1199,39 +1199,39 @@ static void gala_media_feedback_feedback_instance_init (GalaMediaFeedbackFeedbac
 
 
 static void gala_media_feedback_feedback_free (GalaMediaFeedbackFeedback* self) {
-#line 32 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_free0 (self->icon);
-#line 30 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_slice_free (GalaMediaFeedbackFeedback, self);
 #line 1207 "MediaFeedback.c"
 }
 
 
 static void gala_media_feedback_class_init (GalaMediaFeedbackClass * klass) {
-#line 27 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	gala_media_feedback_parent_class = g_type_class_peek_parent (klass);
-#line 27 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_type_class_add_private (klass, sizeof (GalaMediaFeedbackPrivate));
-#line 27 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_media_feedback_constructor;
-#line 27 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_media_feedback_finalize;
 #line 1220 "MediaFeedback.c"
 }
 
 
 static void gala_media_feedback_instance_init (GalaMediaFeedback * self) {
-#line 27 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self->priv = GALA_MEDIA_FEEDBACK_GET_PRIVATE (self);
-#line 60 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self->priv->connection = NULL;
-#line 61 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_rec_mutex_init (&self->priv->__lock_notifications);
-#line 61 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self->priv->notifications = NULL;
-#line 62 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self->priv->dbus_name_owner_changed_signal_id = (guint) 0;
-#line 63 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self->priv->notification_id = (guint32) 0;
 #line 1237 "MediaFeedback.c"
 }
@@ -1239,15 +1239,15 @@ static void gala_media_feedback_instance_init (GalaMediaFeedback * self) {
 
 static void gala_media_feedback_finalize (GObject* obj) {
 	GalaMediaFeedback * self;
-#line 27 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_MEDIA_FEEDBACK, GalaMediaFeedback);
-#line 60 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_object_unref0 (self->priv->connection);
-#line 61 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	g_rec_mutex_clear (&self->priv->__lock_notifications);
-#line 61 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	_g_object_unref0 (self->priv->notifications);
-#line 27 "/home/nick/work/gala/src/MediaFeedback.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/MediaFeedback.vala"
 	G_OBJECT_CLASS (gala_media_feedback_parent_class)->finalize (obj);
 #line 1253 "MediaFeedback.c"
 }

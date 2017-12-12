@@ -29,6 +29,8 @@
 #include <glib/gi18n-lib.h>
 #include <meta/common.h>
 #include <meta/workspace.h>
+#include "gala.h"
+#include <granite.h>
 
 
 #define GALA_TYPE_WINDOW_MENU (gala_window_menu_get_type ())
@@ -42,6 +44,28 @@ typedef struct _GalaWindowMenu GalaWindowMenu;
 typedef struct _GalaWindowMenuClass GalaWindowMenuClass;
 typedef struct _GalaWindowMenuPrivate GalaWindowMenuPrivate;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
+
+#define GALA_TYPE_DESKTOP_MENU (gala_desktop_menu_get_type ())
+#define GALA_DESKTOP_MENU(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GALA_TYPE_DESKTOP_MENU, GalaDesktopMenu))
+#define GALA_DESKTOP_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GALA_TYPE_DESKTOP_MENU, GalaDesktopMenuClass))
+#define GALA_IS_DESKTOP_MENU(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GALA_TYPE_DESKTOP_MENU))
+#define GALA_IS_DESKTOP_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GALA_TYPE_DESKTOP_MENU))
+#define GALA_DESKTOP_MENU_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GALA_TYPE_DESKTOP_MENU, GalaDesktopMenuClass))
+
+typedef struct _GalaDesktopMenu GalaDesktopMenu;
+typedef struct _GalaDesktopMenuClass GalaDesktopMenuClass;
+typedef struct _GalaDesktopMenuPrivate GalaDesktopMenuPrivate;
+#define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
+
+#define GALA_TYPE_BEHAVIOR_SETTINGS (gala_behavior_settings_get_type ())
+#define GALA_BEHAVIOR_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GALA_TYPE_BEHAVIOR_SETTINGS, GalaBehaviorSettings))
+#define GALA_BEHAVIOR_SETTINGS_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GALA_TYPE_BEHAVIOR_SETTINGS, GalaBehaviorSettingsClass))
+#define GALA_IS_BEHAVIOR_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GALA_TYPE_BEHAVIOR_SETTINGS))
+#define GALA_IS_BEHAVIOR_SETTINGS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GALA_TYPE_BEHAVIOR_SETTINGS))
+#define GALA_BEHAVIOR_SETTINGS_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GALA_TYPE_BEHAVIOR_SETTINGS, GalaBehaviorSettingsClass))
+
+typedef struct _GalaBehaviorSettings GalaBehaviorSettings;
+typedef struct _GalaBehaviorSettingsClass GalaBehaviorSettingsClass;
 
 struct _GalaWindowMenu {
 	GtkMenu parent_instance;
@@ -65,8 +89,26 @@ struct _GalaWindowMenuPrivate {
 	GtkMenuItem* close;
 };
 
+struct _GalaDesktopMenu {
+	GtkMenu parent_instance;
+	GalaDesktopMenuPrivate * priv;
+};
+
+struct _GalaDesktopMenuClass {
+	GtkMenuClass parent_class;
+};
+
+struct _GalaDesktopMenuPrivate {
+	GtkMenuItem* change_background;
+	GtkMenuItem* random_background;
+	GtkMenuItem* show_desktop;
+	GtkMenuItem* workspace_view;
+	GalaWindowManager* wm;
+};
+
 
 static gpointer gala_window_menu_parent_class = NULL;
+static gpointer gala_desktop_menu_parent_class = NULL;
 
 GType gala_window_menu_get_type (void) G_GNUC_CONST;
 #define GALA_WINDOW_MENU_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GALA_TYPE_WINDOW_MENU, GalaWindowMenuPrivate))
@@ -80,14 +122,6 @@ static void gala_window_menu_update_window (GalaWindowMenu* self);
 MetaWindow* gala_window_menu_get_current_window (GalaWindowMenu* self);
 void gala_window_menu_set_current_window (GalaWindowMenu* self, MetaWindow* value);
 static GObject * gala_window_menu_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
-static void _gala_window_menu___lambda36_ (GalaWindowMenu* self);
-static void __gala_window_menu___lambda36__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
-static void _gala_window_menu___lambda37_ (GalaWindowMenu* self);
-static void __gala_window_menu___lambda37__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
-static void _gala_window_menu___lambda38_ (GalaWindowMenu* self);
-static void __gala_window_menu___lambda38__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
-static void _gala_window_menu___lambda39_ (GalaWindowMenu* self);
-static void __gala_window_menu___lambda39__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _gala_window_menu___lambda40_ (GalaWindowMenu* self);
 static void __gala_window_menu___lambda40__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _gala_window_menu___lambda41_ (GalaWindowMenu* self);
@@ -98,25 +132,54 @@ static void _gala_window_menu___lambda43_ (GalaWindowMenu* self);
 static void __gala_window_menu___lambda43__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _gala_window_menu___lambda44_ (GalaWindowMenu* self);
 static void __gala_window_menu___lambda44__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _gala_window_menu___lambda45_ (GalaWindowMenu* self);
+static void __gala_window_menu___lambda45__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _gala_window_menu___lambda46_ (GalaWindowMenu* self);
+static void __gala_window_menu___lambda46__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _gala_window_menu___lambda47_ (GalaWindowMenu* self);
+static void __gala_window_menu___lambda47__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _gala_window_menu___lambda48_ (GalaWindowMenu* self);
+static void __gala_window_menu___lambda48__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void gala_window_menu_finalize (GObject* obj);
 static void _vala_gala_window_menu_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec);
 static void _vala_gala_window_menu_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec);
+GType gala_desktop_menu_get_type (void) G_GNUC_CONST;
+#define GALA_DESKTOP_MENU_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GALA_TYPE_DESKTOP_MENU, GalaDesktopMenuPrivate))
+enum  {
+	GALA_DESKTOP_MENU_DUMMY_PROPERTY
+};
+GalaDesktopMenu* gala_desktop_menu_new (GalaWindowManager* _wm);
+GalaDesktopMenu* gala_desktop_menu_construct (GType object_type, GalaWindowManager* _wm);
+static GObject * gala_desktop_menu_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
+static void _gala_desktop_menu___lambda36_ (GalaDesktopMenu* self);
+static void __gala_desktop_menu___lambda36__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _gala_desktop_menu___lambda37_ (GalaDesktopMenu* self);
+static void __gala_desktop_menu___lambda37__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _gala_desktop_menu___lambda38_ (GalaDesktopMenu* self);
+GType gala_behavior_settings_get_type (void) G_GNUC_CONST;
+GalaBehaviorSettings* gala_behavior_settings_get_default (void);
+const gchar* gala_behavior_settings_get_settings_action (GalaBehaviorSettings* self);
+static void __gala_desktop_menu___lambda38__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _gala_desktop_menu___lambda39_ (GalaDesktopMenu* self);
+const gchar* gala_behavior_settings_get_change_background_action (GalaBehaviorSettings* self);
+static void __gala_desktop_menu___lambda39__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void gala_desktop_menu_finalize (GObject* obj);
 
 
 GalaWindowMenu* gala_window_menu_construct (GType object_type) {
 	GalaWindowMenu * self = NULL;
-#line 50 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self = (GalaWindowMenu*) g_object_new (object_type, NULL);
-#line 50 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	return self;
-#line 113 "WindowMenu.c"
+#line 176 "WindowMenu.c"
 }
 
 
 GalaWindowMenu* gala_window_menu_new (void) {
-#line 50 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	return gala_window_menu_construct (GALA_TYPE_WINDOW_MENU);
-#line 120 "WindowMenu.c"
+#line 183 "WindowMenu.c"
 }
 
 
@@ -165,498 +228,498 @@ static void gala_window_menu_update_window (GalaWindowMenu* self) {
 	MetaWindow* _tmp43_ = NULL;
 	MetaWindow* _tmp44_ = NULL;
 	gboolean _tmp45_ = FALSE;
-#line 126 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_return_if_fail (self != NULL);
-#line 128 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = self->priv->minimize;
-#line 128 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp1_ = gala_window_menu_get_current_window (self);
-#line 128 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp2_ = _tmp1_;
-#line 128 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp3_ = meta_window_can_minimize (_tmp2_);
-#line 128 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_widget_set_visible ((GtkWidget*) _tmp0_, _tmp3_);
-#line 130 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp4_ = self->priv->maximize;
-#line 130 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp5_ = gala_window_menu_get_current_window (self);
-#line 130 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp6_ = _tmp5_;
-#line 130 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp7_ = meta_window_can_maximize (_tmp6_);
-#line 130 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_widget_set_visible ((GtkWidget*) _tmp4_, _tmp7_);
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp9_ = gala_window_menu_get_current_window (self);
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp10_ = _tmp9_;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp11_ = meta_window_get_maximized (_tmp10_);
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	if (_tmp11_ > 0) {
-#line 199 "WindowMenu.c"
+#line 262 "WindowMenu.c"
 		const gchar* _tmp12_ = NULL;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		_tmp12_ = _ ("Unmaximize");
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		_tmp8_ = _tmp12_;
-#line 205 "WindowMenu.c"
+#line 268 "WindowMenu.c"
 	} else {
 		const gchar* _tmp13_ = NULL;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		_tmp13_ = _ ("Maximize");
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		_tmp8_ = _tmp13_;
-#line 212 "WindowMenu.c"
+#line 275 "WindowMenu.c"
 	}
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp14_ = self->priv->maximize;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_item_set_label (_tmp14_, _tmp8_);
-#line 133 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp15_ = self->priv->move;
-#line 133 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp16_ = gala_window_menu_get_current_window (self);
-#line 133 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp17_ = _tmp16_;
-#line 133 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp18_ = meta_window_allows_move (_tmp17_);
-#line 133 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_widget_set_visible ((GtkWidget*) _tmp15_, _tmp18_);
-#line 135 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp19_ = self->priv->resize;
-#line 135 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp20_ = gala_window_menu_get_current_window (self);
-#line 135 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp21_ = _tmp20_;
-#line 135 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp22_ = meta_window_allows_resize (_tmp21_);
-#line 135 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_widget_set_visible ((GtkWidget*) _tmp19_, _tmp22_);
-#line 137 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp23_ = self->priv->always_on_top;
-#line 137 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp24_ = gala_window_menu_get_current_window (self);
-#line 137 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp25_ = _tmp24_;
-#line 137 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp26_ = meta_window_is_above (_tmp25_);
-#line 137 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_check_menu_item_set_active (_tmp23_, _tmp26_);
-#line 139 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp27_ = self->priv->on_visible_workspace;
-#line 139 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp28_ = gala_window_menu_get_current_window (self);
-#line 139 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp29_ = _tmp28_;
-#line 139 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_get (_tmp29_, "on-all-workspaces", &_tmp30_, NULL);
-#line 139 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp31_ = _tmp30_;
-#line 139 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_check_menu_item_set_active (_tmp27_, _tmp31_);
-#line 141 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp32_ = self->priv->move_right;
-#line 141 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp33_ = gala_window_menu_get_current_window (self);
-#line 141 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp34_ = _tmp33_;
-#line 141 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_get (_tmp34_, "on-all-workspaces", &_tmp35_, NULL);
-#line 141 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp36_ = _tmp35_;
-#line 141 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_widget_set_visible ((GtkWidget*) _tmp32_, !_tmp36_);
-#line 143 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp37_ = self->priv->move_left;
-#line 143 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp38_ = gala_window_menu_get_current_window (self);
-#line 143 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp39_ = _tmp38_;
-#line 143 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_get (_tmp39_, "on-all-workspaces", &_tmp40_, NULL);
-#line 143 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp41_ = _tmp40_;
-#line 143 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 143 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_widget_set_visible ((GtkWidget*) _tmp37_, !_tmp41_);
-#line 145 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp42_ = self->priv->close;
-#line 145 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp43_ = gala_window_menu_get_current_window (self);
-#line 145 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp44_ = _tmp43_;
-#line 145 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp45_ = meta_window_can_close (_tmp44_);
-#line 145 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_widget_set_visible ((GtkWidget*) _tmp42_, _tmp45_);
-#line 294 "WindowMenu.c"
+#line 357 "WindowMenu.c"
 }
 
 
 MetaWindow* gala_window_menu_get_current_window (GalaWindowMenu* self) {
 	MetaWindow* result;
 	MetaWindow* _tmp0_ = NULL;
-#line 29 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 30 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = self->priv->_current_window;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	result = _tmp0_;
-#line 30 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	return result;
-#line 309 "WindowMenu.c"
+#line 372 "WindowMenu.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 33 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 316 "WindowMenu.c"
+#line 379 "WindowMenu.c"
 }
 
 
 void gala_window_menu_set_current_window (GalaWindowMenu* self, MetaWindow* value) {
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_return_if_fail (self != NULL);
-#line 33 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = value;
-#line 33 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 33 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->_current_window);
-#line 33 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->_current_window = _tmp1_;
-#line 34 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gala_window_menu_update_window (self);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_notify ((GObject *) self, "current-window");
-#line 337 "WindowMenu.c"
-}
-
-
-static void _gala_window_menu___lambda36_ (GalaWindowMenu* self) {
-	MetaWindow* _tmp0_ = NULL;
-	MetaWindow* _tmp1_ = NULL;
-#line 58 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 58 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp1_ = _tmp0_;
-#line 58 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	meta_window_minimize (_tmp1_);
-#line 350 "WindowMenu.c"
-}
-
-
-static void __gala_window_menu___lambda36__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 57 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_gala_window_menu___lambda36_ ((GalaWindowMenu*) self);
-#line 357 "WindowMenu.c"
-}
-
-
-static void _gala_window_menu___lambda37_ (GalaWindowMenu* self) {
-	MetaWindow* _tmp0_ = NULL;
-	MetaWindow* _tmp1_ = NULL;
-	MetaMaximizeFlags _tmp2_ = 0;
-#line 64 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 64 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp1_ = _tmp0_;
-#line 64 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp2_ = meta_window_get_maximized (_tmp1_);
-#line 64 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	if (_tmp2_ > 0) {
-#line 373 "WindowMenu.c"
-		MetaWindow* _tmp3_ = NULL;
-		MetaWindow* _tmp4_ = NULL;
-#line 65 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp3_ = gala_window_menu_get_current_window (self);
-#line 65 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp4_ = _tmp3_;
-#line 65 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		meta_window_unmaximize (_tmp4_, META_MAXIMIZE_BOTH);
-#line 382 "WindowMenu.c"
-	} else {
-		MetaWindow* _tmp5_ = NULL;
-		MetaWindow* _tmp6_ = NULL;
-#line 67 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp5_ = gala_window_menu_get_current_window (self);
-#line 67 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp6_ = _tmp5_;
-#line 67 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		meta_window_maximize (_tmp6_, META_MAXIMIZE_BOTH);
-#line 392 "WindowMenu.c"
-	}
-}
-
-
-static void __gala_window_menu___lambda37__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 63 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_gala_window_menu___lambda37_ ((GalaWindowMenu*) self);
 #line 400 "WindowMenu.c"
-}
-
-
-static void _gala_window_menu___lambda38_ (GalaWindowMenu* self) {
-	MetaWindow* _tmp0_ = NULL;
-	MetaWindow* _tmp1_ = NULL;
-	guint32 _tmp2_ = 0U;
-#line 73 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 73 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp1_ = _tmp0_;
-#line 73 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp2_ = gtk_get_current_event_time ();
-#line 73 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	meta_window_begin_grab_op (_tmp1_, META_GRAB_OP_KEYBOARD_MOVING, TRUE, _tmp2_);
-#line 416 "WindowMenu.c"
-}
-
-
-static void __gala_window_menu___lambda38__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 72 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_gala_window_menu___lambda38_ ((GalaWindowMenu*) self);
-#line 423 "WindowMenu.c"
-}
-
-
-static void _gala_window_menu___lambda39_ (GalaWindowMenu* self) {
-	MetaWindow* _tmp0_ = NULL;
-	MetaWindow* _tmp1_ = NULL;
-	guint32 _tmp2_ = 0U;
-#line 80 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 80 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp1_ = _tmp0_;
-#line 80 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp2_ = gtk_get_current_event_time ();
-#line 80 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	meta_window_begin_grab_op (_tmp1_, META_GRAB_OP_KEYBOARD_RESIZING_UNKNOWN, TRUE, _tmp2_);
-#line 439 "WindowMenu.c"
-}
-
-
-static void __gala_window_menu___lambda39__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 79 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_gala_window_menu___lambda39_ ((GalaWindowMenu*) self);
-#line 446 "WindowMenu.c"
 }
 
 
 static void _gala_window_menu___lambda40_ (GalaWindowMenu* self) {
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
-	gboolean _tmp2_ = FALSE;
-#line 87 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 87 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp1_ = _tmp0_;
-#line 87 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp2_ = meta_window_is_above (_tmp1_);
-#line 87 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	if (_tmp2_) {
-#line 462 "WindowMenu.c"
-		MetaWindow* _tmp3_ = NULL;
-		MetaWindow* _tmp4_ = NULL;
-#line 88 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp3_ = gala_window_menu_get_current_window (self);
-#line 88 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp4_ = _tmp3_;
-#line 88 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		meta_window_unmake_above (_tmp4_);
-#line 471 "WindowMenu.c"
-	} else {
-		MetaWindow* _tmp5_ = NULL;
-		MetaWindow* _tmp6_ = NULL;
-#line 90 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp5_ = gala_window_menu_get_current_window (self);
-#line 90 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp6_ = _tmp5_;
-#line 90 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		meta_window_make_above (_tmp6_);
-#line 481 "WindowMenu.c"
-	}
+#line 58 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	meta_window_minimize (_tmp1_);
+#line 413 "WindowMenu.c"
 }
 
 
 static void __gala_window_menu___lambda40__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 86 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_gala_window_menu___lambda40_ ((GalaWindowMenu*) self);
-#line 489 "WindowMenu.c"
+#line 420 "WindowMenu.c"
 }
 
 
 static void _gala_window_menu___lambda41_ (GalaWindowMenu* self) {
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
-	gboolean _tmp2_ = FALSE;
-	gboolean _tmp3_ = FALSE;
-#line 96 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+	MetaMaximizeFlags _tmp2_ = 0;
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 96 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp1_ = _tmp0_;
-#line 96 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_object_get (_tmp1_, "on-all-workspaces", &_tmp2_, NULL);
-#line 96 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp3_ = _tmp2_;
-#line 96 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	if (_tmp3_) {
-#line 508 "WindowMenu.c"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp2_ = meta_window_get_maximized (_tmp1_);
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (_tmp2_ > 0) {
+#line 436 "WindowMenu.c"
+		MetaWindow* _tmp3_ = NULL;
 		MetaWindow* _tmp4_ = NULL;
-		MetaWindow* _tmp5_ = NULL;
-#line 97 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp4_ = gala_window_menu_get_current_window (self);
-#line 97 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp5_ = _tmp4_;
-#line 97 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		meta_window_unstick (_tmp5_);
-#line 517 "WindowMenu.c"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp3_ = gala_window_menu_get_current_window (self);
+#line 65 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp4_ = _tmp3_;
+#line 65 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		meta_window_unmaximize (_tmp4_, META_MAXIMIZE_BOTH);
+#line 445 "WindowMenu.c"
 	} else {
+		MetaWindow* _tmp5_ = NULL;
 		MetaWindow* _tmp6_ = NULL;
-		MetaWindow* _tmp7_ = NULL;
-#line 99 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp6_ = gala_window_menu_get_current_window (self);
-#line 99 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp7_ = _tmp6_;
-#line 99 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		meta_window_stick (_tmp7_);
-#line 527 "WindowMenu.c"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp5_ = gala_window_menu_get_current_window (self);
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp6_ = _tmp5_;
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		meta_window_maximize (_tmp6_, META_MAXIMIZE_BOTH);
+#line 455 "WindowMenu.c"
 	}
 }
 
 
 static void __gala_window_menu___lambda41__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 95 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_gala_window_menu___lambda41_ ((GalaWindowMenu*) self);
-#line 535 "WindowMenu.c"
+#line 463 "WindowMenu.c"
 }
 
 
 static void _gala_window_menu___lambda42_ (GalaWindowMenu* self) {
-	MetaWorkspace* wp = NULL;
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
-	MetaWorkspace* _tmp2_ = NULL;
-	MetaWorkspace* _tmp3_ = NULL;
-	MetaWorkspace* _tmp4_ = NULL;
-	MetaWorkspace* _tmp5_ = NULL;
-#line 105 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+	guint32 _tmp2_ = 0U;
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 105 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp1_ = _tmp0_;
-#line 105 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp2_ = meta_window_get_workspace (_tmp1_);
-#line 105 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp3_ = meta_workspace_get_neighbor (_tmp2_, META_MOTION_LEFT);
-#line 105 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 105 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	wp = _tmp4_;
-#line 106 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp5_ = wp;
-#line 106 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	if (_tmp5_ != NULL) {
-#line 563 "WindowMenu.c"
-		MetaWindow* _tmp6_ = NULL;
-		MetaWindow* _tmp7_ = NULL;
-		MetaWorkspace* _tmp8_ = NULL;
-#line 107 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp6_ = gala_window_menu_get_current_window (self);
-#line 107 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp7_ = _tmp6_;
-#line 107 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp8_ = wp;
-#line 107 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		meta_window_change_workspace (_tmp7_, _tmp8_);
-#line 575 "WindowMenu.c"
-	}
-#line 104 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_g_object_unref0 (wp);
-#line 579 "WindowMenu.c"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp2_ = gtk_get_current_event_time ();
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	meta_window_begin_grab_op (_tmp1_, META_GRAB_OP_KEYBOARD_MOVING, TRUE, _tmp2_);
+#line 479 "WindowMenu.c"
 }
 
 
 static void __gala_window_menu___lambda42__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 104 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_gala_window_menu___lambda42_ ((GalaWindowMenu*) self);
-#line 586 "WindowMenu.c"
+#line 486 "WindowMenu.c"
 }
 
 
 static void _gala_window_menu___lambda43_ (GalaWindowMenu* self) {
-	MetaWorkspace* wp = NULL;
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
-	MetaWorkspace* _tmp2_ = NULL;
-	MetaWorkspace* _tmp3_ = NULL;
-	MetaWorkspace* _tmp4_ = NULL;
-	MetaWorkspace* _tmp5_ = NULL;
-#line 113 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+	guint32 _tmp2_ = 0U;
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 113 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp1_ = _tmp0_;
-#line 113 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp2_ = meta_window_get_workspace (_tmp1_);
-#line 113 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp3_ = meta_workspace_get_neighbor (_tmp2_, META_MOTION_RIGHT);
-#line 113 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 113 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	wp = _tmp4_;
-#line 114 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp5_ = wp;
-#line 114 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	if (_tmp5_ != NULL) {
-#line 614 "WindowMenu.c"
-		MetaWindow* _tmp6_ = NULL;
-		MetaWindow* _tmp7_ = NULL;
-		MetaWorkspace* _tmp8_ = NULL;
-#line 115 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp6_ = gala_window_menu_get_current_window (self);
-#line 115 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp7_ = _tmp6_;
-#line 115 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		_tmp8_ = wp;
-#line 115 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-		meta_window_change_workspace (_tmp7_, _tmp8_);
-#line 626 "WindowMenu.c"
-	}
-#line 112 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_g_object_unref0 (wp);
-#line 630 "WindowMenu.c"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp2_ = gtk_get_current_event_time ();
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	meta_window_begin_grab_op (_tmp1_, META_GRAB_OP_KEYBOARD_RESIZING_UNKNOWN, TRUE, _tmp2_);
+#line 502 "WindowMenu.c"
 }
 
 
 static void __gala_window_menu___lambda43__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 112 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_gala_window_menu___lambda43_ ((GalaWindowMenu*) self);
-#line 637 "WindowMenu.c"
+#line 509 "WindowMenu.c"
 }
 
 
 static void _gala_window_menu___lambda44_ (GalaWindowMenu* self) {
 	MetaWindow* _tmp0_ = NULL;
 	MetaWindow* _tmp1_ = NULL;
-	guint32 _tmp2_ = 0U;
-#line 121 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+	gboolean _tmp2_ = FALSE;
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = gala_window_menu_get_current_window (self);
-#line 121 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp1_ = _tmp0_;
-#line 121 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	_tmp2_ = gtk_get_current_event_time ();
-#line 121 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	meta_window_delete (_tmp1_, _tmp2_);
-#line 653 "WindowMenu.c"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp2_ = meta_window_is_above (_tmp1_);
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (_tmp2_) {
+#line 525 "WindowMenu.c"
+		MetaWindow* _tmp3_ = NULL;
+		MetaWindow* _tmp4_ = NULL;
+#line 88 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp3_ = gala_window_menu_get_current_window (self);
+#line 88 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp4_ = _tmp3_;
+#line 88 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		meta_window_unmake_above (_tmp4_);
+#line 534 "WindowMenu.c"
+	} else {
+		MetaWindow* _tmp5_ = NULL;
+		MetaWindow* _tmp6_ = NULL;
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp5_ = gala_window_menu_get_current_window (self);
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp6_ = _tmp5_;
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		meta_window_make_above (_tmp6_);
+#line 544 "WindowMenu.c"
+	}
 }
 
 
 static void __gala_window_menu___lambda44__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-#line 120 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_gala_window_menu___lambda44_ ((GalaWindowMenu*) self);
-#line 660 "WindowMenu.c"
+#line 552 "WindowMenu.c"
+}
+
+
+static void _gala_window_menu___lambda45_ (GalaWindowMenu* self) {
+	MetaWindow* _tmp0_ = NULL;
+	MetaWindow* _tmp1_ = NULL;
+	gboolean _tmp2_ = FALSE;
+	gboolean _tmp3_ = FALSE;
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp0_ = gala_window_menu_get_current_window (self);
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp1_ = _tmp0_;
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_object_get (_tmp1_, "on-all-workspaces", &_tmp2_, NULL);
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp3_ = _tmp2_;
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (_tmp3_) {
+#line 571 "WindowMenu.c"
+		MetaWindow* _tmp4_ = NULL;
+		MetaWindow* _tmp5_ = NULL;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp4_ = gala_window_menu_get_current_window (self);
+#line 97 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp5_ = _tmp4_;
+#line 97 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		meta_window_unstick (_tmp5_);
+#line 580 "WindowMenu.c"
+	} else {
+		MetaWindow* _tmp6_ = NULL;
+		MetaWindow* _tmp7_ = NULL;
+#line 99 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp6_ = gala_window_menu_get_current_window (self);
+#line 99 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp7_ = _tmp6_;
+#line 99 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		meta_window_stick (_tmp7_);
+#line 590 "WindowMenu.c"
+	}
+}
+
+
+static void __gala_window_menu___lambda45__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_gala_window_menu___lambda45_ ((GalaWindowMenu*) self);
+#line 598 "WindowMenu.c"
+}
+
+
+static void _gala_window_menu___lambda46_ (GalaWindowMenu* self) {
+	MetaWorkspace* wp = NULL;
+	MetaWindow* _tmp0_ = NULL;
+	MetaWindow* _tmp1_ = NULL;
+	MetaWorkspace* _tmp2_ = NULL;
+	MetaWorkspace* _tmp3_ = NULL;
+	MetaWorkspace* _tmp4_ = NULL;
+	MetaWorkspace* _tmp5_ = NULL;
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp0_ = gala_window_menu_get_current_window (self);
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp1_ = _tmp0_;
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp2_ = meta_window_get_workspace (_tmp1_);
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp3_ = meta_workspace_get_neighbor (_tmp2_, META_MOTION_LEFT);
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp4_ = _g_object_ref0 (_tmp3_);
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	wp = _tmp4_;
+#line 106 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp5_ = wp;
+#line 106 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (_tmp5_ != NULL) {
+#line 626 "WindowMenu.c"
+		MetaWindow* _tmp6_ = NULL;
+		MetaWindow* _tmp7_ = NULL;
+		MetaWorkspace* _tmp8_ = NULL;
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp6_ = gala_window_menu_get_current_window (self);
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp7_ = _tmp6_;
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp8_ = wp;
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		meta_window_change_workspace (_tmp7_, _tmp8_);
+#line 638 "WindowMenu.c"
+	}
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (wp);
+#line 642 "WindowMenu.c"
+}
+
+
+static void __gala_window_menu___lambda46__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_gala_window_menu___lambda46_ ((GalaWindowMenu*) self);
+#line 649 "WindowMenu.c"
+}
+
+
+static void _gala_window_menu___lambda47_ (GalaWindowMenu* self) {
+	MetaWorkspace* wp = NULL;
+	MetaWindow* _tmp0_ = NULL;
+	MetaWindow* _tmp1_ = NULL;
+	MetaWorkspace* _tmp2_ = NULL;
+	MetaWorkspace* _tmp3_ = NULL;
+	MetaWorkspace* _tmp4_ = NULL;
+	MetaWorkspace* _tmp5_ = NULL;
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp0_ = gala_window_menu_get_current_window (self);
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp1_ = _tmp0_;
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp2_ = meta_window_get_workspace (_tmp1_);
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp3_ = meta_workspace_get_neighbor (_tmp2_, META_MOTION_RIGHT);
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp4_ = _g_object_ref0 (_tmp3_);
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	wp = _tmp4_;
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp5_ = wp;
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (_tmp5_ != NULL) {
+#line 677 "WindowMenu.c"
+		MetaWindow* _tmp6_ = NULL;
+		MetaWindow* _tmp7_ = NULL;
+		MetaWorkspace* _tmp8_ = NULL;
+#line 115 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp6_ = gala_window_menu_get_current_window (self);
+#line 115 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp7_ = _tmp6_;
+#line 115 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp8_ = wp;
+#line 115 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		meta_window_change_workspace (_tmp7_, _tmp8_);
+#line 689 "WindowMenu.c"
+	}
+#line 112 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (wp);
+#line 693 "WindowMenu.c"
+}
+
+
+static void __gala_window_menu___lambda47__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+#line 112 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_gala_window_menu___lambda47_ ((GalaWindowMenu*) self);
+#line 700 "WindowMenu.c"
+}
+
+
+static void _gala_window_menu___lambda48_ (GalaWindowMenu* self) {
+	MetaWindow* _tmp0_ = NULL;
+	MetaWindow* _tmp1_ = NULL;
+	guint32 _tmp2_ = 0U;
+#line 121 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp0_ = gala_window_menu_get_current_window (self);
+#line 121 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp1_ = _tmp0_;
+#line 121 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp2_ = gtk_get_current_event_time ();
+#line 121 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	meta_window_delete (_tmp1_, _tmp2_);
+#line 716 "WindowMenu.c"
+}
+
+
+static void __gala_window_menu___lambda48__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+#line 120 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_gala_window_menu___lambda48_ ((GalaWindowMenu*) self);
+#line 723 "WindowMenu.c"
 }
 
 
@@ -699,231 +762,231 @@ static GObject * gala_window_menu_constructor (GType type, guint n_construct_pro
 	GtkMenuItem* _tmp32_ = NULL;
 	GtkMenuItem* _tmp33_ = NULL;
 	GtkMenuItem* _tmp34_ = NULL;
-#line 54 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	parent_class = G_OBJECT_CLASS (gala_window_menu_parent_class);
-#line 54 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 54 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_MENU, GalaWindowMenu);
-#line 56 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp0_ = _ ("Minimize");
-#line 56 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp1_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp0_);
-#line 56 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp1_);
-#line 56 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->minimize);
-#line 56 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->minimize = _tmp1_;
-#line 57 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp2_ = self->priv->minimize;
-#line 57 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object (_tmp2_, "activate", (GCallback) __gala_window_menu___lambda36__gtk_menu_item_activate, self, 0);
-#line 60 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp2_, "activate", (GCallback) __gala_window_menu___lambda40__gtk_menu_item_activate, self, 0);
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp3_ = self->priv->minimize;
-#line 60 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp3_);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp4_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("");
-#line 62 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp4_);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->maximize);
-#line 62 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->maximize = _tmp4_;
-#line 63 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp5_ = self->priv->maximize;
-#line 63 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object (_tmp5_, "activate", (GCallback) __gala_window_menu___lambda37__gtk_menu_item_activate, self, 0);
-#line 69 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp5_, "activate", (GCallback) __gala_window_menu___lambda41__gtk_menu_item_activate, self, 0);
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp6_ = self->priv->maximize;
-#line 69 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp6_);
-#line 71 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp7_ = _ ("Move");
-#line 71 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp8_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp7_);
-#line 71 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp8_);
-#line 71 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->move);
-#line 71 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->move = _tmp8_;
-#line 72 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp9_ = self->priv->move;
-#line 72 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object (_tmp9_, "activate", (GCallback) __gala_window_menu___lambda38__gtk_menu_item_activate, self, 0);
-#line 76 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp9_, "activate", (GCallback) __gala_window_menu___lambda42__gtk_menu_item_activate, self, 0);
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp10_ = self->priv->move;
-#line 76 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp10_);
-#line 78 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp11_ = _ ("Resize");
-#line 78 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp12_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp11_);
-#line 78 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp12_);
-#line 78 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->resize);
-#line 78 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->resize = _tmp12_;
-#line 79 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp13_ = self->priv->resize;
-#line 79 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object (_tmp13_, "activate", (GCallback) __gala_window_menu___lambda39__gtk_menu_item_activate, self, 0);
-#line 83 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp13_, "activate", (GCallback) __gala_window_menu___lambda43__gtk_menu_item_activate, self, 0);
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp14_ = self->priv->resize;
-#line 83 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp14_);
-#line 85 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp15_ = _ ("Always on Top");
-#line 85 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp16_ = (GtkCheckMenuItem*) gtk_check_menu_item_new_with_label (_tmp15_);
-#line 85 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp16_);
-#line 85 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->always_on_top);
-#line 85 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->always_on_top = _tmp16_;
-#line 86 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp17_ = self->priv->always_on_top;
-#line 86 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object ((GtkMenuItem*) _tmp17_, "activate", (GCallback) __gala_window_menu___lambda40__gtk_menu_item_activate, self, 0);
-#line 92 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object ((GtkMenuItem*) _tmp17_, "activate", (GCallback) __gala_window_menu___lambda44__gtk_menu_item_activate, self, 0);
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp18_ = self->priv->always_on_top;
-#line 92 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) ((GtkMenuItem*) _tmp18_));
-#line 94 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp19_ = _ ("Always on Visible Workspace");
-#line 94 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp20_ = (GtkCheckMenuItem*) gtk_check_menu_item_new_with_label (_tmp19_);
-#line 94 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp20_);
-#line 94 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->on_visible_workspace);
-#line 94 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->on_visible_workspace = _tmp20_;
-#line 95 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp21_ = self->priv->on_visible_workspace;
-#line 95 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object ((GtkMenuItem*) _tmp21_, "activate", (GCallback) __gala_window_menu___lambda41__gtk_menu_item_activate, self, 0);
-#line 101 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object ((GtkMenuItem*) _tmp21_, "activate", (GCallback) __gala_window_menu___lambda45__gtk_menu_item_activate, self, 0);
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp22_ = self->priv->on_visible_workspace;
-#line 101 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) ((GtkMenuItem*) _tmp22_));
-#line 103 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp23_ = _ ("Move to Workspace Left");
-#line 103 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp24_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp23_);
-#line 103 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp24_);
-#line 103 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->move_left);
-#line 103 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->move_left = _tmp24_;
-#line 104 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp25_ = self->priv->move_left;
-#line 104 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object (_tmp25_, "activate", (GCallback) __gala_window_menu___lambda42__gtk_menu_item_activate, self, 0);
-#line 109 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp25_, "activate", (GCallback) __gala_window_menu___lambda46__gtk_menu_item_activate, self, 0);
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp26_ = self->priv->move_left;
-#line 109 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp26_);
-#line 111 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp27_ = _ ("Move to Workspace Right");
-#line 111 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp28_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp27_);
-#line 111 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp28_);
-#line 111 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->move_right);
-#line 111 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->move_right = _tmp28_;
-#line 112 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp29_ = self->priv->move_right;
-#line 112 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object (_tmp29_, "activate", (GCallback) __gala_window_menu___lambda43__gtk_menu_item_activate, self, 0);
-#line 117 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp29_, "activate", (GCallback) __gala_window_menu___lambda47__gtk_menu_item_activate, self, 0);
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp30_ = self->priv->move_right;
-#line 117 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp30_);
-#line 119 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp31_ = _ ("Close");
-#line 119 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp32_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp31_);
-#line 119 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_ref_sink (_tmp32_);
-#line 119 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->close);
-#line 119 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv->close = _tmp32_;
-#line 120 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp33_ = self->priv->close;
-#line 120 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
-	g_signal_connect_object (_tmp33_, "activate", (GCallback) __gala_window_menu___lambda44__gtk_menu_item_activate, self, 0);
-#line 123 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 120 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp33_, "activate", (GCallback) __gala_window_menu___lambda48__gtk_menu_item_activate, self, 0);
+#line 123 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_tmp34_ = self->priv->close;
-#line 123 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp34_);
-#line 54 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	return obj;
-#line 871 "WindowMenu.c"
+#line 934 "WindowMenu.c"
 }
 
 
 static void gala_window_menu_class_init (GalaWindowMenuClass * klass) {
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	gala_window_menu_parent_class = g_type_class_peek_parent (klass);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_type_class_add_private (klass, sizeof (GalaWindowMenuPrivate));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_window_menu_get_property;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_window_menu_set_property;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_window_menu_constructor;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_window_menu_finalize;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_MENU_CURRENT_WINDOW, g_param_spec_object ("current-window", "current-window", "current-window", meta_window_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 890 "WindowMenu.c"
+#line 953 "WindowMenu.c"
 }
 
 
 static void gala_window_menu_instance_init (GalaWindowMenu * self) {
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self->priv = GALA_WINDOW_MENU_GET_PRIVATE (self);
-#line 897 "WindowMenu.c"
+#line 960 "WindowMenu.c"
 }
 
 
 static void gala_window_menu_finalize (GObject* obj) {
 	GalaWindowMenu * self;
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_MENU, GalaWindowMenu);
-#line 38 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->_current_window);
-#line 40 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->minimize);
-#line 41 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->maximize);
-#line 42 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->move);
-#line 43 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->resize);
-#line 44 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 44 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->always_on_top);
-#line 45 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->on_visible_workspace);
-#line 46 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->move_left);
-#line 47 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->move_right);
-#line 48 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	_g_object_unref0 (self->priv->close);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	G_OBJECT_CLASS (gala_window_menu_parent_class)->finalize (obj);
-#line 927 "WindowMenu.c"
+#line 990 "WindowMenu.c"
 }
 
 
@@ -946,21 +1009,21 @@ GType gala_window_menu_get_type (void) {
 static void _vala_gala_window_menu_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaWindowMenu * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_MENU, GalaWindowMenu);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	switch (property_id) {
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		case GALA_WINDOW_MENU_CURRENT_WINDOW:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		g_value_set_object (value, gala_window_menu_get_current_window (self));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		break;
-#line 958 "WindowMenu.c"
+#line 1021 "WindowMenu.c"
 		default:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		break;
-#line 964 "WindowMenu.c"
+#line 1027 "WindowMenu.c"
 	}
 }
 
@@ -968,22 +1031,443 @@ static void _vala_gala_window_menu_get_property (GObject * object, guint propert
 static void _vala_gala_window_menu_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaWindowMenu * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_MENU, GalaWindowMenu);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 	switch (property_id) {
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		case GALA_WINDOW_MENU_CURRENT_WINDOW:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		gala_window_menu_set_current_window (self, g_value_get_object (value));
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		break;
-#line 980 "WindowMenu.c"
+#line 1043 "WindowMenu.c"
 		default:
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 26 "/home/nick/work/gala/src/Widgets/WindowMenu.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
 		break;
-#line 986 "WindowMenu.c"
+#line 1049 "WindowMenu.c"
 	}
+}
+
+
+GalaDesktopMenu* gala_desktop_menu_construct (GType object_type, GalaWindowManager* _wm) {
+	GalaDesktopMenu * self = NULL;
+	GalaWindowManager* _tmp0_ = NULL;
+	GalaWindowManager* _tmp1_ = NULL;
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_return_val_if_fail (_wm != NULL, NULL);
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self = (GalaDesktopMenu*) g_object_new (object_type, NULL);
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp0_ = _wm;
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp1_ = _g_object_ref0 (_tmp0_);
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->wm);
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self->priv->wm = _tmp1_;
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	return self;
+#line 1072 "WindowMenu.c"
+}
+
+
+GalaDesktopMenu* gala_desktop_menu_new (GalaWindowManager* _wm) {
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	return gala_desktop_menu_construct (GALA_TYPE_DESKTOP_MENU, _wm);
+#line 1079 "WindowMenu.c"
+}
+
+
+static void _gala_desktop_menu___lambda36_ (GalaDesktopMenu* self) {
+	GError * _inner_error_ = NULL;
+	{
+		GalaWindowManager* _tmp0_ = NULL;
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp0_ = self->priv->wm;
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		gala_window_manager_perform_action (_tmp0_, GALA_ACTION_TYPE_MINIMIZE_ALL);
+#line 1091 "WindowMenu.c"
+	}
+	goto __finally23;
+	__catch23_g_error:
+	{
+		GError* e = NULL;
+		GError* _tmp1_ = NULL;
+		const gchar* _tmp2_ = NULL;
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		e = _inner_error_;
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_inner_error_ = NULL;
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp1_ = e;
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp2_ = _tmp1_->message;
+#line 170 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_warning ("WindowMenu.vala:170: %s", _tmp2_);
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_g_error_free0 (e);
+#line 1111 "WindowMenu.c"
+	}
+	__finally23:
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_clear_error (&_inner_error_);
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		return;
+#line 1122 "WindowMenu.c"
+	}
+}
+
+
+static void __gala_desktop_menu___lambda36__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_gala_desktop_menu___lambda36_ ((GalaDesktopMenu*) self);
+#line 1130 "WindowMenu.c"
+}
+
+
+static void _gala_desktop_menu___lambda37_ (GalaDesktopMenu* self) {
+	GError * _inner_error_ = NULL;
+	{
+		GalaWindowManager* _tmp0_ = NULL;
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp0_ = self->priv->wm;
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		gala_window_manager_perform_action (_tmp0_, GALA_ACTION_TYPE_SHOW_WORKSPACE_VIEW);
+#line 1142 "WindowMenu.c"
+	}
+	goto __finally24;
+	__catch24_g_error:
+	{
+		GError* e = NULL;
+		GError* _tmp1_ = NULL;
+		const gchar* _tmp2_ = NULL;
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		e = _inner_error_;
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_inner_error_ = NULL;
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp1_ = e;
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp2_ = _tmp1_->message;
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_warning ("WindowMenu.vala:180: %s", _tmp2_);
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_g_error_free0 (e);
+#line 1162 "WindowMenu.c"
+	}
+	__finally24:
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_clear_error (&_inner_error_);
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		return;
+#line 1173 "WindowMenu.c"
+	}
+}
+
+
+static void __gala_desktop_menu___lambda37__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_gala_desktop_menu___lambda37_ ((GalaDesktopMenu*) self);
+#line 1181 "WindowMenu.c"
+}
+
+
+static void _gala_desktop_menu___lambda38_ (GalaDesktopMenu* self) {
+	GError * _inner_error_ = NULL;
+	{
+		GalaBehaviorSettings* _tmp0_ = NULL;
+		const gchar* _tmp1_ = NULL;
+		const gchar* _tmp2_ = NULL;
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp0_ = gala_behavior_settings_get_default ();
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp1_ = gala_behavior_settings_get_settings_action (_tmp0_);
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp2_ = _tmp1_;
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_spawn_command_line_async (_tmp2_, &_inner_error_);
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 1201 "WindowMenu.c"
+			goto __catch25_g_error;
+		}
+	}
+	goto __finally25;
+	__catch25_g_error:
+	{
+		GError* e = NULL;
+		GError* _tmp3_ = NULL;
+		const gchar* _tmp4_ = NULL;
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		e = _inner_error_;
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_inner_error_ = NULL;
+#line 192 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp3_ = e;
+#line 192 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp4_ = _tmp3_->message;
+#line 192 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_warning ("WindowMenu.vala:192: %s", _tmp4_);
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_g_error_free0 (e);
+#line 1223 "WindowMenu.c"
+	}
+	__finally25:
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_clear_error (&_inner_error_);
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		return;
+#line 1234 "WindowMenu.c"
+	}
+}
+
+
+static void __gala_desktop_menu___lambda38__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+#line 188 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_gala_desktop_menu___lambda38_ ((GalaDesktopMenu*) self);
+#line 1242 "WindowMenu.c"
+}
+
+
+static void _gala_desktop_menu___lambda39_ (GalaDesktopMenu* self) {
+	GError * _inner_error_ = NULL;
+	{
+		GalaBehaviorSettings* _tmp0_ = NULL;
+		const gchar* _tmp1_ = NULL;
+		const gchar* _tmp2_ = NULL;
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp0_ = gala_behavior_settings_get_default ();
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp1_ = gala_behavior_settings_get_change_background_action (_tmp0_);
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp2_ = _tmp1_;
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_spawn_command_line_async (_tmp2_, &_inner_error_);
+#line 200 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 1262 "WindowMenu.c"
+			goto __catch26_g_error;
+		}
+	}
+	goto __finally26;
+	__catch26_g_error:
+	{
+		GError* e = NULL;
+		GError* _tmp3_ = NULL;
+		const gchar* _tmp4_ = NULL;
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		e = _inner_error_;
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_inner_error_ = NULL;
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp3_ = e;
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_tmp4_ = _tmp3_->message;
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_warning ("WindowMenu.vala:202: %s", _tmp4_);
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		_g_error_free0 (e);
+#line 1284 "WindowMenu.c"
+	}
+	__finally26:
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		g_clear_error (&_inner_error_);
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+		return;
+#line 1295 "WindowMenu.c"
+	}
+}
+
+
+static void __gala_desktop_menu___lambda39__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+#line 198 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_gala_desktop_menu___lambda39_ ((GalaDesktopMenu*) self);
+#line 1303 "WindowMenu.c"
+}
+
+
+static GObject * gala_desktop_menu_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties) {
+	GObject * obj;
+	GObjectClass * parent_class;
+	GalaDesktopMenu * self;
+	const gchar* _tmp0_ = NULL;
+	GtkMenuItem* _tmp1_ = NULL;
+	GtkMenuItem* _tmp2_ = NULL;
+	GtkMenuItem* _tmp3_ = NULL;
+	const gchar* _tmp4_ = NULL;
+	GtkMenuItem* _tmp5_ = NULL;
+	GtkMenuItem* _tmp6_ = NULL;
+	GtkMenuItem* _tmp7_ = NULL;
+	GtkSeparatorMenuItem* _tmp8_ = NULL;
+	GtkSeparatorMenuItem* _tmp9_ = NULL;
+	const gchar* _tmp10_ = NULL;
+	GtkMenuItem* _tmp11_ = NULL;
+	GtkMenuItem* _tmp12_ = NULL;
+	GtkMenuItem* _tmp13_ = NULL;
+	const gchar* _tmp14_ = NULL;
+	GtkMenuItem* _tmp15_ = NULL;
+	GtkMenuItem* _tmp16_ = NULL;
+	GtkMenuItem* _tmp17_ = NULL;
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	parent_class = G_OBJECT_CLASS (gala_desktop_menu_parent_class);
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_DESKTOP_MENU, GalaDesktopMenu);
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp0_ = _ ("Show Desktop");
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp1_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp0_);
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_object_ref_sink (_tmp1_);
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->show_desktop);
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self->priv->show_desktop = _tmp1_;
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp2_ = self->priv->show_desktop;
+#line 166 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp2_, "activate", (GCallback) __gala_desktop_menu___lambda36__gtk_menu_item_activate, self, 0);
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp3_ = self->priv->show_desktop;
+#line 173 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp3_);
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp4_ = _ ("Workspace View");
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp5_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp4_);
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_object_ref_sink (_tmp5_);
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->workspace_view);
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self->priv->workspace_view = _tmp5_;
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp6_ = self->priv->workspace_view;
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp6_, "activate", (GCallback) __gala_desktop_menu___lambda37__gtk_menu_item_activate, self, 0);
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp7_ = self->priv->workspace_view;
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp7_);
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp8_ = (GtkSeparatorMenuItem*) gtk_separator_menu_item_new ();
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_object_ref_sink (_tmp8_);
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp9_ = _tmp8_;
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) ((GtkMenuItem*) _tmp9_));
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (_tmp9_);
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp10_ = _ ("Settings");
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp11_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp10_);
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_object_ref_sink (_tmp11_);
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->random_background);
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self->priv->random_background = _tmp11_;
+#line 188 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp12_ = self->priv->random_background;
+#line 188 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp12_, "activate", (GCallback) __gala_desktop_menu___lambda38__gtk_menu_item_activate, self, 0);
+#line 195 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp13_ = self->priv->random_background;
+#line 195 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp13_);
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp14_ = _ ("Change Desktop Background");
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp15_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp14_);
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_object_ref_sink (_tmp15_);
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->change_background);
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self->priv->change_background = _tmp15_;
+#line 198 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp16_ = self->priv->change_background;
+#line 198 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_signal_connect_object (_tmp16_, "activate", (GCallback) __gala_desktop_menu___lambda39__gtk_menu_item_activate, self, 0);
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_tmp17_ = self->priv->change_background;
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	gtk_menu_shell_append ((GtkMenuShell*) self, (GtkWidget*) _tmp17_);
+#line 163 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	return obj;
+#line 1419 "WindowMenu.c"
+}
+
+
+static void gala_desktop_menu_class_init (GalaDesktopMenuClass * klass) {
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	gala_desktop_menu_parent_class = g_type_class_peek_parent (klass);
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	g_type_class_add_private (klass, sizeof (GalaDesktopMenuPrivate));
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	G_OBJECT_CLASS (klass)->constructor = gala_desktop_menu_constructor;
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	G_OBJECT_CLASS (klass)->finalize = gala_desktop_menu_finalize;
+#line 1432 "WindowMenu.c"
+}
+
+
+static void gala_desktop_menu_instance_init (GalaDesktopMenu * self) {
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self->priv = GALA_DESKTOP_MENU_GET_PRIVATE (self);
+#line 1439 "WindowMenu.c"
+}
+
+
+static void gala_desktop_menu_finalize (GObject* obj) {
+	GalaDesktopMenu * self;
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_DESKTOP_MENU, GalaDesktopMenu);
+#line 152 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->change_background);
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->random_background);
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->show_desktop);
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->workspace_view);
+#line 156 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	_g_object_unref0 (self->priv->wm);
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowMenu.vala"
+	G_OBJECT_CLASS (gala_desktop_menu_parent_class)->finalize (obj);
+#line 1459 "WindowMenu.c"
+}
+
+
+GType gala_desktop_menu_get_type (void) {
+	static volatile gsize gala_desktop_menu_type_id__volatile = 0;
+	if (g_once_init_enter (&gala_desktop_menu_type_id__volatile)) {
+		static const GTypeInfo g_define_type_info = { sizeof (GalaDesktopMenuClass), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) gala_desktop_menu_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (GalaDesktopMenu), 0, (GInstanceInitFunc) gala_desktop_menu_instance_init, NULL };
+		GType gala_desktop_menu_type_id;
+		gala_desktop_menu_type_id = g_type_register_static (gtk_menu_get_type (), "GalaDesktopMenu", &g_define_type_info, 0);
+		g_once_init_leave (&gala_desktop_menu_type_id__volatile, gala_desktop_menu_type_id);
+	}
+	return gala_desktop_menu_type_id__volatile;
 }
 
 

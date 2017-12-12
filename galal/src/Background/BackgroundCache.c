@@ -161,25 +161,25 @@ GalaBackgroundCache* gala_background_cache_get_default (void) {
 	GalaBackgroundCache* result = NULL;
 	GalaBackgroundCache* _tmp0_ = NULL;
 	GalaBackgroundCache* _tmp2_ = NULL;
-#line 26 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp0_ = gala_background_cache_instance;
-#line 26 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (_tmp0_ == NULL) {
 #line 169 "BackgroundCache.c"
 		GalaBackgroundCache* _tmp1_ = NULL;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp1_ = gala_background_cache_new ();
-#line 27 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_object_unref0 (gala_background_cache_instance);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		gala_background_cache_instance = _tmp1_;
 #line 177 "BackgroundCache.c"
 	}
-#line 29 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp2_ = gala_background_cache_instance;
-#line 29 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	result = _tmp2_;
-#line 29 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return result;
 #line 185 "BackgroundCache.c"
 }
@@ -187,25 +187,25 @@ GalaBackgroundCache* gala_background_cache_get_default (void) {
 
 GalaBackgroundCache* gala_background_cache_construct (GType object_type) {
 	GalaBackgroundCache * self = NULL;
-#line 42 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self = (GalaBackgroundCache*) g_object_new (object_type, NULL);
-#line 40 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return self;
 #line 195 "BackgroundCache.c"
 }
 
 
 GalaBackgroundCache* gala_background_cache_new (void) {
-#line 40 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return gala_background_cache_construct (GALA_TYPE_BACKGROUND_CACHE);
 #line 202 "BackgroundCache.c"
 }
 
 
 static Block29Data* block29_data_ref (Block29Data* _data29_) {
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_atomic_int_inc (&_data29_->_ref_count_);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return _data29_;
 #line 211 "BackgroundCache.c"
 }
@@ -214,17 +214,17 @@ static Block29Data* block29_data_ref (Block29Data* _data29_) {
 static void block29_data_unref (void * _userdata_) {
 	Block29Data* _data29_;
 	_data29_ = (Block29Data*) _userdata_;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (g_atomic_int_dec_and_test (&_data29_->_ref_count_)) {
 #line 220 "BackgroundCache.c"
 		GalaBackgroundCache* self;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		self = _data29_->self;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_free0 (_data29_->filename);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_object_unref0 (self);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_slice_free (Block29Data, _data29_);
 #line 230 "BackgroundCache.c"
 	}
@@ -234,18 +234,18 @@ static void block29_data_unref (void * _userdata_) {
 static void ___lambda15_ (Block29Data* _data29_) {
 	GalaBackgroundCache* self;
 	const gchar* _tmp0_ = NULL;
-#line 59 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self = _data29_->self;
-#line 60 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp0_ = _data29_->filename;
-#line 60 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_signal_emit_by_name (self, "file-changed", _tmp0_);
 #line 244 "BackgroundCache.c"
 }
 
 
 static void ____lambda15__g_file_monitor_changed (GFileMonitor* _sender, GFile* file, GFile* other_file, GFileMonitorEvent event_type, gpointer self) {
-#line 59 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	___lambda15_ (self);
 #line 251 "BackgroundCache.c"
 }
@@ -262,45 +262,45 @@ void gala_background_cache_monitor_file (GalaBackgroundCache* self, const gchar*
 	const gchar* _tmp5_ = NULL;
 	GFile* _tmp6_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_return_if_fail (self != NULL);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_return_if_fail (filename != NULL);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data29_ = g_slice_new0 (Block29Data);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data29_->_ref_count_ = 1;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data29_->self = g_object_ref (self);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp0_ = filename;
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp1_ = g_strdup (_tmp0_);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_free0 (_data29_->filename);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data29_->filename = _tmp1_;
-#line 53 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp2_ = self->priv->file_monitors;
-#line 53 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp3_ = _data29_->filename;
-#line 53 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp4_ = gee_abstract_map_has_key ((GeeAbstractMap*) _tmp2_, _tmp3_);
-#line 53 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (_tmp4_) {
-#line 54 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		block29_data_unref (_data29_);
-#line 54 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data29_ = NULL;
-#line 54 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		return;
 #line 298 "BackgroundCache.c"
 	}
-#line 56 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp5_ = _data29_->filename;
-#line 56 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp6_ = g_file_new_for_path (_tmp5_);
-#line 56 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	file = _tmp6_;
 #line 306 "BackgroundCache.c"
 	{
@@ -311,78 +311,78 @@ void gala_background_cache_monitor_file (GalaBackgroundCache* self, const gchar*
 		GeeHashMap* _tmp10_ = NULL;
 		const gchar* _tmp11_ = NULL;
 		GFileMonitor* _tmp12_ = NULL;
-#line 58 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp7_ = file;
-#line 58 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp8_ = g_file_monitor (_tmp7_, G_FILE_MONITOR_NONE, NULL, &_inner_error_);
-#line 58 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		monitor = _tmp8_;
-#line 58 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 323 "BackgroundCache.c"
-			goto __catch23_g_error;
+			goto __catch22_g_error;
 		}
-#line 59 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp9_ = monitor;
-#line 59 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_signal_connect_data (_tmp9_, "changed", (GCallback) ____lambda15__g_file_monitor_changed, block29_data_ref (_data29_), (GClosureNotify) block29_data_unref, 0);
-#line 63 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp10_ = self->priv->file_monitors;
-#line 63 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp11_ = _data29_->filename;
-#line 63 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp12_ = monitor;
-#line 63 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		gee_abstract_map_set ((GeeAbstractMap*) _tmp10_, _tmp11_, _tmp12_);
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_object_unref0 (monitor);
 #line 340 "BackgroundCache.c"
 	}
-	goto __finally23;
-	__catch23_g_error:
+	goto __finally22;
+	__catch22_g_error:
 	{
 		GError* e = NULL;
 		const gchar* _tmp13_ = NULL;
 		GError* _tmp14_ = NULL;
 		const gchar* _tmp15_ = NULL;
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		e = _inner_error_;
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_inner_error_ = NULL;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp13_ = _data29_->filename;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp14_ = e;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp15_ = _tmp14_->message;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_warning ("BackgroundCache.vala:65: Failed to monitor %s: %s", _tmp13_, _tmp15_);
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_error_free0 (e);
 #line 363 "BackgroundCache.c"
 	}
-	__finally23:
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+	__finally22:
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_object_unref0 (file);
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		block29_data_unref (_data29_);
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data29_ = NULL;
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_clear_error (&_inner_error_);
-#line 57 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		return;
 #line 380 "BackgroundCache.c"
 	}
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (file);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	block29_data_unref (_data29_);
-#line 51 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data29_ = NULL;
 #line 388 "BackgroundCache.c"
 }
@@ -391,20 +391,20 @@ void gala_background_cache_monitor_file (GalaBackgroundCache* self, const gchar*
 static void gala_background_cache_get_animation_data_free (gpointer _data) {
 	GalaBackgroundCacheGetAnimationData* _data_;
 	_data_ = _data;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_free0 (_data_->filename);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (_data_->result);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (_data_->self);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_slice_free (GalaBackgroundCacheGetAnimationData, _data_);
 #line 403 "BackgroundCache.c"
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 410 "BackgroundCache.c"
 }
@@ -415,25 +415,25 @@ void gala_background_cache_get_animation (GalaBackgroundCache* self, const gchar
 	GalaBackgroundCache* _tmp0_ = NULL;
 	const gchar* _tmp1_ = NULL;
 	gchar* _tmp2_ = NULL;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_ = g_slice_new0 (GalaBackgroundCacheGetAnimationData);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_async_result = g_simple_async_result_new (G_OBJECT (self), _callback_, _user_data_, gala_background_cache_get_animation);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_simple_async_result_set_op_res_gpointer (_data_->_async_result, _data_, gala_background_cache_get_animation_data_free);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp0_ = _g_object_ref0 (self);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->self = _tmp0_;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp1_ = filename;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp2_ = g_strdup (_tmp1_);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_free0 (_data_->filename);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->filename = _tmp2_;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	gala_background_cache_get_animation_co (_data_);
 #line 439 "BackgroundCache.c"
 }
@@ -442,22 +442,22 @@ void gala_background_cache_get_animation (GalaBackgroundCache* self, const gchar
 GalaAnimation* gala_background_cache_get_animation_finish (GalaBackgroundCache* self, GAsyncResult* _res_) {
 	GalaAnimation* result;
 	GalaBackgroundCacheGetAnimationData* _data_;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_ = g_simple_async_result_get_op_res_gpointer (G_SIMPLE_ASYNC_RESULT (_res_));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	result = _data_->result;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->result = NULL;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return result;
 #line 454 "BackgroundCache.c"
 }
 
 
 static Block30Data* block30_data_ref (Block30Data* _data30_) {
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_atomic_int_inc (&_data30_->_ref_count_);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return _data30_;
 #line 463 "BackgroundCache.c"
 }
@@ -466,15 +466,15 @@ static Block30Data* block30_data_ref (Block30Data* _data30_) {
 static void block30_data_unref (void * _userdata_) {
 	Block30Data* _data30_;
 	_data30_ = (Block30Data*) _userdata_;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (g_atomic_int_dec_and_test (&_data30_->_ref_count_)) {
 #line 472 "BackgroundCache.c"
 		GalaBackgroundCache* self;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		self = _data30_->self;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_object_unref0 (self);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_slice_free (Block30Data, _data30_);
 #line 480 "BackgroundCache.c"
 	}
@@ -484,13 +484,13 @@ static void block30_data_unref (void * _userdata_) {
 static gboolean ___lambda16_ (Block30Data* _data30_) {
 	GalaBackgroundCache* self;
 	gboolean result = FALSE;
-#line 72 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self = _data30_->self;
-#line 73 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	gala_background_cache_get_animation_co (_data30_->_async_data_);
-#line 74 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	result = FALSE;
-#line 74 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return result;
 #line 496 "BackgroundCache.c"
 }
@@ -499,7 +499,7 @@ static gboolean ___lambda16_ (Block30Data* _data30_) {
 static gboolean ____lambda16__gsource_func (gpointer self) {
 	gboolean result;
 	result = ___lambda16_ (self);
-#line 72 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return result;
 #line 505 "BackgroundCache.c"
 }
@@ -507,13 +507,13 @@ static gboolean ____lambda16__gsource_func (gpointer self) {
 
 static void gala_background_cache_get_animation_ready (GObject* source_object, GAsyncResult* _res_, gpointer _user_data_) {
 	GalaBackgroundCacheGetAnimationData* _data_;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_ = _user_data_;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_source_object_ = source_object;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_res_ = _res_;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	gala_background_cache_get_animation_co (_data_);
 #line 519 "BackgroundCache.c"
 }
@@ -522,13 +522,13 @@ static void gala_background_cache_get_animation_ready (GObject* source_object, G
 static gboolean __lambda17_ (Block30Data* _data30_) {
 	GalaBackgroundCache* self;
 	gboolean result = FALSE;
-#line 85 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self = _data30_->self;
-#line 86 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	gala_background_cache_get_animation_co (_data30_->_async_data_);
-#line 87 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	result = FALSE;
-#line 87 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return result;
 #line 534 "BackgroundCache.c"
 }
@@ -537,166 +537,166 @@ static gboolean __lambda17_ (Block30Data* _data30_) {
 static gboolean ___lambda17__gsource_func (gpointer self) {
 	gboolean result;
 	result = __lambda17_ (self);
-#line 85 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return result;
 #line 543 "BackgroundCache.c"
 }
 
 
 static gboolean gala_background_cache_get_animation_co (GalaBackgroundCacheGetAnimationData* _data_) {
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	switch (_data_->_state_) {
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		case 0:
 #line 552 "BackgroundCache.c"
 		goto _state_0;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		case 1:
 #line 556 "BackgroundCache.c"
 		goto _state_1;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		case 2:
 #line 560 "BackgroundCache.c"
 		goto _state_2;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		case 3:
 #line 564 "BackgroundCache.c"
 		goto _state_3;
 		default:
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_assert_not_reached ();
 #line 569 "BackgroundCache.c"
 	}
 	_state_0:
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_data30_ = g_slice_new0 (Block30Data);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_data30_->_ref_count_ = 1;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_data30_->self = g_object_ref (_data_->self);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_data30_->_async_data_ = _data_;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp0_ = NULL;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp0_ = _data_->self->priv->animation_filename;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp1_ = NULL;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp1_ = _data_->filename;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (g_strcmp0 (_data_->_tmp0_, _data_->_tmp1_) == 0) {
-#line 72 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, ____lambda16__gsource_func, block30_data_ref (_data_->_data30_), block30_data_unref);
-#line 76 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data_->_state_ = 1;
-#line 76 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		return FALSE;
 #line 596 "BackgroundCache.c"
 		_state_1:
 		;
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data_->_tmp2_ = NULL;
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data_->_tmp2_ = _data_->self->priv->animation;
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data_->_tmp3_ = NULL;
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data_->_tmp3_ = _g_object_ref0 (_data_->_tmp2_);
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data_->result = _data_->_tmp3_;
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		block30_data_unref (_data_->_data30_);
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_data_->_data30_ = NULL;
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		if (_data_->_state_ == 0) {
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 			g_simple_async_result_complete_in_idle (_data_->_async_result);
 #line 617 "BackgroundCache.c"
 		} else {
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 			g_simple_async_result_complete (_data_->_async_result);
 #line 621 "BackgroundCache.c"
 		}
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_object_unref (_data_->_async_result);
-#line 78 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		return FALSE;
 #line 627 "BackgroundCache.c"
 	}
-#line 81 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp4_ = NULL;
-#line 81 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp4_ = _data_->filename;
-#line 81 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp5_ = NULL;
-#line 81 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp5_ = gala_animation_new (_data_->_tmp4_);
-#line 81 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->animation = _data_->_tmp5_;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp6_ = NULL;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_tmp6_ = _data_->animation;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_state_ = 2;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	gala_animation_load (_data_->_tmp6_, gala_background_cache_get_animation_ready, _data_);
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return FALSE;
 #line 649 "BackgroundCache.c"
 	_state_2:
-#line 83 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	gala_animation_load_finish (_data_->_tmp6_, _data_->_res_);
-#line 85 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, ___lambda17__gsource_func, block30_data_ref (_data_->_data30_), block30_data_unref);
-#line 89 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_state_ = 3;
-#line 89 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return FALSE;
 #line 659 "BackgroundCache.c"
 	_state_3:
 	;
-#line 91 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->result = _data_->animation;
-#line 91 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	block30_data_unref (_data_->_data30_);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_data30_ = NULL;
-#line 91 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (_data_->_state_ == 0) {
-#line 91 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_simple_async_result_complete_in_idle (_data_->_async_result);
 #line 672 "BackgroundCache.c"
 	} else {
-#line 91 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_simple_async_result_complete (_data_->_async_result);
 #line 676 "BackgroundCache.c"
 	}
-#line 91 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_object_unref (_data_->_async_result);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return FALSE;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (_data_->animation);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	block30_data_unref (_data_->_data30_);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_data_->_data30_ = NULL;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (_data_->_state_ == 0) {
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_simple_async_result_complete_in_idle (_data_->_async_result);
 #line 692 "BackgroundCache.c"
 	} else {
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		g_simple_async_result_complete (_data_->_async_result);
 #line 696 "BackgroundCache.c"
 	}
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_object_unref (_data_->_async_result);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return FALSE;
 #line 702 "BackgroundCache.c"
 }
@@ -709,23 +709,23 @@ GalaBackgroundSource* gala_background_cache_get_background_source (GalaBackgroun
 	const gchar* _tmp1_ = NULL;
 	gpointer _tmp2_ = NULL;
 	GalaBackgroundSource* _tmp3_ = NULL;
-#line 94 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 94 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_return_val_if_fail (screen != NULL, NULL);
-#line 94 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_return_val_if_fail (settings_schema != NULL, NULL);
-#line 96 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp0_ = self->priv->background_sources;
-#line 96 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp1_ = settings_schema;
-#line 96 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp2_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp0_, _tmp1_);
-#line 96 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	background_source = (GalaBackgroundSource*) _tmp2_;
-#line 97 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp3_ = background_source;
-#line 97 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (_tmp3_ == NULL) {
 #line 731 "BackgroundCache.c"
 		MetaScreen* _tmp4_ = NULL;
@@ -735,46 +735,46 @@ GalaBackgroundSource* gala_background_cache_get_background_source (GalaBackgroun
 		GeeHashMap* _tmp8_ = NULL;
 		const gchar* _tmp9_ = NULL;
 		GalaBackgroundSource* _tmp10_ = NULL;
-#line 98 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp4_ = screen;
-#line 98 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp5_ = settings_schema;
-#line 98 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp6_ = gala_background_source_new (_tmp4_, _tmp5_);
-#line 98 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_object_unref0 (background_source);
-#line 98 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		background_source = _tmp6_;
-#line 99 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp7_ = background_source;
-#line 99 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		gala_background_source_set_use_count (_tmp7_, 1);
-#line 100 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp8_ = self->priv->background_sources;
-#line 100 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp9_ = settings_schema;
-#line 100 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp10_ = background_source;
-#line 100 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		gee_abstract_map_set ((GeeAbstractMap*) _tmp8_, _tmp9_, _tmp10_);
 #line 761 "BackgroundCache.c"
 	} else {
 		GalaBackgroundSource* _tmp11_ = NULL;
 		gint _tmp12_ = 0;
 		gint _tmp13_ = 0;
-#line 102 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp11_ = background_source;
-#line 102 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp12_ = gala_background_source_get_use_count (_tmp11_);
-#line 102 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp13_ = _tmp12_;
-#line 102 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		gala_background_source_set_use_count (_tmp11_, _tmp13_ + 1);
 #line 774 "BackgroundCache.c"
 	}
-#line 104 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	result = background_source;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return result;
 #line 780 "BackgroundCache.c"
 }
@@ -784,17 +784,17 @@ void gala_background_cache_release_background_source (GalaBackgroundCache* self,
 	GeeHashMap* _tmp0_ = NULL;
 	const gchar* _tmp1_ = NULL;
 	gboolean _tmp2_ = FALSE;
-#line 107 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_return_if_fail (self != NULL);
-#line 107 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_return_if_fail (settings_schema != NULL);
-#line 109 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp0_ = self->priv->background_sources;
-#line 109 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp1_ = settings_schema;
-#line 109 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp2_ = gee_abstract_map_has_key ((GeeAbstractMap*) _tmp0_, _tmp1_);
-#line 109 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	if (_tmp2_) {
 #line 800 "BackgroundCache.c"
 		GalaBackgroundSource* source = NULL;
@@ -805,43 +805,43 @@ void gala_background_cache_release_background_source (GalaBackgroundCache* self,
 		GalaBackgroundSource* _tmp7_ = NULL;
 		gint _tmp8_ = 0;
 		gint _tmp9_ = 0;
-#line 110 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp3_ = self->priv->background_sources;
-#line 110 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp4_ = settings_schema;
-#line 110 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp5_ = gee_abstract_map_get ((GeeAbstractMap*) _tmp3_, _tmp4_);
-#line 110 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		source = (GalaBackgroundSource*) _tmp5_;
-#line 111 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp6_ = source;
-#line 111 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp7_ = source;
-#line 111 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp8_ = gala_background_source_get_use_count (_tmp7_);
-#line 111 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_tmp9_ = _tmp8_;
-#line 111 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		gala_background_source_set_use_count (_tmp7_, _tmp9_ - 1);
-#line 111 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 111 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		if ((_tmp9_ - 1) == 0) {
 #line 829 "BackgroundCache.c"
 			GeeHashMap* _tmp10_ = NULL;
 			const gchar* _tmp11_ = NULL;
 			GalaBackgroundSource* _tmp12_ = NULL;
-#line 112 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 			_tmp10_ = self->priv->background_sources;
-#line 112 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 			_tmp11_ = settings_schema;
-#line 112 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 			gee_abstract_map_unset ((GeeAbstractMap*) _tmp10_, _tmp11_, NULL);
-#line 113 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 			_tmp12_ = source;
-#line 113 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 			gala_background_source_destroy (_tmp12_);
 #line 843 "BackgroundCache.c"
 		}
-#line 109 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 		_g_object_unref0 (source);
 #line 847 "BackgroundCache.c"
 	}
@@ -854,47 +854,47 @@ static GObject * gala_background_cache_constructor (GType type, guint n_construc
 	GalaBackgroundCache * self;
 	GeeHashMap* _tmp0_ = NULL;
 	GeeHashMap* _tmp1_ = NULL;
-#line 45 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	parent_class = G_OBJECT_CLASS (gala_background_cache_parent_class);
-#line 45 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 45 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_BACKGROUND_CACHE, GalaBackgroundCache);
-#line 47 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp0_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, g_file_monitor_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 47 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (self->priv->file_monitors);
-#line 47 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self->priv->file_monitors = _tmp0_;
-#line 48 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_tmp1_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, GALA_TYPE_BACKGROUND_SOURCE, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 48 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (self->priv->background_sources);
-#line 48 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self->priv->background_sources = _tmp1_;
-#line 45 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	return obj;
 #line 878 "BackgroundCache.c"
 }
 
 
 static void gala_background_cache_class_init (GalaBackgroundCacheClass * klass) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	gala_background_cache_parent_class = g_type_class_peek_parent (klass);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_type_class_add_private (klass, sizeof (GalaBackgroundCachePrivate));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_background_cache_constructor;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_background_cache_finalize;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	g_signal_new ("file_changed", GALA_TYPE_BACKGROUND_CACHE, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__STRING, G_TYPE_NONE, 1, G_TYPE_STRING);
 #line 893 "BackgroundCache.c"
 }
 
 
 static void gala_background_cache_instance_init (GalaBackgroundCache * self) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self->priv = GALA_BACKGROUND_CACHE_GET_PRIVATE (self);
 #line 900 "BackgroundCache.c"
 }
@@ -902,17 +902,17 @@ static void gala_background_cache_instance_init (GalaBackgroundCache * self) {
 
 static void gala_background_cache_finalize (GObject* obj) {
 	GalaBackgroundCache * self;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_BACKGROUND_CACHE, GalaBackgroundCache);
-#line 34 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (self->priv->file_monitors);
-#line 35 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (self->priv->background_sources);
-#line 37 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_object_unref0 (self->priv->animation);
-#line 38 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	_g_free0 (self->priv->animation_filename);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundCache.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundCache.vala"
 	G_OBJECT_CLASS (gala_background_cache_parent_class)->finalize (obj);
 #line 918 "BackgroundCache.c"
 }

@@ -175,8 +175,8 @@ GalaWindowManager* gala_multitasking_view_get_wm (GalaMultitaskingView* self);
 static void gala_multitasking_view_real_key_focus_out (ClutterActor* base);
 static void gala_multitasking_view_toggle (GalaMultitaskingView* self);
 static gboolean gala_multitasking_view_real_scroll_event (ClutterActor* base, ClutterScrollEvent* scroll_event);
-static gboolean ____lambda80_ (GalaMultitaskingView* self);
-static gboolean _____lambda80__gsource_func (gpointer self);
+static gboolean ____lambda83_ (GalaMultitaskingView* self);
+static gboolean _____lambda83__gsource_func (gpointer self);
 static void gala_multitasking_view_update_positions (GalaMultitaskingView* self, gboolean animate);
 GType gala_workspace_clone_get_type (void) G_GNUC_CONST;
 MetaWorkspace* gala_workspace_clone_get_workspace (GalaWorkspaceClone* self);
@@ -220,41 +220,41 @@ void gala_workspace_clone_close (GalaWorkspaceClone* self);
 GType gala_safe_window_clone_get_type (void) G_GNUC_CONST;
 GalaSafeWindowClone* gala_safe_window_clone_new (MetaWindow* window, gboolean destroy_on_unmanaged);
 GalaSafeWindowClone* gala_safe_window_clone_construct (GType object_type, MetaWindow* window, gboolean destroy_on_unmanaged);
-static gboolean ___lambda78_ (GalaMultitaskingView* self);
-static gboolean ____lambda78__gsource_func (gpointer self);
-static gboolean ___lambda79_ (GalaMultitaskingView* self);
-static gboolean ____lambda79__gsource_func (gpointer self);
+static gboolean ___lambda81_ (GalaMultitaskingView* self);
+static gboolean ____lambda81__gsource_func (gpointer self);
+static gboolean ___lambda82_ (GalaMultitaskingView* self);
+static gboolean ____lambda82__gsource_func (gpointer self);
 static void gala_multitasking_view_set_wm (GalaMultitaskingView* self, GalaWindowManager* value);
 static GObject * gala_multitasking_view_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 GalaIconGroupContainer* gala_icon_group_container_new (MetaScreen* screen);
 GalaIconGroupContainer* gala_icon_group_container_construct (GType object_type, MetaScreen* screen);
-static void _gala_multitasking_view___lambda81_ (GalaMultitaskingView* self);
-static void __gala_multitasking_view___lambda81__gala_icon_group_container_request_reposition (GalaIconGroupContainer* _sender, gpointer self);
+static void _gala_multitasking_view___lambda84_ (GalaMultitaskingView* self);
+static void __gala_multitasking_view___lambda84__gala_icon_group_container_request_reposition (GalaIconGroupContainer* _sender, gpointer self);
 static void _gala_multitasking_view_add_workspace_meta_screen_workspace_added (MetaScreen* _sender, gint object, gpointer self);
 static void _gala_multitasking_view_remove_workspace_meta_screen_workspace_removed (MetaScreen* _sender, gint object, gpointer self);
-static void _gala_multitasking_view___lambda82_ (GalaMultitaskingView* self, gint from, gint to, MetaMotionDirection direction);
-static void __gala_multitasking_view___lambda82__meta_screen_workspace_switched (MetaScreen* _sender, gint object, gint p0, MetaMotionDirection p1, gpointer self);
+static void _gala_multitasking_view___lambda85_ (GalaMultitaskingView* self, gint from, gint to, MetaMotionDirection direction);
+static void __gala_multitasking_view___lambda85__meta_screen_workspace_switched (MetaScreen* _sender, gint object, gint p0, MetaMotionDirection p1, gpointer self);
 static void _gala_multitasking_view_update_monitors_meta_screen_monitors_changed (MetaScreen* _sender, gpointer self);
-static void _gala_multitasking_view___lambda83_ (GalaMultitaskingView* self, MetaPreference pref);
-static gboolean __lambda84_ (GalaMultitaskingView* self);
-static gboolean ___lambda84__gsource_func (gpointer self);
-static void __gala_multitasking_view___lambda83__meta_prefs_changed_func (MetaPreference pref, gpointer self);
+static void _gala_multitasking_view___lambda86_ (GalaMultitaskingView* self, MetaPreference pref);
+static gboolean __lambda87_ (GalaMultitaskingView* self);
+static gboolean ___lambda87__gsource_func (gpointer self);
+static void __gala_multitasking_view___lambda86__meta_prefs_changed_func (MetaPreference pref, gpointer self);
 static void gala_multitasking_view_finalize (GObject* obj);
 static void _vala_gala_multitasking_view_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec);
 static void _vala_gala_multitasking_view_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec);
 
 
 static void _g_object_unref0_ (gpointer var) {
-#line 43 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	(var == NULL) ? NULL : (var = (g_object_unref (var), NULL));
 #line 251 "MultitaskingView.c"
 }
 
 
 static void _g_list_free__g_object_unref0_ (GList* self) {
-#line 43 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_list_foreach (self, (GFunc) _g_object_unref0_, NULL);
-#line 43 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_list_free (self);
 #line 260 "MultitaskingView.c"
 }
@@ -263,20 +263,20 @@ static void _g_list_free__g_object_unref0_ (GList* self) {
 GalaMultitaskingView* gala_multitasking_view_construct (GType object_type, GalaWindowManager* wm) {
 	GalaMultitaskingView * self = NULL;
 	GalaWindowManager* _tmp0_ = NULL;
-#line 49 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_val_if_fail (wm != NULL, NULL);
-#line 51 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = wm;
-#line 51 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = (GalaMultitaskingView*) g_object_new (object_type, "wm", _tmp0_, NULL);
-#line 49 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return self;
 #line 275 "MultitaskingView.c"
 }
 
 
 GalaMultitaskingView* gala_multitasking_view_new (GalaWindowManager* wm) {
-#line 49 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return gala_multitasking_view_construct (GALA_TYPE_MULTITASKING_VIEW, wm);
 #line 282 "MultitaskingView.c"
 }
@@ -287,14 +287,14 @@ GalaMultitaskingView* gala_multitasking_view_new (GalaWindowManager* wm) {
  * MonitorClones at the right positions
  */
 static gpointer _g_object_ref0 (gpointer self) {
-#line 127 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 293 "MultitaskingView.c"
 }
 
 
 static void _gala_multitasking_view_window_selected_gala_monitor_clone_window_selected (GalaMonitorClone* _sender, MetaWindow* window, gpointer self) {
-#line 138 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_window_selected ((GalaMultitaskingView*) self, window);
 #line 300 "MultitaskingView.c"
 }
@@ -318,59 +318,59 @@ static void gala_multitasking_view_update_monitors (GalaMultitaskingView* self) 
 	gint _tmp33_ = 0;
 	MetaRectangle _tmp34_ = {0};
 	gint _tmp35_ = 0;
-#line 125 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 127 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->window_containers_monitors;
 #line 326 "MultitaskingView.c"
 	{
 		GList* monitor_clone_collection = NULL;
 		GList* monitor_clone_it = NULL;
-#line 127 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		monitor_clone_collection = _tmp0_;
-#line 127 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (monitor_clone_it = monitor_clone_collection; monitor_clone_it != NULL; monitor_clone_it = monitor_clone_it->next) {
 #line 334 "MultitaskingView.c"
 			GalaMonitorClone* _tmp1_ = NULL;
 			GalaMonitorClone* monitor_clone = NULL;
-#line 127 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp1_ = _g_object_ref0 ((GalaMonitorClone*) monitor_clone_it->data);
-#line 127 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			monitor_clone = _tmp1_;
 #line 341 "MultitaskingView.c"
 			{
 				GalaMonitorClone* _tmp2_ = NULL;
-#line 128 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp2_ = monitor_clone;
-#line 128 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				clutter_actor_destroy ((ClutterActor*) _tmp2_);
-#line 127 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_g_object_unref0 (monitor_clone);
 #line 350 "MultitaskingView.c"
 			}
 		}
 	}
-#line 130 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = self->priv->screen;
-#line 130 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp4_ = meta_screen_get_primary_monitor (_tmp3_);
-#line 130 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	primary = _tmp4_;
-#line 132 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp5_ = gala_internal_utils_workspaces_only_on_primary ();
-#line 132 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp5_) {
 #line 364 "MultitaskingView.c"
 		{
 			gint monitor = 0;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			monitor = 0;
 #line 369 "MultitaskingView.c"
 			{
 				gboolean _tmp6_ = FALSE;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp6_ = TRUE;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				while (TRUE) {
 #line 376 "MultitaskingView.c"
 					gint _tmp8_ = 0;
@@ -391,110 +391,110 @@ static void gala_multitasking_view_update_monitors (GalaMultitaskingView* self) 
 					ClutterActor* _tmp22_ = NULL;
 					ClutterActor* _tmp23_ = NULL;
 					GalaMonitorClone* _tmp24_ = NULL;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (!_tmp6_) {
 #line 397 "MultitaskingView.c"
 						gint _tmp7_ = 0;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp7_ = monitor;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						monitor = _tmp7_ + 1;
 #line 403 "MultitaskingView.c"
 					}
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp6_ = FALSE;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp8_ = monitor;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp9_ = self->priv->screen;
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp10_ = meta_screen_get_n_monitors (_tmp9_);
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (!(_tmp8_ < _tmp10_)) {
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						break;
 #line 417 "MultitaskingView.c"
 					}
-#line 134 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp11_ = monitor;
-#line 134 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp12_ = primary;
-#line 134 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (_tmp11_ == _tmp12_) {
-#line 135 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						continue;
 #line 427 "MultitaskingView.c"
 					}
-#line 137 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp13_ = self->priv->screen;
-#line 137 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp14_ = monitor;
-#line 137 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp15_ = gala_monitor_clone_new (_tmp13_, _tmp14_);
-#line 137 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_object_ref_sink (_tmp15_);
-#line 137 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					monitor_clone = _tmp15_;
-#line 138 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp16_ = monitor_clone;
-#line 138 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_signal_connect_object (_tmp16_, "window-selected", (GCallback) _gala_multitasking_view_window_selected_gala_monitor_clone_window_selected, self, 0);
-#line 139 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp17_ = monitor_clone;
-#line 139 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp18_ = self->priv->opened;
-#line 139 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_object_set ((ClutterActor*) _tmp17_, "visible", _tmp18_, NULL);
-#line 141 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp19_ = monitor_clone;
-#line 141 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp20_ = _g_object_ref0 (_tmp19_);
-#line 141 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					self->priv->window_containers_monitors = g_list_append (self->priv->window_containers_monitors, _tmp20_);
-#line 142 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp21_ = self->priv->_wm;
-#line 142 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp22_ = gala_window_manager_get_ui_group (_tmp21_);
-#line 142 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp23_ = _tmp22_;
-#line 142 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp24_ = monitor_clone;
-#line 142 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					clutter_actor_add_child (_tmp23_, (ClutterActor*) _tmp24_);
-#line 133 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_g_object_unref0 (monitor_clone);
 #line 467 "MultitaskingView.c"
 				}
 			}
 		}
 	}
-#line 146 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp25_ = self->priv->screen;
-#line 146 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp26_ = primary;
-#line 146 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	meta_screen_get_monitor_geometry (_tmp25_, _tmp26_, &_tmp27_);
-#line 146 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	primary_geometry = _tmp27_;
-#line 148 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp28_ = primary_geometry;
-#line 148 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp29_ = _tmp28_.x;
-#line 148 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp30_ = primary_geometry;
-#line 148 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp31_ = _tmp30_.y;
-#line 148 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_set_position ((ClutterActor*) self, (gfloat) _tmp29_, (gfloat) _tmp31_);
-#line 149 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp32_ = primary_geometry;
-#line 149 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp33_ = _tmp32_.width;
-#line 149 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp34_ = primary_geometry;
-#line 149 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp35_ = _tmp34_.height;
-#line 149 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_set_size ((ClutterActor*) self, (gfloat) _tmp33_, (gfloat) _tmp35_);
 #line 500 "MultitaskingView.c"
 }
@@ -508,36 +508,36 @@ static void gala_multitasking_view_real_key_focus_out (ClutterActor* base) {
 	GalaMultitaskingView * self;
 	gboolean _tmp0_ = FALSE;
 	gboolean _tmp1_ = FALSE;
-#line 156 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = (GalaMultitaskingView*) base;
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = self->priv->opened;
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp1_) {
 #line 518 "MultitaskingView.c"
 		ClutterStage* _tmp2_ = NULL;
 		ClutterActor* _tmp3_ = NULL;
 		ClutterActor* _tmp4_ = NULL;
 		gboolean _tmp5_ = FALSE;
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp2_ = clutter_actor_get_stage ((ClutterActor*) self);
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp3_ = clutter_stage_get_key_focus (_tmp2_);
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp4_ = _tmp3_;
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp5_ = clutter_actor_contains ((ClutterActor*) self, _tmp4_);
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp0_ = !_tmp5_;
 #line 533 "MultitaskingView.c"
 	} else {
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp0_ = FALSE;
 #line 537 "MultitaskingView.c"
 	}
-#line 158 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 158 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp0_) {
-#line 159 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		gala_multitasking_view_toggle (self);
 #line 543 "MultitaskingView.c"
 	}
@@ -547,22 +547,22 @@ static void gala_multitasking_view_real_key_focus_out (ClutterActor* base) {
 /**
  * Scroll through workspaces
  */
-static gboolean ____lambda80_ (GalaMultitaskingView* self) {
+static gboolean ____lambda83_ (GalaMultitaskingView* self) {
 	gboolean result = FALSE;
-#line 198 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 198 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->is_smooth_scrolling = FALSE;
-#line 199 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	result = FALSE;
-#line 199 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 559 "MultitaskingView.c"
 }
 
 
-static gboolean _____lambda80__gsource_func (gpointer self) {
+static gboolean _____lambda83__gsource_func (gpointer self) {
 	gboolean result;
-	result = ____lambda80_ ((GalaMultitaskingView*) self);
-#line 197 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+	result = ____lambda83_ ((GalaMultitaskingView*) self);
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 568 "MultitaskingView.c"
 }
@@ -593,63 +593,63 @@ static gboolean gala_multitasking_view_real_scroll_event (ClutterActor* base, Cl
 	MetaWorkspace* _tmp25_ = NULL;
 	MetaWorkspace* _tmp26_ = NULL;
 	MetaWorkspace* _tmp27_ = NULL;
-#line 165 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = (GalaMultitaskingView*) base;
-#line 165 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_val_if_fail (scroll_event != NULL, FALSE);
-#line 167 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = *scroll_event;
-#line 167 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = _tmp0_.direction;
-#line 167 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp1_ != CLUTTER_SCROLL_SMOOTH) {
-#line 168 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		result = FALSE;
-#line 168 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 168 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		return result;
 #line 611 "MultitaskingView.c"
 	}
-#line 174 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	event = (ClutterEvent*) (scroll_event);
-#line 175 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = event;
-#line 175 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_event_get_scroll_delta (_tmp2_, &_tmp3_, &_tmp4_);
-#line 175 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	dx = _tmp3_;
-#line 175 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 175 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	dy = _tmp4_;
-#line 178 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 178 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	direction = META_MOTION_LEFT;
-#line 182 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp5_ = dy;
-#line 182 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp6_ = fabs (_tmp5_);
-#line 182 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp6_ == 1.0) {
 #line 631 "MultitaskingView.c"
 		MetaMotionDirection _tmp7_ = 0;
 		gdouble _tmp8_ = 0.0;
-#line 184 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp8_ = dy;
-#line 184 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		if (_tmp8_ > ((gdouble) 0)) {
-#line 184 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp7_ = META_MOTION_RIGHT;
 #line 640 "MultitaskingView.c"
 		} else {
-#line 184 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp7_ = META_MOTION_LEFT;
 #line 644 "MultitaskingView.c"
 		}
-#line 184 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		direction = _tmp7_;
 #line 648 "MultitaskingView.c"
 	} else {
 		gboolean _tmp9_ = FALSE;
-#line 185 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp9_ = self->priv->is_smooth_scrolling;
-#line 185 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		if (!_tmp9_) {
 #line 655 "MultitaskingView.c"
 			gdouble _tmp10_ = 0.0;
@@ -659,118 +659,118 @@ static gboolean gala_multitasking_view_real_scroll_event (ClutterActor* base, Cl
 			gdouble _tmp14_ = 0.0;
 			gdouble choice = 0.0;
 			gdouble _tmp17_ = 0.0;
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp11_ = dx;
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp12_ = fabs (_tmp11_);
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp13_ = dy;
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp14_ = fabs (_tmp13_);
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			if (_tmp12_ > _tmp14_) {
 #line 673 "MultitaskingView.c"
 				gdouble _tmp15_ = 0.0;
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp15_ = dx;
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp10_ = _tmp15_;
 #line 679 "MultitaskingView.c"
 			} else {
 				gdouble _tmp16_ = 0.0;
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp16_ = dy;
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp10_ = _tmp16_;
 #line 686 "MultitaskingView.c"
 			}
-#line 187 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			choice = _tmp10_;
-#line 189 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp17_ = choice;
-#line 189 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			if (_tmp17_ > 0.3) {
-#line 190 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				direction = META_MOTION_RIGHT;
 #line 696 "MultitaskingView.c"
 			} else {
 				gdouble _tmp18_ = 0.0;
-#line 191 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp18_ = choice;
-#line 191 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp18_ < (-0.3)) {
-#line 192 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					direction = META_MOTION_LEFT;
 #line 705 "MultitaskingView.c"
 				} else {
-#line 194 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					result = FALSE;
-#line 194 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 194 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					return result;
 #line 711 "MultitaskingView.c"
 				}
 			}
-#line 196 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			self->priv->is_smooth_scrolling = TRUE;
-#line 197 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-			g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) GALA_MULTITASKING_VIEW_SMOOTH_SCROLL_DELAY, _____lambda80__gsource_func, g_object_ref (self), g_object_unref);
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+			g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) GALA_MULTITASKING_VIEW_SMOOTH_SCROLL_DELAY, _____lambda83__gsource_func, g_object_ref (self), g_object_unref);
 #line 718 "MultitaskingView.c"
 		} else {
-#line 203 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			result = FALSE;
-#line 203 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			return result;
 #line 724 "MultitaskingView.c"
 		}
 	}
-#line 205 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp19_ = self->priv->screen;
-#line 205 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp20_ = meta_screen_get_active_workspace (_tmp19_);
-#line 205 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp21_ = _g_object_ref0 (_tmp20_);
-#line 205 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	active_workspace = _tmp21_;
-#line 206 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp22_ = active_workspace;
-#line 206 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp23_ = direction;
-#line 206 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp24_ = meta_workspace_get_neighbor (_tmp22_, _tmp23_);
-#line 206 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp25_ = _g_object_ref0 (_tmp24_);
-#line 206 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	new_workspace = _tmp25_;
-#line 208 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp26_ = active_workspace;
-#line 208 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp27_ = new_workspace;
-#line 208 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp26_ != _tmp27_) {
 #line 751 "MultitaskingView.c"
 		MetaWorkspace* _tmp28_ = NULL;
 		MetaScreen* _tmp29_ = NULL;
 		MetaDisplay* _tmp30_ = NULL;
 		guint32 _tmp31_ = 0U;
-#line 209 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp28_ = new_workspace;
-#line 209 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp29_ = self->priv->screen;
-#line 209 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp30_ = meta_screen_get_display (_tmp29_);
-#line 209 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp31_ = meta_display_get_current_time (_tmp30_);
-#line 209 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 209 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		meta_workspace_activate (_tmp28_, _tmp31_);
 #line 766 "MultitaskingView.c"
 	}
-#line 211 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	result = FALSE;
-#line 211 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (new_workspace);
-#line 211 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (active_workspace);
-#line 211 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 776 "MultitaskingView.c"
 }
@@ -797,33 +797,33 @@ static void gala_multitasking_view_update_positions (GalaMultitaskingView* self,
 	ClutterActor* _tmp32_ = NULL;
 	gfloat _tmp33_ = 0.0F;
 	gboolean _tmp34_ = FALSE;
-#line 221 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 221 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 223 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->screen;
-#line 223 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = meta_screen_get_active_workspace (_tmp0_);
-#line 223 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = meta_workspace_index (_tmp1_);
-#line 223 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	active_index = _tmp2_;
-#line 224 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 224 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	active_x = 0.0f;
-#line 226 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = self->priv->workspaces;
-#line 226 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp4_ = clutter_actor_get_children (_tmp3_);
 #line 817 "MultitaskingView.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 226 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		child_collection = _tmp4_;
-#line 226 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 825 "MultitaskingView.c"
 			ClutterActor* child = NULL;
-#line 226 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			child = (ClutterActor*) child_it->data;
 #line 829 "MultitaskingView.c"
 			{
@@ -848,128 +848,128 @@ static void gala_multitasking_view_update_positions (GalaMultitaskingView* self,
 				GalaWorkspaceClone* _tmp23_ = NULL;
 				gfloat _tmp24_ = 0.0F;
 				GalaWorkspaceClone* _tmp25_ = NULL;
-#line 227 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp5_ = child;
-#line 227 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				workspace_clone = G_TYPE_CHECK_INSTANCE_CAST (_tmp5_, GALA_TYPE_WORKSPACE_CLONE, GalaWorkspaceClone);
-#line 228 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp6_ = workspace_clone;
-#line 228 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp7_ = gala_workspace_clone_get_workspace (_tmp6_);
-#line 228 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp8_ = _tmp7_;
-#line 228 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp9_ = meta_workspace_index (_tmp8_);
-#line 228 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				index = _tmp9_;
-#line 229 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp10_ = index;
-#line 229 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp11_ = workspace_clone;
-#line 229 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp12_ = clutter_actor_get_width ((ClutterActor*) _tmp11_);
-#line 229 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp13_ = _tmp12_;
-#line 229 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				dest_x = _tmp10_ * (_tmp13_ - 150);
-#line 231 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp14_ = index;
-#line 231 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp15_ = active_index;
-#line 231 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 231 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp14_ == _tmp15_) {
 #line 882 "MultitaskingView.c"
 					gfloat _tmp16_ = 0.0F;
 					GalaWorkspaceClone* _tmp17_ = NULL;
-#line 232 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 232 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp16_ = dest_x;
-#line 232 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 232 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					active_x = _tmp16_;
-#line 233 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp17_ = workspace_clone;
-#line 233 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					gala_workspace_clone_set_active (_tmp17_, TRUE);
 #line 893 "MultitaskingView.c"
 				} else {
 					GalaWorkspaceClone* _tmp18_ = NULL;
-#line 235 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp18_ = workspace_clone;
-#line 235 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					gala_workspace_clone_set_active (_tmp18_, FALSE);
 #line 900 "MultitaskingView.c"
 				}
-#line 238 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp19_ = workspace_clone;
-#line 238 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				clutter_actor_save_easing_state ((ClutterActor*) _tmp19_);
-#line 239 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp21_ = animate;
-#line 239 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp21_) {
-#line 239 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp20_ = 200;
 #line 912 "MultitaskingView.c"
 				} else {
-#line 239 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp20_ = 0;
 #line 916 "MultitaskingView.c"
 				}
-#line 239 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp22_ = workspace_clone;
-#line 239 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 239 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				clutter_actor_set_easing_duration ((ClutterActor*) _tmp22_, (guint) _tmp20_);
-#line 240 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp23_ = workspace_clone;
-#line 240 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp24_ = dest_x;
-#line 240 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				clutter_actor_set_x ((ClutterActor*) _tmp23_, _tmp24_);
-#line 241 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 241 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp25_ = workspace_clone;
-#line 241 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 241 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				clutter_actor_restore_easing_state ((ClutterActor*) _tmp25_);
 #line 932 "MultitaskingView.c"
 			}
 		}
-#line 226 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_list_free0 (child_collection);
 #line 937 "MultitaskingView.c"
 	}
-#line 244 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp27_ = animate;
-#line 244 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp27_) {
 #line 943 "MultitaskingView.c"
 		GalaAnimationSettings* _tmp28_ = NULL;
 		gint _tmp29_ = 0;
 		gint _tmp30_ = 0;
-#line 245 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp28_ = gala_animation_settings_get_default ();
-#line 245 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp29_ = gala_animation_settings_get_workspace_switch_duration (_tmp28_);
-#line 245 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp30_ = _tmp29_;
-#line 245 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp26_ = _tmp30_;
 #line 955 "MultitaskingView.c"
 	} else {
-#line 245 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp26_ = 0;
 #line 959 "MultitaskingView.c"
 	}
-#line 244 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp31_ = self->priv->workspaces;
-#line 244 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 244 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_set_easing_duration (_tmp31_, (guint) _tmp26_);
-#line 246 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp32_ = self->priv->workspaces;
-#line 246 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp33_ = active_x;
-#line 246 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_set_x (_tmp32_, -_tmp33_);
-#line 248 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp34_ = animate;
-#line 248 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_reposition_icon_groups (self, _tmp34_);
 #line 975 "MultitaskingView.c"
 }
@@ -988,51 +988,51 @@ static void gala_multitasking_view_reposition_icon_groups (GalaMultitaskingView*
 	gfloat _tmp10_ = 0.0F;
 	gfloat _tmp11_ = 0.0F;
 	gboolean _tmp24_ = FALSE;
-#line 251 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 253 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->screen;
-#line 253 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = meta_screen_get_active_workspace (_tmp0_);
-#line 253 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = meta_workspace_index (_tmp1_);
-#line 253 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	active_index = _tmp2_;
-#line 255 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = animate;
-#line 255 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp3_) {
 #line 1006 "MultitaskingView.c"
 		GalaIconGroupContainer* _tmp4_ = NULL;
 		GalaIconGroupContainer* _tmp5_ = NULL;
 		GalaIconGroupContainer* _tmp6_ = NULL;
-#line 256 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 256 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp4_ = self->priv->icon_groups;
-#line 256 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 256 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_save_easing_state ((ClutterActor*) _tmp4_);
-#line 257 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp5_ = self->priv->icon_groups;
-#line 257 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 257 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_set_easing_mode ((ClutterActor*) _tmp5_, CLUTTER_EASE_OUT_QUAD);
-#line 258 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp6_ = self->priv->icon_groups;
-#line 258 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_set_easing_duration ((ClutterActor*) _tmp6_, (guint) 200);
 #line 1022 "MultitaskingView.c"
 	}
-#line 262 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp7_ = self->priv->icon_groups;
-#line 262 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp8_ = gala_icon_group_container_calculate_total_width (_tmp7_);
-#line 262 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 262 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	icon_groups_width = _tmp8_;
-#line 263 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp9_ = icon_groups_width;
-#line 263 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp10_ = clutter_actor_get_width ((ClutterActor*) self);
-#line 263 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp11_ = _tmp10_;
-#line 263 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp9_ > _tmp11_) {
 #line 1038 "MultitaskingView.c"
 		GalaIconGroupContainer* _tmp12_ = NULL;
@@ -1043,23 +1043,23 @@ static void gala_multitasking_view_reposition_icon_groups (GalaMultitaskingView*
 		gfloat _tmp17_ = 0.0F;
 		gfloat _tmp18_ = 0.0F;
 		gfloat _tmp19_ = 0.0F;
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp12_ = self->priv->icon_groups;
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp13_ = active_index;
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp14_ = clutter_actor_get_width ((ClutterActor*) self);
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp15_ = _tmp14_;
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp16_ = clutter_actor_get_width ((ClutterActor*) self);
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp17_ = _tmp16_;
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp18_ = icon_groups_width;
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp19_ = CLAMP (((-_tmp13_) * (GALA_ICON_GROUP_CONTAINER_SPACING + GALA_ICON_GROUP_SIZE)) + (_tmp15_ / 2), (_tmp17_ - _tmp18_) - 64, (gfloat) 64);
-#line 264 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_set_x ((ClutterActor*) _tmp12_, _tmp19_);
 #line 1065 "MultitaskingView.c"
 	} else {
@@ -1067,27 +1067,27 @@ static void gala_multitasking_view_reposition_icon_groups (GalaMultitaskingView*
 		gfloat _tmp21_ = 0.0F;
 		gfloat _tmp22_ = 0.0F;
 		gfloat _tmp23_ = 0.0F;
-#line 267 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp20_ = self->priv->icon_groups;
-#line 267 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp21_ = clutter_actor_get_width ((ClutterActor*) self);
-#line 267 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp22_ = _tmp21_;
-#line 267 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp23_ = icon_groups_width;
-#line 267 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_set_x ((ClutterActor*) _tmp20_, (_tmp22_ / 2) - (_tmp23_ / 2));
 #line 1081 "MultitaskingView.c"
 	}
-#line 269 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp24_ = animate;
-#line 269 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp24_) {
 #line 1087 "MultitaskingView.c"
 		GalaIconGroupContainer* _tmp25_ = NULL;
-#line 270 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp25_ = self->priv->icon_groups;
-#line 270 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_restore_easing_state ((ClutterActor*) _tmp25_);
 #line 1093 "MultitaskingView.c"
 	}
@@ -1095,14 +1095,14 @@ static void gala_multitasking_view_reposition_icon_groups (GalaMultitaskingView*
 
 
 static void _gala_multitasking_view_window_selected_gala_workspace_clone_window_selected (GalaWorkspaceClone* _sender, MetaWindow* window, gpointer self) {
-#line 276 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_window_selected ((GalaMultitaskingView*) self, window);
 #line 1101 "MultitaskingView.c"
 }
 
 
 static void _gala_multitasking_view_activate_workspace_gala_workspace_clone_selected (GalaWorkspaceClone* _sender, gboolean close_view, gpointer self) {
-#line 277 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_activate_workspace ((GalaMultitaskingView*) self, _sender, close_view);
 #line 1108 "MultitaskingView.c"
 }
@@ -1125,63 +1125,63 @@ static void gala_multitasking_view_add_workspace (GalaMultitaskingView* self, gi
 	GalaIconGroup* _tmp12_ = NULL;
 	gboolean _tmp13_ = FALSE;
 	gboolean _tmp14_ = FALSE;
-#line 273 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 273 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 275 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->screen;
-#line 275 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = num;
-#line 275 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = meta_screen_get_workspace_by_index (_tmp0_, _tmp1_);
-#line 275 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = gala_workspace_clone_new (_tmp2_);
-#line 275 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_object_ref_sink (_tmp3_);
-#line 275 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	workspace = _tmp3_;
-#line 276 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp4_ = workspace;
-#line 276 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 276 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_connect_object (_tmp4_, "window-selected", (GCallback) _gala_multitasking_view_window_selected_gala_workspace_clone_window_selected, self, 0);
-#line 277 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp5_ = workspace;
-#line 277 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 277 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_connect_object (_tmp5_, "selected", (GCallback) _gala_multitasking_view_activate_workspace_gala_workspace_clone_selected, self, 0);
-#line 279 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp6_ = self->priv->workspaces;
-#line 279 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp7_ = workspace;
-#line 279 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp8_ = num;
-#line 279 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_insert_child_at_index (_tmp6_, (ClutterActor*) _tmp7_, _tmp8_);
-#line 280 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 280 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp9_ = self->priv->icon_groups;
-#line 280 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 280 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp10_ = workspace;
-#line 280 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 280 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp11_ = gala_workspace_clone_get_icon_group (_tmp10_);
-#line 280 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 280 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp12_ = _tmp11_;
-#line 280 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 280 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_icon_group_container_add_group (_tmp9_, _tmp12_);
-#line 282 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 282 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp13_ = self->priv->opened;
-#line 282 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 282 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_update_positions (self, _tmp13_);
-#line 284 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp14_ = self->priv->opened;
-#line 284 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp14_) {
 #line 1177 "MultitaskingView.c"
 		GalaWorkspaceClone* _tmp15_ = NULL;
-#line 285 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp15_ = workspace;
-#line 285 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		gala_workspace_clone_open (_tmp15_);
 #line 1183 "MultitaskingView.c"
 	}
-#line 273 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 273 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (workspace);
 #line 1187 "MultitaskingView.c"
 }
@@ -1205,31 +1205,31 @@ static void gala_multitasking_view_remove_workspace (GalaMultitaskingView* self,
 	GalaIconGroup* _tmp20_ = NULL;
 	GalaWorkspaceClone* _tmp21_ = NULL;
 	gboolean _tmp22_ = FALSE;
-#line 288 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 290 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	workspace = NULL;
-#line 293 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->screen;
-#line 293 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = meta_screen_get_workspaces (_tmp0_);
-#line 293 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 293 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	existing_workspaces = _tmp1_;
-#line 295 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = self->priv->workspaces;
-#line 295 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = clutter_actor_get_children (_tmp2_);
 #line 1223 "MultitaskingView.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 295 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		child_collection = _tmp3_;
-#line 295 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 1231 "MultitaskingView.c"
 			ClutterActor* child = NULL;
-#line 295 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			child = (ClutterActor*) child_it->data;
 #line 1235 "MultitaskingView.c"
 			{
@@ -1240,84 +1240,84 @@ static void gala_multitasking_view_remove_workspace (GalaMultitaskingView* self,
 				MetaWorkspace* _tmp7_ = NULL;
 				MetaWorkspace* _tmp8_ = NULL;
 				gint _tmp9_ = 0;
-#line 296 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 296 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp4_ = child;
-#line 296 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 296 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				clone = G_TYPE_CHECK_INSTANCE_CAST (_tmp4_, GALA_TYPE_WORKSPACE_CLONE, GalaWorkspaceClone);
-#line 297 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 297 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp5_ = existing_workspaces;
-#line 297 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 297 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp6_ = clone;
-#line 297 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 297 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp7_ = gala_workspace_clone_get_workspace (_tmp6_);
-#line 297 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 297 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp8_ = _tmp7_;
-#line 297 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 297 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp9_ = g_list_index (_tmp5_, _tmp8_);
-#line 297 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 297 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp9_ < 0) {
 #line 1260 "MultitaskingView.c"
 					GalaWorkspaceClone* _tmp10_ = NULL;
 					GalaWorkspaceClone* _tmp11_ = NULL;
-#line 298 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp10_ = clone;
-#line 298 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp11_ = _g_object_ref0 (_tmp10_);
-#line 298 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_g_object_unref0 (workspace);
-#line 298 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					workspace = _tmp11_;
-#line 299 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 299 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					break;
 #line 1273 "MultitaskingView.c"
 				}
 			}
 		}
-#line 295 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_list_free0 (child_collection);
 #line 1279 "MultitaskingView.c"
 	}
-#line 303 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 303 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp12_ = workspace;
-#line 303 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 303 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp12_ == NULL) {
-#line 304 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_object_unref0 (workspace);
-#line 304 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 304 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		return;
 #line 1289 "MultitaskingView.c"
 	}
-#line 306 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp13_ = workspace;
-#line 306 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_parse_name ("window-selected", GALA_TYPE_WORKSPACE_CLONE, &_tmp14_, NULL, FALSE);
-#line 306 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 306 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_handlers_disconnect_matched (_tmp13_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp14_, 0, NULL, (GCallback) _gala_multitasking_view_window_selected_gala_workspace_clone_window_selected, self);
-#line 307 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp15_ = workspace;
-#line 307 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_parse_name ("selected", GALA_TYPE_WORKSPACE_CLONE, &_tmp16_, NULL, FALSE);
-#line 307 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_handlers_disconnect_matched (_tmp15_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp16_, 0, NULL, (GCallback) _gala_multitasking_view_activate_workspace_gala_workspace_clone_selected, self);
-#line 309 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp17_ = self->priv->icon_groups;
-#line 309 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp18_ = workspace;
-#line 309 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp19_ = gala_workspace_clone_get_icon_group (_tmp18_);
-#line 309 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp20_ = _tmp19_;
-#line 309 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 309 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_icon_group_container_remove_group (_tmp17_, _tmp20_);
-#line 311 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 311 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp21_ = workspace;
-#line 311 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 311 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_destroy ((ClutterActor*) _tmp21_);
-#line 313 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp22_ = self->priv->opened;
-#line 313 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_update_positions (self, _tmp22_);
-#line 288 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (workspace);
 #line 1323 "MultitaskingView.c"
 }
@@ -1341,13 +1341,13 @@ static void gala_multitasking_view_activate_workspace (GalaMultitaskingView* sel
 	MetaDisplay* _tmp11_ = NULL;
 	guint32 _tmp12_ = 0U;
 	gboolean _tmp13_ = FALSE;
-#line 324 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 324 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 324 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (clone != NULL);
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = close_view;
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp1_) {
 #line 1353 "MultitaskingView.c"
 		MetaScreen* _tmp2_ = NULL;
@@ -1355,45 +1355,45 @@ static void gala_multitasking_view_activate_workspace (GalaMultitaskingView* sel
 		GalaWorkspaceClone* _tmp4_ = NULL;
 		MetaWorkspace* _tmp5_ = NULL;
 		MetaWorkspace* _tmp6_ = NULL;
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp2_ = self->priv->screen;
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp3_ = meta_screen_get_active_workspace (_tmp2_);
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp4_ = clone;
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp5_ = gala_workspace_clone_get_workspace (_tmp4_);
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp6_ = _tmp5_;
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp0_ = _tmp3_ == _tmp6_;
 #line 1371 "MultitaskingView.c"
 	} else {
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp0_ = FALSE;
 #line 1375 "MultitaskingView.c"
 	}
-#line 326 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 326 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	close_view = _tmp0_;
-#line 328 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp7_ = clone;
-#line 328 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp8_ = gala_workspace_clone_get_workspace (_tmp7_);
-#line 328 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp9_ = _tmp8_;
-#line 328 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp10_ = self->priv->screen;
-#line 328 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp11_ = meta_screen_get_display (_tmp10_);
-#line 328 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp12_ = meta_display_get_current_time (_tmp11_);
-#line 328 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 328 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	meta_workspace_activate (_tmp9_, _tmp12_);
-#line 330 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp13_ = close_view;
-#line 330 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 330 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp13_) {
-#line 331 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 331 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		gala_multitasking_view_toggle (self);
 #line 1399 "MultitaskingView.c"
 	}
@@ -1409,76 +1409,76 @@ static gboolean gala_multitasking_view_real_key_press_event (ClutterActor* base,
 	gboolean result = FALSE;
 	ClutterKeyEvent _tmp0_ = {0};
 	guint _tmp1_ = 0U;
-#line 338 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 338 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = (GalaMultitaskingView*) base;
-#line 338 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 338 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_val_if_fail (event != NULL, FALSE);
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = *event;
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = _tmp0_.keyval;
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	switch (_tmp1_) {
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case CLUTTER_KEY_Escape:
 #line 1425 "MultitaskingView.c"
 		{
 			gboolean _tmp2_ = FALSE;
-#line 342 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 342 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp2_ = self->priv->opened;
-#line 342 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 342 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			if (_tmp2_) {
-#line 343 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 343 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				gala_multitasking_view_toggle (self);
 #line 1434 "MultitaskingView.c"
 			}
-#line 344 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 344 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			break;
 #line 1438 "MultitaskingView.c"
 		}
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case CLUTTER_KEY_Down:
 #line 1442 "MultitaskingView.c"
 		{
-#line 346 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 346 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			gala_multitasking_view_select_window (self, META_MOTION_DOWN);
-#line 347 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 347 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			break;
 #line 1448 "MultitaskingView.c"
 		}
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case CLUTTER_KEY_Up:
 #line 1452 "MultitaskingView.c"
 		{
-#line 349 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 349 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			gala_multitasking_view_select_window (self, META_MOTION_UP);
-#line 350 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 350 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			break;
 #line 1458 "MultitaskingView.c"
 		}
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case CLUTTER_KEY_Left:
 #line 1462 "MultitaskingView.c"
 		{
-#line 352 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 352 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			gala_multitasking_view_select_window (self, META_MOTION_LEFT);
-#line 353 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 353 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			break;
 #line 1468 "MultitaskingView.c"
 		}
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case CLUTTER_KEY_Right:
 #line 1472 "MultitaskingView.c"
 		{
-#line 355 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 355 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			gala_multitasking_view_select_window (self, META_MOTION_RIGHT);
-#line 356 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 356 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			break;
 #line 1478 "MultitaskingView.c"
 		}
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case CLUTTER_KEY_Return:
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case CLUTTER_KEY_KP_Enter:
 #line 1484 "MultitaskingView.c"
 		{
@@ -1486,30 +1486,30 @@ static gboolean gala_multitasking_view_real_key_press_event (ClutterActor* base,
 			GalaWorkspaceClone* _tmp4_ = NULL;
 			GalaWindowCloneContainer* _tmp5_ = NULL;
 			GalaWindowCloneContainer* _tmp6_ = NULL;
-#line 359 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 359 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp3_ = gala_multitasking_view_get_active_workspace_clone (self);
-#line 359 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 359 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp4_ = _tmp3_;
-#line 359 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 359 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp5_ = gala_workspace_clone_get_window_container (_tmp4_);
-#line 359 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 359 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp6_ = _tmp5_;
-#line 359 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 359 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			gala_window_clone_container_activate_selected_window (_tmp6_);
-#line 359 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 359 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_g_object_unref0 (_tmp4_);
-#line 360 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 360 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			break;
 #line 1504 "MultitaskingView.c"
 		}
 		default:
-#line 340 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 340 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		break;
 #line 1509 "MultitaskingView.c"
 	}
-#line 363 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 363 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	result = FALSE;
-#line 363 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 363 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 1515 "MultitaskingView.c"
 }
@@ -1527,21 +1527,21 @@ static void gala_multitasking_view_select_window (GalaMultitaskingView* self, Me
 	GalaWindowCloneContainer* _tmp2_ = NULL;
 	GalaWindowCloneContainer* _tmp3_ = NULL;
 	MetaMotionDirection _tmp4_ = 0;
-#line 372 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 374 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = gala_multitasking_view_get_active_workspace_clone (self);
-#line 374 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = _tmp0_;
-#line 374 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = gala_workspace_clone_get_window_container (_tmp1_);
-#line 374 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = _tmp2_;
-#line 374 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp4_ = direction;
-#line 374 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_window_clone_container_select_next_window (_tmp3_, _tmp4_);
-#line 374 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 374 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (_tmp1_);
 #line 1547 "MultitaskingView.c"
 }
@@ -1556,23 +1556,23 @@ static GalaWorkspaceClone* gala_multitasking_view_get_active_workspace_clone (Ga
 	GalaWorkspaceClone* result = NULL;
 	ClutterActor* _tmp0_ = NULL;
 	GList* _tmp1_ = NULL;
-#line 382 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 382 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 384 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->workspaces;
-#line 384 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = clutter_actor_get_children (_tmp0_);
 #line 1566 "MultitaskingView.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 384 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		child_collection = _tmp1_;
-#line 384 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 1574 "MultitaskingView.c"
 			ClutterActor* child = NULL;
-#line 384 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			child = (ClutterActor*) child_it->data;
 #line 1578 "MultitaskingView.c"
 			{
@@ -1583,44 +1583,44 @@ static GalaWorkspaceClone* gala_multitasking_view_get_active_workspace_clone (Ga
 				MetaWorkspace* _tmp5_ = NULL;
 				MetaScreen* _tmp6_ = NULL;
 				MetaWorkspace* _tmp7_ = NULL;
-#line 385 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 385 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp2_ = child;
-#line 385 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 385 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				workspace_clone = G_TYPE_CHECK_INSTANCE_CAST (_tmp2_, GALA_TYPE_WORKSPACE_CLONE, GalaWorkspaceClone);
-#line 386 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp3_ = workspace_clone;
-#line 386 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp4_ = gala_workspace_clone_get_workspace (_tmp3_);
-#line 386 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp5_ = _tmp4_;
-#line 386 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp6_ = self->priv->screen;
-#line 386 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp7_ = meta_screen_get_active_workspace (_tmp6_);
-#line 386 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 386 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp5_ == _tmp7_) {
 #line 1603 "MultitaskingView.c"
 					GalaWorkspaceClone* _tmp8_ = NULL;
 					GalaWorkspaceClone* _tmp9_ = NULL;
-#line 387 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 387 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp8_ = workspace_clone;
-#line 387 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 387 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp9_ = _g_object_ref0 (_tmp8_);
-#line 387 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 387 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					result = _tmp9_;
-#line 387 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 387 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_g_list_free0 (child_collection);
-#line 387 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 387 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					return result;
 #line 1616 "MultitaskingView.c"
 				}
 			}
 		}
-#line 384 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 384 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_list_free0 (child_collection);
 #line 1622 "MultitaskingView.c"
 	}
-#line 391 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 391 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_assert_not_reached ();
 #line 1626 "MultitaskingView.c"
 }
@@ -1638,58 +1638,58 @@ static void gala_multitasking_view_window_selected (GalaMultitaskingView* self, 
 	MetaWorkspace* _tmp6_ = NULL;
 	MetaScreen* _tmp7_ = NULL;
 	MetaWorkspace* _tmp8_ = NULL;
-#line 394 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 394 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (window != NULL);
-#line 396 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->screen;
-#line 396 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = meta_screen_get_display (_tmp0_);
-#line 396 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = meta_display_get_current_time (_tmp1_);
-#line 396 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 396 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	time = _tmp2_;
-#line 397 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = window;
-#line 397 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp4_ = meta_window_get_workspace (_tmp3_);
-#line 397 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp5_ = _g_object_ref0 (_tmp4_);
-#line 397 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 397 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	workspace = _tmp5_;
-#line 399 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 399 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp6_ = workspace;
-#line 399 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 399 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp7_ = self->priv->screen;
-#line 399 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 399 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp8_ = meta_screen_get_active_workspace (_tmp7_);
-#line 399 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 399 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp6_ != _tmp8_) {
 #line 1670 "MultitaskingView.c"
 		MetaWorkspace* _tmp9_ = NULL;
 		guint32 _tmp10_ = 0U;
-#line 400 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 400 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp9_ = workspace;
-#line 400 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 400 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp10_ = time;
-#line 400 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 400 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		meta_workspace_activate (_tmp9_, _tmp10_);
 #line 1679 "MultitaskingView.c"
 	} else {
 		MetaWindow* _tmp11_ = NULL;
 		guint32 _tmp12_ = 0U;
-#line 402 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp11_ = window;
-#line 402 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp12_ = time;
-#line 402 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		meta_window_activate (_tmp11_, _tmp12_);
-#line 403 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 403 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		gala_multitasking_view_toggle (self);
 #line 1691 "MultitaskingView.c"
 	}
-#line 394 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 394 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (workspace);
 #line 1695 "MultitaskingView.c"
 }
@@ -1702,13 +1702,13 @@ static gboolean gala_multitasking_view_real_is_opened (GalaActivatableComponent*
 	GalaMultitaskingView * self;
 	gboolean result = FALSE;
 	gboolean _tmp0_ = FALSE;
-#line 410 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 410 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = (GalaMultitaskingView*) base;
-#line 412 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 412 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->opened;
-#line 412 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 412 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	result = _tmp0_;
-#line 412 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 412 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 1714 "MultitaskingView.c"
 }
@@ -1720,17 +1720,17 @@ static gboolean gala_multitasking_view_real_is_opened (GalaActivatableComponent*
 static void gala_multitasking_view_real_open (GalaActivatableComponent* base, GHashTable* hints) {
 	GalaMultitaskingView * self;
 	gboolean _tmp0_ = FALSE;
-#line 418 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 418 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = (GalaMultitaskingView*) base;
-#line 420 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->opened;
-#line 420 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp0_) {
-#line 421 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 421 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		return;
 #line 1732 "MultitaskingView.c"
 	}
-#line 423 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_toggle (self);
 #line 1736 "MultitaskingView.c"
 }
@@ -1742,17 +1742,17 @@ static void gala_multitasking_view_real_open (GalaActivatableComponent* base, GH
 static void gala_multitasking_view_real_close (GalaActivatableComponent* base) {
 	GalaMultitaskingView * self;
 	gboolean _tmp0_ = FALSE;
-#line 429 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 429 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = (GalaMultitaskingView*) base;
-#line 431 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 431 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->opened;
-#line 431 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 431 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (!_tmp0_) {
-#line 432 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 432 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		return;
 #line 1754 "MultitaskingView.c"
 	}
-#line 434 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 434 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_toggle (self);
 #line 1758 "MultitaskingView.c"
 }
@@ -1766,13 +1766,13 @@ static void gala_multitasking_view_real_close (GalaActivatableComponent* base) {
 static gboolean _gala_multitasking_view_keybinding_filter_gala_keybinding_filter (MetaKeyBinding* binding, gpointer self) {
 	gboolean result;
 	result = gala_multitasking_view_keybinding_filter ((GalaMultitaskingView*) self, binding);
-#line 462 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 1772 "MultitaskingView.c"
 }
 
 
-static gboolean ___lambda78_ (GalaMultitaskingView* self) {
+static gboolean ___lambda81_ (GalaMultitaskingView* self) {
 	gboolean result = FALSE;
 	GList* _tmp0_ = NULL;
 	GalaWindowManager* _tmp3_ = NULL;
@@ -1787,107 +1787,107 @@ static gboolean ___lambda78_ (GalaMultitaskingView* self) {
 	ClutterActor* _tmp12_ = NULL;
 	GalaWindowManager* _tmp13_ = NULL;
 	GalaModalProxy* _tmp14_ = NULL;
-#line 552 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 552 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->window_containers_monitors;
 #line 1793 "MultitaskingView.c"
 	{
 		GList* container_collection = NULL;
 		GList* container_it = NULL;
-#line 552 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 552 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		container_collection = _tmp0_;
-#line 552 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 552 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (container_it = container_collection; container_it != NULL; container_it = container_it->next) {
 #line 1801 "MultitaskingView.c"
 			GalaMonitorClone* _tmp1_ = NULL;
 			GalaMonitorClone* container = NULL;
-#line 552 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 552 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp1_ = _g_object_ref0 ((GalaMonitorClone*) container_it->data);
-#line 552 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 552 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			container = _tmp1_;
 #line 1808 "MultitaskingView.c"
 			{
 				GalaMonitorClone* _tmp2_ = NULL;
-#line 553 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 553 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp2_ = container;
-#line 553 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 553 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				g_object_set ((ClutterActor*) _tmp2_, "visible", FALSE, NULL);
-#line 552 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 552 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_g_object_unref0 (container);
 #line 1817 "MultitaskingView.c"
 			}
 		}
 	}
-#line 556 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 556 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_hide ((ClutterActor*) self);
-#line 558 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = self->priv->_wm;
-#line 558 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp4_ = gala_window_manager_get_background_group (_tmp3_);
-#line 558 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp5_ = _tmp4_;
-#line 558 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_show ((ClutterActor*) _tmp5_);
-#line 559 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 559 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp6_ = self->priv->_wm;
-#line 559 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 559 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp7_ = gala_window_manager_get_window_group (_tmp6_);
-#line 559 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 559 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp8_ = _tmp7_;
-#line 559 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 559 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_show (_tmp8_);
-#line 560 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 560 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp9_ = self->priv->_wm;
-#line 560 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 560 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp10_ = gala_window_manager_get_top_window_group (_tmp9_);
-#line 560 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 560 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp11_ = _tmp10_;
-#line 560 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 560 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_show (_tmp11_);
-#line 562 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp12_ = self->priv->dock_clones;
-#line 562 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_destroy_all_children (_tmp12_);
-#line 564 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 564 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp13_ = self->priv->_wm;
-#line 564 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 564 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp14_ = self->priv->modal_proxy;
-#line 564 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 564 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_window_manager_pop_modal (_tmp13_, _tmp14_);
-#line 566 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 566 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->animating = FALSE;
-#line 568 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 568 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	result = FALSE;
-#line 568 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 568 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 1863 "MultitaskingView.c"
 }
 
 
-static gboolean ____lambda78__gsource_func (gpointer self) {
+static gboolean ____lambda81__gsource_func (gpointer self) {
 	gboolean result;
-	result = ___lambda78_ ((GalaMultitaskingView*) self);
-#line 551 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+	result = ___lambda81_ ((GalaMultitaskingView*) self);
+#line 551 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 1872 "MultitaskingView.c"
 }
 
 
-static gboolean ___lambda79_ (GalaMultitaskingView* self) {
+static gboolean ___lambda82_ (GalaMultitaskingView* self) {
 	gboolean result = FALSE;
-#line 572 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 572 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->animating = FALSE;
-#line 573 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 573 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	result = FALSE;
-#line 573 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 573 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 1884 "MultitaskingView.c"
 }
 
 
-static gboolean ____lambda79__gsource_func (gpointer self) {
+static gboolean ____lambda82__gsource_func (gpointer self) {
 	gboolean result;
-	result = ___lambda79_ ((GalaMultitaskingView*) self);
-#line 571 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+	result = ___lambda82_ ((GalaMultitaskingView*) self);
+#line 571 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 1893 "MultitaskingView.c"
 }
@@ -1920,79 +1920,79 @@ static void gala_multitasking_view_toggle (GalaMultitaskingView* self) {
 	gfloat _tmp52_ = 0.0F;
 	gboolean _tmp53_ = FALSE;
 	gboolean _tmp130_ = FALSE;
-#line 442 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 442 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 444 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->animating;
-#line 444 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp0_) {
-#line 445 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 445 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		return;
 #line 1932 "MultitaskingView.c"
 	}
-#line 447 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 447 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->animating = TRUE;
-#line 449 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 449 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = self->priv->opened;
-#line 449 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 449 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->opened = !_tmp1_;
-#line 450 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 450 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = self->priv->opened;
-#line 450 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 450 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	opening = _tmp2_;
-#line 452 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = self->priv->window_containers_monitors;
 #line 1946 "MultitaskingView.c"
 	{
 		GList* container_collection = NULL;
 		GList* container_it = NULL;
-#line 452 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		container_collection = _tmp3_;
-#line 452 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (container_it = container_collection; container_it != NULL; container_it = container_it->next) {
 #line 1954 "MultitaskingView.c"
 			GalaMonitorClone* _tmp4_ = NULL;
 			GalaMonitorClone* container = NULL;
-#line 452 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp4_ = _g_object_ref0 ((GalaMonitorClone*) container_it->data);
-#line 452 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			container = _tmp4_;
 #line 1961 "MultitaskingView.c"
 			{
 				gboolean _tmp5_ = FALSE;
-#line 453 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp5_ = opening;
-#line 453 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp5_) {
 #line 1968 "MultitaskingView.c"
 					GalaMonitorClone* _tmp6_ = NULL;
 					GalaMonitorClone* _tmp7_ = NULL;
-#line 454 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 454 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp6_ = container;
-#line 454 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 454 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_object_set ((ClutterActor*) _tmp6_, "visible", TRUE, NULL);
-#line 455 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp7_ = container;
-#line 455 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					gala_monitor_clone_open (_tmp7_);
 #line 1979 "MultitaskingView.c"
 				} else {
 					GalaMonitorClone* _tmp8_ = NULL;
-#line 457 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 457 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp8_ = container;
-#line 457 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 457 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					gala_monitor_clone_close (_tmp8_);
 #line 1986 "MultitaskingView.c"
 				}
-#line 452 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 452 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_g_object_unref0 (container);
 #line 1990 "MultitaskingView.c"
 			}
 		}
 	}
-#line 460 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp9_ = opening;
-#line 460 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp9_) {
 #line 1998 "MultitaskingView.c"
 		GalaWindowManager* _tmp10_ = NULL;
@@ -2010,85 +2010,85 @@ static void gala_multitasking_view_toggle (GalaMultitaskingView* self) {
 		GalaIconGroupContainer* _tmp22_ = NULL;
 		gfloat _tmp23_ = 0.0F;
 		gfloat _tmp24_ = 0.0F;
-#line 461 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 461 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp10_ = self->priv->_wm;
-#line 461 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 461 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp11_ = gala_window_manager_push_modal (_tmp10_);
-#line 461 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 461 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_object_unref0 (self->priv->modal_proxy);
-#line 461 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 461 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		self->priv->modal_proxy = _tmp11_;
-#line 462 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp12_ = self->priv->modal_proxy;
-#line 462 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 462 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		gala_modal_proxy_set_keybinding_filter (_tmp12_, _gala_multitasking_view_keybinding_filter_gala_keybinding_filter, g_object_ref (self), g_object_unref);
-#line 464 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp13_ = self->priv->_wm;
-#line 464 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp14_ = gala_window_manager_get_background_group (_tmp13_);
-#line 464 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp15_ = _tmp14_;
-#line 464 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_hide ((ClutterActor*) _tmp15_);
-#line 465 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp16_ = self->priv->_wm;
-#line 465 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp17_ = gala_window_manager_get_window_group (_tmp16_);
-#line 465 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp18_ = _tmp17_;
-#line 465 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_hide (_tmp18_);
-#line 466 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 466 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp19_ = self->priv->_wm;
-#line 466 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 466 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp20_ = gala_window_manager_get_top_window_group (_tmp19_);
-#line 466 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 466 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp21_ = _tmp20_;
-#line 466 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 466 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_hide (_tmp21_);
-#line 467 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 467 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_show ((ClutterActor*) self);
-#line 468 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 468 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_grab_key_focus ((ClutterActor*) self);
-#line 470 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp22_ = self->priv->icon_groups;
-#line 470 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp23_ = clutter_actor_get_height ((ClutterActor*) self);
-#line 470 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp24_ = _tmp23_;
-#line 470 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_set_y ((ClutterActor*) _tmp22_, (_tmp24_ - GALA_WORKSPACE_CLONE_BOTTOM_OFFSET) + 20);
 #line 2062 "MultitaskingView.c"
 	} else {
-#line 472 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 472 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		gala_drag_drop_action_cancel_all_by_id ("multitaskingview-window");
 #line 2066 "MultitaskingView.c"
 	}
-#line 476 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 476 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	active_workspace = NULL;
-#line 477 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp25_ = self->priv->screen;
-#line 477 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp26_ = meta_screen_get_active_workspace (_tmp25_);
-#line 477 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp27_ = _g_object_ref0 (_tmp26_);
-#line 477 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	active = _tmp27_;
-#line 478 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp28_ = self->priv->workspaces;
-#line 478 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp29_ = clutter_actor_get_children (_tmp28_);
 #line 2082 "MultitaskingView.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 478 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		child_collection = _tmp29_;
-#line 478 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 2090 "MultitaskingView.c"
 			ClutterActor* child = NULL;
-#line 478 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			child = (ClutterActor*) child_it->data;
 #line 2094 "MultitaskingView.c"
 			{
@@ -2098,176 +2098,176 @@ static void gala_multitasking_view_toggle (GalaMultitaskingView* self) {
 				MetaWorkspace* _tmp32_ = NULL;
 				MetaWorkspace* _tmp33_ = NULL;
 				MetaWorkspace* _tmp34_ = NULL;
-#line 479 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 479 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp30_ = child;
-#line 479 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 479 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				workspace = G_TYPE_CHECK_INSTANCE_CAST (_tmp30_, GALA_TYPE_WORKSPACE_CLONE, GalaWorkspaceClone);
-#line 480 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp31_ = workspace;
-#line 480 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp32_ = gala_workspace_clone_get_workspace (_tmp31_);
-#line 480 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp33_ = _tmp32_;
-#line 480 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp34_ = active;
-#line 480 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 480 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp33_ == _tmp34_) {
 #line 2116 "MultitaskingView.c"
 					GalaWorkspaceClone* _tmp35_ = NULL;
 					GalaWorkspaceClone* _tmp36_ = NULL;
-#line 481 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp35_ = workspace;
-#line 481 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp36_ = _g_object_ref0 (_tmp35_);
-#line 481 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_g_object_unref0 (active_workspace);
-#line 481 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					active_workspace = _tmp36_;
-#line 482 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 482 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					break;
 #line 2129 "MultitaskingView.c"
 				}
 			}
 		}
-#line 478 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_list_free0 (child_collection);
 #line 2135 "MultitaskingView.c"
 	}
-#line 485 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 485 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp37_ = active_workspace;
-#line 485 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 485 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp37_ != NULL) {
 #line 2141 "MultitaskingView.c"
 		ClutterActor* _tmp38_ = NULL;
 		GalaWorkspaceClone* _tmp39_ = NULL;
-#line 486 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp38_ = self->priv->workspaces;
-#line 486 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp39_ = active_workspace;
-#line 486 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		clutter_actor_set_child_above_sibling (_tmp38_, (ClutterActor*) _tmp39_, NULL);
 #line 2150 "MultitaskingView.c"
 	}
-#line 488 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 488 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp40_ = self->priv->workspaces;
-#line 488 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 488 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_remove_all_transitions (_tmp40_);
-#line 489 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp41_ = self->priv->workspaces;
-#line 489 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp42_ = clutter_actor_get_children (_tmp41_);
 #line 2160 "MultitaskingView.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 489 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		child_collection = _tmp42_;
-#line 489 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 2168 "MultitaskingView.c"
 			ClutterActor* child = NULL;
-#line 489 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			child = (ClutterActor*) child_it->data;
 #line 2172 "MultitaskingView.c"
 			{
 				ClutterActor* _tmp43_ = NULL;
-#line 490 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp43_ = child;
-#line 490 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				clutter_actor_remove_all_transitions (_tmp43_);
 #line 2179 "MultitaskingView.c"
 			}
 		}
-#line 489 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_list_free0 (child_collection);
 #line 2184 "MultitaskingView.c"
 	}
-#line 493 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 493 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_update_positions (self, FALSE);
-#line 495 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 495 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp44_ = self->priv->workspaces;
-#line 495 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 495 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp45_ = clutter_actor_get_children (_tmp44_);
 #line 2192 "MultitaskingView.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 495 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 495 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		child_collection = _tmp45_;
-#line 495 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 495 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 2200 "MultitaskingView.c"
 			ClutterActor* child = NULL;
-#line 495 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 495 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			child = (ClutterActor*) child_it->data;
 #line 2204 "MultitaskingView.c"
 			{
 				GalaWorkspaceClone* workspace = NULL;
 				ClutterActor* _tmp46_ = NULL;
 				gboolean _tmp47_ = FALSE;
-#line 496 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 496 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp46_ = child;
-#line 496 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 496 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				workspace = G_TYPE_CHECK_INSTANCE_CAST (_tmp46_, GALA_TYPE_WORKSPACE_CLONE, GalaWorkspaceClone);
-#line 497 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp47_ = opening;
-#line 497 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 497 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp47_) {
 #line 2217 "MultitaskingView.c"
 					GalaWorkspaceClone* _tmp48_ = NULL;
-#line 498 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 498 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp48_ = workspace;
-#line 498 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 498 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					gala_workspace_clone_open (_tmp48_);
 #line 2223 "MultitaskingView.c"
 				} else {
 					GalaWorkspaceClone* _tmp49_ = NULL;
-#line 500 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 500 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp49_ = workspace;
-#line 500 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 500 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					gala_workspace_clone_close (_tmp49_);
 #line 2230 "MultitaskingView.c"
 				}
 			}
 		}
-#line 495 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 495 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_list_free0 (child_collection);
 #line 2236 "MultitaskingView.c"
 	}
-#line 504 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp50_ = self->priv->dock_clones;
-#line 504 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_get_transformed_position (_tmp50_, &_tmp51_, &_tmp52_);
-#line 504 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clone_offset_x = _tmp51_;
-#line 504 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 504 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clone_offset_y = _tmp52_;
-#line 506 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 506 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp53_ = opening;
-#line 506 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 506 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp53_) {
 #line 2250 "MultitaskingView.c"
 		MetaScreen* _tmp54_ = NULL;
 		GList* _tmp55_ = NULL;
-#line 507 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp54_ = self->priv->screen;
-#line 507 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp55_ = meta_get_window_actors (_tmp54_);
 #line 2257 "MultitaskingView.c"
 		{
 			GList* actor_collection = NULL;
 			GList* actor_it = NULL;
-#line 507 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			actor_collection = _tmp55_;
-#line 507 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
 #line 2265 "MultitaskingView.c"
 				MetaWindowActor* actor = NULL;
-#line 507 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				actor = (MetaWindowActor*) actor_it->data;
 #line 2269 "MultitaskingView.c"
 				{
-#line 508 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 508 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					static const gint MAX_OFFSET = 100;
 #line 2273 "MultitaskingView.c"
 					MetaWindowActor* _tmp56_ = NULL;
@@ -2322,157 +2322,157 @@ static void gala_multitasking_view_toggle (GalaMultitaskingView* self) {
 					ClutterActor* _tmp99_ = NULL;
 					GalaSafeWindowClone* _tmp100_ = NULL;
 					gboolean _tmp101_ = FALSE;
-#line 510 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp56_ = actor;
-#line 510 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp57_ = meta_window_actor_is_destroyed (_tmp56_);
-#line 510 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (_tmp57_) {
-#line 511 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 511 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						continue;
 #line 2334 "MultitaskingView.c"
 					}
-#line 513 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp58_ = actor;
-#line 513 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp59_ = meta_window_actor_get_meta_window (_tmp58_);
-#line 513 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					window = _tmp59_;
-#line 514 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp60_ = window;
-#line 514 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp61_ = meta_window_get_monitor (_tmp60_);
-#line 514 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					monitor = _tmp61_;
-#line 516 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 516 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp62_ = window;
-#line 516 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 516 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp63_ = meta_window_get_window_type (_tmp62_);
-#line 516 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 516 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp64_ = _tmp63_;
-#line 516 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 516 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (_tmp64_ != META_WINDOW_DOCK) {
-#line 517 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						continue;
 #line 2358 "MultitaskingView.c"
 					}
-#line 519 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp65_ = self->priv->screen;
-#line 519 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp66_ = monitor;
-#line 519 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp67_ = meta_screen_get_monitor_in_fullscreen (_tmp65_, _tmp66_);
-#line 519 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 519 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (_tmp67_) {
-#line 520 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 520 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						continue;
 #line 2370 "MultitaskingView.c"
 					}
-#line 522 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 522 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp68_ = self->priv->screen;
-#line 522 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 522 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp69_ = monitor;
-#line 522 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 522 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					meta_screen_get_monitor_geometry (_tmp68_, _tmp69_, &_tmp70_);
-#line 522 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 522 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					monitor_geom = _tmp70_;
-#line 524 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 524 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp71_ = window;
-#line 524 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 524 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					meta_window_get_frame_rect (_tmp71_, &_tmp72_);
-#line 524 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 524 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					window_geom = _tmp72_;
-#line 525 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp73_ = monitor_geom;
-#line 525 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp74_ = _tmp73_.y;
-#line 525 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp75_ = window_geom;
-#line 525 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp76_ = _tmp75_.y;
-#line 525 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					top = (_tmp74_ + MAX_OFFSET) > _tmp76_;
-#line 526 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp77_ = monitor_geom;
-#line 526 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp78_ = _tmp77_.y;
-#line 526 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp79_ = monitor_geom;
-#line 526 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp80_ = _tmp79_.height;
-#line 526 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp81_ = window_geom;
-#line 526 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp82_ = _tmp81_.y;
-#line 526 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					bottom = ((_tmp78_ + _tmp80_) - MAX_OFFSET) > _tmp82_;
-#line 528 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp84_ = top;
-#line 528 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (!_tmp84_) {
 #line 2414 "MultitaskingView.c"
 						gboolean _tmp85_ = FALSE;
-#line 528 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp85_ = bottom;
-#line 528 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp83_ = !_tmp85_;
 #line 2420 "MultitaskingView.c"
 					} else {
-#line 528 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp83_ = FALSE;
 #line 2424 "MultitaskingView.c"
 					}
-#line 528 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (_tmp83_) {
-#line 529 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						continue;
 #line 2430 "MultitaskingView.c"
 					}
-#line 531 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp86_ = window;
-#line 531 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp87_ = gala_safe_window_clone_new (_tmp86_, TRUE);
-#line 531 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_object_ref_sink (_tmp87_);
-#line 531 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					clone = _tmp87_;
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp88_ = clone;
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp89_ = actor;
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp90_ = clutter_actor_get_x ((ClutterActor*) _tmp89_);
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp91_ = _tmp90_;
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp92_ = clone_offset_x;
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp93_ = actor;
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp94_ = clutter_actor_get_y ((ClutterActor*) _tmp93_);
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp95_ = _tmp94_;
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp96_ = clone_offset_y;
-#line 532 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					clutter_actor_set_position ((ClutterActor*) _tmp88_, _tmp91_ - _tmp92_, _tmp95_ - _tmp96_);
-#line 533 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 533 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp97_ = clone;
-#line 533 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 533 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					clutter_actor_set_easing_duration ((ClutterActor*) _tmp97_, (guint) GALA_MULTITASKING_VIEW_ANIMATION_DURATION);
-#line 534 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 534 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp98_ = clone;
-#line 534 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 534 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					clutter_actor_set_easing_mode ((ClutterActor*) _tmp98_, GALA_MULTITASKING_VIEW_ANIMATION_MODE);
-#line 535 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp99_ = self->priv->dock_clones;
-#line 535 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp100_ = clone;
-#line 535 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					clutter_actor_add_child (_tmp99_, (ClutterActor*) _tmp100_);
-#line 537 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp101_ = top;
-#line 537 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					if (_tmp101_) {
 #line 2478 "MultitaskingView.c"
 						GalaSafeWindowClone* _tmp102_ = NULL;
@@ -2483,30 +2483,30 @@ static void gala_multitasking_view_toggle (GalaMultitaskingView* self) {
 						gfloat _tmp107_ = 0.0F;
 						gfloat _tmp108_ = 0.0F;
 						gfloat _tmp109_ = 0.0F;
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp102_ = clone;
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp103_ = actor;
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp104_ = clutter_actor_get_y ((ClutterActor*) _tmp103_);
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp105_ = _tmp104_;
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp106_ = actor;
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp107_ = clutter_actor_get_height ((ClutterActor*) _tmp106_);
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp108_ = _tmp107_;
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp109_ = clone_offset_y;
-#line 538 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 538 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						clutter_actor_set_y ((ClutterActor*) _tmp102_, (_tmp105_ - _tmp108_) - _tmp109_);
 #line 2505 "MultitaskingView.c"
 					} else {
 						gboolean _tmp110_ = FALSE;
-#line 539 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 539 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						_tmp110_ = bottom;
-#line 539 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 539 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 						if (_tmp110_) {
 #line 2512 "MultitaskingView.c"
 							GalaSafeWindowClone* _tmp111_ = NULL;
@@ -2517,28 +2517,28 @@ static void gala_multitasking_view_toggle (GalaMultitaskingView* self) {
 							gfloat _tmp116_ = 0.0F;
 							gfloat _tmp117_ = 0.0F;
 							gfloat _tmp118_ = 0.0F;
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							_tmp111_ = clone;
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							_tmp112_ = actor;
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							_tmp113_ = clutter_actor_get_y ((ClutterActor*) _tmp112_);
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							_tmp114_ = _tmp113_;
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							_tmp115_ = actor;
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							_tmp116_ = clutter_actor_get_height ((ClutterActor*) _tmp115_);
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							_tmp117_ = _tmp116_;
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							_tmp118_ = clone_offset_y;
-#line 540 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 							clutter_actor_set_y ((ClutterActor*) _tmp111_, (_tmp114_ + _tmp117_) - _tmp118_);
 #line 2539 "MultitaskingView.c"
 						}
 					}
-#line 507 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 507 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_g_object_unref0 (clone);
 #line 2544 "MultitaskingView.c"
 				}
@@ -2547,21 +2547,21 @@ static void gala_multitasking_view_toggle (GalaMultitaskingView* self) {
 	} else {
 		ClutterActor* _tmp119_ = NULL;
 		GList* _tmp120_ = NULL;
-#line 543 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp119_ = self->priv->dock_clones;
-#line 543 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp120_ = clutter_actor_get_children (_tmp119_);
 #line 2555 "MultitaskingView.c"
 		{
 			GList* child_collection = NULL;
 			GList* child_it = NULL;
-#line 543 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			child_collection = _tmp120_;
-#line 543 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 2563 "MultitaskingView.c"
 				ClutterActor* child = NULL;
-#line 543 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				child = (ClutterActor*) child_it->data;
 #line 2567 "MultitaskingView.c"
 				{
@@ -2575,53 +2575,53 @@ static void gala_multitasking_view_toggle (GalaMultitaskingView* self) {
 					gfloat _tmp127_ = 0.0F;
 					gfloat _tmp128_ = 0.0F;
 					gfloat _tmp129_ = 0.0F;
-#line 544 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 544 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp121_ = child;
-#line 544 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 544 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp122_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp121_, clutter_clone_get_type (), ClutterClone));
-#line 544 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 544 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					dock = _tmp122_;
-#line 546 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp123_ = dock;
-#line 546 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp124_ = dock;
-#line 546 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp125_ = clutter_clone_get_source (_tmp124_);
-#line 546 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp126_ = _tmp125_;
-#line 546 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp127_ = clutter_actor_get_y (_tmp126_);
-#line 546 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp128_ = _tmp127_;
-#line 546 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp129_ = clone_offset_y;
-#line 546 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 546 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					clutter_actor_set_y ((ClutterActor*) _tmp123_, _tmp128_ - _tmp129_);
-#line 543 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_g_object_unref0 (dock);
 #line 2603 "MultitaskingView.c"
 				}
 			}
-#line 543 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_g_list_free0 (child_collection);
 #line 2608 "MultitaskingView.c"
 		}
 	}
-#line 550 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 550 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp130_ = opening;
-#line 550 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 550 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (!_tmp130_) {
-#line 551 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) GALA_MULTITASKING_VIEW_ANIMATION_DURATION, ____lambda78__gsource_func, g_object_ref (self), g_object_unref);
+#line 551 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) GALA_MULTITASKING_VIEW_ANIMATION_DURATION, ____lambda81__gsource_func, g_object_ref (self), g_object_unref);
 #line 2617 "MultitaskingView.c"
 	} else {
-#line 571 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) GALA_MULTITASKING_VIEW_ANIMATION_DURATION, ____lambda79__gsource_func, g_object_ref (self), g_object_unref);
+#line 571 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) GALA_MULTITASKING_VIEW_ANIMATION_DURATION, ____lambda82__gsource_func, g_object_ref (self), g_object_unref);
 #line 2621 "MultitaskingView.c"
 	}
-#line 442 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 442 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (active);
-#line 442 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 442 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (active_workspace);
 #line 2627 "MultitaskingView.c"
 }
@@ -2634,41 +2634,41 @@ static gboolean gala_multitasking_view_keybinding_filter (GalaMultitaskingView* 
 	const gchar* _tmp1_ = NULL;
 	MetaKeyBindingAction _tmp2_ = 0;
 	MetaKeyBindingAction _tmp3_ = 0;
-#line 578 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 578 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 578 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 578 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_val_if_fail (binding != NULL, FALSE);
-#line 580 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 580 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = binding;
-#line 580 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 580 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = meta_key_binding_get_name (_tmp0_);
-#line 580 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 580 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = meta_prefs_get_keybinding_action (_tmp1_);
-#line 580 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 580 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	action = _tmp2_;
-#line 581 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 581 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = action;
-#line 581 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 581 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	switch (_tmp3_) {
-#line 581 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 581 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case META_KEYBINDING_ACTION_WORKSPACE_LEFT:
-#line 581 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 581 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case META_KEYBINDING_ACTION_WORKSPACE_RIGHT:
-#line 581 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 581 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case META_KEYBINDING_ACTION_SHOW_DESKTOP:
 #line 2660 "MultitaskingView.c"
 		{
-#line 585 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 585 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			result = FALSE;
-#line 585 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 585 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			return result;
 #line 2666 "MultitaskingView.c"
 		}
 		default:
 		{
-#line 587 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 587 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			result = TRUE;
-#line 587 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 587 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			return result;
 #line 2674 "MultitaskingView.c"
 		}
@@ -2679,13 +2679,13 @@ static gboolean gala_multitasking_view_keybinding_filter (GalaMultitaskingView* 
 GalaWindowManager* gala_multitasking_view_get_wm (GalaMultitaskingView* self) {
 	GalaWindowManager* result;
 	GalaWindowManager* _tmp0_ = NULL;
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->_wm;
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	result = _tmp0_;
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 2691 "MultitaskingView.c"
 }
@@ -2694,102 +2694,102 @@ GalaWindowManager* gala_multitasking_view_get_wm (GalaMultitaskingView* self) {
 static void gala_multitasking_view_set_wm (GalaMultitaskingView* self, GalaWindowManager* value) {
 	GalaWindowManager* _tmp0_ = NULL;
 	GalaWindowManager* _tmp1_ = NULL;
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_return_if_fail (self != NULL);
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = value;
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->_wm);
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->_wm = _tmp1_;
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_object_notify ((GObject *) self, "wm");
 #line 2710 "MultitaskingView.c"
 }
 
 
-static void _gala_multitasking_view___lambda81_ (GalaMultitaskingView* self) {
-#line 67 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+static void _gala_multitasking_view___lambda84_ (GalaMultitaskingView* self) {
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_reposition_icon_groups (self, TRUE);
 #line 2717 "MultitaskingView.c"
 }
 
 
-static void __gala_multitasking_view___lambda81__gala_icon_group_container_request_reposition (GalaIconGroupContainer* _sender, gpointer self) {
-#line 67 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-	_gala_multitasking_view___lambda81_ ((GalaMultitaskingView*) self);
+static void __gala_multitasking_view___lambda84__gala_icon_group_container_request_reposition (GalaIconGroupContainer* _sender, gpointer self) {
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+	_gala_multitasking_view___lambda84_ ((GalaMultitaskingView*) self);
 #line 2724 "MultitaskingView.c"
 }
 
 
 static void _gala_multitasking_view_add_workspace_meta_screen_workspace_added (MetaScreen* _sender, gint object, gpointer self) {
-#line 78 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_add_workspace ((GalaMultitaskingView*) self, object);
 #line 2731 "MultitaskingView.c"
 }
 
 
 static void _gala_multitasking_view_remove_workspace_meta_screen_workspace_removed (MetaScreen* _sender, gint object, gpointer self) {
-#line 79 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_remove_workspace ((GalaMultitaskingView*) self, object);
 #line 2738 "MultitaskingView.c"
 }
 
 
-static void _gala_multitasking_view___lambda82_ (GalaMultitaskingView* self, gint from, gint to, MetaMotionDirection direction) {
+static void _gala_multitasking_view___lambda85_ (GalaMultitaskingView* self, gint from, gint to, MetaMotionDirection direction) {
 	gboolean _tmp0_ = FALSE;
-#line 81 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->opened;
-#line 81 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_update_positions (self, _tmp0_);
 #line 2748 "MultitaskingView.c"
 }
 
 
-static void __gala_multitasking_view___lambda82__meta_screen_workspace_switched (MetaScreen* _sender, gint object, gint p0, MetaMotionDirection p1, gpointer self) {
-#line 80 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-	_gala_multitasking_view___lambda82_ ((GalaMultitaskingView*) self, object, p0, p1);
+static void __gala_multitasking_view___lambda85__meta_screen_workspace_switched (MetaScreen* _sender, gint object, gint p0, MetaMotionDirection p1, gpointer self) {
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+	_gala_multitasking_view___lambda85_ ((GalaMultitaskingView*) self, object, p0, p1);
 #line 2755 "MultitaskingView.c"
 }
 
 
 static void _gala_multitasking_view_update_monitors_meta_screen_monitors_changed (MetaScreen* _sender, gpointer self) {
-#line 86 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_update_monitors ((GalaMultitaskingView*) self);
 #line 2762 "MultitaskingView.c"
 }
 
 
-static gboolean __lambda84_ (GalaMultitaskingView* self) {
+static gboolean __lambda87_ (GalaMultitaskingView* self) {
 	gboolean result = FALSE;
 	GList* existing_workspaces = NULL;
 	MetaScreen* _tmp0_ = NULL;
 	GList* _tmp1_ = NULL;
 	ClutterActor* _tmp2_ = NULL;
 	GList* _tmp3_ = NULL;
-#line 99 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->screen;
-#line 99 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = meta_screen_get_workspaces (_tmp0_);
-#line 99 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	existing_workspaces = _tmp1_;
-#line 101 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = self->priv->workspaces;
-#line 101 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = clutter_actor_get_children (_tmp2_);
 #line 2783 "MultitaskingView.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 101 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		child_collection = _tmp3_;
-#line 101 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 2791 "MultitaskingView.c"
 			ClutterActor* child = NULL;
-#line 101 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			child = (ClutterActor*) child_it->data;
 #line 2795 "MultitaskingView.c"
 			{
@@ -2800,21 +2800,21 @@ static gboolean __lambda84_ (GalaMultitaskingView* self) {
 				MetaWorkspace* _tmp7_ = NULL;
 				MetaWorkspace* _tmp8_ = NULL;
 				gint _tmp9_ = 0;
-#line 102 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp4_ = child;
-#line 102 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				workspace_clone = G_TYPE_CHECK_INSTANCE_CAST (_tmp4_, GALA_TYPE_WORKSPACE_CLONE, GalaWorkspaceClone);
-#line 103 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp5_ = existing_workspaces;
-#line 103 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp6_ = workspace_clone;
-#line 103 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp7_ = gala_workspace_clone_get_workspace (_tmp6_);
-#line 103 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp8_ = _tmp7_;
-#line 103 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp9_ = g_list_index (_tmp5_, _tmp8_);
-#line 103 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				if (_tmp9_ < 0) {
 #line 2820 "MultitaskingView.c"
 					GalaWorkspaceClone* _tmp10_ = NULL;
@@ -2826,120 +2826,120 @@ static gboolean __lambda84_ (GalaMultitaskingView* self) {
 					GalaIconGroup* _tmp16_ = NULL;
 					GalaIconGroup* _tmp17_ = NULL;
 					GalaWorkspaceClone* _tmp18_ = NULL;
-#line 104 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp10_ = workspace_clone;
-#line 104 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_signal_parse_name ("window-selected", GALA_TYPE_WORKSPACE_CLONE, &_tmp11_, NULL, FALSE);
-#line 104 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_signal_handlers_disconnect_matched (_tmp10_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp11_, 0, NULL, (GCallback) _gala_multitasking_view_window_selected_gala_workspace_clone_window_selected, self);
-#line 105 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp12_ = workspace_clone;
-#line 105 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_signal_parse_name ("selected", GALA_TYPE_WORKSPACE_CLONE, &_tmp13_, NULL, FALSE);
-#line 105 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					g_signal_handlers_disconnect_matched (_tmp12_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp13_, 0, NULL, (GCallback) _gala_multitasking_view_activate_workspace_gala_workspace_clone_selected, self);
-#line 107 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp14_ = self->priv->icon_groups;
-#line 107 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp15_ = workspace_clone;
-#line 107 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp16_ = gala_workspace_clone_get_icon_group (_tmp15_);
-#line 107 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp17_ = _tmp16_;
-#line 107 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					gala_icon_group_container_remove_group (_tmp14_, _tmp17_);
-#line 109 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					_tmp18_ = workspace_clone;
-#line 109 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 					clutter_actor_destroy ((ClutterActor*) _tmp18_);
 #line 2856 "MultitaskingView.c"
 				}
 			}
 		}
-#line 101 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_g_list_free0 (child_collection);
 #line 2862 "MultitaskingView.c"
 	}
-#line 113 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_update_monitors (self);
-#line 114 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_update_positions (self, FALSE);
-#line 116 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	result = FALSE;
-#line 116 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 2872 "MultitaskingView.c"
 }
 
 
-static gboolean ___lambda84__gsource_func (gpointer self) {
+static gboolean ___lambda87__gsource_func (gpointer self) {
 	gboolean result;
-	result = __lambda84_ ((GalaMultitaskingView*) self);
-#line 98 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+	result = __lambda87_ ((GalaMultitaskingView*) self);
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return result;
 #line 2881 "MultitaskingView.c"
 }
 
 
-static void _gala_multitasking_view___lambda83_ (GalaMultitaskingView* self, MetaPreference pref) {
+static void _gala_multitasking_view___lambda86_ (GalaMultitaskingView* self, MetaPreference pref) {
 	MetaPreference _tmp0_ = 0;
 	gboolean _tmp1_ = FALSE;
 	gboolean _tmp2_ = FALSE;
-#line 89 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = pref;
-#line 89 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp0_ == META_PREF_WORKSPACES_ONLY_ON_PRIMARY) {
-#line 90 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		gala_multitasking_view_update_monitors (self);
-#line 91 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		return;
 #line 2897 "MultitaskingView.c"
 	}
-#line 94 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = meta_prefs_get_dynamic_workspaces ();
-#line 94 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp2_) {
-#line 94 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp1_ = TRUE;
 #line 2905 "MultitaskingView.c"
 	} else {
 		gboolean _tmp3_ = FALSE;
 		MetaPreference _tmp4_ = 0;
-#line 95 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp4_ = pref;
-#line 95 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		if (_tmp4_ != META_PREF_DYNAMIC_WORKSPACES) {
 #line 2913 "MultitaskingView.c"
 			MetaPreference _tmp5_ = 0;
-#line 95 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp5_ = pref;
-#line 95 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp3_ = _tmp5_ != META_PREF_NUM_WORKSPACES;
 #line 2919 "MultitaskingView.c"
 		} else {
-#line 95 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp3_ = FALSE;
 #line 2923 "MultitaskingView.c"
 		}
-#line 95 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 95 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		_tmp1_ = _tmp3_;
 #line 2927 "MultitaskingView.c"
 	}
-#line 94 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	if (_tmp1_) {
-#line 96 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		return;
 #line 2933 "MultitaskingView.c"
 	}
-#line 98 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, ___lambda84__gsource_func, g_object_ref (self), g_object_unref);
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, ___lambda87__gsource_func, g_object_ref (self), g_object_unref);
 #line 2937 "MultitaskingView.c"
 }
 
 
-static void __gala_multitasking_view___lambda83__meta_prefs_changed_func (MetaPreference pref, gpointer self) {
-#line 88 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-	_gala_multitasking_view___lambda83_ ((GalaMultitaskingView*) self, pref);
+static void __gala_multitasking_view___lambda86__meta_prefs_changed_func (MetaPreference pref, gpointer self) {
+#line 88 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+	_gala_multitasking_view___lambda86_ ((GalaMultitaskingView*) self, pref);
 #line 2944 "MultitaskingView.c"
 }
 
@@ -2966,187 +2966,187 @@ static GObject * gala_multitasking_view_constructor (GType type, guint n_constru
 	MetaScreen* _tmp18_ = NULL;
 	MetaScreen* _tmp19_ = NULL;
 	MetaScreen* _tmp20_ = NULL;
-#line 54 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	parent_class = G_OBJECT_CLASS (gala_multitasking_view_parent_class);
-#line 54 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 54 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_MULTITASKING_VIEW, GalaMultitaskingView);
-#line 56 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_object_set ((ClutterActor*) self, "visible", FALSE, NULL);
-#line 57 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_set_reactive ((ClutterActor*) self, TRUE);
-#line 58 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_set_clip_to_allocation ((ClutterActor*) self, TRUE);
-#line 60 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->opened = FALSE;
-#line 61 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp0_ = self->priv->_wm;
-#line 61 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 61 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 61 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->screen);
-#line 61 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->screen = _tmp2_;
-#line 63 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp3_ = clutter_actor_new ();
-#line 63 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_object_ref_sink (_tmp3_);
-#line 63 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->workspaces);
-#line 63 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->workspaces = _tmp3_;
-#line 64 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp4_ = self->priv->workspaces;
-#line 64 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_set_easing_mode (_tmp4_, CLUTTER_EASE_OUT_QUAD);
-#line 66 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp5_ = self->priv->screen;
-#line 66 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp6_ = gala_icon_group_container_new (_tmp5_);
-#line 66 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_object_ref_sink (_tmp6_);
-#line 66 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->icon_groups);
-#line 66 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->icon_groups = _tmp6_;
-#line 67 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp7_ = self->priv->icon_groups;
-#line 67 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-	g_signal_connect_object (_tmp7_, "request-reposition", (GCallback) __gala_multitasking_view___lambda81__gala_icon_group_container_request_reposition, self, 0);
-#line 69 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+	g_signal_connect_object (_tmp7_, "request-reposition", (GCallback) __gala_multitasking_view___lambda84__gala_icon_group_container_request_reposition, self, 0);
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp8_ = clutter_actor_new ();
-#line 69 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_object_ref_sink (_tmp8_);
-#line 69 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->dock_clones);
-#line 69 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->dock_clones = _tmp8_;
-#line 71 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp9_ = self->priv->icon_groups;
-#line 71 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_add_child ((ClutterActor*) self, (ClutterActor*) _tmp9_);
-#line 72 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp10_ = self->priv->workspaces;
-#line 72 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_add_child ((ClutterActor*) self, _tmp10_);
-#line 73 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp11_ = self->priv->dock_clones;
-#line 73 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	clutter_actor_add_child ((ClutterActor*) self, _tmp11_);
-#line 75 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp12_ = self->priv->screen;
-#line 75 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp13_ = meta_screen_get_workspaces (_tmp12_);
 #line 3044 "MultitaskingView.c"
 	{
 		GList* workspace_collection = NULL;
 		GList* workspace_it = NULL;
-#line 75 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		workspace_collection = _tmp13_;
-#line 75 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		for (workspace_it = workspace_collection; workspace_it != NULL; workspace_it = workspace_it->next) {
 #line 3052 "MultitaskingView.c"
 			MetaWorkspace* _tmp14_ = NULL;
 			MetaWorkspace* workspace = NULL;
-#line 75 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			_tmp14_ = _g_object_ref0 ((MetaWorkspace*) workspace_it->data);
-#line 75 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 			workspace = _tmp14_;
 #line 3059 "MultitaskingView.c"
 			{
 				MetaWorkspace* _tmp15_ = NULL;
 				gint _tmp16_ = 0;
-#line 76 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp15_ = workspace;
-#line 76 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_tmp16_ = meta_workspace_index (_tmp15_);
-#line 76 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 76 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				gala_multitasking_view_add_workspace (self, _tmp16_);
-#line 75 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 				_g_object_unref0 (workspace);
 #line 3071 "MultitaskingView.c"
 			}
 		}
 	}
-#line 78 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp17_ = self->priv->screen;
-#line 78 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_connect_object (_tmp17_, "workspace-added", (GCallback) _gala_multitasking_view_add_workspace_meta_screen_workspace_added, self, 0);
-#line 79 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp18_ = self->priv->screen;
-#line 79 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_connect_object (_tmp18_, "workspace-removed", (GCallback) _gala_multitasking_view_remove_workspace_meta_screen_workspace_removed, self, 0);
-#line 80 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp19_ = self->priv->screen;
-#line 80 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-	g_signal_connect_object (_tmp19_, "workspace-switched", (GCallback) __gala_multitasking_view___lambda82__meta_screen_workspace_switched, self, G_CONNECT_AFTER);
-#line 84 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+	g_signal_connect_object (_tmp19_, "workspace-switched", (GCallback) __gala_multitasking_view___lambda85__meta_screen_workspace_switched, self, G_CONNECT_AFTER);
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->window_containers_monitors);
-#line 84 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->window_containers_monitors = NULL;
-#line 85 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_update_monitors (self);
-#line 86 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_tmp20_ = self->priv->screen;
-#line 86 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_signal_connect_object (_tmp20_, "monitors-changed", (GCallback) _gala_multitasking_view_update_monitors_meta_screen_monitors_changed, self, 0);
-#line 88 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
-	meta_prefs_add_listener (__gala_multitasking_view___lambda83__meta_prefs_changed_func, self);
-#line 54 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
+	meta_prefs_add_listener (__gala_multitasking_view___lambda86__meta_prefs_changed_func, self);
+#line 54 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	return obj;
 #line 3101 "MultitaskingView.c"
 }
 
 
 static void gala_multitasking_view_class_init (GalaMultitaskingViewClass * klass) {
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_parent_class = g_type_class_peek_parent (klass);
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_type_class_add_private (klass, sizeof (GalaMultitaskingViewPrivate));
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	((ClutterActorClass *) klass)->key_focus_out = gala_multitasking_view_real_key_focus_out;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	((ClutterActorClass *) klass)->scroll_event = gala_multitasking_view_real_scroll_event;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	((ClutterActorClass *) klass)->key_press_event = gala_multitasking_view_real_key_press_event;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_multitasking_view_get_property;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_multitasking_view_set_property;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_multitasking_view_constructor;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_multitasking_view_finalize;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_MULTITASKING_VIEW_WM, g_param_spec_object ("wm", "wm", "wm", GALA_TYPE_WINDOW_MANAGER, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 #line 3126 "MultitaskingView.c"
 }
 
 
 static void gala_multitasking_view_gala_activatable_component_interface_init (GalaActivatableComponentIface * iface) {
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	gala_multitasking_view_gala_activatable_component_parent_iface = g_type_interface_peek_parent (iface);
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	iface->is_opened = (gboolean (*)(GalaActivatableComponent*)) gala_multitasking_view_real_is_opened;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	iface->open = (void (*)(GalaActivatableComponent*, GHashTable*)) gala_multitasking_view_real_open;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	iface->close = (void (*)(GalaActivatableComponent*)) gala_multitasking_view_real_close;
 #line 3139 "MultitaskingView.c"
 }
 
 
 static void gala_multitasking_view_instance_init (GalaMultitaskingView * self) {
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv = GALA_MULTITASKING_VIEW_GET_PRIVATE (self);
-#line 38 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->opened = FALSE;
-#line 39 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->animating = FALSE;
-#line 41 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self->priv->is_smooth_scrolling = FALSE;
 #line 3152 "MultitaskingView.c"
 }
@@ -3154,23 +3154,23 @@ static void gala_multitasking_view_instance_init (GalaMultitaskingView * self) {
 
 static void gala_multitasking_view_finalize (GObject* obj) {
 	GalaMultitaskingView * self;
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_MULTITASKING_VIEW, GalaMultitaskingView);
-#line 34 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->_wm);
-#line 36 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->screen);
-#line 37 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->modal_proxy);
-#line 43 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->window_containers_monitors);
-#line 45 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->icon_groups);
-#line 46 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->workspaces);
-#line 47 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 47 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	_g_object_unref0 (self->priv->dock_clones);
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	G_OBJECT_CLASS (gala_multitasking_view_parent_class)->finalize (obj);
 #line 3176 "MultitaskingView.c"
 }
@@ -3198,19 +3198,19 @@ GType gala_multitasking_view_get_type (void) {
 static void _vala_gala_multitasking_view_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaMultitaskingView * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_MULTITASKING_VIEW, GalaMultitaskingView);
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	switch (property_id) {
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case GALA_MULTITASKING_VIEW_WM:
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		g_value_set_object (value, gala_multitasking_view_get_wm (self));
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		break;
 #line 3210 "MultitaskingView.c"
 		default:
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		break;
 #line 3216 "MultitaskingView.c"
 	}
@@ -3220,19 +3220,19 @@ static void _vala_gala_multitasking_view_get_property (GObject * object, guint p
 static void _vala_gala_multitasking_view_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaMultitaskingView * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_MULTITASKING_VIEW, GalaMultitaskingView);
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 	switch (property_id) {
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		case GALA_MULTITASKING_VIEW_WM:
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		gala_multitasking_view_set_wm (self, g_value_get_object (value));
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		break;
 #line 3232 "MultitaskingView.c"
 		default:
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 28 "/home/nick/work/gala/src/Widgets/MultitaskingView.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Widgets/MultitaskingView.vala"
 		break;
 #line 3238 "MultitaskingView.c"
 	}

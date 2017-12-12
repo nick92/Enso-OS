@@ -146,13 +146,13 @@ void gala_window_clone_container_restack_windows (GalaWindowCloneContainer* self
 void gala_window_clone_container_remove_window (GalaWindowCloneContainer* self, MetaWindow* window);
 static Block39Data* block39_data_ref (Block39Data* _data39_);
 static void block39_data_unref (void * _userdata_);
-static gboolean ___lambda87_ (Block39Data* _data39_);
-static gboolean ____lambda87__gsource_func (gpointer self);
+static gboolean ___lambda105_ (Block39Data* _data39_);
+static gboolean ____lambda105__gsource_func (gpointer self);
 static void gala_window_overview_real_close (GalaActivatableComponent* base);
 void gala_window_clone_container_close (GalaWindowCloneContainer* self);
-static gboolean __lambda86_ (GalaWindowOverview* self);
+static gboolean __lambda104_ (GalaWindowOverview* self);
 static void gala_window_overview_cleanup (GalaWindowOverview* self);
-static gboolean ___lambda86__gsource_func (gpointer self);
+static gboolean ___lambda104__gsource_func (gpointer self);
 static void gala_window_overview_set_wm (GalaWindowOverview* self, GalaWindowManager* value);
 static GObject * gala_window_overview_constructor (GType type, guint n_construct_properties, GObjectConstructParam * construct_properties);
 static void _gala_activatable_component_close_meta_screen_workspace_switched (MetaScreen* _sender, gint object, gint p0, MetaMotionDirection p1, gpointer self);
@@ -174,23 +174,23 @@ GType gala_window_overview_type_get_type (void) {
 
 
 static void _gala_window_overview_restack_windows_meta_screen_restacked (MetaScreen* _sender, gpointer self) {
-#line 67 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_overview_restack_windows ((GalaWindowOverview*) self, _sender);
 #line 180 "WindowOverview.c"
 }
 
 
 static void _g_object_unref0_ (gpointer var) {
-#line 46 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	(var == NULL) ? NULL : (var = (g_object_unref (var), NULL));
 #line 187 "WindowOverview.c"
 }
 
 
 static void _g_list_free__g_object_unref0_ (GList* self) {
-#line 46 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_list_foreach (self, (GFunc) _g_object_unref0_, NULL);
-#line 46 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_list_free (self);
 #line 196 "WindowOverview.c"
 }
@@ -199,20 +199,20 @@ static void _g_list_free__g_object_unref0_ (GList* self) {
 GalaWindowOverview* gala_window_overview_construct (GType object_type, GalaWindowManager* wm) {
 	GalaWindowOverview * self = NULL;
 	GalaWindowManager* _tmp0_ = NULL;
-#line 48 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_val_if_fail (wm != NULL, NULL);
-#line 50 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = wm;
-#line 50 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = (GalaWindowOverview*) g_object_new (object_type, "wm", _tmp0_, NULL);
-#line 48 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return self;
 #line 211 "WindowOverview.c"
 }
 
 
 GalaWindowOverview* gala_window_overview_new (GalaWindowManager* wm) {
-#line 48 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return gala_window_overview_construct (GALA_TYPE_WINDOW_OVERVIEW, wm);
 #line 218 "WindowOverview.c"
 }
@@ -223,27 +223,27 @@ static gboolean gala_window_overview_real_key_press_event (ClutterActor* base, C
 	gboolean result = FALSE;
 	ClutterKeyEvent _tmp0_ = {0};
 	guint _tmp1_ = 0U;
-#line 70 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = (GalaWindowOverview*) base;
-#line 70 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_val_if_fail (event != NULL, FALSE);
-#line 72 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = *event;
-#line 72 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = _tmp0_.keyval;
-#line 72 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp1_ == ((guint) CLUTTER_KEY_Escape)) {
-#line 73 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		gala_activatable_component_close ((GalaActivatableComponent*) self);
-#line 75 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		result = TRUE;
-#line 75 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return result;
 #line 243 "WindowOverview.c"
 	}
-#line 78 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	result = FALSE;
-#line 78 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 249 "WindowOverview.c"
 }
@@ -255,19 +255,19 @@ static void gala_window_overview_real_key_focus_out (ClutterActor* base) {
 	ClutterActor* _tmp1_ = NULL;
 	ClutterActor* _tmp2_ = NULL;
 	gboolean _tmp3_ = FALSE;
-#line 81 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = (GalaWindowOverview*) base;
-#line 83 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = clutter_actor_get_stage ((ClutterActor*) self);
-#line 83 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = clutter_stage_get_key_focus (_tmp0_);
-#line 83 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = _tmp1_;
-#line 83 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp3_ = clutter_actor_contains ((ClutterActor*) self, _tmp2_);
-#line 83 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (!_tmp3_) {
-#line 84 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		gala_activatable_component_close ((GalaActivatableComponent*) self);
 #line 273 "WindowOverview.c"
 	}
@@ -279,23 +279,23 @@ static gboolean gala_window_overview_real_button_press_event (ClutterActor* base
 	gboolean result = FALSE;
 	ClutterButtonEvent _tmp0_ = {0};
 	guint32 _tmp1_ = 0U;
-#line 87 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = (GalaWindowOverview*) base;
-#line 87 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_val_if_fail (event != NULL, FALSE);
-#line 89 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = *event;
-#line 89 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = _tmp0_.button;
-#line 89 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp1_ == ((guint32) 1)) {
-#line 90 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		gala_activatable_component_close ((GalaActivatableComponent*) self);
 #line 295 "WindowOverview.c"
 	}
-#line 92 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	result = TRUE;
-#line 92 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 301 "WindowOverview.c"
 }
@@ -309,15 +309,15 @@ static gboolean gala_window_overview_real_is_opened (GalaActivatableComponent* b
 	gboolean result = FALSE;
 	gboolean _tmp0_ = FALSE;
 	gboolean _tmp1_ = FALSE;
-#line 98 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 98 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = (GalaWindowOverview*) base;
-#line 100 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_get ((ClutterActor*) self, "visible", &_tmp0_, NULL);
-#line 100 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = _tmp0_;
-#line 100 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	result = _tmp1_;
-#line 100 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 323 "WindowOverview.c"
 }
@@ -328,37 +328,37 @@ static gboolean gala_window_overview_real_is_opened (GalaActivatableComponent* b
  * You may specify 'all-windows' in hints to expose all windows
  */
 static gpointer _g_object_ref0 (gpointer self) {
-#line 124 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return self ? g_object_ref (self) : NULL;
 #line 334 "WindowOverview.c"
 }
 
 
 static void _g_slist_free__g_object_unref0_ (GSList* self) {
-#line 155 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_slist_foreach (self, (GFunc) _g_object_unref0_, NULL);
-#line 155 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_slist_free (self);
 #line 343 "WindowOverview.c"
 }
 
 
 static void _gala_window_overview_add_window_meta_workspace_window_added (MetaWorkspace* _sender, MetaWindow* object, gpointer self) {
-#line 160 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_overview_add_window ((GalaWindowOverview*) self, object);
 #line 350 "WindowOverview.c"
 }
 
 
 static void _gala_window_overview_remove_window_meta_workspace_window_removed (MetaWorkspace* _sender, MetaWindow* object, gpointer self) {
-#line 161 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_overview_remove_window ((GalaWindowOverview*) self, object);
 #line 357 "WindowOverview.c"
 }
 
 
 static void _gala_window_overview_window_left_monitor_meta_screen_window_left_monitor (MetaScreen* _sender, gint object, MetaWindow* p0, gpointer self) {
-#line 164 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_overview_window_left_monitor ((GalaWindowOverview*) self, object, p0);
 #line 364 "WindowOverview.c"
 }
@@ -367,14 +367,14 @@ static void _gala_window_overview_window_left_monitor_meta_screen_window_left_mo
 static gboolean _gala_window_overview_keybinding_filter_gala_keybinding_filter (MetaKeyBinding* binding, gpointer self) {
 	gboolean result;
 	result = gala_window_overview_keybinding_filter ((GalaWindowOverview*) self, binding);
-#line 172 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 373 "WindowOverview.c"
 }
 
 
 static void _gala_window_overview_thumb_selected_gala_window_clone_container_window_selected (GalaWindowCloneContainer* _sender, MetaWindow* window, gpointer self) {
-#line 185 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_overview_thumb_selected ((GalaWindowOverview*) self, window);
 #line 380 "WindowOverview.c"
 }
@@ -407,92 +407,92 @@ static void gala_window_overview_real_open (GalaActivatableComponent* base, GHas
 	GalaModalProxy* _tmp64_ = NULL;
 	GSList* _tmp90_ = NULL;
 	GList* _tmp101_ = NULL;
-#line 107 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = (GalaWindowOverview*) base;
-#line 109 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = self->priv->ready;
-#line 109 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (!_tmp0_) {
-#line 110 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return;
 #line 419 "WindowOverview.c"
 	}
-#line 112 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_get ((ClutterActor*) self, "visible", &_tmp1_, NULL);
-#line 112 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = _tmp1_;
-#line 112 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp2_) {
-#line 113 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		gala_activatable_component_close ((GalaActivatableComponent*) self);
-#line 114 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return;
 #line 431 "WindowOverview.c"
 	}
-#line 117 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp4_ = hints;
-#line 117 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp4_ != NULL) {
 #line 437 "WindowOverview.c"
 		GHashTable* _tmp5_ = NULL;
 		gboolean _tmp6_ = FALSE;
-#line 117 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp5_ = hints;
-#line 117 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp6_ = g_hash_table_contains (_tmp5_, "all-windows");
-#line 117 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp3_ = _tmp6_;
 #line 446 "WindowOverview.c"
 	} else {
-#line 117 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp3_ = FALSE;
 #line 450 "WindowOverview.c"
 	}
-#line 117 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	all_windows = _tmp3_;
-#line 119 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	used_windows = NULL;
-#line 121 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->workspaces);
-#line 121 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->workspaces = NULL;
-#line 123 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp7_ = all_windows;
-#line 123 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp7_) {
 #line 464 "WindowOverview.c"
 		MetaScreen* _tmp8_ = NULL;
 		GList* _tmp9_ = NULL;
-#line 124 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp8_ = self->priv->screen;
-#line 124 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp9_ = meta_screen_get_workspaces (_tmp8_);
 #line 471 "WindowOverview.c"
 		{
 			GList* workspace_collection = NULL;
 			GList* workspace_it = NULL;
-#line 124 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			workspace_collection = _tmp9_;
-#line 124 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			for (workspace_it = workspace_collection; workspace_it != NULL; workspace_it = workspace_it->next) {
 #line 479 "WindowOverview.c"
 				MetaWorkspace* _tmp10_ = NULL;
 				MetaWorkspace* workspace = NULL;
-#line 124 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp10_ = _g_object_ref0 ((MetaWorkspace*) workspace_it->data);
-#line 124 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				workspace = _tmp10_;
 #line 486 "WindowOverview.c"
 				{
 					MetaWorkspace* _tmp11_ = NULL;
 					MetaWorkspace* _tmp12_ = NULL;
-#line 125 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp11_ = workspace;
-#line 125 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp12_ = _g_object_ref0 (_tmp11_);
-#line 125 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 125 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					self->priv->workspaces = g_list_append (self->priv->workspaces, _tmp12_);
-#line 124 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 124 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_g_object_unref0 (workspace);
 #line 498 "WindowOverview.c"
 				}
@@ -502,52 +502,52 @@ static void gala_window_overview_real_open (GalaActivatableComponent* base, GHas
 		MetaScreen* _tmp13_ = NULL;
 		MetaWorkspace* _tmp14_ = NULL;
 		MetaWorkspace* _tmp15_ = NULL;
-#line 127 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp13_ = self->priv->screen;
-#line 127 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp14_ = meta_screen_get_active_workspace (_tmp13_);
-#line 127 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp15_ = _g_object_ref0 (_tmp14_);
-#line 127 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 127 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		self->priv->workspaces = g_list_append (self->priv->workspaces, _tmp15_);
 #line 514 "WindowOverview.c"
 	}
-#line 130 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp16_ = self->priv->workspaces;
 #line 518 "WindowOverview.c"
 	{
 		GList* workspace_collection = NULL;
 		GList* workspace_it = NULL;
-#line 130 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		workspace_collection = _tmp16_;
-#line 130 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (workspace_it = workspace_collection; workspace_it != NULL; workspace_it = workspace_it->next) {
 #line 526 "WindowOverview.c"
 			MetaWorkspace* _tmp17_ = NULL;
 			MetaWorkspace* workspace = NULL;
-#line 130 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp17_ = _g_object_ref0 ((MetaWorkspace*) workspace_it->data);
-#line 130 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			workspace = _tmp17_;
 #line 533 "WindowOverview.c"
 			{
 				MetaWorkspace* _tmp18_ = NULL;
 				GList* _tmp19_ = NULL;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp18_ = workspace;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp19_ = meta_workspace_list_windows (_tmp18_);
 #line 541 "WindowOverview.c"
 				{
 					GList* window_collection = NULL;
 					GList* window_it = NULL;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					window_collection = _tmp19_;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
 #line 549 "WindowOverview.c"
 						MetaWindow* window = NULL;
-#line 131 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 						window = (MetaWindow*) window_it->data;
 #line 553 "WindowOverview.c"
 						{
@@ -565,69 +565,69 @@ static void gala_window_overview_real_open (GalaActivatableComponent* base, GHas
 							gboolean _tmp44_ = FALSE;
 							MetaWindow* _tmp48_ = NULL;
 							MetaWindow* _tmp49_ = NULL;
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp23_ = window;
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp24_ = meta_window_get_window_type (_tmp23_);
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp25_ = _tmp24_;
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							if (_tmp25_ != META_WINDOW_NORMAL) {
 #line 577 "WindowOverview.c"
 								MetaWindow* _tmp26_ = NULL;
 								MetaWindowType _tmp27_ = 0;
 								MetaWindowType _tmp28_ = 0;
-#line 133 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp26_ = window;
-#line 133 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp27_ = meta_window_get_window_type (_tmp26_);
-#line 133 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp28_ = _tmp27_;
-#line 133 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 133 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp22_ = _tmp28_ != META_WINDOW_DOCK;
 #line 589 "WindowOverview.c"
 							} else {
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp22_ = FALSE;
 #line 593 "WindowOverview.c"
 							}
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							if (_tmp22_) {
 #line 597 "WindowOverview.c"
 								MetaWindow* _tmp29_ = NULL;
 								MetaWindowType _tmp30_ = 0;
 								MetaWindowType _tmp31_ = 0;
-#line 134 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp29_ = window;
-#line 134 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp30_ = meta_window_get_window_type (_tmp29_);
-#line 134 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp31_ = _tmp30_;
-#line 134 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp21_ = _tmp31_ != META_WINDOW_DIALOG;
 #line 609 "WindowOverview.c"
 							} else {
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp21_ = FALSE;
 #line 613 "WindowOverview.c"
 							}
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							if (_tmp21_) {
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp20_ = TRUE;
 #line 619 "WindowOverview.c"
 							} else {
 								MetaWindow* _tmp32_ = NULL;
 								gboolean _tmp33_ = FALSE;
-#line 135 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp32_ = window;
-#line 135 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp33_ = meta_window_is_attached_dialog (_tmp32_);
-#line 135 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp20_ = _tmp33_;
 #line 629 "WindowOverview.c"
 							}
-#line 132 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 132 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							if (_tmp20_) {
 #line 633 "WindowOverview.c"
 								MetaWindowActor* actor = NULL;
@@ -635,187 +635,187 @@ static void gala_window_overview_real_open (GalaActivatableComponent* base, GHas
 								GObject* _tmp35_ = NULL;
 								MetaWindowActor* _tmp36_ = NULL;
 								MetaWindowActor* _tmp37_ = NULL;
-#line 136 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp34_ = window;
-#line 136 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp35_ = meta_window_get_compositor_private (_tmp34_);
-#line 136 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp36_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_TYPE (_tmp35_, meta_window_actor_get_type ()) ? ((MetaWindowActor*) _tmp35_) : NULL);
-#line 136 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								actor = _tmp36_;
-#line 137 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp37_ = actor;
-#line 137 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								if (_tmp37_ != NULL) {
 #line 651 "WindowOverview.c"
 									MetaWindowActor* _tmp38_ = NULL;
-#line 138 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 									_tmp38_ = actor;
-#line 138 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 138 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 									clutter_actor_hide ((ClutterActor*) _tmp38_);
 #line 657 "WindowOverview.c"
 								}
-#line 139 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_g_object_unref0 (actor);
-#line 139 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								continue;
 #line 663 "WindowOverview.c"
 							}
-#line 141 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp39_ = window;
-#line 141 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp40_ = meta_window_get_window_type (_tmp39_);
-#line 141 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp41_ = _tmp40_;
-#line 141 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							if (_tmp41_ == META_WINDOW_DOCK) {
-#line 142 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								continue;
 #line 675 "WindowOverview.c"
 							}
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp43_ = window;
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp44_ = meta_window_is_on_all_workspaces (_tmp43_);
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							if (_tmp44_) {
 #line 683 "WindowOverview.c"
 								MetaWindow* _tmp45_ = NULL;
 								MetaWorkspace* _tmp46_ = NULL;
 								MetaWorkspace* _tmp47_ = NULL;
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp45_ = window;
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp46_ = meta_window_get_workspace (_tmp45_);
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp47_ = workspace;
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp42_ = _tmp46_ != _tmp47_;
 #line 695 "WindowOverview.c"
 							} else {
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								_tmp42_ = FALSE;
 #line 699 "WindowOverview.c"
 							}
-#line 146 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							if (_tmp42_) {
-#line 147 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 								continue;
 #line 705 "WindowOverview.c"
 							}
-#line 149 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp48_ = window;
-#line 149 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							_tmp49_ = _g_object_ref0 (_tmp48_);
-#line 149 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 							used_windows = g_slist_append (used_windows, _tmp49_);
 #line 713 "WindowOverview.c"
 						}
 					}
-#line 131 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_g_list_free0 (window_collection);
 #line 718 "WindowOverview.c"
 				}
-#line 130 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 130 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_g_object_unref0 (workspace);
 #line 722 "WindowOverview.c"
 			}
 		}
 	}
-#line 153 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp50_ = used_windows;
-#line 153 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp51_ = g_slist_length (_tmp50_);
-#line 153 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	n_windows = _tmp51_;
-#line 154 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp52_ = n_windows;
-#line 154 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp52_ == ((guint) 0)) {
-#line 155 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		__g_slist_free__g_object_unref0_0 (used_windows);
-#line 155 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return;
 #line 740 "WindowOverview.c"
 	}
-#line 157 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 157 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->ready = FALSE;
-#line 159 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp53_ = self->priv->workspaces;
 #line 746 "WindowOverview.c"
 	{
 		GList* workspace_collection = NULL;
 		GList* workspace_it = NULL;
-#line 159 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		workspace_collection = _tmp53_;
-#line 159 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (workspace_it = workspace_collection; workspace_it != NULL; workspace_it = workspace_it->next) {
 #line 754 "WindowOverview.c"
 			MetaWorkspace* _tmp54_ = NULL;
 			MetaWorkspace* workspace = NULL;
-#line 159 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp54_ = _g_object_ref0 ((MetaWorkspace*) workspace_it->data);
-#line 159 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			workspace = _tmp54_;
 #line 761 "WindowOverview.c"
 			{
 				MetaWorkspace* _tmp55_ = NULL;
 				MetaWorkspace* _tmp56_ = NULL;
-#line 160 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp55_ = workspace;
-#line 160 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				g_signal_connect_object (_tmp55_, "window-added", (GCallback) _gala_window_overview_add_window_meta_workspace_window_added, self, 0);
-#line 161 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp56_ = workspace;
-#line 161 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				g_signal_connect_object (_tmp56_, "window-removed", (GCallback) _gala_window_overview_remove_window_meta_workspace_window_removed, self, 0);
-#line 159 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_g_object_unref0 (workspace);
 #line 775 "WindowOverview.c"
 			}
 		}
 	}
-#line 164 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp57_ = self->priv->screen;
-#line 164 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_signal_connect_object (_tmp57_, "window-left-monitor", (GCallback) _gala_window_overview_window_left_monitor_meta_screen_window_left_monitor, self, 0);
-#line 167 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp58_ = self->priv->screen;
-#line 167 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp59_ = meta_screen_get_display (_tmp58_);
-#line 167 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp60_ = used_windows;
-#line 167 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp61_ = meta_display_sort_windows_by_stacking (_tmp59_, _tmp60_);
-#line 167 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 167 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	windows = _tmp61_;
-#line 169 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 169 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	clutter_actor_grab_key_focus ((ClutterActor*) self);
-#line 171 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp62_ = self->priv->_wm;
-#line 171 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp63_ = gala_window_manager_push_modal (_tmp62_);
-#line 171 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_object_unref0 (self->priv->modal_proxy);
-#line 171 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 171 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->modal_proxy = _tmp63_;
-#line 172 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp64_ = self->priv->modal_proxy;
-#line 172 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 172 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_modal_proxy_set_keybinding_filter (_tmp64_, _gala_window_overview_keybinding_filter_gala_keybinding_filter, g_object_ref (self), g_object_unref);
-#line 174 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 174 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_set ((ClutterActor*) self, "visible", TRUE, NULL);
 #line 809 "WindowOverview.c"
 	{
 		gint i = 0;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		i = 0;
 #line 814 "WindowOverview.c"
 		{
 			gboolean _tmp65_ = FALSE;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp65_ = TRUE;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			while (TRUE) {
 #line 821 "WindowOverview.c"
 				gint _tmp67_ = 0;
@@ -843,111 +843,111 @@ static void gala_window_overview_real_open (GalaActivatableComponent* base, GHas
 				gint _tmp87_ = 0;
 				GalaWindowCloneContainer* _tmp88_ = NULL;
 				GalaWindowCloneContainer* _tmp89_ = NULL;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				if (!_tmp65_) {
 #line 849 "WindowOverview.c"
 					gint _tmp66_ = 0;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp66_ = i;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					i = _tmp66_ + 1;
 #line 855 "WindowOverview.c"
 				}
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp65_ = FALSE;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp67_ = i;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp68_ = self->priv->screen;
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp69_ = meta_screen_get_n_monitors (_tmp68_);
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				if (!(_tmp67_ < _tmp69_)) {
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					break;
 #line 869 "WindowOverview.c"
 				}
-#line 177 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp70_ = self->priv->screen;
-#line 177 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp71_ = i;
-#line 177 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				meta_screen_get_monitor_geometry (_tmp70_, _tmp71_, &_tmp72_);
-#line 177 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				geometry = _tmp72_;
-#line 179 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp73_ = gala_window_clone_container_new (TRUE);
-#line 179 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				g_object_ref_sink (_tmp73_);
-#line 179 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				container = _tmp73_;
-#line 180 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp74_ = container;
-#line 180 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 180 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				gala_window_clone_container_set_padding_top (_tmp74_, GALA_WINDOW_OVERVIEW_TOP_GAP);
-#line 181 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp75_ = container;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp76_ = container;
-#line 181 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				gala_window_clone_container_set_padding_right (_tmp76_, GALA_WINDOW_OVERVIEW_BORDER);
-#line 181 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				gala_window_clone_container_set_padding_left (_tmp75_, GALA_WINDOW_OVERVIEW_BORDER);
-#line 182 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp77_ = container;
-#line 182 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				gala_window_clone_container_set_padding_bottom (_tmp77_, GALA_WINDOW_OVERVIEW_BOTTOM_GAP);
-#line 183 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp78_ = container;
-#line 183 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp79_ = geometry;
-#line 183 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp80_ = _tmp79_.x;
-#line 183 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp81_ = geometry;
-#line 183 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp82_ = _tmp81_.y;
-#line 183 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				clutter_actor_set_position ((ClutterActor*) _tmp78_, (gfloat) _tmp80_, (gfloat) _tmp82_);
-#line 184 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp83_ = container;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp84_ = geometry;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp85_ = _tmp84_.width;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp86_ = geometry;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp87_ = _tmp86_.height;
-#line 184 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 184 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				clutter_actor_set_size ((ClutterActor*) _tmp83_, (gfloat) _tmp85_, (gfloat) _tmp87_);
-#line 185 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp88_ = container;
-#line 185 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				g_signal_connect_object (_tmp88_, "window-selected", (GCallback) _gala_window_overview_thumb_selected_gala_window_clone_container_window_selected, self, 0);
-#line 187 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp89_ = container;
-#line 187 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				clutter_actor_add_child ((ClutterActor*) self, (ClutterActor*) _tmp89_);
-#line 176 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_g_object_unref0 (container);
 #line 935 "WindowOverview.c"
 			}
 		}
 	}
-#line 190 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp90_ = windows;
 #line 941 "WindowOverview.c"
 	{
 		GSList* window_collection = NULL;
 		GSList* window_it = NULL;
-#line 190 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		window_collection = _tmp90_;
-#line 190 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
 #line 949 "WindowOverview.c"
 			MetaWindow* window = NULL;
-#line 190 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			window = (MetaWindow*) window_it->data;
 #line 953 "WindowOverview.c"
 			{
@@ -962,83 +962,83 @@ static void gala_window_overview_real_open (GalaActivatableComponent* base, GHas
 				GalaWindowCloneContainer* _tmp98_ = NULL;
 				GalaWindowCloneContainer* _tmp99_ = NULL;
 				MetaWindow* _tmp100_ = NULL;
-#line 191 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp91_ = window;
-#line 191 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp92_ = meta_window_get_compositor_private (_tmp91_);
-#line 191 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				actor = G_TYPE_CHECK_INSTANCE_TYPE (_tmp92_, meta_window_actor_get_type ()) ? ((MetaWindowActor*) _tmp92_) : NULL;
-#line 192 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp93_ = actor;
-#line 192 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 192 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				if (_tmp93_ != NULL) {
 #line 976 "WindowOverview.c"
 					MetaWindowActor* _tmp94_ = NULL;
-#line 193 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp94_ = actor;
-#line 193 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					clutter_actor_hide ((ClutterActor*) _tmp94_);
 #line 982 "WindowOverview.c"
 				}
-#line 195 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp95_ = window;
-#line 195 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp96_ = meta_window_get_monitor (_tmp95_);
-#line 195 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp97_ = clutter_actor_get_child_at_index ((ClutterActor*) self, _tmp96_);
-#line 195 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 195 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				container = G_TYPE_CHECK_INSTANCE_TYPE (_tmp97_, GALA_TYPE_WINDOW_CLONE_CONTAINER) ? ((GalaWindowCloneContainer*) _tmp97_) : NULL;
-#line 196 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp98_ = container;
-#line 196 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 196 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				if (_tmp98_ == NULL) {
-#line 197 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					continue;
 #line 998 "WindowOverview.c"
 				}
-#line 199 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp99_ = container;
-#line 199 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp100_ = window;
-#line 199 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 199 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				gala_window_clone_container_add_window (_tmp99_, _tmp100_);
 #line 1006 "WindowOverview.c"
 			}
 		}
 	}
-#line 202 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp101_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 1012 "WindowOverview.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 202 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		child_collection = _tmp101_;
-#line 202 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 1020 "WindowOverview.c"
 			ClutterActor* child = NULL;
-#line 202 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			child = (ClutterActor*) child_it->data;
 #line 1024 "WindowOverview.c"
 			{
 				ClutterActor* _tmp102_ = NULL;
-#line 203 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp102_ = child;
-#line 203 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 203 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				gala_window_clone_container_open (G_TYPE_CHECK_INSTANCE_CAST (_tmp102_, GALA_TYPE_WINDOW_CLONE_CONTAINER, GalaWindowCloneContainer), NULL);
 #line 1031 "WindowOverview.c"
 			}
 		}
-#line 202 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 202 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_g_list_free0 (child_collection);
 #line 1036 "WindowOverview.c"
 	}
-#line 205 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->ready = TRUE;
-#line 107 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_slist_free0 (windows);
-#line 107 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	__g_slist_free__g_object_unref0_0 (used_windows);
 #line 1044 "WindowOverview.c"
 }
@@ -1052,39 +1052,39 @@ static gboolean gala_window_overview_keybinding_filter (GalaWindowOverview* self
 	gchar* _tmp2_ = NULL;
 	gboolean _tmp3_ = FALSE;
 	const gchar* _tmp4_ = NULL;
-#line 208 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 208 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 208 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_val_if_fail (binding != NULL, FALSE);
-#line 210 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = binding;
-#line 210 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = meta_key_binding_get_name (_tmp0_);
-#line 210 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = g_strdup (_tmp1_);
-#line 210 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 210 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	name = _tmp2_;
-#line 211 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp4_ = name;
-#line 211 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (g_strcmp0 (_tmp4_, "expose-windows") != 0) {
 #line 1072 "WindowOverview.c"
 		const gchar* _tmp5_ = NULL;
-#line 211 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp5_ = name;
-#line 211 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp3_ = g_strcmp0 (_tmp5_, "expose-all-windows") != 0;
 #line 1078 "WindowOverview.c"
 	} else {
-#line 211 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp3_ = FALSE;
 #line 1082 "WindowOverview.c"
 	}
-#line 211 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	result = _tmp3_;
-#line 211 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_free0 (name);
-#line 211 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 211 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 1090 "WindowOverview.c"
 }
@@ -1092,38 +1092,38 @@ static gboolean gala_window_overview_keybinding_filter (GalaWindowOverview* self
 
 static void gala_window_overview_restack_windows (GalaWindowOverview* self, MetaScreen* screen) {
 	GList* _tmp0_ = NULL;
-#line 214 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (self != NULL);
-#line 214 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 214 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (screen != NULL);
-#line 216 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 1102 "WindowOverview.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 216 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		child_collection = _tmp0_;
-#line 216 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 1110 "WindowOverview.c"
 			ClutterActor* child = NULL;
-#line 216 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			child = (ClutterActor*) child_it->data;
 #line 1114 "WindowOverview.c"
 			{
 				ClutterActor* _tmp1_ = NULL;
 				MetaScreen* _tmp2_ = NULL;
-#line 217 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 217 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp1_ = child;
-#line 217 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 217 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp2_ = screen;
-#line 217 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 217 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				gala_window_clone_container_restack_windows (G_TYPE_CHECK_INSTANCE_CAST (_tmp1_, GALA_TYPE_WINDOW_CLONE_CONTAINER, GalaWindowCloneContainer), _tmp2_);
 #line 1124 "WindowOverview.c"
 			}
 		}
-#line 216 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 216 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_g_list_free0 (child_collection);
 #line 1129 "WindowOverview.c"
 	}
@@ -1136,70 +1136,70 @@ static void gala_window_overview_window_left_monitor (GalaWindowOverview* self, 
 	ClutterActor* _tmp1_ = NULL;
 	GalaWindowCloneContainer* _tmp2_ = NULL;
 	GList* _tmp3_ = NULL;
-#line 220 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (self != NULL);
-#line 220 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (window != NULL);
-#line 222 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = num;
-#line 222 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = clutter_actor_get_child_at_index ((ClutterActor*) self, _tmp0_);
-#line 222 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	container = G_TYPE_CHECK_INSTANCE_TYPE (_tmp1_, GALA_TYPE_WINDOW_CLONE_CONTAINER) ? ((GalaWindowCloneContainer*) _tmp1_) : NULL;
-#line 223 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = container;
-#line 223 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 223 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp2_ == NULL) {
-#line 224 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 224 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return;
 #line 1156 "WindowOverview.c"
 	}
-#line 227 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp3_ = self->priv->workspaces;
 #line 1160 "WindowOverview.c"
 	{
 		GList* workspace_collection = NULL;
 		GList* workspace_it = NULL;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		workspace_collection = _tmp3_;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (workspace_it = workspace_collection; workspace_it != NULL; workspace_it = workspace_it->next) {
 #line 1168 "WindowOverview.c"
 			MetaWorkspace* _tmp4_ = NULL;
 			MetaWorkspace* workspace = NULL;
-#line 227 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp4_ = _g_object_ref0 ((MetaWorkspace*) workspace_it->data);
-#line 227 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			workspace = _tmp4_;
 #line 1175 "WindowOverview.c"
 			{
 				MetaWindow* _tmp5_ = NULL;
 				MetaWorkspace* _tmp6_ = NULL;
 				gboolean _tmp7_ = FALSE;
-#line 228 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp5_ = window;
-#line 228 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp6_ = workspace;
-#line 228 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp7_ = meta_window_located_on_workspace (_tmp5_, _tmp6_);
-#line 228 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 228 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				if (_tmp7_) {
 #line 1188 "WindowOverview.c"
 					GalaWindowCloneContainer* _tmp8_ = NULL;
 					MetaWindow* _tmp9_ = NULL;
-#line 229 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp8_ = container;
-#line 229 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp9_ = window;
-#line 229 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					gala_window_clone_container_remove_window (_tmp8_, _tmp9_);
-#line 230 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_g_object_unref0 (workspace);
-#line 230 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 230 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					break;
 #line 1201 "WindowOverview.c"
 				}
-#line 227 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_g_object_unref0 (workspace);
 #line 1205 "WindowOverview.c"
 			}
@@ -1218,17 +1218,17 @@ static void gala_window_overview_add_window (GalaWindowOverview* self, MetaWindo
 	ClutterActor* _tmp12_ = NULL;
 	GalaWindowCloneContainer* _tmp13_ = NULL;
 	GList* _tmp14_ = NULL;
-#line 234 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (self != NULL);
-#line 234 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 234 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (window != NULL);
-#line 236 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_get ((ClutterActor*) self, "visible", &_tmp1_, NULL);
-#line 236 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = _tmp1_;
-#line 236 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (!_tmp2_) {
-#line 236 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp0_ = TRUE;
 #line 1234 "WindowOverview.c"
 	} else {
@@ -1236,104 +1236,104 @@ static void gala_window_overview_add_window (GalaWindowOverview* self, MetaWindo
 		MetaWindow* _tmp4_ = NULL;
 		MetaWindowType _tmp5_ = 0;
 		MetaWindowType _tmp6_ = 0;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp4_ = window;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp5_ = meta_window_get_window_type (_tmp4_);
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp6_ = _tmp5_;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		if (_tmp6_ != META_WINDOW_NORMAL) {
 #line 1248 "WindowOverview.c"
 			MetaWindow* _tmp7_ = NULL;
 			MetaWindowType _tmp8_ = 0;
 			MetaWindowType _tmp9_ = 0;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp7_ = window;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp8_ = meta_window_get_window_type (_tmp7_);
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp9_ = _tmp8_;
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp3_ = _tmp9_ != META_WINDOW_DIALOG;
 #line 1260 "WindowOverview.c"
 		} else {
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp3_ = FALSE;
 #line 1264 "WindowOverview.c"
 		}
-#line 237 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp0_ = _tmp3_;
 #line 1268 "WindowOverview.c"
 	}
-#line 236 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 236 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp0_) {
-#line 238 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 238 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return;
 #line 1274 "WindowOverview.c"
 	}
-#line 240 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp10_ = window;
-#line 240 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp11_ = meta_window_get_monitor (_tmp10_);
-#line 240 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp12_ = clutter_actor_get_child_at_index ((ClutterActor*) self, _tmp11_);
-#line 240 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	container = G_TYPE_CHECK_INSTANCE_TYPE (_tmp12_, GALA_TYPE_WINDOW_CLONE_CONTAINER) ? ((GalaWindowCloneContainer*) _tmp12_) : NULL;
-#line 241 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 241 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp13_ = container;
-#line 241 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 241 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp13_ == NULL) {
-#line 242 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return;
 #line 1290 "WindowOverview.c"
 	}
-#line 245 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp14_ = self->priv->workspaces;
 #line 1294 "WindowOverview.c"
 	{
 		GList* workspace_collection = NULL;
 		GList* workspace_it = NULL;
-#line 245 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		workspace_collection = _tmp14_;
-#line 245 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (workspace_it = workspace_collection; workspace_it != NULL; workspace_it = workspace_it->next) {
 #line 1302 "WindowOverview.c"
 			MetaWorkspace* _tmp15_ = NULL;
 			MetaWorkspace* workspace = NULL;
-#line 245 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp15_ = _g_object_ref0 ((MetaWorkspace*) workspace_it->data);
-#line 245 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			workspace = _tmp15_;
 #line 1309 "WindowOverview.c"
 			{
 				MetaWindow* _tmp16_ = NULL;
 				MetaWorkspace* _tmp17_ = NULL;
 				gboolean _tmp18_ = FALSE;
-#line 246 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp16_ = window;
-#line 246 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp17_ = workspace;
-#line 246 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp18_ = meta_window_located_on_workspace (_tmp16_, _tmp17_);
-#line 246 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 246 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				if (_tmp18_) {
 #line 1322 "WindowOverview.c"
 					GalaWindowCloneContainer* _tmp19_ = NULL;
 					MetaWindow* _tmp20_ = NULL;
-#line 247 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp19_ = container;
-#line 247 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp20_ = window;
-#line 247 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					gala_window_clone_container_add_window (_tmp19_, _tmp20_);
-#line 248 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_g_object_unref0 (workspace);
-#line 248 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 248 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					break;
 #line 1335 "WindowOverview.c"
 				}
-#line 245 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 245 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_g_object_unref0 (workspace);
 #line 1339 "WindowOverview.c"
 			}
@@ -1350,40 +1350,40 @@ static void gala_window_overview_remove_window (GalaWindowOverview* self, MetaWi
 	GalaWindowCloneContainer* _tmp3_ = NULL;
 	GalaWindowCloneContainer* _tmp4_ = NULL;
 	MetaWindow* _tmp5_ = NULL;
-#line 252 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (self != NULL);
-#line 252 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 252 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (window != NULL);
-#line 254 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = window;
-#line 254 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = meta_window_get_monitor (_tmp0_);
-#line 254 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = clutter_actor_get_child_at_index ((ClutterActor*) self, _tmp1_);
-#line 254 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 254 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	container = G_TYPE_CHECK_INSTANCE_TYPE (_tmp2_, GALA_TYPE_WINDOW_CLONE_CONTAINER) ? ((GalaWindowCloneContainer*) _tmp2_) : NULL;
-#line 255 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp3_ = container;
-#line 255 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 255 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp3_ == NULL) {
-#line 256 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 256 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return;
 #line 1372 "WindowOverview.c"
 	}
-#line 258 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp4_ = container;
-#line 258 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp5_ = window;
-#line 258 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_clone_container_remove_window (_tmp4_, _tmp5_);
 #line 1380 "WindowOverview.c"
 }
 
 
 static Block39Data* block39_data_ref (Block39Data* _data39_) {
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_atomic_int_inc (&_data39_->_ref_count_);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return _data39_;
 #line 1389 "WindowOverview.c"
 }
@@ -1392,24 +1392,24 @@ static Block39Data* block39_data_ref (Block39Data* _data39_) {
 static void block39_data_unref (void * _userdata_) {
 	Block39Data* _data39_;
 	_data39_ = (Block39Data*) _userdata_;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (g_atomic_int_dec_and_test (&_data39_->_ref_count_)) {
 #line 1398 "WindowOverview.c"
 		GalaWindowOverview* self;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		self = _data39_->self;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_g_object_unref0 (_data39_->window);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_g_object_unref0 (self);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		g_slice_free (Block39Data, _data39_);
 #line 1408 "WindowOverview.c"
 	}
 }
 
 
-static gboolean ___lambda87_ (Block39Data* _data39_) {
+static gboolean ___lambda105_ (Block39Data* _data39_) {
 	GalaWindowOverview* self;
 	gboolean result = FALSE;
 	MetaWindow* _tmp0_ = NULL;
@@ -1418,34 +1418,34 @@ static gboolean ___lambda87_ (Block39Data* _data39_) {
 	MetaScreen* _tmp3_ = NULL;
 	MetaDisplay* _tmp4_ = NULL;
 	guint32 _tmp5_ = 0U;
-#line 269 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = _data39_->self;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = _data39_->window;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = meta_window_get_workspace (_tmp0_);
-#line 270 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = _data39_->window;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp3_ = self->priv->screen;
-#line 270 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp4_ = meta_screen_get_display (_tmp3_);
-#line 270 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp5_ = meta_display_get_current_time (_tmp4_);
-#line 270 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	meta_workspace_activate_with_focus (_tmp1_, _tmp2_, _tmp5_);
-#line 271 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	result = FALSE;
-#line 271 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 271 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 1442 "WindowOverview.c"
 }
 
 
-static gboolean ____lambda87__gsource_func (gpointer self) {
+static gboolean ____lambda105__gsource_func (gpointer self) {
 	gboolean result;
-	result = ___lambda87_ (self);
-#line 269 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+	result = ___lambda105_ (self);
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 1451 "WindowOverview.c"
 }
@@ -1459,62 +1459,62 @@ static void gala_window_overview_thumb_selected (GalaWindowOverview* self, MetaW
 	MetaWorkspace* _tmp3_ = NULL;
 	MetaScreen* _tmp4_ = NULL;
 	MetaWorkspace* _tmp5_ = NULL;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (self != NULL);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (window != NULL);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_data39_ = g_slice_new0 (Block39Data);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_data39_->_ref_count_ = 1;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_data39_->self = g_object_ref (self);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = window;
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_object_unref0 (_data39_->window);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_data39_->window = _tmp1_;
-#line 263 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = _data39_->window;
-#line 263 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp3_ = meta_window_get_workspace (_tmp2_);
-#line 263 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp4_ = self->priv->screen;
-#line 263 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp5_ = meta_screen_get_active_workspace (_tmp4_);
-#line 263 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 263 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp3_ == _tmp5_) {
 #line 1491 "WindowOverview.c"
 		MetaWindow* _tmp6_ = NULL;
 		MetaScreen* _tmp7_ = NULL;
 		MetaDisplay* _tmp8_ = NULL;
 		guint32 _tmp9_ = 0U;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp6_ = _data39_->window;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp7_ = self->priv->screen;
-#line 264 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp8_ = meta_screen_get_display (_tmp7_);
-#line 264 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp9_ = meta_display_get_current_time (_tmp8_);
-#line 264 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 264 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		meta_window_activate (_tmp6_, _tmp9_);
-#line 265 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 265 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		gala_activatable_component_close ((GalaActivatableComponent*) self);
 #line 1508 "WindowOverview.c"
 	} else {
-#line 267 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		gala_activatable_component_close ((GalaActivatableComponent*) self);
-#line 269 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
-		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 400, ____lambda87__gsource_func, block39_data_ref (_data39_), block39_data_unref);
+#line 269 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
+		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 400, ____lambda105__gsource_func, block39_data_ref (_data39_), block39_data_unref);
 #line 1514 "WindowOverview.c"
 	}
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	block39_data_unref (_data39_);
-#line 261 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_data39_ = NULL;
 #line 1520 "WindowOverview.c"
 }
@@ -1523,22 +1523,22 @@ static void gala_window_overview_thumb_selected (GalaWindowOverview* self, MetaW
 /**
  * {@inheritDoc}
  */
-static gboolean __lambda86_ (GalaWindowOverview* self) {
+static gboolean __lambda104_ (GalaWindowOverview* self) {
 	gboolean result = FALSE;
-#line 299 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 299 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_overview_cleanup (self);
-#line 301 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 301 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	result = FALSE;
-#line 301 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 301 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 1535 "WindowOverview.c"
 }
 
 
-static gboolean ___lambda86__gsource_func (gpointer self) {
+static gboolean ___lambda104__gsource_func (gpointer self) {
 	gboolean result;
-	result = __lambda86_ ((GalaWindowOverview*) self);
-#line 298 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+	result = __lambda104_ ((GalaWindowOverview*) self);
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 1544 "WindowOverview.c"
 }
@@ -1555,47 +1555,47 @@ static void gala_window_overview_real_close (GalaActivatableComponent* base) {
 	GalaWindowManager* _tmp12_ = NULL;
 	GalaModalProxy* _tmp13_ = NULL;
 	GList* _tmp14_ = NULL;
-#line 279 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 279 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = (GalaWindowOverview*) base;
-#line 281 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_get ((ClutterActor*) self, "visible", &_tmp1_, NULL);
-#line 281 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = _tmp1_;
-#line 281 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (!_tmp2_) {
-#line 281 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp0_ = TRUE;
 #line 1569 "WindowOverview.c"
 	} else {
 		gboolean _tmp3_ = FALSE;
-#line 281 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp3_ = self->priv->ready;
-#line 281 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_tmp0_ = !_tmp3_;
 #line 1576 "WindowOverview.c"
 	}
-#line 281 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 281 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	if (_tmp0_) {
-#line 282 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 282 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		return;
 #line 1582 "WindowOverview.c"
 	}
-#line 284 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp4_ = self->priv->workspaces;
 #line 1586 "WindowOverview.c"
 	{
 		GList* workspace_collection = NULL;
 		GList* workspace_it = NULL;
-#line 284 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		workspace_collection = _tmp4_;
-#line 284 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (workspace_it = workspace_collection; workspace_it != NULL; workspace_it = workspace_it->next) {
 #line 1594 "WindowOverview.c"
 			MetaWorkspace* _tmp5_ = NULL;
 			MetaWorkspace* workspace = NULL;
-#line 284 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			_tmp5_ = _g_object_ref0 ((MetaWorkspace*) workspace_it->data);
-#line 284 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			workspace = _tmp5_;
 #line 1601 "WindowOverview.c"
 			{
@@ -1603,68 +1603,68 @@ static void gala_window_overview_real_close (GalaActivatableComponent* base) {
 				guint _tmp7_ = 0U;
 				MetaWorkspace* _tmp8_ = NULL;
 				guint _tmp9_ = 0U;
-#line 285 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp6_ = workspace;
-#line 285 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				g_signal_parse_name ("window-added", meta_workspace_get_type (), &_tmp7_, NULL, FALSE);
-#line 285 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 285 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				g_signal_handlers_disconnect_matched (_tmp6_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp7_, 0, NULL, (GCallback) _gala_window_overview_add_window_meta_workspace_window_added, self);
-#line 286 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 286 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp8_ = workspace;
-#line 286 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 286 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				g_signal_parse_name ("window-removed", meta_workspace_get_type (), &_tmp9_, NULL, FALSE);
-#line 286 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 286 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				g_signal_handlers_disconnect_matched (_tmp8_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp9_, 0, NULL, (GCallback) _gala_window_overview_remove_window_meta_workspace_window_removed, self);
-#line 284 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 284 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_g_object_unref0 (workspace);
 #line 1621 "WindowOverview.c"
 			}
 		}
 	}
-#line 288 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp10_ = self->priv->screen;
-#line 288 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_signal_parse_name ("window-left-monitor", meta_screen_get_type (), &_tmp11_, NULL, FALSE);
-#line 288 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 288 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_signal_handlers_disconnect_matched (_tmp10_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp11_, 0, NULL, (GCallback) _gala_window_overview_window_left_monitor_meta_screen_window_left_monitor, self);
-#line 290 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 290 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->ready = FALSE;
-#line 292 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp12_ = self->priv->_wm;
-#line 292 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp13_ = self->priv->modal_proxy;
-#line 292 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 292 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_manager_pop_modal (_tmp12_, _tmp13_);
-#line 294 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp14_ = clutter_actor_get_children ((ClutterActor*) self);
 #line 1641 "WindowOverview.c"
 	{
 		GList* child_collection = NULL;
 		GList* child_it = NULL;
-#line 294 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		child_collection = _tmp14_;
-#line 294 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (child_it = child_collection; child_it != NULL; child_it = child_it->next) {
 #line 1649 "WindowOverview.c"
 			ClutterActor* child = NULL;
-#line 294 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			child = (ClutterActor*) child_it->data;
 #line 1653 "WindowOverview.c"
 			{
 				ClutterActor* _tmp15_ = NULL;
-#line 295 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp15_ = child;
-#line 295 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 295 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				gala_window_clone_container_close (G_TYPE_CHECK_INSTANCE_CAST (_tmp15_, GALA_TYPE_WINDOW_CLONE_CONTAINER, GalaWindowCloneContainer));
 #line 1660 "WindowOverview.c"
 			}
 		}
-#line 294 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 294 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_g_list_free0 (child_collection);
 #line 1665 "WindowOverview.c"
 	}
-#line 298 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
-	clutter_threads_add_timeout ((guint) 300, ___lambda86__gsource_func, self);
+#line 298 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
+	clutter_threads_add_timeout ((guint) 300, ___lambda104__gsource_func, self);
 #line 1669 "WindowOverview.c"
 }
 
@@ -1673,58 +1673,58 @@ static void gala_window_overview_cleanup (GalaWindowOverview* self) {
 	MetaScreen* _tmp0_ = NULL;
 	MetaWorkspace* _tmp1_ = NULL;
 	GList* _tmp2_ = NULL;
-#line 305 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (self != NULL);
-#line 307 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->ready = TRUE;
-#line 308 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 308 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_set ((ClutterActor*) self, "visible", FALSE, NULL);
-#line 310 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = self->priv->screen;
-#line 310 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = meta_screen_get_active_workspace (_tmp0_);
-#line 310 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = meta_workspace_list_windows (_tmp1_);
 #line 1689 "WindowOverview.c"
 	{
 		GList* window_collection = NULL;
 		GList* window_it = NULL;
-#line 310 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		window_collection = _tmp2_;
-#line 310 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
 #line 1697 "WindowOverview.c"
 			MetaWindow* window = NULL;
-#line 310 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 			window = (MetaWindow*) window_it->data;
 #line 1701 "WindowOverview.c"
 			{
 				MetaWindow* _tmp3_ = NULL;
 				gboolean _tmp4_ = FALSE;
-#line 311 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 311 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp3_ = window;
-#line 311 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 311 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				_tmp4_ = meta_window_showing_on_its_workspace (_tmp3_);
-#line 311 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 311 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 				if (_tmp4_) {
 #line 1711 "WindowOverview.c"
 					MetaWindow* _tmp5_ = NULL;
 					GObject* _tmp6_ = NULL;
-#line 312 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp5_ = window;
-#line 312 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					_tmp6_ = meta_window_get_compositor_private (_tmp5_);
-#line 312 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 					clutter_actor_show (G_TYPE_CHECK_INSTANCE_CAST (_tmp6_, clutter_actor_get_type (), ClutterActor));
 #line 1720 "WindowOverview.c"
 				}
 			}
 		}
-#line 310 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 310 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		_g_list_free0 (window_collection);
 #line 1726 "WindowOverview.c"
 	}
-#line 314 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	clutter_actor_destroy_all_children ((ClutterActor*) self);
 #line 1730 "WindowOverview.c"
 }
@@ -1733,13 +1733,13 @@ static void gala_window_overview_cleanup (GalaWindowOverview* self) {
 GalaWindowManager* gala_window_overview_get_wm (GalaWindowOverview* self) {
 	GalaWindowManager* result;
 	GalaWindowManager* _tmp0_ = NULL;
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = self->priv->_wm;
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	result = _tmp0_;
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return result;
 #line 1745 "WindowOverview.c"
 }
@@ -1748,24 +1748,24 @@ GalaWindowManager* gala_window_overview_get_wm (GalaWindowOverview* self) {
 static void gala_window_overview_set_wm (GalaWindowOverview* self, GalaWindowManager* value) {
 	GalaWindowManager* _tmp0_ = NULL;
 	GalaWindowManager* _tmp1_ = NULL;
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_return_if_fail (self != NULL);
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = value;
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_object_unref0 (self->priv->_wm);
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->_wm = _tmp1_;
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_notify ((GObject *) self, "wm");
 #line 1764 "WindowOverview.c"
 }
 
 
 static void _gala_activatable_component_close_meta_screen_workspace_switched (MetaScreen* _sender, gint object, gint p0, MetaMotionDirection p1, gpointer self) {
-#line 57 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_activatable_component_close ((GalaActivatableComponent*) self);
 #line 1771 "WindowOverview.c"
 }
@@ -1780,82 +1780,82 @@ static GObject * gala_window_overview_constructor (GType type, guint n_construct
 	MetaScreen* _tmp2_ = NULL;
 	MetaScreen* _tmp3_ = NULL;
 	MetaScreen* _tmp4_ = NULL;
-#line 53 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	parent_class = G_OBJECT_CLASS (gala_window_overview_parent_class);
-#line 53 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 53 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_OVERVIEW, GalaWindowOverview);
-#line 55 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = self->priv->_wm;
-#line 55 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) _tmp0_);
-#line 55 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 55 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_object_unref0 (self->priv->screen);
-#line 55 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->screen = _tmp2_;
-#line 57 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp3_ = self->priv->screen;
-#line 57 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 57 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_signal_connect_object (_tmp3_, "workspace-switched", (GCallback) _gala_activatable_component_close_meta_screen_workspace_switched, (GalaActivatableComponent*) self, 0);
-#line 58 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp4_ = self->priv->screen;
-#line 58 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_signal_connect_object (_tmp4_, "restacked", (GCallback) _gala_window_overview_restack_windows_meta_screen_restacked, self, 0);
-#line 60 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_set ((ClutterActor*) self, "visible", FALSE, NULL);
-#line 61 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 61 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv->ready = TRUE;
-#line 62 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 62 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	clutter_actor_set_reactive ((ClutterActor*) self, TRUE);
-#line 53 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	return obj;
 #line 1816 "WindowOverview.c"
 }
 
 
 static void gala_window_overview_class_init (GalaWindowOverviewClass * klass) {
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_overview_parent_class = g_type_class_peek_parent (klass);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_type_class_add_private (klass, sizeof (GalaWindowOverviewPrivate));
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	((ClutterActorClass *) klass)->key_press_event = gala_window_overview_real_key_press_event;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	((ClutterActorClass *) klass)->key_focus_out = gala_window_overview_real_key_focus_out;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	((ClutterActorClass *) klass)->button_press_event = gala_window_overview_real_button_press_event;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_window_overview_get_property;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_window_overview_set_property;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_window_overview_constructor;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_window_overview_finalize;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_OVERVIEW_WM, g_param_spec_object ("wm", "wm", "wm", GALA_TYPE_WINDOW_MANAGER, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 #line 1841 "WindowOverview.c"
 }
 
 
 static void gala_window_overview_gala_activatable_component_interface_init (GalaActivatableComponentIface * iface) {
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	gala_window_overview_gala_activatable_component_parent_iface = g_type_interface_peek_parent (iface);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	iface->is_opened = (gboolean (*)(GalaActivatableComponent*)) gala_window_overview_real_is_opened;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	iface->open = (void (*)(GalaActivatableComponent*, GHashTable*)) gala_window_overview_real_open;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	iface->close = (void (*)(GalaActivatableComponent*)) gala_window_overview_real_close;
 #line 1854 "WindowOverview.c"
 }
 
 
 static void gala_window_overview_instance_init (GalaWindowOverview * self) {
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self->priv = GALA_WINDOW_OVERVIEW_GET_PRIVATE (self);
 #line 1861 "WindowOverview.c"
 }
@@ -1865,23 +1865,23 @@ static void gala_window_overview_finalize (GObject* obj) {
 	GalaWindowOverview * self;
 	MetaScreen* _tmp0_ = NULL;
 	guint _tmp1_ = 0U;
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_OVERVIEW, GalaWindowOverview);
-#line 67 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_tmp0_ = self->priv->screen;
-#line 67 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_signal_parse_name ("restacked", meta_screen_get_type (), &_tmp1_, NULL, FALSE);
-#line 67 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 67 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	g_signal_handlers_disconnect_matched (_tmp0_, G_SIGNAL_MATCH_ID | G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA, _tmp1_, 0, NULL, (GCallback) _gala_window_overview_restack_windows_meta_screen_restacked, self);
-#line 38 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_object_unref0 (self->priv->_wm);
-#line 40 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_object_unref0 (self->priv->screen);
-#line 42 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	_g_object_unref0 (self->priv->modal_proxy);
-#line 46 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 46 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->workspaces);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	G_OBJECT_CLASS (gala_window_overview_parent_class)->finalize (obj);
 #line 1887 "WindowOverview.c"
 }
@@ -1904,19 +1904,19 @@ GType gala_window_overview_get_type (void) {
 static void _vala_gala_window_overview_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaWindowOverview * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_OVERVIEW, GalaWindowOverview);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	switch (property_id) {
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		case GALA_WINDOW_OVERVIEW_WM:
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		g_value_set_object (value, gala_window_overview_get_wm (self));
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		break;
 #line 1916 "WindowOverview.c"
 		default:
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		break;
 #line 1922 "WindowOverview.c"
 	}
@@ -1926,19 +1926,19 @@ static void _vala_gala_window_overview_get_property (GObject * object, guint pro
 static void _vala_gala_window_overview_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaWindowOverview * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_OVERVIEW, GalaWindowOverview);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 	switch (property_id) {
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		case GALA_WINDOW_OVERVIEW_WM:
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		gala_window_overview_set_wm (self, g_value_get_object (value));
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		break;
 #line 1938 "WindowOverview.c"
 		default:
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 32 "/home/nick/work/gala/src/Widgets/WindowOverview.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Widgets/WindowOverview.vala"
 		break;
 #line 1944 "WindowOverview.c"
 	}

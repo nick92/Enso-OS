@@ -53,11 +53,11 @@ const GOptionEntry GALA_OPTIONS[2] = {{"version", (gchar) 0, (gint) G_OPTION_FLA
 
 void gala_print_version (void) {
 	FILE* _tmp0_ = NULL;
-#line 26 "/home/nick/work/gala/src/Main.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_tmp0_ = stdout;
-#line 26 "/home/nick/work/gala/src/Main.vala"
+#line 26 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	fprintf (_tmp0_, "Gala %s\n", VERSION);
-#line 27 "/home/nick/work/gala/src/Main.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	meta_exit (META_EXIT_SUCCESS);
 #line 63 "Main.c"
 }
@@ -74,17 +74,17 @@ gint gala_main (gchar** args, int args_length1) {
 	GTypeClass* _tmp8_ = NULL;
 	gint _tmp9_ = 0;
 	GError * _inner_error_ = NULL;
-#line 32 "/home/nick/work/gala/src/Main.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_tmp0_ = meta_get_option_context ();
-#line 32 "/home/nick/work/gala/src/Main.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	ctx = _tmp0_;
-#line 33 "/home/nick/work/gala/src/Main.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	g_option_context_add_main_entries (ctx, GALA_OPTIONS, NULL);
 #line 84 "Main.c"
 	{
-#line 35 "/home/nick/work/gala/src/Main.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		g_option_context_parse (ctx, &args_length1, &args, &_inner_error_);
-#line 35 "/home/nick/work/gala/src/Main.vala"
+#line 35 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 90 "Main.c"
 			goto __catch2_g_error;
@@ -97,70 +97,70 @@ gint gala_main (gchar** args, int args_length1) {
 		FILE* _tmp1_ = NULL;
 		GError* _tmp2_ = NULL;
 		const gchar* _tmp3_ = NULL;
-#line 34 "/home/nick/work/gala/src/Main.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		e = _inner_error_;
-#line 34 "/home/nick/work/gala/src/Main.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		_inner_error_ = NULL;
-#line 37 "/home/nick/work/gala/src/Main.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		_tmp1_ = stderr;
-#line 37 "/home/nick/work/gala/src/Main.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		_tmp2_ = e;
-#line 37 "/home/nick/work/gala/src/Main.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		_tmp3_ = _tmp2_->message;
-#line 37 "/home/nick/work/gala/src/Main.vala"
+#line 37 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		fprintf (_tmp1_, "Error initializing: %s\n", _tmp3_);
-#line 38 "/home/nick/work/gala/src/Main.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		meta_exit (META_EXIT_ERROR);
-#line 34 "/home/nick/work/gala/src/Main.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		_g_error_free0 (e);
 #line 117 "Main.c"
 	}
 	__finally2:
-#line 34 "/home/nick/work/gala/src/Main.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 34 "/home/nick/work/gala/src/Main.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 34 "/home/nick/work/gala/src/Main.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		g_clear_error (&_inner_error_);
-#line 34 "/home/nick/work/gala/src/Main.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 		return 0;
 #line 128 "Main.c"
 	}
-#line 41 "/home/nick/work/gala/src/Main.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_tmp4_ = gala_window_manager_gala_new ();
-#line 41 "/home/nick/work/gala/src/Main.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_tmp5_ = _tmp4_;
-#line 41 "/home/nick/work/gala/src/Main.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_tmp6_ = G_TYPE_FROM_INSTANCE ((GObject*) _tmp5_);
-#line 41 "/home/nick/work/gala/src/Main.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	meta_plugin_manager_set_plugin_type (_tmp6_);
-#line 41 "/home/nick/work/gala/src/Main.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_g_object_unref0 (_tmp5_);
-#line 43 "/home/nick/work/gala/src/Main.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	meta_set_wm_name ("Mutter(Gala)");
-#line 49 "/home/nick/work/gala/src/Main.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	g_setenv ("NO_GAIL", "1", TRUE);
-#line 50 "/home/nick/work/gala/src/Main.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	g_setenv ("NO_AT_BRIDGE", "1", TRUE);
-#line 51 "/home/nick/work/gala/src/Main.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	meta_init ();
-#line 52 "/home/nick/work/gala/src/Main.vala"
+#line 52 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	g_unsetenv ("NO_GAIL");
-#line 53 "/home/nick/work/gala/src/Main.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	g_unsetenv ("NO_AT_BRIDGE");
-#line 56 "/home/nick/work/gala/src/Main.vala"
+#line 56 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	plank_paths_initialize ("plank", DATADIR "/plank");
-#line 63 "/home/nick/work/gala/src/Main.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_tmp7_ = g_type_class_ref (GALA_TYPE_UTILS);
-#line 63 "/home/nick/work/gala/src/Main.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_tmp8_ = _tmp7_;
-#line 63 "/home/nick/work/gala/src/Main.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_g_type_class_unref0 (_tmp8_);
-#line 65 "/home/nick/work/gala/src/Main.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	_tmp9_ = meta_run ();
-#line 65 "/home/nick/work/gala/src/Main.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	result = _tmp9_;
-#line 65 "/home/nick/work/gala/src/Main.vala"
+#line 65 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	return result;
 #line 166 "Main.c"
 }
@@ -170,7 +170,7 @@ int main (int argc, char ** argv) {
 #if !GLIB_CHECK_VERSION (2,35,0)
 	g_type_init ();
 #endif
-#line 30 "/home/nick/work/gala/src/Main.vala"
+#line 30 "/home/nick/work/Enso-OS/galal/src/Main.vala"
 	return gala_main (argv, argc);
 #line 176 "Main.c"
 }

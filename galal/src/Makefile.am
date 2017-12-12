@@ -1,3 +1,4 @@
+
 include $(top_srcdir)/Makefile.common
 
 VAPIDIR = $(top_srcdir)/vapi
@@ -69,6 +70,7 @@ gala_VALASOURCES = \
 	Widgets/WindowSwitcher.vala \
 	Widgets/WorkspaceClone.vala \
 	Widgets/WorkspaceInsertThumb.vala \
+	Deepin/DeepinBlurEffect.vala \
 	$(NULL)
 
 nodist_gala_SOURCES = \

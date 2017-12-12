@@ -23,9 +23,9 @@
 #include <meta/meta-background-group.h>
 #include <meta/screen.h>
 #include <meta/meta-background-actor.h>
+#include <clutter/clutter.h>
 #include <stdlib.h>
 #include <string.h>
-#include <clutter/clutter.h>
 #include <float.h>
 #include <math.h>
 #include <meta/meta-background.h>
@@ -52,6 +52,16 @@ typedef struct _GalaBackgroundManagerPrivate GalaBackgroundManagerPrivate;
 
 typedef struct _GalaBackgroundSource GalaBackgroundSource;
 typedef struct _GalaBackgroundSourceClass GalaBackgroundSourceClass;
+
+#define GALA_TYPE_DEEPIN_BLUR_EFFECT (gala_deepin_blur_effect_get_type ())
+#define GALA_DEEPIN_BLUR_EFFECT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GALA_TYPE_DEEPIN_BLUR_EFFECT, GalaDeepinBlurEffect))
+#define GALA_DEEPIN_BLUR_EFFECT_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GALA_TYPE_DEEPIN_BLUR_EFFECT, GalaDeepinBlurEffectClass))
+#define GALA_IS_DEEPIN_BLUR_EFFECT(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GALA_TYPE_DEEPIN_BLUR_EFFECT))
+#define GALA_IS_DEEPIN_BLUR_EFFECT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GALA_TYPE_DEEPIN_BLUR_EFFECT))
+#define GALA_DEEPIN_BLUR_EFFECT_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GALA_TYPE_DEEPIN_BLUR_EFFECT, GalaDeepinBlurEffectClass))
+
+typedef struct _GalaDeepinBlurEffect GalaDeepinBlurEffect;
+typedef struct _GalaDeepinBlurEffectClass GalaDeepinBlurEffectClass;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 
 #define GALA_TYPE_BACKGROUND_CACHE (gala_background_cache_get_type ())
@@ -93,6 +103,7 @@ struct _GalaBackgroundManagerPrivate {
 	GalaBackgroundSource* background_source;
 	MetaBackgroundActor* background_actor;
 	MetaBackgroundActor* new_background_actor;
+	GalaDeepinBlurEffect* blur_actor;
 };
 
 struct _Block31Data {
@@ -120,6 +131,7 @@ static gpointer gala_background_manager_parent_class = NULL;
 
 GType gala_background_manager_get_type (void) G_GNUC_CONST;
 GType gala_background_source_get_type (void) G_GNUC_CONST;
+GType gala_deepin_blur_effect_get_type (void) G_GNUC_CONST;
 #define GALA_BACKGROUND_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GALA_TYPE_BACKGROUND_MANAGER, GalaBackgroundManagerPrivate))
 enum  {
 	GALA_BACKGROUND_MANAGER_DUMMY_PROPERTY,
@@ -175,26 +187,26 @@ GalaBackgroundManager* gala_background_manager_construct (GType object_type, Met
 	MetaScreen* _tmp0_ = NULL;
 	gint _tmp1_ = 0;
 	gboolean _tmp2_ = FALSE;
-#line 35 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_val_if_fail (screen != NULL, NULL);
-#line 37 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = screen;
-#line 37 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = monitor_index;
-#line 37 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp2_ = control_position;
-#line 37 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self = (GalaBackgroundManager*) g_object_new (object_type, "screen", _tmp0_, "monitor-index", _tmp1_, "control-position", _tmp2_, NULL);
-#line 35 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return self;
-#line 191 "BackgroundManager.c"
+#line 203 "BackgroundManager.c"
 }
 
 
 GalaBackgroundManager* gala_background_manager_new (MetaScreen* screen, gint monitor_index, gboolean control_position) {
-#line 35 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 36 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return gala_background_manager_construct (GALA_TYPE_BACKGROUND_MANAGER, screen, monitor_index, control_position);
-#line 198 "BackgroundManager.c"
+#line 210 "BackgroundManager.c"
 }
 
 
@@ -203,109 +215,109 @@ static void gala_background_manager_real_destroy (ClutterActor* base) {
 	GalaBackgroundCache* _tmp0_ = NULL;
 	MetaBackgroundActor* _tmp1_ = NULL;
 	MetaBackgroundActor* _tmp3_ = NULL;
-#line 47 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 48 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self = (GalaBackgroundManager*) base;
-#line 49 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = gala_background_cache_get_default ();
-#line 49 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 50 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	gala_background_cache_release_background_source (_tmp0_, GALA_BACKGROUND_MANAGER_BACKGROUND_SCHEMA);
-#line 50 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->background_source);
-#line 50 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 51 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->background_source = NULL;
-#line 52 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = self->priv->new_background_actor;
-#line 52 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 53 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (_tmp1_ != NULL) {
-#line 221 "BackgroundManager.c"
+#line 233 "BackgroundManager.c"
 		MetaBackgroundActor* _tmp2_ = NULL;
-#line 53 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp2_ = self->priv->new_background_actor;
-#line 53 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		clutter_actor_destroy ((ClutterActor*) _tmp2_);
-#line 54 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (self->priv->new_background_actor);
-#line 54 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 55 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		self->priv->new_background_actor = NULL;
-#line 231 "BackgroundManager.c"
+#line 243 "BackgroundManager.c"
 	}
-#line 57 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp3_ = self->priv->background_actor;
-#line 57 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 58 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (_tmp3_ != NULL) {
-#line 237 "BackgroundManager.c"
+#line 249 "BackgroundManager.c"
 		MetaBackgroundActor* _tmp4_ = NULL;
-#line 58 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp4_ = self->priv->background_actor;
-#line 58 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		clutter_actor_destroy ((ClutterActor*) _tmp4_);
-#line 59 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (self->priv->background_actor);
-#line 59 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 60 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		self->priv->background_actor = NULL;
-#line 247 "BackgroundManager.c"
+#line 259 "BackgroundManager.c"
 	}
-#line 62 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 63 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	CLUTTER_ACTOR_CLASS (gala_background_manager_parent_class)->destroy ((ClutterActor*) G_TYPE_CHECK_INSTANCE_CAST (self, meta_background_group_get_type (), MetaBackgroundGroup));
-#line 251 "BackgroundManager.c"
+#line 263 "BackgroundManager.c"
 }
 
 
 static Block31Data* block31_data_ref (Block31Data* _data31_) {
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_atomic_int_inc (&_data31_->_ref_count_);
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return _data31_;
-#line 260 "BackgroundManager.c"
+#line 272 "BackgroundManager.c"
 }
 
 
 static void block31_data_unref (void * _userdata_) {
 	Block31Data* _data31_;
 	_data31_ = (Block31Data*) _userdata_;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (g_atomic_int_dec_and_test (&_data31_->_ref_count_)) {
-#line 269 "BackgroundManager.c"
+#line 281 "BackgroundManager.c"
 		GalaBackgroundManager* self;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		self = _data31_->self;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (_data31_->old_background_actor);
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (self);
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_slice_free (Block31Data, _data31_);
-#line 279 "BackgroundManager.c"
+#line 291 "BackgroundManager.c"
 	}
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 69 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 287 "BackgroundManager.c"
+#line 299 "BackgroundManager.c"
 }
 
 
 static void __lambda24_ (Block31Data* _data31_) {
 	GalaBackgroundManager* self;
 	MetaBackgroundActor* _tmp0_ = NULL;
-#line 82 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self = _data31_->self;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = _data31_->old_background_actor;
-#line 83 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 84 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_actor_destroy ((ClutterActor*) _tmp0_);
-#line 85 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 86 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_signal_emit_by_name (self, "changed");
-#line 302 "BackgroundManager.c"
+#line 314 "BackgroundManager.c"
 }
 
 
 static void ___lambda24__clutter_timeline_completed (ClutterTimeline* _sender, gpointer self) {
-#line 82 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	__lambda24_ (self);
-#line 309 "BackgroundManager.c"
+#line 321 "BackgroundManager.c"
 }
 
 
@@ -329,129 +341,129 @@ static void gala_background_manager_swap_background_actor (GalaBackgroundManager
 	ClutterPropertyTransition* _tmp14_ = NULL;
 	MetaBackgroundActor* _tmp15_ = NULL;
 	ClutterPropertyTransition* _tmp16_ = NULL;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_if_fail (self != NULL);
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data31_ = g_slice_new0 (Block31Data);
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data31_->_ref_count_ = 1;
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data31_->self = g_object_ref (self);
-#line 67 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = self->priv->new_background_actor;
-#line 67 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 68 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_if_fail (_tmp0_ != NULL);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = self->priv->background_actor;
-#line 69 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 69 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 70 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data31_->old_background_actor = _tmp2_;
-#line 70 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp3_ = self->priv->new_background_actor;
-#line 70 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 70 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->background_actor);
-#line 70 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 71 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->background_actor = _tmp4_;
-#line 71 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->new_background_actor);
-#line 71 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 72 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->new_background_actor = NULL;
-#line 73 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp5_ = _data31_->old_background_actor;
-#line 73 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (_tmp5_ == NULL) {
-#line 74 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		block31_data_unref (_data31_);
-#line 74 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_data31_ = NULL;
-#line 74 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		return;
-#line 373 "BackgroundManager.c"
+#line 385 "BackgroundManager.c"
 	}
-#line 76 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp6_ = (ClutterPropertyTransition*) clutter_property_transition_new ("opacity");
-#line 76 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 77 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	transition = _tmp6_;
-#line 77 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp7_ = transition;
-#line 77 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_value_init (&_tmp8_, G_TYPE_INT);
-#line 77 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_value_set_int (&_tmp8_, 255);
-#line 77 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_transition_set_from_value ((ClutterTransition*) _tmp7_, &_tmp8_);
-#line 77 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	G_IS_VALUE (&_tmp8_) ? (g_value_unset (&_tmp8_), NULL) : NULL;
-#line 78 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp9_ = transition;
-#line 78 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_value_init (&_tmp10_, G_TYPE_INT);
-#line 78 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_value_set_int (&_tmp10_, 0);
-#line 78 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_transition_set_to_value ((ClutterTransition*) _tmp9_, &_tmp10_);
-#line 78 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	G_IS_VALUE (&_tmp10_) ? (g_value_unset (&_tmp10_), NULL) : NULL;
-#line 79 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp11_ = transition;
-#line 79 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 80 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_timeline_set_duration ((ClutterTimeline*) _tmp11_, (guint) GALA_BACKGROUND_MANAGER_FADE_ANIMATION_TIME);
-#line 80 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp12_ = transition;
-#line 80 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_timeline_set_progress_mode ((ClutterTimeline*) _tmp12_, CLUTTER_EASE_OUT_QUAD);
-#line 81 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp13_ = transition;
-#line 81 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 82 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_transition_set_remove_on_complete ((ClutterTransition*) _tmp13_, TRUE);
-#line 82 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp14_ = transition;
-#line 82 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_signal_connect_data ((ClutterTimeline*) _tmp14_, "completed", (GCallback) ___lambda24__clutter_timeline_completed, block31_data_ref (_data31_), (GClosureNotify) block31_data_unref, 0);
-#line 88 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp15_ = _data31_->old_background_actor;
-#line 88 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp16_ = transition;
-#line 88 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_actor_add_transition ((ClutterActor*) _tmp15_, "fade-out", (ClutterTransition*) _tmp16_);
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (transition);
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	block31_data_unref (_data31_);
-#line 65 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 66 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data31_ = NULL;
-#line 427 "BackgroundManager.c"
+#line 439 "BackgroundManager.c"
 }
 
 
 static Block32Data* block32_data_ref (Block32Data* _data32_) {
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_atomic_int_inc (&_data32_->_ref_count_);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return _data32_;
-#line 436 "BackgroundManager.c"
+#line 448 "BackgroundManager.c"
 }
 
 
 static void block32_data_unref (void * _userdata_) {
 	Block32Data* _data32_;
 	_data32_ = (Block32Data*) _userdata_;
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (g_atomic_int_dec_and_test (&_data32_->_ref_count_)) {
-#line 445 "BackgroundManager.c"
+#line 457 "BackgroundManager.c"
 		GalaBackgroundManager* self;
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		self = _data32_->self;
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (_data32_->background);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (self);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_slice_free (Block32Data, _data32_);
-#line 455 "BackgroundManager.c"
+#line 467 "BackgroundManager.c"
 	}
 }
 
@@ -461,28 +473,28 @@ static void __lambda27_ (Block32Data* _data32_) {
 	GalaBackground* _tmp0_ = NULL;
 	gulong _tmp1_ = 0UL;
 	GalaBackground* _tmp2_ = NULL;
-#line 112 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self = _data32_->self;
-#line 113 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = _data32_->background;
-#line 113 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = _data32_->handler;
-#line 113 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 114 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_signal_handler_disconnect (_tmp0_, _tmp1_);
-#line 114 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp2_ = _data32_->background;
-#line 114 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_set_data_full ((GObject*) _tmp2_, "background-loaded-handler", (gpointer) ((guintptr) ((gulong) 0)), NULL);
-#line 116 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	gala_background_manager_swap_background_actor (self);
-#line 479 "BackgroundManager.c"
+#line 491 "BackgroundManager.c"
 }
 
 
 static void ___lambda27__gala_background_loaded (GalaBackground* _sender, gpointer self) {
-#line 112 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	__lambda27_ (self);
-#line 486 "BackgroundManager.c"
+#line 498 "BackgroundManager.c"
 }
 
 
@@ -516,121 +528,121 @@ static void gala_background_manager_update_background_actor (GalaBackgroundManag
 	gulong _tmp26_ = 0UL;
 	GalaBackground* _tmp27_ = NULL;
 	gulong _tmp28_ = 0UL;
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_if_fail (self != NULL);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data32_ = g_slice_new0 (Block32Data);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data32_->_ref_count_ = 1;
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data32_->self = g_object_ref (self);
-#line 93 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = self->priv->new_background_actor;
-#line 93 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (_tmp0_ != NULL) {
-#line 532 "BackgroundManager.c"
+#line 544 "BackgroundManager.c"
 		MetaBackgroundActor* _tmp1_ = NULL;
-#line 95 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp1_ = self->priv->new_background_actor;
-#line 95 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 96 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		clutter_actor_destroy ((ClutterActor*) _tmp1_);
-#line 96 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (self->priv->new_background_actor);
-#line 96 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		self->priv->new_background_actor = NULL;
-#line 542 "BackgroundManager.c"
+#line 554 "BackgroundManager.c"
 	}
-#line 99 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp2_ = gala_background_manager_create_background_actor (self);
-#line 99 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->new_background_actor);
-#line 99 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 100 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->new_background_actor = _tmp2_;
-#line 100 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp3_ = self->priv->new_background_actor;
-#line 100 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp4_ = self->priv->background_actor;
-#line 100 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_get (_tmp4_, "vignette-sharpness", &_tmp5_, NULL);
-#line 100 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp6_ = _tmp5_;
-#line 100 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 101 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_set (_tmp3_, "vignette-sharpness", _tmp6_, NULL);
-#line 101 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp7_ = self->priv->new_background_actor;
-#line 101 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp8_ = self->priv->background_actor;
-#line 101 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_get (_tmp8_, "brightness", &_tmp9_, NULL);
-#line 101 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp10_ = _tmp9_;
-#line 101 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_set (_tmp7_, "brightness", _tmp10_, NULL);
-#line 102 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp11_ = self->priv->new_background_actor;
-#line 102 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp12_ = self->priv->background_actor;
-#line 102 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_get ((ClutterActor*) _tmp12_, "visible", &_tmp13_, NULL);
-#line 102 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp14_ = _tmp13_;
-#line 102 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_set ((ClutterActor*) _tmp11_, "visible", _tmp14_, NULL);
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp15_ = self->priv->new_background_actor;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_get (_tmp15_, "background", &_tmp16_, NULL);
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp17_ = _tmp16_;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp18_ = _tmp17_;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp19_ = g_object_get_data ((GObject*) _tmp18_, "delegate");
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp20_ = _g_object_ref0 ((GalaBackground*) _tmp19_);
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp21_ = _tmp20_;
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (_tmp18_);
-#line 104 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data32_->background = _tmp21_;
-#line 106 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp22_ = _data32_->background;
-#line 106 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp23_ = gala_background_get_is_loaded (_tmp22_);
-#line 106 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp24_ = _tmp23_;
-#line 106 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (_tmp24_) {
-#line 107 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 108 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		gala_background_manager_swap_background_actor (self);
-#line 108 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		block32_data_unref (_data32_);
-#line 108 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_data32_ = NULL;
-#line 108 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 109 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		return;
-#line 614 "BackgroundManager.c"
+#line 626 "BackgroundManager.c"
 	}
-#line 111 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data32_->handler = (gulong) 0;
-#line 112 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp25_ = _data32_->background;
-#line 112 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp26_ = g_signal_connect_data (_tmp25_, "loaded", (GCallback) ___lambda27__gala_background_loaded, block32_data_ref (_data32_), (GClosureNotify) block32_data_unref, 0);
-#line 112 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 113 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data32_->handler = _tmp26_;
-#line 118 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp27_ = _data32_->background;
-#line 118 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp28_ = _data32_->handler;
-#line 118 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_set_data_full ((GObject*) _tmp27_, "background-loaded-handler", (gpointer) ((guintptr) _tmp28_), NULL);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	block32_data_unref (_data32_);
-#line 91 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data32_ = NULL;
-#line 634 "BackgroundManager.c"
+#line 646 "BackgroundManager.c"
 }
 
 
@@ -638,45 +650,45 @@ void gala_background_manager_set_size (GalaBackgroundManager* self, gfloat width
 	MetaBackgroundActor* _tmp0_ = NULL;
 	gfloat _tmp1_ = 0.0F;
 	gfloat _tmp2_ = 0.0F;
-#line 121 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 122 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_if_fail (self != NULL);
-#line 122 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = self->priv->background_actor;
-#line 122 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = width;
-#line 122 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp2_ = height;
-#line 122 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 123 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_actor_set_size ((ClutterActor*) _tmp0_, _tmp1_, _tmp2_);
-#line 652 "BackgroundManager.c"
+#line 664 "BackgroundManager.c"
 }
 
 
 static Block33Data* block33_data_ref (Block33Data* _data33_) {
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_atomic_int_inc (&_data33_->_ref_count_);
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return _data33_;
-#line 661 "BackgroundManager.c"
+#line 673 "BackgroundManager.c"
 }
 
 
 static void block33_data_unref (void * _userdata_) {
 	Block33Data* _data33_;
 	_data33_ = (Block33Data*) _userdata_;
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (g_atomic_int_dec_and_test (&_data33_->_ref_count_)) {
-#line 670 "BackgroundManager.c"
+#line 682 "BackgroundManager.c"
 		GalaBackgroundManager* self;
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		self = _data33_->self;
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (_data33_->background);
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_g_object_unref0 (self);
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_slice_free (Block33Data, _data33_);
-#line 680 "BackgroundManager.c"
+#line 692 "BackgroundManager.c"
 	}
 }
 
@@ -685,26 +697,26 @@ static void __lambda25_ (Block33Data* _data33_) {
 	GalaBackgroundManager* self;
 	GalaBackground* _tmp0_ = NULL;
 	gulong _tmp1_ = 0UL;
-#line 143 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self = _data33_->self;
-#line 144 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = _data33_->background;
-#line 144 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = _data33_->changed_handler;
-#line 144 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 147 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_signal_handler_disconnect (_tmp0_, _tmp1_);
-#line 145 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 148 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data33_->changed_handler = (gulong) 0;
-#line 146 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 149 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	gala_background_manager_update_background_actor (self);
-#line 701 "BackgroundManager.c"
+#line 713 "BackgroundManager.c"
 }
 
 
 static void ___lambda25__gala_background_changed (GalaBackground* _sender, gpointer self) {
-#line 143 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	__lambda25_ (self);
-#line 708 "BackgroundManager.c"
+#line 720 "BackgroundManager.c"
 }
 
 
@@ -715,58 +727,58 @@ static void __lambda26_ (Block33Data* _data33_) {
 	GalaBackground* _tmp3_ = NULL;
 	gconstpointer _tmp4_ = NULL;
 	gulong _tmp5_ = 0UL;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self = _data33_->self;
-#line 150 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = _data33_->changed_handler;
-#line 150 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (_tmp0_ != ((gulong) 0)) {
-#line 725 "BackgroundManager.c"
+#line 737 "BackgroundManager.c"
 		GalaBackground* _tmp1_ = NULL;
 		gulong _tmp2_ = 0UL;
-#line 151 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp1_ = _data33_->background;
-#line 151 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp2_ = _data33_->changed_handler;
-#line 151 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 154 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_signal_handler_disconnect (_tmp1_, _tmp2_);
-#line 152 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_data33_->changed_handler = (gulong) 0;
-#line 736 "BackgroundManager.c"
-	}
-#line 155 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
-	_tmp3_ = _data33_->background;
-#line 155 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
-	_tmp4_ = g_object_get_data ((GObject*) _tmp3_, "background-loaded-handler");
-#line 155 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
-	loaded_handler = (gulong) ((guintptr) _tmp4_);
-#line 156 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
-	_tmp5_ = loaded_handler;
-#line 156 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
-	if (_tmp5_ != ((gulong) 0)) {
 #line 748 "BackgroundManager.c"
+	}
+#line 158 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
+	_tmp3_ = _data33_->background;
+#line 158 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
+	_tmp4_ = g_object_get_data ((GObject*) _tmp3_, "background-loaded-handler");
+#line 158 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
+	loaded_handler = (gulong) ((guintptr) _tmp4_);
+#line 159 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
+	_tmp5_ = loaded_handler;
+#line 159 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
+	if (_tmp5_ != ((gulong) 0)) {
+#line 760 "BackgroundManager.c"
 		GalaBackground* _tmp6_ = NULL;
 		gulong _tmp7_ = 0UL;
 		GalaBackground* _tmp8_ = NULL;
-#line 157 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp6_ = _data33_->background;
-#line 157 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp7_ = loaded_handler;
-#line 157 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 160 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_signal_handler_disconnect (_tmp6_, _tmp7_);
-#line 158 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp8_ = _data33_->background;
-#line 158 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_object_set_data_full ((GObject*) _tmp8_, "background-loaded-handler", (gpointer) ((guintptr) ((gulong) 0)), NULL);
-#line 762 "BackgroundManager.c"
+#line 774 "BackgroundManager.c"
 	}
 }
 
 
 static void ___lambda26__clutter_actor_destroy (ClutterActor* _sender, gpointer self) {
-#line 149 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	__lambda26_ (self);
-#line 770 "BackgroundManager.c"
+#line 782 "BackgroundManager.c"
 }
 
 
@@ -798,203 +810,203 @@ static MetaBackgroundActor* gala_background_manager_create_background_actor (Gal
 	GalaBackground* _tmp25_ = NULL;
 	gulong _tmp26_ = 0UL;
 	MetaBackgroundActor* _tmp27_ = NULL;
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data33_ = g_slice_new0 (Block33Data);
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data33_->_ref_count_ = 1;
-#line 125 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data33_->self = g_object_ref (self);
-#line 127 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = self->priv->background_source;
-#line 127 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = self->priv->_monitor_index;
-#line 127 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp2_ = gala_background_source_get_background (_tmp0_, _tmp1_);
-#line 127 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data33_->background = _tmp2_;
-#line 128 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp3_ = self->priv->_screen;
-#line 128 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp4_ = self->priv->_monitor_index;
-#line 128 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp5_ = (MetaBackgroundActor*) meta_background_actor_new (_tmp3_, _tmp4_);
-#line 128 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_ref_sink (_tmp5_);
-#line 128 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	background_actor = _tmp5_;
-#line 130 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp6_ = background_actor;
-#line 130 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp7_ = _data33_->background;
-#line 130 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp8_ = gala_background_get_background (_tmp7_);
-#line 130 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp9_ = _tmp8_;
-#line 130 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_set (_tmp6_, "background", _tmp9_, NULL);
-#line 132 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp10_ = background_actor;
-#line 132 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 135 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_actor_insert_child_below ((ClutterActor*) self, (ClutterActor*) _tmp10_, NULL);
-#line 134 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp11_ = self->priv->_screen;
-#line 134 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp12_ = self->priv->_monitor_index;
-#line 134 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	meta_screen_get_monitor_geometry (_tmp11_, _tmp12_, &_tmp13_);
-#line 134 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	monitor = _tmp13_;
-#line 136 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp14_ = background_actor;
-#line 136 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp15_ = monitor;
-#line 136 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp16_ = _tmp15_.width;
-#line 136 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp17_ = monitor;
-#line 136 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp18_ = _tmp17_.height;
-#line 136 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	clutter_actor_set_size ((ClutterActor*) _tmp14_, (gfloat) _tmp16_, (gfloat) _tmp18_);
-#line 138 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp19_ = self->priv->_control_position;
-#line 138 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 141 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	if (_tmp19_) {
-#line 866 "BackgroundManager.c"
+#line 878 "BackgroundManager.c"
 		MetaBackgroundActor* _tmp20_ = NULL;
 		MetaRectangle _tmp21_ = {0};
 		gint _tmp22_ = 0;
 		MetaRectangle _tmp23_ = {0};
 		gint _tmp24_ = 0;
-#line 139 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp20_ = background_actor;
-#line 139 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp21_ = monitor;
-#line 139 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp22_ = _tmp21_.x;
-#line 139 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp23_ = monitor;
-#line 139 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		_tmp24_ = _tmp23_.y;
-#line 139 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 142 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		clutter_actor_set_position ((ClutterActor*) _tmp20_, (gfloat) _tmp22_, (gfloat) _tmp24_);
-#line 884 "BackgroundManager.c"
+#line 896 "BackgroundManager.c"
 	}
-#line 142 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data33_->changed_handler = (gulong) 0;
-#line 143 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp25_ = _data33_->background;
-#line 143 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp26_ = g_signal_connect_data (_tmp25_, "changed", (GCallback) ___lambda25__gala_background_changed, block33_data_ref (_data33_), (GClosureNotify) block33_data_unref, 0);
-#line 143 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 146 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data33_->changed_handler = _tmp26_;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp27_ = background_actor;
-#line 149 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 152 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_signal_connect_data ((ClutterActor*) _tmp27_, "destroy", (GCallback) ___lambda26__clutter_actor_destroy, block33_data_ref (_data33_), (GClosureNotify) block33_data_unref, 0);
-#line 162 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	result = background_actor;
-#line 162 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	block33_data_unref (_data33_);
-#line 162 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_data33_ = NULL;
-#line 162 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 165 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return result;
-#line 906 "BackgroundManager.c"
+#line 918 "BackgroundManager.c"
 }
 
 
 MetaScreen* gala_background_manager_get_screen (GalaBackgroundManager* self) {
 	MetaScreen* result;
 	MetaScreen* _tmp0_ = NULL;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = self->priv->_screen;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	result = _tmp0_;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return result;
-#line 921 "BackgroundManager.c"
+#line 933 "BackgroundManager.c"
 }
 
 
 static void gala_background_manager_set_screen (GalaBackgroundManager* self, MetaScreen* value) {
 	MetaScreen* _tmp0_ = NULL;
 	MetaScreen* _tmp1_ = NULL;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_if_fail (self != NULL);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = value;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->_screen);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->_screen = _tmp1_;
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_notify ((GObject *) self, "screen");
-#line 940 "BackgroundManager.c"
+#line 952 "BackgroundManager.c"
 }
 
 
 gint gala_background_manager_get_monitor_index (GalaBackgroundManager* self) {
 	gint result;
 	gint _tmp0_ = 0;
-#line 28 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_val_if_fail (self != NULL, 0);
-#line 28 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = self->priv->_monitor_index;
-#line 28 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	result = _tmp0_;
-#line 28 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return result;
-#line 955 "BackgroundManager.c"
+#line 967 "BackgroundManager.c"
 }
 
 
 static void gala_background_manager_set_monitor_index (GalaBackgroundManager* self, gint value) {
 	gint _tmp0_ = 0;
-#line 28 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_if_fail (self != NULL);
-#line 28 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = value;
-#line 28 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->_monitor_index = _tmp0_;
-#line 28 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_notify ((GObject *) self, "monitor-index");
-#line 969 "BackgroundManager.c"
+#line 981 "BackgroundManager.c"
 }
 
 
 gboolean gala_background_manager_get_control_position (GalaBackgroundManager* self) {
 	gboolean result;
 	gboolean _tmp0_ = FALSE;
-#line 29 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 29 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = self->priv->_control_position;
-#line 29 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	result = _tmp0_;
-#line 29 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return result;
-#line 984 "BackgroundManager.c"
+#line 996 "BackgroundManager.c"
 }
 
 
 static void gala_background_manager_set_control_position (GalaBackgroundManager* self, gboolean value) {
 	gboolean _tmp0_ = FALSE;
-#line 29 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_return_if_fail (self != NULL);
-#line 29 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = value;
-#line 29 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->_control_position = _tmp0_;
-#line 29 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 29 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_notify ((GObject *) self, "control-position");
-#line 998 "BackgroundManager.c"
+#line 1010 "BackgroundManager.c"
 }
 
 
@@ -1006,85 +1018,89 @@ static GObject * gala_background_manager_constructor (GType type, guint n_constr
 	MetaScreen* _tmp1_ = NULL;
 	GalaBackgroundSource* _tmp2_ = NULL;
 	MetaBackgroundActor* _tmp3_ = NULL;
-#line 40 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	parent_class = G_OBJECT_CLASS (gala_background_manager_parent_class);
-#line 40 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	obj = parent_class->constructor (type, n_construct_properties, construct_properties);
-#line 40 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_BACKGROUND_MANAGER, GalaBackgroundManager);
-#line 42 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp0_ = gala_background_cache_get_default ();
-#line 42 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp1_ = self->priv->_screen;
-#line 42 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp2_ = gala_background_cache_get_background_source (_tmp0_, _tmp1_, GALA_BACKGROUND_MANAGER_BACKGROUND_SCHEMA);
-#line 42 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->background_source);
-#line 42 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->background_source = _tmp2_;
-#line 44 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_tmp3_ = gala_background_manager_create_background_actor (self);
-#line 44 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->background_actor);
-#line 44 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 45 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->background_actor = _tmp3_;
-#line 40 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 41 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	return obj;
-#line 1034 "BackgroundManager.c"
+#line 1046 "BackgroundManager.c"
 }
 
 
 static void gala_background_manager_class_init (GalaBackgroundManagerClass * klass) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	gala_background_manager_parent_class = g_type_class_peek_parent (klass);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_type_class_add_private (klass, sizeof (GalaBackgroundManagerPrivate));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	((ClutterActorClass *) klass)->destroy = gala_background_manager_real_destroy;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_background_manager_get_property;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_background_manager_set_property;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	G_OBJECT_CLASS (klass)->constructor = gala_background_manager_constructor;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_background_manager_finalize;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_MANAGER_SCREEN, g_param_spec_object ("screen", "screen", "screen", meta_screen_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_MANAGER_MONITOR_INDEX, g_param_spec_int ("monitor-index", "monitor-index", "monitor-index", G_MININT, G_MAXINT, 0, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_BACKGROUND_MANAGER_CONTROL_POSITION, g_param_spec_boolean ("control-position", "control-position", "control-position", FALSE, G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	g_signal_new ("changed", GALA_TYPE_BACKGROUND_MANAGER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
-#line 1061 "BackgroundManager.c"
+#line 1073 "BackgroundManager.c"
 }
 
 
 static void gala_background_manager_instance_init (GalaBackgroundManager * self) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv = GALA_BACKGROUND_MANAGER_GET_PRIVATE (self);
-#line 33 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self->priv->new_background_actor = NULL;
-#line 1070 "BackgroundManager.c"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
+	self->priv->blur_actor = NULL;
+#line 1084 "BackgroundManager.c"
 }
 
 
 static void gala_background_manager_finalize (GObject* obj) {
 	GalaBackgroundManager * self;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_BACKGROUND_MANAGER, GalaBackgroundManager);
-#line 27 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 27 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->_screen);
-#line 31 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 31 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->background_source);
-#line 32 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 32 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->background_actor);
-#line 33 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 33 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	_g_object_unref0 (self->priv->new_background_actor);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 34 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
+	_g_object_unref0 (self->priv->blur_actor);
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	G_OBJECT_CLASS (gala_background_manager_parent_class)->finalize (obj);
-#line 1088 "BackgroundManager.c"
+#line 1104 "BackgroundManager.c"
 }
 
 
@@ -1103,33 +1119,33 @@ GType gala_background_manager_get_type (void) {
 static void _vala_gala_background_manager_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaBackgroundManager * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_BACKGROUND_MANAGER, GalaBackgroundManager);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		case GALA_BACKGROUND_MANAGER_SCREEN:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_value_set_object (value, gala_background_manager_get_screen (self));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		case GALA_BACKGROUND_MANAGER_MONITOR_INDEX:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_value_set_int (value, gala_background_manager_get_monitor_index (self));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		case GALA_BACKGROUND_MANAGER_CONTROL_POSITION:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		g_value_set_boolean (value, gala_background_manager_get_control_position (self));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		break;
-#line 1127 "BackgroundManager.c"
+#line 1143 "BackgroundManager.c"
 		default:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		break;
-#line 1133 "BackgroundManager.c"
+#line 1149 "BackgroundManager.c"
 	}
 }
 
@@ -1137,33 +1153,33 @@ static void _vala_gala_background_manager_get_property (GObject * object, guint 
 static void _vala_gala_background_manager_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaBackgroundManager * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_BACKGROUND_MANAGER, GalaBackgroundManager);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 	switch (property_id) {
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		case GALA_BACKGROUND_MANAGER_SCREEN:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		gala_background_manager_set_screen (self, g_value_get_object (value));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		case GALA_BACKGROUND_MANAGER_MONITOR_INDEX:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		gala_background_manager_set_monitor_index (self, g_value_get_int (value));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		break;
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		case GALA_BACKGROUND_MANAGER_CONTROL_POSITION:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		gala_background_manager_set_control_position (self, g_value_get_boolean (value));
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		break;
-#line 1161 "BackgroundManager.c"
+#line 1177 "BackgroundManager.c"
 		default:
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 20 "/home/nick/work/gala/src/Background/BackgroundManager.vala"
+#line 20 "/home/nick/work/Enso-OS/galal/src/Background/BackgroundManager.vala"
 		break;
-#line 1167 "BackgroundManager.c"
+#line 1183 "BackgroundManager.c"
 	}
 }
 

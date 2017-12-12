@@ -45,10 +45,10 @@
 #include <float.h>
 #include <math.h>
 #include <meta/keybindings.h>
-#include <meta/boxes.h>
+#include <gdk/gdk.h>
 #include <meta/workspace.h>
 #include <meta/common.h>
-#include <gdk/gdk.h>
+#include <meta/boxes.h>
 #include <meta/meta-enum-types.h>
 #include <glib/gi18n-lib.h>
 #include <X11/Xlib.h>
@@ -99,6 +99,16 @@ typedef struct _GalaScreenSaver GalaScreenSaver;
 typedef struct _GalaScreenSaverIface GalaScreenSaverIface;
 
 #define GALA_TYPE_SCREEN_SAVER_PROXY (gala_screen_saver_proxy_get_type ())
+
+#define GALA_TYPE_DESKTOP_MENU (gala_desktop_menu_get_type ())
+#define GALA_DESKTOP_MENU(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GALA_TYPE_DESKTOP_MENU, GalaDesktopMenu))
+#define GALA_DESKTOP_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GALA_TYPE_DESKTOP_MENU, GalaDesktopMenuClass))
+#define GALA_IS_DESKTOP_MENU(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GALA_TYPE_DESKTOP_MENU))
+#define GALA_IS_DESKTOP_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GALA_TYPE_DESKTOP_MENU))
+#define GALA_DESKTOP_MENU_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GALA_TYPE_DESKTOP_MENU, GalaDesktopMenuClass))
+
+typedef struct _GalaDesktopMenu GalaDesktopMenu;
+typedef struct _GalaDesktopMenuClass GalaDesktopMenuClass;
 
 #define GALA_TYPE_WINDOW_MENU (gala_window_menu_get_type ())
 #define GALA_WINDOW_MENU(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GALA_TYPE_WINDOW_MENU, GalaWindowMenu))
@@ -194,16 +204,6 @@ typedef struct _GalaShadowSettingsClass GalaShadowSettingsClass;
 
 typedef struct _GalaMultitaskingView GalaMultitaskingView;
 typedef struct _GalaMultitaskingViewClass GalaMultitaskingViewClass;
-
-#define GALA_TYPE_WINDOW_OVERVIEW (gala_window_overview_get_type ())
-#define GALA_WINDOW_OVERVIEW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GALA_TYPE_WINDOW_OVERVIEW, GalaWindowOverview))
-#define GALA_WINDOW_OVERVIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GALA_TYPE_WINDOW_OVERVIEW, GalaWindowOverviewClass))
-#define GALA_IS_WINDOW_OVERVIEW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GALA_TYPE_WINDOW_OVERVIEW))
-#define GALA_IS_WINDOW_OVERVIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GALA_TYPE_WINDOW_OVERVIEW))
-#define GALA_WINDOW_OVERVIEW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GALA_TYPE_WINDOW_OVERVIEW, GalaWindowOverviewClass))
-
-typedef struct _GalaWindowOverview GalaWindowOverview;
-typedef struct _GalaWindowOverviewClass GalaWindowOverviewClass;
 #define _g_free0(var) (var = (g_free (var), NULL))
 
 #define GALA_TYPE_INPUT_AREA (gala_input_area_get_type ())
@@ -320,6 +320,7 @@ struct _GalaWindowManagerGalaPrivate {
 	GeeHashSet* destroying;
 	GeeHashSet* unminimizing;
 	GHashTable* ws_assoc;
+	GalaDesktopMenu* desktop_menu;
 	GalaWindowMenu* window_menu;
 	GList* windows;
 	GList* parents;
@@ -468,6 +469,7 @@ GType gala_window_switcher_get_type (void) G_GNUC_CONST;
 GType gala_screen_saver_proxy_get_type (void) G_GNUC_CONST;
 guint gala_screen_saver_register_object (void* object, GDBusConnection* connection, const gchar* path, GError** error);
 GType gala_screen_saver_get_type (void) G_GNUC_CONST;
+GType gala_desktop_menu_get_type (void) G_GNUC_CONST;
 GType gala_window_menu_get_type (void) G_GNUC_CONST;
 #define GALA_WINDOW_MANAGER_GALA_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GALA_TYPE_WINDOW_MANAGER_GALA, GalaWindowManagerGalaPrivate))
 enum  {
@@ -509,37 +511,38 @@ GalaSystemBackground* gala_system_background_construct (GType object_type, MetaS
 GalaBackgroundContainer* gala_background_container_new (MetaScreen* screen);
 GalaBackgroundContainer* gala_background_container_construct (GType object_type, MetaScreen* screen);
 GType gala_background_container_get_type (void) G_GNUC_CONST;
+static gboolean gala_window_manager_gala_on_background_click (GalaWindowManagerGala* self, ClutterButtonEvent* event);
+static gboolean _gala_window_manager_gala_on_background_click_clutter_actor_button_release_event (ClutterActor* _sender, ClutterButtonEvent* event, gpointer self);
 GType gala_keybinding_settings_get_type (void) G_GNUC_CONST;
 GalaKeybindingSettings* gala_keybinding_settings_get_default (void);
 static void gala_window_manager_gala_handle_switch_to_workspace_end (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self);
 static void gala_window_manager_gala_handle_move_to_workspace_end (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self);
 static void gala_window_manager_gala_handle_cycle_workspaces (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self);
-static void gala_window_manager_gala_handle_launch_whiskermenu (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self);
-static void __lambda48_ (GalaWindowManagerGala* self);
+static void __lambda52_ (GalaWindowManagerGala* self);
 GType gala_behavior_settings_get_type (void) G_GNUC_CONST;
 GalaBehaviorSettings* gala_behavior_settings_get_default (void);
 const gchar* gala_behavior_settings_get_overlay_action (GalaBehaviorSettings* self);
-static void ___lambda48__meta_display_overlay_key (MetaDisplay* _sender, gpointer self);
-static void __lambda49_ (GalaWindowManagerGala* self);
-const gchar* gala_behavior_settings_get_panel_main_menu_action (GalaBehaviorSettings* self);
-static void ___lambda49__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
-static void __lambda50_ (GalaWindowManagerGala* self);
-const gchar* gala_behavior_settings_get_toggle_recording_action (GalaBehaviorSettings* self);
-static void ___lambda50__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
-static void __lambda51_ (GalaWindowManagerGala* self);
-static void ___lambda51__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
-static void __lambda52_ (GalaWindowManagerGala* self);
-static void ___lambda52__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
-static void gala_window_manager_gala_handle_switch_to_workspace (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self);
+static void ___lambda52__meta_display_overlay_key (MetaDisplay* _sender, gpointer self);
 static void __lambda53_ (GalaWindowManagerGala* self);
+const gchar* gala_behavior_settings_get_panel_main_menu_action (GalaBehaviorSettings* self);
 static void ___lambda53__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
 static void __lambda54_ (GalaWindowManagerGala* self);
+const gchar* gala_behavior_settings_get_toggle_recording_action (GalaBehaviorSettings* self);
 static void ___lambda54__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
-static void gala_window_manager_gala_handle_move_to_workspace (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self);
 static void __lambda55_ (GalaWindowManagerGala* self);
 static void ___lambda55__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
 static void __lambda56_ (GalaWindowManagerGala* self);
 static void ___lambda56__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
+static void gala_window_manager_gala_handle_switch_to_workspace (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self);
+static void __lambda57_ (GalaWindowManagerGala* self);
+static void ___lambda57__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
+static void __lambda58_ (GalaWindowManagerGala* self);
+static void ___lambda58__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
+static void gala_window_manager_gala_handle_move_to_workspace (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self);
+static void __lambda59_ (GalaWindowManagerGala* self);
+static void ___lambda59__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
+static void __lambda60_ (GalaWindowManagerGala* self);
+static void ___lambda60__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
 void gala_internal_utils_reload_shadow (void);
 GType gala_shadow_settings_get_type (void) G_GNUC_CONST;
 GalaShadowSettings* gala_shadow_settings_get_default (void);
@@ -555,29 +558,18 @@ GalaPlugin* gala_plugin_manager_get_plugin (GalaPluginManager* self, const gchar
 GalaMultitaskingView* gala_multitasking_view_new (GalaWindowManager* wm);
 GalaMultitaskingView* gala_multitasking_view_construct (GType object_type, GalaWindowManager* wm);
 GType gala_multitasking_view_get_type (void) G_GNUC_CONST;
-static void __lambda85_ (GalaWindowManagerGala* self);
-static void ___lambda85__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
+static void __lambda88_ (GalaWindowManagerGala* self);
+static void ___lambda88__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
 const gchar* gala_plugin_manager_get_window_switcher_provider (GalaPluginManager* self);
 GalaWindowSwitcher* gala_window_switcher_new (GalaWindowManager* wm);
 GalaWindowSwitcher* gala_window_switcher_construct (GType object_type, GalaWindowManager* wm);
 void gala_window_switcher_handle_switch_windows (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowSwitcher* self);
-const gchar* gala_plugin_manager_get_window_overview_provider (GalaPluginManager* self);
-GalaWindowOverview* gala_window_overview_new (GalaWindowManager* wm);
-GalaWindowOverview* gala_window_overview_construct (GType object_type, GalaWindowManager* wm);
-GType gala_window_overview_get_type (void) G_GNUC_CONST;
-static void __lambda88_ (GalaWindowManagerGala* self);
-static void ___lambda88__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
-static void __lambda89_ (GalaWindowManagerGala* self);
-static void _g_free0_ (gpointer var);
-static void _g_variant_unref0_ (gpointer var);
-static GVariant* _variant_new1 (gboolean value);
-static void ___lambda89__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self);
-static gboolean __lambda90_ (Block4Data* _data4_);
+static gboolean __lambda89_ (Block4Data* _data4_);
 void gala_plugin_manager_load_waiting_plugins (GalaPluginManager* self);
-static gboolean ___lambda90__gsource_func (gpointer self);
+static gboolean ___lambda89__gsource_func (gpointer self);
 static void gala_window_manager_gala_add_hotcorner (GalaWindowManagerGala* self, gfloat x, gfloat y, const gchar* key);
-static gboolean ___lambda57_ (GalaWindowManagerGala* self, ClutterActor* actor, ClutterCrossingEvent* event);
-static gboolean ____lambda57__clutter_actor_enter_event (ClutterActor* _sender, ClutterCrossingEvent* event, gpointer self);
+GalaDesktopMenu* gala_desktop_menu_new (GalaWindowManager* _wm);
+GalaDesktopMenu* gala_desktop_menu_construct (GType object_type, GalaWindowManager* _wm);
 static void gala_window_manager_gala_real_switch_to_next_workspace (GalaWindowManager* base, MetaMotionDirection direction);
 static void _vala_GValue_array_free (GValue* array, gint array_length);
 gboolean gala_screen_saver_get_active (GalaScreenSaver* self, GError** error);
@@ -593,15 +585,14 @@ void gala_window_manager_gala_get_current_cursor_position (GalaWindowManagerGala
 void gala_window_manager_gala_dim_window (GalaWindowManagerGala* self, MetaWindow* window, gboolean dim);
 static void gala_window_manager_gala_real_perform_action (GalaWindowManager* base, GalaActionType type);
 const gchar* gala_behavior_settings_get_hotcorner_custom_command (GalaBehaviorSettings* self);
-static GVariant* _variant_new2 (gboolean value);
 static void gala_window_manager_gala_real_show_window_menu (MetaPlugin* base, MetaWindow* window, MetaWindowMenuType menu, gint x, gint y);
 static Block5Data* block5_data_ref (Block5Data* _data5_);
 static void block5_data_unref (void * _userdata_);
 GalaWindowMenu* gala_window_menu_new (void);
 GalaWindowMenu* gala_window_menu_construct (GType object_type);
 void gala_window_menu_set_current_window (GalaWindowMenu* self, MetaWindow* value);
-static void ___lambda91_ (Block5Data* _data5_, GtkMenu* menu, gint* menu_x, gint* menu_y, gboolean* push_in);
-static void ____lambda91__gtk_menu_position_func (GtkMenu* menu, gint* x, gint* y, gboolean* push_in, gpointer self);
+static void ___lambda90_ (Block5Data* _data5_, GtkMenu* menu, gint* menu_x, gint* menu_y, gboolean* push_in);
+static void ____lambda90__gtk_menu_position_func (GtkMenu* menu, gint* x, gint* y, gboolean* push_in, gpointer self);
 static void gala_window_manager_gala_real_show_window_menu_for_rect (MetaPlugin* base, MetaWindow* window, MetaWindowMenuType menu, MetaRectangle* rect);
 static void gala_window_manager_gala_handle_fullscreen_window (GalaWindowManagerGala* self, MetaWindow* window, MetaSizeChange which_change);
 static void gala_window_manager_gala_real_size_change (MetaPlugin* base, MetaWindowActor* actor, MetaSizeChange which_change, MetaRectangle* old_frame_rect, MetaRectangle* old_buffer_rect);
@@ -616,12 +607,12 @@ gint gala_animation_settings_get_minimize_duration (GalaAnimationSettings* self)
 gboolean gala_animation_settings_get_enable_animations (GalaAnimationSettings* self);
 static Block7Data* block7_data_ref (Block7Data* _data7_);
 static void block7_data_unref (void * _userdata_);
-static void ___lambda95_ (Block7Data* _data7_);
-static void ____lambda95__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda94_ (Block7Data* _data7_);
+static void ____lambda94__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static Block8Data* block8_data_ref (Block8Data* _data8_);
 static void block8_data_unref (void * _userdata_);
-static void ___lambda96_ (Block8Data* _data8_);
-static void ____lambda96__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda95_ (Block8Data* _data8_);
+static void ____lambda95__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static inline void gala_window_manager_gala_maximize_completed (GalaWindowManagerGala* self, MetaWindowActor* actor);
 static Block9Data* block9_data_ref (Block9Data* _data9_);
 static void block9_data_unref (void * _userdata_);
@@ -634,34 +625,34 @@ void gala_window_geometry_free (GalaWindowGeometry* self);
 GType gala_window_listener_get_type (void) G_GNUC_CONST;
 GalaWindowListener* gala_window_listener_get_default (void);
 GalaWindowGeometry* gala_window_listener_get_unmaximized_state_geometry (GalaWindowListener* self, MetaWindow* window);
-static gboolean ____lambda92_ (Block10Data* _data10_);
-static gboolean _____lambda92__gsource_func (gpointer self);
-static void ___lambda93_ (Block10Data* _data10_);
-static void ____lambda93__clutter_timeline_stopped (ClutterTimeline* _sender, gboolean is_finished, gpointer self);
+static gboolean ____lambda91_ (Block10Data* _data10_);
+static gboolean _____lambda91__gsource_func (gpointer self);
+static void ___lambda92_ (Block10Data* _data10_);
+static void ____lambda92__clutter_timeline_stopped (ClutterTimeline* _sender, gboolean is_finished, gpointer self);
 static void gala_window_manager_gala_real_unminimize (MetaPlugin* base, MetaWindowActor* actor);
 static Block11Data* block11_data_ref (Block11Data* _data11_);
 static void block11_data_unref (void * _userdata_);
 static Block12Data* block12_data_ref (Block12Data* _data12_);
 static void block12_data_unref (void * _userdata_);
-static void ___lambda97_ (Block12Data* _data12_);
-static void ____lambda97__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda96_ (Block12Data* _data12_);
+static void ____lambda96__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static void gala_window_manager_gala_real_map (MetaPlugin* base, MetaWindowActor* actor);
 static Block13Data* block13_data_ref (Block13Data* _data13_);
 static void block13_data_unref (void * _userdata_);
 static Block14Data* block14_data_ref (Block14Data* _data14_);
 static void block14_data_unref (void * _userdata_);
 gint gala_animation_settings_get_open_duration (GalaAnimationSettings* self);
-static void ___lambda98_ (Block14Data* _data14_);
-static void ____lambda98__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda97_ (Block14Data* _data14_);
+static void ____lambda97__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static Block15Data* block15_data_ref (Block15Data* _data15_);
 static void block15_data_unref (void * _userdata_);
 gint gala_animation_settings_get_menu_duration (GalaAnimationSettings* self);
-static void ___lambda99_ (Block15Data* _data15_);
-static void ____lambda99__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda98_ (Block15Data* _data15_);
+static void ____lambda98__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static Block16Data* block16_data_ref (Block16Data* _data16_);
 static void block16_data_unref (void * _userdata_);
-static void ___lambda100_ (Block16Data* _data16_);
-static void ____lambda100__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda99_ (Block16Data* _data16_);
+static void ____lambda99__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 GType gala_appearance_settings_get_type (void) G_GNUC_CONST;
 GalaAppearanceSettings* gala_appearance_settings_get_default (void);
 gboolean gala_appearance_settings_get_dim_parents (GalaAppearanceSettings* self);
@@ -671,21 +662,21 @@ static void block17_data_unref (void * _userdata_);
 static Block18Data* block18_data_ref (Block18Data* _data18_);
 static void block18_data_unref (void * _userdata_);
 gint gala_animation_settings_get_close_duration (GalaAnimationSettings* self);
-static void ___lambda101_ (Block18Data* _data18_);
-static void ____lambda101__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda100_ (Block18Data* _data18_);
+static void ____lambda100__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static Block19Data* block19_data_ref (Block19Data* _data19_);
 static void block19_data_unref (void * _userdata_);
-static void ___lambda102_ (Block19Data* _data19_);
-static void ____lambda102__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda101_ (Block19Data* _data19_);
+static void ____lambda101__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static Block20Data* block20_data_ref (Block20Data* _data20_);
 static void block20_data_unref (void * _userdata_);
-static void ___lambda103_ (Block20Data* _data20_);
-static void ____lambda103__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda102_ (Block20Data* _data20_);
+static void ____lambda102__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static inline void gala_window_manager_gala_unmaximize_completed (GalaWindowManagerGala* self, MetaWindowActor* actor);
 static Block21Data* block21_data_ref (Block21Data* _data21_);
 static void block21_data_unref (void * _userdata_);
-static void ___lambda94_ (Block21Data* _data21_);
-static void ____lambda94__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
+static void ___lambda93_ (Block21Data* _data21_);
+static void ____lambda93__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self);
 static gboolean gala_window_manager_gala_end_animation (GalaWindowManagerGala* self, GeeHashSet** list, MetaWindowActor* actor);
 static void gala_window_manager_gala_real_kill_window_effects (MetaPlugin* base, MetaWindowActor* actor);
 static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gint from, gint to, MetaMotionDirection direction);
@@ -702,8 +693,8 @@ gint gala_background_manager_get_monitor_index (GalaBackgroundManager* self);
 static void gala_window_manager_gala_real_kill_switch_workspace (MetaPlugin* base);
 static gboolean gala_window_manager_gala_real_keybinding_filter (MetaPlugin* base, MetaKeyBinding* binding);
 static void gala_window_manager_gala_real_confirm_display_change (MetaPlugin* base);
-static void __lambda104_ (GalaWindowManagerGala* self, GPid pid, gint status);
-static void ___lambda104__gchild_watch_func (GPid pid, gint status, gpointer self);
+static void __lambda103_ (GalaWindowManagerGala* self, GPid pid, gint status);
+static void ___lambda103__gchild_watch_func (GPid pid, gint status, gpointer self);
 static MetaPluginInfo* gala_window_manager_gala_real_plugin_info (MetaPlugin* base);
 static void gala_window_manager_gala_finalize (GObject* obj);
 static void _vala_gala_window_manager_gala_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec);
@@ -723,15 +714,15 @@ static const GDBusInterfaceInfo _gala_login_dremote_dbus_interface_info = {-1, "
 static const GDBusInterfaceVTable _gala_login_dremote_dbus_interface_vtable = {gala_login_dremote_dbus_interface_method_call, gala_login_dremote_dbus_interface_get_property, gala_login_dremote_dbus_interface_set_property};
 
 static void gala_login_dremote_base_init (GalaLoginDRemoteIface * iface) {
-#line 23 "/home/nick/work/gala/src/WindowManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	static gboolean initialized = FALSE;
-#line 23 "/home/nick/work/gala/src/WindowManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!initialized) {
-#line 23 "/home/nick/work/gala/src/WindowManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		initialized = TRUE;
-#line 23 "/home/nick/work/gala/src/WindowManager.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_signal_new ("prepare_for_sleep", GALA_TYPE_LOGIN_DREMOTE, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__BOOLEAN, G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
-#line 735 "WindowManager.c"
+#line 726 "WindowManager.c"
 	}
 }
 
@@ -755,9 +746,9 @@ GType gala_login_dremote_get_type (void) {
 
 G_DEFINE_TYPE_EXTENDED (GalaLoginDRemoteProxy, gala_login_dremote_proxy, G_TYPE_DBUS_PROXY, 0, G_IMPLEMENT_INTERFACE (GALA_TYPE_LOGIN_DREMOTE, gala_login_dremote_proxy_gala_login_dremote_interface_init) )
 static void gala_login_dremote_proxy_class_init (GalaLoginDRemoteProxyClass* klass) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	G_DBUS_PROXY_CLASS (klass)->g_signal = gala_login_dremote_proxy_g_signal;
-#line 761 "WindowManager.c"
+#line 752 "WindowManager.c"
 }
 
 
@@ -765,26 +756,26 @@ static void _dbus_handle_gala_login_dremote_prepare_for_sleep (GalaLoginDRemote*
 	GVariantIter _arguments_iter;
 	gboolean suspending = FALSE;
 	GVariant* _tmp68_;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_arguments_iter, parameters);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp68_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	suspending = g_variant_get_boolean (_tmp68_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp68_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_signal_emit_by_name (self, "prepare-for-sleep", suspending);
-#line 779 "WindowManager.c"
+#line 770 "WindowManager.c"
 }
 
 
 static void gala_login_dremote_proxy_g_signal (GDBusProxy* proxy, const gchar* sender_name, const gchar* signal_name, GVariant* parameters) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (strcmp (signal_name, "PrepareForSleep") == 0) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		_dbus_handle_gala_login_dremote_prepare_for_sleep ((GalaLoginDRemote*) proxy, parameters);
-#line 788 "WindowManager.c"
+#line 779 "WindowManager.c"
 	}
 }
 
@@ -802,9 +793,9 @@ static void gala_login_dremote_dbus_interface_method_call (GDBusConnection* conn
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (invocation);
-#line 808 "WindowManager.c"
+#line 799 "WindowManager.c"
 }
 
 
@@ -813,9 +804,9 @@ static GVariant* gala_login_dremote_dbus_interface_get_property (GDBusConnection
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return NULL;
-#line 819 "WindowManager.c"
+#line 810 "WindowManager.c"
 }
 
 
@@ -824,9 +815,9 @@ static gboolean gala_login_dremote_dbus_interface_set_property (GDBusConnection*
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return FALSE;
-#line 830 "WindowManager.c"
+#line 821 "WindowManager.c"
 }
 
 
@@ -837,75 +828,75 @@ static void _dbus_gala_login_dremote_prepare_for_sleep (GObject* _sender, gboole
 	GVariantBuilder _arguments_builder;
 	_connection = _data[1];
 	_path = _data[2];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_arguments_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_arguments_builder, g_variant_new_boolean (suspending));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_arguments = g_variant_builder_end (&_arguments_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_connection_emit_signal (_connection, NULL, _path, "org.freedesktop.login1.Manager", "PrepareForSleep", _arguments, NULL);
-#line 849 "WindowManager.c"
+#line 840 "WindowManager.c"
 }
 
 
 guint gala_login_dremote_register_object (gpointer object, GDBusConnection* connection, const gchar* path, GError** error) {
 	guint result;
 	gpointer *data;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data = g_new (gpointer, 3);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[0] = g_object_ref (object);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[1] = g_object_ref (connection);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[2] = g_strdup (path);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	result = g_dbus_connection_register_object (connection, path, (GDBusInterfaceInfo *) (&_gala_login_dremote_dbus_interface_info), &_gala_login_dremote_dbus_interface_vtable, data, _gala_login_dremote_unregister_object, error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (!result) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		return 0;
-#line 870 "WindowManager.c"
+#line 861 "WindowManager.c"
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_signal_connect (object, "prepare-for-sleep", (GCallback) _dbus_gala_login_dremote_prepare_for_sleep, data);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return result;
-#line 876 "WindowManager.c"
+#line 867 "WindowManager.c"
 }
 
 
 static void _gala_login_dremote_unregister_object (gpointer user_data) {
 	gpointer* data;
 	data = user_data;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_signal_handlers_disconnect_by_func (data[0], _dbus_gala_login_dremote_prepare_for_sleep, data);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (data[0]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (data[1]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (data[2]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (data);
-#line 893 "WindowManager.c"
+#line 884 "WindowManager.c"
 }
 
 
 static void _g_object_unref0_ (gpointer var) {
-#line 94 "/home/nick/work/gala/src/WindowManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	(var == NULL) ? NULL : (var = (g_object_unref (var), NULL));
-#line 900 "WindowManager.c"
+#line 891 "WindowManager.c"
 }
 
 
 static void _g_list_free__g_object_unref0_ (GList* self) {
-#line 1361 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1385 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_list_foreach (self, (GFunc) _g_object_unref0_, NULL);
-#line 1361 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1385 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_list_free (self);
-#line 909 "WindowManager.c"
+#line 900 "WindowManager.c"
 }
 
 
@@ -925,7 +916,7 @@ static gboolean string_contains (const gchar* self, const gchar* needle) {
 	result = _tmp1_ != NULL;
 #line 1279 "/usr/share/vala-0.30/vapi/glib-2.0.vapi"
 	return result;
-#line 929 "WindowManager.c"
+#line 920 "WindowManager.c"
 }
 
 
@@ -943,74 +934,74 @@ static gboolean gala_window_manager_gala_is_nvidia (void) {
 	const gchar* _tmp3_ = NULL;
 	gboolean _tmp4_ = FALSE;
 	const gchar* _tmp5_ = NULL;
-#line 38 "/home/nick/work/gala/src/WindowManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = cogl_get_proc_address ("glGetString");
-#line 38 "/home/nick/work/gala/src/WindowManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gl_get_string = (GalaWindowManagerGalaGlQueryFunc) _tmp0_;
-#line 38 "/home/nick/work/gala/src/WindowManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gl_get_string_target = NULL;
-#line 38 "/home/nick/work/gala/src/WindowManager.vala"
+#line 38 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gl_get_string_target_destroy_notify = NULL;
-#line 39 "/home/nick/work/gala/src/WindowManager.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = gl_get_string;
-#line 39 "/home/nick/work/gala/src/WindowManager.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1__target = gl_get_string_target;
-#line 39 "/home/nick/work/gala/src/WindowManager.vala"
+#line 39 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp1_ == NULL) {
-#line 40 "/home/nick/work/gala/src/WindowManager.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		result = FALSE;
-#line 40 "/home/nick/work/gala/src/WindowManager.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		(gl_get_string_target_destroy_notify == NULL) ? NULL : (gl_get_string_target_destroy_notify (gl_get_string_target), NULL);
-#line 40 "/home/nick/work/gala/src/WindowManager.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gl_get_string = NULL;
-#line 40 "/home/nick/work/gala/src/WindowManager.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gl_get_string_target = NULL;
-#line 40 "/home/nick/work/gala/src/WindowManager.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gl_get_string_target_destroy_notify = NULL;
-#line 40 "/home/nick/work/gala/src/WindowManager.vala"
+#line 40 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return result;
-#line 973 "WindowManager.c"
+#line 964 "WindowManager.c"
 	}
-#line 42 "/home/nick/work/gala/src/WindowManager.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gl_get_string;
-#line 42 "/home/nick/work/gala/src/WindowManager.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2__target = gl_get_string_target;
-#line 42 "/home/nick/work/gala/src/WindowManager.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _tmp2_ (GALA_WINDOW_MANAGER_GALA_GL_VENDOR, _tmp2__target);
-#line 42 "/home/nick/work/gala/src/WindowManager.vala"
+#line 42 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	vendor = _tmp3_;
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = vendor;
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp5_ != NULL) {
-#line 987 "WindowManager.c"
+#line 978 "WindowManager.c"
 		const gchar* _tmp6_ = NULL;
 		gboolean _tmp7_ = FALSE;
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = vendor;
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp7_ = string_contains (_tmp6_, "NVIDIA Corporation");
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = _tmp7_;
-#line 996 "WindowManager.c"
+#line 987 "WindowManager.c"
 	} else {
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = FALSE;
-#line 1000 "WindowManager.c"
+#line 991 "WindowManager.c"
 	}
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp4_;
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	(gl_get_string_target_destroy_notify == NULL) ? NULL : (gl_get_string_target_destroy_notify (gl_get_string_target), NULL);
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gl_get_string = NULL;
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gl_get_string_target = NULL;
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gl_get_string_target_destroy_notify = NULL;
-#line 43 "/home/nick/work/gala/src/WindowManager.vala"
+#line 43 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 1014 "WindowManager.c"
+#line 1005 "WindowManager.c"
 }
 
 
@@ -1018,62 +1009,62 @@ GalaWindowManagerGala* gala_window_manager_gala_construct (GType object_type) {
 	GalaWindowManagerGala * self = NULL;
 	MetaPluginInfo _tmp0_ = {0};
 	MetaPluginInfo _tmp1_ = {0};
-#line 97 "/home/nick/work/gala/src/WindowManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) g_object_new (object_type, NULL);
-#line 99 "/home/nick/work/gala/src/WindowManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	memset (&_tmp0_, 0, sizeof (MetaPluginInfo));
-#line 99 "/home/nick/work/gala/src/WindowManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_.name = "Gala";
-#line 99 "/home/nick/work/gala/src/WindowManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_.version = VERSION;
-#line 99 "/home/nick/work/gala/src/WindowManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_.author = "Gala Developers";
-#line 99 "/home/nick/work/gala/src/WindowManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_.license = "GPLv3";
-#line 99 "/home/nick/work/gala/src/WindowManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_.description = "A nice elementary window manager";
-#line 99 "/home/nick/work/gala/src/WindowManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->info = _tmp0_;
-#line 99 "/home/nick/work/gala/src/WindowManager.vala"
+#line 99 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = self->priv->info;
-#line 102 "/home/nick/work/gala/src/WindowManager.vala"
+#line 102 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_prefs_set_ignore_request_hide_titlebar (TRUE);
-#line 103 "/home/nick/work/gala/src/WindowManager.vala"
+#line 103 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_prefs_override_preference_schema ("dynamic-workspaces", SCHEMA ".behavior");
-#line 104 "/home/nick/work/gala/src/WindowManager.vala"
+#line 104 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_prefs_override_preference_schema ("attach-modal-dialogs", SCHEMA ".appearance");
-#line 105 "/home/nick/work/gala/src/WindowManager.vala"
+#line 105 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_prefs_override_preference_schema ("button-layout", SCHEMA ".appearance");
-#line 106 "/home/nick/work/gala/src/WindowManager.vala"
+#line 106 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_prefs_override_preference_schema ("edge-tiling", SCHEMA ".behavior");
-#line 107 "/home/nick/work/gala/src/WindowManager.vala"
+#line 107 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_prefs_override_preference_schema ("enable-animations", SCHEMA ".animations");
-#line 97 "/home/nick/work/gala/src/WindowManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return self;
-#line 1054 "WindowManager.c"
+#line 1045 "WindowManager.c"
 }
 
 
 GalaWindowManagerGala* gala_window_manager_gala_new (void) {
-#line 97 "/home/nick/work/gala/src/WindowManager.vala"
+#line 97 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return gala_window_manager_gala_construct (GALA_TYPE_WINDOW_MANAGER_GALA);
-#line 1061 "WindowManager.c"
+#line 1052 "WindowManager.c"
 }
 
 
 static gboolean _gala_window_manager_gala_show_stage_gsource_func (gpointer self) {
 	gboolean result;
 	result = gala_window_manager_gala_show_stage ((GalaWindowManagerGala*) self);
-#line 112 "/home/nick/work/gala/src/WindowManager.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 1070 "WindowManager.c"
+#line 1061 "WindowManager.c"
 }
 
 
 static void _gala_window_manager_gala_prepare_for_sleep_gala_login_dremote_prepare_for_sleep (GalaLoginDRemote* _sender, gboolean suspending, gpointer self) {
-#line 119 "/home/nick/work/gala/src/WindowManager.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_prepare_for_sleep ((GalaWindowManagerGala*) self, suspending);
-#line 1077 "WindowManager.c"
+#line 1068 "WindowManager.c"
 }
 
 
@@ -1082,58 +1073,58 @@ static void gala_window_manager_gala_real_start (MetaPlugin* base) {
 	gboolean _tmp0_ = FALSE;
 	GalaLoginDRemote* _tmp1_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 110 "/home/nick/work/gala/src/WindowManager.vala"
+#line 110 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 112 "/home/nick/work/gala/src/WindowManager.vala"
+#line 112 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_later_add (META_LATER_BEFORE_REDRAW, _gala_window_manager_gala_show_stage_gsource_func, g_object_ref (self), g_object_unref);
-#line 115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = self->priv->logind_proxy;
-#line 115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp1_ == NULL) {
-#line 1094 "WindowManager.c"
+#line 1085 "WindowManager.c"
 		gboolean _tmp2_ = FALSE;
-#line 116 "/home/nick/work/gala/src/WindowManager.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp2_ = gala_window_manager_gala_is_nvidia ();
-#line 116 "/home/nick/work/gala/src/WindowManager.vala"
+#line 116 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = _tmp2_;
-#line 1100 "WindowManager.c"
+#line 1091 "WindowManager.c"
 	} else {
-#line 115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = FALSE;
-#line 1104 "WindowManager.c"
+#line 1095 "WindowManager.c"
 	}
-#line 115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 115 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp0_) {
-#line 1108 "WindowManager.c"
+#line 1099 "WindowManager.c"
 		{
 			GalaLoginDRemote* _tmp3_ = NULL;
 			GalaLoginDRemote* _tmp4_ = NULL;
 			GalaLoginDRemote* _tmp5_ = NULL;
 			GalaLoginDRemote* _tmp6_ = NULL;
-#line 118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp4_ = g_initable_new (GALA_TYPE_LOGIN_DREMOTE_PROXY, NULL, &_inner_error_, "g-flags", 0, "g-name", GALA_WINDOW_MANAGER_GALA_LOGIND_DBUS_NAME, "g-bus-type", G_BUS_TYPE_SYSTEM, "g-object-path", GALA_WINDOW_MANAGER_GALA_LOGIND_DBUS_OBJECT_PATH, "g-interface-name", "org.freedesktop.login1.Manager", "g-interface-info", g_type_get_qdata (GALA_TYPE_LOGIN_DREMOTE, g_quark_from_static_string ("vala-dbus-interface-info")), NULL);
-#line 118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp3_ = (GalaLoginDRemote*) _tmp4_;
-#line 118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 1120 "WindowManager.c"
+#line 1111 "WindowManager.c"
 				goto __catch13_g_error;
 			}
-#line 118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp5_ = _tmp3_;
-#line 118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp3_ = NULL;
-#line 118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_object_unref0 (self->priv->logind_proxy);
-#line 118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 118 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			self->priv->logind_proxy = _tmp5_;
-#line 119 "/home/nick/work/gala/src/WindowManager.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp6_ = self->priv->logind_proxy;
-#line 119 "/home/nick/work/gala/src/WindowManager.vala"
+#line 119 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_signal_connect_object (_tmp6_, "prepare-for-sleep", (GCallback) _gala_window_manager_gala_prepare_for_sleep_gala_login_dremote_prepare_for_sleep, self, 0);
-#line 117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_object_unref0 (_tmp3_);
-#line 1137 "WindowManager.c"
+#line 1128 "WindowManager.c"
 		}
 		goto __finally13;
 		__catch13_g_error:
@@ -1141,30 +1132,30 @@ static void gala_window_manager_gala_real_start (MetaPlugin* base) {
 			GError* e = NULL;
 			GError* _tmp7_ = NULL;
 			const gchar* _tmp8_ = NULL;
-#line 117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			e = _inner_error_;
-#line 117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_inner_error_ = NULL;
-#line 121 "/home/nick/work/gala/src/WindowManager.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp7_ = e;
-#line 121 "/home/nick/work/gala/src/WindowManager.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp8_ = _tmp7_->message;
-#line 121 "/home/nick/work/gala/src/WindowManager.vala"
+#line 121 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_warning ("WindowManager.vala:121: Failed to get LoginD proxy: %s", _tmp8_);
-#line 117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_error_free0 (e);
-#line 1157 "WindowManager.c"
+#line 1148 "WindowManager.c"
 		}
 		__finally13:
-#line 117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_clear_error (&_inner_error_);
-#line 117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 117 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			return;
-#line 1168 "WindowManager.c"
+#line 1159 "WindowManager.c"
 		}
 	}
 }
@@ -1172,80 +1163,89 @@ static void gala_window_manager_gala_real_start (MetaPlugin* base) {
 
 static void gala_window_manager_gala_prepare_for_sleep (GalaWindowManagerGala* self, gboolean suspending) {
 	gboolean _tmp0_ = FALSE;
-#line 126 "/home/nick/work/gala/src/WindowManager.vala"
+#line 126 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 128 "/home/nick/work/gala/src/WindowManager.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = suspending;
-#line 128 "/home/nick/work/gala/src/WindowManager.vala"
+#line 128 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp0_) {
-#line 129 "/home/nick/work/gala/src/WindowManager.vala"
+#line 129 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 1184 "WindowManager.c"
+#line 1175 "WindowManager.c"
 	}
-#line 131 "/home/nick/work/gala/src/WindowManager.vala"
+#line 131 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_background_refresh_all ();
-#line 1188 "WindowManager.c"
+#line 1179 "WindowManager.c"
 }
 
 
 static Block4Data* block4_data_ref (Block4Data* _data4_) {
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data4_->_ref_count_);
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data4_;
-#line 1197 "WindowManager.c"
+#line 1188 "WindowManager.c"
 }
 
 
 static void block4_data_unref (void * _userdata_) {
 	Block4Data* _data4_;
 	_data4_ = (Block4Data*) _userdata_;
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data4_->_ref_count_)) {
-#line 1206 "WindowManager.c"
+#line 1197 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data4_->self;
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_data4_->plugin_manager);
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self);
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block4Data, _data4_);
-#line 1216 "WindowManager.c"
+#line 1207 "WindowManager.c"
 	}
 }
 
 
 static gpointer _g_object_ref0 (gpointer self) {
-#line 136 "/home/nick/work/gala/src/WindowManager.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return self ? g_object_ref (self) : NULL;
-#line 1224 "WindowManager.c"
+#line 1215 "WindowManager.c"
 }
 
 
 static void _gala_window_manager_gala_update_input_area_gala_screen_saver_active_changed (GalaScreenSaver* _sender, gboolean active, gpointer self) {
-#line 153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_update_input_area ((GalaWindowManagerGala*) self);
+#line 1222 "WindowManager.c"
+}
+
+
+static gboolean _gala_window_manager_gala_on_background_click_clutter_actor_button_release_event (ClutterActor* _sender, ClutterButtonEvent* event, gpointer self) {
+	gboolean result;
+	result = gala_window_manager_gala_on_background_click ((GalaWindowManagerGala*) self, event);
+#line 191 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	return result;
 #line 1231 "WindowManager.c"
 }
 
 
-static void __lambda48_ (GalaWindowManagerGala* self) {
+static void __lambda52_ (GalaWindowManagerGala* self) {
 	GError * _inner_error_ = NULL;
 	{
 		GalaBehaviorSettings* _tmp0_ = NULL;
 		const gchar* _tmp1_ = NULL;
 		const gchar* _tmp2_ = NULL;
-#line 211 "/home/nick/work/gala/src/WindowManager.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = gala_behavior_settings_get_default ();
-#line 211 "/home/nick/work/gala/src/WindowManager.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp1_ = gala_behavior_settings_get_overlay_action (_tmp0_);
-#line 211 "/home/nick/work/gala/src/WindowManager.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp2_ = _tmp1_;
-#line 211 "/home/nick/work/gala/src/WindowManager.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_spawn_command_line_async (_tmp2_, &_inner_error_);
-#line 211 "/home/nick/work/gala/src/WindowManager.vala"
+#line 213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1251 "WindowManager.c"
 			goto __catch15_g_error;
@@ -1257,56 +1257,56 @@ static void __lambda48_ (GalaWindowManagerGala* self) {
 		GError* e = NULL;
 		GError* _tmp3_ = NULL;
 		const gchar* _tmp4_ = NULL;
-#line 210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		e = _inner_error_;
-#line 210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_inner_error_ = NULL;
-#line 213 "/home/nick/work/gala/src/WindowManager.vala"
+#line 215 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp3_ = e;
-#line 213 "/home/nick/work/gala/src/WindowManager.vala"
+#line 215 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = _tmp3_->message;
-#line 213 "/home/nick/work/gala/src/WindowManager.vala"
-		g_warning ("WindowManager.vala:213: %s", _tmp4_);
-#line 210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 215 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		g_warning ("WindowManager.vala:215: %s", _tmp4_);
+#line 212 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_error_free0 (e);
 #line 1273 "WindowManager.c"
 	}
 	__finally15:
-#line 210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_clear_error (&_inner_error_);
-#line 210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 212 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
 #line 1284 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda48__meta_display_overlay_key (MetaDisplay* _sender, gpointer self) {
-#line 209 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda48_ ((GalaWindowManagerGala*) self);
+static void ___lambda52__meta_display_overlay_key (MetaDisplay* _sender, gpointer self) {
+#line 211 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	__lambda52_ ((GalaWindowManagerGala*) self);
 #line 1292 "WindowManager.c"
 }
 
 
-static void __lambda49_ (GalaWindowManagerGala* self) {
+static void __lambda53_ (GalaWindowManagerGala* self) {
 	GError * _inner_error_ = NULL;
 	{
 		GalaBehaviorSettings* _tmp0_ = NULL;
 		const gchar* _tmp1_ = NULL;
 		const gchar* _tmp2_ = NULL;
-#line 218 "/home/nick/work/gala/src/WindowManager.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = gala_behavior_settings_get_default ();
-#line 218 "/home/nick/work/gala/src/WindowManager.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp1_ = gala_behavior_settings_get_panel_main_menu_action (_tmp0_);
-#line 218 "/home/nick/work/gala/src/WindowManager.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp2_ = _tmp1_;
-#line 218 "/home/nick/work/gala/src/WindowManager.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_spawn_command_line_async (_tmp2_, &_inner_error_);
-#line 218 "/home/nick/work/gala/src/WindowManager.vala"
+#line 220 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1312 "WindowManager.c"
 			goto __catch16_g_error;
@@ -1318,56 +1318,56 @@ static void __lambda49_ (GalaWindowManagerGala* self) {
 		GError* e = NULL;
 		GError* _tmp3_ = NULL;
 		const gchar* _tmp4_ = NULL;
-#line 217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		e = _inner_error_;
-#line 217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_inner_error_ = NULL;
-#line 220 "/home/nick/work/gala/src/WindowManager.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp3_ = e;
-#line 220 "/home/nick/work/gala/src/WindowManager.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = _tmp3_->message;
-#line 220 "/home/nick/work/gala/src/WindowManager.vala"
-		g_warning ("WindowManager.vala:220: %s", _tmp4_);
-#line 217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 222 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		g_warning ("WindowManager.vala:222: %s", _tmp4_);
+#line 219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_error_free0 (e);
 #line 1334 "WindowManager.c"
 	}
 	__finally16:
-#line 217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_clear_error (&_inner_error_);
-#line 217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
 #line 1345 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda49__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 216 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda49_ ((GalaWindowManagerGala*) self);
+static void ___lambda53__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
+#line 218 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	__lambda53_ ((GalaWindowManagerGala*) self);
 #line 1353 "WindowManager.c"
 }
 
 
-static void __lambda50_ (GalaWindowManagerGala* self) {
+static void __lambda54_ (GalaWindowManagerGala* self) {
 	GError * _inner_error_ = NULL;
 	{
 		GalaBehaviorSettings* _tmp0_ = NULL;
 		const gchar* _tmp1_ = NULL;
 		const gchar* _tmp2_ = NULL;
-#line 225 "/home/nick/work/gala/src/WindowManager.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = gala_behavior_settings_get_default ();
-#line 225 "/home/nick/work/gala/src/WindowManager.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp1_ = gala_behavior_settings_get_toggle_recording_action (_tmp0_);
-#line 225 "/home/nick/work/gala/src/WindowManager.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp2_ = _tmp1_;
-#line 225 "/home/nick/work/gala/src/WindowManager.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_spawn_command_line_async (_tmp2_, &_inner_error_);
-#line 225 "/home/nick/work/gala/src/WindowManager.vala"
+#line 227 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
 #line 1373 "WindowManager.c"
 			goto __catch17_g_error;
@@ -1379,82 +1379,38 @@ static void __lambda50_ (GalaWindowManagerGala* self) {
 		GError* e = NULL;
 		GError* _tmp3_ = NULL;
 		const gchar* _tmp4_ = NULL;
-#line 224 "/home/nick/work/gala/src/WindowManager.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		e = _inner_error_;
-#line 224 "/home/nick/work/gala/src/WindowManager.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_inner_error_ = NULL;
-#line 227 "/home/nick/work/gala/src/WindowManager.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp3_ = e;
-#line 227 "/home/nick/work/gala/src/WindowManager.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = _tmp3_->message;
-#line 227 "/home/nick/work/gala/src/WindowManager.vala"
-		g_warning ("WindowManager.vala:227: %s", _tmp4_);
-#line 224 "/home/nick/work/gala/src/WindowManager.vala"
+#line 229 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		g_warning ("WindowManager.vala:229: %s", _tmp4_);
+#line 226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_error_free0 (e);
 #line 1395 "WindowManager.c"
 	}
 	__finally17:
-#line 224 "/home/nick/work/gala/src/WindowManager.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 224 "/home/nick/work/gala/src/WindowManager.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 224 "/home/nick/work/gala/src/WindowManager.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_clear_error (&_inner_error_);
-#line 224 "/home/nick/work/gala/src/WindowManager.vala"
+#line 226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
 #line 1406 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda50__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 223 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda50_ ((GalaWindowManagerGala*) self);
-#line 1414 "WindowManager.c"
-}
-
-
-static void __lambda51_ (GalaWindowManagerGala* self) {
-}
-
-
-static void ___lambda51__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 230 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda51_ ((GalaWindowManagerGala*) self);
-#line 1425 "WindowManager.c"
-}
-
-
-static void __lambda52_ (GalaWindowManagerGala* self) {
-}
-
-
-static void ___lambda52__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 231 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda52_ ((GalaWindowManagerGala*) self);
-#line 1436 "WindowManager.c"
-}
-
-
-static void __lambda53_ (GalaWindowManagerGala* self) {
-}
-
-
-static void ___lambda53__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 235 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda53_ ((GalaWindowManagerGala*) self);
-#line 1447 "WindowManager.c"
-}
-
-
-static void __lambda54_ (GalaWindowManagerGala* self) {
-}
-
-
 static void ___lambda54__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 236 "/home/nick/work/gala/src/WindowManager.vala"
+#line 225 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__lambda54_ ((GalaWindowManagerGala*) self);
-#line 1458 "WindowManager.c"
+#line 1414 "WindowManager.c"
 }
 
 
@@ -1463,9 +1419,9 @@ static void __lambda55_ (GalaWindowManagerGala* self) {
 
 
 static void ___lambda55__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 240 "/home/nick/work/gala/src/WindowManager.vala"
+#line 232 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__lambda55_ ((GalaWindowManagerGala*) self);
-#line 1469 "WindowManager.c"
+#line 1425 "WindowManager.c"
 }
 
 
@@ -1474,215 +1430,142 @@ static void __lambda56_ (GalaWindowManagerGala* self) {
 
 
 static void ___lambda56__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 241 "/home/nick/work/gala/src/WindowManager.vala"
+#line 233 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__lambda56_ ((GalaWindowManagerGala*) self);
+#line 1436 "WindowManager.c"
+}
+
+
+static void __lambda57_ (GalaWindowManagerGala* self) {
+}
+
+
+static void ___lambda57__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
+#line 237 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	__lambda57_ ((GalaWindowManagerGala*) self);
+#line 1447 "WindowManager.c"
+}
+
+
+static void __lambda58_ (GalaWindowManagerGala* self) {
+}
+
+
+static void ___lambda58__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
+#line 238 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	__lambda58_ ((GalaWindowManagerGala*) self);
+#line 1458 "WindowManager.c"
+}
+
+
+static void __lambda59_ (GalaWindowManagerGala* self) {
+}
+
+
+static void ___lambda59__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
+#line 242 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	__lambda59_ ((GalaWindowManagerGala*) self);
+#line 1469 "WindowManager.c"
+}
+
+
+static void __lambda60_ (GalaWindowManagerGala* self) {
+}
+
+
+static void ___lambda60__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
+#line 243 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	__lambda60_ ((GalaWindowManagerGala*) self);
 #line 1480 "WindowManager.c"
 }
 
 
 static void _gala_internal_utils_reload_shadow_g_object_notify (GObject* _sender, GParamSpec* pspec, gpointer self) {
-#line 245 "/home/nick/work/gala/src/WindowManager.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_internal_utils_reload_shadow ();
 #line 1487 "WindowManager.c"
 }
 
 
 static void _gala_window_manager_gala_configure_hotcorners_meta_screen_monitors_changed (MetaScreen* _sender, gpointer self) {
-#line 249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_configure_hotcorners ((GalaWindowManagerGala*) self);
 #line 1494 "WindowManager.c"
 }
 
 
 static void _gala_window_manager_gala_configure_hotcorners_g_settings_changed (GSettings* _sender, const gchar* key, gpointer self) {
-#line 251 "/home/nick/work/gala/src/WindowManager.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_configure_hotcorners ((GalaWindowManagerGala*) self);
 #line 1501 "WindowManager.c"
 }
 
 
 static void _gala_window_manager_gala_update_input_area_gala_plugin_manager_regions_changed (GalaPluginManager* _sender, gpointer self) {
-#line 256 "/home/nick/work/gala/src/WindowManager.vala"
+#line 258 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_update_input_area ((GalaWindowManagerGala*) self);
 #line 1508 "WindowManager.c"
-}
-
-
-static void __lambda85_ (GalaWindowManagerGala* self) {
-	GalaActivatableComponent* _tmp0_ = NULL;
-	gboolean _tmp1_ = FALSE;
-#line 265 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp0_ = self->priv->workspace_view;
-#line 265 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp1_ = gala_activatable_component_is_opened (_tmp0_);
-#line 265 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp1_) {
-#line 1521 "WindowManager.c"
-		GalaActivatableComponent* _tmp2_ = NULL;
-#line 266 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp2_ = self->priv->workspace_view;
-#line 266 "/home/nick/work/gala/src/WindowManager.vala"
-		gala_activatable_component_close (_tmp2_);
-#line 1527 "WindowManager.c"
-	} else {
-		GalaActivatableComponent* _tmp3_ = NULL;
-#line 268 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp3_ = self->priv->workspace_view;
-#line 268 "/home/nick/work/gala/src/WindowManager.vala"
-		gala_activatable_component_open (_tmp3_, NULL);
-#line 1534 "WindowManager.c"
-	}
-}
-
-
-static void ___lambda85__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 264 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda85_ ((GalaWindowManagerGala*) self);
-#line 1542 "WindowManager.c"
 }
 
 
 static void __lambda88_ (GalaWindowManagerGala* self) {
 	GalaActivatableComponent* _tmp0_ = NULL;
 	gboolean _tmp1_ = FALSE;
-#line 288 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp0_ = self->priv->window_overview;
-#line 288 "/home/nick/work/gala/src/WindowManager.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp0_ = self->priv->workspace_view;
+#line 267 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = gala_activatable_component_is_opened (_tmp0_);
-#line 288 "/home/nick/work/gala/src/WindowManager.vala"
+#line 267 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp1_) {
-#line 1555 "WindowManager.c"
+#line 1521 "WindowManager.c"
 		GalaActivatableComponent* _tmp2_ = NULL;
-#line 289 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp2_ = self->priv->window_overview;
-#line 289 "/home/nick/work/gala/src/WindowManager.vala"
+#line 268 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp2_ = self->priv->workspace_view;
+#line 268 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_activatable_component_close (_tmp2_);
-#line 1561 "WindowManager.c"
+#line 1527 "WindowManager.c"
 	} else {
 		GalaActivatableComponent* _tmp3_ = NULL;
-#line 291 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp3_ = self->priv->window_overview;
-#line 291 "/home/nick/work/gala/src/WindowManager.vala"
+#line 270 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp3_ = self->priv->workspace_view;
+#line 270 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_activatable_component_open (_tmp3_, NULL);
-#line 1568 "WindowManager.c"
+#line 1534 "WindowManager.c"
 	}
 }
 
 
 static void ___lambda88__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 287 "/home/nick/work/gala/src/WindowManager.vala"
+#line 266 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__lambda88_ ((GalaWindowManagerGala*) self);
-#line 1576 "WindowManager.c"
+#line 1542 "WindowManager.c"
 }
 
 
-static void _g_free0_ (gpointer var) {
-#line 297 "/home/nick/work/gala/src/WindowManager.vala"
-	var = (g_free (var), NULL);
-#line 1583 "WindowManager.c"
-}
-
-
-static void _g_variant_unref0_ (gpointer var) {
-#line 297 "/home/nick/work/gala/src/WindowManager.vala"
-	(var == NULL) ? NULL : (var = (g_variant_unref (var), NULL));
-#line 1590 "WindowManager.c"
-}
-
-
-static GVariant* _variant_new1 (gboolean value) {
-#line 298 "/home/nick/work/gala/src/WindowManager.vala"
-	return g_variant_ref_sink (g_variant_new_boolean (value));
-#line 1597 "WindowManager.c"
-}
-
-
-static void __lambda89_ (GalaWindowManagerGala* self) {
-	GalaActivatableComponent* _tmp0_ = NULL;
-	gboolean _tmp1_ = FALSE;
-#line 294 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp0_ = self->priv->window_overview;
-#line 294 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp1_ = gala_activatable_component_is_opened (_tmp0_);
-#line 294 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp1_) {
-#line 1610 "WindowManager.c"
-		GalaActivatableComponent* _tmp2_ = NULL;
-#line 295 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp2_ = self->priv->window_overview;
-#line 295 "/home/nick/work/gala/src/WindowManager.vala"
-		gala_activatable_component_close (_tmp2_);
-#line 1616 "WindowManager.c"
-	} else {
-		GHashTable* hints = NULL;
-		GHashFunc _tmp3_ = NULL;
-		GEqualFunc _tmp4_ = NULL;
-		GHashTable* _tmp5_ = NULL;
-		GHashTable* _tmp6_ = NULL;
-		gchar* _tmp7_ = NULL;
-		GVariant* _tmp8_ = NULL;
-		GalaActivatableComponent* _tmp9_ = NULL;
-		GHashTable* _tmp10_ = NULL;
-#line 297 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp3_ = g_str_hash;
-#line 297 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp4_ = g_str_equal;
-#line 297 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp5_ = g_hash_table_new_full (_tmp3_, _tmp4_, _g_free0_, _g_variant_unref0_);
-#line 297 "/home/nick/work/gala/src/WindowManager.vala"
-		hints = _tmp5_;
-#line 298 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp6_ = hints;
-#line 298 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp7_ = g_strdup ("all-windows");
-#line 298 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp8_ = _variant_new1 (TRUE);
-#line 298 "/home/nick/work/gala/src/WindowManager.vala"
-		g_hash_table_insert (_tmp6_, _tmp7_, _tmp8_);
-#line 299 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp9_ = self->priv->window_overview;
-#line 299 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp10_ = hints;
-#line 299 "/home/nick/work/gala/src/WindowManager.vala"
-		gala_activatable_component_open (_tmp9_, _tmp10_);
-#line 294 "/home/nick/work/gala/src/WindowManager.vala"
-		_g_hash_table_unref0 (hints);
-#line 1651 "WindowManager.c"
-	}
-}
-
-
-static void ___lambda89__meta_key_handler_func (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, gpointer self) {
-#line 293 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda89_ ((GalaWindowManagerGala*) self);
-#line 1659 "WindowManager.c"
-}
-
-
-static gboolean __lambda90_ (Block4Data* _data4_) {
+static gboolean __lambda89_ (Block4Data* _data4_) {
 	GalaWindowManagerGala* self;
 	gboolean result = FALSE;
 	GalaPluginManager* _tmp0_ = NULL;
-#line 310 "/home/nick/work/gala/src/WindowManager.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data4_->self;
-#line 311 "/home/nick/work/gala/src/WindowManager.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data4_->plugin_manager;
-#line 311 "/home/nick/work/gala/src/WindowManager.vala"
+#line 313 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_plugin_manager_load_waiting_plugins (_tmp0_);
-#line 312 "/home/nick/work/gala/src/WindowManager.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = FALSE;
-#line 312 "/home/nick/work/gala/src/WindowManager.vala"
+#line 314 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 1677 "WindowManager.c"
+#line 1560 "WindowManager.c"
 }
 
 
-static gboolean ___lambda90__gsource_func (gpointer self) {
+static gboolean ___lambda89__gsource_func (gpointer self) {
 	gboolean result;
-	result = __lambda90_ (self);
-#line 310 "/home/nick/work/gala/src/WindowManager.vala"
+	result = __lambda89_ (self);
+#line 312 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 1686 "WindowManager.c"
+#line 1569 "WindowManager.c"
 }
 
 
@@ -1734,8 +1617,8 @@ static gboolean gala_window_manager_gala_show_stage (GalaWindowManagerGala* self
 	ClutterActor* _tmp44_ = NULL;
 	GalaBackgroundContainer* _tmp45_ = NULL;
 	GalaBackgroundContainer* _tmp46_ = NULL;
-	ClutterActor* _tmp47_ = NULL;
-	ClutterActor* _tmp48_ = NULL;
+	MetaBackgroundGroup* _tmp47_ = NULL;
+	MetaBackgroundGroup* _tmp48_ = NULL;
 	MetaBackgroundGroup* _tmp49_ = NULL;
 	MetaBackgroundGroup* _tmp50_ = NULL;
 	ClutterActor* _tmp51_ = NULL;
@@ -1743,106 +1626,103 @@ static gboolean gala_window_manager_gala_show_stage (GalaWindowManagerGala* self
 	MetaBackgroundGroup* _tmp53_ = NULL;
 	MetaBackgroundGroup* _tmp54_ = NULL;
 	ClutterActor* _tmp55_ = NULL;
-	ClutterStage* _tmp56_ = NULL;
-	ClutterStage* _tmp57_ = NULL;
-	ClutterActor* _tmp58_ = NULL;
+	ClutterActor* _tmp56_ = NULL;
+	MetaBackgroundGroup* _tmp57_ = NULL;
+	MetaBackgroundGroup* _tmp58_ = NULL;
 	ClutterActor* _tmp59_ = NULL;
-	ClutterActor* _tmp60_ = NULL;
-	ClutterActor* _tmp61_ = NULL;
+	ClutterStage* _tmp60_ = NULL;
+	ClutterStage* _tmp61_ = NULL;
 	ClutterActor* _tmp62_ = NULL;
 	ClutterActor* _tmp63_ = NULL;
+	ClutterActor* _tmp64_ = NULL;
+	ClutterActor* _tmp65_ = NULL;
+	ClutterActor* _tmp66_ = NULL;
+	ClutterActor* _tmp67_ = NULL;
 	GSettings* keybinding_schema = NULL;
-	GalaKeybindingSettings* _tmp64_ = NULL;
-	GSettings* _tmp65_ = NULL;
-	GSettings* _tmp66_ = NULL;
-	GSettings* _tmp67_ = NULL;
-	GSettings* _tmp68_ = NULL;
+	GalaKeybindingSettings* _tmp68_ = NULL;
 	GSettings* _tmp69_ = NULL;
 	GSettings* _tmp70_ = NULL;
 	GSettings* _tmp71_ = NULL;
 	GSettings* _tmp72_ = NULL;
 	GSettings* _tmp73_ = NULL;
 	GSettings* _tmp74_ = NULL;
-	GalaShadowSettings* _tmp75_ = NULL;
-	GalaBehaviorSettings* _tmp76_ = NULL;
+	GSettings* _tmp75_ = NULL;
+	GSettings* _tmp76_ = NULL;
 	GSettings* _tmp77_ = NULL;
-	GSettings* _tmp78_ = NULL;
-	GalaPluginManager* _tmp79_ = NULL;
-	GalaPluginManager* _tmp80_ = NULL;
-	GalaPluginManager* _tmp81_ = NULL;
+	GalaShadowSettings* _tmp78_ = NULL;
+	GalaBehaviorSettings* _tmp79_ = NULL;
+	GSettings* _tmp80_ = NULL;
+	GSettings* _tmp81_ = NULL;
 	GalaPluginManager* _tmp82_ = NULL;
-	gboolean _tmp83_ = FALSE;
+	GalaPluginManager* _tmp83_ = NULL;
 	GalaPluginManager* _tmp84_ = NULL;
-	const gchar* _tmp85_ = NULL;
-	const gchar* _tmp86_ = NULL;
-	GalaPluginManager* _tmp98_ = NULL;
-	const gchar* _tmp99_ = NULL;
-	const gchar* _tmp100_ = NULL;
-	gboolean _tmp109_ = FALSE;
-	GalaPluginManager* _tmp110_ = NULL;
-	const gchar* _tmp111_ = NULL;
-	const gchar* _tmp112_ = NULL;
-	GSettings* _tmp124_ = NULL;
-	GSettings* _tmp125_ = NULL;
-	ClutterStage* _tmp126_ = NULL;
-	ClutterStage* _tmp127_ = NULL;
+	GalaPluginManager* _tmp85_ = NULL;
+	gboolean _tmp86_ = FALSE;
+	GalaPluginManager* _tmp87_ = NULL;
+	const gchar* _tmp88_ = NULL;
+	const gchar* _tmp89_ = NULL;
+	GalaPluginManager* _tmp101_ = NULL;
+	const gchar* _tmp102_ = NULL;
+	const gchar* _tmp103_ = NULL;
+	ClutterStage* _tmp112_ = NULL;
+	ClutterStage* _tmp113_ = NULL;
 	GError * _inner_error_ = NULL;
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data4_ = g_slice_new0 (Block4Data);
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data4_->_ref_count_ = 1;
-#line 134 "/home/nick/work/gala/src/WindowManager.vala"
+#line 134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data4_->self = g_object_ref (self);
-#line 136 "/home/nick/work/gala/src/WindowManager.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 136 "/home/nick/work/gala/src/WindowManager.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 136 "/home/nick/work/gala/src/WindowManager.vala"
+#line 136 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp1_;
-#line 137 "/home/nick/work/gala/src/WindowManager.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = meta_screen_get_display (screen);
-#line 137 "/home/nick/work/gala/src/WindowManager.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _g_object_ref0 (_tmp2_);
-#line 137 "/home/nick/work/gala/src/WindowManager.vala"
+#line 137 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	display = _tmp3_;
-#line 139 "/home/nick/work/gala/src/WindowManager.vala"
+#line 139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_dbus_init ((GalaWindowManager*) self);
-#line 144 "/home/nick/work/gala/src/WindowManager.vala"
+#line 144 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_listener_init (screen);
-#line 145 "/home/nick/work/gala/src/WindowManager.vala"
+#line 145 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_keyboard_manager_init (display);
-#line 1817 "WindowManager.c"
+#line 1697 "WindowManager.c"
 	{
 		GalaScreenSaver* _tmp4_ = NULL;
 		GalaScreenSaver* _tmp5_ = NULL;
 		GalaScreenSaver* _tmp6_ = NULL;
 		GalaScreenSaver* _tmp7_ = NULL;
-#line 151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp5_ = g_initable_new (GALA_TYPE_SCREEN_SAVER_PROXY, NULL, &_inner_error_, "g-flags", 0, "g-name", "org.gnome.ScreenSaver", "g-bus-type", G_BUS_TYPE_SESSION, "g-object-path", "/org/gnome/ScreenSaver", "g-interface-name", "org.gnome.ScreenSaver", "g-interface-info", g_type_get_qdata (GALA_TYPE_SCREEN_SAVER, g_quark_from_static_string ("vala-dbus-interface-info")), NULL);
-#line 151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = (GalaScreenSaver*) _tmp5_;
-#line 151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 1829 "WindowManager.c"
+#line 1709 "WindowManager.c"
 			goto __catch14_g_error;
 		}
-#line 151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = _tmp4_;
-#line 151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = NULL;
-#line 151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self->priv->screensaver);
-#line 151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self->priv->screensaver = _tmp6_;
-#line 153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp7_ = self->priv->screensaver;
-#line 153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 153 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_signal_connect_object (_tmp7_, "active-changed", (GCallback) _gala_window_manager_gala_update_input_area_gala_screen_saver_active_changed, self, 0);
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_tmp4_);
-#line 1846 "WindowManager.c"
+#line 1726 "WindowManager.c"
 	}
 	goto __finally14;
 	__catch14_g_error:
@@ -1850,855 +1730,550 @@ static gboolean gala_window_manager_gala_show_stage (GalaWindowManagerGala* self
 		GError* e = NULL;
 		GError* _tmp8_ = NULL;
 		const gchar* _tmp9_ = NULL;
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		e = _inner_error_;
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_inner_error_ = NULL;
-#line 155 "/home/nick/work/gala/src/WindowManager.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self->priv->screensaver);
-#line 155 "/home/nick/work/gala/src/WindowManager.vala"
+#line 155 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self->priv->screensaver = NULL;
-#line 156 "/home/nick/work/gala/src/WindowManager.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp8_ = e;
-#line 156 "/home/nick/work/gala/src/WindowManager.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp9_ = _tmp8_->message;
-#line 156 "/home/nick/work/gala/src/WindowManager.vala"
+#line 156 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_warning ("WindowManager.vala:156: %s", _tmp9_);
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_error_free0 (e);
-#line 1870 "WindowManager.c"
+#line 1750 "WindowManager.c"
 	}
 	__finally14:
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (display);
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (screen);
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block4_data_unref (_data4_);
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data4_ = NULL;
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_clear_error (&_inner_error_);
-#line 150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 150 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return FALSE;
-#line 1889 "WindowManager.c"
+#line 1769 "WindowManager.c"
 	}
-#line 159 "/home/nick/work/gala/src/WindowManager.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = meta_get_stage_for_screen (screen);
-#line 159 "/home/nick/work/gala/src/WindowManager.vala"
+#line 159 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_set_stage ((GalaWindowManager*) self, G_TYPE_CHECK_INSTANCE_TYPE (_tmp10_, clutter_stage_get_type ()) ? ((ClutterStage*) _tmp10_) : NULL);
-#line 161 "/home/nick/work/gala/src/WindowManager.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = gala_background_settings_get_default ();
-#line 161 "/home/nick/work/gala/src/WindowManager.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = gala_background_settings_get_primary_color (_tmp11_);
-#line 161 "/home/nick/work/gala/src/WindowManager.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = _tmp12_;
-#line 161 "/home/nick/work/gala/src/WindowManager.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp14_ = g_strdup (_tmp13_);
-#line 161 "/home/nick/work/gala/src/WindowManager.vala"
+#line 161 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	color = _tmp14_;
-#line 162 "/home/nick/work/gala/src/WindowManager.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
-#line 162 "/home/nick/work/gala/src/WindowManager.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp16_ = _tmp15_;
-#line 162 "/home/nick/work/gala/src/WindowManager.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp17_ = color;
-#line 162 "/home/nick/work/gala/src/WindowManager.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_color_from_string (&_tmp18_, _tmp17_);
-#line 162 "/home/nick/work/gala/src/WindowManager.vala"
+#line 162 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_background_color ((ClutterActor*) _tmp16_, &_tmp18_);
-#line 164 "/home/nick/work/gala/src/WindowManager.vala"
+#line 164 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_workspace_manager_init ((GalaWindowManager*) self);
-#line 176 "/home/nick/work/gala/src/WindowManager.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp19_ = gala_system_background_new (screen);
-#line 176 "/home/nick/work/gala/src/WindowManager.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp19_);
-#line 176 "/home/nick/work/gala/src/WindowManager.vala"
+#line 176 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	system_background = _tmp19_;
-#line 177 "/home/nick/work/gala/src/WindowManager.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp20_ = system_background;
-#line 177 "/home/nick/work/gala/src/WindowManager.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp21_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
-#line 177 "/home/nick/work/gala/src/WindowManager.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp22_ = _tmp21_;
-#line 177 "/home/nick/work/gala/src/WindowManager.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp23_ = (ClutterBindConstraint*) clutter_bind_constraint_new ((ClutterActor*) _tmp22_, CLUTTER_BIND_ALL, (gfloat) 0);
-#line 177 "/home/nick/work/gala/src/WindowManager.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp23_);
-#line 177 "/home/nick/work/gala/src/WindowManager.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp24_ = _tmp23_;
-#line 177 "/home/nick/work/gala/src/WindowManager.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_constraint ((ClutterActor*) _tmp20_, (ClutterConstraint*) _tmp24_);
-#line 177 "/home/nick/work/gala/src/WindowManager.vala"
+#line 177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (_tmp24_);
-#line 179 "/home/nick/work/gala/src/WindowManager.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp25_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
-#line 179 "/home/nick/work/gala/src/WindowManager.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp26_ = _tmp25_;
-#line 179 "/home/nick/work/gala/src/WindowManager.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp27_ = system_background;
-#line 179 "/home/nick/work/gala/src/WindowManager.vala"
+#line 179 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_insert_child_below ((ClutterActor*) _tmp26_, (ClutterActor*) _tmp27_, NULL);
-#line 181 "/home/nick/work/gala/src/WindowManager.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp28_ = clutter_actor_new ();
-#line 181 "/home/nick/work/gala/src/WindowManager.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp28_);
-#line 181 "/home/nick/work/gala/src/WindowManager.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp29_ = _tmp28_;
-#line 181 "/home/nick/work/gala/src/WindowManager.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_set_ui_group ((GalaWindowManager*) self, _tmp29_);
-#line 181 "/home/nick/work/gala/src/WindowManager.vala"
+#line 181 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (_tmp29_);
-#line 182 "/home/nick/work/gala/src/WindowManager.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp30_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 182 "/home/nick/work/gala/src/WindowManager.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp31_ = _tmp30_;
-#line 182 "/home/nick/work/gala/src/WindowManager.vala"
+#line 182 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_reactive (_tmp31_, TRUE);
-#line 183 "/home/nick/work/gala/src/WindowManager.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp32_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
-#line 183 "/home/nick/work/gala/src/WindowManager.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp33_ = _tmp32_;
-#line 183 "/home/nick/work/gala/src/WindowManager.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp34_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 183 "/home/nick/work/gala/src/WindowManager.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp35_ = _tmp34_;
-#line 183 "/home/nick/work/gala/src/WindowManager.vala"
+#line 183 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_child ((ClutterActor*) _tmp33_, _tmp35_);
-#line 185 "/home/nick/work/gala/src/WindowManager.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp36_ = meta_get_window_group_for_screen (screen);
-#line 185 "/home/nick/work/gala/src/WindowManager.vala"
+#line 185 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_set_window_group ((GalaWindowManager*) self, _tmp36_);
-#line 186 "/home/nick/work/gala/src/WindowManager.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp37_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
-#line 186 "/home/nick/work/gala/src/WindowManager.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp38_ = _tmp37_;
-#line 186 "/home/nick/work/gala/src/WindowManager.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp39_ = gala_window_manager_get_window_group ((GalaWindowManager*) self);
-#line 186 "/home/nick/work/gala/src/WindowManager.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp40_ = _tmp39_;
-#line 186 "/home/nick/work/gala/src/WindowManager.vala"
+#line 186 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_remove_child ((ClutterActor*) _tmp38_, _tmp40_);
-#line 187 "/home/nick/work/gala/src/WindowManager.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp41_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 187 "/home/nick/work/gala/src/WindowManager.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp42_ = _tmp41_;
-#line 187 "/home/nick/work/gala/src/WindowManager.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp43_ = gala_window_manager_get_window_group ((GalaWindowManager*) self);
-#line 187 "/home/nick/work/gala/src/WindowManager.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp44_ = _tmp43_;
-#line 187 "/home/nick/work/gala/src/WindowManager.vala"
+#line 187 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_child (_tmp42_, _tmp44_);
-#line 189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp45_ = gala_background_container_new (screen);
-#line 189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp45_);
-#line 189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp46_ = _tmp45_;
-#line 189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_set_background_group ((GalaWindowManager*) self, (MetaBackgroundGroup*) _tmp46_);
-#line 189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 189 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (_tmp46_);
-#line 190 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp47_ = gala_window_manager_get_window_group ((GalaWindowManager*) self);
-#line 190 "/home/nick/work/gala/src/WindowManager.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp47_ = gala_window_manager_get_background_group ((GalaWindowManager*) self);
+#line 190 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp48_ = _tmp47_;
-#line 190 "/home/nick/work/gala/src/WindowManager.vala"
+#line 190 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	clutter_actor_set_reactive ((ClutterActor*) _tmp48_, TRUE);
+#line 191 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp49_ = gala_window_manager_get_background_group ((GalaWindowManager*) self);
-#line 190 "/home/nick/work/gala/src/WindowManager.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp50_ = _tmp49_;
-#line 190 "/home/nick/work/gala/src/WindowManager.vala"
-	clutter_actor_add_child (_tmp48_, (ClutterActor*) _tmp50_);
-#line 191 "/home/nick/work/gala/src/WindowManager.vala"
+#line 191 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	g_signal_connect_object ((ClutterActor*) _tmp50_, "button-release-event", (GCallback) _gala_window_manager_gala_on_background_click_clutter_actor_button_release_event, self, 0);
+#line 193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp51_ = gala_window_manager_get_window_group ((GalaWindowManager*) self);
-#line 191 "/home/nick/work/gala/src/WindowManager.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp52_ = _tmp51_;
-#line 191 "/home/nick/work/gala/src/WindowManager.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp53_ = gala_window_manager_get_background_group ((GalaWindowManager*) self);
-#line 191 "/home/nick/work/gala/src/WindowManager.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp54_ = _tmp53_;
-#line 191 "/home/nick/work/gala/src/WindowManager.vala"
-	clutter_actor_set_child_below_sibling (_tmp52_, (ClutterActor*) _tmp54_, NULL);
-#line 193 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp55_ = meta_get_top_window_group_for_screen (screen);
-#line 193 "/home/nick/work/gala/src/WindowManager.vala"
-	gala_window_manager_set_top_window_group ((GalaWindowManager*) self, _tmp55_);
-#line 194 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp56_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
-#line 194 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp57_ = _tmp56_;
-#line 194 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp58_ = gala_window_manager_get_top_window_group ((GalaWindowManager*) self);
-#line 194 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp59_ = _tmp58_;
-#line 194 "/home/nick/work/gala/src/WindowManager.vala"
-	clutter_actor_remove_child ((ClutterActor*) _tmp57_, _tmp59_);
-#line 195 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp60_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 195 "/home/nick/work/gala/src/WindowManager.vala"
+#line 193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	clutter_actor_add_child (_tmp52_, (ClutterActor*) _tmp54_);
+#line 194 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp55_ = gala_window_manager_get_window_group ((GalaWindowManager*) self);
+#line 194 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp56_ = _tmp55_;
+#line 194 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp57_ = gala_window_manager_get_background_group ((GalaWindowManager*) self);
+#line 194 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp58_ = _tmp57_;
+#line 194 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	clutter_actor_set_child_below_sibling (_tmp56_, (ClutterActor*) _tmp58_, NULL);
+#line 196 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp59_ = meta_get_top_window_group_for_screen (screen);
+#line 196 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	gala_window_manager_set_top_window_group ((GalaWindowManager*) self, _tmp59_);
+#line 197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp60_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
+#line 197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp61_ = _tmp60_;
-#line 195 "/home/nick/work/gala/src/WindowManager.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp62_ = gala_window_manager_get_top_window_group ((GalaWindowManager*) self);
-#line 195 "/home/nick/work/gala/src/WindowManager.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp63_ = _tmp62_;
-#line 195 "/home/nick/work/gala/src/WindowManager.vala"
-	clutter_actor_add_child (_tmp61_, _tmp63_);
-#line 199 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp64_ = gala_keybinding_settings_get_default ();
-#line 199 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp65_ = granite_services_settings_get_schema ((GraniteServicesSettings*) _tmp64_);
-#line 199 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp66_ = _tmp65_;
-#line 199 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp67_ = _g_object_ref0 (_tmp66_);
-#line 199 "/home/nick/work/gala/src/WindowManager.vala"
-	keybinding_schema = _tmp67_;
-#line 201 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp68_ = keybinding_schema;
-#line 201 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "switch-to-workspace-first", _tmp68_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_switch_to_workspace_end, g_object_ref (self), NULL);
-#line 202 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp69_ = keybinding_schema;
-#line 202 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "switch-to-workspace-last", _tmp69_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_switch_to_workspace_end, g_object_ref (self), NULL);
-#line 203 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp70_ = keybinding_schema;
-#line 203 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "move-to-workspace-first", _tmp70_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_move_to_workspace_end, g_object_ref (self), NULL);
-#line 204 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp71_ = keybinding_schema;
-#line 204 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "move-to-workspace-last", _tmp71_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_move_to_workspace_end, g_object_ref (self), NULL);
-#line 205 "/home/nick/work/gala/src/WindowManager.vala"
+#line 197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	clutter_actor_remove_child ((ClutterActor*) _tmp61_, _tmp63_);
+#line 198 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp64_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
+#line 198 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp65_ = _tmp64_;
+#line 198 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp66_ = gala_window_manager_get_top_window_group ((GalaWindowManager*) self);
+#line 198 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp67_ = _tmp66_;
+#line 198 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	clutter_actor_add_child (_tmp65_, _tmp67_);
+#line 202 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp68_ = gala_keybinding_settings_get_default ();
+#line 202 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp69_ = granite_services_settings_get_schema ((GraniteServicesSettings*) _tmp68_);
+#line 202 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp70_ = _tmp69_;
+#line 202 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp71_ = _g_object_ref0 (_tmp70_);
+#line 202 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	keybinding_schema = _tmp71_;
+#line 204 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp72_ = keybinding_schema;
-#line 205 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "cycle-workspaces-next", _tmp72_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_cycle_workspaces, g_object_ref (self), NULL);
-#line 206 "/home/nick/work/gala/src/WindowManager.vala"
+#line 204 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_display_add_keybinding (display, "switch-to-workspace-first", _tmp72_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_switch_to_workspace_end, g_object_ref (self), NULL);
+#line 205 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp73_ = keybinding_schema;
-#line 206 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "cycle-workspaces-previous", _tmp73_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_cycle_workspaces, g_object_ref (self), NULL);
-#line 207 "/home/nick/work/gala/src/WindowManager.vala"
+#line 205 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_display_add_keybinding (display, "switch-to-workspace-last", _tmp73_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_switch_to_workspace_end, g_object_ref (self), NULL);
+#line 206 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp74_ = keybinding_schema;
-#line 207 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "launch-whiskermenu", _tmp74_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_launch_whiskermenu, g_object_ref (self), NULL);
-#line 209 "/home/nick/work/gala/src/WindowManager.vala"
-	g_signal_connect_object (display, "overlay-key", (GCallback) ___lambda48__meta_display_overlay_key, self, 0);
-#line 216 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("panel-main-menu", ___lambda49__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 223 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("toggle-recording", ___lambda50__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 230 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("switch-to-workspace-up", ___lambda51__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 231 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("switch-to-workspace-down", ___lambda52__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 232 "/home/nick/work/gala/src/WindowManager.vala"
+#line 206 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_display_add_keybinding (display, "move-to-workspace-first", _tmp74_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_move_to_workspace_end, g_object_ref (self), NULL);
+#line 207 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp75_ = keybinding_schema;
+#line 207 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_display_add_keybinding (display, "move-to-workspace-last", _tmp75_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_move_to_workspace_end, g_object_ref (self), NULL);
+#line 208 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp76_ = keybinding_schema;
+#line 208 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_display_add_keybinding (display, "cycle-workspaces-next", _tmp76_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_cycle_workspaces, g_object_ref (self), NULL);
+#line 209 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp77_ = keybinding_schema;
+#line 209 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_display_add_keybinding (display, "cycle-workspaces-previous", _tmp77_, 0, (MetaKeyHandlerFunc) gala_window_manager_gala_handle_cycle_workspaces, g_object_ref (self), NULL);
+#line 211 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	g_signal_connect_object (display, "overlay-key", (GCallback) ___lambda52__meta_display_overlay_key, self, 0);
+#line 218 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("panel-main-menu", ___lambda53__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 225 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("toggle-recording", ___lambda54__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 232 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("switch-to-workspace-up", ___lambda55__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 233 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("switch-to-workspace-down", ___lambda56__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 234 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_keybindings_set_custom_handler ("switch-to-workspace-left", (MetaKeyHandlerFunc) gala_window_manager_gala_handle_switch_to_workspace, g_object_ref (self), NULL);
-#line 233 "/home/nick/work/gala/src/WindowManager.vala"
+#line 235 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_keybindings_set_custom_handler ("switch-to-workspace-right", (MetaKeyHandlerFunc) gala_window_manager_gala_handle_switch_to_workspace, g_object_ref (self), NULL);
-#line 235 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("move-to-workspace-up", ___lambda53__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 236 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("move-to-workspace-down", ___lambda54__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 237 "/home/nick/work/gala/src/WindowManager.vala"
+#line 237 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("move-to-workspace-up", ___lambda57__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 238 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("move-to-workspace-down", ___lambda58__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 239 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_keybindings_set_custom_handler ("move-to-workspace-left", (MetaKeyHandlerFunc) gala_window_manager_gala_handle_move_to_workspace, g_object_ref (self), NULL);
-#line 238 "/home/nick/work/gala/src/WindowManager.vala"
+#line 240 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_keybindings_set_custom_handler ("move-to-workspace-right", (MetaKeyHandlerFunc) gala_window_manager_gala_handle_move_to_workspace, g_object_ref (self), NULL);
-#line 240 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("switch-group", ___lambda55__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 241 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("switch-group-backward", ___lambda56__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 244 "/home/nick/work/gala/src/WindowManager.vala"
+#line 242 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("switch-group", ___lambda59__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 243 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("switch-group-backward", ___lambda60__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 246 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_internal_utils_reload_shadow ();
-#line 245 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp75_ = gala_shadow_settings_get_default ();
-#line 245 "/home/nick/work/gala/src/WindowManager.vala"
-	g_signal_connect ((GObject*) _tmp75_, "notify", (GCallback) _gala_internal_utils_reload_shadow_g_object_notify, NULL);
-#line 248 "/home/nick/work/gala/src/WindowManager.vala"
+#line 247 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp78_ = gala_shadow_settings_get_default ();
+#line 247 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	g_signal_connect ((GObject*) _tmp78_, "notify", (GCallback) _gala_internal_utils_reload_shadow_g_object_notify, NULL);
+#line 250 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_configure_hotcorners (self);
-#line 249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 251 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_connect_object (screen, "monitors-changed", (GCallback) _gala_window_manager_gala_configure_hotcorners_meta_screen_monitors_changed, self, 0);
-#line 251 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp76_ = gala_behavior_settings_get_default ();
-#line 251 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp77_ = granite_services_settings_get_schema ((GraniteServicesSettings*) _tmp76_);
-#line 251 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp78_ = _tmp77_;
-#line 251 "/home/nick/work/gala/src/WindowManager.vala"
-	g_signal_connect_object (_tmp78_, "changed", (GCallback) _gala_window_manager_gala_configure_hotcorners_g_settings_changed, self, 0);
-#line 254 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp79_ = gala_plugin_manager_get_default ();
-#line 254 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp80_ = _g_object_ref0 (_tmp79_);
-#line 254 "/home/nick/work/gala/src/WindowManager.vala"
-	_data4_->plugin_manager = _tmp80_;
-#line 255 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp81_ = _data4_->plugin_manager;
-#line 255 "/home/nick/work/gala/src/WindowManager.vala"
-	gala_plugin_manager_initialize (_tmp81_, (GalaWindowManager*) self);
-#line 256 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp82_ = _data4_->plugin_manager;
-#line 256 "/home/nick/work/gala/src/WindowManager.vala"
-	g_signal_connect_object (_tmp82_, "regions-changed", (GCallback) _gala_window_manager_gala_update_input_area_gala_plugin_manager_regions_changed, self, 0);
-#line 258 "/home/nick/work/gala/src/WindowManager.vala"
+#line 253 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp79_ = gala_behavior_settings_get_default ();
+#line 253 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp80_ = granite_services_settings_get_schema ((GraniteServicesSettings*) _tmp79_);
+#line 253 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp81_ = _tmp80_;
+#line 253 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	g_signal_connect_object (_tmp81_, "changed", (GCallback) _gala_window_manager_gala_configure_hotcorners_g_settings_changed, self, 0);
+#line 256 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp82_ = gala_plugin_manager_get_default ();
+#line 256 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp83_ = _g_object_ref0 (_tmp82_);
+#line 256 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_data4_->plugin_manager = _tmp83_;
+#line 257 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp84_ = _data4_->plugin_manager;
-#line 258 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp85_ = gala_plugin_manager_get_workspace_view_provider (_tmp84_);
-#line 258 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp86_ = _tmp85_;
-#line 258 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp86_ == NULL) {
-#line 258 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp83_ = TRUE;
-#line 2157 "WindowManager.c"
+#line 257 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	gala_plugin_manager_initialize (_tmp84_, (GalaWindowManager*) self);
+#line 258 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp85_ = _data4_->plugin_manager;
+#line 258 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	g_signal_connect_object (_tmp85_, "regions-changed", (GCallback) _gala_window_manager_gala_update_input_area_gala_plugin_manager_regions_changed, self, 0);
+#line 260 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp87_ = _data4_->plugin_manager;
+#line 260 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp88_ = gala_plugin_manager_get_workspace_view_provider (_tmp87_);
+#line 260 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp89_ = _tmp88_;
+#line 260 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	if (_tmp89_ == NULL) {
+#line 260 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp86_ = TRUE;
+#line 2045 "WindowManager.c"
 	} else {
-		GalaPluginManager* _tmp87_ = NULL;
-		GalaPluginManager* _tmp88_ = NULL;
-		const gchar* _tmp89_ = NULL;
-		const gchar* _tmp90_ = NULL;
-		GalaPlugin* _tmp91_ = NULL;
-		GalaActivatableComponent* _tmp92_ = NULL;
-		GalaActivatableComponent* _tmp93_ = NULL;
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp87_ = _data4_->plugin_manager;
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp88_ = _data4_->plugin_manager;
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp89_ = gala_plugin_manager_get_workspace_view_provider (_tmp88_);
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp90_ = _tmp89_;
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp91_ = gala_plugin_manager_get_plugin (_tmp87_, _tmp90_);
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp92_ = G_TYPE_CHECK_INSTANCE_TYPE (_tmp91_, GALA_TYPE_ACTIVATABLE_COMPONENT) ? ((GalaActivatableComponent*) _tmp91_) : NULL;
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		if (_tmp92_ == NULL) {
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-			_g_object_unref0 (_tmp91_);
-#line 2182 "WindowManager.c"
+		GalaPluginManager* _tmp90_ = NULL;
+		GalaPluginManager* _tmp91_ = NULL;
+		const gchar* _tmp92_ = NULL;
+		const gchar* _tmp93_ = NULL;
+		GalaPlugin* _tmp94_ = NULL;
+		GalaActivatableComponent* _tmp95_ = NULL;
+		GalaActivatableComponent* _tmp96_ = NULL;
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp90_ = _data4_->plugin_manager;
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp91_ = _data4_->plugin_manager;
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp92_ = gala_plugin_manager_get_workspace_view_provider (_tmp91_);
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp93_ = _tmp92_;
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp94_ = gala_plugin_manager_get_plugin (_tmp90_, _tmp93_);
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp95_ = G_TYPE_CHECK_INSTANCE_TYPE (_tmp94_, GALA_TYPE_ACTIVATABLE_COMPONENT) ? ((GalaActivatableComponent*) _tmp94_) : NULL;
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		if (_tmp95_ == NULL) {
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_g_object_unref0 (_tmp94_);
+#line 2070 "WindowManager.c"
 		}
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self->priv->workspace_view);
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		self->priv->workspace_view = _tmp92_;
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp93_ = self->priv->workspace_view;
-#line 259 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp83_ = _tmp93_ == NULL;
-#line 2192 "WindowManager.c"
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		self->priv->workspace_view = _tmp95_;
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp96_ = self->priv->workspace_view;
+#line 261 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp86_ = _tmp96_ == NULL;
+#line 2080 "WindowManager.c"
 	}
-#line 258 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp83_) {
-#line 2196 "WindowManager.c"
-		GalaMultitaskingView* _tmp94_ = NULL;
-		ClutterActor* _tmp95_ = NULL;
-		ClutterActor* _tmp96_ = NULL;
-		GalaActivatableComponent* _tmp97_ = NULL;
-#line 260 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp94_ = gala_multitasking_view_new ((GalaWindowManager*) self);
-#line 260 "/home/nick/work/gala/src/WindowManager.vala"
-		g_object_ref_sink (_tmp94_);
-#line 260 "/home/nick/work/gala/src/WindowManager.vala"
+#line 260 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	if (_tmp86_) {
+#line 2084 "WindowManager.c"
+		GalaMultitaskingView* _tmp97_ = NULL;
+		ClutterActor* _tmp98_ = NULL;
+		ClutterActor* _tmp99_ = NULL;
+		GalaActivatableComponent* _tmp100_ = NULL;
+#line 262 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp97_ = gala_multitasking_view_new ((GalaWindowManager*) self);
+#line 262 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		g_object_ref_sink (_tmp97_);
+#line 262 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self->priv->workspace_view);
-#line 260 "/home/nick/work/gala/src/WindowManager.vala"
-		self->priv->workspace_view = (GalaActivatableComponent*) _tmp94_;
-#line 261 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp95_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 261 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp96_ = _tmp95_;
-#line 261 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp97_ = self->priv->workspace_view;
-#line 261 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_add_child (_tmp96_, G_TYPE_CHECK_INSTANCE_CAST (_tmp97_, clutter_actor_get_type (), ClutterActor));
-#line 2217 "WindowManager.c"
+#line 262 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		self->priv->workspace_view = (GalaActivatableComponent*) _tmp97_;
+#line 263 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp98_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
+#line 263 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp99_ = _tmp98_;
+#line 263 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp100_ = self->priv->workspace_view;
+#line 263 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		clutter_actor_add_child (_tmp99_, G_TYPE_CHECK_INSTANCE_CAST (_tmp100_, clutter_actor_get_type (), ClutterActor));
+#line 2105 "WindowManager.c"
 	}
-#line 264 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_keybindings_set_custom_handler ("show-desktop", ___lambda85__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 271 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp98_ = _data4_->plugin_manager;
-#line 271 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp99_ = gala_plugin_manager_get_window_switcher_provider (_tmp98_);
-#line 271 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp100_ = _tmp99_;
-#line 271 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp100_ == NULL) {
-#line 2229 "WindowManager.c"
-		GalaWindowSwitcher* _tmp101_ = NULL;
-		ClutterActor* _tmp102_ = NULL;
-		ClutterActor* _tmp103_ = NULL;
+#line 266 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	meta_keybindings_set_custom_handler ("show-desktop", ___lambda88__meta_key_handler_func, g_object_ref (self), g_object_unref);
+#line 273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp101_ = _data4_->plugin_manager;
+#line 273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp102_ = gala_plugin_manager_get_window_switcher_provider (_tmp101_);
+#line 273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp103_ = _tmp102_;
+#line 273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	if (_tmp103_ == NULL) {
+#line 2117 "WindowManager.c"
 		GalaWindowSwitcher* _tmp104_ = NULL;
-		GalaWindowSwitcher* _tmp105_ = NULL;
-		GalaWindowSwitcher* _tmp106_ = NULL;
+		ClutterActor* _tmp105_ = NULL;
+		ClutterActor* _tmp106_ = NULL;
 		GalaWindowSwitcher* _tmp107_ = NULL;
 		GalaWindowSwitcher* _tmp108_ = NULL;
-#line 272 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp101_ = gala_window_switcher_new ((GalaWindowManager*) self);
-#line 272 "/home/nick/work/gala/src/WindowManager.vala"
-		g_object_ref_sink (_tmp101_);
-#line 272 "/home/nick/work/gala/src/WindowManager.vala"
+		GalaWindowSwitcher* _tmp109_ = NULL;
+		GalaWindowSwitcher* _tmp110_ = NULL;
+		GalaWindowSwitcher* _tmp111_ = NULL;
+#line 274 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp104_ = gala_window_switcher_new ((GalaWindowManager*) self);
+#line 274 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		g_object_ref_sink (_tmp104_);
+#line 274 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self->priv->winswitcher);
-#line 272 "/home/nick/work/gala/src/WindowManager.vala"
-		self->priv->winswitcher = _tmp101_;
-#line 273 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp102_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 273 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp103_ = _tmp102_;
-#line 273 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp104_ = self->priv->winswitcher;
-#line 273 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_add_child (_tmp103_, (ClutterActor*) _tmp104_);
-#line 275 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp105_ = self->priv->winswitcher;
-#line 275 "/home/nick/work/gala/src/WindowManager.vala"
-		meta_keybindings_set_custom_handler ("switch-applications", (MetaKeyHandlerFunc) gala_window_switcher_handle_switch_windows, g_object_ref (_tmp105_), NULL);
-#line 276 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp106_ = self->priv->winswitcher;
-#line 276 "/home/nick/work/gala/src/WindowManager.vala"
-		meta_keybindings_set_custom_handler ("switch-applications-backward", (MetaKeyHandlerFunc) gala_window_switcher_handle_switch_windows, g_object_ref (_tmp106_), NULL);
-#line 277 "/home/nick/work/gala/src/WindowManager.vala"
+#line 274 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		self->priv->winswitcher = _tmp104_;
+#line 275 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp105_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
+#line 275 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp106_ = _tmp105_;
+#line 275 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp107_ = self->priv->winswitcher;
-#line 277 "/home/nick/work/gala/src/WindowManager.vala"
-		meta_keybindings_set_custom_handler ("switch-windows", (MetaKeyHandlerFunc) gala_window_switcher_handle_switch_windows, g_object_ref (_tmp107_), NULL);
-#line 278 "/home/nick/work/gala/src/WindowManager.vala"
+#line 275 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		clutter_actor_add_child (_tmp106_, (ClutterActor*) _tmp107_);
+#line 277 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp108_ = self->priv->winswitcher;
-#line 278 "/home/nick/work/gala/src/WindowManager.vala"
-		meta_keybindings_set_custom_handler ("switch-windows-backward", (MetaKeyHandlerFunc) gala_window_switcher_handle_switch_windows, g_object_ref (_tmp108_), NULL);
-#line 2270 "WindowManager.c"
+#line 277 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		meta_keybindings_set_custom_handler ("switch-applications", (MetaKeyHandlerFunc) gala_window_switcher_handle_switch_windows, g_object_ref (_tmp108_), NULL);
+#line 278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp109_ = self->priv->winswitcher;
+#line 278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		meta_keybindings_set_custom_handler ("switch-applications-backward", (MetaKeyHandlerFunc) gala_window_switcher_handle_switch_windows, g_object_ref (_tmp109_), NULL);
+#line 279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp110_ = self->priv->winswitcher;
+#line 279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		meta_keybindings_set_custom_handler ("switch-windows", (MetaKeyHandlerFunc) gala_window_switcher_handle_switch_windows, g_object_ref (_tmp110_), NULL);
+#line 280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp111_ = self->priv->winswitcher;
+#line 280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		meta_keybindings_set_custom_handler ("switch-windows-backward", (MetaKeyHandlerFunc) gala_window_switcher_handle_switch_windows, g_object_ref (_tmp111_), NULL);
+#line 2158 "WindowManager.c"
 	}
-#line 281 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp110_ = _data4_->plugin_manager;
-#line 281 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp111_ = gala_plugin_manager_get_window_overview_provider (_tmp110_);
-#line 281 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp112_ = _tmp111_;
-#line 281 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp112_ == NULL) {
-#line 281 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp109_ = TRUE;
-#line 2282 "WindowManager.c"
-	} else {
-		GalaPluginManager* _tmp113_ = NULL;
-		GalaPluginManager* _tmp114_ = NULL;
-		const gchar* _tmp115_ = NULL;
-		const gchar* _tmp116_ = NULL;
-		GalaPlugin* _tmp117_ = NULL;
-		GalaActivatableComponent* _tmp118_ = NULL;
-		GalaActivatableComponent* _tmp119_ = NULL;
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp113_ = _data4_->plugin_manager;
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp114_ = _data4_->plugin_manager;
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp115_ = gala_plugin_manager_get_window_overview_provider (_tmp114_);
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp116_ = _tmp115_;
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp117_ = gala_plugin_manager_get_plugin (_tmp113_, _tmp116_);
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp118_ = G_TYPE_CHECK_INSTANCE_TYPE (_tmp117_, GALA_TYPE_ACTIVATABLE_COMPONENT) ? ((GalaActivatableComponent*) _tmp117_) : NULL;
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		if (_tmp118_ == NULL) {
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-			_g_object_unref0 (_tmp117_);
-#line 2307 "WindowManager.c"
-		}
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_g_object_unref0 (self->priv->window_overview);
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		self->priv->window_overview = _tmp118_;
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp119_ = self->priv->window_overview;
-#line 282 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp109_ = _tmp119_ == NULL;
-#line 2317 "WindowManager.c"
-	}
-#line 281 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp109_) {
-#line 2321 "WindowManager.c"
-		GalaWindowOverview* _tmp120_ = NULL;
-		ClutterActor* _tmp121_ = NULL;
-		ClutterActor* _tmp122_ = NULL;
-		GalaActivatableComponent* _tmp123_ = NULL;
-#line 283 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp120_ = gala_window_overview_new ((GalaWindowManager*) self);
-#line 283 "/home/nick/work/gala/src/WindowManager.vala"
-		g_object_ref_sink (_tmp120_);
-#line 283 "/home/nick/work/gala/src/WindowManager.vala"
-		_g_object_unref0 (self->priv->window_overview);
-#line 283 "/home/nick/work/gala/src/WindowManager.vala"
-		self->priv->window_overview = (GalaActivatableComponent*) _tmp120_;
-#line 284 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp121_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 284 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp122_ = _tmp121_;
-#line 284 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp123_ = self->priv->window_overview;
-#line 284 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_add_child (_tmp122_, G_TYPE_CHECK_INSTANCE_CAST (_tmp123_, clutter_actor_get_type (), ClutterActor));
-#line 2342 "WindowManager.c"
-	}
-#line 287 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp124_ = keybinding_schema;
-#line 287 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "expose-windows", _tmp124_, 0, ___lambda88__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 293 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp125_ = keybinding_schema;
-#line 293 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_display_add_keybinding (display, "expose-all-windows", _tmp125_, 0, ___lambda89__meta_key_handler_func, g_object_ref (self), g_object_unref);
-#line 303 "/home/nick/work/gala/src/WindowManager.vala"
+#line 305 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_update_input_area (self);
-#line 305 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp126_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
-#line 305 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp127_ = _tmp126_;
-#line 305 "/home/nick/work/gala/src/WindowManager.vala"
-	clutter_actor_show ((ClutterActor*) _tmp127_);
-#line 308 "/home/nick/work/gala/src/WindowManager.vala"
+#line 307 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp112_ = gala_window_manager_get_stage ((GalaWindowManager*) self);
+#line 307 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp113_ = _tmp112_;
+#line 307 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	clutter_actor_show ((ClutterActor*) _tmp113_);
+#line 310 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_register_with_session ();
-#line 310 "/home/nick/work/gala/src/WindowManager.vala"
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, ___lambda90__gsource_func, block4_data_ref (_data4_), block4_data_unref);
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 312 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, ___lambda89__gsource_func, block4_data_ref (_data4_), block4_data_unref);
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = FALSE;
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (keybinding_schema);
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (system_background);
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_free0 (color);
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (display);
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	block4_data_unref (_data4_);
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data4_ = NULL;
-#line 315 "/home/nick/work/gala/src/WindowManager.vala"
+#line 317 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 2382 "WindowManager.c"
+#line 2190 "WindowManager.c"
 }
 
 
 static void gala_window_manager_gala_configure_hotcorners (GalaWindowManagerGala* self) {
-	MetaRectangle geometry = {0};
-	MetaScreen* _tmp0_ = NULL;
-	MetaScreen* _tmp1_ = NULL;
-	gint _tmp2_ = 0;
-	MetaRectangle _tmp3_ = {0};
-	MetaRectangle _tmp4_ = {0};
-	gint _tmp5_ = 0;
-	MetaRectangle _tmp6_ = {0};
-	gint _tmp7_ = 0;
-	MetaRectangle _tmp8_ = {0};
-	gint _tmp9_ = 0;
-	MetaRectangle _tmp10_ = {0};
-	gint _tmp11_ = 0;
-	MetaRectangle _tmp12_ = {0};
-	gint _tmp13_ = 0;
-	MetaRectangle _tmp14_ = {0};
-	gint _tmp15_ = 0;
-	MetaRectangle _tmp16_ = {0};
-	gint _tmp17_ = 0;
-	MetaRectangle _tmp18_ = {0};
-	gint _tmp19_ = 0;
-	MetaRectangle _tmp20_ = {0};
-	gint _tmp21_ = 0;
-	MetaRectangle _tmp22_ = {0};
-	gint _tmp23_ = 0;
-	MetaRectangle _tmp24_ = {0};
-	gint _tmp25_ = 0;
-	MetaRectangle _tmp26_ = {0};
-	gint _tmp27_ = 0;
-#line 318 "/home/nick/work/gala/src/WindowManager.vala"
+#line 320 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 320 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp0_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 320 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 320 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp2_ = meta_screen_get_primary_monitor (_tmp1_);
-#line 320 "/home/nick/work/gala/src/WindowManager.vala"
-	meta_screen_get_monitor_geometry (_tmp0_, _tmp2_, &_tmp3_);
-#line 320 "/home/nick/work/gala/src/WindowManager.vala"
-	geometry = _tmp3_;
-#line 322 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp4_ = geometry;
-#line 322 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp5_ = _tmp4_.x;
-#line 322 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp6_ = geometry;
-#line 322 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp7_ = _tmp6_.y;
-#line 322 "/home/nick/work/gala/src/WindowManager.vala"
-	gala_window_manager_gala_add_hotcorner (self, (gfloat) _tmp5_, (gfloat) _tmp7_, "hotcorner-topleft");
-#line 323 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp8_ = geometry;
-#line 323 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp9_ = _tmp8_.x;
-#line 323 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp10_ = geometry;
-#line 323 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp11_ = _tmp10_.width;
-#line 323 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp12_ = geometry;
-#line 323 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp13_ = _tmp12_.y;
-#line 323 "/home/nick/work/gala/src/WindowManager.vala"
-	gala_window_manager_gala_add_hotcorner (self, (gfloat) ((_tmp9_ + _tmp11_) - 1), (gfloat) _tmp13_, "hotcorner-topright");
-#line 324 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp14_ = geometry;
-#line 324 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp15_ = _tmp14_.x;
-#line 324 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp16_ = geometry;
-#line 324 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp17_ = _tmp16_.y;
-#line 324 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp18_ = geometry;
-#line 324 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp19_ = _tmp18_.height;
-#line 324 "/home/nick/work/gala/src/WindowManager.vala"
-	gala_window_manager_gala_add_hotcorner (self, (gfloat) _tmp15_, (gfloat) ((_tmp17_ + _tmp19_) - 1), "hotcorner-bottomleft");
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp20_ = geometry;
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp21_ = _tmp20_.x;
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp22_ = geometry;
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp23_ = _tmp22_.width;
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp24_ = geometry;
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp25_ = _tmp24_.y;
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp26_ = geometry;
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp27_ = _tmp26_.height;
-#line 325 "/home/nick/work/gala/src/WindowManager.vala"
-	gala_window_manager_gala_add_hotcorner (self, (gfloat) ((_tmp21_ + _tmp23_) - 1), (gfloat) ((_tmp25_ + _tmp27_) - 1), "hotcorner-bottomright");
-#line 327 "/home/nick/work/gala/src/WindowManager.vala"
-	gala_window_manager_gala_update_input_area (self);
-#line 2486 "WindowManager.c"
-}
-
-
-static gboolean ___lambda57_ (GalaWindowManagerGala* self, ClutterActor* actor, ClutterCrossingEvent* event) {
-	gboolean result = FALSE;
-	ClutterActor* _tmp0_ = NULL;
-	ClutterActor* _tmp1_ = NULL;
-	GalaBehaviorSettings* _tmp2_ = NULL;
-	GSettings* _tmp3_ = NULL;
-	GSettings* _tmp4_ = NULL;
-	ClutterActor* _tmp5_ = NULL;
-	const gchar* _tmp6_ = NULL;
-	const gchar* _tmp7_ = NULL;
-	gint _tmp8_ = 0;
-#line 355 "/home/nick/work/gala/src/WindowManager.vala"
-	g_return_val_if_fail (actor != NULL, FALSE);
-#line 355 "/home/nick/work/gala/src/WindowManager.vala"
-	g_return_val_if_fail (event != NULL, FALSE);
-#line 356 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp0_ = actor;
-#line 356 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 356 "/home/nick/work/gala/src/WindowManager.vala"
-	_g_object_unref0 (self->priv->last_hotcorner);
-#line 356 "/home/nick/work/gala/src/WindowManager.vala"
-	self->priv->last_hotcorner = _tmp1_;
-#line 357 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp2_ = gala_behavior_settings_get_default ();
-#line 357 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp3_ = granite_services_settings_get_schema ((GraniteServicesSettings*) _tmp2_);
-#line 357 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp4_ = _tmp3_;
-#line 357 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp5_ = actor;
-#line 357 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp6_ = clutter_actor_get_name (_tmp5_);
-#line 357 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp7_ = _tmp6_;
-#line 357 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp8_ = g_settings_get_enum (_tmp4_, _tmp7_);
-#line 357 "/home/nick/work/gala/src/WindowManager.vala"
-	gala_window_manager_perform_action ((GalaWindowManager*) self, (GalaActionType) _tmp8_);
-#line 358 "/home/nick/work/gala/src/WindowManager.vala"
-	result = FALSE;
-#line 358 "/home/nick/work/gala/src/WindowManager.vala"
-	return result;
-#line 2533 "WindowManager.c"
-}
-
-
-static gboolean ____lambda57__clutter_actor_enter_event (ClutterActor* _sender, ClutterCrossingEvent* event, gpointer self) {
-	gboolean result;
-	result = ___lambda57_ ((GalaWindowManagerGala*) self, _sender, event);
-#line 355 "/home/nick/work/gala/src/WindowManager.vala"
-	return result;
-#line 2542 "WindowManager.c"
+#line 2197 "WindowManager.c"
 }
 
 
 static void gala_window_manager_gala_add_hotcorner (GalaWindowManagerGala* self, gfloat x, gfloat y, const gchar* key) {
-	ClutterActor* stage = NULL;
-	MetaScreen* _tmp0_ = NULL;
-	ClutterActor* _tmp1_ = NULL;
-	ClutterActor* _tmp2_ = NULL;
-	GalaActionType action = 0;
-	GalaBehaviorSettings* _tmp3_ = NULL;
-	GSettings* _tmp4_ = NULL;
-	GSettings* _tmp5_ = NULL;
-	const gchar* _tmp6_ = NULL;
-	gint _tmp7_ = 0;
-	ClutterActor* hot_corner = NULL;
-	ClutterActor* _tmp8_ = NULL;
-	const gchar* _tmp9_ = NULL;
-	ClutterActor* _tmp10_ = NULL;
-	ClutterActor* _tmp11_ = NULL;
-	GalaActionType _tmp12_ = 0;
-	ClutterActor* _tmp16_ = NULL;
-	ClutterActor* _tmp27_ = NULL;
-	gfloat _tmp28_ = 0.0F;
-	ClutterActor* _tmp29_ = NULL;
-	gfloat _tmp30_ = 0.0F;
-#line 330 "/home/nick/work/gala/src/WindowManager.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 330 "/home/nick/work/gala/src/WindowManager.vala"
+#line 332 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (key != NULL);
-#line 332 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp0_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 332 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp1_ = meta_get_stage_for_screen (_tmp0_);
-#line 332 "/home/nick/work/gala/src/WindowManager.vala"
-	stage = _tmp1_;
-#line 333 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp2_ = stage;
-#line 333 "/home/nick/work/gala/src/WindowManager.vala"
-	g_return_if_fail (_tmp2_ != NULL);
-#line 335 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp3_ = gala_behavior_settings_get_default ();
-#line 335 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp4_ = granite_services_settings_get_schema ((GraniteServicesSettings*) _tmp3_);
-#line 335 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp5_ = _tmp4_;
-#line 335 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp6_ = key;
-#line 335 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp7_ = g_settings_get_enum (_tmp5_, _tmp6_);
-#line 335 "/home/nick/work/gala/src/WindowManager.vala"
-	action = (GalaActionType) _tmp7_;
-#line 336 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp8_ = stage;
-#line 336 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp9_ = key;
-#line 336 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp10_ = clutter_container_find_child_by_name ((ClutterContainer*) _tmp8_, _tmp9_);
-#line 336 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp11_ = _g_object_ref0 (_tmp10_);
-#line 336 "/home/nick/work/gala/src/WindowManager.vala"
-	hot_corner = _tmp11_;
-#line 338 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp12_ = action;
-#line 338 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp12_ == GALA_ACTION_TYPE_NONE) {
-#line 2608 "WindowManager.c"
-		ClutterActor* _tmp13_ = NULL;
-#line 339 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp13_ = hot_corner;
-#line 339 "/home/nick/work/gala/src/WindowManager.vala"
-		if (_tmp13_ != NULL) {
-#line 2614 "WindowManager.c"
-			ClutterActor* _tmp14_ = NULL;
-			ClutterActor* _tmp15_ = NULL;
-#line 340 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp14_ = stage;
-#line 340 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp15_ = hot_corner;
-#line 340 "/home/nick/work/gala/src/WindowManager.vala"
-			clutter_actor_remove_child (_tmp14_, _tmp15_);
-#line 2623 "WindowManager.c"
+#line 2206 "WindowManager.c"
+}
+
+
+static gboolean gala_window_manager_gala_on_background_click (GalaWindowManagerGala* self, ClutterButtonEvent* event) {
+	gboolean result = FALSE;
+	gint x = 0;
+	gint y = 0;
+	ClutterButtonEvent* _tmp0_ = NULL;
+	guint32 _tmp1_ = 0U;
+#line 374 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	g_return_val_if_fail (self != NULL, FALSE);
+#line 376 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	x = 0;
+#line 377 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	y = 0;
+#line 379 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp0_ = event;
+#line 379 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp1_ = (*_tmp0_).button;
+#line 379 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	if (_tmp1_ == ((guint32) 3)) {
+#line 2228 "WindowManager.c"
+		guint32 time = 0U;
+		MetaScreen* _tmp2_ = NULL;
+		MetaDisplay* _tmp3_ = NULL;
+		guint32 _tmp4_ = 0U;
+		GalaDesktopMenu* _tmp5_ = NULL;
+		GalaDesktopMenu* _tmp7_ = NULL;
+		GalaDesktopMenu* _tmp8_ = NULL;
+		guint32 _tmp9_ = 0U;
+#line 381 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp2_ = meta_plugin_get_screen ((MetaPlugin*) self);
+#line 381 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp3_ = meta_screen_get_display (_tmp2_);
+#line 381 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp4_ = meta_display_get_current_time_roundtrip (_tmp3_);
+#line 381 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		time = _tmp4_;
+#line 383 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp5_ = self->priv->desktop_menu;
+#line 383 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		if (_tmp5_ == NULL) {
+#line 2249 "WindowManager.c"
+			GalaDesktopMenu* _tmp6_ = NULL;
+#line 384 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp6_ = gala_desktop_menu_new ((GalaWindowManager*) self);
+#line 384 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			g_object_ref_sink (_tmp6_);
+#line 384 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_g_object_unref0 (self->priv->desktop_menu);
+#line 384 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			self->priv->desktop_menu = _tmp6_;
+#line 2259 "WindowManager.c"
 		}
-#line 341 "/home/nick/work/gala/src/WindowManager.vala"
-		_g_object_unref0 (hot_corner);
-#line 341 "/home/nick/work/gala/src/WindowManager.vala"
-		return;
-#line 2629 "WindowManager.c"
+#line 386 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp7_ = self->priv->desktop_menu;
+#line 386 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		gtk_widget_show_all ((GtkWidget*) _tmp7_);
+#line 388 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp8_ = self->priv->desktop_menu;
+#line 388 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp9_ = time;
+#line 388 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		gtk_menu_popup ((GtkMenu*) _tmp8_, NULL, NULL, NULL, NULL, (guint) GDK_BUTTON_SECONDARY, _tmp9_);
+#line 2271 "WindowManager.c"
 	}
-#line 345 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp16_ = hot_corner;
-#line 345 "/home/nick/work/gala/src/WindowManager.vala"
-	if (_tmp16_ == NULL) {
-#line 2635 "WindowManager.c"
-		ClutterActor* _tmp17_ = NULL;
-		ClutterActor* _tmp18_ = NULL;
-		ClutterActor* _tmp19_ = NULL;
-		ClutterActor* _tmp20_ = NULL;
-		ClutterActor* _tmp21_ = NULL;
-		ClutterActor* _tmp22_ = NULL;
-		const gchar* _tmp23_ = NULL;
-		ClutterActor* _tmp24_ = NULL;
-		ClutterActor* _tmp25_ = NULL;
-		ClutterActor* _tmp26_ = NULL;
-#line 346 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp17_ = clutter_actor_new ();
-#line 346 "/home/nick/work/gala/src/WindowManager.vala"
-		g_object_ref_sink (_tmp17_);
-#line 346 "/home/nick/work/gala/src/WindowManager.vala"
-		_g_object_unref0 (hot_corner);
-#line 346 "/home/nick/work/gala/src/WindowManager.vala"
-		hot_corner = _tmp17_;
-#line 347 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp18_ = hot_corner;
-#line 347 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_set_width (_tmp18_, (gfloat) 1);
-#line 348 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp19_ = hot_corner;
-#line 348 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_set_height (_tmp19_, (gfloat) 1);
-#line 349 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp20_ = hot_corner;
-#line 349 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_set_opacity (_tmp20_, (guint) 0);
-#line 350 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp21_ = hot_corner;
-#line 350 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_set_reactive (_tmp21_, TRUE);
-#line 351 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp22_ = hot_corner;
-#line 351 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp23_ = key;
-#line 351 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_set_name (_tmp22_, _tmp23_);
-#line 353 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp24_ = stage;
-#line 353 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp25_ = hot_corner;
-#line 353 "/home/nick/work/gala/src/WindowManager.vala"
-		clutter_actor_add_child (_tmp24_, _tmp25_);
-#line 355 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp26_ = hot_corner;
-#line 355 "/home/nick/work/gala/src/WindowManager.vala"
-		g_signal_connect_object (_tmp26_, "enter-event", (GCallback) ____lambda57__clutter_actor_enter_event, self, 0);
-#line 2686 "WindowManager.c"
-	}
-#line 362 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp27_ = hot_corner;
-#line 362 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp28_ = x;
-#line 362 "/home/nick/work/gala/src/WindowManager.vala"
-	clutter_actor_set_x (_tmp27_, _tmp28_);
-#line 363 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp29_ = hot_corner;
-#line 363 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp30_ = y;
-#line 363 "/home/nick/work/gala/src/WindowManager.vala"
-	clutter_actor_set_y (_tmp29_, _tmp30_);
-#line 330 "/home/nick/work/gala/src/WindowManager.vala"
-	_g_object_unref0 (hot_corner);
-#line 2702 "WindowManager.c"
+#line 391 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	result = TRUE;
+#line 391 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	return result;
+#line 2277 "WindowManager.c"
 }
 
 
@@ -2717,140 +2292,84 @@ static void gala_window_manager_gala_handle_cycle_workspaces (MetaDisplay* displ
 	MetaWorkspace* _tmp14_ = NULL;
 	MetaDisplay* _tmp15_ = NULL;
 	guint32 _tmp16_ = 0U;
-#line 367 "/home/nick/work/gala/src/WindowManager.vala"
+#line 395 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 367 "/home/nick/work/gala/src/WindowManager.vala"
+#line 395 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (display != NULL);
-#line 367 "/home/nick/work/gala/src/WindowManager.vala"
+#line 395 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (screen != NULL);
-#line 367 "/home/nick/work/gala/src/WindowManager.vala"
+#line 395 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (event != NULL);
-#line 367 "/home/nick/work/gala/src/WindowManager.vala"
+#line 395 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (binding != NULL);
-#line 370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = binding;
-#line 370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = meta_key_binding_get_name (_tmp1_);
-#line 370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_strcmp0 (_tmp2_, "cycle-workspaces-next") == 0) {
-#line 370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = 1;
-#line 2739 "WindowManager.c"
+#line 2314 "WindowManager.c"
 	} else {
-#line 370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = -1;
-#line 2743 "WindowManager.c"
+#line 2318 "WindowManager.c"
 	}
-#line 370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 398 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	direction = _tmp0_;
-#line 371 "/home/nick/work/gala/src/WindowManager.vala"
+#line 399 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = screen;
-#line 371 "/home/nick/work/gala/src/WindowManager.vala"
+#line 399 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = meta_screen_get_active_workspace_index (_tmp3_);
-#line 371 "/home/nick/work/gala/src/WindowManager.vala"
+#line 399 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = direction;
-#line 371 "/home/nick/work/gala/src/WindowManager.vala"
+#line 399 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	index = _tmp4_ + _tmp5_;
-#line 372 "/home/nick/work/gala/src/WindowManager.vala"
+#line 400 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = index;
-#line 372 "/home/nick/work/gala/src/WindowManager.vala"
+#line 400 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp6_ < 0) {
-#line 2759 "WindowManager.c"
+#line 2334 "WindowManager.c"
 		MetaScreen* _tmp7_ = NULL;
 		gint _tmp8_ = 0;
-#line 373 "/home/nick/work/gala/src/WindowManager.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp7_ = screen;
-#line 373 "/home/nick/work/gala/src/WindowManager.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp8_ = meta_screen_get_n_workspaces (_tmp7_);
-#line 373 "/home/nick/work/gala/src/WindowManager.vala"
+#line 401 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		index = _tmp8_ - 1;
-#line 2768 "WindowManager.c"
+#line 2343 "WindowManager.c"
 	} else {
 		gint _tmp9_ = 0;
 		MetaScreen* _tmp10_ = NULL;
 		gint _tmp11_ = 0;
-#line 374 "/home/nick/work/gala/src/WindowManager.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp9_ = index;
-#line 374 "/home/nick/work/gala/src/WindowManager.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp10_ = screen;
-#line 374 "/home/nick/work/gala/src/WindowManager.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11_ = meta_screen_get_n_workspaces (_tmp10_);
-#line 374 "/home/nick/work/gala/src/WindowManager.vala"
+#line 402 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp9_ > (_tmp11_ - 1)) {
-#line 375 "/home/nick/work/gala/src/WindowManager.vala"
+#line 403 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			index = 0;
-#line 2783 "WindowManager.c"
+#line 2358 "WindowManager.c"
 		}
 	}
-#line 377 "/home/nick/work/gala/src/WindowManager.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = screen;
-#line 377 "/home/nick/work/gala/src/WindowManager.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = index;
-#line 377 "/home/nick/work/gala/src/WindowManager.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp14_ = meta_screen_get_workspace_by_index (_tmp12_, _tmp13_);
-#line 377 "/home/nick/work/gala/src/WindowManager.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = display;
-#line 377 "/home/nick/work/gala/src/WindowManager.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp16_ = meta_display_get_current_time (_tmp15_);
-#line 377 "/home/nick/work/gala/src/WindowManager.vala"
+#line 405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_workspace_activate (_tmp14_, _tmp16_);
-#line 2798 "WindowManager.c"
-}
-
-
-static void gala_window_manager_gala_handle_launch_whiskermenu (MetaDisplay* display, MetaScreen* screen, MetaWindow* window, ClutterKeyEvent* event, MetaKeyBinding* binding, GalaWindowManagerGala* self) {
-	GError * _inner_error_ = NULL;
-#line 381 "/home/nick/work/gala/src/WindowManager.vala"
-	g_return_if_fail (self != NULL);
-#line 381 "/home/nick/work/gala/src/WindowManager.vala"
-	g_return_if_fail (display != NULL);
-#line 381 "/home/nick/work/gala/src/WindowManager.vala"
-	g_return_if_fail (screen != NULL);
-#line 381 "/home/nick/work/gala/src/WindowManager.vala"
-	g_return_if_fail (event != NULL);
-#line 381 "/home/nick/work/gala/src/WindowManager.vala"
-	g_return_if_fail (binding != NULL);
-#line 2814 "WindowManager.c"
-	{
-#line 385 "/home/nick/work/gala/src/WindowManager.vala"
-		g_spawn_command_line_sync ("xfce4-popup-whiskermenu", NULL, NULL, NULL, &_inner_error_);
-#line 385 "/home/nick/work/gala/src/WindowManager.vala"
-		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 2820 "WindowManager.c"
-			goto __catch18_g_error;
-		}
-	}
-	goto __finally18;
-	__catch18_g_error:
-	{
-		GError* e = NULL;
-		GError* _tmp0_ = NULL;
-		const gchar* _tmp1_ = NULL;
-#line 384 "/home/nick/work/gala/src/WindowManager.vala"
-		e = _inner_error_;
-#line 384 "/home/nick/work/gala/src/WindowManager.vala"
-		_inner_error_ = NULL;
-#line 387 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp0_ = e;
-#line 387 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp1_ = _tmp0_->message;
-#line 387 "/home/nick/work/gala/src/WindowManager.vala"
-		g_warning ("WindowManager.vala:387: %s", _tmp1_);
-#line 384 "/home/nick/work/gala/src/WindowManager.vala"
-		_g_error_free0 (e);
-#line 2842 "WindowManager.c"
-	}
-	__finally18:
-#line 384 "/home/nick/work/gala/src/WindowManager.vala"
-	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 384 "/home/nick/work/gala/src/WindowManager.vala"
-		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 384 "/home/nick/work/gala/src/WindowManager.vala"
-		g_clear_error (&_inner_error_);
-#line 384 "/home/nick/work/gala/src/WindowManager.vala"
-		return;
-#line 2853 "WindowManager.c"
-	}
+#line 2373 "WindowManager.c"
 }
 
 
@@ -2862,47 +2381,47 @@ static void gala_window_manager_gala_handle_move_to_workspace (MetaDisplay* disp
 	MetaMotionDirection direction = 0;
 	MetaWindow* _tmp4_ = NULL;
 	MetaMotionDirection _tmp5_ = 0;
-#line 392 "/home/nick/work/gala/src/WindowManager.vala"
+#line 409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 392 "/home/nick/work/gala/src/WindowManager.vala"
+#line 409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (display != NULL);
-#line 392 "/home/nick/work/gala/src/WindowManager.vala"
+#line 409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (screen != NULL);
-#line 392 "/home/nick/work/gala/src/WindowManager.vala"
+#line 409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (event != NULL);
-#line 392 "/home/nick/work/gala/src/WindowManager.vala"
+#line 409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (binding != NULL);
-#line 395 "/home/nick/work/gala/src/WindowManager.vala"
+#line 412 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = window;
-#line 395 "/home/nick/work/gala/src/WindowManager.vala"
+#line 412 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp0_ == NULL) {
-#line 396 "/home/nick/work/gala/src/WindowManager.vala"
+#line 413 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 2882 "WindowManager.c"
+#line 2401 "WindowManager.c"
 	}
-#line 398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = binding;
-#line 398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = meta_key_binding_get_name (_tmp2_);
-#line 398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_strcmp0 (_tmp3_, "move-to-workspace-left") == 0) {
-#line 398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp1_ = META_MOTION_LEFT;
-#line 2892 "WindowManager.c"
+#line 2411 "WindowManager.c"
 	} else {
-#line 398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp1_ = META_MOTION_RIGHT;
-#line 2896 "WindowManager.c"
+#line 2415 "WindowManager.c"
 	}
-#line 398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	direction = _tmp1_;
-#line 399 "/home/nick/work/gala/src/WindowManager.vala"
+#line 416 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = window;
-#line 399 "/home/nick/work/gala/src/WindowManager.vala"
+#line 416 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = direction;
-#line 399 "/home/nick/work/gala/src/WindowManager.vala"
+#line 416 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_move_window ((GalaWindowManager*) self, _tmp4_, _tmp5_);
-#line 2906 "WindowManager.c"
+#line 2425 "WindowManager.c"
 }
 
 
@@ -2923,75 +2442,75 @@ static void gala_window_manager_gala_handle_move_to_workspace_end (MetaDisplay* 
 	MetaWindow* _tmp13_ = NULL;
 	MetaDisplay* _tmp14_ = NULL;
 	guint32 _tmp15_ = 0U;
-#line 403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (display != NULL);
-#line 403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (screen != NULL);
-#line 403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (event != NULL);
-#line 403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (binding != NULL);
-#line 406 "/home/nick/work/gala/src/WindowManager.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = window;
-#line 406 "/home/nick/work/gala/src/WindowManager.vala"
+#line 423 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp0_ == NULL) {
-#line 407 "/home/nick/work/gala/src/WindowManager.vala"
+#line 424 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 2943 "WindowManager.c"
+#line 2462 "WindowManager.c"
 	}
-#line 409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = binding;
-#line 409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = meta_key_binding_get_name (_tmp2_);
-#line 409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_strcmp0 (_tmp3_, "move-to-workspace-first") == 0) {
-#line 409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp1_ = 0;
-#line 2953 "WindowManager.c"
+#line 2472 "WindowManager.c"
 	} else {
 		MetaScreen* _tmp4_ = NULL;
 		gint _tmp5_ = 0;
-#line 409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = screen;
-#line 409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp5_ = meta_screen_get_n_workspaces (_tmp4_);
-#line 409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp1_ = _tmp5_ - 1;
-#line 2963 "WindowManager.c"
+#line 2482 "WindowManager.c"
 	}
-#line 409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 426 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	index = _tmp1_;
-#line 410 "/home/nick/work/gala/src/WindowManager.vala"
+#line 427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = screen;
-#line 410 "/home/nick/work/gala/src/WindowManager.vala"
+#line 427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = index;
-#line 410 "/home/nick/work/gala/src/WindowManager.vala"
+#line 427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = meta_screen_get_workspace_by_index (_tmp6_, _tmp7_);
-#line 410 "/home/nick/work/gala/src/WindowManager.vala"
+#line 427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = _g_object_ref0 (_tmp8_);
-#line 410 "/home/nick/work/gala/src/WindowManager.vala"
+#line 427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	workspace = _tmp9_;
-#line 411 "/home/nick/work/gala/src/WindowManager.vala"
+#line 428 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = window;
-#line 411 "/home/nick/work/gala/src/WindowManager.vala"
+#line 428 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = workspace;
-#line 411 "/home/nick/work/gala/src/WindowManager.vala"
+#line 428 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_window_change_workspace (_tmp10_, _tmp11_);
-#line 412 "/home/nick/work/gala/src/WindowManager.vala"
+#line 429 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = workspace;
-#line 412 "/home/nick/work/gala/src/WindowManager.vala"
+#line 429 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = window;
-#line 412 "/home/nick/work/gala/src/WindowManager.vala"
+#line 429 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp14_ = display;
-#line 412 "/home/nick/work/gala/src/WindowManager.vala"
+#line 429 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = meta_display_get_current_time (_tmp14_);
-#line 412 "/home/nick/work/gala/src/WindowManager.vala"
+#line 429 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_workspace_activate_with_focus (_tmp12_, _tmp13_, _tmp15_);
-#line 403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 420 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (workspace);
-#line 2995 "WindowManager.c"
+#line 2514 "WindowManager.c"
 }
 
 
@@ -3000,35 +2519,35 @@ static void gala_window_manager_gala_handle_switch_to_workspace (MetaDisplay* di
 	MetaKeyBinding* _tmp1_ = NULL;
 	const gchar* _tmp2_ = NULL;
 	MetaMotionDirection direction = 0;
-#line 416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (display != NULL);
-#line 416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (screen != NULL);
-#line 416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (event != NULL);
-#line 416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (binding != NULL);
-#line 419 "/home/nick/work/gala/src/WindowManager.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = binding;
-#line 419 "/home/nick/work/gala/src/WindowManager.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = meta_key_binding_get_name (_tmp1_);
-#line 419 "/home/nick/work/gala/src/WindowManager.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_strcmp0 (_tmp2_, "switch-to-workspace-left") == 0) {
-#line 419 "/home/nick/work/gala/src/WindowManager.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = META_MOTION_LEFT;
-#line 3022 "WindowManager.c"
+#line 2541 "WindowManager.c"
 	} else {
-#line 419 "/home/nick/work/gala/src/WindowManager.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = META_MOTION_RIGHT;
-#line 3026 "WindowManager.c"
+#line 2545 "WindowManager.c"
 	}
-#line 419 "/home/nick/work/gala/src/WindowManager.vala"
+#line 436 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	direction = _tmp0_;
-#line 420 "/home/nick/work/gala/src/WindowManager.vala"
+#line 437 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_switch_to_next_workspace ((GalaWindowManager*) self, direction);
-#line 3032 "WindowManager.c"
+#line 2551 "WindowManager.c"
 }
 
 
@@ -3041,52 +2560,52 @@ static void gala_window_manager_gala_handle_switch_to_workspace_end (MetaDisplay
 	MetaWorkspace* _tmp7_ = NULL;
 	MetaDisplay* _tmp8_ = NULL;
 	guint32 _tmp9_ = 0U;
-#line 424 "/home/nick/work/gala/src/WindowManager.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 424 "/home/nick/work/gala/src/WindowManager.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (display != NULL);
-#line 424 "/home/nick/work/gala/src/WindowManager.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (screen != NULL);
-#line 424 "/home/nick/work/gala/src/WindowManager.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (event != NULL);
-#line 424 "/home/nick/work/gala/src/WindowManager.vala"
+#line 441 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (binding != NULL);
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = binding;
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = meta_key_binding_get_name (_tmp1_);
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_strcmp0 (_tmp2_, "switch-to-workspace-first") == 0) {
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = 0;
-#line 3063 "WindowManager.c"
+#line 2582 "WindowManager.c"
 	} else {
 		MetaScreen* _tmp3_ = NULL;
 		gint _tmp4_ = 0;
 		gint _tmp5_ = 0;
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp3_ = screen;
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = meta_screen_get_n_workspaces (_tmp3_);
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp5_ = _tmp4_;
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = _tmp5_ - 1;
-#line 3076 "WindowManager.c"
+#line 2595 "WindowManager.c"
 	}
-#line 427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	index = _tmp0_;
-#line 428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 445 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = screen;
-#line 428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 445 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = meta_screen_get_workspace_by_index (_tmp6_, index);
-#line 428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 445 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = display;
-#line 428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 445 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = meta_display_get_current_time (_tmp8_);
-#line 428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 445 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_workspace_activate (_tmp7_, _tmp9_);
-#line 3090 "WindowManager.c"
+#line 2609 "WindowManager.c"
 }
 
 
@@ -3094,20 +2613,20 @@ static void gala_window_manager_gala_handle_switch_to_workspace_end (MetaDisplay
  * {@inheritDoc}
  */
 static void _vala_GValue_array_free (GValue* array, gint array_length) {
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (array != NULL) {
-#line 3100 "WindowManager.c"
+#line 2619 "WindowManager.c"
 		int i;
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		for (i = 0; i < array_length; i = i + 1) {
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_value_unset (&array[i]);
-#line 3106 "WindowManager.c"
+#line 2625 "WindowManager.c"
 		}
 	}
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_free (array);
-#line 3111 "WindowManager.c"
+#line 2630 "WindowManager.c"
 }
 
 
@@ -3167,215 +2686,215 @@ static void gala_window_manager_gala_real_switch_to_next_workspace (GalaWindowMa
 	ClutterActor* _tmp40_ = NULL;
 	ClutterActor* _tmp41_ = NULL;
 	ClutterKeyframeTransition* _tmp42_ = NULL;
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 436 "/home/nick/work/gala/src/WindowManager.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 436 "/home/nick/work/gala/src/WindowManager.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 436 "/home/nick/work/gala/src/WindowManager.vala"
+#line 453 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp1_;
-#line 437 "/home/nick/work/gala/src/WindowManager.vala"
+#line 454 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = screen;
-#line 437 "/home/nick/work/gala/src/WindowManager.vala"
+#line 454 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = meta_screen_get_display (_tmp2_);
-#line 437 "/home/nick/work/gala/src/WindowManager.vala"
+#line 454 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 437 "/home/nick/work/gala/src/WindowManager.vala"
+#line 454 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	display = _tmp4_;
-#line 438 "/home/nick/work/gala/src/WindowManager.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = screen;
-#line 438 "/home/nick/work/gala/src/WindowManager.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = meta_screen_get_active_workspace (_tmp5_);
-#line 438 "/home/nick/work/gala/src/WindowManager.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = _g_object_ref0 (_tmp6_);
-#line 438 "/home/nick/work/gala/src/WindowManager.vala"
+#line 455 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	active_workspace = _tmp7_;
-#line 439 "/home/nick/work/gala/src/WindowManager.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = active_workspace;
-#line 439 "/home/nick/work/gala/src/WindowManager.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = direction;
-#line 439 "/home/nick/work/gala/src/WindowManager.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = meta_workspace_get_neighbor (_tmp8_, _tmp9_);
-#line 439 "/home/nick/work/gala/src/WindowManager.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = _g_object_ref0 (_tmp10_);
-#line 439 "/home/nick/work/gala/src/WindowManager.vala"
+#line 456 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	neighbor = _tmp11_;
-#line 441 "/home/nick/work/gala/src/WindowManager.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = neighbor;
-#line 441 "/home/nick/work/gala/src/WindowManager.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = active_workspace;
-#line 441 "/home/nick/work/gala/src/WindowManager.vala"
+#line 458 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp12_ != _tmp13_) {
-#line 3211 "WindowManager.c"
+#line 2730 "WindowManager.c"
 		MetaWorkspace* _tmp14_ = NULL;
 		MetaDisplay* _tmp15_ = NULL;
 		guint32 _tmp16_ = 0U;
-#line 442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 459 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp14_ = neighbor;
-#line 442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 459 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp15_ = display;
-#line 442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 459 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp16_ = meta_display_get_current_time (_tmp15_);
-#line 442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 459 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_workspace_activate (_tmp14_, _tmp16_);
-#line 443 "/home/nick/work/gala/src/WindowManager.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (neighbor);
-#line 443 "/home/nick/work/gala/src/WindowManager.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (active_workspace);
-#line 443 "/home/nick/work/gala/src/WindowManager.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (display);
-#line 443 "/home/nick/work/gala/src/WindowManager.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (screen);
-#line 443 "/home/nick/work/gala/src/WindowManager.vala"
+#line 460 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 3233 "WindowManager.c"
+#line 2752 "WindowManager.c"
 	}
-#line 447 "/home/nick/work/gala/src/WindowManager.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp17_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 447 "/home/nick/work/gala/src/WindowManager.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp18_ = _tmp17_;
-#line 447 "/home/nick/work/gala/src/WindowManager.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp19_ = clutter_actor_get_transition (_tmp18_, "nudge");
-#line 447 "/home/nick/work/gala/src/WindowManager.vala"
+#line 464 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp19_ != NULL) {
-#line 448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (neighbor);
-#line 448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (active_workspace);
-#line 448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (display);
-#line 448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (screen);
-#line 448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 465 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 3253 "WindowManager.c"
+#line 2772 "WindowManager.c"
 	}
-#line 450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 467 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp21_ = direction;
-#line 450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 467 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp21_ == META_MOTION_LEFT) {
-#line 450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 467 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp20_ = 32.0f;
-#line 3261 "WindowManager.c"
+#line 2780 "WindowManager.c"
 	} else {
-#line 450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 467 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp20_ = -32.0f;
-#line 3265 "WindowManager.c"
+#line 2784 "WindowManager.c"
 	}
-#line 450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 467 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	dest = _tmp20_;
-#line 452 "/home/nick/work/gala/src/WindowManager.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp22_ = g_new0 (gdouble, 2);
-#line 452 "/home/nick/work/gala/src/WindowManager.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp22_[0] = 0.28;
-#line 452 "/home/nick/work/gala/src/WindowManager.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp22_[1] = 0.58;
-#line 452 "/home/nick/work/gala/src/WindowManager.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	keyframes = _tmp22_;
-#line 452 "/home/nick/work/gala/src/WindowManager.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	keyframes_length1 = 2;
-#line 452 "/home/nick/work/gala/src/WindowManager.vala"
+#line 469 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_keyframes_size_ = keyframes_length1;
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp23_ = dest;
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_value_init (&_tmp24_, G_TYPE_FLOAT);
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_value_set_float (&_tmp24_, _tmp23_);
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp25_ = dest;
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_value_init (&_tmp26_, G_TYPE_FLOAT);
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_value_set_float (&_tmp26_, _tmp25_);
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp27_ = g_new0 (GValue, 2);
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp27_[0] = _tmp24_;
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp27_[1] = _tmp26_;
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	x = _tmp27_;
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	x_length1 = 2;
-#line 453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_x_size_ = x_length1;
-#line 455 "/home/nick/work/gala/src/WindowManager.vala"
+#line 472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp28_ = (ClutterKeyframeTransition*) clutter_keyframe_transition_new ("x");
-#line 455 "/home/nick/work/gala/src/WindowManager.vala"
+#line 472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	nudge = _tmp28_;
-#line 456 "/home/nick/work/gala/src/WindowManager.vala"
+#line 473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp29_ = nudge;
-#line 456 "/home/nick/work/gala/src/WindowManager.vala"
+#line 473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_timeline_set_duration ((ClutterTimeline*) _tmp29_, (guint) 360);
-#line 457 "/home/nick/work/gala/src/WindowManager.vala"
+#line 474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp30_ = nudge;
-#line 457 "/home/nick/work/gala/src/WindowManager.vala"
+#line 474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_transition_set_remove_on_complete ((ClutterTransition*) _tmp30_, TRUE);
-#line 458 "/home/nick/work/gala/src/WindowManager.vala"
+#line 475 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp31_ = nudge;
-#line 458 "/home/nick/work/gala/src/WindowManager.vala"
+#line 475 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_timeline_set_progress_mode ((ClutterTimeline*) _tmp31_, CLUTTER_LINEAR);
-#line 459 "/home/nick/work/gala/src/WindowManager.vala"
+#line 476 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp32_ = nudge;
-#line 459 "/home/nick/work/gala/src/WindowManager.vala"
+#line 476 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_value_init (&_tmp33_, G_TYPE_FLOAT);
-#line 459 "/home/nick/work/gala/src/WindowManager.vala"
+#line 476 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_value_set_float (&_tmp33_, 0.0f);
-#line 459 "/home/nick/work/gala/src/WindowManager.vala"
+#line 476 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_transition_set_from_value ((ClutterTransition*) _tmp32_, &_tmp33_);
-#line 459 "/home/nick/work/gala/src/WindowManager.vala"
+#line 476 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	G_IS_VALUE (&_tmp33_) ? (g_value_unset (&_tmp33_), NULL) : NULL;
-#line 460 "/home/nick/work/gala/src/WindowManager.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp34_ = nudge;
-#line 460 "/home/nick/work/gala/src/WindowManager.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_value_init (&_tmp35_, G_TYPE_FLOAT);
-#line 460 "/home/nick/work/gala/src/WindowManager.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_value_set_float (&_tmp35_, 0.0f);
-#line 460 "/home/nick/work/gala/src/WindowManager.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_transition_set_to_value ((ClutterTransition*) _tmp34_, &_tmp35_);
-#line 460 "/home/nick/work/gala/src/WindowManager.vala"
+#line 477 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	G_IS_VALUE (&_tmp35_) ? (g_value_unset (&_tmp35_), NULL) : NULL;
-#line 461 "/home/nick/work/gala/src/WindowManager.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp36_ = nudge;
-#line 461 "/home/nick/work/gala/src/WindowManager.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp37_ = keyframes;
-#line 461 "/home/nick/work/gala/src/WindowManager.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp37__length1 = keyframes_length1;
-#line 461 "/home/nick/work/gala/src/WindowManager.vala"
+#line 478 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_keyframe_transition_set_key_frames (_tmp36_, (guint) _tmp37__length1, _tmp37_);
-#line 462 "/home/nick/work/gala/src/WindowManager.vala"
+#line 479 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp38_ = nudge;
-#line 462 "/home/nick/work/gala/src/WindowManager.vala"
+#line 479 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp39_ = x;
-#line 462 "/home/nick/work/gala/src/WindowManager.vala"
+#line 479 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp39__length1 = x_length1;
-#line 462 "/home/nick/work/gala/src/WindowManager.vala"
+#line 479 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_keyframe_transition_set_values (_tmp38_, (guint) _tmp39__length1, _tmp39_);
-#line 464 "/home/nick/work/gala/src/WindowManager.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp40_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 464 "/home/nick/work/gala/src/WindowManager.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp41_ = _tmp40_;
-#line 464 "/home/nick/work/gala/src/WindowManager.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp42_ = nudge;
-#line 464 "/home/nick/work/gala/src/WindowManager.vala"
+#line 481 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_transition (_tmp41_, "nudge", (ClutterTransition*) _tmp42_);
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (nudge);
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	x = (_vala_GValue_array_free (x, x_length1), NULL);
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	keyframes = (g_free (keyframes), NULL);
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (neighbor);
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (active_workspace);
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (display);
-#line 434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 3379 "WindowManager.c"
+#line 2898 "WindowManager.c"
 }
 
 
@@ -3386,97 +2905,97 @@ static void gala_window_manager_gala_update_input_area (GalaWindowManagerGala* s
 	GalaScreenSaver* _tmp2_ = NULL;
 	gboolean _tmp7_ = FALSE;
 	GError * _inner_error_ = NULL;
-#line 467 "/home/nick/work/gala/src/WindowManager.vala"
+#line 484 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 469 "/home/nick/work/gala/src/WindowManager.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 469 "/home/nick/work/gala/src/WindowManager.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 469 "/home/nick/work/gala/src/WindowManager.vala"
+#line 486 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp1_;
-#line 471 "/home/nick/work/gala/src/WindowManager.vala"
+#line 488 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = self->priv->screensaver;
-#line 471 "/home/nick/work/gala/src/WindowManager.vala"
+#line 488 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp2_ != NULL) {
-#line 3402 "WindowManager.c"
+#line 2921 "WindowManager.c"
 		{
 			gboolean _tmp3_ = FALSE;
 			GalaScreenSaver* _tmp4_ = NULL;
 			gboolean _tmp5_ = FALSE;
-#line 473 "/home/nick/work/gala/src/WindowManager.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp4_ = self->priv->screensaver;
-#line 473 "/home/nick/work/gala/src/WindowManager.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp5_ = gala_screen_saver_get_active (_tmp4_, &_inner_error_);
-#line 473 "/home/nick/work/gala/src/WindowManager.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp3_ = _tmp5_;
-#line 473 "/home/nick/work/gala/src/WindowManager.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 3415 "WindowManager.c"
-				goto __catch19_g_error;
+#line 2934 "WindowManager.c"
+				goto __catch18_g_error;
 			}
-#line 473 "/home/nick/work/gala/src/WindowManager.vala"
+#line 490 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp3_) {
-#line 3420 "WindowManager.c"
+#line 2939 "WindowManager.c"
 				MetaScreen* _tmp6_ = NULL;
-#line 474 "/home/nick/work/gala/src/WindowManager.vala"
+#line 491 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp6_ = screen;
-#line 474 "/home/nick/work/gala/src/WindowManager.vala"
+#line 491 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				gala_internal_utils_set_input_area (_tmp6_, GALA_INPUT_AREA_NONE);
-#line 475 "/home/nick/work/gala/src/WindowManager.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (screen);
-#line 475 "/home/nick/work/gala/src/WindowManager.vala"
+#line 492 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				return;
-#line 3430 "WindowManager.c"
+#line 2949 "WindowManager.c"
 			}
 		}
-		goto __finally19;
-		__catch19_g_error:
+		goto __finally18;
+		__catch18_g_error:
 		{
 			GError* e = NULL;
-#line 472 "/home/nick/work/gala/src/WindowManager.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			e = _inner_error_;
-#line 472 "/home/nick/work/gala/src/WindowManager.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_inner_error_ = NULL;
-#line 472 "/home/nick/work/gala/src/WindowManager.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_error_free0 (e);
-#line 3443 "WindowManager.c"
+#line 2962 "WindowManager.c"
 		}
-		__finally19:
-#line 472 "/home/nick/work/gala/src/WindowManager.vala"
+		__finally18:
+#line 489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 472 "/home/nick/work/gala/src/WindowManager.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_object_unref0 (screen);
-#line 472 "/home/nick/work/gala/src/WindowManager.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 472 "/home/nick/work/gala/src/WindowManager.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_clear_error (&_inner_error_);
-#line 472 "/home/nick/work/gala/src/WindowManager.vala"
+#line 489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			return;
-#line 3456 "WindowManager.c"
+#line 2975 "WindowManager.c"
 		}
 	}
-#line 485 "/home/nick/work/gala/src/WindowManager.vala"
+#line 502 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = gala_window_manager_is_modal ((GalaWindowManager*) self);
-#line 485 "/home/nick/work/gala/src/WindowManager.vala"
+#line 502 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp7_) {
-#line 3463 "WindowManager.c"
+#line 2982 "WindowManager.c"
 		MetaScreen* _tmp8_ = NULL;
-#line 486 "/home/nick/work/gala/src/WindowManager.vala"
+#line 503 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp8_ = screen;
-#line 486 "/home/nick/work/gala/src/WindowManager.vala"
+#line 503 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_internal_utils_set_input_area (_tmp8_, GALA_INPUT_AREA_FULLSCREEN);
-#line 3469 "WindowManager.c"
+#line 2988 "WindowManager.c"
 	} else {
 		MetaScreen* _tmp9_ = NULL;
-#line 488 "/home/nick/work/gala/src/WindowManager.vala"
+#line 505 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp9_ = screen;
-#line 488 "/home/nick/work/gala/src/WindowManager.vala"
+#line 505 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_internal_utils_set_input_area (_tmp9_, GALA_INPUT_AREA_DEFAULT);
-#line 3476 "WindowManager.c"
+#line 2995 "WindowManager.c"
 	}
-#line 467 "/home/nick/work/gala/src/WindowManager.vala"
+#line 484 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 3480 "WindowManager.c"
+#line 2999 "WindowManager.c"
 }
 
 
@@ -3491,98 +3010,98 @@ guint32* gala_window_manager_gala_get_all_xids (GalaWindowManagerGala* self, int
 	gpointer* _tmp11_ = NULL;
 	guint32* _tmp12_ = NULL;
 	gint _tmp12__length1 = 0;
-#line 491 "/home/nick/work/gala/src/WindowManager.vala"
+#line 508 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_val_if_fail (self != NULL, NULL);
-#line 493 "/home/nick/work/gala/src/WindowManager.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = gee_array_list_new (G_TYPE_UINT, NULL, NULL, NULL, NULL, NULL);
-#line 493 "/home/nick/work/gala/src/WindowManager.vala"
+#line 510 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	list = _tmp0_;
-#line 495 "/home/nick/work/gala/src/WindowManager.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 495 "/home/nick/work/gala/src/WindowManager.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = meta_screen_get_workspaces (_tmp1_);
-#line 3505 "WindowManager.c"
+#line 3024 "WindowManager.c"
 	{
 		GList* workspace_collection = NULL;
 		GList* workspace_it = NULL;
-#line 495 "/home/nick/work/gala/src/WindowManager.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		workspace_collection = _tmp2_;
-#line 495 "/home/nick/work/gala/src/WindowManager.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		for (workspace_it = workspace_collection; workspace_it != NULL; workspace_it = workspace_it->next) {
-#line 3513 "WindowManager.c"
+#line 3032 "WindowManager.c"
 			MetaWorkspace* _tmp3_ = NULL;
 			MetaWorkspace* workspace = NULL;
-#line 495 "/home/nick/work/gala/src/WindowManager.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp3_ = _g_object_ref0 ((MetaWorkspace*) workspace_it->data);
-#line 495 "/home/nick/work/gala/src/WindowManager.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			workspace = _tmp3_;
-#line 3520 "WindowManager.c"
+#line 3039 "WindowManager.c"
 			{
 				MetaWorkspace* _tmp4_ = NULL;
 				GList* _tmp5_ = NULL;
-#line 496 "/home/nick/work/gala/src/WindowManager.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp4_ = workspace;
-#line 496 "/home/nick/work/gala/src/WindowManager.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp5_ = meta_workspace_list_windows (_tmp4_);
-#line 3528 "WindowManager.c"
+#line 3047 "WindowManager.c"
 				{
 					GList* window_collection = NULL;
 					GList* window_it = NULL;
-#line 496 "/home/nick/work/gala/src/WindowManager.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					window_collection = _tmp5_;
-#line 496 "/home/nick/work/gala/src/WindowManager.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
-#line 3536 "WindowManager.c"
+#line 3055 "WindowManager.c"
 						MetaWindow* window = NULL;
-#line 496 "/home/nick/work/gala/src/WindowManager.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						window = (MetaWindow*) window_it->data;
-#line 3540 "WindowManager.c"
+#line 3059 "WindowManager.c"
 						{
 							GeeArrayList* _tmp6_ = NULL;
 							MetaWindow* _tmp7_ = NULL;
 							Window _tmp8_ = 0;
-#line 497 "/home/nick/work/gala/src/WindowManager.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 							_tmp6_ = list;
-#line 497 "/home/nick/work/gala/src/WindowManager.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 							_tmp7_ = window;
-#line 497 "/home/nick/work/gala/src/WindowManager.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 							_tmp8_ = meta_window_get_xwindow (_tmp7_);
-#line 497 "/home/nick/work/gala/src/WindowManager.vala"
+#line 514 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 							gee_abstract_collection_add ((GeeAbstractCollection*) _tmp6_, (gpointer) ((guintptr) ((guint32) _tmp8_)));
-#line 3553 "WindowManager.c"
+#line 3072 "WindowManager.c"
 						}
 					}
-#line 496 "/home/nick/work/gala/src/WindowManager.vala"
+#line 513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_g_list_free0 (window_collection);
-#line 3558 "WindowManager.c"
+#line 3077 "WindowManager.c"
 				}
-#line 495 "/home/nick/work/gala/src/WindowManager.vala"
+#line 512 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (workspace);
-#line 3562 "WindowManager.c"
+#line 3081 "WindowManager.c"
 			}
 		}
 	}
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = list;
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = gee_collection_to_array ((GeeCollection*) _tmp9_, &_tmp10_);
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = _tmp11_;
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12__length1 = _tmp10_;
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (result_length1) {
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		*result_length1 = _tmp12__length1;
-#line 3578 "WindowManager.c"
+#line 3097 "WindowManager.c"
 	}
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp12_;
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (list);
-#line 500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 517 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 3586 "WindowManager.c"
+#line 3105 "WindowManager.c"
 }
 
 
@@ -3619,160 +3138,160 @@ static void gala_window_manager_gala_real_move_window (GalaWindowManager* base, 
 	MetaWindow* _tmp32_ = NULL;
 	MetaDisplay* _tmp33_ = NULL;
 	guint32 _tmp34_ = 0U;
-#line 506 "/home/nick/work/gala/src/WindowManager.vala"
+#line 523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 508 "/home/nick/work/gala/src/WindowManager.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = window;
-#line 508 "/home/nick/work/gala/src/WindowManager.vala"
+#line 525 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp0_ == NULL) {
-#line 509 "/home/nick/work/gala/src/WindowManager.vala"
+#line 526 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 3631 "WindowManager.c"
+#line 3150 "WindowManager.c"
 	}
-#line 511 "/home/nick/work/gala/src/WindowManager.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 511 "/home/nick/work/gala/src/WindowManager.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = _g_object_ref0 (_tmp1_);
-#line 511 "/home/nick/work/gala/src/WindowManager.vala"
+#line 528 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp2_;
-#line 512 "/home/nick/work/gala/src/WindowManager.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = screen;
-#line 512 "/home/nick/work/gala/src/WindowManager.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = meta_screen_get_display (_tmp3_);
-#line 512 "/home/nick/work/gala/src/WindowManager.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _g_object_ref0 (_tmp4_);
-#line 512 "/home/nick/work/gala/src/WindowManager.vala"
+#line 529 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	display = _tmp5_;
-#line 514 "/home/nick/work/gala/src/WindowManager.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = screen;
-#line 514 "/home/nick/work/gala/src/WindowManager.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = meta_screen_get_active_workspace (_tmp6_);
-#line 514 "/home/nick/work/gala/src/WindowManager.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = _g_object_ref0 (_tmp7_);
-#line 514 "/home/nick/work/gala/src/WindowManager.vala"
+#line 531 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	active = _tmp8_;
-#line 515 "/home/nick/work/gala/src/WindowManager.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = active;
-#line 515 "/home/nick/work/gala/src/WindowManager.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = direction;
-#line 515 "/home/nick/work/gala/src/WindowManager.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = meta_workspace_get_neighbor (_tmp9_, _tmp10_);
-#line 515 "/home/nick/work/gala/src/WindowManager.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = _g_object_ref0 (_tmp11_);
-#line 515 "/home/nick/work/gala/src/WindowManager.vala"
+#line 532 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	next = _tmp12_;
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = meta_prefs_get_dynamic_workspaces ();
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp15_) {
-#line 3669 "WindowManager.c"
+#line 3188 "WindowManager.c"
 		MetaWorkspace* _tmp16_ = NULL;
 		guint _tmp17_ = 0U;
 		guint _tmp18_ = 0U;
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp16_ = active;
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_object_get (_tmp16_, "n-windows", &_tmp17_, NULL);
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp18_ = _tmp17_;
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp14_ = _tmp18_ == ((guint) 1);
-#line 3681 "WindowManager.c"
+#line 3200 "WindowManager.c"
 	} else {
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp14_ = FALSE;
-#line 3685 "WindowManager.c"
+#line 3204 "WindowManager.c"
 	}
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp14_) {
-#line 3689 "WindowManager.c"
+#line 3208 "WindowManager.c"
 		MetaWorkspace* _tmp19_ = NULL;
 		gint _tmp20_ = 0;
 		MetaScreen* _tmp21_ = NULL;
 		gint _tmp22_ = 0;
 		gint _tmp23_ = 0;
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp19_ = next;
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp20_ = meta_workspace_index (_tmp19_);
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp21_ = screen;
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp22_ = meta_screen_get_n_workspaces (_tmp21_);
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp23_ = _tmp22_;
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp13_ = _tmp20_ == (_tmp23_ - 1);
-#line 3707 "WindowManager.c"
+#line 3226 "WindowManager.c"
 	} else {
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp13_ = FALSE;
-#line 3711 "WindowManager.c"
+#line 3230 "WindowManager.c"
 	}
-#line 518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp13_) {
-#line 3715 "WindowManager.c"
+#line 3234 "WindowManager.c"
 		MetaScreen* _tmp24_ = NULL;
-#line 519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 536 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp24_ = screen;
-#line 519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 536 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_utils_bell (_tmp24_);
-#line 520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (next);
-#line 520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (active);
-#line 520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (display);
-#line 520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (screen);
-#line 520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 537 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 3731 "WindowManager.c"
+#line 3250 "WindowManager.c"
 	}
-#line 523 "/home/nick/work/gala/src/WindowManager.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp25_ = window;
-#line 523 "/home/nick/work/gala/src/WindowManager.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp26_ = _g_object_ref0 (_tmp25_);
-#line 523 "/home/nick/work/gala/src/WindowManager.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->moving);
-#line 523 "/home/nick/work/gala/src/WindowManager.vala"
+#line 540 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->moving = _tmp26_;
-#line 525 "/home/nick/work/gala/src/WindowManager.vala"
+#line 542 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp27_ = window;
-#line 525 "/home/nick/work/gala/src/WindowManager.vala"
+#line 542 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp28_ = meta_window_is_on_all_workspaces (_tmp27_);
-#line 525 "/home/nick/work/gala/src/WindowManager.vala"
+#line 542 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp28_) {
-#line 3747 "WindowManager.c"
+#line 3266 "WindowManager.c"
 		MetaWindow* _tmp29_ = NULL;
 		MetaWorkspace* _tmp30_ = NULL;
-#line 526 "/home/nick/work/gala/src/WindowManager.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp29_ = window;
-#line 526 "/home/nick/work/gala/src/WindowManager.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp30_ = next;
-#line 526 "/home/nick/work/gala/src/WindowManager.vala"
+#line 543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_window_change_workspace (_tmp29_, _tmp30_);
-#line 3756 "WindowManager.c"
+#line 3275 "WindowManager.c"
 	}
-#line 528 "/home/nick/work/gala/src/WindowManager.vala"
+#line 545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp31_ = next;
-#line 528 "/home/nick/work/gala/src/WindowManager.vala"
+#line 545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp32_ = window;
-#line 528 "/home/nick/work/gala/src/WindowManager.vala"
+#line 545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp33_ = display;
-#line 528 "/home/nick/work/gala/src/WindowManager.vala"
+#line 545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp34_ = meta_display_get_current_time (_tmp33_);
-#line 528 "/home/nick/work/gala/src/WindowManager.vala"
+#line 545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_workspace_activate_with_focus (_tmp31_, _tmp32_, _tmp34_);
-#line 506 "/home/nick/work/gala/src/WindowManager.vala"
+#line 523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (next);
-#line 506 "/home/nick/work/gala/src/WindowManager.vala"
+#line 523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (active);
-#line 506 "/home/nick/work/gala/src/WindowManager.vala"
+#line 523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (display);
-#line 506 "/home/nick/work/gala/src/WindowManager.vala"
+#line 523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 3776 "WindowManager.c"
+#line 3295 "WindowManager.c"
 }
 
 
@@ -3798,63 +3317,63 @@ static GalaModalProxy* gala_window_manager_gala_real_push_modal (GalaWindowManag
 	guint32 _tmp10_ = 0U;
 	guint32 _tmp11_ = 0U;
 	MetaScreen* _tmp12_ = NULL;
-#line 534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 551 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 536 "/home/nick/work/gala/src/WindowManager.vala"
+#line 553 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = gala_modal_proxy_new ();
-#line 536 "/home/nick/work/gala/src/WindowManager.vala"
+#line 553 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	proxy = _tmp0_;
-#line 538 "/home/nick/work/gala/src/WindowManager.vala"
+#line 555 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = self->priv->modal_stack;
-#line 538 "/home/nick/work/gala/src/WindowManager.vala"
+#line 555 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = proxy;
-#line 538 "/home/nick/work/gala/src/WindowManager.vala"
+#line 555 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_deque_offer_head ((GeeDeque*) _tmp1_, _tmp2_);
-#line 541 "/home/nick/work/gala/src/WindowManager.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = self->priv->modal_stack;
-#line 541 "/home/nick/work/gala/src/WindowManager.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp3_);
-#line 541 "/home/nick/work/gala/src/WindowManager.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _tmp4_;
-#line 541 "/home/nick/work/gala/src/WindowManager.vala"
+#line 558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp5_ >= 2) {
-#line 542 "/home/nick/work/gala/src/WindowManager.vala"
+#line 559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		result = proxy;
-#line 542 "/home/nick/work/gala/src/WindowManager.vala"
+#line 559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return result;
-#line 3826 "WindowManager.c"
+#line 3345 "WindowManager.c"
 	}
-#line 544 "/home/nick/work/gala/src/WindowManager.vala"
+#line 561 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 544 "/home/nick/work/gala/src/WindowManager.vala"
+#line 561 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = _g_object_ref0 (_tmp6_);
-#line 544 "/home/nick/work/gala/src/WindowManager.vala"
+#line 561 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp7_;
-#line 545 "/home/nick/work/gala/src/WindowManager.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = screen;
-#line 545 "/home/nick/work/gala/src/WindowManager.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = meta_screen_get_display (_tmp8_);
-#line 545 "/home/nick/work/gala/src/WindowManager.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = meta_display_get_current_time (_tmp9_);
-#line 545 "/home/nick/work/gala/src/WindowManager.vala"
+#line 562 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	time = _tmp10_;
-#line 547 "/home/nick/work/gala/src/WindowManager.vala"
+#line 564 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_update_input_area (self);
-#line 548 "/home/nick/work/gala/src/WindowManager.vala"
+#line 565 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = time;
-#line 548 "/home/nick/work/gala/src/WindowManager.vala"
+#line 565 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_begin_modal ((MetaPlugin*) self, 0, _tmp11_);
-#line 550 "/home/nick/work/gala/src/WindowManager.vala"
+#line 567 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = screen;
-#line 550 "/home/nick/work/gala/src/WindowManager.vala"
+#line 567 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_disable_unredirect_for_screen (_tmp12_);
-#line 552 "/home/nick/work/gala/src/WindowManager.vala"
+#line 569 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = proxy;
-#line 552 "/home/nick/work/gala/src/WindowManager.vala"
+#line 569 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 552 "/home/nick/work/gala/src/WindowManager.vala"
+#line 569 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 3858 "WindowManager.c"
+#line 3377 "WindowManager.c"
 }
 
 
@@ -3874,56 +3393,56 @@ static void gala_window_manager_gala_real_pop_modal (GalaWindowManager* base, Ga
 	MetaDisplay* _tmp7_ = NULL;
 	guint32 _tmp8_ = 0U;
 	MetaScreen* _tmp9_ = NULL;
-#line 558 "/home/nick/work/gala/src/WindowManager.vala"
+#line 575 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 558 "/home/nick/work/gala/src/WindowManager.vala"
+#line 575 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (proxy != NULL);
-#line 560 "/home/nick/work/gala/src/WindowManager.vala"
+#line 577 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->modal_stack;
-#line 560 "/home/nick/work/gala/src/WindowManager.vala"
+#line 577 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = proxy;
-#line 560 "/home/nick/work/gala/src/WindowManager.vala"
+#line 577 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp0_, _tmp1_);
-#line 560 "/home/nick/work/gala/src/WindowManager.vala"
+#line 577 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp2_) {
-#line 561 "/home/nick/work/gala/src/WindowManager.vala"
-		g_warning ("WindowManager.vala:561: Attempted to remove a modal proxy that was not" \
+#line 578 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		g_warning ("WindowManager.vala:578: Attempted to remove a modal proxy that was not" \
 " in the stack");
-#line 562 "/home/nick/work/gala/src/WindowManager.vala"
+#line 579 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 3894 "WindowManager.c"
+#line 3413 "WindowManager.c"
 	}
-#line 565 "/home/nick/work/gala/src/WindowManager.vala"
+#line 582 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = gala_window_manager_is_modal ((GalaWindowManager*) self);
-#line 565 "/home/nick/work/gala/src/WindowManager.vala"
+#line 582 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp3_) {
-#line 566 "/home/nick/work/gala/src/WindowManager.vala"
+#line 583 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 3902 "WindowManager.c"
+#line 3421 "WindowManager.c"
 	}
-#line 568 "/home/nick/work/gala/src/WindowManager.vala"
+#line 585 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_update_input_area (self);
-#line 570 "/home/nick/work/gala/src/WindowManager.vala"
+#line 587 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 570 "/home/nick/work/gala/src/WindowManager.vala"
+#line 587 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _g_object_ref0 (_tmp4_);
-#line 570 "/home/nick/work/gala/src/WindowManager.vala"
+#line 587 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp5_;
-#line 571 "/home/nick/work/gala/src/WindowManager.vala"
+#line 588 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = screen;
-#line 571 "/home/nick/work/gala/src/WindowManager.vala"
+#line 588 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = meta_screen_get_display (_tmp6_);
-#line 571 "/home/nick/work/gala/src/WindowManager.vala"
+#line 588 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = meta_display_get_current_time (_tmp7_);
-#line 571 "/home/nick/work/gala/src/WindowManager.vala"
+#line 588 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_end_modal ((MetaPlugin*) self, _tmp8_);
-#line 573 "/home/nick/work/gala/src/WindowManager.vala"
+#line 590 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = screen;
-#line 573 "/home/nick/work/gala/src/WindowManager.vala"
+#line 590 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_enable_unredirect_for_screen (_tmp9_);
-#line 558 "/home/nick/work/gala/src/WindowManager.vala"
+#line 575 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 3926 "WindowManager.c"
+#line 3445 "WindowManager.c"
 }
 
 
@@ -3936,19 +3455,19 @@ static gboolean gala_window_manager_gala_real_is_modal (GalaWindowManager* base)
 	GeeLinkedList* _tmp0_ = NULL;
 	gint _tmp1_ = 0;
 	gint _tmp2_ = 0;
-#line 579 "/home/nick/work/gala/src/WindowManager.vala"
+#line 596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->modal_stack;
-#line 581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = gee_abstract_collection_get_size ((GeeCollection*) _tmp0_);
-#line 581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = _tmp1_;
-#line 581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp2_ > 0;
-#line 581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 598 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 3951 "WindowManager.c"
+#line 3470 "WindowManager.c"
 }
 
 
@@ -3961,21 +3480,21 @@ static gboolean gala_window_manager_gala_real_modal_proxy_valid (GalaWindowManag
 	GeeLinkedList* _tmp0_ = NULL;
 	GalaModalProxy* _tmp1_ = NULL;
 	gboolean _tmp2_ = FALSE;
-#line 587 "/home/nick/work/gala/src/WindowManager.vala"
+#line 604 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 587 "/home/nick/work/gala/src/WindowManager.vala"
+#line 604 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_val_if_fail (proxy != NULL, FALSE);
-#line 589 "/home/nick/work/gala/src/WindowManager.vala"
+#line 606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->modal_stack;
-#line 589 "/home/nick/work/gala/src/WindowManager.vala"
+#line 606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = proxy;
-#line 589 "/home/nick/work/gala/src/WindowManager.vala"
+#line 606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gee_abstract_collection_contains ((GeeAbstractCollection*) _tmp0_, _tmp1_);
-#line 589 "/home/nick/work/gala/src/WindowManager.vala"
+#line 606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp2_;
-#line 589 "/home/nick/work/gala/src/WindowManager.vala"
+#line 606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 3978 "WindowManager.c"
+#line 3497 "WindowManager.c"
 }
 
 
@@ -3987,54 +3506,47 @@ void gala_window_manager_gala_get_current_cursor_position (GalaWindowManagerGala
 	GdkDevice* _tmp2_ = NULL;
 	gint _tmp3_ = 0;
 	gint _tmp4_ = 0;
-#line 592 "/home/nick/work/gala/src/WindowManager.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 611 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = gdk_display_get_default ();
-#line 594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 611 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = gdk_display_get_device_manager (_tmp0_);
-#line 594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 611 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gdk_device_manager_get_client_pointer (_tmp1_);
-#line 594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 611 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gdk_device_get_position (_tmp2_, NULL, &_tmp3_, &_tmp4_);
-#line 594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 611 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_vala_x = _tmp3_;
-#line 594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 611 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_vala_y = _tmp4_;
-#line 592 "/home/nick/work/gala/src/WindowManager.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (x) {
-#line 592 "/home/nick/work/gala/src/WindowManager.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		*x = _vala_x;
-#line 4008 "WindowManager.c"
+#line 3527 "WindowManager.c"
 	}
-#line 592 "/home/nick/work/gala/src/WindowManager.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (y) {
-#line 592 "/home/nick/work/gala/src/WindowManager.vala"
+#line 609 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		*y = _vala_y;
-#line 4014 "WindowManager.c"
+#line 3533 "WindowManager.c"
 	}
 }
 
 
 void gala_window_manager_gala_dim_window (GalaWindowManagerGala* self, MetaWindow* window, gboolean dim) {
-#line 598 "/home/nick/work/gala/src/WindowManager.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 598 "/home/nick/work/gala/src/WindowManager.vala"
+#line 615 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (window != NULL);
-#line 4024 "WindowManager.c"
+#line 3543 "WindowManager.c"
 }
 
 
 /**
  * {@inheritDoc}
  */
-static GVariant* _variant_new2 (gboolean value) {
-#line 694 "/home/nick/work/gala/src/WindowManager.vala"
-	return g_variant_ref_sink (g_variant_new_boolean (value));
-#line 4034 "WindowManager.c"
-}
-
-
 static void gala_window_manager_gala_real_perform_action (GalaWindowManager* base, GalaActionType type) {
 	GalaWindowManagerGala * self;
 	MetaScreen* screen = NULL;
@@ -4044,201 +3556,522 @@ static void gala_window_manager_gala_real_perform_action (GalaWindowManager* bas
 	MetaScreen* _tmp2_ = NULL;
 	MetaDisplay* _tmp3_ = NULL;
 	MetaDisplay* _tmp4_ = NULL;
+	MetaWorkspace* workspace = NULL;
+	MetaScreen* _tmp5_ = NULL;
+	MetaWorkspace* _tmp6_ = NULL;
+	MetaWorkspace* _tmp7_ = NULL;
 	MetaWindow* current = NULL;
-	MetaDisplay* _tmp5_ = NULL;
-	MetaWindow* _tmp6_ = NULL;
-	MetaWindow* _tmp7_ = NULL;
-	GalaActionType _tmp8_ = 0;
+	MetaDisplay* _tmp8_ = NULL;
+	MetaWindow* _tmp9_ = NULL;
+	MetaWindow* _tmp10_ = NULL;
+	GalaActionType _tmp11_ = 0;
 	GError * _inner_error_ = NULL;
-#line 613 "/home/nick/work/gala/src/WindowManager.vala"
+#line 630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 632 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp1_;
-#line 616 "/home/nick/work/gala/src/WindowManager.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = screen;
-#line 616 "/home/nick/work/gala/src/WindowManager.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = meta_screen_get_display (_tmp2_);
-#line 616 "/home/nick/work/gala/src/WindowManager.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 616 "/home/nick/work/gala/src/WindowManager.vala"
+#line 633 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	display = _tmp4_;
-#line 617 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp5_ = display;
-#line 617 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp6_ = meta_display_get_focus_window (_tmp5_);
-#line 617 "/home/nick/work/gala/src/WindowManager.vala"
+#line 634 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp5_ = screen;
+#line 634 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp6_ = meta_screen_get_active_workspace (_tmp5_);
+#line 634 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = _g_object_ref0 (_tmp6_);
-#line 617 "/home/nick/work/gala/src/WindowManager.vala"
-	current = _tmp7_;
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
-	_tmp8_ = type;
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
-	switch (_tmp8_) {
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
+#line 634 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	workspace = _tmp7_;
+#line 635 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp8_ = display;
+#line 635 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp9_ = meta_display_get_focus_window (_tmp8_);
+#line 635 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp10_ = _g_object_ref0 (_tmp9_);
+#line 635 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	current = _tmp10_;
+#line 637 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_tmp11_ = type;
+#line 637 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	switch (_tmp11_) {
+#line 637 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_ACTION_TYPE_SHOW_WORKSPACE_VIEW:
-#line 4083 "WindowManager.c"
+#line 3607 "WindowManager.c"
 		{
-			GalaActivatableComponent* _tmp9_ = NULL;
-			GalaActivatableComponent* _tmp10_ = NULL;
-			gboolean _tmp11_ = FALSE;
-#line 621 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp9_ = self->priv->workspace_view;
-#line 621 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp9_ == NULL) {
-#line 622 "/home/nick/work/gala/src/WindowManager.vala"
-				break;
-#line 4094 "WindowManager.c"
-			}
-#line 624 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp10_ = self->priv->workspace_view;
-#line 624 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp11_ = gala_activatable_component_is_opened (_tmp10_);
-#line 624 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp11_) {
-#line 4102 "WindowManager.c"
-				GalaActivatableComponent* _tmp12_ = NULL;
-#line 625 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp12_ = self->priv->workspace_view;
-#line 625 "/home/nick/work/gala/src/WindowManager.vala"
-				gala_activatable_component_close (_tmp12_);
-#line 4108 "WindowManager.c"
-			} else {
-				GalaActivatableComponent* _tmp13_ = NULL;
-#line 627 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp13_ = self->priv->workspace_view;
-#line 627 "/home/nick/work/gala/src/WindowManager.vala"
-				gala_activatable_component_open (_tmp13_, NULL);
-#line 4115 "WindowManager.c"
-			}
-#line 628 "/home/nick/work/gala/src/WindowManager.vala"
-			break;
-#line 4119 "WindowManager.c"
-		}
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
-		case GALA_ACTION_TYPE_MAXIMIZE_CURRENT:
-#line 4123 "WindowManager.c"
-		{
+			GalaActivatableComponent* _tmp12_ = NULL;
+			GalaActivatableComponent* _tmp13_ = NULL;
 			gboolean _tmp14_ = FALSE;
-			MetaWindow* _tmp15_ = NULL;
-			MetaWindow* _tmp19_ = NULL;
-			MetaMaximizeFlags _tmp20_ = 0;
-#line 630 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp15_ = current;
-#line 630 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp15_ == NULL) {
-#line 630 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp14_ = TRUE;
-#line 4135 "WindowManager.c"
-			} else {
-				MetaWindow* _tmp16_ = NULL;
-				MetaWindowType _tmp17_ = 0;
-				MetaWindowType _tmp18_ = 0;
-#line 630 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp16_ = current;
-#line 630 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp17_ = meta_window_get_window_type (_tmp16_);
-#line 630 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp18_ = _tmp17_;
-#line 630 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp14_ = _tmp18_ != META_WINDOW_NORMAL;
-#line 4148 "WindowManager.c"
-			}
-#line 630 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp14_) {
-#line 631 "/home/nick/work/gala/src/WindowManager.vala"
+#line 639 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp12_ = self->priv->workspace_view;
+#line 639 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (_tmp12_ == NULL) {
+#line 640 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				break;
-#line 4154 "WindowManager.c"
+#line 3618 "WindowManager.c"
 			}
-#line 633 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp19_ = current;
-#line 633 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp20_ = meta_window_get_maximized (_tmp19_);
-#line 633 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp20_ == (META_MAXIMIZE_HORIZONTAL | META_MAXIMIZE_VERTICAL)) {
-#line 4162 "WindowManager.c"
-				MetaWindow* _tmp21_ = NULL;
-#line 634 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp21_ = current;
-#line 634 "/home/nick/work/gala/src/WindowManager.vala"
-				meta_window_unmaximize (_tmp21_, META_MAXIMIZE_HORIZONTAL | META_MAXIMIZE_VERTICAL);
-#line 4168 "WindowManager.c"
+#line 642 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp13_ = self->priv->workspace_view;
+#line 642 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp14_ = gala_activatable_component_is_opened (_tmp13_);
+#line 642 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (_tmp14_) {
+#line 3626 "WindowManager.c"
+				GalaActivatableComponent* _tmp15_ = NULL;
+#line 643 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp15_ = self->priv->workspace_view;
+#line 643 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				gala_activatable_component_close (_tmp15_);
+#line 3632 "WindowManager.c"
 			} else {
-				MetaWindow* _tmp22_ = NULL;
-#line 636 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp22_ = current;
-#line 636 "/home/nick/work/gala/src/WindowManager.vala"
-				meta_window_maximize (_tmp22_, META_MAXIMIZE_HORIZONTAL | META_MAXIMIZE_VERTICAL);
-#line 4175 "WindowManager.c"
+				GalaActivatableComponent* _tmp16_ = NULL;
+#line 645 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp16_ = self->priv->workspace_view;
+#line 645 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				gala_activatable_component_open (_tmp16_, NULL);
+#line 3639 "WindowManager.c"
 			}
-#line 637 "/home/nick/work/gala/src/WindowManager.vala"
+#line 646 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 4179 "WindowManager.c"
+#line 3643 "WindowManager.c"
 		}
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
-		case GALA_ACTION_TYPE_MINIMIZE_CURRENT:
-#line 4183 "WindowManager.c"
+#line 637 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		case GALA_ACTION_TYPE_MAXIMIZE_CURRENT:
+#line 3647 "WindowManager.c"
 		{
-			gboolean _tmp23_ = FALSE;
-			MetaWindow* _tmp24_ = NULL;
-#line 639 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp24_ = current;
-#line 639 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp24_ != NULL) {
-#line 4191 "WindowManager.c"
-				MetaWindow* _tmp25_ = NULL;
-				MetaWindowType _tmp26_ = 0;
-				MetaWindowType _tmp27_ = 0;
-#line 639 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp25_ = current;
-#line 639 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp26_ = meta_window_get_window_type (_tmp25_);
-#line 639 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp27_ = _tmp26_;
-#line 639 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp23_ = _tmp27_ == META_WINDOW_NORMAL;
-#line 4203 "WindowManager.c"
+			gboolean _tmp17_ = FALSE;
+			MetaWindow* _tmp18_ = NULL;
+			MetaWindow* _tmp22_ = NULL;
+			MetaMaximizeFlags _tmp23_ = 0;
+#line 648 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp18_ = current;
+#line 648 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (_tmp18_ == NULL) {
+#line 648 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp17_ = TRUE;
+#line 3659 "WindowManager.c"
 			} else {
-#line 639 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp23_ = FALSE;
-#line 4207 "WindowManager.c"
+				MetaWindow* _tmp19_ = NULL;
+				MetaWindowType _tmp20_ = 0;
+				MetaWindowType _tmp21_ = 0;
+#line 648 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp19_ = current;
+#line 648 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp20_ = meta_window_get_window_type (_tmp19_);
+#line 648 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp21_ = _tmp20_;
+#line 648 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp17_ = _tmp21_ != META_WINDOW_NORMAL;
+#line 3672 "WindowManager.c"
 			}
-#line 639 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp23_) {
-#line 4211 "WindowManager.c"
-				MetaWindow* _tmp28_ = NULL;
-#line 640 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp28_ = current;
-#line 640 "/home/nick/work/gala/src/WindowManager.vala"
-				meta_window_minimize (_tmp28_);
-#line 4217 "WindowManager.c"
+#line 648 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (_tmp17_) {
+#line 649 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				break;
+#line 3678 "WindowManager.c"
 			}
-#line 641 "/home/nick/work/gala/src/WindowManager.vala"
+#line 651 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp22_ = current;
+#line 651 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp23_ = meta_window_get_maximized (_tmp22_);
+#line 651 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (_tmp23_ == (META_MAXIMIZE_HORIZONTAL | META_MAXIMIZE_VERTICAL)) {
+#line 3686 "WindowManager.c"
+				MetaWindow* _tmp24_ = NULL;
+#line 652 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp24_ = current;
+#line 652 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				meta_window_unmaximize (_tmp24_, META_MAXIMIZE_HORIZONTAL | META_MAXIMIZE_VERTICAL);
+#line 3692 "WindowManager.c"
+			} else {
+				MetaWindow* _tmp25_ = NULL;
+#line 654 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp25_ = current;
+#line 654 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				meta_window_maximize (_tmp25_, META_MAXIMIZE_HORIZONTAL | META_MAXIMIZE_VERTICAL);
+#line 3699 "WindowManager.c"
+			}
+#line 655 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 4221 "WindowManager.c"
+#line 3703 "WindowManager.c"
 		}
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
+#line 637 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		case GALA_ACTION_TYPE_MINIMIZE_CURRENT:
+#line 3707 "WindowManager.c"
+		{
+			gboolean _tmp26_ = FALSE;
+			MetaWindow* _tmp27_ = NULL;
+#line 657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp27_ = current;
+#line 657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (_tmp27_ != NULL) {
+#line 3715 "WindowManager.c"
+				MetaWindow* _tmp28_ = NULL;
+				MetaWindowType _tmp29_ = 0;
+				MetaWindowType _tmp30_ = 0;
+#line 657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp28_ = current;
+#line 657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp29_ = meta_window_get_window_type (_tmp28_);
+#line 657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp30_ = _tmp29_;
+#line 657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp26_ = _tmp30_ == META_WINDOW_NORMAL;
+#line 3727 "WindowManager.c"
+			} else {
+#line 657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp26_ = FALSE;
+#line 3731 "WindowManager.c"
+			}
+#line 657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (_tmp26_) {
+#line 3735 "WindowManager.c"
+				MetaWindow* _tmp31_ = NULL;
+#line 658 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp31_ = current;
+#line 658 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				meta_window_minimize (_tmp31_);
+#line 3741 "WindowManager.c"
+			}
+#line 659 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			break;
+#line 3745 "WindowManager.c"
+		}
+#line 637 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		case GALA_ACTION_TYPE_MINIMIZE_ALL:
+#line 3749 "WindowManager.c"
+		{
+			MetaWorkspace* _tmp32_ = NULL;
+			GList* _tmp33_ = NULL;
+#line 661 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp32_ = workspace;
+#line 661 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp33_ = meta_workspace_list_windows (_tmp32_);
+#line 3757 "WindowManager.c"
+			{
+				GList* window_collection = NULL;
+				GList* window_it = NULL;
+#line 661 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				window_collection = _tmp33_;
+#line 661 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
+#line 3765 "WindowManager.c"
+					MetaWindow* window = NULL;
+#line 661 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+					window = (MetaWindow*) window_it->data;
+#line 3769 "WindowManager.c"
+					{
+						gboolean _tmp34_ = FALSE;
+						MetaWindow* _tmp35_ = NULL;
+#line 662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+						_tmp35_ = window;
+#line 662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+						if (_tmp35_ != NULL) {
+#line 3777 "WindowManager.c"
+							MetaWindow* _tmp36_ = NULL;
+							MetaWindowType _tmp37_ = 0;
+							MetaWindowType _tmp38_ = 0;
+#line 662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp36_ = window;
+#line 662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp37_ = meta_window_get_window_type (_tmp36_);
+#line 662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp38_ = _tmp37_;
+#line 662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp34_ = _tmp38_ == META_WINDOW_NORMAL;
+#line 3789 "WindowManager.c"
+						} else {
+#line 662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp34_ = FALSE;
+#line 3793 "WindowManager.c"
+						}
+#line 662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+						if (_tmp34_) {
+#line 3797 "WindowManager.c"
+							MetaWindow* _tmp39_ = NULL;
+#line 663 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp39_ = window;
+#line 663 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							meta_window_minimize (_tmp39_);
+#line 3803 "WindowManager.c"
+						}
+					}
+				}
+#line 661 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_list_free0 (window_collection);
+#line 3809 "WindowManager.c"
+			}
+#line 665 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			break;
+#line 3813 "WindowManager.c"
+		}
+#line 637 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_ACTION_TYPE_OPEN_LAUNCHER:
-#line 4225 "WindowManager.c"
+#line 3817 "WindowManager.c"
 		{
 			{
-				GalaBehaviorSettings* _tmp29_ = NULL;
-				const gchar* _tmp30_ = NULL;
-				const gchar* _tmp31_ = NULL;
-#line 644 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp29_ = gala_behavior_settings_get_default ();
-#line 644 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp30_ = gala_behavior_settings_get_panel_main_menu_action (_tmp29_);
-#line 644 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp31_ = _tmp30_;
-#line 644 "/home/nick/work/gala/src/WindowManager.vala"
-				g_spawn_command_line_async (_tmp31_, &_inner_error_);
-#line 644 "/home/nick/work/gala/src/WindowManager.vala"
+				GalaBehaviorSettings* _tmp40_ = NULL;
+				const gchar* _tmp41_ = NULL;
+				const gchar* _tmp42_ = NULL;
+#line 668 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp40_ = gala_behavior_settings_get_default ();
+#line 668 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp41_ = gala_behavior_settings_get_panel_main_menu_action (_tmp40_);
+#line 668 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp42_ = _tmp41_;
+#line 668 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				g_spawn_command_line_async (_tmp42_, &_inner_error_);
+#line 668 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4241 "WindowManager.c"
+#line 3833 "WindowManager.c"
+					goto __catch19_g_error;
+				}
+			}
+			goto __finally19;
+			__catch19_g_error:
+			{
+				GError* e = NULL;
+				GError* _tmp43_ = NULL;
+				const gchar* _tmp44_ = NULL;
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				e = _inner_error_;
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_inner_error_ = NULL;
+#line 670 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp43_ = e;
+#line 670 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp44_ = _tmp43_->message;
+#line 670 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				g_warning ("WindowManager.vala:670: %s", _tmp44_);
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_error_free0 (e);
+#line 3855 "WindowManager.c"
+			}
+			__finally19:
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (current);
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (workspace);
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (display);
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (screen);
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				g_clear_error (&_inner_error_);
+#line 667 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				return;
+#line 3874 "WindowManager.c"
+			}
+#line 672 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			break;
+#line 3878 "WindowManager.c"
+		}
+#line 637 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		case GALA_ACTION_TYPE_CUSTOM_COMMAND:
+#line 3882 "WindowManager.c"
+		{
+			gchar* command = NULL;
+			gchar* _tmp45_ = NULL;
+			gchar* line = NULL;
+			GalaBehaviorSettings* _tmp46_ = NULL;
+			const gchar* _tmp47_ = NULL;
+			const gchar* _tmp48_ = NULL;
+			gchar* _tmp49_ = NULL;
+			const gchar* _tmp50_ = NULL;
+			gchar** parts = NULL;
+			const gchar* _tmp51_ = NULL;
+			gchar** _tmp52_ = NULL;
+			gchar** _tmp53_ = NULL;
+			gint parts_length1 = 0;
+			gint _parts_size_ = 0;
+			gchar** _tmp54_ = NULL;
+			gint _tmp54__length1 = 0;
+#line 674 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp45_ = g_strdup ("");
+#line 674 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			command = _tmp45_;
+#line 675 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp46_ = gala_behavior_settings_get_default ();
+#line 675 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp47_ = gala_behavior_settings_get_hotcorner_custom_command (_tmp46_);
+#line 675 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp48_ = _tmp47_;
+#line 675 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp49_ = g_strdup (_tmp48_);
+#line 675 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			line = _tmp49_;
+#line 676 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp50_ = line;
+#line 676 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (g_strcmp0 (_tmp50_, "") == 0) {
+#line 677 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_free0 (line);
+#line 677 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_free0 (command);
+#line 677 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (current);
+#line 677 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (workspace);
+#line 677 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (display);
+#line 677 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (screen);
+#line 677 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				return;
+#line 3932 "WindowManager.c"
+			}
+#line 679 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp51_ = line;
+#line 679 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp53_ = _tmp52_ = g_strsplit (_tmp51_, ";;", 0);
+#line 679 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			parts = _tmp53_;
+#line 679 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			parts_length1 = _vala_array_length (_tmp52_);
+#line 679 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_parts_size_ = parts_length1;
+#line 681 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp54_ = parts;
+#line 681 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp54__length1 = parts_length1;
+#line 681 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			if (_tmp54__length1 == 1) {
+#line 3950 "WindowManager.c"
+				const gchar* _tmp55_ = NULL;
+				gchar* _tmp56_ = NULL;
+#line 682 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp55_ = line;
+#line 682 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp56_ = g_strdup (_tmp55_);
+#line 682 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_free0 (command);
+#line 682 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				command = _tmp56_;
+#line 3961 "WindowManager.c"
+			} else {
+				gchar* search = NULL;
+				ClutterActor* _tmp57_ = NULL;
+				const gchar* _tmp58_ = NULL;
+				const gchar* _tmp59_ = NULL;
+				gchar* _tmp60_ = NULL;
+				gchar** _tmp61_ = NULL;
+				gint _tmp61__length1 = 0;
+#line 685 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp57_ = self->priv->last_hotcorner;
+#line 685 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp58_ = clutter_actor_get_name (_tmp57_);
+#line 685 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp59_ = _tmp58_;
+#line 685 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp60_ = g_strdup (_tmp59_);
+#line 685 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				search = _tmp60_;
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp61_ = parts;
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp61__length1 = parts_length1;
+#line 3984 "WindowManager.c"
+				{
+					gchar** part_collection = NULL;
+					gint part_collection_length1 = 0;
+					gint _part_collection_size_ = 0;
+					gint part_it = 0;
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+					part_collection = _tmp61_;
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+					part_collection_length1 = _tmp61__length1;
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+					for (part_it = 0; part_it < _tmp61__length1; part_it = part_it + 1) {
+#line 3996 "WindowManager.c"
+						gchar* _tmp62_ = NULL;
+						gchar* part = NULL;
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+						_tmp62_ = g_strdup (part_collection[part_it]);
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+						part = _tmp62_;
+#line 4003 "WindowManager.c"
+						{
+							gchar** details = NULL;
+							const gchar* _tmp63_ = NULL;
+							gchar** _tmp64_ = NULL;
+							gchar** _tmp65_ = NULL;
+							gint details_length1 = 0;
+							gint _details_size_ = 0;
+							gchar** _tmp66_ = NULL;
+							gint _tmp66__length1 = 0;
+							const gchar* _tmp67_ = NULL;
+							const gchar* _tmp68_ = NULL;
+#line 688 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp63_ = part;
+#line 688 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp65_ = _tmp64_ = g_strsplit (_tmp63_, ":", 0);
+#line 688 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							details = _tmp65_;
+#line 688 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							details_length1 = _vala_array_length (_tmp64_);
+#line 688 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_details_size_ = details_length1;
+#line 689 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp66_ = details;
+#line 689 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp66__length1 = details_length1;
+#line 689 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp67_ = _tmp66_[0];
+#line 689 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_tmp68_ = search;
+#line 689 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							if (g_strcmp0 (_tmp67_, _tmp68_) == 0) {
+#line 4035 "WindowManager.c"
+								gchar** _tmp69_ = NULL;
+								gint _tmp69__length1 = 0;
+								const gchar* _tmp70_ = NULL;
+								gchar* _tmp71_ = NULL;
+#line 690 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+								_tmp69_ = details;
+#line 690 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+								_tmp69__length1 = details_length1;
+#line 690 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+								_tmp70_ = _tmp69_[1];
+#line 690 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+								_tmp71_ = g_strdup (_tmp70_);
+#line 690 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+								_g_free0 (command);
+#line 690 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+								command = _tmp71_;
+#line 4052 "WindowManager.c"
+							}
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							details = (_vala_array_free (details, details_length1, (GDestroyNotify) g_free), NULL);
+#line 687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+							_g_free0 (part);
+#line 4058 "WindowManager.c"
+						}
+					}
+				}
+#line 681 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_free0 (search);
+#line 4064 "WindowManager.c"
+			}
+			{
+				const gchar* _tmp72_ = NULL;
+#line 696 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp72_ = command;
+#line 696 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				g_spawn_command_line_async (_tmp72_, &_inner_error_);
+#line 696 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				if (G_UNLIKELY (_inner_error_ != NULL)) {
+#line 4074 "WindowManager.c"
 					goto __catch20_g_error;
 				}
 			}
@@ -4246,478 +4079,137 @@ static void gala_window_manager_gala_real_perform_action (GalaWindowManager* bas
 			__catch20_g_error:
 			{
 				GError* e = NULL;
-				GError* _tmp32_ = NULL;
-				const gchar* _tmp33_ = NULL;
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
+				GError* _tmp73_ = NULL;
+				const gchar* _tmp74_ = NULL;
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				e = _inner_error_;
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_inner_error_ = NULL;
-#line 646 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp32_ = e;
-#line 646 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp33_ = _tmp32_->message;
-#line 646 "/home/nick/work/gala/src/WindowManager.vala"
-				g_warning ("WindowManager.vala:646: %s", _tmp33_);
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
+#line 698 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp73_ = e;
+#line 698 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_tmp74_ = _tmp73_->message;
+#line 698 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				g_warning ("WindowManager.vala:698: %s", _tmp74_);
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_error_free0 (e);
-#line 4263 "WindowManager.c"
+#line 4096 "WindowManager.c"
 			}
 			__finally20:
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_object_unref0 (current);
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_object_unref0 (display);
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_object_unref0 (screen);
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
-				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
-				g_clear_error (&_inner_error_);
-#line 643 "/home/nick/work/gala/src/WindowManager.vala"
-				return;
-#line 4280 "WindowManager.c"
-			}
-#line 648 "/home/nick/work/gala/src/WindowManager.vala"
-			break;
-#line 4284 "WindowManager.c"
-		}
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
-		case GALA_ACTION_TYPE_CUSTOM_COMMAND:
-#line 4288 "WindowManager.c"
-		{
-			gchar* command = NULL;
-			gchar* _tmp34_ = NULL;
-			gchar* line = NULL;
-			GalaBehaviorSettings* _tmp35_ = NULL;
-			const gchar* _tmp36_ = NULL;
-			const gchar* _tmp37_ = NULL;
-			gchar* _tmp38_ = NULL;
-			const gchar* _tmp39_ = NULL;
-			gchar** parts = NULL;
-			const gchar* _tmp40_ = NULL;
-			gchar** _tmp41_ = NULL;
-			gchar** _tmp42_ = NULL;
-			gint parts_length1 = 0;
-			gint _parts_size_ = 0;
-			gchar** _tmp43_ = NULL;
-			gint _tmp43__length1 = 0;
-#line 650 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp34_ = g_strdup ("");
-#line 650 "/home/nick/work/gala/src/WindowManager.vala"
-			command = _tmp34_;
-#line 651 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp35_ = gala_behavior_settings_get_default ();
-#line 651 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp36_ = gala_behavior_settings_get_hotcorner_custom_command (_tmp35_);
-#line 651 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp37_ = _tmp36_;
-#line 651 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp38_ = g_strdup (_tmp37_);
-#line 651 "/home/nick/work/gala/src/WindowManager.vala"
-			line = _tmp38_;
-#line 652 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp39_ = line;
-#line 652 "/home/nick/work/gala/src/WindowManager.vala"
-			if (g_strcmp0 (_tmp39_, "") == 0) {
-#line 653 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_free0 (line);
-#line 653 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_free0 (command);
-#line 653 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_object_unref0 (current);
-#line 653 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_object_unref0 (display);
-#line 653 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_object_unref0 (screen);
-#line 653 "/home/nick/work/gala/src/WindowManager.vala"
-				return;
-#line 4336 "WindowManager.c"
-			}
-#line 655 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp40_ = line;
-#line 655 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp42_ = _tmp41_ = g_strsplit (_tmp40_, ";;", 0);
-#line 655 "/home/nick/work/gala/src/WindowManager.vala"
-			parts = _tmp42_;
-#line 655 "/home/nick/work/gala/src/WindowManager.vala"
-			parts_length1 = _vala_array_length (_tmp41_);
-#line 655 "/home/nick/work/gala/src/WindowManager.vala"
-			_parts_size_ = parts_length1;
-#line 657 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp43_ = parts;
-#line 657 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp43__length1 = parts_length1;
-#line 657 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp43__length1 == 1) {
-#line 4354 "WindowManager.c"
-				const gchar* _tmp44_ = NULL;
-				gchar* _tmp45_ = NULL;
-#line 658 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp44_ = line;
-#line 658 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp45_ = g_strdup (_tmp44_);
-#line 658 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_free0 (command);
-#line 658 "/home/nick/work/gala/src/WindowManager.vala"
-				command = _tmp45_;
-#line 4365 "WindowManager.c"
-			} else {
-				gchar* search = NULL;
-				ClutterActor* _tmp46_ = NULL;
-				const gchar* _tmp47_ = NULL;
-				const gchar* _tmp48_ = NULL;
-				gchar* _tmp49_ = NULL;
-				gchar** _tmp50_ = NULL;
-				gint _tmp50__length1 = 0;
-#line 661 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp46_ = self->priv->last_hotcorner;
-#line 661 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp47_ = clutter_actor_get_name (_tmp46_);
-#line 661 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp48_ = _tmp47_;
-#line 661 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp49_ = g_strdup (_tmp48_);
-#line 661 "/home/nick/work/gala/src/WindowManager.vala"
-				search = _tmp49_;
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp50_ = parts;
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp50__length1 = parts_length1;
-#line 4388 "WindowManager.c"
-				{
-					gchar** part_collection = NULL;
-					gint part_collection_length1 = 0;
-					gint _part_collection_size_ = 0;
-					gint part_it = 0;
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-					part_collection = _tmp50_;
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-					part_collection_length1 = _tmp50__length1;
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-					for (part_it = 0; part_it < _tmp50__length1; part_it = part_it + 1) {
-#line 4400 "WindowManager.c"
-						gchar* _tmp51_ = NULL;
-						gchar* part = NULL;
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-						_tmp51_ = g_strdup (part_collection[part_it]);
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-						part = _tmp51_;
-#line 4407 "WindowManager.c"
-						{
-							gchar** details = NULL;
-							const gchar* _tmp52_ = NULL;
-							gchar** _tmp53_ = NULL;
-							gchar** _tmp54_ = NULL;
-							gint details_length1 = 0;
-							gint _details_size_ = 0;
-							gchar** _tmp55_ = NULL;
-							gint _tmp55__length1 = 0;
-							const gchar* _tmp56_ = NULL;
-							const gchar* _tmp57_ = NULL;
-#line 664 "/home/nick/work/gala/src/WindowManager.vala"
-							_tmp52_ = part;
-#line 664 "/home/nick/work/gala/src/WindowManager.vala"
-							_tmp54_ = _tmp53_ = g_strsplit (_tmp52_, ":", 0);
-#line 664 "/home/nick/work/gala/src/WindowManager.vala"
-							details = _tmp54_;
-#line 664 "/home/nick/work/gala/src/WindowManager.vala"
-							details_length1 = _vala_array_length (_tmp53_);
-#line 664 "/home/nick/work/gala/src/WindowManager.vala"
-							_details_size_ = details_length1;
-#line 665 "/home/nick/work/gala/src/WindowManager.vala"
-							_tmp55_ = details;
-#line 665 "/home/nick/work/gala/src/WindowManager.vala"
-							_tmp55__length1 = details_length1;
-#line 665 "/home/nick/work/gala/src/WindowManager.vala"
-							_tmp56_ = _tmp55_[0];
-#line 665 "/home/nick/work/gala/src/WindowManager.vala"
-							_tmp57_ = search;
-#line 665 "/home/nick/work/gala/src/WindowManager.vala"
-							if (g_strcmp0 (_tmp56_, _tmp57_) == 0) {
-#line 4439 "WindowManager.c"
-								gchar** _tmp58_ = NULL;
-								gint _tmp58__length1 = 0;
-								const gchar* _tmp59_ = NULL;
-								gchar* _tmp60_ = NULL;
-#line 666 "/home/nick/work/gala/src/WindowManager.vala"
-								_tmp58_ = details;
-#line 666 "/home/nick/work/gala/src/WindowManager.vala"
-								_tmp58__length1 = details_length1;
-#line 666 "/home/nick/work/gala/src/WindowManager.vala"
-								_tmp59_ = _tmp58_[1];
-#line 666 "/home/nick/work/gala/src/WindowManager.vala"
-								_tmp60_ = g_strdup (_tmp59_);
-#line 666 "/home/nick/work/gala/src/WindowManager.vala"
-								_g_free0 (command);
-#line 666 "/home/nick/work/gala/src/WindowManager.vala"
-								command = _tmp60_;
-#line 4456 "WindowManager.c"
-							}
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-							details = (_vala_array_free (details, details_length1, (GDestroyNotify) g_free), NULL);
-#line 663 "/home/nick/work/gala/src/WindowManager.vala"
-							_g_free0 (part);
-#line 4462 "WindowManager.c"
-						}
-					}
-				}
-#line 657 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_free0 (search);
-#line 4468 "WindowManager.c"
-			}
-			{
-				const gchar* _tmp61_ = NULL;
-#line 672 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp61_ = command;
-#line 672 "/home/nick/work/gala/src/WindowManager.vala"
-				g_spawn_command_line_async (_tmp61_, &_inner_error_);
-#line 672 "/home/nick/work/gala/src/WindowManager.vala"
-				if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 4478 "WindowManager.c"
-					goto __catch21_g_error;
-				}
-			}
-			goto __finally21;
-			__catch21_g_error:
-			{
-				GError* e = NULL;
-				GError* _tmp62_ = NULL;
-				const gchar* _tmp63_ = NULL;
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
-				e = _inner_error_;
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
-				_inner_error_ = NULL;
-#line 674 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp62_ = e;
-#line 674 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp63_ = _tmp62_->message;
-#line 674 "/home/nick/work/gala/src/WindowManager.vala"
-				g_warning ("WindowManager.vala:674: %s", _tmp63_);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_error_free0 (e);
-#line 4500 "WindowManager.c"
-			}
-			__finally21:
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
-			if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				parts = (_vala_array_free (parts, parts_length1, (GDestroyNotify) g_free), NULL);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_free0 (line);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_free0 (command);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (current);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+				_g_object_unref0 (workspace);
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (display);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (screen);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				g_clear_error (&_inner_error_);
-#line 671 "/home/nick/work/gala/src/WindowManager.vala"
+#line 695 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				return;
-#line 4523 "WindowManager.c"
+#line 4121 "WindowManager.c"
 			}
-#line 676 "/home/nick/work/gala/src/WindowManager.vala"
+#line 700 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			parts = (_vala_array_free (parts, parts_length1, (GDestroyNotify) g_free), NULL);
-#line 676 "/home/nick/work/gala/src/WindowManager.vala"
+#line 700 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_free0 (line);
-#line 676 "/home/nick/work/gala/src/WindowManager.vala"
+#line 700 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_free0 (command);
-#line 676 "/home/nick/work/gala/src/WindowManager.vala"
+#line 700 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 4533 "WindowManager.c"
-		}
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
-		case GALA_ACTION_TYPE_WINDOW_OVERVIEW:
-#line 4537 "WindowManager.c"
-		{
-			GalaActivatableComponent* _tmp64_ = NULL;
-			GalaActivatableComponent* _tmp65_ = NULL;
-			gboolean _tmp66_ = FALSE;
-#line 678 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp64_ = self->priv->window_overview;
-#line 678 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp64_ == NULL) {
-#line 679 "/home/nick/work/gala/src/WindowManager.vala"
-				break;
-#line 4548 "WindowManager.c"
-			}
-#line 681 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp65_ = self->priv->window_overview;
-#line 681 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp66_ = gala_activatable_component_is_opened (_tmp65_);
-#line 681 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp66_) {
-#line 4556 "WindowManager.c"
-				GalaActivatableComponent* _tmp67_ = NULL;
-#line 682 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp67_ = self->priv->window_overview;
-#line 682 "/home/nick/work/gala/src/WindowManager.vala"
-				gala_activatable_component_close (_tmp67_);
-#line 4562 "WindowManager.c"
-			} else {
-				GalaActivatableComponent* _tmp68_ = NULL;
-#line 684 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp68_ = self->priv->window_overview;
-#line 684 "/home/nick/work/gala/src/WindowManager.vala"
-				gala_activatable_component_open (_tmp68_, NULL);
-#line 4569 "WindowManager.c"
-			}
-#line 685 "/home/nick/work/gala/src/WindowManager.vala"
-			break;
-#line 4573 "WindowManager.c"
-		}
-#line 619 "/home/nick/work/gala/src/WindowManager.vala"
-		case GALA_ACTION_TYPE_WINDOW_OVERVIEW_ALL:
-#line 4577 "WindowManager.c"
-		{
-			GalaActivatableComponent* _tmp69_ = NULL;
-			GalaActivatableComponent* _tmp70_ = NULL;
-			gboolean _tmp71_ = FALSE;
-#line 687 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp69_ = self->priv->window_overview;
-#line 687 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp69_ == NULL) {
-#line 688 "/home/nick/work/gala/src/WindowManager.vala"
-				break;
-#line 4588 "WindowManager.c"
-			}
-#line 690 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp70_ = self->priv->window_overview;
-#line 690 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp71_ = gala_activatable_component_is_opened (_tmp70_);
-#line 690 "/home/nick/work/gala/src/WindowManager.vala"
-			if (_tmp71_) {
-#line 4596 "WindowManager.c"
-				GalaActivatableComponent* _tmp72_ = NULL;
-#line 691 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp72_ = self->priv->window_overview;
-#line 691 "/home/nick/work/gala/src/WindowManager.vala"
-				gala_activatable_component_close (_tmp72_);
-#line 4602 "WindowManager.c"
-			} else {
-				GHashTable* hints = NULL;
-				GHashFunc _tmp73_ = NULL;
-				GEqualFunc _tmp74_ = NULL;
-				GHashTable* _tmp75_ = NULL;
-				GHashTable* _tmp76_ = NULL;
-				gchar* _tmp77_ = NULL;
-				GVariant* _tmp78_ = NULL;
-				GalaActivatableComponent* _tmp79_ = NULL;
-				GHashTable* _tmp80_ = NULL;
-#line 693 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp73_ = g_str_hash;
-#line 693 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp74_ = g_str_equal;
-#line 693 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp75_ = g_hash_table_new_full (_tmp73_, _tmp74_, _g_free0_, _g_variant_unref0_);
-#line 693 "/home/nick/work/gala/src/WindowManager.vala"
-				hints = _tmp75_;
-#line 694 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp76_ = hints;
-#line 694 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp77_ = g_strdup ("all-windows");
-#line 694 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp78_ = _variant_new2 (TRUE);
-#line 694 "/home/nick/work/gala/src/WindowManager.vala"
-				g_hash_table_insert (_tmp76_, _tmp77_, _tmp78_);
-#line 695 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp79_ = self->priv->window_overview;
-#line 695 "/home/nick/work/gala/src/WindowManager.vala"
-				_tmp80_ = hints;
-#line 695 "/home/nick/work/gala/src/WindowManager.vala"
-				gala_activatable_component_open (_tmp79_, _tmp80_);
-#line 690 "/home/nick/work/gala/src/WindowManager.vala"
-				_g_hash_table_unref0 (hints);
-#line 4637 "WindowManager.c"
-			}
-#line 697 "/home/nick/work/gala/src/WindowManager.vala"
-			break;
-#line 4641 "WindowManager.c"
+#line 4131 "WindowManager.c"
 		}
 		default:
 		{
-#line 699 "/home/nick/work/gala/src/WindowManager.vala"
-			g_warning ("WindowManager.vala:699: Trying to run unknown action");
-#line 700 "/home/nick/work/gala/src/WindowManager.vala"
+#line 723 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			g_warning ("WindowManager.vala:723: Trying to run unknown action");
+#line 724 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 4649 "WindowManager.c"
+#line 4139 "WindowManager.c"
 		}
 	}
-#line 613 "/home/nick/work/gala/src/WindowManager.vala"
+#line 630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (current);
-#line 613 "/home/nick/work/gala/src/WindowManager.vala"
+#line 630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_g_object_unref0 (workspace);
+#line 630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (display);
-#line 613 "/home/nick/work/gala/src/WindowManager.vala"
+#line 630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 4658 "WindowManager.c"
+#line 4150 "WindowManager.c"
 }
 
 
 static Block5Data* block5_data_ref (Block5Data* _data5_) {
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data5_->_ref_count_);
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data5_;
-#line 4667 "WindowManager.c"
+#line 4159 "WindowManager.c"
 }
 
 
 static void block5_data_unref (void * _userdata_) {
 	Block5Data* _data5_;
 	_data5_ = (Block5Data*) _userdata_;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data5_->_ref_count_)) {
-#line 4676 "WindowManager.c"
+#line 4168 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data5_->self;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self);
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block5Data, _data5_);
-#line 4684 "WindowManager.c"
+#line 4176 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda91_ (Block5Data* _data5_, GtkMenu* menu, gint* menu_x, gint* menu_y, gboolean* push_in) {
+static void ___lambda90_ (Block5Data* _data5_, GtkMenu* menu, gint* menu_x, gint* menu_y, gboolean* push_in) {
 	GalaWindowManagerGala* self;
 	gboolean _vala_push_in = FALSE;
 	gint _tmp0_ = 0;
 	gint _tmp1_ = 0;
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data5_->self;
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (menu != NULL);
-#line 718 "/home/nick/work/gala/src/WindowManager.vala"
+#line 742 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data5_->x;
-#line 718 "/home/nick/work/gala/src/WindowManager.vala"
+#line 742 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	*menu_x = _tmp0_;
-#line 719 "/home/nick/work/gala/src/WindowManager.vala"
+#line 743 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data5_->y;
-#line 719 "/home/nick/work/gala/src/WindowManager.vala"
+#line 743 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	*menu_y = _tmp1_;
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (push_in) {
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		*push_in = _vala_push_in;
-#line 4710 "WindowManager.c"
+#line 4202 "WindowManager.c"
 	}
 }
 
 
-static void ____lambda91__gtk_menu_position_func (GtkMenu* menu, gint* x, gint* y, gboolean* push_in, gpointer self) {
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda91_ (self, menu, x, y, push_in);
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
+static void ____lambda90__gtk_menu_position_func (GtkMenu* menu, gint* x, gint* y, gboolean* push_in, gpointer self) {
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda90_ (self, menu, x, y, push_in);
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	block5_data_unref (self);
-#line 4720 "WindowManager.c"
+#line 4212 "WindowManager.c"
 }
 
 
@@ -4731,39 +4223,39 @@ static void gala_window_manager_gala_real_show_window_menu (MetaPlugin* base, Me
 	MetaDisplay* _tmp3_ = NULL;
 	guint32 _tmp4_ = 0U;
 	MetaWindowMenuType _tmp5_ = 0;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (window != NULL);
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data5_ = g_slice_new0 (Block5Data);
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data5_->_ref_count_ = 1;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data5_->self = g_object_ref (self);
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = x;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data5_->x = _tmp0_;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = y;
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data5_->y = _tmp1_;
-#line 708 "/home/nick/work/gala/src/WindowManager.vala"
+#line 732 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 708 "/home/nick/work/gala/src/WindowManager.vala"
+#line 732 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = meta_screen_get_display (_tmp2_);
-#line 708 "/home/nick/work/gala/src/WindowManager.vala"
+#line 732 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = meta_display_get_current_time_roundtrip (_tmp3_);
-#line 708 "/home/nick/work/gala/src/WindowManager.vala"
+#line 732 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	time = _tmp4_;
-#line 710 "/home/nick/work/gala/src/WindowManager.vala"
+#line 734 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = menu;
-#line 710 "/home/nick/work/gala/src/WindowManager.vala"
+#line 734 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	switch (_tmp5_) {
-#line 710 "/home/nick/work/gala/src/WindowManager.vala"
+#line 734 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_MENU_WM:
-#line 4766 "WindowManager.c"
+#line 4258 "WindowManager.c"
 		{
 			GalaWindowMenu* _tmp6_ = NULL;
 			GalaWindowMenu* _tmp8_ = NULL;
@@ -4771,60 +4263,60 @@ static void gala_window_manager_gala_real_show_window_menu (MetaPlugin* base, Me
 			GalaWindowMenu* _tmp10_ = NULL;
 			GalaWindowMenu* _tmp11_ = NULL;
 			guint32 _tmp12_ = 0U;
-#line 712 "/home/nick/work/gala/src/WindowManager.vala"
+#line 736 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp6_ = self->priv->window_menu;
-#line 712 "/home/nick/work/gala/src/WindowManager.vala"
+#line 736 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp6_ == NULL) {
-#line 4778 "WindowManager.c"
+#line 4270 "WindowManager.c"
 				GalaWindowMenu* _tmp7_ = NULL;
-#line 713 "/home/nick/work/gala/src/WindowManager.vala"
+#line 737 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp7_ = gala_window_menu_new ();
-#line 713 "/home/nick/work/gala/src/WindowManager.vala"
+#line 737 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				g_object_ref_sink (_tmp7_);
-#line 713 "/home/nick/work/gala/src/WindowManager.vala"
+#line 737 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (self->priv->window_menu);
-#line 713 "/home/nick/work/gala/src/WindowManager.vala"
+#line 737 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				self->priv->window_menu = _tmp7_;
-#line 4788 "WindowManager.c"
+#line 4280 "WindowManager.c"
 			}
-#line 715 "/home/nick/work/gala/src/WindowManager.vala"
+#line 739 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp8_ = self->priv->window_menu;
-#line 715 "/home/nick/work/gala/src/WindowManager.vala"
+#line 739 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp9_ = window;
-#line 715 "/home/nick/work/gala/src/WindowManager.vala"
+#line 739 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gala_window_menu_set_current_window (_tmp8_, _tmp9_);
-#line 716 "/home/nick/work/gala/src/WindowManager.vala"
+#line 740 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp10_ = self->priv->window_menu;
-#line 716 "/home/nick/work/gala/src/WindowManager.vala"
+#line 740 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gtk_widget_show_all ((GtkWidget*) _tmp10_);
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp11_ = self->priv->window_menu;
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp12_ = time;
-#line 717 "/home/nick/work/gala/src/WindowManager.vala"
-			gtk_menu_popup ((GtkMenu*) _tmp11_, NULL, NULL, ____lambda91__gtk_menu_position_func, block5_data_ref (_data5_), (guint) GDK_BUTTON_SECONDARY, _tmp12_);
-#line 721 "/home/nick/work/gala/src/WindowManager.vala"
+#line 741 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			gtk_menu_popup ((GtkMenu*) _tmp11_, NULL, NULL, ____lambda90__gtk_menu_position_func, block5_data_ref (_data5_), (guint) GDK_BUTTON_SECONDARY, _tmp12_);
+#line 745 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 4808 "WindowManager.c"
+#line 4300 "WindowManager.c"
 		}
-#line 710 "/home/nick/work/gala/src/WindowManager.vala"
+#line 734 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_MENU_APP:
-#line 4812 "WindowManager.c"
+#line 4304 "WindowManager.c"
 		{
-#line 724 "/home/nick/work/gala/src/WindowManager.vala"
+#line 748 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 4816 "WindowManager.c"
+#line 4308 "WindowManager.c"
 		}
 		default:
-#line 710 "/home/nick/work/gala/src/WindowManager.vala"
+#line 734 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 4821 "WindowManager.c"
+#line 4313 "WindowManager.c"
 	}
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	block5_data_unref (_data5_);
-#line 706 "/home/nick/work/gala/src/WindowManager.vala"
+#line 730 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data5_ = NULL;
-#line 4827 "WindowManager.c"
+#line 4319 "WindowManager.c"
 }
 
 
@@ -4836,27 +4328,27 @@ static void gala_window_manager_gala_real_show_window_menu_for_rect (MetaPlugin*
 	gint _tmp3_ = 0;
 	MetaRectangle _tmp4_ = {0};
 	gint _tmp5_ = 0;
-#line 728 "/home/nick/work/gala/src/WindowManager.vala"
+#line 752 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 728 "/home/nick/work/gala/src/WindowManager.vala"
+#line 752 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (window != NULL);
-#line 728 "/home/nick/work/gala/src/WindowManager.vala"
+#line 752 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (rect != NULL);
-#line 730 "/home/nick/work/gala/src/WindowManager.vala"
+#line 754 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = window;
-#line 730 "/home/nick/work/gala/src/WindowManager.vala"
+#line 754 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = menu;
-#line 730 "/home/nick/work/gala/src/WindowManager.vala"
+#line 754 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = *rect;
-#line 730 "/home/nick/work/gala/src/WindowManager.vala"
+#line 754 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _tmp2_.x;
-#line 730 "/home/nick/work/gala/src/WindowManager.vala"
+#line 754 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = *rect;
-#line 730 "/home/nick/work/gala/src/WindowManager.vala"
+#line 754 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _tmp4_.y;
-#line 730 "/home/nick/work/gala/src/WindowManager.vala"
+#line 754 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	META_PLUGIN_GET_CLASS ((MetaPlugin*) self)->show_window_menu ((MetaPlugin*) self, _tmp0_, _tmp1_, _tmp3_, _tmp5_);
-#line 4859 "WindowManager.c"
+#line 4351 "WindowManager.c"
 }
 
 
@@ -4874,51 +4366,51 @@ static void gala_window_manager_gala_handle_fullscreen_window (GalaWindowManager
 	MetaWindow* _tmp7_ = NULL;
 	MetaWorkspace* _tmp8_ = NULL;
 	MetaSizeChange _tmp9_ = 0;
-#line 738 "/home/nick/work/gala/src/WindowManager.vala"
+#line 762 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 738 "/home/nick/work/gala/src/WindowManager.vala"
+#line 762 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (window != NULL);
-#line 741 "/home/nick/work/gala/src/WindowManager.vala"
+#line 765 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = window;
-#line 741 "/home/nick/work/gala/src/WindowManager.vala"
+#line 765 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = meta_window_is_on_primary_monitor (_tmp0_);
-#line 741 "/home/nick/work/gala/src/WindowManager.vala"
+#line 765 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp1_) {
-#line 742 "/home/nick/work/gala/src/WindowManager.vala"
+#line 766 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 4889 "WindowManager.c"
+#line 4381 "WindowManager.c"
 	}
-#line 747 "/home/nick/work/gala/src/WindowManager.vala"
+#line 771 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = meta_prefs_get_dynamic_workspaces ();
-#line 747 "/home/nick/work/gala/src/WindowManager.vala"
+#line 771 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp2_) {
-#line 748 "/home/nick/work/gala/src/WindowManager.vala"
+#line 772 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 4897 "WindowManager.c"
+#line 4389 "WindowManager.c"
 	}
-#line 750 "/home/nick/work/gala/src/WindowManager.vala"
+#line 774 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 750 "/home/nick/work/gala/src/WindowManager.vala"
+#line 774 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp3_;
-#line 751 "/home/nick/work/gala/src/WindowManager.vala"
+#line 775 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = screen;
-#line 751 "/home/nick/work/gala/src/WindowManager.vala"
+#line 775 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = meta_screen_get_display (_tmp4_);
-#line 751 "/home/nick/work/gala/src/WindowManager.vala"
+#line 775 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = meta_display_get_current_time (_tmp5_);
-#line 751 "/home/nick/work/gala/src/WindowManager.vala"
+#line 775 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	time = _tmp6_;
-#line 752 "/home/nick/work/gala/src/WindowManager.vala"
+#line 776 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = window;
-#line 752 "/home/nick/work/gala/src/WindowManager.vala"
+#line 776 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = meta_window_get_workspace (_tmp7_);
-#line 752 "/home/nick/work/gala/src/WindowManager.vala"
+#line 776 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	win_ws = _tmp8_;
-#line 754 "/home/nick/work/gala/src/WindowManager.vala"
+#line 778 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = which_change;
-#line 754 "/home/nick/work/gala/src/WindowManager.vala"
+#line 778 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp9_ == META_SIZE_CHANGE_FULLSCREEN) {
-#line 4921 "WindowManager.c"
+#line 4413 "WindowManager.c"
 		MetaWorkspace* _tmp10_ = NULL;
 		guint _tmp11_ = 0U;
 		gint new_ws_index = 0;
@@ -4941,78 +4433,78 @@ static void gala_window_manager_gala_handle_fullscreen_window (GalaWindowManager
 		MetaWindow* _tmp26_ = NULL;
 		MetaWindow* _tmp27_ = NULL;
 		gint _tmp28_ = 0;
-#line 756 "/home/nick/work/gala/src/WindowManager.vala"
+#line 780 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp10_ = win_ws;
-#line 756 "/home/nick/work/gala/src/WindowManager.vala"
+#line 780 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11_ = gala_utils_get_n_windows (_tmp10_);
-#line 756 "/home/nick/work/gala/src/WindowManager.vala"
+#line 780 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp11_ <= ((guint) 1)) {
-#line 757 "/home/nick/work/gala/src/WindowManager.vala"
+#line 781 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			return;
-#line 4952 "WindowManager.c"
+#line 4444 "WindowManager.c"
 		}
-#line 759 "/home/nick/work/gala/src/WindowManager.vala"
+#line 783 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp12_ = screen;
-#line 759 "/home/nick/work/gala/src/WindowManager.vala"
+#line 783 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp13_ = meta_screen_get_n_workspaces (_tmp12_);
-#line 759 "/home/nick/work/gala/src/WindowManager.vala"
+#line 783 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		new_ws_index = _tmp13_ - 1;
-#line 760 "/home/nick/work/gala/src/WindowManager.vala"
+#line 784 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp14_ = win_ws;
-#line 760 "/home/nick/work/gala/src/WindowManager.vala"
+#line 784 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp15_ = meta_workspace_index (_tmp14_);
-#line 760 "/home/nick/work/gala/src/WindowManager.vala"
+#line 784 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		old_ws_index = _tmp15_;
-#line 761 "/home/nick/work/gala/src/WindowManager.vala"
+#line 785 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp16_ = screen;
-#line 761 "/home/nick/work/gala/src/WindowManager.vala"
+#line 785 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp17_ = new_ws_index;
-#line 761 "/home/nick/work/gala/src/WindowManager.vala"
+#line 785 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp18_ = meta_screen_get_workspace_by_index (_tmp16_, _tmp17_);
-#line 761 "/home/nick/work/gala/src/WindowManager.vala"
+#line 785 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp19_ = _g_object_ref0 (_tmp18_);
-#line 761 "/home/nick/work/gala/src/WindowManager.vala"
+#line 785 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		new_ws_obj = _tmp19_;
-#line 762 "/home/nick/work/gala/src/WindowManager.vala"
+#line 786 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp20_ = window;
-#line 762 "/home/nick/work/gala/src/WindowManager.vala"
+#line 786 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp21_ = new_ws_obj;
-#line 762 "/home/nick/work/gala/src/WindowManager.vala"
+#line 786 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_window_change_workspace (_tmp20_, _tmp21_);
-#line 763 "/home/nick/work/gala/src/WindowManager.vala"
+#line 787 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp22_ = new_ws_obj;
-#line 763 "/home/nick/work/gala/src/WindowManager.vala"
+#line 787 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp23_ = window;
-#line 763 "/home/nick/work/gala/src/WindowManager.vala"
+#line 787 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp24_ = time;
-#line 763 "/home/nick/work/gala/src/WindowManager.vala"
+#line 787 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_workspace_activate_with_focus (_tmp22_, _tmp23_, _tmp24_);
-#line 765 "/home/nick/work/gala/src/WindowManager.vala"
+#line 789 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp25_ = self->priv->ws_assoc;
-#line 765 "/home/nick/work/gala/src/WindowManager.vala"
+#line 789 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp26_ = window;
-#line 765 "/home/nick/work/gala/src/WindowManager.vala"
+#line 789 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp27_ = _g_object_ref0 (_tmp26_);
-#line 765 "/home/nick/work/gala/src/WindowManager.vala"
+#line 789 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp28_ = old_ws_index;
-#line 765 "/home/nick/work/gala/src/WindowManager.vala"
+#line 789 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_hash_table_insert (_tmp25_, _tmp27_, (gpointer) ((gintptr) _tmp28_));
-#line 754 "/home/nick/work/gala/src/WindowManager.vala"
+#line 778 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (new_ws_obj);
-#line 5002 "WindowManager.c"
+#line 4494 "WindowManager.c"
 	} else {
 		GHashTable* _tmp29_ = NULL;
 		MetaWindow* _tmp30_ = NULL;
 		gboolean _tmp31_ = FALSE;
-#line 766 "/home/nick/work/gala/src/WindowManager.vala"
+#line 790 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp29_ = self->priv->ws_assoc;
-#line 766 "/home/nick/work/gala/src/WindowManager.vala"
+#line 790 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp30_ = window;
-#line 766 "/home/nick/work/gala/src/WindowManager.vala"
+#line 790 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp31_ = g_hash_table_contains (_tmp29_, _tmp30_);
-#line 766 "/home/nick/work/gala/src/WindowManager.vala"
+#line 790 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp31_) {
-#line 5015 "WindowManager.c"
+#line 4507 "WindowManager.c"
 			gint old_ws_index = 0;
 			GHashTable* _tmp32_ = NULL;
 			MetaWindow* _tmp33_ = NULL;
@@ -5025,47 +4517,47 @@ static void gala_window_manager_gala_handle_fullscreen_window (GalaWindowManager
 			gint _tmp39_ = 0;
 			GHashTable* _tmp52_ = NULL;
 			MetaWindow* _tmp53_ = NULL;
-#line 767 "/home/nick/work/gala/src/WindowManager.vala"
+#line 791 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp32_ = self->priv->ws_assoc;
-#line 767 "/home/nick/work/gala/src/WindowManager.vala"
+#line 791 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp33_ = window;
-#line 767 "/home/nick/work/gala/src/WindowManager.vala"
+#line 791 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp34_ = g_hash_table_lookup (_tmp32_, _tmp33_);
-#line 767 "/home/nick/work/gala/src/WindowManager.vala"
+#line 791 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			old_ws_index = (gint) ((gintptr) _tmp34_);
-#line 768 "/home/nick/work/gala/src/WindowManager.vala"
+#line 792 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp35_ = win_ws;
-#line 768 "/home/nick/work/gala/src/WindowManager.vala"
+#line 792 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp36_ = meta_workspace_index (_tmp35_);
-#line 768 "/home/nick/work/gala/src/WindowManager.vala"
+#line 792 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			new_ws_index = _tmp36_;
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp38_ = new_ws_index;
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp39_ = old_ws_index;
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp38_ != _tmp39_) {
-#line 5048 "WindowManager.c"
+#line 4540 "WindowManager.c"
 				gint _tmp40_ = 0;
 				MetaScreen* _tmp41_ = NULL;
 				gint _tmp42_ = 0;
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp40_ = old_ws_index;
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp41_ = screen;
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp42_ = meta_screen_get_n_workspaces (_tmp41_);
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp37_ = _tmp40_ < _tmp42_;
-#line 5060 "WindowManager.c"
+#line 4552 "WindowManager.c"
 			} else {
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp37_ = FALSE;
-#line 5064 "WindowManager.c"
+#line 4556 "WindowManager.c"
 			}
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp37_) {
-#line 5068 "WindowManager.c"
+#line 4560 "WindowManager.c"
 				MetaWorkspace* old_ws_obj = NULL;
 				MetaScreen* _tmp43_ = NULL;
 				gint _tmp44_ = 0;
@@ -5076,41 +4568,41 @@ static void gala_window_manager_gala_handle_fullscreen_window (GalaWindowManager
 				MetaWorkspace* _tmp49_ = NULL;
 				MetaWindow* _tmp50_ = NULL;
 				guint32 _tmp51_ = 0U;
-#line 771 "/home/nick/work/gala/src/WindowManager.vala"
+#line 795 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp43_ = screen;
-#line 771 "/home/nick/work/gala/src/WindowManager.vala"
+#line 795 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp44_ = old_ws_index;
-#line 771 "/home/nick/work/gala/src/WindowManager.vala"
+#line 795 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp45_ = meta_screen_get_workspace_by_index (_tmp43_, _tmp44_);
-#line 771 "/home/nick/work/gala/src/WindowManager.vala"
+#line 795 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp46_ = _g_object_ref0 (_tmp45_);
-#line 771 "/home/nick/work/gala/src/WindowManager.vala"
+#line 795 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				old_ws_obj = _tmp46_;
-#line 772 "/home/nick/work/gala/src/WindowManager.vala"
+#line 796 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp47_ = window;
-#line 772 "/home/nick/work/gala/src/WindowManager.vala"
+#line 796 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp48_ = old_ws_obj;
-#line 772 "/home/nick/work/gala/src/WindowManager.vala"
+#line 796 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_window_change_workspace (_tmp47_, _tmp48_);
-#line 773 "/home/nick/work/gala/src/WindowManager.vala"
+#line 797 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp49_ = old_ws_obj;
-#line 773 "/home/nick/work/gala/src/WindowManager.vala"
+#line 797 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp50_ = window;
-#line 773 "/home/nick/work/gala/src/WindowManager.vala"
+#line 797 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp51_ = time;
-#line 773 "/home/nick/work/gala/src/WindowManager.vala"
+#line 797 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_workspace_activate_with_focus (_tmp49_, _tmp50_, _tmp51_);
-#line 770 "/home/nick/work/gala/src/WindowManager.vala"
+#line 794 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (old_ws_obj);
-#line 5105 "WindowManager.c"
+#line 4597 "WindowManager.c"
 			}
-#line 776 "/home/nick/work/gala/src/WindowManager.vala"
+#line 800 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp52_ = self->priv->ws_assoc;
-#line 776 "/home/nick/work/gala/src/WindowManager.vala"
+#line 800 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp53_ = window;
-#line 776 "/home/nick/work/gala/src/WindowManager.vala"
+#line 800 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_hash_table_remove (_tmp52_, _tmp53_);
-#line 5113 "WindowManager.c"
+#line 4605 "WindowManager.c"
 		}
 	}
 }
@@ -5124,29 +4616,29 @@ static void gala_window_manager_gala_real_size_change (MetaPlugin* base, MetaWin
 	MetaRectangle _tmp2_ = {0};
 	MetaSizeChange _tmp3_ = 0;
 	MetaWindowActor* _tmp25_ = NULL;
-#line 780 "/home/nick/work/gala/src/WindowManager.vala"
+#line 804 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 780 "/home/nick/work/gala/src/WindowManager.vala"
+#line 804 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 780 "/home/nick/work/gala/src/WindowManager.vala"
+#line 804 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (old_frame_rect != NULL);
-#line 780 "/home/nick/work/gala/src/WindowManager.vala"
+#line 804 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (old_buffer_rect != NULL);
-#line 782 "/home/nick/work/gala/src/WindowManager.vala"
+#line 806 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = actor;
-#line 782 "/home/nick/work/gala/src/WindowManager.vala"
+#line 806 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = meta_window_actor_get_meta_window (_tmp0_);
-#line 782 "/home/nick/work/gala/src/WindowManager.vala"
+#line 806 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_window_get_frame_rect (_tmp1_, &_tmp2_);
-#line 782 "/home/nick/work/gala/src/WindowManager.vala"
+#line 806 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	new_rect = _tmp2_;
-#line 784 "/home/nick/work/gala/src/WindowManager.vala"
+#line 808 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = which_change;
-#line 784 "/home/nick/work/gala/src/WindowManager.vala"
+#line 808 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	switch (_tmp3_) {
-#line 784 "/home/nick/work/gala/src/WindowManager.vala"
+#line 808 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_SIZE_CHANGE_MAXIMIZE:
-#line 5149 "WindowManager.c"
+#line 4641 "WindowManager.c"
 		{
 			MetaWindowActor* _tmp4_ = NULL;
 			MetaRectangle _tmp5_ = {0};
@@ -5157,33 +4649,33 @@ static void gala_window_manager_gala_real_size_change (MetaPlugin* base, MetaWin
 			gint _tmp10_ = 0;
 			MetaRectangle _tmp11_ = {0};
 			gint _tmp12_ = 0;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp4_ = actor;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp5_ = new_rect;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp6_ = _tmp5_.x;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp7_ = new_rect;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp8_ = _tmp7_.y;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp9_ = new_rect;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp10_ = _tmp9_.width;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp11_ = new_rect;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp12_ = _tmp11_.height;
-#line 786 "/home/nick/work/gala/src/WindowManager.vala"
+#line 810 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gala_window_manager_gala_maximize (self, _tmp4_, _tmp6_, _tmp8_, _tmp10_, _tmp12_);
-#line 787 "/home/nick/work/gala/src/WindowManager.vala"
+#line 811 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 5182 "WindowManager.c"
+#line 4674 "WindowManager.c"
 		}
-#line 784 "/home/nick/work/gala/src/WindowManager.vala"
+#line 808 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_SIZE_CHANGE_UNMAXIMIZE:
-#line 5186 "WindowManager.c"
+#line 4678 "WindowManager.c"
 		{
 			MetaWindowActor* _tmp13_ = NULL;
 			MetaRectangle _tmp14_ = {0};
@@ -5194,123 +4686,123 @@ static void gala_window_manager_gala_real_size_change (MetaPlugin* base, MetaWin
 			gint _tmp19_ = 0;
 			MetaRectangle _tmp20_ = {0};
 			gint _tmp21_ = 0;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp13_ = actor;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp14_ = new_rect;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp15_ = _tmp14_.x;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp16_ = new_rect;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp17_ = _tmp16_.y;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp18_ = new_rect;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp19_ = _tmp18_.width;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp20_ = new_rect;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp21_ = _tmp20_.height;
-#line 789 "/home/nick/work/gala/src/WindowManager.vala"
+#line 813 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gala_window_manager_gala_unmaximize (self, _tmp13_, _tmp15_, _tmp17_, _tmp19_, _tmp21_);
-#line 790 "/home/nick/work/gala/src/WindowManager.vala"
+#line 814 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 5219 "WindowManager.c"
+#line 4711 "WindowManager.c"
 		}
-#line 784 "/home/nick/work/gala/src/WindowManager.vala"
+#line 808 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_SIZE_CHANGE_FULLSCREEN:
-#line 784 "/home/nick/work/gala/src/WindowManager.vala"
+#line 808 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_SIZE_CHANGE_UNFULLSCREEN:
-#line 5225 "WindowManager.c"
+#line 4717 "WindowManager.c"
 		{
 			MetaWindowActor* _tmp22_ = NULL;
 			MetaWindow* _tmp23_ = NULL;
 			MetaSizeChange _tmp24_ = 0;
-#line 793 "/home/nick/work/gala/src/WindowManager.vala"
+#line 817 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp22_ = actor;
-#line 793 "/home/nick/work/gala/src/WindowManager.vala"
+#line 817 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp23_ = meta_window_actor_get_meta_window (_tmp22_);
-#line 793 "/home/nick/work/gala/src/WindowManager.vala"
+#line 817 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp24_ = which_change;
-#line 793 "/home/nick/work/gala/src/WindowManager.vala"
+#line 817 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gala_window_manager_gala_handle_fullscreen_window (self, _tmp23_, _tmp24_);
-#line 794 "/home/nick/work/gala/src/WindowManager.vala"
+#line 818 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 5240 "WindowManager.c"
+#line 4732 "WindowManager.c"
 		}
 		default:
-#line 784 "/home/nick/work/gala/src/WindowManager.vala"
+#line 808 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 5245 "WindowManager.c"
+#line 4737 "WindowManager.c"
 	}
-#line 797 "/home/nick/work/gala/src/WindowManager.vala"
+#line 821 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp25_ = actor;
-#line 797 "/home/nick/work/gala/src/WindowManager.vala"
+#line 821 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_size_change_completed ((MetaPlugin*) self, _tmp25_);
-#line 5251 "WindowManager.c"
+#line 4743 "WindowManager.c"
 }
 
 
 static Block6Data* block6_data_ref (Block6Data* _data6_) {
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data6_->_ref_count_);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data6_;
-#line 5260 "WindowManager.c"
+#line 4752 "WindowManager.c"
 }
 
 
 static void block6_data_unref (void * _userdata_) {
 	Block6Data* _data6_;
 	_data6_ = (Block6Data*) _userdata_;
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data6_->_ref_count_)) {
-#line 5269 "WindowManager.c"
+#line 4761 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data6_->self;
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_data6_->actor);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block6Data, _data6_);
-#line 5279 "WindowManager.c"
+#line 4771 "WindowManager.c"
 	}
 }
 
 
 static Block7Data* block7_data_ref (Block7Data* _data7_) {
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data7_->_ref_count_);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data7_;
-#line 5289 "WindowManager.c"
+#line 4781 "WindowManager.c"
 }
 
 
 static void block7_data_unref (void * _userdata_) {
 	Block7Data* _data7_;
 	_data7_ = (Block7Data*) _userdata_;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data7_->_ref_count_)) {
-#line 5298 "WindowManager.c"
+#line 4790 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data7_->_data6_->self;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block6_data_unref (_data7_->_data6_);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data7_->_data6_ = NULL;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block7Data, _data7_);
-#line 5308 "WindowManager.c"
+#line 4800 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda95_ (Block7Data* _data7_) {
+static void ___lambda94_ (Block7Data* _data7_) {
 	Block6Data* _data6_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -5321,79 +4813,79 @@ static void ___lambda95_ (Block7Data* _data7_) {
 	MetaWindowActor* _tmp5_ = NULL;
 	GeeHashSet* _tmp6_ = NULL;
 	MetaWindowActor* _tmp7_ = NULL;
-#line 836 "/home/nick/work/gala/src/WindowManager.vala"
+#line 860 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data6_ = _data7_->_data6_;
-#line 836 "/home/nick/work/gala/src/WindowManager.vala"
+#line 860 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data6_->self;
-#line 837 "/home/nick/work/gala/src/WindowManager.vala"
+#line 861 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data6_->actor;
-#line 837 "/home/nick/work/gala/src/WindowManager.vala"
+#line 861 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data7_->minimize_handler_id;
-#line 837 "/home/nick/work/gala/src/WindowManager.vala"
+#line 861 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 838 "/home/nick/work/gala/src/WindowManager.vala"
+#line 862 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = _data6_->actor;
-#line 838 "/home/nick/work/gala/src/WindowManager.vala"
+#line 862 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_pivot_point ((ClutterActor*) _tmp2_, 0.0f, 0.0f);
-#line 839 "/home/nick/work/gala/src/WindowManager.vala"
+#line 863 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data6_->actor;
-#line 839 "/home/nick/work/gala/src/WindowManager.vala"
+#line 863 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_scale ((ClutterActor*) _tmp3_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 840 "/home/nick/work/gala/src/WindowManager.vala"
+#line 864 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data6_->actor;
-#line 840 "/home/nick/work/gala/src/WindowManager.vala"
+#line 864 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_opacity ((ClutterActor*) _tmp4_, 255U);
-#line 841 "/home/nick/work/gala/src/WindowManager.vala"
+#line 865 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _data6_->actor;
-#line 841 "/home/nick/work/gala/src/WindowManager.vala"
+#line 865 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_minimize_completed ((MetaPlugin*) self, _tmp5_);
-#line 842 "/home/nick/work/gala/src/WindowManager.vala"
+#line 866 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = self->priv->minimizing;
-#line 842 "/home/nick/work/gala/src/WindowManager.vala"
+#line 866 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = _data6_->actor;
-#line 842 "/home/nick/work/gala/src/WindowManager.vala"
+#line 866 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp6_, _tmp7_);
-#line 5356 "WindowManager.c"
+#line 4848 "WindowManager.c"
 }
 
 
-static void ____lambda95__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 836 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda95_ (self);
-#line 5363 "WindowManager.c"
+static void ____lambda94__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 860 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda94_ (self);
+#line 4855 "WindowManager.c"
 }
 
 
 static Block8Data* block8_data_ref (Block8Data* _data8_) {
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data8_->_ref_count_);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data8_;
-#line 5372 "WindowManager.c"
+#line 4864 "WindowManager.c"
 }
 
 
 static void block8_data_unref (void * _userdata_) {
 	Block8Data* _data8_;
 	_data8_ = (Block8Data*) _userdata_;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data8_->_ref_count_)) {
-#line 5381 "WindowManager.c"
+#line 4873 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data8_->_data6_->self;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block6_data_unref (_data8_->_data6_);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data8_->_data6_ = NULL;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block8Data, _data8_);
-#line 5391 "WindowManager.c"
+#line 4883 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda96_ (Block8Data* _data8_) {
+static void ___lambda95_ (Block8Data* _data8_) {
 	Block6Data* _data6_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -5404,46 +4896,46 @@ static void ___lambda96_ (Block8Data* _data8_) {
 	MetaWindowActor* _tmp5_ = NULL;
 	GeeHashSet* _tmp6_ = NULL;
 	MetaWindowActor* _tmp7_ = NULL;
-#line 856 "/home/nick/work/gala/src/WindowManager.vala"
+#line 880 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data6_ = _data8_->_data6_;
-#line 856 "/home/nick/work/gala/src/WindowManager.vala"
+#line 880 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data6_->self;
-#line 857 "/home/nick/work/gala/src/WindowManager.vala"
+#line 881 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data6_->actor;
-#line 857 "/home/nick/work/gala/src/WindowManager.vala"
+#line 881 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data8_->minimize_handler_id;
-#line 857 "/home/nick/work/gala/src/WindowManager.vala"
+#line 881 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 858 "/home/nick/work/gala/src/WindowManager.vala"
+#line 882 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = _data6_->actor;
-#line 858 "/home/nick/work/gala/src/WindowManager.vala"
+#line 882 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_pivot_point ((ClutterActor*) _tmp2_, 0.0f, 0.0f);
-#line 859 "/home/nick/work/gala/src/WindowManager.vala"
+#line 883 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data6_->actor;
-#line 859 "/home/nick/work/gala/src/WindowManager.vala"
+#line 883 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_scale ((ClutterActor*) _tmp3_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 860 "/home/nick/work/gala/src/WindowManager.vala"
+#line 884 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data6_->actor;
-#line 860 "/home/nick/work/gala/src/WindowManager.vala"
+#line 884 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_opacity ((ClutterActor*) _tmp4_, 255U);
-#line 861 "/home/nick/work/gala/src/WindowManager.vala"
+#line 885 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _data6_->actor;
-#line 861 "/home/nick/work/gala/src/WindowManager.vala"
+#line 885 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_minimize_completed ((MetaPlugin*) self, _tmp5_);
-#line 862 "/home/nick/work/gala/src/WindowManager.vala"
+#line 886 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = self->priv->minimizing;
-#line 862 "/home/nick/work/gala/src/WindowManager.vala"
+#line 886 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = _data6_->actor;
-#line 862 "/home/nick/work/gala/src/WindowManager.vala"
+#line 886 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp6_, _tmp7_);
-#line 5439 "WindowManager.c"
+#line 4931 "WindowManager.c"
 }
 
 
-static void ____lambda96__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 856 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda96_ (self);
-#line 5446 "WindowManager.c"
+static void ____lambda95__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 880 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda95_ (self);
+#line 4938 "WindowManager.c"
 }
 
 
@@ -5477,124 +4969,124 @@ static void gala_window_manager_gala_real_minimize (MetaPlugin* base, MetaWindow
 	MetaWindow* _tmp25_ = NULL;
 	MetaRectangle _tmp26_ = {0};
 	gboolean _tmp27_ = FALSE;
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data6_ = g_slice_new0 (Block6Data);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data6_->_ref_count_ = 1;
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data6_->self = g_object_ref (self);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = actor;
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (_data6_->actor);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data6_->actor = _tmp1_;
-#line 803 "/home/nick/work/gala/src/WindowManager.vala"
+#line 827 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gala_animation_settings_get_default ();
-#line 803 "/home/nick/work/gala/src/WindowManager.vala"
+#line 827 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_settings = _tmp2_;
-#line 804 "/home/nick/work/gala/src/WindowManager.vala"
+#line 828 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = animation_settings;
-#line 804 "/home/nick/work/gala/src/WindowManager.vala"
+#line 828 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = gala_animation_settings_get_minimize_duration (_tmp3_);
-#line 804 "/home/nick/work/gala/src/WindowManager.vala"
+#line 828 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _tmp4_;
-#line 804 "/home/nick/work/gala/src/WindowManager.vala"
+#line 828 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	duration = _tmp5_;
-#line 806 "/home/nick/work/gala/src/WindowManager.vala"
+#line 830 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = animation_settings;
-#line 806 "/home/nick/work/gala/src/WindowManager.vala"
+#line 830 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = gala_animation_settings_get_enable_animations (_tmp8_);
-#line 806 "/home/nick/work/gala/src/WindowManager.vala"
+#line 830 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = _tmp9_;
-#line 806 "/home/nick/work/gala/src/WindowManager.vala"
+#line 830 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp10_) {
-#line 806 "/home/nick/work/gala/src/WindowManager.vala"
+#line 830 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp7_ = TRUE;
-#line 5520 "WindowManager.c"
+#line 5012 "WindowManager.c"
 	} else {
 		gint _tmp11_ = 0;
-#line 807 "/home/nick/work/gala/src/WindowManager.vala"
+#line 831 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11_ = duration;
-#line 807 "/home/nick/work/gala/src/WindowManager.vala"
+#line 831 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp7_ = _tmp11_ == 0;
-#line 5527 "WindowManager.c"
+#line 5019 "WindowManager.c"
 	}
-#line 806 "/home/nick/work/gala/src/WindowManager.vala"
+#line 830 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp7_) {
-#line 806 "/home/nick/work/gala/src/WindowManager.vala"
+#line 830 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = TRUE;
-#line 5533 "WindowManager.c"
+#line 5025 "WindowManager.c"
 	} else {
 		MetaWindowActor* _tmp12_ = NULL;
 		MetaWindow* _tmp13_ = NULL;
 		MetaWindowType _tmp14_ = 0;
 		MetaWindowType _tmp15_ = 0;
-#line 808 "/home/nick/work/gala/src/WindowManager.vala"
+#line 832 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp12_ = _data6_->actor;
-#line 808 "/home/nick/work/gala/src/WindowManager.vala"
+#line 832 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp13_ = meta_window_actor_get_meta_window (_tmp12_);
-#line 808 "/home/nick/work/gala/src/WindowManager.vala"
+#line 832 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp14_ = meta_window_get_window_type (_tmp13_);
-#line 808 "/home/nick/work/gala/src/WindowManager.vala"
+#line 832 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp15_ = _tmp14_;
-#line 808 "/home/nick/work/gala/src/WindowManager.vala"
+#line 832 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = _tmp15_ != META_WINDOW_NORMAL;
-#line 5549 "WindowManager.c"
+#line 5041 "WindowManager.c"
 	}
-#line 806 "/home/nick/work/gala/src/WindowManager.vala"
+#line 830 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp6_) {
-#line 5553 "WindowManager.c"
+#line 5045 "WindowManager.c"
 		MetaWindowActor* _tmp16_ = NULL;
-#line 809 "/home/nick/work/gala/src/WindowManager.vala"
+#line 833 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp16_ = _data6_->actor;
-#line 809 "/home/nick/work/gala/src/WindowManager.vala"
+#line 833 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_minimize_completed ((MetaPlugin*) self, _tmp16_);
-#line 810 "/home/nick/work/gala/src/WindowManager.vala"
+#line 834 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block6_data_unref (_data6_);
-#line 810 "/home/nick/work/gala/src/WindowManager.vala"
+#line 834 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data6_ = NULL;
-#line 810 "/home/nick/work/gala/src/WindowManager.vala"
+#line 834 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 5565 "WindowManager.c"
+#line 5057 "WindowManager.c"
 	}
-#line 813 "/home/nick/work/gala/src/WindowManager.vala"
+#line 837 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp17_ = _data6_->actor;
-#line 813 "/home/nick/work/gala/src/WindowManager.vala"
+#line 837 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	META_PLUGIN_GET_CLASS ((MetaPlugin*) self)->kill_window_effects ((MetaPlugin*) self, _tmp17_);
-#line 814 "/home/nick/work/gala/src/WindowManager.vala"
+#line 838 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp18_ = self->priv->minimizing;
-#line 814 "/home/nick/work/gala/src/WindowManager.vala"
+#line 838 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp19_ = _data6_->actor;
-#line 814 "/home/nick/work/gala/src/WindowManager.vala"
+#line 838 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_add ((GeeAbstractCollection*) _tmp18_, _tmp19_);
-#line 817 "/home/nick/work/gala/src/WindowManager.vala"
+#line 841 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp20_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 817 "/home/nick/work/gala/src/WindowManager.vala"
+#line 841 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_screen_get_size (_tmp20_, &_tmp21_, &_tmp22_);
-#line 817 "/home/nick/work/gala/src/WindowManager.vala"
+#line 841 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	width = _tmp21_;
-#line 817 "/home/nick/work/gala/src/WindowManager.vala"
+#line 841 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	height = _tmp22_;
-#line 819 "/home/nick/work/gala/src/WindowManager.vala"
+#line 843 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	icon = _tmp23_;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp24_ = _data6_->actor;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp25_ = meta_window_actor_get_meta_window (_tmp24_);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp27_ = meta_window_get_icon_geometry (_tmp25_, &_tmp26_);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	icon = _tmp26_;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp27_) {
-#line 5597 "WindowManager.c"
+#line 5089 "WindowManager.c"
 		Block7Data* _data7_;
 		gfloat scale_x = 0.0F;
 		MetaRectangle _tmp28_ = {0};
@@ -5644,131 +5136,131 @@ static void gala_window_manager_gala_real_minimize (MetaPlugin* base, MetaWindow
 		MetaWindowActor* _tmp69_ = NULL;
 		MetaWindowActor* _tmp70_ = NULL;
 		gulong _tmp71_ = 0UL;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data7_ = g_slice_new0 (Block7Data);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data7_->_ref_count_ = 1;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data7_->_data6_ = block6_data_ref (_data6_);
-#line 822 "/home/nick/work/gala/src/WindowManager.vala"
+#line 846 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp28_ = icon;
-#line 822 "/home/nick/work/gala/src/WindowManager.vala"
+#line 846 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp29_ = _tmp28_.width;
-#line 822 "/home/nick/work/gala/src/WindowManager.vala"
+#line 846 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp30_ = _data6_->actor;
-#line 822 "/home/nick/work/gala/src/WindowManager.vala"
+#line 846 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp31_ = clutter_actor_get_width ((ClutterActor*) _tmp30_);
-#line 822 "/home/nick/work/gala/src/WindowManager.vala"
+#line 846 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp32_ = _tmp31_;
-#line 822 "/home/nick/work/gala/src/WindowManager.vala"
+#line 846 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		scale_x = ((gfloat) _tmp29_) / _tmp32_;
-#line 823 "/home/nick/work/gala/src/WindowManager.vala"
+#line 847 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp33_ = icon;
-#line 823 "/home/nick/work/gala/src/WindowManager.vala"
+#line 847 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp34_ = _tmp33_.height;
-#line 823 "/home/nick/work/gala/src/WindowManager.vala"
+#line 847 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp35_ = _data6_->actor;
-#line 823 "/home/nick/work/gala/src/WindowManager.vala"
+#line 847 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp36_ = clutter_actor_get_height ((ClutterActor*) _tmp35_);
-#line 823 "/home/nick/work/gala/src/WindowManager.vala"
+#line 847 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp37_ = _tmp36_;
-#line 823 "/home/nick/work/gala/src/WindowManager.vala"
+#line 847 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		scale_y = ((gfloat) _tmp34_) / _tmp37_;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp38_ = _data6_->actor;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp39_ = clutter_actor_get_x ((ClutterActor*) _tmp38_);
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp40_ = _tmp39_;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp41_ = icon;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp42_ = _tmp41_.x;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp43_ = icon;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp44_ = _tmp43_.width;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp45_ = _data6_->actor;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp46_ = clutter_actor_get_width ((ClutterActor*) _tmp45_);
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp47_ = _tmp46_;
-#line 824 "/home/nick/work/gala/src/WindowManager.vala"
+#line 848 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		anchor_x = ((gfloat) (_tmp40_ - _tmp42_)) / (_tmp44_ - _tmp47_);
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp48_ = _data6_->actor;
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp49_ = clutter_actor_get_y ((ClutterActor*) _tmp48_);
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp50_ = _tmp49_;
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp51_ = icon;
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp52_ = _tmp51_.y;
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp53_ = icon;
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp54_ = _tmp53_.height;
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp55_ = _data6_->actor;
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp56_ = clutter_actor_get_height ((ClutterActor*) _tmp55_);
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp57_ = _tmp56_;
-#line 825 "/home/nick/work/gala/src/WindowManager.vala"
+#line 849 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		anchor_y = ((gfloat) (_tmp50_ - _tmp52_)) / (_tmp54_ - _tmp57_);
-#line 826 "/home/nick/work/gala/src/WindowManager.vala"
+#line 850 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp58_ = _data6_->actor;
-#line 826 "/home/nick/work/gala/src/WindowManager.vala"
+#line 850 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp59_ = anchor_x;
-#line 826 "/home/nick/work/gala/src/WindowManager.vala"
+#line 850 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp60_ = anchor_y;
-#line 826 "/home/nick/work/gala/src/WindowManager.vala"
+#line 850 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_pivot_point ((ClutterActor*) _tmp58_, _tmp59_, _tmp60_);
-#line 828 "/home/nick/work/gala/src/WindowManager.vala"
+#line 852 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp61_ = _data6_->actor;
-#line 828 "/home/nick/work/gala/src/WindowManager.vala"
+#line 852 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_save_easing_state ((ClutterActor*) _tmp61_);
-#line 829 "/home/nick/work/gala/src/WindowManager.vala"
+#line 853 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp62_ = _data6_->actor;
-#line 829 "/home/nick/work/gala/src/WindowManager.vala"
+#line 853 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_mode ((ClutterActor*) _tmp62_, CLUTTER_EASE_IN_EXPO);
-#line 830 "/home/nick/work/gala/src/WindowManager.vala"
+#line 854 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp63_ = _data6_->actor;
-#line 830 "/home/nick/work/gala/src/WindowManager.vala"
+#line 854 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp64_ = duration;
-#line 830 "/home/nick/work/gala/src/WindowManager.vala"
+#line 854 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_duration ((ClutterActor*) _tmp63_, (guint) _tmp64_);
-#line 831 "/home/nick/work/gala/src/WindowManager.vala"
+#line 855 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp65_ = _data6_->actor;
-#line 831 "/home/nick/work/gala/src/WindowManager.vala"
+#line 855 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp66_ = scale_x;
-#line 831 "/home/nick/work/gala/src/WindowManager.vala"
+#line 855 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp67_ = scale_y;
-#line 831 "/home/nick/work/gala/src/WindowManager.vala"
+#line 855 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_scale ((ClutterActor*) _tmp65_, (gdouble) _tmp66_, (gdouble) _tmp67_);
-#line 832 "/home/nick/work/gala/src/WindowManager.vala"
+#line 856 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp68_ = _data6_->actor;
-#line 832 "/home/nick/work/gala/src/WindowManager.vala"
+#line 856 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_opacity ((ClutterActor*) _tmp68_, 0U);
-#line 833 "/home/nick/work/gala/src/WindowManager.vala"
+#line 857 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp69_ = _data6_->actor;
-#line 833 "/home/nick/work/gala/src/WindowManager.vala"
+#line 857 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_restore_easing_state ((ClutterActor*) _tmp69_);
-#line 835 "/home/nick/work/gala/src/WindowManager.vala"
+#line 859 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data7_->minimize_handler_id = 0UL;
-#line 836 "/home/nick/work/gala/src/WindowManager.vala"
+#line 860 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp70_ = _data6_->actor;
-#line 836 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp71_ = g_signal_connect_data ((ClutterActor*) _tmp70_, "transitions-completed", (GCallback) ____lambda95__clutter_actor_transitions_completed, block7_data_ref (_data7_), (GClosureNotify) block7_data_unref, 0);
-#line 836 "/home/nick/work/gala/src/WindowManager.vala"
+#line 860 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp71_ = g_signal_connect_data ((ClutterActor*) _tmp70_, "transitions-completed", (GCallback) ____lambda94__clutter_actor_transitions_completed, block7_data_ref (_data7_), (GClosureNotify) block7_data_unref, 0);
+#line 860 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data7_->minimize_handler_id = _tmp71_;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block7_data_unref (_data7_);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data7_ = NULL;
-#line 5771 "WindowManager.c"
+#line 5263 "WindowManager.c"
 	} else {
 		Block8Data* _data8_;
 		MetaWindowActor* _tmp72_ = NULL;
@@ -5781,188 +5273,188 @@ static void gala_window_manager_gala_real_minimize (MetaPlugin* base, MetaWindow
 		MetaWindowActor* _tmp79_ = NULL;
 		MetaWindowActor* _tmp80_ = NULL;
 		gulong _tmp81_ = 0UL;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data8_ = g_slice_new0 (Block8Data);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data8_->_ref_count_ = 1;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data8_->_data6_ = block6_data_ref (_data6_);
-#line 846 "/home/nick/work/gala/src/WindowManager.vala"
+#line 870 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp72_ = _data6_->actor;
-#line 846 "/home/nick/work/gala/src/WindowManager.vala"
+#line 870 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_pivot_point ((ClutterActor*) _tmp72_, 0.5f, 1.0f);
-#line 848 "/home/nick/work/gala/src/WindowManager.vala"
+#line 872 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp73_ = _data6_->actor;
-#line 848 "/home/nick/work/gala/src/WindowManager.vala"
+#line 872 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_save_easing_state ((ClutterActor*) _tmp73_);
-#line 849 "/home/nick/work/gala/src/WindowManager.vala"
+#line 873 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp74_ = _data6_->actor;
-#line 849 "/home/nick/work/gala/src/WindowManager.vala"
+#line 873 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_mode ((ClutterActor*) _tmp74_, CLUTTER_EASE_IN_EXPO);
-#line 850 "/home/nick/work/gala/src/WindowManager.vala"
+#line 874 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp75_ = _data6_->actor;
-#line 850 "/home/nick/work/gala/src/WindowManager.vala"
+#line 874 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp76_ = duration;
-#line 850 "/home/nick/work/gala/src/WindowManager.vala"
+#line 874 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_duration ((ClutterActor*) _tmp75_, (guint) _tmp76_);
-#line 851 "/home/nick/work/gala/src/WindowManager.vala"
+#line 875 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp77_ = _data6_->actor;
-#line 851 "/home/nick/work/gala/src/WindowManager.vala"
+#line 875 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_scale ((ClutterActor*) _tmp77_, (gdouble) 0.0f, (gdouble) 0.0f);
-#line 852 "/home/nick/work/gala/src/WindowManager.vala"
+#line 876 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp78_ = _data6_->actor;
-#line 852 "/home/nick/work/gala/src/WindowManager.vala"
+#line 876 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_opacity ((ClutterActor*) _tmp78_, 0U);
-#line 853 "/home/nick/work/gala/src/WindowManager.vala"
+#line 877 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp79_ = _data6_->actor;
-#line 853 "/home/nick/work/gala/src/WindowManager.vala"
+#line 877 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_restore_easing_state ((ClutterActor*) _tmp79_);
-#line 855 "/home/nick/work/gala/src/WindowManager.vala"
+#line 879 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data8_->minimize_handler_id = 0UL;
-#line 856 "/home/nick/work/gala/src/WindowManager.vala"
+#line 880 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp80_ = _data6_->actor;
-#line 856 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp81_ = g_signal_connect_data ((ClutterActor*) _tmp80_, "transitions-completed", (GCallback) ____lambda96__clutter_actor_transitions_completed, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
-#line 856 "/home/nick/work/gala/src/WindowManager.vala"
+#line 880 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp81_ = g_signal_connect_data ((ClutterActor*) _tmp80_, "transitions-completed", (GCallback) ____lambda95__clutter_actor_transitions_completed, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
+#line 880 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data8_->minimize_handler_id = _tmp81_;
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block8_data_unref (_data8_);
-#line 820 "/home/nick/work/gala/src/WindowManager.vala"
+#line 844 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data8_ = NULL;
-#line 5832 "WindowManager.c"
+#line 5324 "WindowManager.c"
 	}
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	block6_data_unref (_data6_);
-#line 801 "/home/nick/work/gala/src/WindowManager.vala"
+#line 825 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data6_ = NULL;
-#line 5838 "WindowManager.c"
+#line 5330 "WindowManager.c"
 }
 
 
 static inline void gala_window_manager_gala_maximize_completed (GalaWindowManagerGala* self, MetaWindowActor* actor) {
-#line 868 "/home/nick/work/gala/src/WindowManager.vala"
+#line 892 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 868 "/home/nick/work/gala/src/WindowManager.vala"
+#line 892 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 5847 "WindowManager.c"
+#line 5339 "WindowManager.c"
 }
 
 
 static Block9Data* block9_data_ref (Block9Data* _data9_) {
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data9_->_ref_count_);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data9_;
-#line 5856 "WindowManager.c"
+#line 5348 "WindowManager.c"
 }
 
 
 static void block9_data_unref (void * _userdata_) {
 	Block9Data* _data9_;
 	_data9_ = (Block9Data*) _userdata_;
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data9_->_ref_count_)) {
-#line 5865 "WindowManager.c"
+#line 5357 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data9_->self;
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_data9_->actor);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block9Data, _data9_);
-#line 5875 "WindowManager.c"
+#line 5367 "WindowManager.c"
 	}
 }
 
 
 static Block10Data* block10_data_ref (Block10Data* _data10_) {
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data10_->_ref_count_);
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data10_;
-#line 5885 "WindowManager.c"
+#line 5377 "WindowManager.c"
 }
 
 
 static void block10_data_unref (void * _userdata_) {
 	Block10Data* _data10_;
 	_data10_ = (Block10Data*) _userdata_;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data10_->_ref_count_)) {
-#line 5894 "WindowManager.c"
+#line 5386 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data10_->_data9_->self;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_data10_->old_actor);
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block9_data_unref (_data10_->_data9_);
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data10_->_data9_ = NULL;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block10Data, _data10_);
-#line 5906 "WindowManager.c"
+#line 5398 "WindowManager.c"
 	}
 }
 
 
-static gboolean ____lambda92_ (Block10Data* _data10_) {
+static gboolean ____lambda91_ (Block10Data* _data10_) {
 	Block9Data* _data9_;
 	GalaWindowManagerGala* self;
 	gboolean result = FALSE;
 	MetaWindowActor* _tmp0_ = NULL;
-#line 916 "/home/nick/work/gala/src/WindowManager.vala"
+#line 940 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data9_ = _data10_->_data9_;
-#line 916 "/home/nick/work/gala/src/WindowManager.vala"
+#line 940 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data9_->self;
-#line 917 "/home/nick/work/gala/src/WindowManager.vala"
+#line 941 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data9_->actor;
-#line 917 "/home/nick/work/gala/src/WindowManager.vala"
+#line 941 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_opacity ((ClutterActor*) _tmp0_, (guint) 255);
-#line 918 "/home/nick/work/gala/src/WindowManager.vala"
+#line 942 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = FALSE;
-#line 918 "/home/nick/work/gala/src/WindowManager.vala"
+#line 942 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 5928 "WindowManager.c"
+#line 5420 "WindowManager.c"
 }
 
 
-static gboolean _____lambda92__gsource_func (gpointer self) {
+static gboolean _____lambda91__gsource_func (gpointer self) {
 	gboolean result;
-	result = ____lambda92_ (self);
-#line 916 "/home/nick/work/gala/src/WindowManager.vala"
+	result = ____lambda91_ (self);
+#line 940 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 5937 "WindowManager.c"
+#line 5429 "WindowManager.c"
 }
 
 
-static void ___lambda93_ (Block10Data* _data10_) {
+static void ___lambda92_ (Block10Data* _data10_) {
 	Block9Data* _data9_;
 	GalaWindowManagerGala* self;
 	ClutterActor* _tmp0_ = NULL;
 	MetaWindowActor* _tmp1_ = NULL;
-#line 939 "/home/nick/work/gala/src/WindowManager.vala"
+#line 963 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data9_ = _data10_->_data9_;
-#line 939 "/home/nick/work/gala/src/WindowManager.vala"
+#line 963 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data9_->self;
-#line 940 "/home/nick/work/gala/src/WindowManager.vala"
+#line 964 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data10_->old_actor;
-#line 940 "/home/nick/work/gala/src/WindowManager.vala"
+#line 964 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_destroy (_tmp0_);
-#line 941 "/home/nick/work/gala/src/WindowManager.vala"
+#line 965 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data9_->actor;
-#line 941 "/home/nick/work/gala/src/WindowManager.vala"
+#line 965 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_translation ((ClutterActor*) _tmp1_, 0.0f, 0.0f, 0.0f);
-#line 5958 "WindowManager.c"
+#line 5450 "WindowManager.c"
 }
 
 
-static void ____lambda93__clutter_timeline_stopped (ClutterTimeline* _sender, gboolean is_finished, gpointer self) {
-#line 939 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda93_ (self);
-#line 5965 "WindowManager.c"
+static void ____lambda92__clutter_timeline_stopped (ClutterTimeline* _sender, gboolean is_finished, gpointer self) {
+#line 963 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda92_ (self);
+#line 5457 "WindowManager.c"
 }
 
 
@@ -5988,88 +5480,88 @@ static void gala_window_manager_gala_maximize (GalaWindowManagerGala* self, Meta
 	MetaWindowType _tmp16_ = 0;
 	MetaWindowType _tmp17_ = 0;
 	MetaWindowActor* _tmp106_ = NULL;
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data9_ = g_slice_new0 (Block9Data);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data9_->_ref_count_ = 1;
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data9_->self = g_object_ref (self);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = actor;
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (_data9_->actor);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data9_->actor = _tmp1_;
-#line 877 "/home/nick/work/gala/src/WindowManager.vala"
+#line 901 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gala_animation_settings_get_default ();
-#line 877 "/home/nick/work/gala/src/WindowManager.vala"
+#line 901 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_settings = _tmp2_;
-#line 878 "/home/nick/work/gala/src/WindowManager.vala"
+#line 902 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = animation_settings;
-#line 878 "/home/nick/work/gala/src/WindowManager.vala"
+#line 902 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = gala_animation_settings_get_snap_duration (_tmp3_);
-#line 878 "/home/nick/work/gala/src/WindowManager.vala"
+#line 902 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _tmp4_;
-#line 878 "/home/nick/work/gala/src/WindowManager.vala"
+#line 902 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	duration = _tmp5_;
-#line 880 "/home/nick/work/gala/src/WindowManager.vala"
+#line 904 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = animation_settings;
-#line 880 "/home/nick/work/gala/src/WindowManager.vala"
+#line 904 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = gala_animation_settings_get_enable_animations (_tmp7_);
-#line 880 "/home/nick/work/gala/src/WindowManager.vala"
+#line 904 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = _tmp8_;
-#line 880 "/home/nick/work/gala/src/WindowManager.vala"
+#line 904 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp9_) {
-#line 880 "/home/nick/work/gala/src/WindowManager.vala"
+#line 904 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = TRUE;
-#line 6031 "WindowManager.c"
+#line 5523 "WindowManager.c"
 	} else {
 		gint _tmp10_ = 0;
-#line 881 "/home/nick/work/gala/src/WindowManager.vala"
+#line 905 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp10_ = duration;
-#line 881 "/home/nick/work/gala/src/WindowManager.vala"
+#line 905 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = _tmp10_ == 0;
-#line 6038 "WindowManager.c"
+#line 5530 "WindowManager.c"
 	}
-#line 880 "/home/nick/work/gala/src/WindowManager.vala"
+#line 904 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp6_) {
-#line 6042 "WindowManager.c"
+#line 5534 "WindowManager.c"
 		MetaWindowActor* _tmp11_ = NULL;
-#line 882 "/home/nick/work/gala/src/WindowManager.vala"
+#line 906 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11_ = _data9_->actor;
-#line 882 "/home/nick/work/gala/src/WindowManager.vala"
+#line 906 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_gala_maximize_completed (self, _tmp11_);
-#line 883 "/home/nick/work/gala/src/WindowManager.vala"
+#line 907 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block9_data_unref (_data9_);
-#line 883 "/home/nick/work/gala/src/WindowManager.vala"
+#line 907 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data9_ = NULL;
-#line 883 "/home/nick/work/gala/src/WindowManager.vala"
+#line 907 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 6054 "WindowManager.c"
+#line 5546 "WindowManager.c"
 	}
-#line 886 "/home/nick/work/gala/src/WindowManager.vala"
+#line 910 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = _data9_->actor;
-#line 886 "/home/nick/work/gala/src/WindowManager.vala"
+#line 910 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = meta_window_actor_get_meta_window (_tmp12_);
-#line 886 "/home/nick/work/gala/src/WindowManager.vala"
+#line 910 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp14_ = _g_object_ref0 (_tmp13_);
-#line 886 "/home/nick/work/gala/src/WindowManager.vala"
+#line 910 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	window = _tmp14_;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = window;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp16_ = meta_window_get_window_type (_tmp15_);
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp17_ = _tmp16_;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp17_ == META_WINDOW_NORMAL) {
-#line 6072 "WindowManager.c"
+#line 5564 "WindowManager.c"
 		Block10Data* _data10_;
 		MetaRectangle fallback = {0};
 		MetaWindowActor* _tmp18_ = NULL;
@@ -6108,9 +5600,9 @@ static void gala_window_manager_gala_maximize (GalaWindowManagerGala* self, Meta
 		ClutterActor* _tmp55_ = NULL;
 		ClutterActor* _tmp56_ = NULL;
 		ClutterActor* _tmp57_ = NULL;
-#line 911 "/home/nick/work/gala/src/WindowManager.vala"
+#line 935 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		static const gint FLASH_PREVENT_TIMEOUT = 80;
-#line 6113 "WindowManager.c"
+#line 5605 "WindowManager.c"
 		gint delay = 0;
 		gint _tmp58_ = 0;
 		gdouble scale_x = 0.0;
@@ -6161,405 +5653,405 @@ static void gala_window_manager_gala_maximize (GalaWindowManagerGala* self, Meta
 		MetaWindowActor* _tmp103_ = NULL;
 		MetaWindowActor* _tmp104_ = NULL;
 		MetaWindowActor* _tmp105_ = NULL;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data10_ = g_slice_new0 (Block10Data);
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data10_->_ref_count_ = 1;
-#line 888 "/home/nick/work/gala/src/WindowManager.vala"
+#line 912 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data10_->_data9_ = block9_data_ref (_data9_);
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp18_ = _data9_->actor;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp19_ = clutter_actor_get_x ((ClutterActor*) _tmp18_);
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp20_ = _tmp19_;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp21_ = _data9_->actor;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp22_ = clutter_actor_get_y ((ClutterActor*) _tmp21_);
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp23_ = _tmp22_;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp24_ = _data9_->actor;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp25_ = clutter_actor_get_width ((ClutterActor*) _tmp24_);
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp26_ = _tmp25_;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp27_ = _data9_->actor;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp28_ = clutter_actor_get_height ((ClutterActor*) _tmp27_);
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp29_ = _tmp28_;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp30_.x = (gint) _tmp20_;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp30_.y = (gint) _tmp23_;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp30_.width = (gint) _tmp26_;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp30_.height = (gint) _tmp29_;
-#line 889 "/home/nick/work/gala/src/WindowManager.vala"
+#line 913 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		fallback = _tmp30_;
-#line 890 "/home/nick/work/gala/src/WindowManager.vala"
+#line 914 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp31_ = gala_window_listener_get_default ();
-#line 890 "/home/nick/work/gala/src/WindowManager.vala"
+#line 914 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp32_ = window;
-#line 890 "/home/nick/work/gala/src/WindowManager.vala"
+#line 914 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp33_ = gala_window_listener_get_unmaximized_state_geometry (_tmp31_, _tmp32_);
-#line 890 "/home/nick/work/gala/src/WindowManager.vala"
+#line 914 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		window_geometry = _tmp33_;
-#line 891 "/home/nick/work/gala/src/WindowManager.vala"
+#line 915 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp35_ = window_geometry;
-#line 891 "/home/nick/work/gala/src/WindowManager.vala"
+#line 915 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp35_ != NULL) {
-#line 6216 "WindowManager.c"
+#line 5708 "WindowManager.c"
 			GalaWindowGeometry* _tmp36_ = NULL;
 			MetaRectangle _tmp37_ = {0};
-#line 891 "/home/nick/work/gala/src/WindowManager.vala"
+#line 915 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp36_ = window_geometry;
-#line 891 "/home/nick/work/gala/src/WindowManager.vala"
+#line 915 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp37_ = (*_tmp36_).inner;
-#line 891 "/home/nick/work/gala/src/WindowManager.vala"
+#line 915 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp34_ = _tmp37_;
-#line 6225 "WindowManager.c"
+#line 5717 "WindowManager.c"
 		} else {
 			MetaRectangle _tmp38_ = {0};
-#line 891 "/home/nick/work/gala/src/WindowManager.vala"
+#line 915 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp38_ = fallback;
-#line 891 "/home/nick/work/gala/src/WindowManager.vala"
+#line 915 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp34_ = _tmp38_;
-#line 6232 "WindowManager.c"
+#line 5724 "WindowManager.c"
 		}
-#line 891 "/home/nick/work/gala/src/WindowManager.vala"
+#line 915 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		old_inner_rect = _tmp34_;
-#line 892 "/home/nick/work/gala/src/WindowManager.vala"
+#line 916 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp40_ = window_geometry;
-#line 892 "/home/nick/work/gala/src/WindowManager.vala"
+#line 916 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp40_ != NULL) {
-#line 6240 "WindowManager.c"
+#line 5732 "WindowManager.c"
 			GalaWindowGeometry* _tmp41_ = NULL;
 			MetaRectangle _tmp42_ = {0};
-#line 892 "/home/nick/work/gala/src/WindowManager.vala"
+#line 916 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp41_ = window_geometry;
-#line 892 "/home/nick/work/gala/src/WindowManager.vala"
+#line 916 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp42_ = (*_tmp41_).outer;
-#line 892 "/home/nick/work/gala/src/WindowManager.vala"
+#line 916 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp39_ = _tmp42_;
-#line 6249 "WindowManager.c"
+#line 5741 "WindowManager.c"
 		} else {
 			MetaRectangle _tmp43_ = {0};
-#line 892 "/home/nick/work/gala/src/WindowManager.vala"
+#line 916 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp43_ = fallback;
-#line 892 "/home/nick/work/gala/src/WindowManager.vala"
+#line 916 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp39_ = _tmp43_;
-#line 6256 "WindowManager.c"
+#line 5748 "WindowManager.c"
 		}
-#line 892 "/home/nick/work/gala/src/WindowManager.vala"
+#line 916 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		old_outer_rect = _tmp39_;
-#line 894 "/home/nick/work/gala/src/WindowManager.vala"
+#line 918 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp44_ = _data9_->actor;
-#line 894 "/home/nick/work/gala/src/WindowManager.vala"
+#line 918 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp45_ = old_inner_rect;
-#line 894 "/home/nick/work/gala/src/WindowManager.vala"
+#line 918 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp46_ = old_outer_rect;
-#line 894 "/home/nick/work/gala/src/WindowManager.vala"
+#line 918 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp47_ = gala_utils_get_window_actor_snapshot (_tmp44_, &_tmp45_, &_tmp46_);
-#line 894 "/home/nick/work/gala/src/WindowManager.vala"
+#line 918 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data10_->old_actor = _tmp47_;
-#line 895 "/home/nick/work/gala/src/WindowManager.vala"
+#line 919 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp48_ = _data10_->old_actor;
-#line 895 "/home/nick/work/gala/src/WindowManager.vala"
+#line 919 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp48_ == NULL) {
-#line 6274 "WindowManager.c"
+#line 5766 "WindowManager.c"
 			MetaWindowActor* _tmp49_ = NULL;
-#line 896 "/home/nick/work/gala/src/WindowManager.vala"
+#line 920 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp49_ = _data9_->actor;
-#line 896 "/home/nick/work/gala/src/WindowManager.vala"
+#line 920 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gala_window_manager_gala_maximize_completed (self, _tmp49_);
-#line 897 "/home/nick/work/gala/src/WindowManager.vala"
+#line 921 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_gala_window_geometry_free0 (window_geometry);
-#line 897 "/home/nick/work/gala/src/WindowManager.vala"
+#line 921 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block10_data_unref (_data10_);
-#line 897 "/home/nick/work/gala/src/WindowManager.vala"
+#line 921 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data10_ = NULL;
-#line 897 "/home/nick/work/gala/src/WindowManager.vala"
+#line 921 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_object_unref0 (window);
-#line 897 "/home/nick/work/gala/src/WindowManager.vala"
+#line 921 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block9_data_unref (_data9_);
-#line 897 "/home/nick/work/gala/src/WindowManager.vala"
+#line 921 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data9_ = NULL;
-#line 897 "/home/nick/work/gala/src/WindowManager.vala"
+#line 921 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			return;
-#line 6294 "WindowManager.c"
+#line 5786 "WindowManager.c"
 		}
-#line 900 "/home/nick/work/gala/src/WindowManager.vala"
+#line 924 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp50_ = _data10_->old_actor;
-#line 900 "/home/nick/work/gala/src/WindowManager.vala"
+#line 924 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp51_ = old_inner_rect;
-#line 900 "/home/nick/work/gala/src/WindowManager.vala"
+#line 924 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp52_ = _tmp51_.x;
-#line 900 "/home/nick/work/gala/src/WindowManager.vala"
+#line 924 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp53_ = old_inner_rect;
-#line 900 "/home/nick/work/gala/src/WindowManager.vala"
+#line 924 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp54_ = _tmp53_.y;
-#line 900 "/home/nick/work/gala/src/WindowManager.vala"
+#line 924 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_position (_tmp50_, (gfloat) _tmp52_, (gfloat) _tmp54_);
-#line 902 "/home/nick/work/gala/src/WindowManager.vala"
+#line 926 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp55_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 902 "/home/nick/work/gala/src/WindowManager.vala"
+#line 926 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp56_ = _tmp55_;
-#line 902 "/home/nick/work/gala/src/WindowManager.vala"
+#line 926 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp57_ = _data10_->old_actor;
-#line 902 "/home/nick/work/gala/src/WindowManager.vala"
+#line 926 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_add_child (_tmp56_, _tmp57_);
-#line 912 "/home/nick/work/gala/src/WindowManager.vala"
+#line 936 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		delay = 0;
-#line 913 "/home/nick/work/gala/src/WindowManager.vala"
+#line 937 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp58_ = duration;
-#line 913 "/home/nick/work/gala/src/WindowManager.vala"
+#line 937 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (FLASH_PREVENT_TIMEOUT <= (_tmp58_ / 3)) {
-#line 6322 "WindowManager.c"
+#line 5814 "WindowManager.c"
 			MetaWindowActor* _tmp59_ = NULL;
-#line 914 "/home/nick/work/gala/src/WindowManager.vala"
+#line 938 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp59_ = _data9_->actor;
-#line 914 "/home/nick/work/gala/src/WindowManager.vala"
+#line 938 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp59_, (guint) 0);
-#line 915 "/home/nick/work/gala/src/WindowManager.vala"
+#line 939 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			delay = FLASH_PREVENT_TIMEOUT;
-#line 916 "/home/nick/work/gala/src/WindowManager.vala"
-			g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) FLASH_PREVENT_TIMEOUT, _____lambda92__gsource_func, block10_data_ref (_data10_), block10_data_unref);
-#line 6332 "WindowManager.c"
+#line 940 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) FLASH_PREVENT_TIMEOUT, _____lambda91__gsource_func, block10_data_ref (_data10_), block10_data_unref);
+#line 5824 "WindowManager.c"
 		}
-#line 922 "/home/nick/work/gala/src/WindowManager.vala"
+#line 946 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp60_ = ew;
-#line 922 "/home/nick/work/gala/src/WindowManager.vala"
+#line 946 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp61_ = old_inner_rect;
-#line 922 "/home/nick/work/gala/src/WindowManager.vala"
+#line 946 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp62_ = _tmp61_.width;
-#line 922 "/home/nick/work/gala/src/WindowManager.vala"
+#line 946 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		scale_x = ((gdouble) _tmp60_) / _tmp62_;
-#line 923 "/home/nick/work/gala/src/WindowManager.vala"
+#line 947 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp63_ = eh;
-#line 923 "/home/nick/work/gala/src/WindowManager.vala"
+#line 947 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp64_ = old_inner_rect;
-#line 923 "/home/nick/work/gala/src/WindowManager.vala"
+#line 947 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp65_ = _tmp64_.height;
-#line 923 "/home/nick/work/gala/src/WindowManager.vala"
+#line 947 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		scale_y = ((gdouble) _tmp63_) / _tmp65_;
-#line 925 "/home/nick/work/gala/src/WindowManager.vala"
+#line 949 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp66_ = _data10_->old_actor;
-#line 925 "/home/nick/work/gala/src/WindowManager.vala"
+#line 949 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_save_easing_state (_tmp66_);
-#line 926 "/home/nick/work/gala/src/WindowManager.vala"
+#line 950 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp67_ = _data10_->old_actor;
-#line 926 "/home/nick/work/gala/src/WindowManager.vala"
+#line 950 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_mode (_tmp67_, CLUTTER_EASE_IN_OUT_QUAD);
-#line 927 "/home/nick/work/gala/src/WindowManager.vala"
+#line 951 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp68_ = _data10_->old_actor;
-#line 927 "/home/nick/work/gala/src/WindowManager.vala"
+#line 951 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp69_ = duration;
-#line 927 "/home/nick/work/gala/src/WindowManager.vala"
+#line 951 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_duration (_tmp68_, (guint) _tmp69_);
-#line 928 "/home/nick/work/gala/src/WindowManager.vala"
+#line 952 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp70_ = _data10_->old_actor;
-#line 928 "/home/nick/work/gala/src/WindowManager.vala"
+#line 952 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp71_ = ex;
-#line 928 "/home/nick/work/gala/src/WindowManager.vala"
+#line 952 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp72_ = ey;
-#line 928 "/home/nick/work/gala/src/WindowManager.vala"
+#line 952 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_position (_tmp70_, (gfloat) _tmp71_, (gfloat) _tmp72_);
-#line 929 "/home/nick/work/gala/src/WindowManager.vala"
+#line 953 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp73_ = _data10_->old_actor;
-#line 929 "/home/nick/work/gala/src/WindowManager.vala"
+#line 953 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp74_ = scale_x;
-#line 929 "/home/nick/work/gala/src/WindowManager.vala"
+#line 953 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp75_ = scale_y;
-#line 929 "/home/nick/work/gala/src/WindowManager.vala"
+#line 953 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_scale (_tmp73_, _tmp74_, _tmp75_);
-#line 933 "/home/nick/work/gala/src/WindowManager.vala"
+#line 957 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp76_ = _data10_->old_actor;
-#line 933 "/home/nick/work/gala/src/WindowManager.vala"
+#line 957 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_save_easing_state (_tmp76_);
-#line 934 "/home/nick/work/gala/src/WindowManager.vala"
+#line 958 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp77_ = _data10_->old_actor;
-#line 934 "/home/nick/work/gala/src/WindowManager.vala"
+#line 958 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp78_ = delay;
-#line 934 "/home/nick/work/gala/src/WindowManager.vala"
+#line 958 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_delay (_tmp77_, (guint) _tmp78_);
-#line 935 "/home/nick/work/gala/src/WindowManager.vala"
+#line 959 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp79_ = _data10_->old_actor;
-#line 935 "/home/nick/work/gala/src/WindowManager.vala"
+#line 959 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp80_ = duration;
-#line 935 "/home/nick/work/gala/src/WindowManager.vala"
+#line 959 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp81_ = delay;
-#line 935 "/home/nick/work/gala/src/WindowManager.vala"
+#line 959 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_duration (_tmp79_, (guint) (_tmp80_ - _tmp81_));
-#line 936 "/home/nick/work/gala/src/WindowManager.vala"
+#line 960 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp82_ = _data10_->old_actor;
-#line 936 "/home/nick/work/gala/src/WindowManager.vala"
+#line 960 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_opacity (_tmp82_, (guint) 0);
-#line 937 "/home/nick/work/gala/src/WindowManager.vala"
+#line 961 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp83_ = _data10_->old_actor;
-#line 937 "/home/nick/work/gala/src/WindowManager.vala"
+#line 961 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_restore_easing_state (_tmp83_);
-#line 939 "/home/nick/work/gala/src/WindowManager.vala"
+#line 963 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp84_ = _data10_->old_actor;
-#line 939 "/home/nick/work/gala/src/WindowManager.vala"
+#line 963 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp85_ = clutter_actor_get_transition (_tmp84_, "x");
-#line 939 "/home/nick/work/gala/src/WindowManager.vala"
-		g_signal_connect_data ((ClutterTimeline*) _tmp85_, "stopped", (GCallback) ____lambda93__clutter_timeline_stopped, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
-#line 943 "/home/nick/work/gala/src/WindowManager.vala"
+#line 963 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		g_signal_connect_data ((ClutterTimeline*) _tmp85_, "stopped", (GCallback) ____lambda92__clutter_timeline_stopped, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
+#line 967 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp86_ = _data10_->old_actor;
-#line 943 "/home/nick/work/gala/src/WindowManager.vala"
+#line 967 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_restore_easing_state (_tmp86_);
-#line 945 "/home/nick/work/gala/src/WindowManager.vala"
+#line 969 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp87_ = _data9_->actor;
-#line 945 "/home/nick/work/gala/src/WindowManager.vala"
+#line 969 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_gala_maximize_completed (self, _tmp87_);
-#line 947 "/home/nick/work/gala/src/WindowManager.vala"
+#line 971 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp88_ = _data9_->actor;
-#line 947 "/home/nick/work/gala/src/WindowManager.vala"
+#line 971 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_pivot_point ((ClutterActor*) _tmp88_, 0.0f, 0.0f);
-#line 948 "/home/nick/work/gala/src/WindowManager.vala"
+#line 972 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp89_ = _data9_->actor;
-#line 948 "/home/nick/work/gala/src/WindowManager.vala"
+#line 972 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp90_ = old_inner_rect;
-#line 948 "/home/nick/work/gala/src/WindowManager.vala"
+#line 972 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp91_ = _tmp90_.x;
-#line 948 "/home/nick/work/gala/src/WindowManager.vala"
+#line 972 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp92_ = ex;
-#line 948 "/home/nick/work/gala/src/WindowManager.vala"
+#line 972 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp93_ = old_inner_rect;
-#line 948 "/home/nick/work/gala/src/WindowManager.vala"
+#line 972 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp94_ = _tmp93_.y;
-#line 948 "/home/nick/work/gala/src/WindowManager.vala"
+#line 972 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp95_ = ey;
-#line 948 "/home/nick/work/gala/src/WindowManager.vala"
+#line 972 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_translation ((ClutterActor*) _tmp89_, (gfloat) (_tmp91_ - _tmp92_), (gfloat) (_tmp94_ - _tmp95_), 0.0f);
-#line 949 "/home/nick/work/gala/src/WindowManager.vala"
+#line 973 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp96_ = _data9_->actor;
-#line 949 "/home/nick/work/gala/src/WindowManager.vala"
+#line 973 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp97_ = scale_x;
-#line 949 "/home/nick/work/gala/src/WindowManager.vala"
+#line 973 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp98_ = scale_y;
-#line 949 "/home/nick/work/gala/src/WindowManager.vala"
+#line 973 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_scale ((ClutterActor*) _tmp96_, 1.0f / _tmp97_, 1.0f / _tmp98_);
-#line 951 "/home/nick/work/gala/src/WindowManager.vala"
+#line 975 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp99_ = _data9_->actor;
-#line 951 "/home/nick/work/gala/src/WindowManager.vala"
+#line 975 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_save_easing_state ((ClutterActor*) _tmp99_);
-#line 952 "/home/nick/work/gala/src/WindowManager.vala"
+#line 976 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp100_ = _data9_->actor;
-#line 952 "/home/nick/work/gala/src/WindowManager.vala"
+#line 976 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_mode ((ClutterActor*) _tmp100_, CLUTTER_EASE_IN_OUT_QUAD);
-#line 953 "/home/nick/work/gala/src/WindowManager.vala"
+#line 977 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp101_ = _data9_->actor;
-#line 953 "/home/nick/work/gala/src/WindowManager.vala"
+#line 977 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp102_ = duration;
-#line 953 "/home/nick/work/gala/src/WindowManager.vala"
+#line 977 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_duration ((ClutterActor*) _tmp101_, (guint) _tmp102_);
-#line 954 "/home/nick/work/gala/src/WindowManager.vala"
+#line 978 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp103_ = _data9_->actor;
-#line 954 "/home/nick/work/gala/src/WindowManager.vala"
+#line 978 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_scale ((ClutterActor*) _tmp103_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 955 "/home/nick/work/gala/src/WindowManager.vala"
+#line 979 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp104_ = _data9_->actor;
-#line 955 "/home/nick/work/gala/src/WindowManager.vala"
+#line 979 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_translation ((ClutterActor*) _tmp104_, 0.0f, 0.0f, 0.0f);
-#line 956 "/home/nick/work/gala/src/WindowManager.vala"
+#line 980 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp105_ = _data9_->actor;
-#line 956 "/home/nick/work/gala/src/WindowManager.vala"
+#line 980 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_restore_easing_state ((ClutterActor*) _tmp105_);
-#line 958 "/home/nick/work/gala/src/WindowManager.vala"
+#line 982 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_gala_window_geometry_free0 (window_geometry);
-#line 958 "/home/nick/work/gala/src/WindowManager.vala"
+#line 982 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block10_data_unref (_data10_);
-#line 958 "/home/nick/work/gala/src/WindowManager.vala"
+#line 982 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data10_ = NULL;
-#line 958 "/home/nick/work/gala/src/WindowManager.vala"
+#line 982 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (window);
-#line 958 "/home/nick/work/gala/src/WindowManager.vala"
+#line 982 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block9_data_unref (_data9_);
-#line 958 "/home/nick/work/gala/src/WindowManager.vala"
+#line 982 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data9_ = NULL;
-#line 958 "/home/nick/work/gala/src/WindowManager.vala"
+#line 982 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 6488 "WindowManager.c"
+#line 5980 "WindowManager.c"
 	}
-#line 961 "/home/nick/work/gala/src/WindowManager.vala"
+#line 985 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp106_ = _data9_->actor;
-#line 961 "/home/nick/work/gala/src/WindowManager.vala"
+#line 985 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_maximize_completed (self, _tmp106_);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (window);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	block9_data_unref (_data9_);
-#line 872 "/home/nick/work/gala/src/WindowManager.vala"
+#line 896 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data9_ = NULL;
-#line 6500 "WindowManager.c"
+#line 5992 "WindowManager.c"
 }
 
 
 static Block11Data* block11_data_ref (Block11Data* _data11_) {
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data11_->_ref_count_);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data11_;
-#line 6509 "WindowManager.c"
+#line 6001 "WindowManager.c"
 }
 
 
 static void block11_data_unref (void * _userdata_) {
 	Block11Data* _data11_;
 	_data11_ = (Block11Data*) _userdata_;
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data11_->_ref_count_)) {
-#line 6518 "WindowManager.c"
+#line 6010 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data11_->self;
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_data11_->actor);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block11Data, _data11_);
-#line 6528 "WindowManager.c"
+#line 6020 "WindowManager.c"
 	}
 }
 
 
 static Block12Data* block12_data_ref (Block12Data* _data12_) {
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data12_->_ref_count_);
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data12_;
-#line 6538 "WindowManager.c"
+#line 6030 "WindowManager.c"
 }
 
 
 static void block12_data_unref (void * _userdata_) {
 	Block12Data* _data12_;
 	_data12_ = (Block12Data*) _userdata_;
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data12_->_ref_count_)) {
-#line 6547 "WindowManager.c"
+#line 6039 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data12_->_data11_->self;
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block11_data_unref (_data12_->_data11_);
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data12_->_data11_ = NULL;
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block12Data, _data12_);
-#line 6557 "WindowManager.c"
+#line 6049 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda97_ (Block12Data* _data12_) {
+static void ___lambda96_ (Block12Data* _data12_) {
 	Block11Data* _data11_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -6567,34 +6059,34 @@ static void ___lambda97_ (Block12Data* _data12_) {
 	GeeHashSet* _tmp2_ = NULL;
 	MetaWindowActor* _tmp3_ = NULL;
 	MetaWindowActor* _tmp4_ = NULL;
-#line 1001 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1025 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data11_ = _data12_->_data11_;
-#line 1001 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1025 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data11_->self;
-#line 1002 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1026 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data11_->actor;
-#line 1002 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1026 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data12_->unminimize_handler_id;
-#line 1002 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1026 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 1003 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1027 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = self->priv->unminimizing;
-#line 1003 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1027 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data11_->actor;
-#line 1003 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1027 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp2_, _tmp3_);
-#line 1004 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1028 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data11_->actor;
-#line 1004 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1028 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_unminimize_completed ((MetaPlugin*) self, _tmp4_);
-#line 6590 "WindowManager.c"
+#line 6082 "WindowManager.c"
 }
 
 
-static void ____lambda97__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 1001 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda97_ (self);
-#line 6597 "WindowManager.c"
+static void ____lambda96__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 1025 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda96_ (self);
+#line 6089 "WindowManager.c"
 }
 
 
@@ -6617,82 +6109,82 @@ static void gala_window_manager_gala_real_unminimize (MetaPlugin* base, MetaWind
 	MetaWindow* _tmp13_ = NULL;
 	MetaWindowType _tmp14_ = 0;
 	MetaWindowType _tmp15_ = 0;
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data11_ = g_slice_new0 (Block11Data);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data11_->_ref_count_ = 1;
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data11_->self = g_object_ref (self);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = actor;
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (_data11_->actor);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data11_->actor = _tmp1_;
-#line 966 "/home/nick/work/gala/src/WindowManager.vala"
+#line 990 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gala_animation_settings_get_default ();
-#line 966 "/home/nick/work/gala/src/WindowManager.vala"
+#line 990 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_settings = _tmp2_;
-#line 968 "/home/nick/work/gala/src/WindowManager.vala"
+#line 992 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = animation_settings;
-#line 968 "/home/nick/work/gala/src/WindowManager.vala"
+#line 992 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = gala_animation_settings_get_enable_animations (_tmp3_);
-#line 968 "/home/nick/work/gala/src/WindowManager.vala"
+#line 992 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _tmp4_;
-#line 968 "/home/nick/work/gala/src/WindowManager.vala"
+#line 992 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp5_) {
-#line 6650 "WindowManager.c"
+#line 6142 "WindowManager.c"
 		MetaWindowActor* _tmp6_ = NULL;
 		MetaWindowActor* _tmp7_ = NULL;
-#line 969 "/home/nick/work/gala/src/WindowManager.vala"
+#line 993 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = _data11_->actor;
-#line 969 "/home/nick/work/gala/src/WindowManager.vala"
+#line 993 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_show ((ClutterActor*) _tmp6_);
-#line 970 "/home/nick/work/gala/src/WindowManager.vala"
+#line 994 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp7_ = _data11_->actor;
-#line 970 "/home/nick/work/gala/src/WindowManager.vala"
+#line 994 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_unminimize_completed ((MetaPlugin*) self, _tmp7_);
-#line 971 "/home/nick/work/gala/src/WindowManager.vala"
+#line 995 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block11_data_unref (_data11_);
-#line 971 "/home/nick/work/gala/src/WindowManager.vala"
+#line 995 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data11_ = NULL;
-#line 971 "/home/nick/work/gala/src/WindowManager.vala"
+#line 995 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 6667 "WindowManager.c"
+#line 6159 "WindowManager.c"
 	}
-#line 974 "/home/nick/work/gala/src/WindowManager.vala"
+#line 998 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = _data11_->actor;
-#line 974 "/home/nick/work/gala/src/WindowManager.vala"
+#line 998 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = meta_window_actor_get_meta_window (_tmp8_);
-#line 974 "/home/nick/work/gala/src/WindowManager.vala"
+#line 998 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = _g_object_ref0 (_tmp9_);
-#line 974 "/home/nick/work/gala/src/WindowManager.vala"
+#line 998 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	window = _tmp10_;
-#line 976 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1000 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = _data11_->actor;
-#line 976 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1000 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_remove_all_transitions ((ClutterActor*) _tmp11_);
-#line 977 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1001 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = _data11_->actor;
-#line 977 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1001 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_show ((ClutterActor*) _tmp12_);
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = window;
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp14_ = meta_window_get_window_type (_tmp13_);
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = _tmp14_;
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	switch (_tmp15_) {
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_NORMAL:
-#line 6695 "WindowManager.c"
+#line 6187 "WindowManager.c"
 		{
 			Block12Data* _data12_;
 			gint duration = 0;
@@ -6714,185 +6206,185 @@ static void gala_window_manager_gala_real_unminimize (MetaPlugin* base, MetaWind
 			MetaWindowActor* _tmp32_ = NULL;
 			MetaWindowActor* _tmp33_ = NULL;
 			gulong _tmp34_ = 0UL;
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data12_ = g_slice_new0 (Block12Data);
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data12_->_ref_count_ = 1;
-#line 979 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1003 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data12_->_data11_ = block11_data_ref (_data11_);
-#line 981 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1005 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp16_ = animation_settings;
-#line 981 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1005 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp17_ = gala_animation_settings_get_minimize_duration (_tmp16_);
-#line 981 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1005 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp18_ = _tmp17_;
-#line 981 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1005 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			duration = _tmp18_;
-#line 982 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1006 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp19_ = duration;
-#line 982 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1006 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp19_ == 0) {
-#line 6735 "WindowManager.c"
+#line 6227 "WindowManager.c"
 				MetaWindowActor* _tmp20_ = NULL;
-#line 983 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1007 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp20_ = _data11_->actor;
-#line 983 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1007 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_plugin_unminimize_completed ((MetaPlugin*) self, _tmp20_);
-#line 984 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1008 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block12_data_unref (_data12_);
-#line 984 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1008 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data12_ = NULL;
-#line 984 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1008 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (window);
-#line 984 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1008 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block11_data_unref (_data11_);
-#line 984 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1008 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data11_ = NULL;
-#line 984 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1008 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				return;
-#line 6753 "WindowManager.c"
+#line 6245 "WindowManager.c"
 			}
-#line 987 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1011 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp21_ = self->priv->unminimizing;
-#line 987 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1011 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp22_ = _data11_->actor;
-#line 987 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1011 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gee_abstract_collection_add ((GeeAbstractCollection*) _tmp21_, _tmp22_);
-#line 989 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1013 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp23_ = _data11_->actor;
-#line 989 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1013 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_pivot_point ((ClutterActor*) _tmp23_, 0.5f, 1.0f);
-#line 990 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1014 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp24_ = _data11_->actor;
-#line 990 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1014 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp24_, (gdouble) 0.01f, (gdouble) 0.1f);
-#line 991 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1015 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp25_ = _data11_->actor;
-#line 991 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1015 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp25_, 0U);
-#line 993 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1017 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp26_ = _data11_->actor;
-#line 993 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1017 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_save_easing_state ((ClutterActor*) _tmp26_);
-#line 994 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1018 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp27_ = _data11_->actor;
-#line 994 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1018 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_mode ((ClutterActor*) _tmp27_, CLUTTER_EASE_OUT_EXPO);
-#line 995 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1019 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp28_ = _data11_->actor;
-#line 995 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1019 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp29_ = duration;
-#line 995 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1019 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_duration ((ClutterActor*) _tmp28_, (guint) _tmp29_);
-#line 996 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1020 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp30_ = _data11_->actor;
-#line 996 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1020 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp30_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 997 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1021 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp31_ = _data11_->actor;
-#line 997 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1021 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp31_, 255U);
-#line 998 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1022 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp32_ = _data11_->actor;
-#line 998 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1022 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_restore_easing_state ((ClutterActor*) _tmp32_);
-#line 1000 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1024 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data12_->unminimize_handler_id = 0UL;
-#line 1001 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1025 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp33_ = _data11_->actor;
-#line 1001 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp34_ = g_signal_connect_data ((ClutterActor*) _tmp33_, "transitions-completed", (GCallback) ____lambda97__clutter_actor_transitions_completed, block12_data_ref (_data12_), (GClosureNotify) block12_data_unref, 0);
-#line 1001 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1025 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp34_ = g_signal_connect_data ((ClutterActor*) _tmp33_, "transitions-completed", (GCallback) ____lambda96__clutter_actor_transitions_completed, block12_data_ref (_data12_), (GClosureNotify) block12_data_unref, 0);
+#line 1025 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data12_->unminimize_handler_id = _tmp34_;
-#line 1007 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1031 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block12_data_unref (_data12_);
-#line 1007 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1031 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data12_ = NULL;
-#line 1007 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1031 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 6813 "WindowManager.c"
+#line 6305 "WindowManager.c"
 		}
 		default:
 		{
 			MetaWindowActor* _tmp35_ = NULL;
-#line 1009 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1033 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp35_ = _data11_->actor;
-#line 1009 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1033 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			meta_plugin_unminimize_completed ((MetaPlugin*) self, _tmp35_);
-#line 1010 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1034 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 6824 "WindowManager.c"
+#line 6316 "WindowManager.c"
 		}
 	}
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (window);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	block11_data_unref (_data11_);
-#line 964 "/home/nick/work/gala/src/WindowManager.vala"
+#line 988 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data11_ = NULL;
-#line 6833 "WindowManager.c"
+#line 6325 "WindowManager.c"
 }
 
 
 static Block13Data* block13_data_ref (Block13Data* _data13_) {
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data13_->_ref_count_);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data13_;
-#line 6842 "WindowManager.c"
+#line 6334 "WindowManager.c"
 }
 
 
 static void block13_data_unref (void * _userdata_) {
 	Block13Data* _data13_;
 	_data13_ = (Block13Data*) _userdata_;
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data13_->_ref_count_)) {
-#line 6851 "WindowManager.c"
+#line 6343 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data13_->self;
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_data13_->actor);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block13Data, _data13_);
-#line 6861 "WindowManager.c"
+#line 6353 "WindowManager.c"
 	}
 }
 
 
 static Block14Data* block14_data_ref (Block14Data* _data14_) {
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data14_->_ref_count_);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data14_;
-#line 6871 "WindowManager.c"
+#line 6363 "WindowManager.c"
 }
 
 
 static void block14_data_unref (void * _userdata_) {
 	Block14Data* _data14_;
 	_data14_ = (Block14Data*) _userdata_;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data14_->_ref_count_)) {
-#line 6880 "WindowManager.c"
+#line 6372 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data14_->_data13_->self;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block13_data_unref (_data14_->_data13_);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data14_->_data13_ = NULL;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block14Data, _data14_);
-#line 6890 "WindowManager.c"
+#line 6382 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda98_ (Block14Data* _data14_) {
+static void ___lambda97_ (Block14Data* _data14_) {
 	Block13Data* _data13_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -6900,67 +6392,67 @@ static void ___lambda98_ (Block14Data* _data14_) {
 	GeeHashSet* _tmp2_ = NULL;
 	MetaWindowActor* _tmp3_ = NULL;
 	MetaWindowActor* _tmp4_ = NULL;
-#line 1056 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1080 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data13_ = _data14_->_data13_;
-#line 1056 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1080 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data13_->self;
-#line 1057 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1081 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data13_->actor;
-#line 1057 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1081 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data14_->map_handler_id;
-#line 1057 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1081 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 1058 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1082 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = self->priv->mapping;
-#line 1058 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1082 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data13_->actor;
-#line 1058 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1082 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp2_, _tmp3_);
-#line 1059 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1083 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data13_->actor;
-#line 1059 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1083 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_map_completed ((MetaPlugin*) self, _tmp4_);
-#line 6923 "WindowManager.c"
+#line 6415 "WindowManager.c"
 }
 
 
-static void ____lambda98__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 1056 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda98_ (self);
-#line 6930 "WindowManager.c"
+static void ____lambda97__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 1080 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda97_ (self);
+#line 6422 "WindowManager.c"
 }
 
 
 static Block15Data* block15_data_ref (Block15Data* _data15_) {
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data15_->_ref_count_);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data15_;
-#line 6939 "WindowManager.c"
+#line 6431 "WindowManager.c"
 }
 
 
 static void block15_data_unref (void * _userdata_) {
 	Block15Data* _data15_;
 	_data15_ = (Block15Data*) _userdata_;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data15_->_ref_count_)) {
-#line 6948 "WindowManager.c"
+#line 6440 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data15_->_data13_->self;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block13_data_unref (_data15_->_data13_);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data15_->_data13_ = NULL;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block15Data, _data15_);
-#line 6958 "WindowManager.c"
+#line 6450 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda99_ (Block15Data* _data15_) {
+static void ___lambda98_ (Block15Data* _data15_) {
 	Block13Data* _data13_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -6968,67 +6460,67 @@ static void ___lambda99_ (Block15Data* _data15_) {
 	GeeHashSet* _tmp2_ = NULL;
 	MetaWindowActor* _tmp3_ = NULL;
 	MetaWindowActor* _tmp4_ = NULL;
-#line 1086 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1110 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data13_ = _data15_->_data13_;
-#line 1086 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1110 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data13_->self;
-#line 1087 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1111 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data13_->actor;
-#line 1087 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1111 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data15_->map_handler_id;
-#line 1087 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1111 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 1088 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1112 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = self->priv->mapping;
-#line 1088 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1112 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data13_->actor;
-#line 1088 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1112 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp2_, _tmp3_);
-#line 1089 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1113 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data13_->actor;
-#line 1089 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1113 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_map_completed ((MetaPlugin*) self, _tmp4_);
-#line 6991 "WindowManager.c"
+#line 6483 "WindowManager.c"
 }
 
 
-static void ____lambda99__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 1086 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda99_ (self);
-#line 6998 "WindowManager.c"
+static void ____lambda98__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 1110 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda98_ (self);
+#line 6490 "WindowManager.c"
 }
 
 
 static Block16Data* block16_data_ref (Block16Data* _data16_) {
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data16_->_ref_count_);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data16_;
-#line 7007 "WindowManager.c"
+#line 6499 "WindowManager.c"
 }
 
 
 static void block16_data_unref (void * _userdata_) {
 	Block16Data* _data16_;
 	_data16_ = (Block16Data*) _userdata_;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data16_->_ref_count_)) {
-#line 7016 "WindowManager.c"
+#line 6508 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data16_->_data13_->self;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block13_data_unref (_data16_->_data13_);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data16_->_data13_ = NULL;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block16Data, _data16_);
-#line 7026 "WindowManager.c"
+#line 6518 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda100_ (Block16Data* _data16_) {
+static void ___lambda99_ (Block16Data* _data16_) {
 	Block13Data* _data13_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -7036,34 +6528,34 @@ static void ___lambda100_ (Block16Data* _data16_) {
 	GeeHashSet* _tmp2_ = NULL;
 	MetaWindowActor* _tmp3_ = NULL;
 	MetaWindowActor* _tmp4_ = NULL;
-#line 1109 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1133 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data13_ = _data16_->_data13_;
-#line 1109 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1133 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data13_->self;
-#line 1110 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data13_->actor;
-#line 1110 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data16_->map_handler_id;
-#line 1110 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1134 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 1111 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1135 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = self->priv->mapping;
-#line 1111 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1135 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data13_->actor;
-#line 1111 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1135 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp2_, _tmp3_);
-#line 1112 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1136 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data13_->actor;
-#line 1112 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1136 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_map_completed ((MetaPlugin*) self, _tmp4_);
-#line 7059 "WindowManager.c"
+#line 6551 "WindowManager.c"
 }
 
 
-static void ____lambda100__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 1109 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda100_ (self);
-#line 7066 "WindowManager.c"
+static void ____lambda99__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 1133 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda99_ (self);
+#line 6558 "WindowManager.c"
 }
 
 
@@ -7086,82 +6578,82 @@ static void gala_window_manager_gala_real_map (MetaPlugin* base, MetaWindowActor
 	MetaWindow* _tmp13_ = NULL;
 	MetaWindowType _tmp14_ = 0;
 	MetaWindowType _tmp15_ = 0;
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data13_ = g_slice_new0 (Block13Data);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data13_->_ref_count_ = 1;
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data13_->self = g_object_ref (self);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = actor;
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (_data13_->actor);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data13_->actor = _tmp1_;
-#line 1016 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1040 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gala_animation_settings_get_default ();
-#line 1016 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1040 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_settings = _tmp2_;
-#line 1018 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1042 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = animation_settings;
-#line 1018 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1042 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = gala_animation_settings_get_enable_animations (_tmp3_);
-#line 1018 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1042 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _tmp4_;
-#line 1018 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1042 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp5_) {
-#line 7119 "WindowManager.c"
+#line 6611 "WindowManager.c"
 		MetaWindowActor* _tmp6_ = NULL;
 		MetaWindowActor* _tmp7_ = NULL;
-#line 1019 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1043 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = _data13_->actor;
-#line 1019 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1043 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_show ((ClutterActor*) _tmp6_);
-#line 1020 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1044 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp7_ = _data13_->actor;
-#line 1020 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1044 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_map_completed ((MetaPlugin*) self, _tmp7_);
-#line 1021 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1045 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block13_data_unref (_data13_);
-#line 1021 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1045 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data13_ = NULL;
-#line 1021 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1045 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 7136 "WindowManager.c"
+#line 6628 "WindowManager.c"
 	}
-#line 1024 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1048 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = _data13_->actor;
-#line 1024 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1048 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = meta_window_actor_get_meta_window (_tmp8_);
-#line 1024 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1048 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = _g_object_ref0 (_tmp9_);
-#line 1024 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1048 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	window = _tmp10_;
-#line 1026 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1050 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = _data13_->actor;
-#line 1026 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1050 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_remove_all_transitions ((ClutterActor*) _tmp11_);
-#line 1027 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1051 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = _data13_->actor;
-#line 1027 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1051 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_show ((ClutterActor*) _tmp12_);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = window;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp14_ = meta_window_get_window_type (_tmp13_);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = _tmp14_;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	switch (_tmp15_) {
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_NORMAL:
-#line 7164 "WindowManager.c"
+#line 6656 "WindowManager.c"
 		{
 			Block14Data* _data14_;
 			gint duration = 0;
@@ -7187,78 +6679,78 @@ static void gala_window_manager_gala_real_map (MetaPlugin* base, MetaWindowActor
 			MetaWindowActor* _tmp46_ = NULL;
 			MetaWindowActor* _tmp47_ = NULL;
 			gulong _tmp48_ = 0UL;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data14_ = g_slice_new0 (Block14Data);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data14_->_ref_count_ = 1;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data14_->_data13_ = block13_data_ref (_data13_);
-#line 1031 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1055 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp16_ = animation_settings;
-#line 1031 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1055 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp17_ = gala_animation_settings_get_open_duration (_tmp16_);
-#line 1031 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1055 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp18_ = _tmp17_;
-#line 1031 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1055 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			duration = _tmp18_;
-#line 1032 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1056 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp19_ = duration;
-#line 1032 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1056 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp19_ == 0) {
-#line 7208 "WindowManager.c"
+#line 6700 "WindowManager.c"
 				MetaWindowActor* _tmp20_ = NULL;
-#line 1033 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1057 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp20_ = _data13_->actor;
-#line 1033 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1057 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_plugin_map_completed ((MetaPlugin*) self, _tmp20_);
-#line 1034 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1058 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block14_data_unref (_data14_);
-#line 1034 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1058 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data14_ = NULL;
-#line 1034 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1058 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (window);
-#line 1034 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1058 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block13_data_unref (_data13_);
-#line 1034 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1058 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data13_ = NULL;
-#line 1034 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1058 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				return;
-#line 7226 "WindowManager.c"
+#line 6718 "WindowManager.c"
 			}
-#line 1037 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1061 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp21_ = self->priv->mapping;
-#line 1037 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1061 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp22_ = _data13_->actor;
-#line 1037 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1061 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gee_abstract_collection_add ((GeeAbstractCollection*) _tmp21_, _tmp22_);
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp24_ = window;
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			g_object_get (_tmp24_, "maximized-vertically", &_tmp25_, NULL);
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp26_ = _tmp25_;
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp26_) {
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp23_ = TRUE;
-#line 7244 "WindowManager.c"
+#line 6736 "WindowManager.c"
 			} else {
 				MetaWindow* _tmp27_ = NULL;
 				gboolean _tmp28_ = FALSE;
 				gboolean _tmp29_ = FALSE;
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp27_ = window;
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				g_object_get (_tmp27_, "maximized-horizontally", &_tmp28_, NULL);
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp29_ = _tmp28_;
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp23_ = _tmp29_;
-#line 7257 "WindowManager.c"
+#line 6749 "WindowManager.c"
 			}
-#line 1039 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1063 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp23_) {
-#line 7261 "WindowManager.c"
+#line 6753 "WindowManager.c"
 				MetaRectangle outer_rect = {0};
 				MetaWindow* _tmp30_ = NULL;
 				MetaRectangle _tmp31_ = {0};
@@ -7267,87 +6759,87 @@ static void gala_window_manager_gala_real_map (MetaPlugin* base, MetaWindowActor
 				gint _tmp34_ = 0;
 				MetaRectangle _tmp35_ = {0};
 				gint _tmp36_ = 0;
-#line 1040 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1064 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp30_ = window;
-#line 1040 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1064 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_window_get_frame_rect (_tmp30_, &_tmp31_);
-#line 1040 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1064 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				outer_rect = _tmp31_;
-#line 1041 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1065 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp32_ = _data13_->actor;
-#line 1041 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1065 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp33_ = outer_rect;
-#line 1041 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1065 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp34_ = _tmp33_.x;
-#line 1041 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1065 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp35_ = outer_rect;
-#line 1041 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1065 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp36_ = _tmp35_.y;
-#line 1041 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1065 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				clutter_actor_set_position ((ClutterActor*) _tmp32_, (gfloat) _tmp34_, (gfloat) _tmp36_);
-#line 7288 "WindowManager.c"
+#line 6780 "WindowManager.c"
 			}
-#line 1044 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1068 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp37_ = _data13_->actor;
-#line 1044 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1068 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_pivot_point ((ClutterActor*) _tmp37_, 0.5f, 1.0f);
-#line 1045 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1069 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp38_ = _data13_->actor;
-#line 1045 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1069 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp38_, (gdouble) 0.01f, (gdouble) 0.1f);
-#line 1046 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1070 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp39_ = _data13_->actor;
-#line 1046 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1070 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp39_, (guint) 0);
-#line 1048 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1072 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp40_ = _data13_->actor;
-#line 1048 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1072 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_save_easing_state ((ClutterActor*) _tmp40_);
-#line 1049 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1073 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp41_ = _data13_->actor;
-#line 1049 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1073 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_mode ((ClutterActor*) _tmp41_, CLUTTER_EASE_OUT_EXPO);
-#line 1050 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1074 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp42_ = _data13_->actor;
-#line 1050 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1074 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp43_ = duration;
-#line 1050 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1074 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_duration ((ClutterActor*) _tmp42_, (guint) _tmp43_);
-#line 1051 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1075 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp44_ = _data13_->actor;
-#line 1051 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1075 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp44_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 1052 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1076 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp45_ = _data13_->actor;
-#line 1052 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1076 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp45_, 255U);
-#line 1053 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1077 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp46_ = _data13_->actor;
-#line 1053 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1077 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_restore_easing_state ((ClutterActor*) _tmp46_);
-#line 1055 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1079 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data14_->map_handler_id = 0UL;
-#line 1056 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1080 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp47_ = _data13_->actor;
-#line 1056 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp48_ = g_signal_connect_data ((ClutterActor*) _tmp47_, "transitions-completed", (GCallback) ____lambda98__clutter_actor_transitions_completed, block14_data_ref (_data14_), (GClosureNotify) block14_data_unref, 0);
-#line 1056 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1080 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp48_ = g_signal_connect_data ((ClutterActor*) _tmp47_, "transitions-completed", (GCallback) ____lambda97__clutter_actor_transitions_completed, block14_data_ref (_data14_), (GClosureNotify) block14_data_unref, 0);
+#line 1080 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data14_->map_handler_id = _tmp48_;
-#line 1061 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1085 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block14_data_unref (_data14_);
-#line 1061 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1085 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data14_ = NULL;
-#line 1061 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1085 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 7342 "WindowManager.c"
+#line 6834 "WindowManager.c"
 		}
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_MENU:
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_DROPDOWN_MENU:
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_POPUP_MENU:
-#line 7350 "WindowManager.c"
+#line 6842 "WindowManager.c"
 		{
 			Block15Data* _data15_;
 			gint duration = 0;
@@ -7370,113 +6862,113 @@ static void gala_window_manager_gala_real_map (MetaPlugin* base, MetaWindowActor
 			MetaWindowActor* _tmp66_ = NULL;
 			MetaWindowActor* _tmp67_ = NULL;
 			gulong _tmp68_ = 0UL;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data15_ = g_slice_new0 (Block15Data);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data15_->_ref_count_ = 1;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data15_->_data13_ = block13_data_ref (_data13_);
-#line 1065 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1089 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp49_ = animation_settings;
-#line 1065 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1089 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp50_ = gala_animation_settings_get_menu_duration (_tmp49_);
-#line 1065 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1089 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp51_ = _tmp50_;
-#line 1065 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1089 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			duration = _tmp51_;
-#line 1066 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1090 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp52_ = duration;
-#line 1066 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1090 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp52_ == 0) {
-#line 7391 "WindowManager.c"
+#line 6883 "WindowManager.c"
 				MetaWindowActor* _tmp53_ = NULL;
-#line 1067 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1091 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp53_ = _data13_->actor;
-#line 1067 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1091 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_plugin_map_completed ((MetaPlugin*) self, _tmp53_);
-#line 1068 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1092 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block15_data_unref (_data15_);
-#line 1068 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1092 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data15_ = NULL;
-#line 1068 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1092 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (window);
-#line 1068 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1092 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block13_data_unref (_data13_);
-#line 1068 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1092 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data13_ = NULL;
-#line 1068 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1092 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				return;
-#line 7409 "WindowManager.c"
+#line 6901 "WindowManager.c"
 			}
-#line 1071 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1095 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp54_ = self->priv->mapping;
-#line 1071 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1095 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp55_ = _data13_->actor;
-#line 1071 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1095 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gee_abstract_collection_add ((GeeAbstractCollection*) _tmp54_, _tmp55_);
-#line 1073 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1097 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp56_ = _data13_->actor;
-#line 1073 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1097 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_pivot_point ((ClutterActor*) _tmp56_, 0.5f, 0.5f);
-#line 1074 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1098 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp57_ = _data13_->actor;
-#line 1074 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1098 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_pivot_point_z ((ClutterActor*) _tmp57_, 0.2f);
-#line 1075 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1099 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp58_ = _data13_->actor;
-#line 1075 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1099 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp58_, (gdouble) 0.9f, (gdouble) 0.9f);
-#line 1076 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1100 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp59_ = _data13_->actor;
-#line 1076 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1100 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp59_, (guint) 0);
-#line 1078 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1102 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp60_ = _data13_->actor;
-#line 1078 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1102 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_save_easing_state ((ClutterActor*) _tmp60_);
-#line 1079 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1103 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp61_ = _data13_->actor;
-#line 1079 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1103 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_mode ((ClutterActor*) _tmp61_, CLUTTER_EASE_OUT_QUAD);
-#line 1080 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1104 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp62_ = _data13_->actor;
-#line 1080 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1104 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp63_ = duration;
-#line 1080 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1104 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_duration ((ClutterActor*) _tmp62_, (guint) _tmp63_);
-#line 1081 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1105 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp64_ = _data13_->actor;
-#line 1081 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1105 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp64_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 1082 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1106 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp65_ = _data13_->actor;
-#line 1082 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1106 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp65_, 255U);
-#line 1083 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1107 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp66_ = _data13_->actor;
-#line 1083 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1107 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_restore_easing_state ((ClutterActor*) _tmp66_);
-#line 1085 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1109 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data15_->map_handler_id = 0UL;
-#line 1086 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1110 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp67_ = _data13_->actor;
-#line 1086 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp68_ = g_signal_connect_data ((ClutterActor*) _tmp67_, "transitions-completed", (GCallback) ____lambda99__clutter_actor_transitions_completed, block15_data_ref (_data15_), (GClosureNotify) block15_data_unref, 0);
-#line 1086 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1110 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp68_ = g_signal_connect_data ((ClutterActor*) _tmp67_, "transitions-completed", (GCallback) ____lambda98__clutter_actor_transitions_completed, block15_data_ref (_data15_), (GClosureNotify) block15_data_unref, 0);
+#line 1110 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data15_->map_handler_id = _tmp68_;
-#line 1091 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1115 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block15_data_unref (_data15_);
-#line 1091 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1115 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data15_ = NULL;
-#line 1091 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1115 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 7473 "WindowManager.c"
+#line 6965 "WindowManager.c"
 		}
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_MODAL_DIALOG:
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_DIALOG:
-#line 7479 "WindowManager.c"
+#line 6971 "WindowManager.c"
 		{
 			Block16Data* _data16_;
 			GeeHashSet* _tmp69_ = NULL;
@@ -7497,207 +6989,207 @@ static void gala_window_manager_gala_real_map (MetaPlugin* base, MetaWindowActor
 			GalaAppearanceSettings* _tmp84_ = NULL;
 			gboolean _tmp85_ = FALSE;
 			gboolean _tmp86_ = FALSE;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data16_ = g_slice_new0 (Block16Data);
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data16_->_ref_count_ = 1;
-#line 1029 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1053 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data16_->_data13_ = block13_data_ref (_data13_);
-#line 1095 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1119 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp69_ = self->priv->mapping;
-#line 1095 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1119 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp70_ = _data13_->actor;
-#line 1095 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1119 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gee_abstract_collection_add ((GeeAbstractCollection*) _tmp69_, _tmp70_);
-#line 1097 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1121 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp71_ = _data13_->actor;
-#line 1097 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1121 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_pivot_point ((ClutterActor*) _tmp71_, 0.5f, 0.5f);
-#line 1098 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1122 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp72_ = _data13_->actor;
-#line 1098 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1122 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp72_, (gdouble) 0.9f, (gdouble) 0.9f);
-#line 1099 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1123 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp73_ = _data13_->actor;
-#line 1099 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1123 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp73_, (guint) 0);
-#line 1101 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1125 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp74_ = _data13_->actor;
-#line 1101 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1125 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_save_easing_state ((ClutterActor*) _tmp74_);
-#line 1102 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1126 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp75_ = _data13_->actor;
-#line 1102 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1126 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_mode ((ClutterActor*) _tmp75_, CLUTTER_EASE_OUT_QUAD);
-#line 1103 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1127 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp76_ = _data13_->actor;
-#line 1103 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1127 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_duration ((ClutterActor*) _tmp76_, (guint) 150);
-#line 1104 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1128 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp77_ = _data13_->actor;
-#line 1104 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1128 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp77_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 1105 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1129 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp78_ = _data13_->actor;
-#line 1105 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1129 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp78_, 255U);
-#line 1106 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1130 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp79_ = _data13_->actor;
-#line 1106 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1130 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_restore_easing_state ((ClutterActor*) _tmp79_);
-#line 1108 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1132 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data16_->map_handler_id = 0UL;
-#line 1109 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1133 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp80_ = _data13_->actor;
-#line 1109 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp81_ = g_signal_connect_data ((ClutterActor*) _tmp80_, "transitions-completed", (GCallback) ____lambda100__clutter_actor_transitions_completed, block16_data_ref (_data16_), (GClosureNotify) block16_data_unref, 0);
-#line 1109 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1133 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp81_ = g_signal_connect_data ((ClutterActor*) _tmp80_, "transitions-completed", (GCallback) ____lambda99__clutter_actor_transitions_completed, block16_data_ref (_data16_), (GClosureNotify) block16_data_unref, 0);
+#line 1133 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data16_->map_handler_id = _tmp81_;
-#line 1115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp84_ = gala_appearance_settings_get_default ();
-#line 1115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp85_ = gala_appearance_settings_get_dim_parents (_tmp84_);
-#line 1115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp86_ = _tmp85_;
-#line 1115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp86_) {
-#line 7564 "WindowManager.c"
+#line 7056 "WindowManager.c"
 				MetaWindow* _tmp87_ = NULL;
 				MetaWindowType _tmp88_ = 0;
 				MetaWindowType _tmp89_ = 0;
-#line 1116 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1140 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp87_ = window;
-#line 1116 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1140 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp88_ = meta_window_get_window_type (_tmp87_);
-#line 1116 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1140 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp89_ = _tmp88_;
-#line 1116 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1140 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp83_ = _tmp89_ == META_WINDOW_MODAL_DIALOG;
-#line 7576 "WindowManager.c"
+#line 7068 "WindowManager.c"
 			} else {
-#line 1115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp83_ = FALSE;
-#line 7580 "WindowManager.c"
+#line 7072 "WindowManager.c"
 			}
-#line 1115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp83_) {
-#line 7584 "WindowManager.c"
+#line 7076 "WindowManager.c"
 				MetaWindow* _tmp90_ = NULL;
 				gboolean _tmp91_ = FALSE;
-#line 1117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1141 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp90_ = window;
-#line 1117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1141 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp91_ = meta_window_is_attached_dialog (_tmp90_);
-#line 1117 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1141 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp82_ = _tmp91_;
-#line 7593 "WindowManager.c"
+#line 7085 "WindowManager.c"
 			} else {
-#line 1115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp82_ = FALSE;
-#line 7597 "WindowManager.c"
+#line 7089 "WindowManager.c"
 			}
-#line 1115 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1139 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp82_) {
-#line 7601 "WindowManager.c"
+#line 7093 "WindowManager.c"
 				MetaWindow* _tmp92_ = NULL;
 				MetaWindow* _tmp93_ = NULL;
-#line 1118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1142 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp92_ = window;
-#line 1118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1142 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp93_ = meta_window_find_root_ancestor (_tmp92_);
-#line 1118 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1142 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				gala_window_manager_gala_dim_window (self, _tmp93_, TRUE);
-#line 7610 "WindowManager.c"
+#line 7102 "WindowManager.c"
 			}
-#line 1120 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1144 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block16_data_unref (_data16_);
-#line 1120 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1144 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data16_ = NULL;
-#line 1120 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1144 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 7618 "WindowManager.c"
+#line 7110 "WindowManager.c"
 		}
 		default:
 		{
 			MetaWindowActor* _tmp94_ = NULL;
-#line 1122 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1146 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp94_ = _data13_->actor;
-#line 1122 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1146 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			meta_plugin_map_completed ((MetaPlugin*) self, _tmp94_);
-#line 1123 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1147 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 7629 "WindowManager.c"
+#line 7121 "WindowManager.c"
 		}
 	}
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (window);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	block13_data_unref (_data13_);
-#line 1014 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1038 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data13_ = NULL;
-#line 7638 "WindowManager.c"
+#line 7130 "WindowManager.c"
 }
 
 
 static Block17Data* block17_data_ref (Block17Data* _data17_) {
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data17_->_ref_count_);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data17_;
-#line 7647 "WindowManager.c"
+#line 7139 "WindowManager.c"
 }
 
 
 static void block17_data_unref (void * _userdata_) {
 	Block17Data* _data17_;
 	_data17_ = (Block17Data*) _userdata_;
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data17_->_ref_count_)) {
-#line 7656 "WindowManager.c"
+#line 7148 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data17_->self;
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_data17_->actor);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block17Data, _data17_);
-#line 7666 "WindowManager.c"
+#line 7158 "WindowManager.c"
 	}
 }
 
 
 static Block18Data* block18_data_ref (Block18Data* _data18_) {
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data18_->_ref_count_);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data18_;
-#line 7676 "WindowManager.c"
+#line 7168 "WindowManager.c"
 }
 
 
 static void block18_data_unref (void * _userdata_) {
 	Block18Data* _data18_;
 	_data18_ = (Block18Data*) _userdata_;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data18_->_ref_count_)) {
-#line 7685 "WindowManager.c"
+#line 7177 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data18_->_data17_->self;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block17_data_unref (_data18_->_data17_);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data18_->_data17_ = NULL;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block18Data, _data18_);
-#line 7695 "WindowManager.c"
+#line 7187 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda101_ (Block18Data* _data18_) {
+static void ___lambda100_ (Block18Data* _data18_) {
 	Block17Data* _data17_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -7709,77 +7201,77 @@ static void ___lambda101_ (Block18Data* _data18_) {
 	guint32* _tmp6_ = NULL;
 	guint32* _tmp7_ = NULL;
 	gint _tmp7__length1 = 0;
-#line 1169 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data17_ = _data18_->_data17_;
-#line 1169 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data17_->self;
-#line 1170 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1194 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data17_->actor;
-#line 1170 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1194 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data18_->destroy_handler_id;
-#line 1170 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1194 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 1171 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1195 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = self->priv->destroying;
-#line 1171 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1195 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data17_->actor;
-#line 1171 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1195 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp2_, _tmp3_);
-#line 1172 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1196 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data17_->actor;
-#line 1172 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1196 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_destroy_completed ((MetaPlugin*) self, _tmp4_);
-#line 1173 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = gala_window_manager_gala_get_all_xids (self, &_tmp5_);
-#line 1173 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = _tmp6_;
-#line 1173 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7__length1 = _tmp5_;
-#line 1173 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_utils_request_clean_icon_cache (_tmp7_, _tmp5_);
-#line 1173 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1197 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = (g_free (_tmp7_), NULL);
-#line 7742 "WindowManager.c"
+#line 7234 "WindowManager.c"
 }
 
 
-static void ____lambda101__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 1169 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda101_ (self);
-#line 7749 "WindowManager.c"
+static void ____lambda100__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 1193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda100_ (self);
+#line 7241 "WindowManager.c"
 }
 
 
 static Block19Data* block19_data_ref (Block19Data* _data19_) {
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data19_->_ref_count_);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data19_;
-#line 7758 "WindowManager.c"
+#line 7250 "WindowManager.c"
 }
 
 
 static void block19_data_unref (void * _userdata_) {
 	Block19Data* _data19_;
 	_data19_ = (Block19Data*) _userdata_;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data19_->_ref_count_)) {
-#line 7767 "WindowManager.c"
+#line 7259 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data19_->_data17_->self;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block17_data_unref (_data19_->_data17_);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data19_->_data17_ = NULL;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block19Data, _data19_);
-#line 7777 "WindowManager.c"
+#line 7269 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda102_ (Block19Data* _data19_) {
+static void ___lambda101_ (Block19Data* _data19_) {
 	Block17Data* _data17_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -7787,67 +7279,67 @@ static void ___lambda102_ (Block19Data* _data19_) {
 	GeeHashSet* _tmp2_ = NULL;
 	MetaWindowActor* _tmp3_ = NULL;
 	MetaWindowActor* _tmp4_ = NULL;
-#line 1189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data17_ = _data19_->_data17_;
-#line 1189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data17_->self;
-#line 1190 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1214 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data17_->actor;
-#line 1190 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1214 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data19_->destroy_handler_id;
-#line 1190 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1214 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 1191 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1215 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = self->priv->destroying;
-#line 1191 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1215 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data17_->actor;
-#line 1191 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1215 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp2_, _tmp3_);
-#line 1192 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1216 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data17_->actor;
-#line 1192 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1216 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_destroy_completed ((MetaPlugin*) self, _tmp4_);
-#line 7810 "WindowManager.c"
+#line 7302 "WindowManager.c"
 }
 
 
-static void ____lambda102__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 1189 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda102_ (self);
-#line 7817 "WindowManager.c"
+static void ____lambda101__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 1213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda101_ (self);
+#line 7309 "WindowManager.c"
 }
 
 
 static Block20Data* block20_data_ref (Block20Data* _data20_) {
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data20_->_ref_count_);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data20_;
-#line 7826 "WindowManager.c"
+#line 7318 "WindowManager.c"
 }
 
 
 static void block20_data_unref (void * _userdata_) {
 	Block20Data* _data20_;
 	_data20_ = (Block20Data*) _userdata_;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data20_->_ref_count_)) {
-#line 7835 "WindowManager.c"
+#line 7327 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data20_->_data17_->self;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block17_data_unref (_data20_->_data17_);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data20_->_data17_ = NULL;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block20Data, _data20_);
-#line 7845 "WindowManager.c"
+#line 7337 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda103_ (Block20Data* _data20_) {
+static void ___lambda102_ (Block20Data* _data20_) {
 	Block17Data* _data17_;
 	GalaWindowManagerGala* self;
 	MetaWindowActor* _tmp0_ = NULL;
@@ -7855,34 +7347,34 @@ static void ___lambda103_ (Block20Data* _data20_) {
 	GeeHashSet* _tmp2_ = NULL;
 	MetaWindowActor* _tmp3_ = NULL;
 	MetaWindowActor* _tmp4_ = NULL;
-#line 1216 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1240 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data17_ = _data20_->_data17_;
-#line 1216 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1240 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data17_->self;
-#line 1217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1241 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data17_->actor;
-#line 1217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1241 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data20_->destroy_handler_id;
-#line 1217 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1241 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 1218 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1242 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = self->priv->destroying;
-#line 1218 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1242 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data17_->actor;
-#line 1218 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1242 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp2_, _tmp3_);
-#line 1219 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1243 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _data17_->actor;
-#line 1219 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1243 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_destroy_completed ((MetaPlugin*) self, _tmp4_);
-#line 7878 "WindowManager.c"
+#line 7370 "WindowManager.c"
 }
 
 
-static void ____lambda103__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 1216 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda103_ (self);
-#line 7885 "WindowManager.c"
+static void ____lambda102__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 1240 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda102_ (self);
+#line 7377 "WindowManager.c"
 }
 
 
@@ -7906,109 +7398,109 @@ static void gala_window_manager_gala_real_destroy (MetaPlugin* base, MetaWindowA
 	MetaWindow* _tmp19_ = NULL;
 	MetaWindowType _tmp20_ = 0;
 	MetaWindowType _tmp21_ = 0;
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data17_ = g_slice_new0 (Block17Data);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data17_->_ref_count_ = 1;
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data17_->self = g_object_ref (self);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = actor;
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (_data17_->actor);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data17_->actor = _tmp1_;
-#line 1129 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1153 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gala_animation_settings_get_default ();
-#line 1129 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1153 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_settings = _tmp2_;
-#line 1130 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1154 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _data17_->actor;
-#line 1130 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1154 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = meta_window_actor_get_meta_window (_tmp3_);
-#line 1130 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1154 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = _g_object_ref0 (_tmp4_);
-#line 1130 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1154 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	window = _tmp5_;
-#line 1133 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1157 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = self->priv->ws_assoc;
-#line 1133 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1157 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = window;
-#line 1133 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1157 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_hash_table_remove (_tmp6_, _tmp7_);
-#line 1136 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1160 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = animation_settings;
-#line 1136 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1160 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = gala_animation_settings_get_enable_animations (_tmp8_);
-#line 1136 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1160 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = _tmp9_;
-#line 1136 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1160 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp10_) {
-#line 7953 "WindowManager.c"
+#line 7445 "WindowManager.c"
 		MetaWindowActor* _tmp11_ = NULL;
 		MetaWindow* _tmp12_ = NULL;
 		MetaWindowType _tmp13_ = 0;
 		MetaWindowType _tmp14_ = 0;
-#line 1137 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1161 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11_ = _data17_->actor;
-#line 1137 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1161 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_destroy_completed ((MetaPlugin*) self, _tmp11_);
-#line 1140 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1164 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp12_ = window;
-#line 1140 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1164 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp13_ = meta_window_get_window_type (_tmp12_);
-#line 1140 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1164 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp14_ = _tmp13_;
-#line 1140 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1164 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp14_ == META_WINDOW_NORMAL) {
-#line 7970 "WindowManager.c"
+#line 7462 "WindowManager.c"
 			gint _tmp15_ = 0;
 			guint32* _tmp16_ = NULL;
 			guint32* _tmp17_ = NULL;
 			gint _tmp17__length1 = 0;
-#line 1141 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1165 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp16_ = gala_window_manager_gala_get_all_xids (self, &_tmp15_);
-#line 1141 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1165 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp17_ = _tmp16_;
-#line 1141 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1165 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp17__length1 = _tmp15_;
-#line 1141 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1165 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gala_utils_request_clean_icon_cache (_tmp17_, _tmp15_);
-#line 1141 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1165 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp17_ = (g_free (_tmp17_), NULL);
-#line 7985 "WindowManager.c"
+#line 7477 "WindowManager.c"
 		}
-#line 1143 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1167 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (window);
-#line 1143 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1167 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block17_data_unref (_data17_);
-#line 1143 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1167 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data17_ = NULL;
-#line 1143 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1167 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 7995 "WindowManager.c"
+#line 7487 "WindowManager.c"
 	}
-#line 1146 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1170 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp18_ = _data17_->actor;
-#line 1146 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1170 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_remove_all_transitions ((ClutterActor*) _tmp18_);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp19_ = window;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp20_ = meta_window_get_window_type (_tmp19_);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp21_ = _tmp20_;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	switch (_tmp21_) {
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_NORMAL:
-#line 8011 "WindowManager.c"
+#line 7503 "WindowManager.c"
 		{
 			Block18Data* _data18_;
 			gint duration = 0;
@@ -8029,105 +7521,105 @@ static void gala_window_manager_gala_real_destroy (MetaPlugin* base, MetaWindowA
 			MetaWindowActor* _tmp37_ = NULL;
 			MetaWindowActor* _tmp38_ = NULL;
 			gulong _tmp39_ = 0UL;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data18_ = g_slice_new0 (Block18Data);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data18_->_ref_count_ = 1;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data18_->_data17_ = block17_data_ref (_data17_);
-#line 1150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1174 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp22_ = animation_settings;
-#line 1150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1174 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp23_ = gala_animation_settings_get_close_duration (_tmp22_);
-#line 1150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1174 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp24_ = _tmp23_;
-#line 1150 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1174 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			duration = _tmp24_;
-#line 1151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1175 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp25_ = duration;
-#line 1151 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1175 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp25_ == 0) {
-#line 8050 "WindowManager.c"
+#line 7542 "WindowManager.c"
 				MetaWindowActor* _tmp26_ = NULL;
-#line 1152 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1176 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp26_ = _data17_->actor;
-#line 1152 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1176 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_plugin_destroy_completed ((MetaPlugin*) self, _tmp26_);
-#line 1153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block18_data_unref (_data18_);
-#line 1153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data18_ = NULL;
-#line 1153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (window);
-#line 1153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block17_data_unref (_data17_);
-#line 1153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data17_ = NULL;
-#line 1153 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1177 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				return;
-#line 8068 "WindowManager.c"
+#line 7560 "WindowManager.c"
 			}
-#line 1156 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1180 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp27_ = self->priv->destroying;
-#line 1156 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1180 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp28_ = _data17_->actor;
-#line 1156 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1180 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gee_abstract_collection_add ((GeeAbstractCollection*) _tmp27_, _tmp28_);
-#line 1158 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1182 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp29_ = _data17_->actor;
-#line 1158 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1182 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_pivot_point ((ClutterActor*) _tmp29_, 0.5f, 0.5f);
-#line 1159 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1183 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp30_ = _data17_->actor;
-#line 1159 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1183 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_show ((ClutterActor*) _tmp30_);
-#line 1161 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1185 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp31_ = _data17_->actor;
-#line 1161 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1185 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_save_easing_state ((ClutterActor*) _tmp31_);
-#line 1162 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1186 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp32_ = _data17_->actor;
-#line 1162 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1186 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_mode ((ClutterActor*) _tmp32_, CLUTTER_LINEAR);
-#line 1163 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1187 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp33_ = _data17_->actor;
-#line 1163 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1187 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp34_ = duration;
-#line 1163 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1187 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_duration ((ClutterActor*) _tmp33_, (guint) _tmp34_);
-#line 1164 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1188 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp35_ = _data17_->actor;
-#line 1164 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1188 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp35_, (gdouble) 0.8f, (gdouble) 0.8f);
-#line 1165 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1189 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp36_ = _data17_->actor;
-#line 1165 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1189 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp36_, 0U);
-#line 1166 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1190 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp37_ = _data17_->actor;
-#line 1166 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1190 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_restore_easing_state ((ClutterActor*) _tmp37_);
-#line 1168 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1192 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data18_->destroy_handler_id = 0UL;
-#line 1169 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp38_ = _data17_->actor;
-#line 1169 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp39_ = g_signal_connect_data ((ClutterActor*) _tmp38_, "transitions-completed", (GCallback) ____lambda101__clutter_actor_transitions_completed, block18_data_ref (_data18_), (GClosureNotify) block18_data_unref, 0);
-#line 1169 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp39_ = g_signal_connect_data ((ClutterActor*) _tmp38_, "transitions-completed", (GCallback) ____lambda100__clutter_actor_transitions_completed, block18_data_ref (_data18_), (GClosureNotify) block18_data_unref, 0);
+#line 1193 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data18_->destroy_handler_id = _tmp39_;
-#line 1175 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1199 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block18_data_unref (_data18_);
-#line 1175 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1199 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data18_ = NULL;
-#line 1175 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1199 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 8124 "WindowManager.c"
+#line 7616 "WindowManager.c"
 		}
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_MODAL_DIALOG:
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_DIALOG:
-#line 8130 "WindowManager.c"
+#line 7622 "WindowManager.c"
 		{
 			Block19Data* _data19_;
 			GeeHashSet* _tmp40_ = NULL;
@@ -8143,75 +7635,75 @@ static void gala_window_manager_gala_real_destroy (MetaPlugin* base, MetaWindowA
 			gulong _tmp50_ = 0UL;
 			MetaWindow* _tmp51_ = NULL;
 			MetaWindow* _tmp52_ = NULL;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data19_ = g_slice_new0 (Block19Data);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data19_->_ref_count_ = 1;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data19_->_data17_ = block17_data_ref (_data17_);
-#line 1178 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1202 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp40_ = self->priv->destroying;
-#line 1178 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1202 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp41_ = _data17_->actor;
-#line 1178 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1202 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gee_abstract_collection_add ((GeeAbstractCollection*) _tmp40_, _tmp41_);
-#line 1180 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1204 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp42_ = _data17_->actor;
-#line 1180 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1204 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_pivot_point ((ClutterActor*) _tmp42_, 0.5f, 0.5f);
-#line 1181 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1205 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp43_ = _data17_->actor;
-#line 1181 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1205 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_save_easing_state ((ClutterActor*) _tmp43_);
-#line 1182 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1206 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp44_ = _data17_->actor;
-#line 1182 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1206 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_mode ((ClutterActor*) _tmp44_, CLUTTER_EASE_OUT_QUAD);
-#line 1183 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1207 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp45_ = _data17_->actor;
-#line 1183 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1207 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_duration ((ClutterActor*) _tmp45_, (guint) 100);
-#line 1184 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1208 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp46_ = _data17_->actor;
-#line 1184 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1208 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp46_, (gdouble) 0.9f, (gdouble) 0.9f);
-#line 1185 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1209 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp47_ = _data17_->actor;
-#line 1185 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1209 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp47_, 0U);
-#line 1186 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1210 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp48_ = _data17_->actor;
-#line 1186 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1210 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_restore_easing_state ((ClutterActor*) _tmp48_);
-#line 1188 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1212 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data19_->destroy_handler_id = 0UL;
-#line 1189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp49_ = _data17_->actor;
-#line 1189 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp50_ = g_signal_connect_data ((ClutterActor*) _tmp49_, "transitions-completed", (GCallback) ____lambda102__clutter_actor_transitions_completed, block19_data_ref (_data19_), (GClosureNotify) block19_data_unref, 0);
-#line 1189 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp50_ = g_signal_connect_data ((ClutterActor*) _tmp49_, "transitions-completed", (GCallback) ____lambda101__clutter_actor_transitions_completed, block19_data_ref (_data19_), (GClosureNotify) block19_data_unref, 0);
+#line 1213 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data19_->destroy_handler_id = _tmp50_;
-#line 1195 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp51_ = window;
-#line 1195 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp52_ = meta_window_find_root_ancestor (_tmp51_);
-#line 1195 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1219 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gala_window_manager_gala_dim_window (self, _tmp52_, FALSE);
-#line 1197 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1221 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block19_data_unref (_data19_);
-#line 1197 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1221 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data19_ = NULL;
-#line 1197 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1221 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 8206 "WindowManager.c"
+#line 7698 "WindowManager.c"
 		}
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_MENU:
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_DROPDOWN_MENU:
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case META_WINDOW_POPUP_MENU:
-#line 8214 "WindowManager.c"
+#line 7706 "WindowManager.c"
 		{
 			Block20Data* _data20_;
 			gint duration = 0;
@@ -8230,177 +7722,177 @@ static void gala_window_manager_gala_real_destroy (MetaPlugin* base, MetaWindowA
 			MetaWindowActor* _tmp66_ = NULL;
 			MetaWindowActor* _tmp67_ = NULL;
 			gulong _tmp68_ = 0UL;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data20_ = g_slice_new0 (Block20Data);
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data20_->_ref_count_ = 1;
-#line 1148 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1172 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data20_->_data17_ = block17_data_ref (_data17_);
-#line 1201 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1225 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp53_ = animation_settings;
-#line 1201 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1225 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp54_ = gala_animation_settings_get_menu_duration (_tmp53_);
-#line 1201 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1225 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp55_ = _tmp54_;
-#line 1201 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1225 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			duration = _tmp55_;
-#line 1202 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp56_ = duration;
-#line 1202 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1226 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			if (_tmp56_ == 0) {
-#line 8251 "WindowManager.c"
+#line 7743 "WindowManager.c"
 				MetaWindowActor* _tmp57_ = NULL;
-#line 1203 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1227 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp57_ = _data17_->actor;
-#line 1203 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1227 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_plugin_destroy_completed ((MetaPlugin*) self, _tmp57_);
-#line 1204 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1228 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block20_data_unref (_data20_);
-#line 1204 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1228 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data20_ = NULL;
-#line 1204 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1228 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (window);
-#line 1204 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1228 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				block17_data_unref (_data17_);
-#line 1204 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1228 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_data17_ = NULL;
-#line 1204 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1228 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				return;
-#line 8269 "WindowManager.c"
+#line 7761 "WindowManager.c"
 			}
-#line 1207 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1231 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp58_ = self->priv->destroying;
-#line 1207 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1231 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp59_ = _data17_->actor;
-#line 1207 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1231 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gee_abstract_collection_add ((GeeAbstractCollection*) _tmp58_, _tmp59_);
-#line 1208 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1232 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp60_ = _data17_->actor;
-#line 1208 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1232 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_save_easing_state ((ClutterActor*) _tmp60_);
-#line 1209 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1233 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp61_ = _data17_->actor;
-#line 1209 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1233 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_mode ((ClutterActor*) _tmp61_, CLUTTER_EASE_OUT_QUAD);
-#line 1210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1234 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp62_ = _data17_->actor;
-#line 1210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1234 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp63_ = duration;
-#line 1210 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1234 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_easing_duration ((ClutterActor*) _tmp62_, (guint) _tmp63_);
-#line 1211 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1235 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp64_ = _data17_->actor;
-#line 1211 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1235 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_scale ((ClutterActor*) _tmp64_, (gdouble) 0.8f, (gdouble) 0.8f);
-#line 1212 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1236 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp65_ = _data17_->actor;
-#line 1212 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1236 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_set_opacity ((ClutterActor*) _tmp65_, 0U);
-#line 1213 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1237 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp66_ = _data17_->actor;
-#line 1213 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1237 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			clutter_actor_restore_easing_state ((ClutterActor*) _tmp66_);
-#line 1215 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1239 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data20_->destroy_handler_id = 0UL;
-#line 1216 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1240 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp67_ = _data17_->actor;
-#line 1216 "/home/nick/work/gala/src/WindowManager.vala"
-			_tmp68_ = g_signal_connect_data ((ClutterActor*) _tmp67_, "transitions-completed", (GCallback) ____lambda103__clutter_actor_transitions_completed, block20_data_ref (_data20_), (GClosureNotify) block20_data_unref, 0);
-#line 1216 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1240 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+			_tmp68_ = g_signal_connect_data ((ClutterActor*) _tmp67_, "transitions-completed", (GCallback) ____lambda102__clutter_actor_transitions_completed, block20_data_ref (_data20_), (GClosureNotify) block20_data_unref, 0);
+#line 1240 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data20_->destroy_handler_id = _tmp68_;
-#line 1221 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1245 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block20_data_unref (_data20_);
-#line 1221 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1245 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data20_ = NULL;
-#line 1221 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1245 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 8317 "WindowManager.c"
+#line 7809 "WindowManager.c"
 		}
 		default:
 		{
 			MetaWindowActor* _tmp69_ = NULL;
-#line 1223 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1247 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp69_ = _data17_->actor;
-#line 1223 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1247 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			meta_plugin_destroy_completed ((MetaPlugin*) self, _tmp69_);
-#line 1224 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1248 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			break;
-#line 8328 "WindowManager.c"
+#line 7820 "WindowManager.c"
 		}
 	}
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (window);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	block17_data_unref (_data17_);
-#line 1127 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1151 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_data17_ = NULL;
-#line 8337 "WindowManager.c"
+#line 7829 "WindowManager.c"
 }
 
 
 static inline void gala_window_manager_gala_unmaximize_completed (GalaWindowManagerGala* self, MetaWindowActor* actor) {
-#line 1229 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1253 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 1229 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1253 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 8346 "WindowManager.c"
+#line 7838 "WindowManager.c"
 }
 
 
 static Block21Data* block21_data_ref (Block21Data* _data21_) {
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_atomic_int_inc (&_data21_->_ref_count_);
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return _data21_;
-#line 8355 "WindowManager.c"
+#line 7847 "WindowManager.c"
 }
 
 
 static void block21_data_unref (void * _userdata_) {
 	Block21Data* _data21_;
 	_data21_ = (Block21Data*) _userdata_;
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (g_atomic_int_dec_and_test (&_data21_->_ref_count_)) {
-#line 8364 "WindowManager.c"
+#line 7856 "WindowManager.c"
 		GalaWindowManagerGala* self;
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self = _data21_->self;
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (_data21_->old_actor);
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (self);
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_slice_free (Block21Data, _data21_);
-#line 8374 "WindowManager.c"
+#line 7866 "WindowManager.c"
 	}
 }
 
 
-static void ___lambda94_ (Block21Data* _data21_) {
+static void ___lambda93_ (Block21Data* _data21_) {
 	GalaWindowManagerGala* self;
 	ClutterActor* _tmp0_ = NULL;
 	gulong _tmp1_ = 0UL;
 	ClutterActor* _tmp2_ = NULL;
-#line 1289 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1313 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = _data21_->self;
-#line 1290 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1314 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _data21_->old_actor;
-#line 1290 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1314 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _data21_->unmaximize_old_handler_id;
-#line 1290 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1314 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_signal_handler_disconnect ((GObject*) _tmp0_, _tmp1_);
-#line 1291 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1315 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = _data21_->old_actor;
-#line 1291 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1315 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_destroy (_tmp2_);
-#line 8396 "WindowManager.c"
+#line 7888 "WindowManager.c"
 }
 
 
-static void ____lambda94__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
-#line 1289 "/home/nick/work/gala/src/WindowManager.vala"
-	___lambda94_ (self);
-#line 8403 "WindowManager.c"
+static void ____lambda93__clutter_actor_transitions_completed (ClutterActor* _sender, gpointer self) {
+#line 1313 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	___lambda93_ (self);
+#line 7895 "WindowManager.c"
 }
 
 
@@ -8423,70 +7915,70 @@ static void gala_window_manager_gala_unmaximize (GalaWindowManagerGala* self, Me
 	MetaWindowType _tmp14_ = 0;
 	MetaWindowType _tmp15_ = 0;
 	MetaWindowActor* _tmp121_ = NULL;
-#line 1233 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1257 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 1233 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1257 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 1238 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1262 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = gala_animation_settings_get_default ();
-#line 1238 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1262 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_settings = _tmp0_;
-#line 1239 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1263 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = animation_settings;
-#line 1239 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1263 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gala_animation_settings_get_snap_duration (_tmp1_);
-#line 1239 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1263 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _tmp2_;
-#line 1239 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1263 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	duration = _tmp3_;
-#line 1241 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1265 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = animation_settings;
-#line 1241 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1265 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = gala_animation_settings_get_enable_animations (_tmp5_);
-#line 1241 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1265 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = _tmp6_;
-#line 1241 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1265 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp7_) {
-#line 1241 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1265 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = TRUE;
-#line 8452 "WindowManager.c"
+#line 7944 "WindowManager.c"
 	} else {
 		gint _tmp8_ = 0;
-#line 1242 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1266 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp8_ = duration;
-#line 1242 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1266 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = _tmp8_ == 0;
-#line 8459 "WindowManager.c"
+#line 7951 "WindowManager.c"
 	}
-#line 1241 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1265 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp4_) {
-#line 8463 "WindowManager.c"
+#line 7955 "WindowManager.c"
 		MetaWindowActor* _tmp9_ = NULL;
-#line 1243 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1267 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp9_ = actor;
-#line 1243 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1267 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_gala_unmaximize_completed (self, _tmp9_);
-#line 1244 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1268 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 8471 "WindowManager.c"
+#line 7963 "WindowManager.c"
 	}
-#line 1247 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1271 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = actor;
-#line 1247 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1271 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = meta_window_actor_get_meta_window (_tmp10_);
-#line 1247 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1271 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = _g_object_ref0 (_tmp11_);
-#line 1247 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1271 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	window = _tmp12_;
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = window;
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp14_ = meta_window_get_window_type (_tmp13_);
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = _tmp14_;
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp15_ == META_WINDOW_NORMAL) {
-#line 8489 "WindowManager.c"
+#line 7981 "WindowManager.c"
 		Block21Data* _data21_;
 		gfloat offset_x = 0.0F;
 		gfloat offset_y = 0.0F;
@@ -8578,25 +8070,25 @@ static void gala_window_manager_gala_unmaximize (GalaWindowManagerGala* self, Me
 		MetaWindowActor* _tmp118_ = NULL;
 		MetaWindowActor* _tmp119_ = NULL;
 		MetaWindowActor* _tmp120_ = NULL;
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data21_ = g_slice_new0 (Block21Data);
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data21_->_ref_count_ = 1;
-#line 1249 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1273 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data21_->self = g_object_ref (self);
-#line 1251 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1275 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp16_ = gala_window_listener_get_default ();
-#line 1251 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1275 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp17_ = window;
-#line 1251 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1275 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp18_ = gala_window_listener_get_unmaximized_state_geometry (_tmp16_, _tmp17_);
-#line 1251 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1275 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		unmaximized_window_geometry = _tmp18_;
-#line 1253 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1277 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp19_ = unmaximized_window_geometry;
-#line 1253 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1277 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp19_ != NULL) {
-#line 8599 "WindowManager.c"
+#line 8091 "WindowManager.c"
 			GalaWindowGeometry* _tmp20_ = NULL;
 			MetaRectangle _tmp21_ = {0};
 			gint _tmp22_ = 0;
@@ -8621,327 +8113,327 @@ static void gala_window_manager_gala_unmaximize (GalaWindowManagerGala* self, Me
 			GalaWindowGeometry* _tmp41_ = NULL;
 			MetaRectangle _tmp42_ = {0};
 			gint _tmp43_ = 0;
-#line 1254 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp20_ = unmaximized_window_geometry;
-#line 1254 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp21_ = (*_tmp20_).outer;
-#line 1254 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp22_ = _tmp21_.x;
-#line 1254 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp23_ = unmaximized_window_geometry;
-#line 1254 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp24_ = (*_tmp23_).inner;
-#line 1254 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp25_ = _tmp24_.x;
-#line 1254 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1278 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			offset_x = (gfloat) (_tmp22_ - _tmp25_);
-#line 1255 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp26_ = unmaximized_window_geometry;
-#line 1255 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp27_ = (*_tmp26_).outer;
-#line 1255 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp28_ = _tmp27_.y;
-#line 1255 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp29_ = unmaximized_window_geometry;
-#line 1255 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp30_ = (*_tmp29_).inner;
-#line 1255 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp31_ = _tmp30_.y;
-#line 1255 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1279 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			offset_y = (gfloat) (_tmp28_ - _tmp31_);
-#line 1256 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp32_ = unmaximized_window_geometry;
-#line 1256 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp33_ = (*_tmp32_).outer;
-#line 1256 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp34_ = _tmp33_.width;
-#line 1256 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp35_ = unmaximized_window_geometry;
-#line 1256 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp36_ = (*_tmp35_).inner;
-#line 1256 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp37_ = _tmp36_.width;
-#line 1256 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1280 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			offset_width = (gfloat) (_tmp34_ - _tmp37_);
-#line 1257 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1281 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp38_ = unmaximized_window_geometry;
-#line 1257 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1281 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp39_ = (*_tmp38_).outer;
-#line 1257 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1281 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp40_ = _tmp39_.height;
-#line 1257 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1281 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp41_ = unmaximized_window_geometry;
-#line 1257 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1281 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp42_ = (*_tmp41_).inner;
-#line 1257 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1281 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp43_ = _tmp42_.height;
-#line 1257 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1281 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			offset_height = (gfloat) (_tmp40_ - _tmp43_);
-#line 8680 "WindowManager.c"
+#line 8172 "WindowManager.c"
 		} else {
-#line 1259 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1283 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			offset_x = (gfloat) 0;
-#line 1260 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1284 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			offset_y = (gfloat) 0;
-#line 1261 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1285 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			offset_width = (gfloat) 0;
-#line 1262 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1286 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			offset_height = (gfloat) 0;
-#line 8690 "WindowManager.c"
+#line 8182 "WindowManager.c"
 		}
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp44_ = actor;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp45_ = clutter_actor_get_x ((ClutterActor*) _tmp44_);
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp46_ = _tmp45_;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp47_ = actor;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp48_ = clutter_actor_get_y ((ClutterActor*) _tmp47_);
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp49_ = _tmp48_;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp50_ = actor;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp51_ = clutter_actor_get_width ((ClutterActor*) _tmp50_);
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp52_ = _tmp51_;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp53_ = actor;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp54_ = clutter_actor_get_height ((ClutterActor*) _tmp53_);
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp55_ = _tmp54_;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp56_.x = (gint) _tmp46_;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp56_.y = (gint) _tmp49_;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp56_.width = (gint) _tmp52_;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp56_.height = (gint) _tmp55_;
-#line 1265 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1289 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		old_rect = _tmp56_;
-#line 1266 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1290 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp57_ = actor;
-#line 1266 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1290 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp58_ = old_rect;
-#line 1266 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1290 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp59_ = old_rect;
-#line 1266 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1290 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp60_ = gala_utils_get_window_actor_snapshot (_tmp57_, &_tmp58_, &_tmp59_);
-#line 1266 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1290 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data21_->old_actor = _tmp60_;
-#line 1268 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1292 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp61_ = _data21_->old_actor;
-#line 1268 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1292 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp61_ == NULL) {
-#line 8740 "WindowManager.c"
+#line 8232 "WindowManager.c"
 			MetaWindowActor* _tmp62_ = NULL;
-#line 1269 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1293 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp62_ = actor;
-#line 1269 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1293 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			gala_window_manager_gala_unmaximize_completed (self, _tmp62_);
-#line 1270 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1294 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_gala_window_geometry_free0 (unmaximized_window_geometry);
-#line 1270 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1294 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			block21_data_unref (_data21_);
-#line 1270 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1294 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_data21_ = NULL;
-#line 1270 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1294 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_g_object_unref0 (window);
-#line 1270 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1294 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			return;
-#line 8756 "WindowManager.c"
+#line 8248 "WindowManager.c"
 		}
-#line 1273 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1297 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp63_ = _data21_->old_actor;
-#line 1273 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1297 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp64_ = old_rect;
-#line 1273 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1297 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp65_ = _tmp64_.x;
-#line 1273 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1297 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp66_ = old_rect;
-#line 1273 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1297 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp67_ = _tmp66_.y;
-#line 1273 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1297 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_position (_tmp63_, (gfloat) _tmp65_, (gfloat) _tmp67_);
-#line 1275 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1299 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp68_ = gala_window_manager_get_ui_group ((GalaWindowManager*) self);
-#line 1275 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1299 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp69_ = _tmp68_;
-#line 1275 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1299 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp70_ = _data21_->old_actor;
-#line 1275 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1299 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_add_child (_tmp69_, _tmp70_);
-#line 1277 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1301 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp71_ = ew;
-#line 1277 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1301 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp72_ = old_rect;
-#line 1277 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1301 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp73_ = _tmp72_.width;
-#line 1277 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1301 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		scale_x = ((gfloat) _tmp71_) / _tmp73_;
-#line 1278 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1302 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp74_ = eh;
-#line 1278 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1302 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp75_ = old_rect;
-#line 1278 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1302 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp76_ = _tmp75_.height;
-#line 1278 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1302 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		scale_y = ((gfloat) _tmp74_) / _tmp76_;
-#line 1280 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1304 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp77_ = _data21_->old_actor;
-#line 1280 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1304 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_save_easing_state (_tmp77_);
-#line 1281 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1305 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp78_ = _data21_->old_actor;
-#line 1281 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1305 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_mode (_tmp78_, CLUTTER_EASE_IN_OUT_QUAD);
-#line 1282 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1306 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp79_ = _data21_->old_actor;
-#line 1282 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1306 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp80_ = duration;
-#line 1282 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1306 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_duration (_tmp79_, (guint) _tmp80_);
-#line 1283 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1307 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp81_ = _data21_->old_actor;
-#line 1283 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1307 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp82_ = ex;
-#line 1283 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1307 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp83_ = ey;
-#line 1283 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1307 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_position (_tmp81_, (gfloat) _tmp82_, (gfloat) _tmp83_);
-#line 1284 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1308 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp84_ = _data21_->old_actor;
-#line 1284 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1308 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp85_ = scale_x;
-#line 1284 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1308 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp86_ = scale_y;
-#line 1284 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1308 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_scale (_tmp84_, (gdouble) _tmp85_, (gdouble) _tmp86_);
-#line 1285 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1309 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp87_ = _data21_->old_actor;
-#line 1285 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1309 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_opacity (_tmp87_, 0U);
-#line 1286 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1310 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp88_ = _data21_->old_actor;
-#line 1286 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1310 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_restore_easing_state (_tmp88_);
-#line 1288 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1312 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data21_->unmaximize_old_handler_id = 0UL;
-#line 1289 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1313 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp89_ = _data21_->old_actor;
-#line 1289 "/home/nick/work/gala/src/WindowManager.vala"
-		_tmp90_ = g_signal_connect_data (_tmp89_, "transitions-completed", (GCallback) ____lambda94__clutter_actor_transitions_completed, block21_data_ref (_data21_), (GClosureNotify) block21_data_unref, 0);
-#line 1289 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1313 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+		_tmp90_ = g_signal_connect_data (_tmp89_, "transitions-completed", (GCallback) ____lambda93__clutter_actor_transitions_completed, block21_data_ref (_data21_), (GClosureNotify) block21_data_unref, 0);
+#line 1313 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data21_->unmaximize_old_handler_id = _tmp90_;
-#line 1294 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1318 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp91_ = actor;
-#line 1294 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1318 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp92_ = clutter_actor_get_x ((ClutterActor*) _tmp91_);
-#line 1294 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1318 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp93_ = _tmp92_;
-#line 1294 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1318 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		maximized_x = _tmp93_;
-#line 1295 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1319 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp94_ = actor;
-#line 1295 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1319 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp95_ = clutter_actor_get_y ((ClutterActor*) _tmp94_);
-#line 1295 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1319 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp96_ = _tmp95_;
-#line 1295 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1319 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		maximized_y = _tmp96_;
-#line 1296 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1320 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp97_ = actor;
-#line 1296 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1320 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_gala_unmaximize_completed (self, _tmp97_);
-#line 1297 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1321 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp98_ = actor;
-#line 1297 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1321 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_pivot_point ((ClutterActor*) _tmp98_, 0.0f, 0.0f);
-#line 1298 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1322 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp99_ = actor;
-#line 1298 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1322 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp100_ = ex;
-#line 1298 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1322 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp101_ = ey;
-#line 1298 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1322 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_position ((ClutterActor*) _tmp99_, (gfloat) _tmp100_, (gfloat) _tmp101_);
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp102_ = actor;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp103_ = ex;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp104_ = offset_x;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp105_ = scale_x;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp106_ = maximized_x;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp107_ = ey;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp108_ = offset_y;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp109_ = scale_y;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp110_ = maximized_y;
-#line 1299 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1323 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_translation ((ClutterActor*) _tmp102_, ((-_tmp103_) + (_tmp104_ * ((1.0f / _tmp105_) - 1.0f))) + _tmp106_, ((-_tmp107_) + (_tmp108_ * ((1.0f / _tmp109_) - 1.0f))) + _tmp110_, 0.0f);
-#line 1300 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1324 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp111_ = actor;
-#line 1300 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1324 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp112_ = scale_x;
-#line 1300 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1324 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp113_ = scale_y;
-#line 1300 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1324 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_scale ((ClutterActor*) _tmp111_, (gdouble) (1.0f / _tmp112_), (gdouble) (1.0f / _tmp113_));
-#line 1302 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1326 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp114_ = actor;
-#line 1302 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1326 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_save_easing_state ((ClutterActor*) _tmp114_);
-#line 1303 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1327 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp115_ = actor;
-#line 1303 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1327 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_mode ((ClutterActor*) _tmp115_, CLUTTER_EASE_IN_OUT_QUAD);
-#line 1304 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1328 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp116_ = actor;
-#line 1304 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1328 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp117_ = duration;
-#line 1304 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1328 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_easing_duration ((ClutterActor*) _tmp116_, (guint) _tmp117_);
-#line 1305 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1329 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp118_ = actor;
-#line 1305 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1329 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_scale ((ClutterActor*) _tmp118_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 1306 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1330 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp119_ = actor;
-#line 1306 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1330 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_translation ((ClutterActor*) _tmp119_, 0.0f, 0.0f, 0.0f);
-#line 1307 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1331 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp120_ = actor;
-#line 1307 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1331 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_restore_easing_state ((ClutterActor*) _tmp120_);
-#line 1309 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1333 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_gala_window_geometry_free0 (unmaximized_window_geometry);
-#line 1309 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1333 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		block21_data_unref (_data21_);
-#line 1309 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1333 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_data21_ = NULL;
-#line 1309 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1333 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (window);
-#line 1309 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1333 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 8936 "WindowManager.c"
+#line 8428 "WindowManager.c"
 	}
-#line 1312 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1336 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp121_ = actor;
-#line 1312 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1336 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_unmaximize_completed (self, _tmp121_);
-#line 1233 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1257 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (window);
-#line 8944 "WindowManager.c"
+#line 8436 "WindowManager.c"
 }
 
 
@@ -8959,78 +8451,78 @@ static gboolean gala_window_manager_gala_end_animation (GalaWindowManagerGala* s
 	MetaWindowActor* _tmp11_ = NULL;
 	GeeHashSet* _tmp12_ = NULL;
 	MetaWindowActor* _tmp13_ = NULL;
-#line 1316 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1340 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 1316 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1340 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_val_if_fail (*list != NULL, FALSE);
-#line 1316 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1340 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_val_if_fail (actor != NULL, FALSE);
-#line 1318 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1342 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = *list;
-#line 1318 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1342 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = actor;
-#line 1318 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1342 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gee_abstract_collection_contains ((GeeAbstractCollection*) _tmp0_, _tmp1_);
-#line 1318 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1342 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp2_) {
-#line 1319 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1343 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		result = FALSE;
-#line 1319 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1343 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return result;
-#line 8980 "WindowManager.c"
+#line 8472 "WindowManager.c"
 	}
-#line 1321 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1345 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = actor;
-#line 1321 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1345 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = meta_window_actor_is_destroyed (_tmp3_);
-#line 1321 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1345 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp4_) {
-#line 8988 "WindowManager.c"
+#line 8480 "WindowManager.c"
 		GeeHashSet* _tmp5_ = NULL;
 		MetaWindowActor* _tmp6_ = NULL;
-#line 1322 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1346 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp5_ = *list;
-#line 1322 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1346 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = actor;
-#line 1322 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1346 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp5_, _tmp6_);
-#line 1323 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1347 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		result = FALSE;
-#line 1323 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1347 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return result;
-#line 9001 "WindowManager.c"
+#line 8493 "WindowManager.c"
 	}
-#line 1326 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1350 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = actor;
-#line 1326 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1350 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_remove_all_transitions ((ClutterActor*) _tmp7_);
-#line 1327 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1351 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = actor;
-#line 1327 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1351 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_opacity ((ClutterActor*) _tmp8_, 255U);
-#line 1328 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1352 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = actor;
-#line 1328 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1352 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_scale ((ClutterActor*) _tmp9_, (gdouble) 1.0f, (gdouble) 1.0f);
-#line 1329 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1353 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = actor;
-#line 1329 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1353 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_set ((ClutterActor*) _tmp10_, "rotation-angle-x", (gdouble) 0.0f, NULL);
-#line 1330 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1354 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp11_ = actor;
-#line 1330 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1354 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_pivot_point ((ClutterActor*) _tmp11_, 0.0f, 0.0f);
-#line 1332 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1356 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = *list;
-#line 1332 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1356 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = actor;
-#line 1332 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1356 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gee_abstract_collection_remove ((GeeAbstractCollection*) _tmp12_, _tmp13_);
-#line 1333 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1357 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = TRUE;
-#line 1333 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1357 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 9033 "WindowManager.c"
+#line 8525 "WindowManager.c"
 }
 
 
@@ -9048,101 +8540,101 @@ static void gala_window_manager_gala_real_kill_window_effects (MetaPlugin* base,
 	gboolean _tmp13_ = FALSE;
 	MetaWindowActor* _tmp15_ = NULL;
 	gboolean _tmp16_ = FALSE;
-#line 1336 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1360 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 1336 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1360 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 1338 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1362 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = actor;
-#line 1338 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1362 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = gala_window_manager_gala_end_animation (self, &self->priv->mapping, _tmp0_);
-#line 1338 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1362 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp1_) {
-#line 9061 "WindowManager.c"
+#line 8553 "WindowManager.c"
 		MetaWindowActor* _tmp2_ = NULL;
-#line 1339 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1363 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp2_ = actor;
-#line 1339 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1363 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_map_completed ((MetaPlugin*) self, _tmp2_);
-#line 9067 "WindowManager.c"
+#line 8559 "WindowManager.c"
 	}
-#line 1340 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1364 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = actor;
-#line 1340 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1364 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = gala_window_manager_gala_end_animation (self, &self->priv->unminimizing, _tmp3_);
-#line 1340 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1364 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp4_) {
-#line 9075 "WindowManager.c"
+#line 8567 "WindowManager.c"
 		MetaWindowActor* _tmp5_ = NULL;
-#line 1341 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1365 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp5_ = actor;
-#line 1341 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1365 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_unminimize_completed ((MetaPlugin*) self, _tmp5_);
-#line 9081 "WindowManager.c"
+#line 8573 "WindowManager.c"
 	}
-#line 1342 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1366 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = actor;
-#line 1342 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1366 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = gala_window_manager_gala_end_animation (self, &self->priv->minimizing, _tmp6_);
-#line 1342 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1366 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp7_) {
-#line 9089 "WindowManager.c"
+#line 8581 "WindowManager.c"
 		MetaWindowActor* _tmp8_ = NULL;
-#line 1343 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1367 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp8_ = actor;
-#line 1343 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1367 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_minimize_completed ((MetaPlugin*) self, _tmp8_);
-#line 9095 "WindowManager.c"
+#line 8587 "WindowManager.c"
 	}
-#line 1344 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1368 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = actor;
-#line 1344 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1368 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp10_ = gala_window_manager_gala_end_animation (self, &self->priv->maximizing, _tmp9_);
-#line 1344 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1368 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp10_) {
-#line 9103 "WindowManager.c"
+#line 8595 "WindowManager.c"
 		MetaWindowActor* _tmp11_ = NULL;
-#line 1346 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1370 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11_ = actor;
-#line 1346 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1370 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_size_change_completed ((MetaPlugin*) self, _tmp11_);
-#line 9109 "WindowManager.c"
+#line 8601 "WindowManager.c"
 	}
-#line 1350 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1374 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp12_ = actor;
-#line 1350 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1374 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = gala_window_manager_gala_end_animation (self, &self->priv->unmaximizing, _tmp12_);
-#line 1350 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1374 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp13_) {
-#line 9117 "WindowManager.c"
+#line 8609 "WindowManager.c"
 		MetaWindowActor* _tmp14_ = NULL;
-#line 1352 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1376 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp14_ = actor;
-#line 1352 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1376 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_size_change_completed ((MetaPlugin*) self, _tmp14_);
-#line 9123 "WindowManager.c"
+#line 8615 "WindowManager.c"
 	}
-#line 1356 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1380 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = actor;
-#line 1356 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1380 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp16_ = gala_window_manager_gala_end_animation (self, &self->priv->destroying, _tmp15_);
-#line 1356 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1380 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp16_) {
-#line 9131 "WindowManager.c"
+#line 8623 "WindowManager.c"
 		MetaWindowActor* _tmp17_ = NULL;
-#line 1357 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1381 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp17_ = actor;
-#line 1357 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1381 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_destroy_completed ((MetaPlugin*) self, _tmp17_);
-#line 9137 "WindowManager.c"
+#line 8629 "WindowManager.c"
 	}
 }
 
 
 static void _gala_window_manager_gala_end_switch_workspace_clutter_timeline_completed (ClutterTimeline* _sender, gpointer self) {
-#line 1559 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1583 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_end_switch_workspace ((GalaWindowManagerGala*) self);
-#line 9145 "WindowManager.c"
+#line 8637 "WindowManager.c"
 }
 
 
@@ -9301,238 +8793,238 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 	ClutterTransition* _tmp279_ = NULL;
 	ClutterTransition* _tmp280_ = NULL;
 	ClutterTransition* _tmp281_ = NULL;
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 1367 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1391 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = gala_animation_settings_get_default ();
-#line 1367 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1391 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_settings = _tmp0_;
-#line 1368 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1392 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = animation_settings;
-#line 1368 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1392 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gala_animation_settings_get_workspace_switch_duration (_tmp1_);
-#line 1368 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1392 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = _tmp2_;
-#line 1368 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1392 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_duration = _tmp3_;
-#line 1370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1394 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = animation_settings;
-#line 1370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1394 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = gala_animation_settings_get_enable_animations (_tmp6_);
-#line 1370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1394 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = _tmp7_;
-#line 1370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1394 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp8_) {
-#line 1370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1394 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp5_ = TRUE;
-#line 9328 "WindowManager.c"
+#line 8820 "WindowManager.c"
 	} else {
 		gint _tmp9_ = 0;
-#line 1371 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1395 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp9_ = animation_duration;
-#line 1371 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1395 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp5_ = _tmp9_ == 0;
-#line 9335 "WindowManager.c"
+#line 8827 "WindowManager.c"
 	}
-#line 1370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1394 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp5_) {
-#line 1370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1394 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = TRUE;
-#line 9341 "WindowManager.c"
+#line 8833 "WindowManager.c"
 	} else {
 		gboolean _tmp10_ = FALSE;
 		MetaMotionDirection _tmp11_ = 0;
-#line 1372 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1396 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11_ = direction;
-#line 1372 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1396 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (_tmp11_ != META_MOTION_LEFT) {
-#line 9349 "WindowManager.c"
+#line 8841 "WindowManager.c"
 			MetaMotionDirection _tmp12_ = 0;
-#line 1372 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1396 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp12_ = direction;
-#line 1372 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1396 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp10_ = _tmp12_ != META_MOTION_RIGHT;
-#line 9355 "WindowManager.c"
+#line 8847 "WindowManager.c"
 		} else {
-#line 1372 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1396 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp10_ = FALSE;
-#line 9359 "WindowManager.c"
+#line 8851 "WindowManager.c"
 		}
-#line 1372 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1396 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = _tmp10_;
-#line 9363 "WindowManager.c"
+#line 8855 "WindowManager.c"
 	}
-#line 1370 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1394 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp4_) {
-#line 1373 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1397 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		meta_plugin_switch_workspace_completed ((MetaPlugin*) self);
-#line 1374 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1398 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 9371 "WindowManager.c"
+#line 8863 "WindowManager.c"
 	}
-#line 1378 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1402 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp13_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 1378 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1402 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp14_ = _g_object_ref0 (_tmp13_);
-#line 1378 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1402 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp14_;
-#line 1379 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1403 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp15_ = screen;
-#line 1379 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1403 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp16_ = meta_screen_get_primary_monitor (_tmp15_);
-#line 1379 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1403 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	primary = _tmp16_;
-#line 1380 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1404 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp17_ = gala_internal_utils_workspaces_only_on_primary ();
-#line 1380 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1404 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	move_primary_only = _tmp17_;
-#line 1381 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp18_ = screen;
-#line 1381 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp19_ = primary;
-#line 1381 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_screen_get_monitor_geometry (_tmp18_, _tmp19_, &_tmp20_);
-#line 1381 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1405 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	monitor_geom = _tmp20_;
-#line 1382 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1406 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp22_ = move_primary_only;
-#line 1382 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1406 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp22_) {
-#line 9401 "WindowManager.c"
+#line 8893 "WindowManager.c"
 		MetaRectangle _tmp23_ = {0};
 		gint _tmp24_ = 0;
-#line 1382 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1406 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp23_ = monitor_geom;
-#line 1382 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1406 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp24_ = _tmp23_.x;
-#line 1382 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1406 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp21_ = (gfloat) _tmp24_;
-#line 9410 "WindowManager.c"
+#line 8902 "WindowManager.c"
 	} else {
-#line 1382 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1406 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp21_ = 0.0f;
-#line 9414 "WindowManager.c"
+#line 8906 "WindowManager.c"
 	}
-#line 1382 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1406 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clone_offset_x = _tmp21_;
-#line 1383 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1407 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp26_ = move_primary_only;
-#line 1383 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1407 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp26_) {
-#line 9422 "WindowManager.c"
+#line 8914 "WindowManager.c"
 		MetaRectangle _tmp27_ = {0};
 		gint _tmp28_ = 0;
-#line 1383 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1407 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp27_ = monitor_geom;
-#line 1383 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1407 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp28_ = _tmp27_.y;
-#line 1383 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1407 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp25_ = (gfloat) _tmp28_;
-#line 9431 "WindowManager.c"
+#line 8923 "WindowManager.c"
 	} else {
-#line 1383 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1407 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp25_ = 0.0f;
-#line 9435 "WindowManager.c"
+#line 8927 "WindowManager.c"
 	}
-#line 1383 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1407 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clone_offset_y = _tmp25_;
-#line 1385 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp29_ = screen;
-#line 1385 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_screen_get_size (_tmp29_, &_tmp30_, &_tmp31_);
-#line 1385 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen_width = (gfloat) _tmp30_;
-#line 1385 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1409 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen_height = (gfloat) _tmp31_;
-#line 1387 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1411 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp32_ = screen;
-#line 1387 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1411 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp33_ = from;
-#line 1387 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1411 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp34_ = meta_screen_get_workspace_by_index (_tmp32_, _tmp33_);
-#line 1387 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1411 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	workspace_from = _tmp34_;
-#line 1388 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1412 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp35_ = screen;
-#line 1388 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1412 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp36_ = to;
-#line 1388 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1412 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp37_ = meta_screen_get_workspace_by_index (_tmp35_, _tmp36_);
-#line 1388 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1412 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	workspace_to = _tmp37_;
-#line 1390 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1414 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp38_ = clutter_actor_new ();
-#line 1390 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1414 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp38_);
-#line 1390 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1414 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	main_container = _tmp38_;
-#line 1391 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp39_ = clutter_actor_new ();
-#line 1391 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp39_);
-#line 1391 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1415 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	static_windows = _tmp39_;
-#line 1392 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1416 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp40_ = clutter_actor_new ();
-#line 1392 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1416 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp40_);
-#line 1392 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1416 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	in_group = _tmp40_;
-#line 1393 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1417 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp41_ = clutter_actor_new ();
-#line 1393 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1417 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp41_);
-#line 1393 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1417 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	out_group = _tmp41_;
-#line 1394 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1418 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->windows);
-#line 1394 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1418 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->windows = NULL;
-#line 1395 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1419 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->parents);
-#line 1395 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1419 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->parents = NULL;
-#line 1396 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1420 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->tmp_actors);
-#line 1396 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1420 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->tmp_actors = NULL;
-#line 1398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1422 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp42_ = main_container;
-#line 1398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1422 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp43_ = _g_object_ref0 (_tmp42_);
-#line 1398 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1422 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->tmp_actors = g_list_prepend (self->priv->tmp_actors, _tmp43_);
-#line 1399 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1423 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp44_ = in_group;
-#line 1399 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1423 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp45_ = _g_object_ref0 (_tmp44_);
-#line 1399 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1423 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->tmp_actors = g_list_prepend (self->priv->tmp_actors, _tmp45_);
-#line 1400 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1424 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp46_ = out_group;
-#line 1400 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1424 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp47_ = _g_object_ref0 (_tmp46_);
-#line 1400 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1424 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->tmp_actors = g_list_prepend (self->priv->tmp_actors, _tmp47_);
-#line 1401 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1425 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp48_ = static_windows;
-#line 1401 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1425 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp49_ = _g_object_ref0 (_tmp48_);
-#line 1401 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1425 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->tmp_actors = g_list_prepend (self->priv->tmp_actors, _tmp49_);
-#line 1403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp50_ = gala_window_manager_get_window_group ((GalaWindowManager*) self);
-#line 1403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp51_ = _tmp50_;
-#line 1403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp52_ = main_container;
-#line 1403 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1427 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_child (_tmp51_, _tmp52_);
-#line 1407 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1431 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp53_ = move_primary_only;
-#line 1407 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1431 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp53_) {
-#line 9535 "WindowManager.c"
+#line 9027 "WindowManager.c"
 		MetaBackgroundGroup* _tmp54_ = NULL;
 		MetaBackgroundGroup* _tmp55_ = NULL;
 		gint _tmp56_ = 0;
@@ -9542,110 +9034,110 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 		ClutterActor* _tmp60_ = NULL;
 		gfloat _tmp61_ = 0.0F;
 		gfloat _tmp62_ = 0.0F;
-#line 1408 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1432 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp54_ = gala_window_manager_get_background_group ((GalaWindowManager*) self);
-#line 1408 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1432 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp55_ = _tmp54_;
-#line 1408 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1432 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp56_ = primary;
-#line 1408 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1432 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp57_ = clutter_actor_get_child_at_index ((ClutterActor*) _tmp55_, _tmp56_);
-#line 1408 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1432 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp58_ = _g_object_ref0 (_tmp57_);
-#line 1408 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1432 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (wallpaper);
-#line 1408 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1432 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		wallpaper = _tmp58_;
-#line 1409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp59_ = wallpaper;
-#line 1409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp60_ = wallpaper;
-#line 1409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp61_ = clutter_actor_get_x (_tmp60_);
-#line 1409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp62_ = _tmp61_;
-#line 1409 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1433 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_object_set_data_full ((GObject*) _tmp59_, "prev-x", (gpointer) ((gintptr) ((gint) _tmp62_)), NULL);
-#line 9569 "WindowManager.c"
+#line 9061 "WindowManager.c"
 	} else {
 		MetaBackgroundGroup* _tmp63_ = NULL;
 		MetaBackgroundGroup* _tmp64_ = NULL;
 		ClutterActor* _tmp65_ = NULL;
-#line 1411 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1435 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp63_ = gala_window_manager_get_background_group ((GalaWindowManager*) self);
-#line 1411 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1435 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp64_ = _tmp63_;
-#line 1411 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1435 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp65_ = _g_object_ref0 ((ClutterActor*) _tmp64_);
-#line 1411 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1435 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (wallpaper);
-#line 1411 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1435 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		wallpaper = _tmp65_;
-#line 9584 "WindowManager.c"
+#line 9076 "WindowManager.c"
 	}
-#line 1413 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1437 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp66_ = wallpaper;
-#line 1413 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1437 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp67_ = _g_object_ref0 (_tmp66_);
-#line 1413 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1437 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->windows = g_list_prepend (self->priv->windows, _tmp67_);
-#line 1414 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1438 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp68_ = wallpaper;
-#line 1414 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1438 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp69_ = clutter_actor_get_parent (_tmp68_);
-#line 1414 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1438 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp70_ = _g_object_ref0 (_tmp69_);
-#line 1414 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1438 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->parents = g_list_prepend (self->priv->parents, _tmp70_);
-#line 1416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1440 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp71_ = wallpaper;
-#line 1416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1440 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp72_ = (ClutterClone*) clutter_clone_new (_tmp71_);
-#line 1416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1440 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref_sink (_tmp72_);
-#line 1416 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1440 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	wallpaper_clone = _tmp72_;
-#line 1417 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1441 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp73_ = wallpaper_clone;
-#line 1417 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1441 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp74_ = _g_object_ref0 ((ClutterActor*) _tmp73_);
-#line 1417 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1441 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->tmp_actors = g_list_prepend (self->priv->tmp_actors, _tmp74_);
-#line 1420 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp75_ = wallpaper;
-#line 1420 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp76_ = main_container;
-#line 1420 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1444 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_clutter_actor_reparent (_tmp75_, _tmp76_);
-#line 1421 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1445 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp77_ = main_container;
-#line 1421 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1445 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp78_ = wallpaper_clone;
-#line 1421 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1445 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_child (_tmp77_, (ClutterActor*) _tmp78_);
-#line 1422 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1446 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp79_ = main_container;
-#line 1422 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1446 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp80_ = out_group;
-#line 1422 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1446 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_child (_tmp79_, _tmp80_);
-#line 1423 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1447 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp81_ = main_container;
-#line 1423 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1447 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp82_ = in_group;
-#line 1423 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1447 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_child (_tmp81_, _tmp82_);
-#line 1424 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1448 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp83_ = main_container;
-#line 1424 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1448 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp84_ = static_windows;
-#line 1424 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1448 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_child (_tmp83_, _tmp84_);
-#line 1427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp85_ = self->priv->moving;
-#line 1427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp85_ != NULL) {
-#line 9648 "WindowManager.c"
+#line 9140 "WindowManager.c"
 		MetaWindowActor* moving_actor = NULL;
 		MetaWindow* _tmp86_ = NULL;
 		GObject* _tmp87_ = NULL;
@@ -9660,69 +9152,69 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 		gfloat _tmp96_ = 0.0F;
 		MetaWindowActor* _tmp97_ = NULL;
 		ClutterActor* _tmp98_ = NULL;
-#line 1428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1452 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp86_ = self->priv->moving;
-#line 1428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1452 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp87_ = meta_window_get_compositor_private (_tmp86_);
-#line 1428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1452 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp88_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp87_, meta_window_actor_get_type (), MetaWindowActor));
-#line 1428 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1452 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		moving_actor = _tmp88_;
-#line 1430 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1454 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp89_ = moving_actor;
-#line 1430 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1454 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp90_ = _g_object_ref0 ((ClutterActor*) _tmp89_);
-#line 1430 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1454 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self->priv->windows = g_list_prepend (self->priv->windows, _tmp90_);
-#line 1431 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1455 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp91_ = moving_actor;
-#line 1431 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1455 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp92_ = clutter_actor_get_parent ((ClutterActor*) _tmp91_);
-#line 1431 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1455 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp93_ = _g_object_ref0 (_tmp92_);
-#line 1431 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1455 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self->priv->parents = g_list_prepend (self->priv->parents, _tmp93_);
-#line 1433 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1457 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp94_ = moving_actor;
-#line 1433 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1457 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp95_ = clone_offset_x;
-#line 1433 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1457 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp96_ = clone_offset_y;
-#line 1433 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1457 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		clutter_actor_set_translation ((ClutterActor*) _tmp94_, -_tmp95_, -_tmp96_, (gfloat) 0);
-#line 1434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1458 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp97_ = moving_actor;
-#line 1434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1458 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp98_ = static_windows;
-#line 1434 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1458 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_gala_clutter_actor_reparent ((ClutterActor*) _tmp97_, _tmp98_);
-#line 1427 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1451 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_object_unref0 (moving_actor);
-#line 9701 "WindowManager.c"
+#line 9193 "WindowManager.c"
 	}
-#line 1437 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1461 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	to_has_fullscreened = FALSE;
-#line 1438 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1462 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	from_has_fullscreened = FALSE;
-#line 1439 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1463 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	docks = NULL;
-#line 1442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1466 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp99_ = screen;
-#line 1442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1466 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp100_ = meta_get_window_actors (_tmp99_);
-#line 9713 "WindowManager.c"
+#line 9205 "WindowManager.c"
 	{
 		GList* actor_collection = NULL;
 		GList* actor_it = NULL;
-#line 1442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1466 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		actor_collection = _tmp100_;
-#line 1442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1466 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
-#line 9721 "WindowManager.c"
+#line 9213 "WindowManager.c"
 			MetaWindowActor* actor = NULL;
-#line 1442 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1466 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			actor = (MetaWindowActor*) actor_it->data;
-#line 9725 "WindowManager.c"
+#line 9217 "WindowManager.c"
 			{
 				MetaWindowActor* _tmp101_ = NULL;
 				gboolean _tmp102_ = FALSE;
@@ -9738,125 +9230,125 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 				MetaWindow* _tmp139_ = NULL;
 				MetaWorkspace* _tmp140_ = NULL;
 				MetaWorkspace* _tmp141_ = NULL;
-#line 1443 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1467 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp101_ = actor;
-#line 1443 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1467 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp102_ = meta_window_actor_is_destroyed (_tmp101_);
-#line 1443 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1467 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp102_) {
-#line 1444 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1468 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					continue;
-#line 9749 "WindowManager.c"
+#line 9241 "WindowManager.c"
 				}
-#line 1446 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp103_ = actor;
-#line 1446 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp104_ = meta_window_actor_get_meta_window (_tmp103_);
-#line 1446 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1470 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				window = _tmp104_;
-#line 1448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp107_ = window;
-#line 1448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp108_ = meta_window_showing_on_its_workspace (_tmp107_);
-#line 1448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (!_tmp108_) {
-#line 1448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp106_ = TRUE;
-#line 9765 "WindowManager.c"
+#line 9257 "WindowManager.c"
 				} else {
 					gboolean _tmp109_ = FALSE;
 					gboolean _tmp110_ = FALSE;
-#line 1449 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp110_ = move_primary_only;
-#line 1449 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					if (_tmp110_) {
-#line 9773 "WindowManager.c"
+#line 9265 "WindowManager.c"
 						MetaWindow* _tmp111_ = NULL;
 						gint _tmp112_ = 0;
 						gint _tmp113_ = 0;
-#line 1449 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp111_ = window;
-#line 1449 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp112_ = meta_window_get_monitor (_tmp111_);
-#line 1449 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp113_ = primary;
-#line 1449 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp109_ = _tmp112_ != _tmp113_;
-#line 9785 "WindowManager.c"
+#line 9277 "WindowManager.c"
 					} else {
-#line 1449 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp109_ = FALSE;
-#line 9789 "WindowManager.c"
+#line 9281 "WindowManager.c"
 					}
-#line 1449 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1473 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp106_ = _tmp109_;
-#line 9793 "WindowManager.c"
+#line 9285 "WindowManager.c"
 				}
-#line 1448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp106_) {
-#line 1448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp105_ = TRUE;
-#line 9799 "WindowManager.c"
+#line 9291 "WindowManager.c"
 				} else {
 					gboolean _tmp114_ = FALSE;
 					MetaWindow* _tmp115_ = NULL;
-#line 1450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp115_ = self->priv->moving;
-#line 1450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					if (_tmp115_ != NULL) {
-#line 9807 "WindowManager.c"
+#line 9299 "WindowManager.c"
 						MetaWindow* _tmp116_ = NULL;
 						MetaWindow* _tmp117_ = NULL;
-#line 1450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp116_ = window;
-#line 1450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp117_ = self->priv->moving;
-#line 1450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp114_ = _tmp116_ == _tmp117_;
-#line 9816 "WindowManager.c"
+#line 9308 "WindowManager.c"
 					} else {
-#line 1450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp114_ = FALSE;
-#line 9820 "WindowManager.c"
+#line 9312 "WindowManager.c"
 					}
-#line 1450 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1474 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp105_ = _tmp114_;
-#line 9824 "WindowManager.c"
+#line 9316 "WindowManager.c"
 				}
-#line 1448 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1472 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp105_) {
-#line 1451 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1475 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					continue;
-#line 9830 "WindowManager.c"
+#line 9322 "WindowManager.c"
 				}
-#line 1453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1477 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp118_ = window;
-#line 1453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1477 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp119_ = meta_window_is_on_all_workspaces (_tmp118_);
-#line 1453 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1477 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp119_) {
-#line 9838 "WindowManager.c"
+#line 9330 "WindowManager.c"
 					MetaWindow* _tmp120_ = NULL;
 					MetaWindowType _tmp121_ = 0;
 					MetaWindowType _tmp122_ = 0;
-#line 1456 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1480 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp120_ = window;
-#line 1456 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1480 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp121_ = meta_window_get_window_type (_tmp120_);
-#line 1456 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1480 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp122_ = _tmp121_;
-#line 1456 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1480 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					if (_tmp122_ == META_WINDOW_DOCK) {
-#line 9850 "WindowManager.c"
+#line 9342 "WindowManager.c"
 						MetaWindowActor* _tmp123_ = NULL;
 						MetaWindowActor* _tmp124_ = NULL;
-#line 1457 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1481 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp123_ = actor;
-#line 1457 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1481 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp124_ = _g_object_ref0 (_tmp123_);
-#line 1457 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1481 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						docks = g_list_prepend (docks, _tmp124_);
-#line 9859 "WindowManager.c"
+#line 9351 "WindowManager.c"
 					} else {
 						MetaWindowActor* _tmp125_ = NULL;
 						ClutterActor* _tmp126_ = NULL;
@@ -9872,65 +9364,65 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 						MetaWindowActor* _tmp136_ = NULL;
 						MetaWindowActor* _tmp137_ = NULL;
 						MetaWindowActor* _tmp138_ = NULL;
-#line 1460 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1484 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp125_ = actor;
-#line 1460 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1484 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp126_ = _g_object_ref0 ((ClutterActor*) _tmp125_);
-#line 1460 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1484 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						self->priv->windows = g_list_prepend (self->priv->windows, _tmp126_);
-#line 1461 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1485 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp127_ = actor;
-#line 1461 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1485 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp128_ = clutter_actor_get_parent ((ClutterActor*) _tmp127_);
-#line 1461 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1485 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp129_ = _g_object_ref0 (_tmp128_);
-#line 1461 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1485 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						self->priv->parents = g_list_prepend (self->priv->parents, _tmp129_);
-#line 1462 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1486 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp130_ = actor;
-#line 1462 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1486 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp131_ = static_windows;
-#line 1462 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1486 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						gala_window_manager_gala_clutter_actor_reparent ((ClutterActor*) _tmp130_, _tmp131_);
-#line 1464 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1488 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp132_ = actor;
-#line 1464 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1488 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp133_ = clone_offset_x;
-#line 1464 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1488 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp134_ = clone_offset_y;
-#line 1464 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1488 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						clutter_actor_set_translation ((ClutterActor*) _tmp132_, -_tmp133_, -_tmp134_, (gfloat) 0);
-#line 1465 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp135_ = actor;
-#line 1465 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1489 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						clutter_actor_save_easing_state ((ClutterActor*) _tmp135_);
-#line 1466 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1490 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp136_ = actor;
-#line 1466 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1490 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						clutter_actor_set_easing_duration ((ClutterActor*) _tmp136_, (guint) 300);
-#line 1467 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1491 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp137_ = actor;
-#line 1467 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1491 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						clutter_actor_set_opacity ((ClutterActor*) _tmp137_, (guint) 0);
-#line 1468 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1492 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp138_ = actor;
-#line 1468 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1492 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						clutter_actor_restore_easing_state ((ClutterActor*) _tmp138_);
-#line 9919 "WindowManager.c"
+#line 9411 "WindowManager.c"
 					}
-#line 1471 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1495 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					continue;
-#line 9923 "WindowManager.c"
+#line 9415 "WindowManager.c"
 				}
-#line 1474 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1498 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp139_ = window;
-#line 1474 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1498 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp140_ = meta_window_get_workspace (_tmp139_);
-#line 1474 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1498 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp141_ = workspace_from;
-#line 1474 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1498 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp140_ == _tmp141_) {
-#line 9933 "WindowManager.c"
+#line 9425 "WindowManager.c"
 					MetaWindowActor* _tmp142_ = NULL;
 					ClutterActor* _tmp143_ = NULL;
 					MetaWindowActor* _tmp144_ = NULL;
@@ -9944,59 +9436,59 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 					MetaWindow* _tmp152_ = NULL;
 					gboolean _tmp153_ = FALSE;
 					gboolean _tmp154_ = FALSE;
-#line 1475 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1499 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp142_ = actor;
-#line 1475 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1499 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp143_ = _g_object_ref0 ((ClutterActor*) _tmp142_);
-#line 1475 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1499 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					self->priv->windows = g_list_append (self->priv->windows, _tmp143_);
-#line 1476 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1500 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp144_ = actor;
-#line 1476 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1500 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp145_ = clutter_actor_get_parent ((ClutterActor*) _tmp144_);
-#line 1476 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1500 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp146_ = _g_object_ref0 (_tmp145_);
-#line 1476 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1500 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					self->priv->parents = g_list_append (self->priv->parents, _tmp146_);
-#line 1477 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1501 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp147_ = actor;
-#line 1477 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1501 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp148_ = clone_offset_x;
-#line 1477 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1501 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp149_ = clone_offset_y;
-#line 1477 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1501 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_set_translation ((ClutterActor*) _tmp147_, -_tmp148_, -_tmp149_, (gfloat) 0);
-#line 1478 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1502 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp150_ = actor;
-#line 1478 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1502 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp151_ = out_group;
-#line 1478 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1502 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					gala_window_manager_gala_clutter_actor_reparent ((ClutterActor*) _tmp150_, _tmp151_);
-#line 1480 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1504 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp152_ = window;
-#line 1480 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1504 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					g_object_get (_tmp152_, "fullscreen", &_tmp153_, NULL);
-#line 1480 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1504 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp154_ = _tmp153_;
-#line 1480 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1504 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					if (_tmp154_) {
-#line 1481 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1505 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						from_has_fullscreened = TRUE;
-#line 9985 "WindowManager.c"
+#line 9477 "WindowManager.c"
 					}
 				} else {
 					MetaWindow* _tmp155_ = NULL;
 					MetaWorkspace* _tmp156_ = NULL;
 					MetaWorkspace* _tmp157_ = NULL;
-#line 1483 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1507 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp155_ = window;
-#line 1483 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1507 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp156_ = meta_window_get_workspace (_tmp155_);
-#line 1483 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1507 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp157_ = workspace_to;
-#line 1483 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1507 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					if (_tmp156_ == _tmp157_) {
-#line 9999 "WindowManager.c"
+#line 9491 "WindowManager.c"
 						MetaWindowActor* _tmp158_ = NULL;
 						ClutterActor* _tmp159_ = NULL;
 						MetaWindowActor* _tmp160_ = NULL;
@@ -10010,77 +9502,77 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 						MetaWindow* _tmp168_ = NULL;
 						gboolean _tmp169_ = FALSE;
 						gboolean _tmp170_ = FALSE;
-#line 1484 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1508 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp158_ = actor;
-#line 1484 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1508 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp159_ = _g_object_ref0 ((ClutterActor*) _tmp158_);
-#line 1484 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1508 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						self->priv->windows = g_list_append (self->priv->windows, _tmp159_);
-#line 1485 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1509 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp160_ = actor;
-#line 1485 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1509 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp161_ = clutter_actor_get_parent ((ClutterActor*) _tmp160_);
-#line 1485 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1509 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp162_ = _g_object_ref0 (_tmp161_);
-#line 1485 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1509 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						self->priv->parents = g_list_append (self->priv->parents, _tmp162_);
-#line 1486 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1510 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp163_ = actor;
-#line 1486 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1510 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp164_ = clone_offset_x;
-#line 1486 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1510 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp165_ = clone_offset_y;
-#line 1486 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1510 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						clutter_actor_set_translation ((ClutterActor*) _tmp163_, -_tmp164_, -_tmp165_, (gfloat) 0);
-#line 1487 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1511 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp166_ = actor;
-#line 1487 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1511 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp167_ = in_group;
-#line 1487 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1511 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						gala_window_manager_gala_clutter_actor_reparent ((ClutterActor*) _tmp166_, _tmp167_);
-#line 1489 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp168_ = window;
-#line 1489 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						g_object_get (_tmp168_, "fullscreen", &_tmp169_, NULL);
-#line 1489 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp170_ = _tmp169_;
-#line 1489 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1513 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						if (_tmp170_) {
-#line 1490 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1514 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 							to_has_fullscreened = TRUE;
-#line 10051 "WindowManager.c"
+#line 9543 "WindowManager.c"
 						}
 					}
 				}
 			}
 		}
 	}
-#line 1499 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp171_ = docks;
-#line 10060 "WindowManager.c"
+#line 9552 "WindowManager.c"
 	{
 		GList* window_collection = NULL;
 		GList* window_it = NULL;
-#line 1499 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		window_collection = _tmp171_;
-#line 1499 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		for (window_it = window_collection; window_it != NULL; window_it = window_it->next) {
-#line 10068 "WindowManager.c"
+#line 9560 "WindowManager.c"
 			MetaWindowActor* _tmp172_ = NULL;
 			MetaWindowActor* window = NULL;
-#line 1499 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp172_ = _g_object_ref0 ((MetaWindowActor*) window_it->data);
-#line 1499 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			window = _tmp172_;
-#line 10075 "WindowManager.c"
+#line 9567 "WindowManager.c"
 			{
 				gboolean _tmp173_ = FALSE;
 				gboolean _tmp191_ = FALSE;
-#line 1500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1524 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp173_ = to_has_fullscreened;
-#line 1500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1524 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (!_tmp173_) {
-#line 10083 "WindowManager.c"
+#line 9575 "WindowManager.c"
 					GalaSafeWindowClone* clone = NULL;
 					MetaWindowActor* _tmp174_ = NULL;
 					MetaWindow* _tmp175_ = NULL;
@@ -10099,61 +9591,61 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 					GalaSafeWindowClone* _tmp188_ = NULL;
 					GalaSafeWindowClone* _tmp189_ = NULL;
 					ClutterActor* _tmp190_ = NULL;
-#line 1501 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1525 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp174_ = window;
-#line 1501 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1525 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp175_ = meta_window_actor_get_meta_window (_tmp174_);
-#line 1501 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1525 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp176_ = gala_safe_window_clone_new (_tmp175_, FALSE);
-#line 1501 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1525 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					g_object_ref_sink (_tmp176_);
-#line 1501 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1525 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clone = _tmp176_;
-#line 1502 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1526 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp177_ = clone;
-#line 1502 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1526 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp178_ = window;
-#line 1502 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1526 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp179_ = clutter_actor_get_x ((ClutterActor*) _tmp178_);
-#line 1502 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1526 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp180_ = _tmp179_;
-#line 1502 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1526 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp181_ = clone_offset_x;
-#line 1502 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1526 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_set_x ((ClutterActor*) _tmp177_, _tmp180_ - _tmp181_);
-#line 1503 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1527 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp182_ = clone;
-#line 1503 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1527 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp183_ = window;
-#line 1503 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1527 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp184_ = clutter_actor_get_y ((ClutterActor*) _tmp183_);
-#line 1503 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1527 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp185_ = _tmp184_;
-#line 1503 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1527 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp186_ = clone_offset_y;
-#line 1503 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1527 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_set_y ((ClutterActor*) _tmp182_, _tmp185_ - _tmp186_);
-#line 1505 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1529 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp187_ = in_group;
-#line 1505 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1529 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp188_ = clone;
-#line 1505 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1529 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_add_child (_tmp187_, (ClutterActor*) _tmp188_);
-#line 1506 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1530 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp189_ = clone;
-#line 1506 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1530 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp190_ = _g_object_ref0 ((ClutterActor*) _tmp189_);
-#line 1506 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1530 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					self->priv->tmp_actors = g_list_prepend (self->priv->tmp_actors, _tmp190_);
-#line 1500 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1524 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_g_object_unref0 (clone);
-#line 10150 "WindowManager.c"
+#line 9642 "WindowManager.c"
 				}
-#line 1509 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1533 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp191_ = from_has_fullscreened;
-#line 1509 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1533 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (!_tmp191_) {
-#line 10156 "WindowManager.c"
+#line 9648 "WindowManager.c"
 					MetaWindowActor* _tmp192_ = NULL;
 					ClutterActor* _tmp193_ = NULL;
 					MetaWindowActor* _tmp194_ = NULL;
@@ -10164,389 +9656,389 @@ static void gala_window_manager_gala_real_switch_workspace (MetaPlugin* base, gi
 					gfloat _tmp199_ = 0.0F;
 					MetaWindowActor* _tmp200_ = NULL;
 					ClutterActor* _tmp201_ = NULL;
-#line 1510 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1534 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp192_ = window;
-#line 1510 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1534 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp193_ = _g_object_ref0 ((ClutterActor*) _tmp192_);
-#line 1510 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1534 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					self->priv->windows = g_list_prepend (self->priv->windows, _tmp193_);
-#line 1511 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp194_ = window;
-#line 1511 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp195_ = clutter_actor_get_parent ((ClutterActor*) _tmp194_);
-#line 1511 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp196_ = _g_object_ref0 (_tmp195_);
-#line 1511 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1535 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					self->priv->parents = g_list_prepend (self->priv->parents, _tmp196_);
-#line 1512 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1536 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp197_ = window;
-#line 1512 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1536 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp198_ = clone_offset_x;
-#line 1512 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1536 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp199_ = clone_offset_y;
-#line 1512 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1536 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_set_translation ((ClutterActor*) _tmp197_, -_tmp198_, -_tmp199_, 0.0f);
-#line 1514 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1538 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp200_ = window;
-#line 1514 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1538 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp201_ = out_group;
-#line 1514 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1538 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					gala_window_manager_gala_clutter_actor_reparent ((ClutterActor*) _tmp200_, _tmp201_);
-#line 10195 "WindowManager.c"
+#line 9687 "WindowManager.c"
 				}
-#line 1499 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1523 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (window);
-#line 10199 "WindowManager.c"
+#line 9691 "WindowManager.c"
 			}
 		}
 	}
-#line 1518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1542 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp202_ = main_container;
-#line 1518 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1542 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_clip_to_allocation (_tmp202_, TRUE);
-#line 1519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp204_ = move_primary_only;
-#line 1519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp204_) {
-#line 10211 "WindowManager.c"
+#line 9703 "WindowManager.c"
 		MetaRectangle _tmp205_ = {0};
 		gint _tmp206_ = 0;
-#line 1519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp205_ = monitor_geom;
-#line 1519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp206_ = _tmp205_.x;
-#line 1519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp203_ = (gfloat) _tmp206_;
-#line 10220 "WindowManager.c"
+#line 9712 "WindowManager.c"
 	} else {
-#line 1519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp203_ = 0.0f;
-#line 10224 "WindowManager.c"
+#line 9716 "WindowManager.c"
 	}
-#line 1519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp207_ = main_container;
-#line 1519 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1543 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x (_tmp207_, _tmp203_);
-#line 1520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1544 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp209_ = move_primary_only;
-#line 1520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1544 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp209_) {
-#line 10234 "WindowManager.c"
+#line 9726 "WindowManager.c"
 		MetaRectangle _tmp210_ = {0};
 		gint _tmp211_ = 0;
-#line 1520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1544 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp210_ = monitor_geom;
-#line 1520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1544 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp211_ = _tmp210_.y;
-#line 1520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1544 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp208_ = (gfloat) _tmp211_;
-#line 10243 "WindowManager.c"
+#line 9735 "WindowManager.c"
 	} else {
-#line 1520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1544 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp208_ = 0.0f;
-#line 10247 "WindowManager.c"
+#line 9739 "WindowManager.c"
 	}
-#line 1520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1544 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp212_ = main_container;
-#line 1520 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1544 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_y (_tmp212_, _tmp208_);
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp214_ = move_primary_only;
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp214_) {
-#line 10257 "WindowManager.c"
+#line 9749 "WindowManager.c"
 		MetaRectangle _tmp215_ = {0};
 		gint _tmp216_ = 0;
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp215_ = monitor_geom;
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp216_ = _tmp215_.width;
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp213_ = (gfloat) _tmp216_;
-#line 10266 "WindowManager.c"
+#line 9758 "WindowManager.c"
 	} else {
 		gfloat _tmp217_ = 0.0F;
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp217_ = screen_width;
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp213_ = _tmp217_;
-#line 10273 "WindowManager.c"
+#line 9765 "WindowManager.c"
 	}
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp218_ = main_container;
-#line 1521 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1545 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_width (_tmp218_, _tmp213_);
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp220_ = move_primary_only;
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp220_) {
-#line 10283 "WindowManager.c"
+#line 9775 "WindowManager.c"
 		MetaRectangle _tmp221_ = {0};
 		gint _tmp222_ = 0;
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp221_ = monitor_geom;
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp222_ = _tmp221_.height;
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp219_ = (gfloat) _tmp222_;
-#line 10292 "WindowManager.c"
+#line 9784 "WindowManager.c"
 	} else {
 		gfloat _tmp223_ = 0.0F;
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp223_ = screen_height;
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp219_ = _tmp223_;
-#line 10299 "WindowManager.c"
+#line 9791 "WindowManager.c"
 	}
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp224_ = main_container;
-#line 1522 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1546 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_height (_tmp224_, _tmp219_);
-#line 1524 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1548 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp226_ = move_primary_only;
-#line 1524 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1548 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp226_) {
-#line 10309 "WindowManager.c"
+#line 9801 "WindowManager.c"
 		MetaRectangle _tmp227_ = {0};
 		gint _tmp228_ = 0;
-#line 1524 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1548 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp227_ = monitor_geom;
-#line 1524 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1548 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp228_ = _tmp227_.width;
-#line 1524 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1548 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp225_ = (gfloat) _tmp228_;
-#line 10318 "WindowManager.c"
+#line 9810 "WindowManager.c"
 	} else {
 		gfloat _tmp229_ = 0.0F;
-#line 1524 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1548 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp229_ = screen_width;
-#line 1524 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1548 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp225_ = _tmp229_;
-#line 10325 "WindowManager.c"
+#line 9817 "WindowManager.c"
 	}
-#line 1524 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1548 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	x2 = _tmp225_;
-#line 1525 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1549 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp230_ = direction;
-#line 1525 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1549 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp230_ == META_MOTION_RIGHT) {
-#line 10333 "WindowManager.c"
+#line 9825 "WindowManager.c"
 		gfloat _tmp231_ = 0.0F;
-#line 1526 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1550 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp231_ = x2;
-#line 1526 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1550 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		x2 = -_tmp231_;
-#line 10339 "WindowManager.c"
+#line 9831 "WindowManager.c"
 	}
-#line 1528 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1552 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp232_ = out_group;
-#line 1528 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1552 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x (_tmp232_, 0.0f);
-#line 1529 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1553 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp233_ = wallpaper;
-#line 1529 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1553 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x (_tmp233_, 0.0f);
-#line 1530 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1554 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp234_ = in_group;
-#line 1530 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1554 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp235_ = x2;
-#line 1530 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1554 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x (_tmp234_, -_tmp235_);
-#line 1531 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1555 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp236_ = wallpaper_clone;
-#line 1531 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1555 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp237_ = x2;
-#line 1531 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1555 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x ((ClutterActor*) _tmp236_, -_tmp237_);
-#line 1533 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1557 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp238_ = in_group;
-#line 1533 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1557 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp239_ = out_group;
-#line 1533 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1557 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_clip_to_allocation (_tmp239_, TRUE);
-#line 1533 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1557 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_clip_to_allocation (_tmp238_, TRUE);
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp241_ = move_primary_only;
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp241_) {
-#line 10373 "WindowManager.c"
+#line 9865 "WindowManager.c"
 		MetaRectangle _tmp242_ = {0};
 		gint _tmp243_ = 0;
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp242_ = monitor_geom;
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp243_ = _tmp242_.width;
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp240_ = (gfloat) _tmp243_;
-#line 10382 "WindowManager.c"
+#line 9874 "WindowManager.c"
 	} else {
 		gfloat _tmp244_ = 0.0F;
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp244_ = screen_width;
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp240_ = _tmp244_;
-#line 10389 "WindowManager.c"
+#line 9881 "WindowManager.c"
 	}
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp245_ = in_group;
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp246_ = out_group;
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_width (_tmp246_, _tmp240_);
-#line 1534 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1558 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_width (_tmp245_, _tmp240_);
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp248_ = move_primary_only;
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp248_) {
-#line 10403 "WindowManager.c"
+#line 9895 "WindowManager.c"
 		MetaRectangle _tmp249_ = {0};
 		gint _tmp250_ = 0;
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp249_ = monitor_geom;
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp250_ = _tmp249_.height;
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp247_ = (gfloat) _tmp250_;
-#line 10412 "WindowManager.c"
+#line 9904 "WindowManager.c"
 	} else {
 		gfloat _tmp251_ = 0.0F;
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp251_ = screen_height;
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp247_ = _tmp251_;
-#line 10419 "WindowManager.c"
+#line 9911 "WindowManager.c"
 	}
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp252_ = in_group;
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp253_ = out_group;
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_height (_tmp253_, _tmp247_);
-#line 1535 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1559 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_height (_tmp252_, _tmp247_);
-#line 1537 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1561 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	animation_mode = CLUTTER_EASE_OUT_CUBIC;
-#line 1539 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1563 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp254_ = out_group;
-#line 1539 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1563 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp255_ = animation_mode;
-#line 1539 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1563 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_easing_mode (_tmp254_, _tmp255_);
-#line 1540 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1564 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp256_ = out_group;
-#line 1540 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1564 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp257_ = animation_duration;
-#line 1540 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1564 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_easing_duration (_tmp256_, (guint) _tmp257_);
-#line 1541 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1565 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp258_ = in_group;
-#line 1541 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1565 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp259_ = animation_mode;
-#line 1541 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1565 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_easing_mode (_tmp258_, _tmp259_);
-#line 1542 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1566 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp260_ = in_group;
-#line 1542 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1566 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp261_ = animation_duration;
-#line 1542 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1566 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_easing_duration (_tmp260_, (guint) _tmp261_);
-#line 1543 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1567 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp262_ = wallpaper_clone;
-#line 1543 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1567 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp263_ = animation_mode;
-#line 1543 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1567 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_easing_mode ((ClutterActor*) _tmp262_, _tmp263_);
-#line 1544 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1568 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp264_ = wallpaper_clone;
-#line 1544 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1568 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp265_ = animation_duration;
-#line 1544 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1568 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_easing_duration ((ClutterActor*) _tmp264_, (guint) _tmp265_);
-#line 1546 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1570 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp266_ = wallpaper;
-#line 1546 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1570 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_save_easing_state (_tmp266_);
-#line 1547 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1571 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp267_ = wallpaper;
-#line 1547 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1571 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp268_ = animation_mode;
-#line 1547 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1571 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_easing_mode (_tmp267_, _tmp268_);
-#line 1548 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1572 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp269_ = wallpaper;
-#line 1548 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1572 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp270_ = animation_duration;
-#line 1548 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1572 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_easing_duration (_tmp269_, (guint) _tmp270_);
-#line 1550 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1574 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp271_ = out_group;
-#line 1550 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1574 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp272_ = x2;
-#line 1550 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1574 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x (_tmp271_, _tmp272_);
-#line 1551 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1575 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp273_ = in_group;
-#line 1551 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1575 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x (_tmp273_, 0.0f);
-#line 1553 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1577 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp274_ = wallpaper;
-#line 1553 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1577 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp275_ = x2;
-#line 1553 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1577 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x (_tmp274_, _tmp275_);
-#line 1554 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1578 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp276_ = wallpaper_clone;
-#line 1554 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1578 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_set_x ((ClutterActor*) _tmp276_, 0.0f);
-#line 1555 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1579 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp277_ = wallpaper;
-#line 1555 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1579 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_restore_easing_state (_tmp277_);
-#line 1557 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1581 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp278_ = in_group;
-#line 1557 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1581 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp279_ = clutter_actor_get_transition (_tmp278_, "x");
-#line 1557 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1581 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp280_ = _g_object_ref0 (_tmp279_);
-#line 1557 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1581 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	transition = _tmp280_;
-#line 1558 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1582 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp281_ = transition;
-#line 1558 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1582 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp281_ != NULL) {
-#line 10519 "WindowManager.c"
+#line 10011 "WindowManager.c"
 		ClutterTransition* _tmp282_ = NULL;
-#line 1559 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1583 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp282_ = transition;
-#line 1559 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1583 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_signal_connect_object ((ClutterTimeline*) _tmp282_, "completed", (GCallback) _gala_window_manager_gala_end_switch_workspace_clutter_timeline_completed, self, 0);
-#line 10525 "WindowManager.c"
+#line 10017 "WindowManager.c"
 	} else {
-#line 1561 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1585 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_gala_end_switch_workspace (self);
-#line 10529 "WindowManager.c"
+#line 10021 "WindowManager.c"
 	}
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (transition);
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (docks);
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (wallpaper_clone);
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (wallpaper);
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (out_group);
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (in_group);
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (static_windows);
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (main_container);
-#line 1365 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1389 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 10549 "WindowManager.c"
+#line 10041 "WindowManager.c"
 }
 
 
@@ -10561,56 +10053,56 @@ static void gala_window_manager_gala_end_switch_workspace (GalaWindowManagerGala
 	MetaWorkspace* _tmp6_ = NULL;
 	MetaWorkspace* _tmp7_ = NULL;
 	GList* _tmp69_ = NULL;
-#line 1564 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1588 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (self != NULL);
-#line 1566 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1590 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = self->priv->windows;
-#line 1566 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1590 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp1_ == NULL) {
-#line 1566 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1590 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = TRUE;
-#line 10572 "WindowManager.c"
+#line 10064 "WindowManager.c"
 	} else {
 		GList* _tmp2_ = NULL;
-#line 1566 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1590 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp2_ = self->priv->parents;
-#line 1566 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1590 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = _tmp2_ == NULL;
-#line 10579 "WindowManager.c"
+#line 10071 "WindowManager.c"
 	}
-#line 1566 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1590 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp0_) {
-#line 1567 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1591 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 10585 "WindowManager.c"
+#line 10077 "WindowManager.c"
 	}
-#line 1569 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1593 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = meta_plugin_get_screen ((MetaPlugin*) self);
-#line 1569 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1593 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = _g_object_ref0 (_tmp3_);
-#line 1569 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1593 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	screen = _tmp4_;
-#line 1570 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1594 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = screen;
-#line 1570 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1594 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = meta_screen_get_active_workspace (_tmp5_);
-#line 1570 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1594 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = _g_object_ref0 (_tmp6_);
-#line 1570 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1594 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	active_workspace = _tmp7_;
-#line 10601 "WindowManager.c"
+#line 10093 "WindowManager.c"
 	{
 		gint i = 0;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		i = 0;
-#line 10606 "WindowManager.c"
+#line 10098 "WindowManager.c"
 		{
 			gboolean _tmp8_ = FALSE;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			_tmp8_ = TRUE;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			while (TRUE) {
-#line 10613 "WindowManager.c"
+#line 10105 "WindowManager.c"
 				gint _tmp10_ = 0;
 				GList* _tmp11_ = NULL;
 				guint _tmp12_ = 0U;
@@ -10639,49 +10131,49 @@ static void gala_window_manager_gala_end_switch_workspace (GalaWindowManagerGala
 				ClutterActor* _tmp62_ = NULL;
 				guint _tmp63_ = 0U;
 				guint _tmp64_ = 0U;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (!_tmp8_) {
-#line 10644 "WindowManager.c"
+#line 10136 "WindowManager.c"
 					gint _tmp9_ = 0;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp9_ = i;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					i = _tmp9_ + 1;
-#line 10650 "WindowManager.c"
+#line 10142 "WindowManager.c"
 				}
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp8_ = FALSE;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp10_ = i;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp11_ = self->priv->windows;
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp12_ = g_list_length (_tmp11_);
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (!(((guint) _tmp10_) < _tmp12_)) {
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					break;
-#line 10664 "WindowManager.c"
+#line 10156 "WindowManager.c"
 				}
-#line 1573 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1597 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp13_ = self->priv->windows;
-#line 1573 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1597 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp14_ = i;
-#line 1573 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1597 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp15_ = g_list_nth_data (_tmp13_, (guint) _tmp14_);
-#line 1573 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1597 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp16_ = _g_object_ref0 ((ClutterActor*) _tmp15_);
-#line 1573 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1597 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				actor = _tmp16_;
-#line 1574 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1598 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp17_ = actor;
-#line 1574 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1598 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				clutter_actor_set_translation (_tmp17_, 0.0f, 0.0f, 0.0f);
-#line 1578 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1602 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp18_ = actor;
-#line 1578 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1602 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (G_TYPE_CHECK_INSTANCE_TYPE (_tmp18_, GALA_TYPE_BACKGROUND_MANAGER)) {
-#line 10684 "WindowManager.c"
+#line 10176 "WindowManager.c"
 					GalaBackgroundManager* background = NULL;
 					ClutterActor* _tmp19_ = NULL;
 					GalaBackgroundManager* _tmp20_ = NULL;
@@ -10697,303 +10189,303 @@ static void gala_window_manager_gala_end_switch_workspace (GalaWindowManagerGala
 					GalaBackgroundManager* _tmp30_ = NULL;
 					GalaBackgroundManager* _tmp31_ = NULL;
 					gpointer _tmp32_ = NULL;
-#line 1579 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1603 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp19_ = actor;
-#line 1579 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1603 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp20_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_CAST (_tmp19_, GALA_TYPE_BACKGROUND_MANAGER, GalaBackgroundManager));
-#line 1579 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1603 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					background = _tmp20_;
-#line 1581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1605 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp21_ = background;
-#line 1581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1605 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp22_ = clutter_actor_get_parent ((ClutterActor*) _tmp21_);
-#line 1581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1605 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp23_ = background;
-#line 1581 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1605 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_remove_child (_tmp22_, (ClutterActor*) _tmp23_);
-#line 1582 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp24_ = gala_window_manager_get_background_group ((GalaWindowManager*) self);
-#line 1582 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp25_ = _tmp24_;
-#line 1582 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp26_ = background;
-#line 1582 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp27_ = background;
-#line 1582 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp28_ = gala_background_manager_get_monitor_index (_tmp27_);
-#line 1582 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp29_ = _tmp28_;
-#line 1582 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1606 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_insert_child_at_index ((ClutterActor*) _tmp25_, (ClutterActor*) _tmp26_, _tmp29_);
-#line 1583 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1607 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp30_ = background;
-#line 1583 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1607 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp31_ = background;
-#line 1583 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1607 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp32_ = g_object_steal_data ((GObject*) _tmp31_, "prev-x");
-#line 1583 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1607 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_set_x ((ClutterActor*) _tmp30_, (gfloat) ((gint) ((gintptr) _tmp32_)));
-#line 1584 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1608 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_g_object_unref0 (background);
-#line 1584 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1608 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_g_object_unref0 (actor);
-#line 1584 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1608 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					continue;
-#line 10742 "WindowManager.c"
+#line 10234 "WindowManager.c"
 				} else {
 					ClutterActor* _tmp33_ = NULL;
-#line 1585 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1609 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp33_ = actor;
-#line 1585 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1609 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					if (G_TYPE_CHECK_INSTANCE_TYPE (_tmp33_, meta_background_group_get_type ())) {
-#line 10749 "WindowManager.c"
+#line 10241 "WindowManager.c"
 						ClutterActor* _tmp34_ = NULL;
 						ClutterActor* _tmp35_ = NULL;
 						ClutterActor* _tmp36_ = NULL;
 						ClutterActor* _tmp37_ = NULL;
-#line 1586 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1610 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp34_ = actor;
-#line 1586 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1610 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						clutter_actor_set_x (_tmp34_, (gfloat) 0);
-#line 1588 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1612 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp35_ = actor;
-#line 1588 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1612 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp36_ = gala_window_manager_get_window_group ((GalaWindowManager*) self);
-#line 1588 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1612 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_tmp37_ = _tmp36_;
-#line 1588 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1612 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						gala_window_manager_gala_clutter_actor_reparent (_tmp35_, _tmp37_);
-#line 1589 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1613 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						_g_object_unref0 (actor);
-#line 1589 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1613 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 						continue;
-#line 10770 "WindowManager.c"
+#line 10262 "WindowManager.c"
 					}
 				}
-#line 1592 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1616 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp38_ = actor;
-#line 1592 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1616 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp39_ = _g_object_ref0 (G_TYPE_CHECK_INSTANCE_TYPE (_tmp38_, meta_window_actor_get_type ()) ? ((MetaWindowActor*) _tmp38_) : NULL);
-#line 1592 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1616 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				window = _tmp39_;
-#line 1594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1618 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp41_ = window;
-#line 1594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1618 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp41_ == NULL) {
-#line 1594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1618 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp40_ = TRUE;
-#line 10785 "WindowManager.c"
+#line 10277 "WindowManager.c"
 				} else {
 					MetaWindowActor* _tmp42_ = NULL;
 					gboolean _tmp43_ = FALSE;
-#line 1594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1618 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp42_ = window;
-#line 1594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1618 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp43_ = meta_window_actor_is_destroyed (_tmp42_);
-#line 1594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1618 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp40_ = !_tmp43_;
-#line 10795 "WindowManager.c"
+#line 10287 "WindowManager.c"
 				}
-#line 1594 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1618 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp40_) {
-#line 10799 "WindowManager.c"
+#line 10291 "WindowManager.c"
 					ClutterActor* _tmp44_ = NULL;
 					GList* _tmp45_ = NULL;
 					gint _tmp46_ = 0;
 					gconstpointer _tmp47_ = NULL;
-#line 1595 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1619 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp44_ = actor;
-#line 1595 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1619 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp45_ = self->priv->parents;
-#line 1595 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1619 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp46_ = i;
-#line 1595 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1619 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp47_ = g_list_nth_data (_tmp45_, (guint) _tmp46_);
-#line 1595 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1619 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					gala_window_manager_gala_clutter_actor_reparent (_tmp44_, (ClutterActor*) _tmp47_);
-#line 10814 "WindowManager.c"
+#line 10306 "WindowManager.c"
 				}
-#line 1597 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1621 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp49_ = window;
-#line 1597 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1621 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp49_ == NULL) {
-#line 1597 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1621 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp48_ = TRUE;
-#line 10822 "WindowManager.c"
+#line 10314 "WindowManager.c"
 				} else {
 					MetaWindowActor* _tmp50_ = NULL;
 					gboolean _tmp51_ = FALSE;
-#line 1597 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1621 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp50_ = window;
-#line 1597 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1621 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp51_ = meta_window_actor_is_destroyed (_tmp50_);
-#line 1597 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1621 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp48_ = _tmp51_;
-#line 10832 "WindowManager.c"
+#line 10324 "WindowManager.c"
 				}
-#line 1597 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1621 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp48_) {
-#line 1598 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1622 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_g_object_unref0 (window);
-#line 1598 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1622 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_g_object_unref0 (actor);
-#line 1598 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1622 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					continue;
-#line 10842 "WindowManager.c"
+#line 10334 "WindowManager.c"
 				}
-#line 1600 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1624 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp52_ = window;
-#line 1600 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1624 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp53_ = meta_window_actor_get_meta_window (_tmp52_);
-#line 1600 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1624 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp54_ = _g_object_ref0 (_tmp53_);
-#line 1600 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1624 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				meta_window = _tmp54_;
-#line 1601 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1625 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp56_ = meta_window;
-#line 1601 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1625 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp57_ = meta_window_get_workspace (_tmp56_);
-#line 1601 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1625 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp58_ = active_workspace;
-#line 1601 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1625 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp57_ != _tmp58_) {
-#line 10860 "WindowManager.c"
+#line 10352 "WindowManager.c"
 					MetaWindow* _tmp59_ = NULL;
 					gboolean _tmp60_ = FALSE;
-#line 1602 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1626 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp59_ = meta_window;
-#line 1602 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1626 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp60_ = meta_window_is_on_all_workspaces (_tmp59_);
-#line 1602 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1626 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp55_ = !_tmp60_;
-#line 10869 "WindowManager.c"
+#line 10361 "WindowManager.c"
 				} else {
-#line 1601 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1625 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp55_ = FALSE;
-#line 10873 "WindowManager.c"
+#line 10365 "WindowManager.c"
 				}
-#line 1601 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1625 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp55_) {
-#line 10877 "WindowManager.c"
+#line 10369 "WindowManager.c"
 					MetaWindowActor* _tmp61_ = NULL;
-#line 1603 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1627 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp61_ = window;
-#line 1603 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1627 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_hide ((ClutterActor*) _tmp61_);
-#line 10883 "WindowManager.c"
+#line 10375 "WindowManager.c"
 				}
-#line 1606 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp62_ = actor;
-#line 1606 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp63_ = clutter_actor_get_opacity (_tmp62_);
-#line 1606 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp64_ = _tmp63_;
-#line 1606 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1630 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				if (_tmp64_ < 255U) {
-#line 10893 "WindowManager.c"
+#line 10385 "WindowManager.c"
 					ClutterActor* _tmp65_ = NULL;
 					ClutterActor* _tmp66_ = NULL;
 					ClutterActor* _tmp67_ = NULL;
 					ClutterActor* _tmp68_ = NULL;
-#line 1607 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1631 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp65_ = actor;
-#line 1607 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1631 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_save_easing_state (_tmp65_);
-#line 1608 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1632 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp66_ = actor;
-#line 1608 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1632 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_set_easing_duration (_tmp66_, (guint) 300);
-#line 1609 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1633 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp67_ = actor;
-#line 1609 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1633 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_set_opacity (_tmp67_, 255U);
-#line 1610 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1634 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp68_ = actor;
-#line 1610 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1634 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_restore_easing_state (_tmp68_);
-#line 10914 "WindowManager.c"
+#line 10406 "WindowManager.c"
 				}
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (meta_window);
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (window);
-#line 1572 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1596 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_g_object_unref0 (actor);
-#line 10922 "WindowManager.c"
+#line 10414 "WindowManager.c"
 			}
 		}
 	}
-#line 1614 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1638 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp69_ = self->priv->tmp_actors;
-#line 1614 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1638 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp69_ != NULL) {
-#line 10930 "WindowManager.c"
+#line 10422 "WindowManager.c"
 		GList* _tmp70_ = NULL;
-#line 1615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1639 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp70_ = self->priv->tmp_actors;
-#line 10934 "WindowManager.c"
+#line 10426 "WindowManager.c"
 		{
 			GList* actor_collection = NULL;
 			GList* actor_it = NULL;
-#line 1615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1639 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			actor_collection = _tmp70_;
-#line 1615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1639 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 			for (actor_it = actor_collection; actor_it != NULL; actor_it = actor_it->next) {
-#line 10942 "WindowManager.c"
+#line 10434 "WindowManager.c"
 				ClutterActor* _tmp71_ = NULL;
 				ClutterActor* actor = NULL;
-#line 1615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1639 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				_tmp71_ = _g_object_ref0 ((ClutterActor*) actor_it->data);
-#line 1615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1639 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 				actor = _tmp71_;
-#line 10949 "WindowManager.c"
+#line 10441 "WindowManager.c"
 				{
 					ClutterActor* _tmp72_ = NULL;
-#line 1616 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1640 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_tmp72_ = actor;
-#line 1616 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1640 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					clutter_actor_destroy (_tmp72_);
-#line 1615 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1639 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 					_g_object_unref0 (actor);
-#line 10958 "WindowManager.c"
+#line 10450 "WindowManager.c"
 				}
 			}
 		}
-#line 1618 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1642 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		__g_list_free__g_object_unref0_0 (self->priv->tmp_actors);
-#line 1618 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1642 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		self->priv->tmp_actors = NULL;
-#line 10966 "WindowManager.c"
+#line 10458 "WindowManager.c"
 	}
-#line 1621 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1645 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->windows);
-#line 1621 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1645 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->windows = NULL;
-#line 1622 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1646 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->parents);
-#line 1622 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1646 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->parents = NULL;
-#line 1623 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1647 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->moving);
-#line 1623 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1647 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->moving = NULL;
-#line 1625 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1649 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_switch_workspace_completed ((MetaPlugin*) self);
-#line 1564 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1588 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (active_workspace);
-#line 1564 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1588 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (screen);
-#line 10986 "WindowManager.c"
+#line 10478 "WindowManager.c"
 }
 
 
 static void gala_window_manager_gala_real_kill_switch_workspace (MetaPlugin* base) {
 	GalaWindowManagerGala * self;
-#line 1628 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1652 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 1630 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1654 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_end_switch_workspace (self);
-#line 10996 "WindowManager.c"
+#line 10488 "WindowManager.c"
 }
 
 
@@ -11007,55 +10499,55 @@ static gboolean gala_window_manager_gala_real_keybinding_filter (MetaPlugin* bas
 	gboolean _tmp3_ = FALSE;
 	gboolean _tmp4_ = FALSE;
 	GalaModalProxy* _tmp5_ = NULL;
-#line 1633 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 1633 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1657 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_val_if_fail (binding != NULL, FALSE);
-#line 1635 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1659 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = gala_window_manager_is_modal ((GalaWindowManager*) self);
-#line 1635 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1659 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (!_tmp0_) {
-#line 1636 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1660 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		result = FALSE;
-#line 1636 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1660 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return result;
-#line 11022 "WindowManager.c"
+#line 10514 "WindowManager.c"
 	}
-#line 1638 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = self->priv->modal_stack;
-#line 1638 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gee_deque_peek_head ((GeeDeque*) _tmp1_);
-#line 1638 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1662 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	modal_proxy = (GalaModalProxy*) _tmp2_;
-#line 1640 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1664 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = modal_proxy;
-#line 1640 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1664 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp5_ != NULL) {
-#line 11034 "WindowManager.c"
+#line 10526 "WindowManager.c"
 		GalaModalProxy* _tmp6_ = NULL;
 		GalaKeybindingFilter _tmp7_ = NULL;
 		void* _tmp7__target = NULL;
 		GalaKeybindingFilter _tmp8_ = NULL;
 		void* _tmp8__target = NULL;
-#line 1641 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1665 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp6_ = modal_proxy;
-#line 1641 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1665 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp7_ = gala_modal_proxy_get_keybinding_filter (_tmp6_, &_tmp7__target);
-#line 1641 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1665 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp8_ = _tmp7_;
-#line 1641 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1665 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp8__target = _tmp7__target;
-#line 1641 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1665 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = _tmp8_ != NULL;
-#line 11050 "WindowManager.c"
+#line 10542 "WindowManager.c"
 	} else {
-#line 1640 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1664 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp4_ = FALSE;
-#line 11054 "WindowManager.c"
+#line 10546 "WindowManager.c"
 	}
-#line 1640 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1664 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp4_) {
-#line 11058 "WindowManager.c"
+#line 10550 "WindowManager.c"
 		GalaModalProxy* _tmp9_ = NULL;
 		GalaKeybindingFilter _tmp10_ = NULL;
 		void* _tmp10__target = NULL;
@@ -11063,97 +10555,97 @@ static gboolean gala_window_manager_gala_real_keybinding_filter (MetaPlugin* bas
 		void* _tmp11__target = NULL;
 		MetaKeyBinding* _tmp12_ = NULL;
 		gboolean _tmp13_ = FALSE;
-#line 1642 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1666 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp9_ = modal_proxy;
-#line 1642 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1666 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp10_ = gala_modal_proxy_get_keybinding_filter (_tmp9_, &_tmp10__target);
-#line 1642 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1666 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11_ = _tmp10_;
-#line 1642 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1666 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp11__target = _tmp10__target;
-#line 1642 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1666 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp12_ = binding;
-#line 1642 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1666 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp13_ = _tmp11_ (_tmp12_, _tmp11__target);
-#line 1642 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1666 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp3_ = _tmp13_;
-#line 11080 "WindowManager.c"
+#line 10572 "WindowManager.c"
 	} else {
-#line 1640 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1664 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp3_ = FALSE;
-#line 11084 "WindowManager.c"
+#line 10576 "WindowManager.c"
 	}
-#line 1640 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1664 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp3_;
-#line 1640 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1664 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (modal_proxy);
-#line 1640 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1664 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 11092 "WindowManager.c"
+#line 10584 "WindowManager.c"
 }
 
 
-static void __lambda104_ (GalaWindowManagerGala* self, GPid pid, gint status) {
+static void __lambda103_ (GalaWindowManagerGala* self, GPid pid, gint status) {
 	gboolean ok = FALSE;
 	gboolean _tmp3_ = FALSE;
 	GError * _inner_error_ = NULL;
-#line 1658 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1682 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	ok = FALSE;
-#line 11102 "WindowManager.c"
+#line 10594 "WindowManager.c"
 	{
 		gboolean _tmp0_ = FALSE;
 		gint _tmp1_ = 0;
 		gboolean _tmp2_ = FALSE;
-#line 1660 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1684 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp1_ = status;
-#line 1660 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1684 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp2_ = g_spawn_check_exit_status (_tmp1_, &_inner_error_);
-#line 1660 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1684 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_tmp0_ = _tmp2_;
-#line 1660 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1684 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 11115 "WindowManager.c"
-			goto __catch22_g_error;
+#line 10607 "WindowManager.c"
+			goto __catch21_g_error;
 		}
-#line 1660 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1684 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		ok = _tmp0_;
-#line 11120 "WindowManager.c"
+#line 10612 "WindowManager.c"
 	}
-	goto __finally22;
-	__catch22_g_error:
+	goto __finally21;
+	__catch21_g_error:
 	{
 		GError* e = NULL;
-#line 1659 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1683 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		e = _inner_error_;
-#line 1659 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1683 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_inner_error_ = NULL;
-#line 1659 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1683 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		_g_error_free0 (e);
-#line 11132 "WindowManager.c"
+#line 10624 "WindowManager.c"
 	}
-	__finally22:
-#line 1659 "/home/nick/work/gala/src/WindowManager.vala"
+	__finally21:
+#line 1683 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (G_UNLIKELY (_inner_error_ != NULL)) {
-#line 1659 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1683 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-#line 1659 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1683 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_clear_error (&_inner_error_);
-#line 1659 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1683 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 11143 "WindowManager.c"
+#line 10635 "WindowManager.c"
 	}
-#line 1663 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = ok;
-#line 1663 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1687 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	meta_plugin_complete_display_change ((MetaPlugin*) self, _tmp3_);
-#line 11149 "WindowManager.c"
+#line 10641 "WindowManager.c"
 }
 
 
-static void ___lambda104__gchild_watch_func (GPid pid, gint status, gpointer self) {
-#line 1657 "/home/nick/work/gala/src/WindowManager.vala"
-	__lambda104_ ((GalaWindowManagerGala*) self, pid, status);
-#line 11156 "WindowManager.c"
+static void ___lambda103__gchild_watch_func (GPid pid, gint status, gpointer self) {
+#line 1681 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	__lambda103_ ((GalaWindowManagerGala*) self, pid, status);
+#line 10648 "WindowManager.c"
 }
 
 
@@ -11164,21 +10656,21 @@ static void gala_window_manager_gala_real_confirm_display_change (MetaPlugin* ba
 	const gchar* _tmp1_ = NULL;
 	const gchar* _tmp2_ = NULL;
 	GPid _tmp3_ = 0;
-#line 1645 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1669 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 1647 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1671 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = _ ("Does the display look OK?");
-#line 1647 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1671 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _ ("Keep This Configuration");
-#line 1647 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1671 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = _ ("Restore Previous Configuration");
-#line 1647 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1671 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = meta_show_dialog ("--question", _tmp0_, "30", NULL, _tmp1_, _tmp2_, "preferences-desktop-display", 0, NULL, NULL);
-#line 1647 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1671 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	pid = _tmp3_;
-#line 1657 "/home/nick/work/gala/src/WindowManager.vala"
-	g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, pid, ___lambda104__gchild_watch_func, g_object_ref (self), g_object_unref);
-#line 11181 "WindowManager.c"
+#line 1681 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	g_child_watch_add_full (G_PRIORITY_DEFAULT_IDLE, pid, ___lambda103__gchild_watch_func, g_object_ref (self), g_object_unref);
+#line 10673 "WindowManager.c"
 }
 
 
@@ -11186,15 +10678,15 @@ static MetaPluginInfo* gala_window_manager_gala_real_plugin_info (MetaPlugin* ba
 	GalaWindowManagerGala * self;
 	MetaPluginInfo* result = NULL;
 	MetaPluginInfo _tmp0_ = {0};
-#line 1667 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1691 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 1669 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1693 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->info;
-#line 1669 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1693 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = &_tmp0_;
-#line 1669 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1693 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 11197 "WindowManager.c"
+#line 10689 "WindowManager.c"
 }
 
 
@@ -11208,43 +10700,43 @@ static void gala_window_manager_gala_clutter_actor_reparent (ClutterActor* actor
 	ClutterActor* _tmp6_ = NULL;
 	ClutterActor* _tmp7_ = NULL;
 	ClutterActor* _tmp8_ = NULL;
-#line 1672 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1696 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (actor != NULL);
-#line 1672 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1696 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_return_if_fail (new_parent != NULL);
-#line 1674 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1698 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = actor;
-#line 1674 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1698 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = new_parent;
-#line 1674 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1698 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	if (_tmp0_ == _tmp1_) {
-#line 1675 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1699 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		return;
-#line 11223 "WindowManager.c"
+#line 10715 "WindowManager.c"
 	}
-#line 1677 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1701 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = actor;
-#line 1677 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1701 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_ref ((GObject*) _tmp2_);
-#line 1678 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1702 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = actor;
-#line 1678 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1702 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = clutter_actor_get_parent (_tmp3_);
-#line 1678 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1702 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = actor;
-#line 1678 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1702 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_remove_child (_tmp4_, _tmp5_);
-#line 1679 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1703 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = new_parent;
-#line 1679 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1703 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = actor;
-#line 1679 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1703 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	clutter_actor_add_child (_tmp6_, _tmp7_);
-#line 1680 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1704 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = actor;
-#line 1680 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1704 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_unref ((GObject*) _tmp8_);
-#line 11247 "WindowManager.c"
+#line 10739 "WindowManager.c"
 }
 
 
@@ -11252,15 +10744,15 @@ static ClutterActor* gala_window_manager_gala_real_get_ui_group (GalaWindowManag
 	ClutterActor* result;
 	GalaWindowManagerGala* self;
 	ClutterActor* _tmp0_ = NULL;
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->_ui_group;
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp0_;
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 11263 "WindowManager.c"
+#line 10755 "WindowManager.c"
 }
 
 
@@ -11268,19 +10760,19 @@ static void gala_window_manager_gala_real_set_ui_group (GalaWindowManager* base,
 	GalaWindowManagerGala* self;
 	ClutterActor* _tmp0_ = NULL;
 	ClutterActor* _tmp1_ = NULL;
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = value;
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_ui_group);
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->_ui_group = _tmp1_;
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_notify ((GObject *) self, "ui-group");
-#line 11283 "WindowManager.c"
+#line 10775 "WindowManager.c"
 }
 
 
@@ -11288,15 +10780,15 @@ static ClutterStage* gala_window_manager_gala_real_get_stage (GalaWindowManager*
 	ClutterStage* result;
 	GalaWindowManagerGala* self;
 	ClutterStage* _tmp0_ = NULL;
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->_stage;
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp0_;
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 11299 "WindowManager.c"
+#line 10791 "WindowManager.c"
 }
 
 
@@ -11304,19 +10796,19 @@ static void gala_window_manager_gala_real_set_stage (GalaWindowManager* base, Cl
 	GalaWindowManagerGala* self;
 	ClutterStage* _tmp0_ = NULL;
 	ClutterStage* _tmp1_ = NULL;
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = value;
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_stage);
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->_stage = _tmp1_;
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_notify ((GObject *) self, "stage");
-#line 11319 "WindowManager.c"
+#line 10811 "WindowManager.c"
 }
 
 
@@ -11324,15 +10816,15 @@ static ClutterActor* gala_window_manager_gala_real_get_window_group (GalaWindowM
 	ClutterActor* result;
 	GalaWindowManagerGala* self;
 	ClutterActor* _tmp0_ = NULL;
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->_window_group;
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp0_;
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 11335 "WindowManager.c"
+#line 10827 "WindowManager.c"
 }
 
 
@@ -11340,19 +10832,19 @@ static void gala_window_manager_gala_real_set_window_group (GalaWindowManager* b
 	GalaWindowManagerGala* self;
 	ClutterActor* _tmp0_ = NULL;
 	ClutterActor* _tmp1_ = NULL;
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = value;
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_window_group);
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->_window_group = _tmp1_;
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_notify ((GObject *) self, "window-group");
-#line 11355 "WindowManager.c"
+#line 10847 "WindowManager.c"
 }
 
 
@@ -11360,15 +10852,15 @@ static ClutterActor* gala_window_manager_gala_real_get_top_window_group (GalaWin
 	ClutterActor* result;
 	GalaWindowManagerGala* self;
 	ClutterActor* _tmp0_ = NULL;
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->_top_window_group;
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp0_;
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 11371 "WindowManager.c"
+#line 10863 "WindowManager.c"
 }
 
 
@@ -11376,19 +10868,19 @@ static void gala_window_manager_gala_real_set_top_window_group (GalaWindowManage
 	GalaWindowManagerGala* self;
 	ClutterActor* _tmp0_ = NULL;
 	ClutterActor* _tmp1_ = NULL;
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = value;
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_top_window_group);
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->_top_window_group = _tmp1_;
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_notify ((GObject *) self, "top-window-group");
-#line 11391 "WindowManager.c"
+#line 10883 "WindowManager.c"
 }
 
 
@@ -11396,15 +10888,15 @@ static MetaBackgroundGroup* gala_window_manager_gala_real_get_background_group (
 	MetaBackgroundGroup* result;
 	GalaWindowManagerGala* self;
 	MetaBackgroundGroup* _tmp0_ = NULL;
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = self->priv->_background_group;
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	result = _tmp0_;
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	return result;
-#line 11407 "WindowManager.c"
+#line 10899 "WindowManager.c"
 }
 
 
@@ -11412,133 +10904,133 @@ static void gala_window_manager_gala_real_set_background_group (GalaWindowManage
 	GalaWindowManagerGala* self;
 	MetaBackgroundGroup* _tmp0_ = NULL;
 	MetaBackgroundGroup* _tmp1_ = NULL;
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = (GalaWindowManagerGala*) base;
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = value;
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = _g_object_ref0 (_tmp0_);
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_background_group);
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->_background_group = _tmp1_;
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_notify ((GObject *) self, "background-group");
-#line 11427 "WindowManager.c"
+#line 10919 "WindowManager.c"
 }
 
 
 static void gala_window_manager_gala_class_init (GalaWindowManagerGalaClass * klass) {
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_parent_class = g_type_class_peek_parent (klass);
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_type_class_add_private (klass, sizeof (GalaWindowManagerGalaPrivate));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->start = gala_window_manager_gala_real_start;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->show_window_menu = gala_window_manager_gala_real_show_window_menu;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->show_window_menu_for_rect = gala_window_manager_gala_real_show_window_menu_for_rect;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->size_change = gala_window_manager_gala_real_size_change;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->minimize = gala_window_manager_gala_real_minimize;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->unminimize = gala_window_manager_gala_real_unminimize;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->map = gala_window_manager_gala_real_map;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->destroy = gala_window_manager_gala_real_destroy;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->kill_window_effects = gala_window_manager_gala_real_kill_window_effects;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->switch_workspace = gala_window_manager_gala_real_switch_workspace;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->kill_switch_workspace = gala_window_manager_gala_real_kill_switch_workspace;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->keybinding_filter = gala_window_manager_gala_real_keybinding_filter;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->confirm_display_change = gala_window_manager_gala_real_confirm_display_change;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	((MetaPluginClass *) klass)->plugin_info = gala_window_manager_gala_real_plugin_info;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	G_OBJECT_CLASS (klass)->get_property = _vala_gala_window_manager_gala_get_property;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	G_OBJECT_CLASS (klass)->set_property = _vala_gala_window_manager_gala_set_property;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	G_OBJECT_CLASS (klass)->finalize = gala_window_manager_gala_finalize;
-#line 11470 "WindowManager.c"
+#line 10962 "WindowManager.c"
 	/**
 	 * {@inheritDoc}
 	 */
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_MANAGER_GALA_UI_GROUP, g_param_spec_object ("ui-group", "ui-group", "ui-group", clutter_actor_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 11476 "WindowManager.c"
+#line 10968 "WindowManager.c"
 	/**
 	 * {@inheritDoc}
 	 */
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_MANAGER_GALA_STAGE, g_param_spec_object ("stage", "stage", "stage", clutter_stage_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 11482 "WindowManager.c"
+#line 10974 "WindowManager.c"
 	/**
 	 * {@inheritDoc}
 	 */
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_MANAGER_GALA_WINDOW_GROUP, g_param_spec_object ("window-group", "window-group", "window-group", clutter_actor_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 11488 "WindowManager.c"
+#line 10980 "WindowManager.c"
 	/**
 	 * {@inheritDoc}
 	 */
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_MANAGER_GALA_TOP_WINDOW_GROUP, g_param_spec_object ("top-window-group", "top-window-group", "top-window-group", clutter_actor_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 11494 "WindowManager.c"
+#line 10986 "WindowManager.c"
 	/**
 	 * {@inheritDoc}
 	 */
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	g_object_class_install_property (G_OBJECT_CLASS (klass), GALA_WINDOW_MANAGER_GALA_BACKGROUND_GROUP, g_param_spec_object ("background-group", "background-group", "background-group", meta_background_group_get_type (), G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB | G_PARAM_READABLE | G_PARAM_WRITABLE));
-#line 11500 "WindowManager.c"
+#line 10992 "WindowManager.c"
 }
 
 
 static void gala_window_manager_gala_gala_window_manager_interface_init (GalaWindowManagerIface * iface) {
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	gala_window_manager_gala_gala_window_manager_parent_iface = g_type_interface_peek_parent (iface);
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->switch_to_next_workspace = (void (*)(GalaWindowManager*, MetaMotionDirection)) gala_window_manager_gala_real_switch_to_next_workspace;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->move_window = (void (*)(GalaWindowManager*, MetaWindow*, MetaMotionDirection)) gala_window_manager_gala_real_move_window;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->push_modal = (GalaModalProxy* (*)(GalaWindowManager*)) gala_window_manager_gala_real_push_modal;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->pop_modal = (void (*)(GalaWindowManager*, GalaModalProxy*)) gala_window_manager_gala_real_pop_modal;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->is_modal = (gboolean (*)(GalaWindowManager*)) gala_window_manager_gala_real_is_modal;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->modal_proxy_valid = (gboolean (*)(GalaWindowManager*, GalaModalProxy*)) gala_window_manager_gala_real_modal_proxy_valid;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->perform_action = (void (*)(GalaWindowManager*, GalaActionType)) gala_window_manager_gala_real_perform_action;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->get_ui_group = gala_window_manager_gala_real_get_ui_group;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->set_ui_group = gala_window_manager_gala_real_set_ui_group;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->get_stage = gala_window_manager_gala_real_get_stage;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->set_stage = gala_window_manager_gala_real_set_stage;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->get_window_group = gala_window_manager_gala_real_get_window_group;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->set_window_group = gala_window_manager_gala_real_set_window_group;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->get_top_window_group = gala_window_manager_gala_real_get_top_window_group;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->set_top_window_group = gala_window_manager_gala_real_set_top_window_group;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->get_background_group = gala_window_manager_gala_real_get_background_group;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	iface->set_background_group = gala_window_manager_gala_real_set_background_group;
-#line 11541 "WindowManager.c"
+#line 11033 "WindowManager.c"
 }
 
 
@@ -11553,113 +11045,117 @@ static void gala_window_manager_gala_instance_init (GalaWindowManagerGala * self
 	GHashFunc _tmp7_ = NULL;
 	GEqualFunc _tmp8_ = NULL;
 	GHashTable* _tmp9_ = NULL;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv = GALA_WINDOW_MANAGER_GALA_GET_PRIVATE (self);
-#line 73 "/home/nick/work/gala/src/WindowManager.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->winswitcher = NULL;
-#line 74 "/home/nick/work/gala/src/WindowManager.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->workspace_view = NULL;
-#line 75 "/home/nick/work/gala/src/WindowManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->window_overview = NULL;
-#line 83 "/home/nick/work/gala/src/WindowManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->logind_proxy = NULL;
-#line 85 "/home/nick/work/gala/src/WindowManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp0_ = gee_linked_list_new (GALA_TYPE_MODAL_PROXY, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
-#line 85 "/home/nick/work/gala/src/WindowManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->modal_stack = _tmp0_;
-#line 87 "/home/nick/work/gala/src/WindowManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp1_ = gee_hash_set_new (meta_window_actor_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 87 "/home/nick/work/gala/src/WindowManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->minimizing = _tmp1_;
-#line 88 "/home/nick/work/gala/src/WindowManager.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp2_ = gee_hash_set_new (meta_window_actor_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 88 "/home/nick/work/gala/src/WindowManager.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->maximizing = _tmp2_;
-#line 89 "/home/nick/work/gala/src/WindowManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp3_ = gee_hash_set_new (meta_window_actor_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 89 "/home/nick/work/gala/src/WindowManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->unmaximizing = _tmp3_;
-#line 90 "/home/nick/work/gala/src/WindowManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp4_ = gee_hash_set_new (meta_window_actor_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 90 "/home/nick/work/gala/src/WindowManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->mapping = _tmp4_;
-#line 91 "/home/nick/work/gala/src/WindowManager.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp5_ = gee_hash_set_new (meta_window_actor_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 91 "/home/nick/work/gala/src/WindowManager.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->destroying = _tmp5_;
-#line 92 "/home/nick/work/gala/src/WindowManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp6_ = gee_hash_set_new (meta_window_actor_get_type (), (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL, NULL, NULL, NULL);
-#line 92 "/home/nick/work/gala/src/WindowManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->unminimizing = _tmp6_;
-#line 94 "/home/nick/work/gala/src/WindowManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp7_ = g_direct_hash;
-#line 94 "/home/nick/work/gala/src/WindowManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp8_ = g_direct_equal;
-#line 94 "/home/nick/work/gala/src/WindowManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_tmp9_ = g_hash_table_new_full (_tmp7_, _tmp8_, _g_object_unref0_, NULL);
-#line 94 "/home/nick/work/gala/src/WindowManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->ws_assoc = _tmp9_;
-#line 704 "/home/nick/work/gala/src/WindowManager.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	self->priv->desktop_menu = NULL;
+#line 728 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self->priv->window_menu = NULL;
-#line 11604 "WindowManager.c"
+#line 11098 "WindowManager.c"
 }
 
 
 static void gala_window_manager_gala_finalize (GObject* obj) {
 	GalaWindowManagerGala * self;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	self = G_TYPE_CHECK_INSTANCE_CAST (obj, GALA_TYPE_WINDOW_MANAGER_GALA, GalaWindowManagerGala);
-#line 49 "/home/nick/work/gala/src/WindowManager.vala"
+#line 49 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_ui_group);
-#line 54 "/home/nick/work/gala/src/WindowManager.vala"
+#line 54 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_stage);
-#line 59 "/home/nick/work/gala/src/WindowManager.vala"
+#line 59 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_window_group);
-#line 64 "/home/nick/work/gala/src/WindowManager.vala"
+#line 64 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_top_window_group);
-#line 69 "/home/nick/work/gala/src/WindowManager.vala"
+#line 69 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->_background_group);
-#line 73 "/home/nick/work/gala/src/WindowManager.vala"
+#line 73 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->winswitcher);
-#line 74 "/home/nick/work/gala/src/WindowManager.vala"
+#line 74 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->workspace_view);
-#line 75 "/home/nick/work/gala/src/WindowManager.vala"
+#line 75 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->window_overview);
-#line 78 "/home/nick/work/gala/src/WindowManager.vala"
+#line 78 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->last_hotcorner);
-#line 79 "/home/nick/work/gala/src/WindowManager.vala"
+#line 79 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->screensaver);
-#line 81 "/home/nick/work/gala/src/WindowManager.vala"
+#line 81 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->moving);
-#line 83 "/home/nick/work/gala/src/WindowManager.vala"
+#line 83 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->logind_proxy);
-#line 85 "/home/nick/work/gala/src/WindowManager.vala"
+#line 85 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->modal_stack);
-#line 87 "/home/nick/work/gala/src/WindowManager.vala"
+#line 87 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->minimizing);
-#line 88 "/home/nick/work/gala/src/WindowManager.vala"
+#line 88 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->maximizing);
-#line 89 "/home/nick/work/gala/src/WindowManager.vala"
+#line 89 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->unmaximizing);
-#line 90 "/home/nick/work/gala/src/WindowManager.vala"
+#line 90 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->mapping);
-#line 91 "/home/nick/work/gala/src/WindowManager.vala"
+#line 91 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->destroying);
-#line 92 "/home/nick/work/gala/src/WindowManager.vala"
+#line 92 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->unminimizing);
-#line 94 "/home/nick/work/gala/src/WindowManager.vala"
+#line 94 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_hash_table_unref0 (self->priv->ws_assoc);
-#line 704 "/home/nick/work/gala/src/WindowManager.vala"
+#line 372 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
+	_g_object_unref0 (self->priv->desktop_menu);
+#line 728 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	_g_object_unref0 (self->priv->window_menu);
-#line 1361 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1385 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->windows);
-#line 1362 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1386 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->parents);
-#line 1363 "/home/nick/work/gala/src/WindowManager.vala"
+#line 1387 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	__g_list_free__g_object_unref0_0 (self->priv->tmp_actors);
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	G_OBJECT_CLASS (gala_window_manager_gala_parent_class)->finalize (obj);
-#line 11662 "WindowManager.c"
+#line 11158 "WindowManager.c"
 }
 
 
@@ -11680,45 +11176,45 @@ GType gala_window_manager_gala_get_type (void) {
 static void _vala_gala_window_manager_gala_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec) {
 	GalaWindowManagerGala * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_MANAGER_GALA, GalaWindowManagerGala);
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	switch (property_id) {
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_UI_GROUP:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_value_set_object (value, gala_window_manager_get_ui_group ((GalaWindowManager*) self));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_STAGE:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_value_set_object (value, gala_window_manager_get_stage ((GalaWindowManager*) self));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_WINDOW_GROUP:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_value_set_object (value, gala_window_manager_get_window_group ((GalaWindowManager*) self));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_TOP_WINDOW_GROUP:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_value_set_object (value, gala_window_manager_get_top_window_group ((GalaWindowManager*) self));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_BACKGROUND_GROUP:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		g_value_set_object (value, gala_window_manager_get_background_group ((GalaWindowManager*) self));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 11715 "WindowManager.c"
+#line 11211 "WindowManager.c"
 		default:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 11721 "WindowManager.c"
+#line 11217 "WindowManager.c"
 	}
 }
 
@@ -11726,61 +11222,61 @@ static void _vala_gala_window_manager_gala_get_property (GObject * object, guint
 static void _vala_gala_window_manager_gala_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec) {
 	GalaWindowManagerGala * self;
 	self = G_TYPE_CHECK_INSTANCE_CAST (object, GALA_TYPE_WINDOW_MANAGER_GALA, GalaWindowManagerGala);
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 	switch (property_id) {
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_UI_GROUP:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_set_ui_group ((GalaWindowManager*) self, g_value_get_object (value));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_STAGE:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_set_stage ((GalaWindowManager*) self, g_value_get_object (value));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_WINDOW_GROUP:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_set_window_group ((GalaWindowManager*) self, g_value_get_object (value));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_TOP_WINDOW_GROUP:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_set_top_window_group ((GalaWindowManager*) self, g_value_get_object (value));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		case GALA_WINDOW_MANAGER_GALA_BACKGROUND_GROUP:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		gala_window_manager_set_background_group ((GalaWindowManager*) self, g_value_get_object (value));
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 11761 "WindowManager.c"
+#line 11257 "WindowManager.c"
 		default:
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-#line 28 "/home/nick/work/gala/src/WindowManager.vala"
+#line 28 "/home/nick/work/Enso-OS/galal/src/WindowManager.vala"
 		break;
-#line 11767 "WindowManager.c"
+#line 11263 "WindowManager.c"
 	}
 }
 
 
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if ((array != NULL) && (destroy_func != NULL)) {
-#line 11775 "WindowManager.c"
+#line 11271 "WindowManager.c"
 		int i;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		for (i = 0; i < array_length; i = i + 1) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 			if (((gpointer*) array)[i] != NULL) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 				destroy_func (((gpointer*) array)[i]);
-#line 11783 "WindowManager.c"
+#line 11279 "WindowManager.c"
 			}
 		}
 	}
@@ -11788,29 +11284,29 @@ static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNoti
 
 
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_vala_array_destroy (array, array_length, destroy_func);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (array);
-#line 11795 "WindowManager.c"
+#line 11291 "WindowManager.c"
 }
 
 
 static gint _vala_array_length (gpointer array) {
 	int length;
 	length = 0;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (array) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		while (((gpointer*) array)[length]) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 			length++;
-#line 11808 "WindowManager.c"
+#line 11304 "WindowManager.c"
 		}
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return length;
-#line 11813 "WindowManager.c"
+#line 11309 "WindowManager.c"
 }
 
 

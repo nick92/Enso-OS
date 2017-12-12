@@ -72,22 +72,22 @@ static const GDBusInterfaceInfo _gala_screen_saver_dbus_interface_info = {-1, "o
 static const GDBusInterfaceVTable _gala_screen_saver_dbus_interface_vtable = {gala_screen_saver_dbus_interface_method_call, gala_screen_saver_dbus_interface_get_property, gala_screen_saver_dbus_interface_set_property};
 
 gboolean gala_screen_saver_get_active (GalaScreenSaver* self, GError** error) {
-#line 23 "/home/nick/work/gala/src/ScreenSaver.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/ScreenSaver.vala"
 	g_return_val_if_fail (self != NULL, FALSE);
-#line 23 "/home/nick/work/gala/src/ScreenSaver.vala"
+#line 23 "/home/nick/work/Enso-OS/galal/src/ScreenSaver.vala"
 	return GALA_SCREEN_SAVER_GET_INTERFACE (self)->get_active (self, error);
 #line 80 "ScreenSaver.c"
 }
 
 
 static void gala_screen_saver_base_init (GalaScreenSaverIface * iface) {
-#line 21 "/home/nick/work/gala/src/ScreenSaver.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenSaver.vala"
 	static gboolean initialized = FALSE;
-#line 21 "/home/nick/work/gala/src/ScreenSaver.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenSaver.vala"
 	if (!initialized) {
-#line 21 "/home/nick/work/gala/src/ScreenSaver.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenSaver.vala"
 		initialized = TRUE;
-#line 21 "/home/nick/work/gala/src/ScreenSaver.vala"
+#line 21 "/home/nick/work/Enso-OS/galal/src/ScreenSaver.vala"
 		g_signal_new ("active_changed", GALA_TYPE_SCREEN_SAVER, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__BOOLEAN, G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 #line 93 "ScreenSaver.c"
 	}
@@ -113,7 +113,7 @@ GType gala_screen_saver_get_type (void) {
 
 G_DEFINE_TYPE_EXTENDED (GalaScreenSaverProxy, gala_screen_saver_proxy, G_TYPE_DBUS_PROXY, 0, G_IMPLEMENT_INTERFACE (GALA_TYPE_SCREEN_SAVER, gala_screen_saver_proxy_gala_screen_saver_interface_init) )
 static void gala_screen_saver_proxy_class_init (GalaScreenSaverProxyClass* klass) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	G_DBUS_PROXY_CLASS (klass)->g_signal = gala_screen_saver_proxy_g_signal;
 #line 119 "ScreenSaver.c"
 }
@@ -123,24 +123,24 @@ static void _dbus_handle_gala_screen_saver_active_changed (GalaScreenSaver* self
 	GVariantIter _arguments_iter;
 	gboolean active = FALSE;
 	GVariant* _tmp49_;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_arguments_iter, parameters);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp49_ = g_variant_iter_next_value (&_arguments_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	active = g_variant_get_boolean (_tmp49_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp49_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_signal_emit_by_name (self, "active-changed", active);
 #line 137 "ScreenSaver.c"
 }
 
 
 static void gala_screen_saver_proxy_g_signal (GDBusProxy* proxy, const gchar* sender_name, const gchar* signal_name, GVariant* parameters) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (strcmp (signal_name, "ActiveChanged") == 0) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		_dbus_handle_gala_screen_saver_active_changed ((GalaScreenSaver*) proxy, parameters);
 #line 146 "ScreenSaver.c"
 	}
@@ -160,54 +160,54 @@ static gboolean gala_screen_saver_proxy_get_active (GalaScreenSaver* self, GErro
 	GVariantIter _reply_iter;
 	gboolean _result;
 	GVariant* _tmp50_;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	G_IO_ERROR;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_message = g_dbus_message_new_method_call (g_dbus_proxy_get_name ((GDBusProxy *) self), g_dbus_proxy_get_object_path ((GDBusProxy *) self), "org.gnome.ScreenSaver", "GetActive");
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_arguments_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_arguments = g_variant_builder_end (&_arguments_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_message_set_body (_message, _arguments);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply_message = g_dbus_connection_send_message_with_reply_sync (g_dbus_proxy_get_connection ((GDBusProxy *) self), _message, G_DBUS_SEND_MESSAGE_FLAGS_NONE, g_dbus_proxy_get_default_timeout ((GDBusProxy *) self), NULL, NULL, error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (_message);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (!_reply_message) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		return FALSE;
 #line 182 "ScreenSaver.c"
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (g_dbus_message_to_gerror (_reply_message, error)) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		g_object_unref (_reply_message);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		return FALSE;
 #line 190 "ScreenSaver.c"
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply = g_dbus_message_get_body (_reply_message);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_reply_iter, _reply);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_tmp50_ = g_variant_iter_next_value (&_reply_iter);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_result = g_variant_get_boolean (_tmp50_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_unref (_tmp50_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (_reply_message);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return _result;
 #line 206 "ScreenSaver.c"
 }
 
 
 static void gala_screen_saver_proxy_gala_screen_saver_interface_init (GalaScreenSaverIface* iface) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	iface->get_active = gala_screen_saver_proxy_get_active;
 #line 213 "ScreenSaver.c"
 }
@@ -220,33 +220,33 @@ static void _dbus_gala_screen_saver_get_active (GalaScreenSaver* self, GVariant*
 	GVariant* _reply;
 	GVariantBuilder _reply_builder;
 	gboolean result;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_iter_init (&_arguments_iter, _parameters_);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	result = gala_screen_saver_get_active (self, &error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (error) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		g_dbus_method_invocation_return_gerror (invocation, error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		return;
 #line 234 "ScreenSaver.c"
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply_message = g_dbus_message_new_method_reply (g_dbus_method_invocation_get_message (invocation));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_reply_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_reply_builder, g_variant_new_boolean (result));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_reply = g_variant_builder_end (&_reply_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_message_set_body (_reply_message, _reply);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_connection_send_message (g_dbus_method_invocation_get_connection (invocation), _reply_message, G_DBUS_SEND_MESSAGE_FLAGS_NONE, NULL, NULL);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (invocation);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (_reply_message);
 #line 252 "ScreenSaver.c"
 }
@@ -257,13 +257,13 @@ static void gala_screen_saver_dbus_interface_method_call (GDBusConnection* conne
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (strcmp (method_name, "GetActive") == 0) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		_dbus_gala_screen_saver_get_active (object, parameters, invocation);
 #line 265 "ScreenSaver.c"
 	} else {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		g_object_unref (invocation);
 #line 269 "ScreenSaver.c"
 	}
@@ -275,7 +275,7 @@ static GVariant* gala_screen_saver_dbus_interface_get_property (GDBusConnection*
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return NULL;
 #line 281 "ScreenSaver.c"
 }
@@ -286,7 +286,7 @@ static gboolean gala_screen_saver_dbus_interface_set_property (GDBusConnection* 
 	gpointer object;
 	data = user_data;
 	object = data[0];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return FALSE;
 #line 292 "ScreenSaver.c"
 }
@@ -299,13 +299,13 @@ static void _dbus_gala_screen_saver_active_changed (GObject* _sender, gboolean a
 	GVariantBuilder _arguments_builder;
 	_connection = _data[1];
 	_path = _data[2];
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_init (&_arguments_builder, G_VARIANT_TYPE_TUPLE);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_variant_builder_add_value (&_arguments_builder, g_variant_new_boolean (active));
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	_arguments = g_variant_builder_end (&_arguments_builder);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_dbus_connection_emit_signal (_connection, NULL, _path, "org.gnome.ScreenSaver", "ActiveChanged", _arguments, NULL);
 #line 311 "ScreenSaver.c"
 }
@@ -314,25 +314,25 @@ static void _dbus_gala_screen_saver_active_changed (GObject* _sender, gboolean a
 guint gala_screen_saver_register_object (gpointer object, GDBusConnection* connection, const gchar* path, GError** error) {
 	guint result;
 	gpointer *data;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data = g_new (gpointer, 3);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[0] = g_object_ref (object);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[1] = g_object_ref (connection);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	data[2] = g_strdup (path);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	result = g_dbus_connection_register_object (connection, path, (GDBusInterfaceInfo *) (&_gala_screen_saver_dbus_interface_info), &_gala_screen_saver_dbus_interface_vtable, data, _gala_screen_saver_unregister_object, error);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	if (!result) {
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 		return 0;
 #line 332 "ScreenSaver.c"
 	}
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_signal_connect (object, "active-changed", (GCallback) _dbus_gala_screen_saver_active_changed, data);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	return result;
 #line 338 "ScreenSaver.c"
 }
@@ -341,15 +341,15 @@ guint gala_screen_saver_register_object (gpointer object, GDBusConnection* conne
 static void _gala_screen_saver_unregister_object (gpointer user_data) {
 	gpointer* data;
 	data = user_data;
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_signal_handlers_disconnect_by_func (data[0], _dbus_gala_screen_saver_active_changed, data);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (data[0]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_object_unref (data[1]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (data[2]);
-#line 22 "/home/nick/work/gala/src/PluginManager.vala"
+#line 22 "/home/nick/work/Enso-OS/galal/src/PluginManager.vala"
 	g_free (data);
 #line 355 "ScreenSaver.c"
 }

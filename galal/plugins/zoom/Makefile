@@ -214,14 +214,14 @@ CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/Makefile.common \
 	$(top_srcdir)/build-aux/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/nick/work/gala/build-aux/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 API_VERSION = 0.2
 AR = ar
-AUTOCONF = ${SHELL} /home/nick/work/gala/build-aux/missing autoconf
-AUTOHEADER = ${SHELL} /home/nick/work/gala/build-aux/missing autoheader
-AUTOMAKE = ${SHELL} /home/nick/work/gala/build-aux/missing automake-1.15
+AUTOCONF = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing autoconf
+AUTOHEADER = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing autoheader
+AUTOMAKE = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing automake-1.15
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -240,8 +240,8 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = 
 FGREP = /bin/grep -F
-GALA_CORE_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/granite -I/usr/include/gnome-desktop-3.0 -I/usr/include/plank -I/usr/include/gee-0.8 -I/usr/include/libbamf3 -I/usr/lib/x86_64-linux-gnu/libbamf3/include -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/clutter-1.0 -I/usr/include/cogl -I/usr/include/atk-1.0 -I/usr/include/cogl -I/usr/include/libdrm -I/usr/include/json-glib-1.0 -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/mutter -I/usr/include/gsettings-desktop-schemas
-GALA_CORE_LIBS = -Wl,--export-dynamic -lgmodule-2.0 -pthread -lgdk-3 -lgranite -lgio-2.0 -lgthread-2.0 -pthread -lgnome-desktop-3 -lplank -lgee-0.8 -lbamf3 -lmutter -lgtk-3 -lclutter-1.0 -lcogl-path -latk-1.0 -lcogl-pango -lcogl -lgmodule-2.0 -pthread -lwayland-egl -lgbm -ldrm -lEGL -lXrandr -ljson-glib-1.0 -lgio-2.0 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgobject-2.0 -lglib-2.0 -lwayland-cursor -lwayland-client -lxkbcommon -lwayland-server -lXext -lXdamage -lXfixes -lXcomposite -lXi -lX11
+GALA_CORE_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/granite -I/usr/include/gnome-desktop-3.0 -I/usr/include/plank -I/usr/include/gee-0.8 -I/usr/include/libbamf3 -I/usr/lib/x86_64-linux-gnu/libbamf3/include -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/clutter-1.0 -I/usr/include/cogl -I/usr/include/atk-1.0 -I/usr/include/cogl -I/usr/include/libdrm -I/usr/include/json-glib-1.0 -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircore -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/mutter -I/usr/include/gsettings-desktop-schemas
+GALA_CORE_LIBS = -Wl,--export-dynamic -lgmodule-2.0 -pthread -lgdk-3 -lgranite -lgio-2.0 -lgnome-desktop-3 -lplank -lgee-0.8 -lgthread-2.0 -pthread -lbamf3 -lmutter -lgtk-3 -lclutter-1.0 -lcogl-path -latk-1.0 -lcogl-pango -lcogl -lgmodule-2.0 -pthread -lwayland-egl -lgbm -ldrm -lEGL -lXrandr -ljson-glib-1.0 -lgio-2.0 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgobject-2.0 -lglib-2.0 -lwayland-cursor -lwayland-client -lxkbcommon -lwayland-server -lXext -lXdamage -lXfixes -lXcomposite -lXi -lX11
 GALA_CORE_VALAFLAGS = --target-glib=2.44 --define HAS_MUTTER316 --define HAS_MUTTER318 --define HAVE_PLANK_0_11  -g --pkg gio-unix-2.0                       --pkg gmodule-2.0                       --pkg gtk+-3.0                       --pkg gdk-x11-3.0                       --pkg libbamf3                       --pkg granite                       --pkg gee-0.8                       --pkg gdesktopenums-3.0                       --pkg gnome-desktop-3.0                       --pkg xfixes-4.0                       --pkg plank --pkg cogl-1.0 --pkg clutter-1.0 --pkg libmutter
 GALA_DOCS_VALAFLAGS = --target-glib=2.44 --define HAS_MUTTER316 --define HAS_MUTTER318 --define HAVE_PLANK_0_11 --pkg gio-unix-2.0                       --pkg gmodule-2.0                       --pkg gtk+-3.0                       --pkg gdk-x11-3.0                       --pkg libbamf3                       --pkg granite                       --pkg gee-0.8                       --pkg gdesktopenums-3.0                       --pkg gnome-desktop-3.0                       --pkg xfixes-4.0                       --pkg plank --pkg cogl-1.0 --pkg clutter-1.0 --pkg libmutter
 GALA_MAJOR_MINOR_VERSION = 0.3
@@ -281,15 +281,15 @@ LT_CURRENT = 0
 LT_REVISION = 0
 LT_SYS_LIBRARY_PATH = 
 MAINT = 
-MAKEINFO = ${SHELL} /home/nick/work/gala/build-aux/missing makeinfo
+MAKEINFO = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 MSGFMT = /usr/bin/msgfmt
 MSGFMT_015 = /usr/bin/msgfmt
 MSGMERGE = /usr/bin/msgmerge
-MUTTER316_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/clutter-1.0 -I/usr/include/cogl -I/usr/include/atk-1.0 -I/usr/include/cogl -I/usr/include/libdrm -I/usr/include/json-glib-1.0 -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/mutter -I/usr/include/gsettings-desktop-schemas
+MUTTER316_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/clutter-1.0 -I/usr/include/cogl -I/usr/include/atk-1.0 -I/usr/include/cogl -I/usr/include/libdrm -I/usr/include/json-glib-1.0 -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircore -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/mutter -I/usr/include/gsettings-desktop-schemas
 MUTTER316_LIBS = -lmutter -lgtk-3 -lclutter-1.0 -lcogl-path -latk-1.0 -lcogl-pango -lcogl -lgmodule-2.0 -pthread -lwayland-egl -lgbm -ldrm -lEGL -lXrandr -ljson-glib-1.0 -lgio-2.0 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgobject-2.0 -lglib-2.0 -lwayland-cursor -lwayland-client -lxkbcommon -lwayland-server -lXext -lXdamage -lXfixes -lXcomposite -lXi -lX11
-MUTTER318_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/clutter-1.0 -I/usr/include/cogl -I/usr/include/atk-1.0 -I/usr/include/cogl -I/usr/include/libdrm -I/usr/include/json-glib-1.0 -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/mutter -I/usr/include/gsettings-desktop-schemas
+MUTTER318_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/clutter-1.0 -I/usr/include/cogl -I/usr/include/atk-1.0 -I/usr/include/cogl -I/usr/include/libdrm -I/usr/include/json-glib-1.0 -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircore -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/mutter -I/usr/include/gsettings-desktop-schemas
 MUTTER318_LIBS = -lmutter -lgtk-3 -lclutter-1.0 -lcogl-path -latk-1.0 -lcogl-pango -lcogl -lgmodule-2.0 -pthread -lwayland-egl -lgbm -ldrm -lEGL -lXrandr -ljson-glib-1.0 -lgio-2.0 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgobject-2.0 -lglib-2.0 -lwayland-cursor -lwayland-client -lxkbcommon -lwayland-server -lXext -lXdamage -lXfixes -lXcomposite -lXi -lX11
 MUTTER320_CFLAGS = 
 MUTTER320_LIBS = 
@@ -301,7 +301,7 @@ MUTTER_CFLAGS =
 MUTTER_PKGS = cogl-1.0 clutter-1.0 >= 1.12.0 libmutter >= 3.14.4
 NM = /usr/bin/nm -B
 NMEDIT = 
-NOTIFICAION_PLUGIN_CFLAGS = -D_REENTRANT -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+NOTIFICAION_PLUGIN_CFLAGS = -D_REENTRANT -pthread -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircore -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
 NOTIFICAION_PLUGIN_LIBS = -lcanberra-gtk3 -lX11 -lcanberra -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
 NOTIFICATION_PLUGIN_VALA_PKGS = --pkg libcanberra                                --pkg libcanberra-gtk
 OBJDUMP = objdump
@@ -311,16 +311,16 @@ OTOOL64 =
 PACKAGE = gala
 PACKAGE_BUGREPORT = https://bugs.launchpad.net/gala
 PACKAGE_NAME = gala
-PACKAGE_STRING = gala 0.3.0.567-dirty
+PACKAGE_STRING = gala UNKNOWN
 PACKAGE_TARNAME = gala
 PACKAGE_URL = https://launchpad.net/gala
-PACKAGE_VERSION = 0.3.0.567-dirty
+PACKAGE_VERSION = UNKNOWN
 PATH_SEPARATOR = :
 PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
 PKG_CONFIG_PATH = 
-PLANK_0_11_CFLAGS = -pthread -I/usr/include/plank -I/usr/include/gee-0.8 -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/libbamf3 -I/usr/lib/x86_64-linux-gnu/libbamf3/include -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
-PLANK_0_11_LIBS = -lplank -lgee-0.8 -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lbamf3 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+PLANK_0_11_CFLAGS = -pthread -I/usr/include/plank -I/usr/include/gee-0.8 -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircore -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/libbamf3 -I/usr/lib/x86_64-linux-gnu/libbamf3/include -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
+PLANK_0_11_LIBS = -lplank -lgee-0.8 -lgthread-2.0 -pthread -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lbamf3 -lgio-2.0 -lgobject-2.0 -lglib-2.0
 PLUGIN_LDFLAGS = -module -avoid-version
 POSUB = po
 RANLIB = ranlib
@@ -333,15 +333,15 @@ VALAC = /usr/bin/valac
 VALADOC = 
 VALADOC_CFLAGS = 
 VALADOC_LIBS = 
-VAPIGEN = /usr/local/bin/vapigen
-VERSION = 0.3.0.567-dirty
+VAPIGEN = /usr/bin/vapigen
+VERSION = UNKNOWN
 XGETTEXT = /usr/bin/xgettext
 XGETTEXT_015 = /usr/bin/xgettext
 XGETTEXT_EXTRA_OPTIONS = 
-abs_builddir = /home/nick/work/gala/plugins/zoom
-abs_srcdir = /home/nick/work/gala/plugins/zoom
-abs_top_builddir = /home/nick/work/gala
-abs_top_srcdir = /home/nick/work/gala
+abs_builddir = /home/nick/work/Enso-OS/galal/plugins/zoom
+abs_srcdir = /home/nick/work/Enso-OS/galal/plugins/zoom
+abs_top_builddir = /home/nick/work/Enso-OS/galal
+abs_top_srcdir = /home/nick/work/Enso-OS/galal
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -371,7 +371,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/nick/work/gala/build-aux/install-sh
+install_sh = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -380,7 +380,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local
+prefix = /usr
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run
@@ -465,9 +465,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/Makefile.common $(am
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu plugins/zoom/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign plugins/zoom/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu plugins/zoom/Makefile
+	  $(AUTOMAKE) --foreign plugins/zoom/Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \
