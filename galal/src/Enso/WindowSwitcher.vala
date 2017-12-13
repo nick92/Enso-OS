@@ -33,31 +33,30 @@ namespace Gala
 		public WindowActorClone (Meta.WindowActor window_actor) {
 			Object (window_actor: window_actor, window: window_actor.get_meta_window ());
 
-			clone = new Clutter.Clone (window_actor.get_texture ());
-
+			//clone = new Clutter.Clone (window_actor.get_texture ());
+			clone = new SafeWindowClone (window);
 			container = new Clutter.Actor ();
 			container.add (clone);
 			container.set_scale (0.3f, 0.3f);
 			add (container);
-
 			window_actor.notify["allocate"].connect (update_clone);
-
 			update_clone ();
 
 			var window_icon = new WindowIcon (window, 64);
 			window_icon.set_position (container.width / 2 - window_icon.width / 2, container.height - window_icon.height / 2);
-
 			add (window_icon);
 		}
 
 		private void update_clone ()
 		{
 			var rect = window_actor.get_meta_window ().get_frame_rect ();
+			float x_offset = rect.x  - window_actor.x;
+			float y_offset = rect.y  - window_actor.y;
+
 			container.width = (float)(rect.width * container.scale_x);
 			container.height = (float)(rect.height * container.scale_y);
-
-			float x_offset = rect.x - window_actor.x;
-			float y_offset = rect.y - window_actor.y;
+			//clone.set_width((float)(rect.width * container.scale_x)*3);
+			//clone.set_height((float)(rect.height * container.scale_y )*3);
 			clone.set_position (-x_offset, -y_offset);
 		}
 	}
@@ -108,6 +107,7 @@ namespace Gala
 			layout.column_spacing = layout.row_spacing = SPACING;
 
 			wrapper = new Actor ();
+
 			background = new Actor ();
 			background.background_color = { 0, 0, 0, 155 };
 
@@ -233,7 +233,6 @@ namespace Gala
 
 			background.width = width;
 			background.height = height;
-			actor_blur.setup(background, 5, 10);
 
 			wm.ui_group.insert_child_above (wrapper, null);
 
