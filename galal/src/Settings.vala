@@ -180,4 +180,27 @@ namespace Gala
 			return instance;
 		}
 	}
+
+	public class AlternateAltTabSettings : Granite.Services.Settings
+	{
+		public bool all_workspaces { get; set; default = false; }
+		public bool animate { get; set; default = true; }
+		public bool always_on_primary_monitor { get; set; default = false; }
+		public int icon_size { get; set; default = 128; }
+
+		static AlternateAltTabSettings? instance = null;
+
+		private AlternateAltTabSettings ()
+		{
+			base ("org.pantheon.desktop.gala.plugins.alternate-alt-tab");
+		}
+
+		public static AlternateAltTabSettings get_default ()
+		{
+			if (instance == null)
+				instance = new AlternateAltTabSettings ();
+
+			return instance;
+		}
+	}
 }

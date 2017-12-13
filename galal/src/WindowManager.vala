@@ -70,7 +70,7 @@ namespace Gala
 
 		Meta.PluginInfo info;
 
-		WindowSwitcher? winswitcher = null;
+		EnsoWindowSwitcher? winswitcher = null;
 		ActivatableComponent? workspace_view = null;
 		ActivatableComponent? window_overview = null;
 
@@ -271,7 +271,7 @@ namespace Gala
 			});
 
 			if (plugin_manager.window_switcher_provider == null) {
-				winswitcher = new WindowSwitcher (this);
+				winswitcher = new EnsoWindowSwitcher (this);
 				ui_group.add_child (winswitcher);
 
 				KeyBinding.set_custom_handler ("switch-applications", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);

@@ -140,7 +140,10 @@ am__objects_2 = gala-DBus.$(OBJEXT) gala-DBusAccelerator.$(OBJEXT) \
 	Widgets/gala-WindowSwitcher.$(OBJEXT) \
 	Widgets/gala-WorkspaceClone.$(OBJEXT) \
 	Widgets/gala-WorkspaceInsertThumb.$(OBJEXT) \
-	Deepin/gala-DeepinBlurEffect.$(OBJEXT) $(am__objects_1)
+	Deepin/gala-DeepinBlurEffect.$(OBJEXT) \
+	Enso/gala-PreviewRow.$(OBJEXT) \
+	Enso/gala-WindowSwitcher.$(OBJEXT) \
+	Enso/gala-PreviewPage.$(OBJEXT) $(am__objects_1)
 nodist_gala_OBJECTS = $(am__objects_2) $(am__objects_1)
 gala_OBJECTS = $(nodist_gala_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -473,6 +476,9 @@ gala_VALASOURCES = \
 	Widgets/WorkspaceClone.vala \
 	Widgets/WorkspaceInsertThumb.vala \
 	Deepin/DeepinBlurEffect.vala \
+	Enso/PreviewRow.vala \
+	Enso/WindowSwitcher.vala \
+	Enso/PreviewPage.vala \
 	$(NULL)
 
 nodist_gala_SOURCES = \
@@ -638,6 +644,18 @@ Deepin/$(DEPDIR)/$(am__dirstamp):
 	@: > Deepin/$(DEPDIR)/$(am__dirstamp)
 Deepin/gala-DeepinBlurEffect.$(OBJEXT): Deepin/$(am__dirstamp) \
 	Deepin/$(DEPDIR)/$(am__dirstamp)
+Enso/$(am__dirstamp):
+	@$(MKDIR_P) Enso
+	@: > Enso/$(am__dirstamp)
+Enso/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) Enso/$(DEPDIR)
+	@: > Enso/$(DEPDIR)/$(am__dirstamp)
+Enso/gala-PreviewRow.$(OBJEXT): Enso/$(am__dirstamp) \
+	Enso/$(DEPDIR)/$(am__dirstamp)
+Enso/gala-WindowSwitcher.$(OBJEXT): Enso/$(am__dirstamp) \
+	Enso/$(DEPDIR)/$(am__dirstamp)
+Enso/gala-PreviewPage.$(OBJEXT): Enso/$(am__dirstamp) \
+	Enso/$(DEPDIR)/$(am__dirstamp)
 
 gala$(EXEEXT): $(gala_OBJECTS) $(gala_DEPENDENCIES) $(EXTRA_gala_DEPENDENCIES) 
 	@rm -f gala$(EXEEXT)
@@ -647,6 +665,7 @@ mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f Background/*.$(OBJEXT)
 	-rm -f Deepin/*.$(OBJEXT)
+	-rm -f Enso/*.$(OBJEXT)
 	-rm -f Widgets/*.$(OBJEXT)
 
 distclean-compile:
@@ -677,6 +696,9 @@ include Background/$(DEPDIR)/gala-BackgroundManager.Po
 include Background/$(DEPDIR)/gala-BackgroundSource.Po
 include Background/$(DEPDIR)/gala-SystemBackground.Po
 include Deepin/$(DEPDIR)/gala-DeepinBlurEffect.Po
+include Enso/$(DEPDIR)/gala-PreviewPage.Po
+include Enso/$(DEPDIR)/gala-PreviewRow.Po
+include Enso/$(DEPDIR)/gala-WindowSwitcher.Po
 include Widgets/$(DEPDIR)/gala-IconGroup.Po
 include Widgets/$(DEPDIR)/gala-IconGroupContainer.Po
 include Widgets/$(DEPDIR)/gala-MonitorClone.Po
@@ -1247,6 +1269,48 @@ Deepin/gala-DeepinBlurEffect.obj: Deepin/DeepinBlurEffect.c
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Deepin/gala-DeepinBlurEffect.obj `if test -f 'Deepin/DeepinBlurEffect.c'; then $(CYGPATH_W) 'Deepin/DeepinBlurEffect.c'; else $(CYGPATH_W) '$(srcdir)/Deepin/DeepinBlurEffect.c'; fi`
 
+Enso/gala-PreviewRow.o: Enso/PreviewRow.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.o -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
+	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
+#	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
+
+Enso/gala-PreviewRow.obj: Enso/PreviewRow.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.obj -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
+	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
+#	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
+
+Enso/gala-WindowSwitcher.o: Enso/WindowSwitcher.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-WindowSwitcher.o -MD -MP -MF Enso/$(DEPDIR)/gala-WindowSwitcher.Tpo -c -o Enso/gala-WindowSwitcher.o `test -f 'Enso/WindowSwitcher.c' || echo '$(srcdir)/'`Enso/WindowSwitcher.c
+	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-WindowSwitcher.Tpo Enso/$(DEPDIR)/gala-WindowSwitcher.Po
+#	$(AM_V_CC)source='Enso/WindowSwitcher.c' object='Enso/gala-WindowSwitcher.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-WindowSwitcher.o `test -f 'Enso/WindowSwitcher.c' || echo '$(srcdir)/'`Enso/WindowSwitcher.c
+
+Enso/gala-WindowSwitcher.obj: Enso/WindowSwitcher.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-WindowSwitcher.obj -MD -MP -MF Enso/$(DEPDIR)/gala-WindowSwitcher.Tpo -c -o Enso/gala-WindowSwitcher.obj `if test -f 'Enso/WindowSwitcher.c'; then $(CYGPATH_W) 'Enso/WindowSwitcher.c'; else $(CYGPATH_W) '$(srcdir)/Enso/WindowSwitcher.c'; fi`
+	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-WindowSwitcher.Tpo Enso/$(DEPDIR)/gala-WindowSwitcher.Po
+#	$(AM_V_CC)source='Enso/WindowSwitcher.c' object='Enso/gala-WindowSwitcher.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-WindowSwitcher.obj `if test -f 'Enso/WindowSwitcher.c'; then $(CYGPATH_W) 'Enso/WindowSwitcher.c'; else $(CYGPATH_W) '$(srcdir)/Enso/WindowSwitcher.c'; fi`
+
+Enso/gala-PreviewPage.o: Enso/PreviewPage.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewPage.o -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewPage.Tpo -c -o Enso/gala-PreviewPage.o `test -f 'Enso/PreviewPage.c' || echo '$(srcdir)/'`Enso/PreviewPage.c
+	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewPage.Tpo Enso/$(DEPDIR)/gala-PreviewPage.Po
+#	$(AM_V_CC)source='Enso/PreviewPage.c' object='Enso/gala-PreviewPage.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewPage.o `test -f 'Enso/PreviewPage.c' || echo '$(srcdir)/'`Enso/PreviewPage.c
+
+Enso/gala-PreviewPage.obj: Enso/PreviewPage.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewPage.obj -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewPage.Tpo -c -o Enso/gala-PreviewPage.obj `if test -f 'Enso/PreviewPage.c'; then $(CYGPATH_W) 'Enso/PreviewPage.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewPage.c'; fi`
+	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewPage.Tpo Enso/$(DEPDIR)/gala-PreviewPage.Po
+#	$(AM_V_CC)source='Enso/PreviewPage.c' object='Enso/gala-PreviewPage.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewPage.obj `if test -f 'Enso/PreviewPage.c'; then $(CYGPATH_W) 'Enso/PreviewPage.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewPage.c'; fi`
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -1375,6 +1439,8 @@ distclean-generic:
 	-rm -f Background/$(am__dirstamp)
 	-rm -f Deepin/$(DEPDIR)/$(am__dirstamp)
 	-rm -f Deepin/$(am__dirstamp)
+	-rm -f Enso/$(DEPDIR)/$(am__dirstamp)
+	-rm -f Enso/$(am__dirstamp)
 	-rm -f Widgets/$(DEPDIR)/$(am__dirstamp)
 	-rm -f Widgets/$(am__dirstamp)
 
@@ -1388,7 +1454,7 @@ clean-am: clean-galaPROGRAMS clean-generic clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ./$(DEPDIR) Background/$(DEPDIR) Deepin/$(DEPDIR) Widgets/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) Background/$(DEPDIR) Deepin/$(DEPDIR) Enso/$(DEPDIR) Widgets/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -1434,7 +1500,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ./$(DEPDIR) Background/$(DEPDIR) Deepin/$(DEPDIR) Widgets/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) Background/$(DEPDIR) Deepin/$(DEPDIR) Enso/$(DEPDIR) Widgets/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

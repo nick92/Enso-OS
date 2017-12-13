@@ -393,7 +393,7 @@ on `(hostname || uname -n) 2>/dev/null | sed 1q`
 "
 
 # Files that config.status was made for.
-config_files=" Makefile src/Makefile lib/Makefile lib/gala.pc docs/Makefile data/Makefile data/icons/Makefile vapi/Makefile plugins/Makefile plugins/maskcorners/Makefile plugins/notify/Makefile plugins/zoom/Makefile plugins/alternate-alt-tab/Makefile po/Makefile.in"
+config_files=" Makefile src/Makefile lib/Makefile lib/gala.pc docs/Makefile data/Makefile data/icons/Makefile vapi/Makefile plugins/Makefile plugins/maskcorners/Makefile plugins/notify/Makefile plugins/zoom/Makefile po/Makefile.in"
 config_headers=" config.h"
 config_commands=" depfiles po-directories libtool"
 
@@ -770,7 +770,6 @@ do
     "plugins/maskcorners/Makefile") CONFIG_FILES="$CONFIG_FILES plugins/maskcorners/Makefile" ;;
     "plugins/notify/Makefile") CONFIG_FILES="$CONFIG_FILES plugins/notify/Makefile" ;;
     "plugins/zoom/Makefile") CONFIG_FILES="$CONFIG_FILES plugins/zoom/Makefile" ;;
-    "plugins/alternate-alt-tab/Makefile") CONFIG_FILES="$CONFIG_FILES plugins/alternate-alt-tab/Makefile" ;;
     "po/Makefile.in") CONFIG_FILES="$CONFIG_FILES po/Makefile.in" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

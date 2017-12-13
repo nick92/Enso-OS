@@ -302,7 +302,6 @@ plugins/Makefile
 plugins/maskcorners/Makefile
 plugins/notify/Makefile
 plugins/zoom/Makefile
-plugins/alternate-alt-tab/Makefile
 po/Makefile.in
 ])
 

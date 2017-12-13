@@ -369,7 +369,6 @@ SUBDIRS = \
 	maskcorners \
 	notify \
 	zoom \
-	alternate-alt-tab \
 	$(NULL)
 
 all: all-recursive

@@ -174,7 +174,7 @@ am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in \
 	$(top_srcdir)/build-aux/ltmain.sh \
 	$(top_srcdir)/build-aux/missing ABOUT-NLS AUTHORS COPYING \
 	ChangeLog INSTALL build-aux/compile build-aux/config.guess \
-	build-aux/config.rpath build-aux/config.sub \
+	build-aux/config.rpath build-aux/config.sub build-aux/depcomp \
 	build-aux/install-sh build-aux/ltmain.sh build-aux/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)

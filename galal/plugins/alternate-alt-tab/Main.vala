@@ -103,7 +103,7 @@ namespace Gala.Plugins.AlternateAltTab
 		int modifier_mask;
 
 		Gee.ArrayList<PreviewPage> pages;
-		
+
 		private WindowActorClone? current {
 			get {
 				return current_page.current;
@@ -124,20 +124,20 @@ namespace Gala.Plugins.AlternateAltTab
 			KeyBinding.set_custom_handler ("switch-windows-backward", handle_switch_windows);
 
 			var layout = new FlowLayout (FlowOrientation.HORIZONTAL);
-			layout.snap_to_grid = false;
+			layout.snap_to_grid = true;
 			layout.column_spacing = layout.row_spacing = SPACING;
 
 			wrapper = new Actor ();
-			wrapper.background_color = { 0, 0, 0, 155 };
+			wrapper.background_color = { 0, 0, 0, 105 };
 			wrapper.reactive = true;
 			wrapper.set_pivot_point (0.5f, 0.5f);
 			wrapper.key_release_event.connect (key_relase_event);
 
 			indicator = new Actor ();
-			indicator.background_color = { 255, 255, 255, 180 };
-			indicator.width = INDICATOR_BORDER * 2;
-			indicator.height = INDICATOR_BORDER * 2;
-			indicator.set_easing_duration (100);
+			indicator.background_color = { 255, 255, 255, 150 };
+			indicator.width = INDICATOR_BORDER;
+			indicator.height = INDICATOR_BORDER;
+			indicator.set_easing_duration (150);
 
 			wrapper.add_child (indicator);
 		}
@@ -151,6 +151,7 @@ namespace Gala.Plugins.AlternateAltTab
 		void handle_switch_windows (Display display, Screen screen, Window? window,
 			KeyEvent? event, Meta.KeyBinding binding)
 		{
+
 			var settings = Settings.get_default ();
 			var workspace = settings.all_workspaces ? null : screen.get_active_workspace ();
 
@@ -178,8 +179,8 @@ namespace Gala.Plugins.AlternateAltTab
 
 			// FIXME for unknown reasons, switch-applications-backward won't be emitted, so we
 			//       test manually if shift is held down
-			backward = binding_name == "switch-applications"
-				&& (get_current_modifiers () & ModifierType.SHIFT_MASK) != 0;
+			if (binding_name == "switch-applications")
+				backward = ((get_current_modifiers () & ModifierType.SHIFT_MASK) != 0);
 
 			next_window (display, workspace, backward);
 		}
@@ -234,7 +235,7 @@ namespace Gala.Plugins.AlternateAltTab
 			if (current_page != null) {
 				wrapper.remove_child (current_page);
 			}
-			
+
 			current_page = pages[0];
 			wrapper.add_child (current_page);
 
@@ -370,4 +371,3 @@ public Gala.PluginInfo register_plugin ()
 		load_priority = Gala.LoadPriority.IMMEDIATE
 	};
 }
-

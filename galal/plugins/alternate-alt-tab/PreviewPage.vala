@@ -6,7 +6,7 @@ using Clutter;
 namespace Gala.Plugins.AlternateAltTab
 {
     public class PreviewPage : Clutter.Actor
-    { 
+    {
 		const int SPACING = 12;
 		const int PADDING = 24;
 		const int MIN_OFFSET = 32;
