@@ -167,6 +167,10 @@
 			<default>''</default>
 			<summary>Background-image used in the workspace-switcher</summary>
 		</key>
+		<key type="b" name="alternative-alt-tab">
+			<default>true</default>
+			<summary>Use alternative alt tab option to display window list instead of cycle</summary>
+		</key>
 	</schema>
 	
 	<schema path="/org/pantheon/desktop/gala/animations/" id="org.pantheon.desktop.gala.animations" gettext-domain="gala">

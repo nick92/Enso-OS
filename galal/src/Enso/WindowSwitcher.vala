@@ -55,8 +55,6 @@ namespace Gala
 
 			container.width = (float)(rect.width * container.scale_x);
 			container.height = (float)(rect.height * container.scale_y);
-			//clone.set_width((float)(rect.width * container.scale_x)*3);
-			//clone.set_height((float)(rect.height * container.scale_y )*3);
 			clone.set_position (-x_offset, -y_offset);
 		}
 	}

@@ -70,7 +70,8 @@ namespace Gala
 
 		Meta.PluginInfo info;
 
-		EnsoWindowSwitcher? winswitcher = null;
+		EnsoWindowSwitcher? ensowinswitcher = null;
+		WindowSwitcher? winswitcher = null;
 		ActivatableComponent? workspace_view = null;
 		ActivatableComponent? window_overview = null;
 
@@ -271,13 +272,24 @@ namespace Gala
 			});
 
 			if (plugin_manager.window_switcher_provider == null) {
-				winswitcher = new EnsoWindowSwitcher (this);
-				ui_group.add_child (winswitcher);
+				if (AppearanceSettings.get_default ().alternative_alt_tab){
+					ensowinswitcher = new EnsoWindowSwitcher (this);
+					ui_group.add_child (ensowinswitcher);
 
-				KeyBinding.set_custom_handler ("switch-applications", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
-				KeyBinding.set_custom_handler ("switch-applications-backward", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
-				KeyBinding.set_custom_handler ("switch-windows", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
-				KeyBinding.set_custom_handler ("switch-windows-backward", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
+					KeyBinding.set_custom_handler ("switch-applications", (Meta.KeyHandlerFunc) ensowinswitcher.handle_switch_windows);
+					KeyBinding.set_custom_handler ("switch-applications-backward", (Meta.KeyHandlerFunc) ensowinswitcher.handle_switch_windows);
+					KeyBinding.set_custom_handler ("switch-windows", (Meta.KeyHandlerFunc) ensowinswitcher.handle_switch_windows);
+					KeyBinding.set_custom_handler ("switch-windows-backward", (Meta.KeyHandlerFunc) ensowinswitcher.handle_switch_windows);
+				}
+				else {
+					winswitcher = new WindowSwitcher (this);
+					ui_group.add_child (winswitcher);
+
+					KeyBinding.set_custom_handler ("switch-applications", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
+					KeyBinding.set_custom_handler ("switch-applications-backward", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
+					KeyBinding.set_custom_handler ("switch-windows", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
+					KeyBinding.set_custom_handler ("switch-windows-backward", (Meta.KeyHandlerFunc) winswitcher.handle_switch_windows);
+				}
 			}
 
 			/*if (plugin_manager.window_overview_provider == null
@@ -319,19 +331,19 @@ namespace Gala
 
 		void configure_hotcorners ()
 		{
-			/*var geometry = get_screen ().get_monitor_geometry (get_screen ().get_primary_monitor ());
+			var geometry = get_screen ().get_monitor_geometry (get_screen ().get_primary_monitor ());
 
 			add_hotcorner (geometry.x, geometry.y, "hotcorner-topleft");
 			add_hotcorner (geometry.x + geometry.width - 1, geometry.y, "hotcorner-topright");
 			add_hotcorner (geometry.x, geometry.y + geometry.height - 1, "hotcorner-bottomleft");
 			add_hotcorner (geometry.x + geometry.width - 1, geometry.y + geometry.height - 1, "hotcorner-bottomright");
 
-			update_input_area ();*/
+			update_input_area ();
 		}
 
 		void add_hotcorner (float x, float y, string key)
 		{
-			/*unowned Clutter.Actor? stage = Compositor.get_stage_for_screen (get_screen ());
+			unowned Clutter.Actor? stage = Compositor.get_stage_for_screen (get_screen ());
 			return_if_fail (stage != null);
 
 			var action = (ActionType) BehaviorSettings.get_default ().schema.get_enum (key);
@@ -362,7 +374,7 @@ namespace Gala
 			}
 
 			hot_corner.x = x;
-			hot_corner.y = y;*/
+			hot_corner.y = y;
 		}
 
 		/**
@@ -614,14 +626,15 @@ namespace Gala
 
 		public void dim_window (Window window, bool dim)
 		{
-			/*FIXME we need a super awesome blureffect here, the one from clutter is just... bah!
+			/*FIXME we need a super awesome blureffect here, the one from clutter is just... bah! */
 			var win = window.get_compositor_private () as WindowActor;
 			if (dim) {
 				if (win.has_effects ())
 					return;
-				win.add_effect_with_name ("darken", new Clutter.BlurEffect ());
+				//win.add_effect_with_name ("darken", new Clutter.BlurEffect ());
+				DeepinBlurEffect.setup(win, 2, 2);
 			} else
-				win.clear_effects ();*/
+				win.clear_effects ();
 		}
 
 		/**
