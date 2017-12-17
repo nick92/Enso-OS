@@ -1,0 +1,265 @@
+# Slovenian translation for switchboard-plug-pantheon-shell
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the switchboard-plug-pantheon-shell package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-pantheon-shell\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-17 01:54+0200\n"
+"PO-Revision-Date: 2017-07-02 09:14+0000\n"
+"Last-Translator: Jernej Virag <jernej@virag.si>\n"
+"Language-Team: Slovenian <https://l10n.elementary.io/projects/switchboard/"
+"switchboard-plug-pantheon-shell/sl/>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 2.14\n"
+"X-Launchpad-Export-Date: 2017-02-12 06:15+0000\n"
+
+#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#. *
+#. * This program is free software; you can redistribute it and/or
+#. * modify it under the terms of the GNU General Public
+#. * License as published by the Free Software Foundation; either
+#. * version 3 of the License, or (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#. * General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public
+#. * License along with this program; if not, write to the
+#. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#. * Boston, MA 02110-1301 USA
+#.
+#: ../src/Translations.vala:20
+msgid "Set as _Desktop Background"
+msgstr "Nastavi za ozadje"
+
+#: ../src/Translations.vala:21
+msgid "Set selected image to be the new desktop background"
+msgstr "Nastavi izbrano sliko za novo ozadje namizja"
+
+#: ../src/Views/Dock.vala:34
+msgid "Small"
+msgstr "Majhna"
+
+#: ../src/Views/Dock.vala:35
+msgid "Normal"
+msgstr "Običajna"
+
+#: ../src/Views/Dock.vala:36
+msgid "Large"
+msgstr "Velika"
+
+#: ../src/Views/Dock.vala:58
+msgid "Custom (%dpx)"
+msgstr "Po meri (%dpx)"
+
+#: ../src/Views/Dock.vala:87
+msgid "Focused window is maximized"
+msgstr "Je fokusirano okno maksimizirano"
+
+#: ../src/Views/Dock.vala:88
+msgid "Focused window overlaps the dock"
+msgstr "Fokusirano okno prekriva sidrišče"
+
+#: ../src/Views/Dock.vala:89
+msgid "Any window overlaps the dock"
+msgstr "Katerokoli okno prekriva sidrišče"
+
+#: ../src/Views/Dock.vala:90
+msgid "Not being used"
+msgstr "Ni v uporabi"
+
+#: ../src/Views/Dock.vala:126
+msgid "Primary display:"
+msgstr "Primarni zaslon:"
+
+#: ../src/Views/Dock.vala:130
+msgid "Display:"
+msgstr "Zaslon:"
+
+#: ../src/Views/Dock.vala:161
+msgid "Icon size:"
+msgstr "Velikost ikon:"
+
+#: ../src/Views/Dock.vala:163
+msgid "Hide when:"
+msgstr "Skrij ko:"
+
+#: ../src/Views/Dock.vala:167
+msgid "Pressure reveal:"
+msgstr "Prikaži ob pritisku:"
+
+#: ../src/Views/Dock.vala:206
+msgid "Monitor %d"
+msgstr "Monitor %d"
+
+#: ../src/Views/Dock.vala:211
+msgid "Display %d"
+msgstr "Zaslon %d"
+
+#: ../src/Views/HotCorners.vala:28
+msgid "When the cursor enters the corner of the display:"
+msgstr "Ko miškin kazalec vstopi v kot zaslona:"
+
+#: ../src/Views/HotCorners.vala:62
+msgid "Custom command:"
+msgstr "Ukaz:"
+
+#: ../src/Views/HotCorners.vala:78
+msgid "Do nothing"
+msgstr "Ne naredi ničesar"
+
+#: ../src/Views/HotCorners.vala:79
+msgid "Multitasking View"
+msgstr "Pokaži vsa okna"
+
+#: ../src/Views/HotCorners.vala:80
+msgid "Maximize current window"
+msgstr "Maksimiraj trenutno okno"
+
+#: ../src/Views/HotCorners.vala:81
+msgid "Minimize current window"
+msgstr "Minimiraj trenutno okno"
+
+#: ../src/Views/HotCorners.vala:82
+msgid "Show Applications Menu"
+msgstr "Prikaži aplikacijski meni"
+
+#: ../src/Views/HotCorners.vala:83
+msgid "Show all windows"
+msgstr "Pokaži vsa okna"
+
+#: ../src/Views/HotCorners.vala:84
+msgid "Execute custom command"
+msgstr "Poženi ukaz"
+
+#: ../src/Views/Wallpaper.vala:146
+msgid "Pictures"
+msgstr "Slike"
+
+#: ../src/Views/Wallpaper.vala:147
+msgid "Backgrounds"
+msgstr "Ozadja"
+
+#: ../src/Views/Wallpaper.vala:148
+msgid "Custom…"
+msgstr "Po meri…"
+
+#: ../src/Views/Wallpaper.vala:154
+msgid "Centered"
+msgstr "Sredinsko"
+
+#: ../src/Views/Wallpaper.vala:155
+msgid "Zoom"
+msgstr "Približano"
+
+#: ../src/Views/Wallpaper.vala:156
+msgid "Spanned"
+msgstr "Razpeto"
+
+#: ../src/Views/Wallpaper.vala:327
+msgid "Select a folder"
+msgstr "Izberite mapo"
+
+#: ../src/Views/Wallpaper.vala:328
+#: ../set-wallpaper-contract/set-wallpaper.vala:220
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: ../src/Views/Wallpaper.vala:329
+msgid "Open"
+msgstr "Odpri"
+
+#: ../src/desktop-plug.vala:34
+msgid "Desktop"
+msgstr "Namizje"
+
+#: ../src/desktop-plug.vala:35
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "Nastavitve sidrišča, vročih kotov in ozadja"
+
+#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
+msgid "Wallpaper"
+msgstr "Ozadje"
+
+#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
+#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
+#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
+msgid "Dock"
+msgstr "Sidrišče"
+
+#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
+msgid "Hot Corners"
+msgstr "Bližnjice v kotih zaslona"
+
+#: ../src/desktop-plug.vala:95
+msgid "Theme"
+msgstr "Tema"
+
+#: ../src/desktop-plug.vala:96
+msgid "Hide Mode"
+msgstr "Način skrivanja"
+
+#: ../src/desktop-plug.vala:97
+msgid "Icon Size"
+msgstr "Velikost ikon"
+
+#: ../src/desktop-plug.vala:98
+msgid "Display"
+msgstr "Zaslon"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:90
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekund"
+msgstr[1] "%d sekunda"
+msgstr[2] "%d sekundi"
+msgstr[3] "%d sekunde"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:93
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minut"
+msgstr[1] "%d minuta"
+msgstr[2] "%d minuti"
+msgstr[3] "%d minute"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:97
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d ur"
+msgstr[1] "%d ura"
+msgstr[2] "%d uri"
+msgstr[3] "%d ure"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:100
+msgid "1 day"
+msgstr "1 dan"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:104
+msgid "Show each photo for"
+msgstr "Pokaži vsako fotografijo za"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:217
+#: ../set-wallpaper-contract/set-wallpaper.vala:225
+msgid "Set As Desktop Slideshow"
+msgstr "Nastavi kot projekcijo na namizju"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:221
+msgid "Create slideshow"
+msgstr "Ustvari projekcijo"
+
+#~ msgid "Stretched"
+#~ msgstr "Raztegnjeno"
+
+#~ msgid "Scaled"
+#~ msgstr "Prilagojeno"

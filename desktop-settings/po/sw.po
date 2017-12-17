@@ -1,0 +1,251 @@
+# Swahili translation for maya
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the maya package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: maya\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-17 01:54+0200\n"
+"PO-Revision-Date: 2012-10-26 19:33+0000\n"
+"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
+"Language-Team: Swahili <sw@li.org>\n"
+"Language: sw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2017-02-12 06:15+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
+
+#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#. *
+#. * This program is free software; you can redistribute it and/or
+#. * modify it under the terms of the GNU General Public
+#. * License as published by the Free Software Foundation; either
+#. * version 3 of the License, or (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#. * General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public
+#. * License along with this program; if not, write to the
+#. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#. * Boston, MA 02110-1301 USA
+#.
+#: ../src/Translations.vala:20
+msgid "Set as _Desktop Background"
+msgstr ""
+
+#: ../src/Translations.vala:21
+msgid "Set selected image to be the new desktop background"
+msgstr ""
+
+#: ../src/Views/Dock.vala:34
+msgid "Small"
+msgstr ""
+
+#: ../src/Views/Dock.vala:35
+msgid "Normal"
+msgstr ""
+
+#: ../src/Views/Dock.vala:36
+msgid "Large"
+msgstr ""
+
+#: ../src/Views/Dock.vala:58
+msgid "Custom (%dpx)"
+msgstr ""
+
+#: ../src/Views/Dock.vala:87
+msgid "Focused window is maximized"
+msgstr ""
+
+#: ../src/Views/Dock.vala:88
+msgid "Focused window overlaps the dock"
+msgstr ""
+
+#: ../src/Views/Dock.vala:89
+msgid "Any window overlaps the dock"
+msgstr ""
+
+#: ../src/Views/Dock.vala:90
+msgid "Not being used"
+msgstr ""
+
+#: ../src/Views/Dock.vala:126
+msgid "Primary display:"
+msgstr ""
+
+#: ../src/Views/Dock.vala:130
+msgid "Display:"
+msgstr ""
+
+#: ../src/Views/Dock.vala:161
+msgid "Icon size:"
+msgstr ""
+
+#: ../src/Views/Dock.vala:163
+msgid "Hide when:"
+msgstr ""
+
+#: ../src/Views/Dock.vala:167
+msgid "Pressure reveal:"
+msgstr ""
+
+#: ../src/Views/Dock.vala:206
+msgid "Monitor %d"
+msgstr ""
+
+#: ../src/Views/Dock.vala:211
+msgid "Display %d"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:28
+msgid "When the cursor enters the corner of the display:"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:62
+msgid "Custom command:"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:78
+msgid "Do nothing"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:79
+msgid "Multitasking View"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:80
+msgid "Maximize current window"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:81
+msgid "Minimize current window"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:82
+msgid "Show Applications Menu"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:83
+msgid "Show all windows"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:84
+msgid "Execute custom command"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:146
+msgid "Pictures"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:147
+msgid "Backgrounds"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:148
+msgid "Custom…"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:154
+msgid "Centered"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:155
+msgid "Zoom"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:156
+msgid "Spanned"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:327
+msgid "Select a folder"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:328
+#: ../set-wallpaper-contract/set-wallpaper.vala:220
+msgid "Cancel"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:329
+msgid "Open"
+msgstr ""
+
+#: ../src/desktop-plug.vala:34
+msgid "Desktop"
+msgstr ""
+
+#: ../src/desktop-plug.vala:35
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr ""
+
+#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
+msgid "Wallpaper"
+msgstr ""
+
+#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
+#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
+#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
+msgid "Dock"
+msgstr ""
+
+#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
+msgid "Hot Corners"
+msgstr ""
+
+#: ../src/desktop-plug.vala:95
+msgid "Theme"
+msgstr ""
+
+#: ../src/desktop-plug.vala:96
+msgid "Hide Mode"
+msgstr ""
+
+#: ../src/desktop-plug.vala:97
+msgid "Icon Size"
+msgstr ""
+
+#: ../src/desktop-plug.vala:98
+msgid "Display"
+msgstr ""
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:90
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:93
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:97
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:100
+msgid "1 day"
+msgstr ""
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:104
+msgid "Show each photo for"
+msgstr ""
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:217
+#: ../set-wallpaper-contract/set-wallpaper.vala:225
+msgid "Set As Desktop Slideshow"
+msgstr ""
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:221
+msgid "Create slideshow"
+msgstr ""

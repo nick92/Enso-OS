@@ -1,0 +1,249 @@
+# Korean translation for switchboard-plug-pantheon-shell
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the switchboard-plug-pantheon-shell package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-pantheon-shell\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-17 01:53+0200\n"
+"PO-Revision-Date: 2017-03-15 06:40+0000\n"
+"Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
+"Language-Team: Korean <http://weblate.elementary.io/projects/desktop/"
+"switchboard-plug-pantheon-shell/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.12\n"
+"X-Launchpad-Export-Date: 2017-02-13 05:53+0000\n"
+
+#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#. *
+#. * This program is free software; you can redistribute it and/or
+#. * modify it under the terms of the GNU General Public
+#. * License as published by the Free Software Foundation; either
+#. * version 3 of the License, or (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#. * General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public
+#. * License along with this program; if not, write to the
+#. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#. * Boston, MA 02110-1301 USA
+#.
+#: ../src/Translations.vala:20
+msgid "Set as _Desktop Background"
+msgstr "바탕 화면 배경으로 설정(_D)"
+
+#: ../src/Translations.vala:21
+msgid "Set selected image to be the new desktop background"
+msgstr "선택한 이미지를 새 바탕화면 배경으로 설정합니다"
+
+#: ../src/Views/Dock.vala:34
+msgid "Small"
+msgstr "작게"
+
+#: ../src/Views/Dock.vala:35
+msgid "Normal"
+msgstr "기본"
+
+#: ../src/Views/Dock.vala:36
+msgid "Large"
+msgstr "크게"
+
+#: ../src/Views/Dock.vala:58
+msgid "Custom (%dpx)"
+msgstr "사용자 지정 (%dpx)"
+
+#: ../src/Views/Dock.vala:87
+msgid "Focused window is maximized"
+msgstr "포커스 된 창이 최대화될 때"
+
+#: ../src/Views/Dock.vala:88
+msgid "Focused window overlaps the dock"
+msgstr "포커스 된 창이 플랭크와 겹칠 때"
+
+#: ../src/Views/Dock.vala:89
+msgid "Any window overlaps the dock"
+msgstr "플랭크와 겹치는 창이 있을 때"
+
+#: ../src/Views/Dock.vala:90
+msgid "Not being used"
+msgstr "항상 숨김"
+
+#: ../src/Views/Dock.vala:126
+msgid "Primary display:"
+msgstr "주 모니터:"
+
+#: ../src/Views/Dock.vala:130
+msgid "Display:"
+msgstr "디스플레이:"
+
+#: ../src/Views/Dock.vala:161
+msgid "Icon size:"
+msgstr "아이콘 크기:"
+
+#: ../src/Views/Dock.vala:163
+msgid "Hide when:"
+msgstr "다음 경우에 숨김:"
+
+#: ../src/Views/Dock.vala:167
+msgid "Pressure reveal:"
+msgstr "압력 표시:"
+
+#: ../src/Views/Dock.vala:206
+msgid "Monitor %d"
+msgstr "모니터 %d"
+
+#: ../src/Views/Dock.vala:211
+msgid "Display %d"
+msgstr "디스플레이 %d"
+
+#: ../src/Views/HotCorners.vala:28
+msgid "When the cursor enters the corner of the display:"
+msgstr "커서를 화면의 모서리로 움직였을 때 동작:"
+
+#: ../src/Views/HotCorners.vala:62
+msgid "Custom command:"
+msgstr "사용자 지정 명령어:"
+
+#: ../src/Views/HotCorners.vala:78
+msgid "Do nothing"
+msgstr "아무것도 하지 않기"
+
+#: ../src/Views/HotCorners.vala:79
+msgid "Multitasking View"
+msgstr "멀티태스킹 보기"
+
+#: ../src/Views/HotCorners.vala:80
+msgid "Maximize current window"
+msgstr "현재 창을 최대화하기"
+
+#: ../src/Views/HotCorners.vala:81
+msgid "Minimize current window"
+msgstr "현재 창을 최소화하기"
+
+#: ../src/Views/HotCorners.vala:82
+msgid "Show Applications Menu"
+msgstr "애플리케이션 메뉴 보기"
+
+#: ../src/Views/HotCorners.vala:83
+msgid "Show all windows"
+msgstr "모든 창 보기"
+
+#: ../src/Views/HotCorners.vala:84
+msgid "Execute custom command"
+msgstr "사용자 지정 명렁어 실행"
+
+#: ../src/Views/Wallpaper.vala:146
+msgid "Pictures"
+msgstr "사진"
+
+#: ../src/Views/Wallpaper.vala:147
+msgid "Backgrounds"
+msgstr "배경화면"
+
+#: ../src/Views/Wallpaper.vala:148
+msgid "Custom…"
+msgstr "사용자 지정…"
+
+#: ../src/Views/Wallpaper.vala:154
+msgid "Centered"
+msgstr "중앙 정렬"
+
+#: ../src/Views/Wallpaper.vala:155
+msgid "Zoom"
+msgstr "확대"
+
+#: ../src/Views/Wallpaper.vala:156
+msgid "Spanned"
+msgstr "지연됨"
+
+#: ../src/Views/Wallpaper.vala:327
+msgid "Select a folder"
+msgstr "폴더를 선택하세요"
+
+#: ../src/Views/Wallpaper.vala:328
+#: ../set-wallpaper-contract/set-wallpaper.vala:220
+msgid "Cancel"
+msgstr "취소"
+
+#: ../src/Views/Wallpaper.vala:329
+msgid "Open"
+msgstr "열기"
+
+#: ../src/desktop-plug.vala:34
+msgid "Desktop"
+msgstr "바탕화면"
+
+#: ../src/desktop-plug.vala:35
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "플랭크, 핫코너 및 배경화면 변경 설정하기"
+
+#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
+msgid "Wallpaper"
+msgstr "배경화면"
+
+#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
+#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
+#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
+msgid "Dock"
+msgstr "플랭크"
+
+#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
+msgid "Hot Corners"
+msgstr "핫 코너"
+
+#: ../src/desktop-plug.vala:95
+msgid "Theme"
+msgstr "테마"
+
+#: ../src/desktop-plug.vala:96
+msgid "Hide Mode"
+msgstr "숨김 모드"
+
+#: ../src/desktop-plug.vala:97
+msgid "Icon Size"
+msgstr "아이콘 크기"
+
+#: ../src/desktop-plug.vala:98
+msgid "Display"
+msgstr "화면"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:90
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d초"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:93
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d분"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:97
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d시간"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:100
+msgid "1 day"
+msgstr "1일"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:104
+msgid "Show each photo for"
+msgstr "각 사진을 표시할 시간"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:217
+#: ../set-wallpaper-contract/set-wallpaper.vala:225
+msgid "Set As Desktop Slideshow"
+msgstr "배경화면 슬라이드쇼로 설정"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:221
+msgid "Create slideshow"
+msgstr "슬라이드쇼 만들기"

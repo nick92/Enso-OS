@@ -1,0 +1,20 @@
+Source: desktop-settings
+Section: x11
+Priority: optional
+Maintainer: Nick Wilkins <nickawilkins@hotmail.com>
+Build-Depends: cmake (>= 2.8),
+               debhelper (>= 9),
+               libgnome-desktop-3-dev,
+               libgranite-dev,
+               libgtk-3-dev (>= 3.14),
+               libplank-dev,
+               valac (>= 0.26)
+Standards-Version: 3.9.6
+Homepage: https://launchpad.net/enso-desktop-settings
+
+Package: desktop-settings
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: plank
+Description: Change desktop settings
+ a fork of elementarys Pantheon Switchboard plug to work outside of Switchboard
