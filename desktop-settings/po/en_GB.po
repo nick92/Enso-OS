@@ -1,0 +1,257 @@
+# English (United Kingdom) translation for maya
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the maya package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: maya\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-17 01:53+0200\n"
+"PO-Revision-Date: 2016-06-14 14:51+0000\n"
+"Last-Translator: Andi Chandler <Unknown>\n"
+"Language-Team: English (United Kingdom) <en_GB@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2017-02-12 06:16+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
+
+#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#. *
+#. * This program is free software; you can redistribute it and/or
+#. * modify it under the terms of the GNU General Public
+#. * License as published by the Free Software Foundation; either
+#. * version 3 of the License, or (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#. * General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public
+#. * License along with this program; if not, write to the
+#. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#. * Boston, MA 02110-1301 USA
+#.
+#: ../src/Translations.vala:20
+msgid "Set as _Desktop Background"
+msgstr "Set as _Desktop Background"
+
+#: ../src/Translations.vala:21
+msgid "Set selected image to be the new desktop background"
+msgstr "Set selected image to be the new desktop background"
+
+#: ../src/Views/Dock.vala:34
+msgid "Small"
+msgstr ""
+
+#: ../src/Views/Dock.vala:35
+msgid "Normal"
+msgstr "Normal"
+
+#: ../src/Views/Dock.vala:36
+msgid "Large"
+msgstr "Large"
+
+#: ../src/Views/Dock.vala:58
+msgid "Custom (%dpx)"
+msgstr "Custom (%dpx)"
+
+#: ../src/Views/Dock.vala:87
+msgid "Focused window is maximized"
+msgstr "Focused window is maximised"
+
+#: ../src/Views/Dock.vala:88
+msgid "Focused window overlaps the dock"
+msgstr "Focused window overlaps the dock"
+
+#: ../src/Views/Dock.vala:89
+msgid "Any window overlaps the dock"
+msgstr "Any window overlaps the dock"
+
+#: ../src/Views/Dock.vala:90
+msgid "Not being used"
+msgstr "Not being used"
+
+#: ../src/Views/Dock.vala:126
+msgid "Primary display:"
+msgstr ""
+
+#: ../src/Views/Dock.vala:130
+msgid "Display:"
+msgstr "Display:"
+
+#: ../src/Views/Dock.vala:161
+msgid "Icon size:"
+msgstr ""
+
+#: ../src/Views/Dock.vala:163
+msgid "Hide when:"
+msgstr "Hide when:"
+
+#: ../src/Views/Dock.vala:167
+msgid "Pressure reveal:"
+msgstr ""
+
+#: ../src/Views/Dock.vala:206
+msgid "Monitor %d"
+msgstr "Monitor %d"
+
+#: ../src/Views/Dock.vala:211
+msgid "Display %d"
+msgstr "Display %d"
+
+#: ../src/Views/HotCorners.vala:28
+msgid "When the cursor enters the corner of the display:"
+msgstr "When the cursor enters the corner of the display:"
+
+#: ../src/Views/HotCorners.vala:62
+msgid "Custom command:"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:78
+msgid "Do nothing"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:79
+msgid "Multitasking View"
+msgstr "Multitasking View"
+
+#: ../src/Views/HotCorners.vala:80
+msgid "Maximize current window"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:81
+msgid "Minimize current window"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:82
+msgid "Show Applications Menu"
+msgstr "Show Applications Menu"
+
+#: ../src/Views/HotCorners.vala:83
+msgid "Show all windows"
+msgstr ""
+
+#: ../src/Views/HotCorners.vala:84
+msgid "Execute custom command"
+msgstr ""
+
+#: ../src/Views/Wallpaper.vala:146
+msgid "Pictures"
+msgstr "Pictures"
+
+#: ../src/Views/Wallpaper.vala:147
+msgid "Backgrounds"
+msgstr "Backgrounds"
+
+#: ../src/Views/Wallpaper.vala:148
+msgid "Custom…"
+msgstr "Custom…"
+
+#: ../src/Views/Wallpaper.vala:154
+msgid "Centered"
+msgstr "Centred"
+
+#: ../src/Views/Wallpaper.vala:155
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../src/Views/Wallpaper.vala:156
+msgid "Spanned"
+msgstr "Spanned"
+
+#: ../src/Views/Wallpaper.vala:327
+msgid "Select a folder"
+msgstr "Select a folder"
+
+#: ../src/Views/Wallpaper.vala:328
+#: ../set-wallpaper-contract/set-wallpaper.vala:220
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ../src/Views/Wallpaper.vala:329
+msgid "Open"
+msgstr "Open"
+
+#: ../src/desktop-plug.vala:34
+msgid "Desktop"
+msgstr "Desktop"
+
+#: ../src/desktop-plug.vala:35
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "Configure the dock, hot corners, and change wallpaper"
+
+#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
+msgid "Wallpaper"
+msgstr "Wallpaper"
+
+#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
+#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
+#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
+msgid "Dock"
+msgstr "Dock"
+
+#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
+msgid "Hot Corners"
+msgstr "Hot Corners"
+
+#: ../src/desktop-plug.vala:95
+msgid "Theme"
+msgstr "Theme"
+
+#: ../src/desktop-plug.vala:96
+msgid "Hide Mode"
+msgstr "Hide Mode"
+
+#: ../src/desktop-plug.vala:97
+msgid "Icon Size"
+msgstr "Icon Size"
+
+#: ../src/desktop-plug.vala:98
+msgid "Display"
+msgstr "Display"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:90
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d second"
+msgstr[1] "%d seconds"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:93
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minute"
+msgstr[1] "%d minutes"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:97
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d hour"
+msgstr[1] "%d hours"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:100
+msgid "1 day"
+msgstr "1 day"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:104
+msgid "Show each photo for"
+msgstr "Show each photo for"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:217
+#: ../set-wallpaper-contract/set-wallpaper.vala:225
+msgid "Set As Desktop Slideshow"
+msgstr "Set As Desktop Slideshow"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:221
+msgid "Create slideshow"
+msgstr "Create slideshow"
+
+#~ msgid "Scaled"
+#~ msgstr "Scaled"
+
+#~ msgid "Stretched"
+#~ msgstr "Stretched"

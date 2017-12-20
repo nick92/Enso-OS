@@ -1,0 +1,258 @@
+# Hebrew translation for maya
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the maya package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: maya\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-17 01:53+0200\n"
+"PO-Revision-Date: 2017-04-15 09:02+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: he (generated) <https://l10n.elementary.io/projects/"
+"switchboard/switchboard-plug-pantheon-shell/he/>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-02-12 06:15+0000\n"
+
+#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#. *
+#. * This program is free software; you can redistribute it and/or
+#. * modify it under the terms of the GNU General Public
+#. * License as published by the Free Software Foundation; either
+#. * version 3 of the License, or (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#. * General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public
+#. * License along with this program; if not, write to the
+#. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#. * Boston, MA 02110-1301 USA
+#.
+#: ../src/Translations.vala:20
+msgid "Set as _Desktop Background"
+msgstr "הגדרה כ_רקע לשולחן העבודה"
+
+#: ../src/Translations.vala:21
+msgid "Set selected image to be the new desktop background"
+msgstr "הגדרת התמונה הנבחרת בתור הרקע החדש לשולחן העבודה"
+
+#: ../src/Views/Dock.vala:34
+msgid "Small"
+msgstr "קטן"
+
+#: ../src/Views/Dock.vala:35
+msgid "Normal"
+msgstr "רגיל"
+
+#: ../src/Views/Dock.vala:36
+msgid "Large"
+msgstr "גדול"
+
+#: ../src/Views/Dock.vala:58
+msgid "Custom (%dpx)"
+msgstr "בהתאמה אישית (%d פיקסלים)"
+
+#: ../src/Views/Dock.vala:87
+msgid "Focused window is maximized"
+msgstr "החלון שבמיקוד מוגדל"
+
+#: ../src/Views/Dock.vala:88
+msgid "Focused window overlaps the dock"
+msgstr "החלון שבמיקוד חופף מעל המעגן"
+
+#: ../src/Views/Dock.vala:89
+msgid "Any window overlaps the dock"
+msgstr "חלון כלשהו חופף מעל המעגן"
+
+#: ../src/Views/Dock.vala:90
+msgid "Not being used"
+msgstr "לא בשימוש"
+
+#: ../src/Views/Dock.vala:126
+msgid "Primary display:"
+msgstr "תצוגה עיקרית:"
+
+#: ../src/Views/Dock.vala:130
+msgid "Display:"
+msgstr "תצוגה:"
+
+#: ../src/Views/Dock.vala:161
+msgid "Icon size:"
+msgstr "גודל הסמלים:"
+
+#: ../src/Views/Dock.vala:163
+msgid "Hide when:"
+msgstr "להסתיר כאשר:"
+
+#: ../src/Views/Dock.vala:167
+msgid "Pressure reveal:"
+msgstr "לחץ לגילוי:"
+
+#: ../src/Views/Dock.vala:206
+msgid "Monitor %d"
+msgstr "צג %d"
+
+#: ../src/Views/Dock.vala:211
+msgid "Display %d"
+msgstr "תצוגה %d"
+
+#: ../src/Views/HotCorners.vala:28
+msgid "When the cursor enters the corner of the display:"
+msgstr "כאשר הסמן מגיע לקצה של המסך:"
+
+#: ../src/Views/HotCorners.vala:62
+msgid "Custom command:"
+msgstr "פקודה בהתאמה אישית:"
+
+#: ../src/Views/HotCorners.vala:78
+msgid "Do nothing"
+msgstr "לא לעשות כלום"
+
+#: ../src/Views/HotCorners.vala:79
+msgid "Multitasking View"
+msgstr "תצוגת ריבוי משימות"
+
+#: ../src/Views/HotCorners.vala:80
+msgid "Maximize current window"
+msgstr "הגדלת החלון הנוכחי"
+
+#: ../src/Views/HotCorners.vala:81
+msgid "Minimize current window"
+msgstr "מזעור החלון הנוכחי"
+
+#: ../src/Views/HotCorners.vala:82
+msgid "Show Applications Menu"
+msgstr "הראה תפריט תוכנות"
+
+#: ../src/Views/HotCorners.vala:83
+msgid "Show all windows"
+msgstr "הצגת כל החלונות"
+
+#: ../src/Views/HotCorners.vala:84
+msgid "Execute custom command"
+msgstr "הפעלת פקודה בהתאמה אישית"
+
+#: ../src/Views/Wallpaper.vala:146
+msgid "Pictures"
+msgstr "תמונות"
+
+#: ../src/Views/Wallpaper.vala:147
+msgid "Backgrounds"
+msgstr "רקעים"
+
+#: ../src/Views/Wallpaper.vala:148
+msgid "Custom…"
+msgstr "התאמה אישית…"
+
+#: ../src/Views/Wallpaper.vala:154
+msgid "Centered"
+msgstr "ממורכז"
+
+#: ../src/Views/Wallpaper.vala:155
+msgid "Zoom"
+msgstr "תקריב"
+
+#: ../src/Views/Wallpaper.vala:156
+msgid "Spanned"
+msgstr "מגושר"
+
+#: ../src/Views/Wallpaper.vala:327
+msgid "Select a folder"
+msgstr "בחר תיקייה"
+
+#: ../src/Views/Wallpaper.vala:328
+#: ../set-wallpaper-contract/set-wallpaper.vala:220
+msgid "Cancel"
+msgstr "ביטול"
+
+#: ../src/Views/Wallpaper.vala:329
+msgid "Open"
+msgstr "פתיחה"
+
+#: ../src/desktop-plug.vala:34
+msgid "Desktop"
+msgstr "שולחן העבודה"
+
+#: ../src/desktop-plug.vala:35
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "הגדרת המעגן, הפינות החמות והחלפת רקע שולחן העבודה"
+
+#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
+msgid "Wallpaper"
+msgstr "תמונת רקע"
+
+#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
+#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
+#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
+msgid "Dock"
+msgstr "רציף"
+
+#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
+msgid "Hot Corners"
+msgstr "קצות חמות"
+
+#: ../src/desktop-plug.vala:95
+msgid "Theme"
+msgstr "ערכת עיצוב"
+
+#: ../src/desktop-plug.vala:96
+msgid "Hide Mode"
+msgstr "מצב הסתרה"
+
+#: ../src/desktop-plug.vala:97
+msgid "Icon Size"
+msgstr "גודל הסמלים"
+
+#: ../src/desktop-plug.vala:98
+msgid "Display"
+msgstr "תצוגה"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:90
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "שנייה אחת"
+msgstr[1] "%d שניות"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:93
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "דקה אחת"
+msgstr[1] "%d דקות"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:97
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "שעה אחת"
+msgstr[1] "%d שעות"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:100
+msgid "1 day"
+msgstr "יום אחד"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:104
+msgid "Show each photo for"
+msgstr "הצגת כל תמונה למשך"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:217
+#: ../set-wallpaper-contract/set-wallpaper.vala:225
+msgid "Set As Desktop Slideshow"
+msgstr "הגדרה כמצגת שולחן העבודה"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:221
+msgid "Create slideshow"
+msgstr "יצירת מצגת"
+
+#~ msgid "Scaled"
+#~ msgstr "בגודל מותאם"
+
+#~ msgid "Stretched"
+#~ msgstr "מתוחה"

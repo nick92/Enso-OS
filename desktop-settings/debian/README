@@ -1,0 +1,65 @@
+This folder contains Debian packaging template.
+
+It will allow you to set up daily builds of your plug in Launchpad, as well as
+build your plug into an installable .deb package directly
+
+It also builds a package with debugging symbols for your plug, so your users can
+ use a debugger with your plug (after they install the -dbg package).
+
+However, you'll still have to fill in some fields manually to use it.
+
+
+    ### MAKING THIS THING WORK ###
+First of all, replace the template plug name with the name of your plug:
+  $ cd debian; sed -i s/switchboard-plug-template/switchboard-plug-<your-plug-name-here>/g *
+Without the <brackets>, of course. It will replace the name in all files.
+If it complains about source not being a usual file, it's OK.
+
+Then, open the file named "control". Replace the description templates with 
+actual description of your plug; don't forget to intend the long description 
+with space (you can already see the indentation in the template)
+
+Finally, the hardest part: you have to specify build dependencies for your plug.
+You've already specified the required libraries in CMakeLists.txt (didn't you?),
+now you have to specify the Debian/Ubuntu packages that ship development files 
+for those libraries.
+Of course, there are several ways to do it, but the easiest way (if you're on
+Debian/Ubuntu) is to run the following:
+  $ dpkg -S /usr/lib/pkgconfig/<library-pkg-config-name>.pc
+Substitute <library-pkg-config-name> with the library name you specified in 
+CMakeLists.txt, and the command will return the appropriate Debian package name.
+Add package names for all your libs to the "Build-Depends" field in control file,
+separating library names with commas.
+
+Viola! You're done!
+Oh, wait, you'll have to update copyright file too. But after all that hard work 
+it's a pleasure, isn't it?
+
+
+    ### ??? PROFIT ###
+To check if the packaging worked, and if you can really actually build 
+installable .deb files, cd to the source code directory and run
+  $ debuild
+If it aborts with "running debsign failed" error, it means that you probably* 
+did everything right, and you can start reaping the benefit of having Debian 
+packaging. 
+First, you can build code into installable .deb packages right away,
+which probably will save you some hassle installing/uninstalling your plug and 
+make installation cleaner. 
+Second, you can send the package over to your not-that-geeky friends and they'll 
+enjoy your plug too. 
+Third, you can set up daily builds in Launchpad using Recipes. The easiest way 
+is to bug somebody in #elemntary-dev on FreeNode or ask a question in 
+pantheon-plugs project and ask to include your plug in elementary daily builds.
+
+ * Nobody can tell if you've specified the build dependencies correctly until 
+you try to build the package in a build farm or installing it on a clean system
+without any extra libraries installed. If you make a recipe in Launchpad and 
+it fails to build, you probably forgot some build dependency. Examine the build 
+log, it holds the key.
+
+
+    ### WHEN ALL ELSE FAILS ###
+If you have trouble using this thing, come bug me in #elementary-dev on FreeNode
+
+  -- Sergey "Shnatsel" Davidoff

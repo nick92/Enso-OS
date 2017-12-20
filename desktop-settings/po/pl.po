@@ -1,0 +1,255 @@
+# Polish translation for maya
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the maya package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: maya\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-17 01:54+0200\n"
+"PO-Revision-Date: 2017-02-14 17:33+0000\n"
+"Last-Translator: Damian Woźniak <fiszet@gmail.com>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2017-02-15 06:30+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
+
+#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#. *
+#. * This program is free software; you can redistribute it and/or
+#. * modify it under the terms of the GNU General Public
+#. * License as published by the Free Software Foundation; either
+#. * version 3 of the License, or (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#. * General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public
+#. * License along with this program; if not, write to the
+#. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#. * Boston, MA 02110-1301 USA
+#.
+#: ../src/Translations.vala:20
+msgid "Set as _Desktop Background"
+msgstr "Ustaw jako _tło pulpitu"
+
+#: ../src/Translations.vala:21
+msgid "Set selected image to be the new desktop background"
+msgstr "Ustawia wybrany obraz jako nowe tło pulpitu"
+
+#: ../src/Views/Dock.vala:34
+msgid "Small"
+msgstr "Mały"
+
+#: ../src/Views/Dock.vala:35
+msgid "Normal"
+msgstr "Normalny"
+
+#: ../src/Views/Dock.vala:36
+msgid "Large"
+msgstr "Duży"
+
+#: ../src/Views/Dock.vala:58
+msgid "Custom (%dpx)"
+msgstr "Własny (%d px)"
+
+#: ../src/Views/Dock.vala:87
+msgid "Focused window is maximized"
+msgstr "Używane okno jest zmaksymalizowane"
+
+#: ../src/Views/Dock.vala:88
+msgid "Focused window overlaps the dock"
+msgstr "Używane okno zachodzi na dok"
+
+#: ../src/Views/Dock.vala:89
+msgid "Any window overlaps the dock"
+msgstr "Pewne okno zachodzi na dok"
+
+#: ../src/Views/Dock.vala:90
+msgid "Not being used"
+msgstr "Nieużywane"
+
+#: ../src/Views/Dock.vala:126
+msgid "Primary display:"
+msgstr "Główny ekran:"
+
+#: ../src/Views/Dock.vala:130
+msgid "Display:"
+msgstr "Ekran:"
+
+#: ../src/Views/Dock.vala:161
+msgid "Icon size:"
+msgstr "Rozmiar ikon:"
+
+#: ../src/Views/Dock.vala:163
+msgid "Hide when:"
+msgstr "Ukryj, gdy:"
+
+#: ../src/Views/Dock.vala:167
+msgid "Pressure reveal:"
+msgstr "Odsłona ciśnienia:"
+
+#: ../src/Views/Dock.vala:206
+msgid "Monitor %d"
+msgstr "Monitor %d"
+
+#: ../src/Views/Dock.vala:211
+msgid "Display %d"
+msgstr "Ekran %d"
+
+#: ../src/Views/HotCorners.vala:28
+msgid "When the cursor enters the corner of the display:"
+msgstr "Gdy kursor dotknie rogu ekranu:"
+
+#: ../src/Views/HotCorners.vala:62
+msgid "Custom command:"
+msgstr "Własne polecenie:"
+
+#: ../src/Views/HotCorners.vala:78
+msgid "Do nothing"
+msgstr "Nic nie rób"
+
+#: ../src/Views/HotCorners.vala:79
+msgid "Multitasking View"
+msgstr "Widok wielozadaniowy"
+
+#: ../src/Views/HotCorners.vala:80
+msgid "Maximize current window"
+msgstr "Maksymalizuj bieżące okno"
+
+#: ../src/Views/HotCorners.vala:81
+msgid "Minimize current window"
+msgstr "Minimalizuj bieżące okno"
+
+#: ../src/Views/HotCorners.vala:82
+msgid "Show Applications Menu"
+msgstr "Pokazuj menu z aplikacjami"
+
+#: ../src/Views/HotCorners.vala:83
+msgid "Show all windows"
+msgstr "Pokaż wszystkie okna"
+
+#: ../src/Views/HotCorners.vala:84
+msgid "Execute custom command"
+msgstr "Wykonaj własne polecenie"
+
+#: ../src/Views/Wallpaper.vala:146
+msgid "Pictures"
+msgstr "Obrazy"
+
+#: ../src/Views/Wallpaper.vala:147
+msgid "Backgrounds"
+msgstr "Tła systemowe"
+
+#: ../src/Views/Wallpaper.vala:148
+msgid "Custom…"
+msgstr "Własny wybór..."
+
+#: ../src/Views/Wallpaper.vala:154
+msgid "Centered"
+msgstr "Wyśrodkowanie"
+
+#: ../src/Views/Wallpaper.vala:155
+msgid "Zoom"
+msgstr "Przybliżenie"
+
+#: ../src/Views/Wallpaper.vala:156
+msgid "Spanned"
+msgstr "Rozpięcie"
+
+#: ../src/Views/Wallpaper.vala:327
+msgid "Select a folder"
+msgstr "Wybór katalogu"
+
+#: ../src/Views/Wallpaper.vala:328
+#: ../set-wallpaper-contract/set-wallpaper.vala:220
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: ../src/Views/Wallpaper.vala:329
+msgid "Open"
+msgstr "Otwórz"
+
+#: ../src/desktop-plug.vala:34
+msgid "Desktop"
+msgstr "Pulpit"
+
+#: ../src/desktop-plug.vala:35
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "Konfiguruj dok, gorące narożniki i zmień tło pulpitu"
+
+#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
+msgid "Wallpaper"
+msgstr "Tło pulpitu"
+
+#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
+#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
+#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
+msgid "Dock"
+msgstr "Dok"
+
+#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
+msgid "Hot Corners"
+msgstr "Aktywne narożniki"
+
+#: ../src/desktop-plug.vala:95
+msgid "Theme"
+msgstr "Motyw"
+
+#: ../src/desktop-plug.vala:96
+msgid "Hide Mode"
+msgstr "Tryb ukrywania"
+
+#: ../src/desktop-plug.vala:97
+msgid "Icon Size"
+msgstr "Rozmiar ikon"
+
+#: ../src/desktop-plug.vala:98
+msgid "Display"
+msgstr "Ekran"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:90
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekundy"
+msgstr[2] "%d sekund"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:93
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minuta"
+msgstr[1] "%d minuty"
+msgstr[2] "%d minut"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:97
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d godzina"
+msgstr[1] "%d godziny"
+msgstr[2] "%d godzin"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:100
+msgid "1 day"
+msgstr "1 dzień"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:104
+msgid "Show each photo for"
+msgstr "Wyświetlanie każdego zdjęcia przez"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:217
+#: ../set-wallpaper-contract/set-wallpaper.vala:225
+msgid "Set As Desktop Slideshow"
+msgstr "Ustaw jako pokaz slajdów na pulpicie"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:221
+msgid "Create slideshow"
+msgstr "Utwórz pokaz slajdów"

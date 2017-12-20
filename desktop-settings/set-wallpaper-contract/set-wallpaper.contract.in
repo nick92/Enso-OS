@@ -1,0 +1,7 @@
+[Contractor Entry]
+Name=Set as _Desktop Background
+Icon=preferences-desktop-wallpaper
+Description=Set selected image to be the new desktop background
+MimeType=image
+Exec=${SWEXECDIR}/${EXEC_NAME} %F
+X-GNOME-Gettext-Domain=pantheon-desktop-plug

@@ -1,0 +1,250 @@
+# Chinese (Simplified) translation for maya
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the maya package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: maya\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-17 01:55+0200\n"
+"PO-Revision-Date: 2017-04-13 08:54+0000\n"
+"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
+"switchboard/switchboard-plug-pantheon-shell/zh_CN/>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-03-14 07:03+0000\n"
+
+#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#. *
+#. * This program is free software; you can redistribute it and/or
+#. * modify it under the terms of the GNU General Public
+#. * License as published by the Free Software Foundation; either
+#. * version 3 of the License, or (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#. * General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public
+#. * License along with this program; if not, write to the
+#. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#. * Boston, MA 02110-1301 USA
+#.
+#: ../src/Translations.vala:20
+#, fuzzy
+msgid "Set as _Desktop Background"
+msgstr "设为桌面幻灯片"
+
+#: ../src/Translations.vala:21
+msgid "Set selected image to be the new desktop background"
+msgstr ""
+
+#: ../src/Views/Dock.vala:34
+msgid "Small"
+msgstr "较小"
+
+#: ../src/Views/Dock.vala:35
+msgid "Normal"
+msgstr "普通"
+
+#: ../src/Views/Dock.vala:36
+msgid "Large"
+msgstr "较大"
+
+#: ../src/Views/Dock.vala:58
+msgid "Custom (%dpx)"
+msgstr "自定义（%dpx）"
+
+#: ../src/Views/Dock.vala:87
+msgid "Focused window is maximized"
+msgstr "焦点窗口最大化时"
+
+#: ../src/Views/Dock.vala:88
+msgid "Focused window overlaps the dock"
+msgstr "焦点窗口与 Dock 重叠时"
+
+#: ../src/Views/Dock.vala:89
+msgid "Any window overlaps the dock"
+msgstr "任何窗口与 Dock 重叠时"
+
+#: ../src/Views/Dock.vala:90
+msgid "Not being used"
+msgstr "不使用时"
+
+#: ../src/Views/Dock.vala:126
+msgid "Primary display:"
+msgstr "主显示器："
+
+#: ../src/Views/Dock.vala:130
+msgid "Display:"
+msgstr "显示："
+
+#: ../src/Views/Dock.vala:161
+msgid "Icon size:"
+msgstr "图标大小："
+
+#: ../src/Views/Dock.vala:163
+msgid "Hide when:"
+msgstr "隐藏条件："
+
+#: ../src/Views/Dock.vala:167
+msgid "Pressure reveal:"
+msgstr "压力显示："
+
+#: ../src/Views/Dock.vala:206
+msgid "Monitor %d"
+msgstr "显示器 %d"
+
+#: ../src/Views/Dock.vala:211
+msgid "Display %d"
+msgstr "显示：%d"
+
+#: ../src/Views/HotCorners.vala:28
+msgid "When the cursor enters the corner of the display:"
+msgstr "鼠标接触屏幕角落时："
+
+#: ../src/Views/HotCorners.vala:62
+msgid "Custom command:"
+msgstr "自定义命令："
+
+#: ../src/Views/HotCorners.vala:78
+msgid "Do nothing"
+msgstr "不作处理"
+
+#: ../src/Views/HotCorners.vala:79
+msgid "Multitasking View"
+msgstr "多任务视图"
+
+#: ../src/Views/HotCorners.vala:80
+msgid "Maximize current window"
+msgstr "最大化当前窗口"
+
+#: ../src/Views/HotCorners.vala:81
+msgid "Minimize current window"
+msgstr "最小化当前窗口"
+
+#: ../src/Views/HotCorners.vala:82
+msgid "Show Applications Menu"
+msgstr "显示应用菜单"
+
+#: ../src/Views/HotCorners.vala:83
+msgid "Show all windows"
+msgstr "显示全部窗口"
+
+#: ../src/Views/HotCorners.vala:84
+msgid "Execute custom command"
+msgstr "执行自定义命令"
+
+#: ../src/Views/Wallpaper.vala:146
+msgid "Pictures"
+msgstr "图片"
+
+#: ../src/Views/Wallpaper.vala:147
+msgid "Backgrounds"
+msgstr "背景"
+
+#: ../src/Views/Wallpaper.vala:148
+msgid "Custom…"
+msgstr "自定义…"
+
+#: ../src/Views/Wallpaper.vala:154
+msgid "Centered"
+msgstr "居中"
+
+#: ../src/Views/Wallpaper.vala:155
+msgid "Zoom"
+msgstr "缩放"
+
+#: ../src/Views/Wallpaper.vala:156
+msgid "Spanned"
+msgstr "平铺"
+
+#: ../src/Views/Wallpaper.vala:327
+msgid "Select a folder"
+msgstr "选择文件夹"
+
+#: ../src/Views/Wallpaper.vala:328
+#: ../set-wallpaper-contract/set-wallpaper.vala:220
+msgid "Cancel"
+msgstr "取消"
+
+#: ../src/Views/Wallpaper.vala:329
+msgid "Open"
+msgstr "打开"
+
+#: ../src/desktop-plug.vala:34
+msgid "Desktop"
+msgstr "桌面"
+
+#: ../src/desktop-plug.vala:35
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "配置 Dock 和热角、更换壁纸"
+
+#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
+msgid "Wallpaper"
+msgstr "壁纸"
+
+#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
+#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
+#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
+msgid "Dock"
+msgstr "DOCK"
+
+#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
+msgid "Hot Corners"
+msgstr "热区"
+
+#: ../src/desktop-plug.vala:95
+msgid "Theme"
+msgstr "主题"
+
+#: ../src/desktop-plug.vala:96
+msgid "Hide Mode"
+msgstr "隐藏模式"
+
+#: ../src/desktop-plug.vala:97
+msgid "Icon Size"
+msgstr "图标大小"
+
+#: ../src/desktop-plug.vala:98
+msgid "Display"
+msgstr "显示"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:90
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d 秒"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:93
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d 分钟"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:97
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d 小时"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:100
+msgid "1 day"
+msgstr "1 天"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:104
+msgid "Show each photo for"
+msgstr "每张照片时长"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:217
+#: ../set-wallpaper-contract/set-wallpaper.vala:225
+msgid "Set As Desktop Slideshow"
+msgstr "设为桌面幻灯片"
+
+#: ../set-wallpaper-contract/set-wallpaper.vala:221
+msgid "Create slideshow"
+msgstr "创建幻灯片"
