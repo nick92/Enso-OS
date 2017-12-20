@@ -1,0 +1,242 @@
+# Basque translation for plank
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the plank package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plank\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-03-24 17:21+0000\n"
+"PO-Revision-Date: 2016-10-28 19:42+0000\n"
+"Last-Translator: Rico Tzschichholz <Unknown>\n"
+"Language-Team: Basque <eu@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-03-27 17:40+0000\n"
+"X-Generator: Launchpad (build 18334)\n"
+
+#: ../data/plank.appdata.xml.in.h:1 ../data/plank.desktop.in.h:1
+msgid "Stupidly simple."
+msgstr "Erraza baino errazagoa."
+
+#: ../data/plank.appdata.xml.in.h:2
+msgid ""
+"Plank is meant to be the simplest dock on the planet. The goal is to provide "
+"just what a dock needs and absolutely nothing more."
+msgstr ""
+"Plank munduko dockarik arruntena izateko dago eginda. Helburua, dock batek "
+"behar duena eskaintzea da eta ezer gehiago."
+
+#: ../data/plank.appdata.xml.in.h:3
+msgid ""
+"It is, however, a library which can be extended to create other dock "
+"programs with more advanced features. Thus, Plank is the underlying "
+"technology for Docky (starting in version 3.0.0) and aims to provide all the "
+"core features while Docky extends it to add fancier things like Docklets, "
+"painters, settings dialogs, etc."
+msgstr ""
+"Beraz, zera da, liburutegia zein zabaldu daiteke beste portu programa batzuk "
+"sortzeko eginbide aurreratu gehiagorekin. Honela, Plank azpitik dagoen "
+"teknologia da Docky-rentzat (3.0.0 bertsiotik aurrera) eta Plank honen asmoa "
+"da funtsezko eginbide guztiak eskaintzea. Docky-k, ordea, gauza "
+"txundigarriagoak eskaintzen ditu: Dockletak, pintatzaileak, ezarpen menuak, "
+"etab."
+
+#: ../data/ui/preferences.ui.h:1
+msgid "Theme:"
+msgstr "Gaia:"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "Position:"
+msgstr "Tokia:"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Left"
+msgstr "Ezkerrean"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Right"
+msgstr "Eskuinean"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Top"
+msgstr "Goian"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Bottom"
+msgstr "Behealdean"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Alignment:"
+msgstr "Lerrokatzea:"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Fill"
+msgstr "Bete"
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Start"
+msgstr "Abiatu"
+
+#: ../data/ui/preferences.ui.h:10
+msgid "End"
+msgstr "Amaitu"
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Center"
+msgstr "Erdian"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "On Primary Display:"
+msgstr "Lehenengo pantailan:"
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Offset in percent from the center of the screen-edge"
+msgstr "Oreka portzentaia pantailaren ertzeko erditik"
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Icon Alignment:"
+msgstr "Ikonoen lerrokaketa:"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Icon Size:"
+msgstr "Ikonoen tamaina:"
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Icon Zoom:"
+msgstr "Ikonoen zooma:"
+
+#: ../data/ui/preferences.ui.h:17
+msgid "Appearance"
+msgstr "Itxura"
+
+#: ../data/ui/preferences.ui.h:18
+msgid "Intellihide"
+msgstr "Zuhurtziaz ezkutatu"
+
+#: ../data/ui/preferences.ui.h:19
+msgid "Autohide"
+msgstr "Ezkutatze automatikoa"
+
+#: ../data/ui/preferences.ui.h:20
+msgid "Dodge maximized window"
+msgstr "Lehio maximizatuak saihestu"
+
+#: ../data/ui/preferences.ui.h:21
+msgid "Window Dodge"
+msgstr "Lehioak saihestu"
+
+#: ../data/ui/preferences.ui.h:22
+msgid "Dodge active window"
+msgstr "Lehio aktiboa saihestu"
+
+#: ../data/ui/preferences.ui.h:23
+msgid "Hide Dock"
+msgstr "Docka ezkutatu"
+
+#: ../data/ui/preferences.ui.h:24
+msgid "Hide Delay:"
+msgstr "Ezkutatze atzerapena:"
+
+#: ../data/ui/preferences.ui.h:25
+msgid "Delay in ms before hiding the dock"
+msgstr "ms-tan atzeratu docka ezkutatu baino lehen"
+
+#: ../data/ui/preferences.ui.h:26
+msgid "Unhide Delay:"
+msgstr "Erakusteko atzerapena:"
+
+#: ../data/ui/preferences.ui.h:27
+msgid "Delay in ms before showing the dock"
+msgstr "ms-tan atzeratu docka erakutsi baino lehen"
+
+#: ../data/ui/preferences.ui.h:28
+msgid "Pressure Reveal:"
+msgstr "Agertu presioa:"
+
+#: ../data/ui/preferences.ui.h:29
+msgid "Item Management"
+msgstr "Elementuen kudeaketa"
+
+#: ../data/ui/preferences.ui.h:30
+msgid "Show Unpinned:"
+msgstr "Erakutsi aingura kenduta:"
+
+#: ../data/ui/preferences.ui.h:31
+msgid "Restrict to Workspace:"
+msgstr "Mugatu laneko areara"
+
+#: ../data/ui/preferences.ui.h:32
+msgid "Lock Icons:"
+msgstr "Blokeatu ikonoak:"
+
+#: ../data/ui/preferences.ui.h:33
+msgid "Behaviour"
+msgstr "Portaera"
+
+#: ../data/ui/preferences.ui.h:34
+msgid "Docklets"
+msgstr "Docklet-ak"
+
+#: ../lib/DragManager.vala:477 ../lib/Items/PlaceholderDockItem.vala:51
+msgid "Drop to add to dock"
+msgstr "Jaregin atrakera itsasteko"
+
+#: ../lib/Factories/AbstractMain.vala:422 ../src/Main.vala:75
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Asier Iturralde Sarasola https://launchpad.net/~asier-iturralde\n"
+"  Endika https://launchpad.net/~endikaml\n"
+"  Félix Brezo https://launchpad.net/~febrezo\n"
+"  Ibai Oihanguren Sala https://launchpad.net/~ibai-oihanguren\n"
+"  Rico Tzschichholz https://launchpad.net/~ricotz\n"
+"  gorkaazk https://launchpad.net/~gorkaazkarate"
+
+#: ../lib/Items/ApplicationDockItem.vala:412 ../lib/Items/FileDockItem.vala:317
+#: ../lib/Items/FileDockItem.vala:339
+msgid "_Keep in Dock"
+msgstr "_Mantendu atrakean"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close All"
+msgstr "Itxi _dena"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close"
+msgstr "It_xi"
+
+#: ../lib/Items/ApplicationDockItem.vala:492
+#, c-format
+msgid "Drop to open with %s"
+msgstr "Jaregin %s(r)ekin irekitzeko"
+
+#: ../lib/Items/FileDockItem.vala:323
+msgid "_Open in File Browser"
+msgstr "Ireki _fitxategi-arakatzailean"
+
+#: ../lib/Items/FileDockItem.vala:345
+msgid "_Open"
+msgstr "_Ireki"
+
+#: ../lib/Items/FileDockItem.vala:349
+msgid "Open Containing _Folder"
+msgstr "Ireki daukan _karpeta"
+
+#: ../lib/Items/PlaceholderDockItem.vala:37
+msgid "Drop applications or files here"
+msgstr "Arrastatu aplikazioak edo fitxategiak hona"
+
+#: ../lib/Items/PlankDockItem.vala:73
+msgid "Get _Help Online..."
+msgstr "Lortu _laguntza online..."
+
+#: ../lib/Items/PlankDockItem.vala:77
+msgid "_Translate This Application..."
+msgstr "It_zuli aplikazio hau..."
+
+#: ../lib/Widgets/PreferencesWindow.vala:90
+msgid "Preferences"
+msgstr "Hobespenak"

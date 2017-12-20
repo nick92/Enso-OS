@@ -1,0 +1,7361 @@
+2017-03-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.11.4 release
+
+2017-03-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2017-03-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Pass -D*_VERSION_MIN_REQUIRED/*_VERSION_MAX_ALLOWED for glib and gdk
+
+	This should be a better way to deal with deprecation warnings.
+
+2017-03-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: glib-compat.c is superfluous while requiring glib >= 2.40
+
+2017-03-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix build with -Werror=implicit-function-declaration
+
+2017-03-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix build with -Werror=format
+
+2017-03-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2017-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	trash: Make window-manager aware that empty-trash dialog is part
+	of plank
+
+2017-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Stop suppressing c-warnings except for deprecations
+
+2017-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	widgets: Fix build with -Werror=pointer-to-int-cast
+
+2017-02-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Add -fPIC to libplank-internal.la
+
+	It is needed because libplank.la is used as a shared library, which
+	requires all dependencies be built as PIC.
+
+2017-02-09  Peter Feichtinger  <shippo@gmx.at>
+
+	Fix underscores not being shown in some menu items
+
+	Previously all menu items would be created with mnemonics enabled,
+	which
+	resulted in underscores being interpreted instead of shown literally.
+
+	This is not really useful for window titles and file names, which
+	frequently contain underscores.
+
+	This commit fixes the issue by introducing new menu item factory
+	functions in addition to the existing ones, which create menu items
+	with mnemonics disabled. Those items are used wherever names need to be
+	shown literally (i.e. window titles and file names).
+
+2017-02-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Make sure to install manpage from its new source
+
+2017-02-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Generate or update manpage with help2man if available
+
+2017-01-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Welcome to 2017
+
+2017-01-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2016-12-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.11.3 release
+
+2016-11-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: Fix spelling error
+
+2016-11-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	logger: Reinstate null-check for non-initialized calling
+
+2016-11-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Drop references to gthread-2.0
+
+	This is deprecated and obsolete since glib 2.32.0.
+
+2016-11-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Use the file's display-name where possible
+
+	This is the proper string to use for user-visible references to a file.
+
+2016-11-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Trust bamf with providing us the window-count
+
+2016-11-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Don't over-react on user-visible changes and keep
+	transients
+
+	Dropping an running application here is a bit harsh in case of
+	transient
+	items. If a splashscreen is shown then this bit changes along the
+	starting process and is fatal for not-pinned items.
+
+2016-11-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windows: Hide tooltips if the user performed action on a dockitem
+
+	Obviously tooltips will be hidden on appearance of the menu. In
+	addition
+	to that it will hide on click- and scroll-events too now.
+
+	This avoids obstructing maybe important windows parts the user wants to
+	interact with.
+
+2016-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Avoid "Deprecated" warning for libbamf3
+
+2016-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Make use of vala's native Regex support where possible
+
+2016-10-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-10-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	surfacecache: Never clear the cache completely
+
+2016-10-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-10-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	clippy: Move generic-typed field initializer to construct
+
+2016-09-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Fix type mismatch
+
+2016-08-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdata: Add some keywords and translate-url
+
+2016-08-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-08-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add CPUMonitor docklet
+
+2016-07-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-07-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2016-06-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.11.2 release
+
+2016-06-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docklets: Fill in some descriptions and not leave them blank
+
+2016-06-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Add and enforce some file-count limits
+
+	This is just a safe-guard to prevent plank from "blowing up" if we are
+	about to handle an unreasonable amount of files.
+
+2016-06-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Drop internal copy of x11.vapi
+
+2016-06-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Use vala's Cairo.Surface.get/set_device_scale() bindings
+
+2016-06-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Require valac >= 0.26.0 and drop obsolete conditionals
+
+2016-05-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-05-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	clippy: Need to own the clipboard's content before allowed to clear it
+
+2016-05-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-05-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	clippy: text parameter of ClipboardTextReceivedFunc is allowed to
+	be null
+
+2016-05-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	clippy: Pass correct index in menu-item-callback
+
+2016-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing/color: Add support for HSL and some convenience functions
+
+2016-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	surface: Some minor cleaning
+
+2016-04-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Update symbols
+
+2016-04-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2016-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.11.1 release
+
+2016-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	applicationdockitem: Use child-* signals of Bamf.View
+
+	The window-* signals are emitted too early and the internal window/xid
+	caches of Bamf aren't updated yet.
+
+2016-03-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	applicationdockitem: Force indicator-update if running-state changed
+
+2016-03-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Sync libbamf3.vapi with 0.5.3~bzr0+16.04.20160322.1-0ubuntu1
+
+2016-03-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Actually emmit elements_changed() to make DBusClient work
+
+2016-03-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockletmanager: Only handle properly named docklet-libraries
+
+2016-03-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-03-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	system: Use DesktopAppInfo.from_filename() to set desktop-filename
+
+	If the filename property is not set then an empty string will be
+	send out
+	via org.gtk.gio.DesktopAppInfo rather than the proper desktop-filename
+	that we actually have. This is used for startup-notifications by Bamf.
+
+2016-03-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2016-03-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.11.0 release
+
+2016-03-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update NEWS
+
+2016-03-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update README
+
+2016-03-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: Some tweaking of the default themes
+
+2016-03-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferenceswindow: Hide "show-dock-item" setting
+
+	Make "show-dock-item" default to false
+
+2016-03-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferenceswindow: Hide "auto-pinning" setting
+
+2016-03-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: TOUCHPAD devices are able to perform pressure on a barrier
+
+2016-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	prefs: Add TooltipsEnabled setting
+
+	This controls whether to show tooltips on hovering items with
+	the cursor.
+	Tooltips showing up to descibe ongoing DnD-actions are not impacted.
+
+	It is enabled by default.
+
+2016-02-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-02-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Check existence of keys in 3rd-party GSchemas before using them
+
+	Accessing a non-existing key is a fatal error for GSettings.
+
+2016-02-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	services: Rename internal Offsettings to EnvironmentSettings
+
+2016-02-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	surfacecache: Force allow-downscale if drawing-time is insanely high
+
+	If drawing-time of a single surface exceeds a certains limit (30ms) and
+	"flags" is NONE then set ALLOW_DOWNSCALE to make it less demanding.
+
+	Also mark the created surface, so the DockRenderer can try to
+	ease things
+	out for later draw requests.
+
+2016-02-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Drop redundant call of update_regions()
+
+2016-02-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: If the item-count has changed do a more thorough
+	size-update
+
+2016-02-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix build
+
+2016-02-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Move DockItemDrawValue and its dependencies to top-level namespace
+
+2016-02-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Follow the environment's setting whether to show notifications or not
+
+	If false, urgent-bounce and urgent-glow animations are disabled.
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	settings: Allow to specify gsetting's bind-flags
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	utils: Add internal file_is_dockitem()
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	utils: Add internal string_split_combine()
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	utils: Add internal create_settings() and try_create_settings()
+
+	... and make use of them where possible.
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update NEWS
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Add transient-items only if allowed
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add "simple and experimental" multi-dock support
+
+	Running multiple concurrent instances while using "-n|--name"
+	is still possible.
+
+	There are no exposed GUI controls, therefore the newly added
+	"enabled-docks" settings-key should be used.
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Add LauncherEntry's transient-items only if allowed
+
+	Regression of r1510
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	factories: Generalize "dockitem-file" loader
+
+2016-02-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Handle "PinnedOnly" in DefaultApplicationDockItemProvider
+
+	This is more efficient than doing this in the DockController. Only the
+	actually effected items are created/purged on a settings change.
+
+2016-02-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Handle file-monitor event where current launcher was target
+
+	If "other" of FileMonitorEvent.MOVED matches our current launcher-file
+	than it got replaced by a new file, so avoid doing anything other than
+	loading possible new information.
+
+2016-02-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Partly restore original icon-zoom
+
+2016-02-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docktheme: Adjust draw-position item-badge to avoid cropped shadow
+
+2016-02-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferenceswindow: Keep translated "Preferences" string around for now
+
+2016-02-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Make sure to quit "dock" test application
+
+2016-02-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Only cairo >= 1.13 is required for HiDPI
+
+2016-02-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Update symbols
+
+2016-02-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-02-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	ui: Use valac's gtktemplate support
+
+2016-02-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Drop support for gtk+ < 3.10
+
+2016-02-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Drop obsololete glib conditionals and bump vala's target-glib
+
+2016-02-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Drop support for gee-1.0
+
+2016-02-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Use new GLib.Application commandline handling API
+
+	Require glib >= 2.40
+
+2016-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	examples: Add UnityClient example
+
+2016-02-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-02-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Add autogen.sh to tarball
+
+	Conveniently rebuild/update the autotools downstream.
+
+2016-02-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: Use the real sender-name given by NameOwnerChanged
+
+2016-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Cast callbacks to GLib.SourceFunc where possible
+
+2016-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: Expose API to handle LauncherEntry DBus clients
+
+2016-01-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferenceswindow: Allow changing the backing DockController
+
+2016-01-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Fix gtk+-3.0 < 3.10 (non-HiDPI)
+
+2016-01-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	settings: Must take reference of matched ParamSpec
+
+	Not doing so results in an undefined behaviour while things ran out of
+	scope when calling GSettings.bind().
+
+	This reverts r1430
+
+2016-01-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add some functionality to docklets GUI
+
+	Drag'n'drop or double-click a docklet to add it.
+
+2016-01-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Drop PreferencesWindow test
+
+2016-01-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Allow and handle uris with "docklet" scheme
+
+2016-01-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Revert "dockpreferences: No need to notify about external changes
+	of DockItems"
+
+	This breaks GLib.Settings.bind() so that DockItems never get saved.
+
+2016-01-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: Allow a specific amount of fast-updates before skipping/delaying
+
+	Cope with applications which are firing update-requests for multiple
+	application-uris at the same time.
+
+2016-01-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Expand dock on external-drag without enabled zoom too
+
+	Also try harder to insert dropped elements at the actually desired
+	spot.
+
+2016-01-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: Handle bad LauncherAPI clients which have an insane update-rate
+
+	Skip/hold requests if they are arriving within a defined threshold of
+	32ms after the previous one.
+
+	This avoids plank to freeze while not being able to handle all
+	requests.
+
+2016-01-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Fix build without dbusmenu-glib
+
+2016-01-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Reduce redraw requests on LauncherEntry updates
+
+2016-01-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	applicationdockitem: Check LauncherEntry values for actual changes
+
+	Also restrict the precision of "progress".
+
+2016-01-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Don't apply window-scale-factor twice on
+	foreground-icon-size
+
+	Regression of r1343
+
+2016-01-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2016-01-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Hide "Keep in Dock" wile LockItems is enabled
+
+2016-01-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	color: Fix mess-up of r1469
+
+2016-01-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontroller: Fix r1471 and actually save DockItems change on
+	start-up
+
+2016-01-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontroller: Serialize possible DockItems change on start-up
+
+2016-01-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockpreferences: No need to notify about external changes of DockItems
+
+2016-01-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use clamp() instead of min(max())
+
+2016-01-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Welcome to 2016
+
+2015-12-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-12-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdata: Make "summary" translatable, re-use tweaked desktop-file
+	comment
+
+2015-12-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: Update appdata to 0.6+ format
+
+2015-12-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-12-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-12-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: desktop-files are special and deserve the drop-to-dock
+	text
+
+2015-12-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Show descriptive tooltip on external-dnd actions
+
+2015-12-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Move HoverWindow instance into DockController
+
+2015-12-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Add "run-debug" target for running plank uninstalled within gdb
+
+2015-12-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Only use file-monitor for "file://"-icon-files
+
+2015-12-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Better handling if the actual selection-data is null
+
+2015-12-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: Create and use custom Gtk.StyleContext
+
+2015-12-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	widgets: Adjust custom widgets for gtk+ 3.19.1+
+
+2015-12-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Add internal compatibility wrapper for gtk+ 3.19.1+
+
+2015-12-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-12-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Make use of "translator-credits" for Gtk.AboutDialog
+
+2015-12-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Actually use internal constant ITEM_INVALID_DURATION
+
+2015-12-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use fixed ObjectClass.list_properties() of valac 0.31/32 if available
+
+2015-12-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-11-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Be more persuasive to get the window where is should be
+
+2015-11-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Don't grab input and abort this drag if DragItem is null
+
+2015-11-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-11-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: Add "CascadeHide" option
+
+	If true it will cause background and icons to unhide/hide with
+	different
+	speeds so they will leave/hit the screen-edge at the same time.
+
+2015-11-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	trash: Implement perform_empty_trash()
+
+	Only try using Nautilus on "GNOME" and "Unity" enviroments
+
+2015-11-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add methods to check some desktop environment types
+
+2015-11-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Don't leak array-container of ObjectClass.list_properties()
+
+2015-11-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Make sure to use "test1" as dock-name
+
+2015-11-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	settings: Cache class-type-name string
+
+2015-11-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferences: Cache various strings to avoid retrieving them several
+	times
+
+2015-11-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	services: Don't leak array-container of ObjectClass.list_properties()
+
+	ObjectClass.list_properties() transfers the container which needs to be
+	freed. If valac 0.26 is availble this can be managed.
+
+2015-11-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Add "run" target for conveniently running plank uninstalled
+
+	So running "make run" from the top_builddir will start the just built
+	plank with the required environment variables to actually pick
+	things up
+	from the current builddir.
+
+2015-11-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Set PLANK_DOCKLET_DIRS to docklets builddir for test-environment
+
+2015-11-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Fix make distcheck
+
+2015-11-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix build
+
+2015-11-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add non-functional docklets-gui
+
+2015-11-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docklets: Make Docklet an interface and do follow up changes
+
+2015-11-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docklets: Move to public API
+
+2015-11-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	settings: Use unowned var and avoid ref'ing in loop
+
+2015-01-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	system: Refactor to stateful class and use common AppLaunchContext
+
+2015-11-05  Daniel Foré  <daniel@elementary.io>
+
+	data: Improve strings of GSettings schema
+
+2015-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Remove merge-conflict cruft
+
+2015-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update NEWS
+
+2015-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Keep existing theme and dockitem-files working and update them
+
+2015-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Bump api and library version
+
+2015-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Rename AnimatedRenderer to Renderer
+
+2015-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Rename DockSurface to Surface
+
+2015-11-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Drop nested namespaces
+
+2015-11-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Don't translate gschema for now
+
+2015-11-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update symbols
+
+2015-11-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add GSettings support and transition DockPreferences to it
+
+2015-11-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add docklets support (internal/private)
+
+	Based on initially proposed docky 3.0 branch
+
+2015-11-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-11-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Define and use some internal constants
+
+2015-11-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Factor out jump-calculation into easing_bounce
+
+2015-11-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	easing: Use proper codestyle for ANIMATION_MODES while it is a const
+
+2015-10-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Be more rebust for parallel building
+
+2015-10-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	easing: Some optimization, avoid vala's struct-copying by using
+	pointers
+
+2015-10-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Use non-linear transition in/out the "zoom" state
+
+	Increase transition-time to 200ms and use cubic-easing.
+
+2015-10-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Don't request a redraw if "transient_items" is empty
+
+2015-10-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Be more rebust for parallel building
+
+2015-10-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2015-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.10.1 release
+
+2015-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Actually pass e.g. -lm to the linker by adding it to *_LIBADD
+
+2015-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	transientdockitem: Delayed reloading of the window-icon if needed
+
+	If the window-icon was null on the first try then schedule a 2nd one.
+
+2015-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	defaultappprovider: Don't ignore opened applications if Wnck
+	doesn't know
+
+	Better don't rely on Wnck if Bamf reported an opened application. If an
+	application is for whatever reason replacing or renaming its window on
+	startup we might drop it while Wnck reports a window-count of 0.
+
+2015-10-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	plankdockitem: Open "preferences" on left-click instead of "about"
+
+2015-10-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Avoid some superfluous reference-taking
+
+2015-10-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: FileMonitorEvent is a simple enum not a flag
+
+2015-10-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Tweak method signature of file-monitor callbacks
+
+2015-10-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitemprovider: Insert items where the data was dropped
+
+	If there is currently no HoveredItem try to determine the nearest
+	one as
+	drop-point.
+
+2015-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Add verbose output for monitor_geo_changed
+
+2015-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Just return primary_monitor if empty plug_name
+	was given
+
+2015-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Correctly display filenames with underscores in
+	folder-menu
+
+2015-09-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-09-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-09-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Require valac >= 0.24.0 and obsolete conditionals
+
+2015-09-09  Mike Gabriel  <mike.gabriel@das-netzwerkteam.de>
+
+	animatedrenderer: Fix typo in error message
+
+2015-09-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2015-09-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.10.0 release
+
+2015-09-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Demote criticals of get_draw_value_for_item()
+	to debug/warning
+
+2015-09-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	itemfactory: Avoid a string-copying
+
+2015-09-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-09-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontainer: Optimize prepend()
+
+2015-09-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontroller: Clean out old default-provider after replacing it
+
+2015-09-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Guard against empty dock (which ideally won't happen)
+
+2015-09-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontainer: Add remove_all()
+
+2015-08-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	itemfactory: Make get_launcher_from_dockitem() a bit more safer/verbose
+
+2015-08-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Clean bamf/gtk+ version check
+
+2015-08-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Avoid usage of Cairo.SurfaceType.COGL
+
+2015-08-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dbusmanager: Fix naming of fields which are holding handler/timer-ids
+
+2015-08-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Cast some callbacks to avoid the creation of wrappers
+
+2015-08-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Require cairo >= 1.10
+
+2015-08-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Cast some callbacks to avoid the creation of wrappers
+
+2015-08-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-08-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Adjust shadow-size if window-scale-factor > 1 aka HiDPI
+
+2015-08-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Make using -Werror=unused-result pass
+
+2015-08-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockelement: Make using -Werror=pointer-to-int-cast pass
+
+2015-08-19  Lucas Baudin  <xapantu@gmail.com>
+
+	hidemanager: Ignore pressure-reveal for 'absolute' input-devices
+
+2015-08-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Fix background-size calculation with enabled icon-zoom
+
+	We need to take the zoomed icon-size into account to properly
+	adjust the
+	horizontal padding for the background-sizing while differentiating
+	between first and last item.
+
+2015-08-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Output the Cairo.SurfaceType used by Gtk+
+
+2015-08-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Reinstate "handling of send_event" to avoid confusion
+	with menu
+
+	Regression of r1353
+
+2015-08-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Don't use actual cursor coords of leave-notify-event
+
+	If we received a leave-notify-event then don't be silly and make sure
+	update_hovered_with_coords() will set Hovered to false by passing
+	(-1, -1).
+
+2015-08-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Make item's background-region always cover dock's
+	background from bottom up
+
+2015-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Revert "dockrenderer: Use animated_draw() and don't listen to
+	HoveredItem changes"
+
+2015-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Do not forcefully unhide the dock if it already is
+
+	If we do it will cause the dock to hide and unhide again on startup.
+
+2015-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Use animated_draw() and don't listen to HoveredItem
+	changes
+
+2015-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Commonize naming of fields which are holding handler/timer-ids
+
+	Adjust some explictly typed assignments too.
+
+2015-07-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontainer: Update element's RemoveTime on add/replace accordingly
+
+2015-07-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	surfacecache: Fix build with gee-1.0
+
+2015-07-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Reinstate "handling of send_event" to fix broken
+	internal DnD
+
+	Regression of r1353
+
+2015-07-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	ui: Fix "Icon Zoom" label spanning
+
+2015-07-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-07-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Rework enter/leave-event handling to determine "Hovered"
+
+	This removes handling of send_event and use "Disabled" for visible
+	menu.
+
+2015-07-25  Kay van der Zander	<kay20@hotmail.com>
+
+	gmock: Add tests for Color
+
+2015-07-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add google-mock support
+
+2015-07-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Always indicate running application despite its
+	window-count
+
+2015-07-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Replace non-constant string-concatenation with string.printf()
+
+2015-07-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Make sure to bind "plank" textdomain for library users
+
+2015-07-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-07-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	surfacecache: Add missing mutex-unlock
+
+2015-07-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translation template
+
+2015-07-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update symbols
+
+2015-07-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add ability to cache multiple sizes of drawn items
+
+2015-07-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add optional zoom animation when hovering dock-items
+
+2015-06-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add icon-zoom preferences and expose gui-settings
+
+2015-07-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Make sure to enable maintainer-mode by default
+
+2015-07-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	ui: Tweak minimum gtk+ version for conditional 3.4 support
+
+2015-07-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-07-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	prefswindow: Allow closing the window using "Escape"
+
+2015-06-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Drop dependency on gnome-common
+
+2015-07-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	prefswindow: Use Gtk.Stack if available
+
+2015-07-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Add dodge-active hide-mode
+
+2015-07-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	color: Clarify documention of set_min/max_* methods
+
+2015-07-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	color: Avoid double setting of out-vars in hsv_to_rgb
+
+2015-07-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update symbols
+
+2015-07-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Guard duration-calculations which are used for animations
+
+2015-06-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-06-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	animatedrenderer: Always initialize frame if a redraw is scheduled
+
+2015-06-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-06-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add RTL support and enable it depending on the locale setting
+
+	Reverse items placement.
+	Mirror position for vertical docks.
+	Invert alignments for horizonzal docks.
+	Mirror badge and progress-bar.
+
+2015-06-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Revert "items: Use threaded icon-drawing for all items"
+
+	Too unstable for being usable!
+
+2015-06-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	animatedrenderer: Use Gdk.FrameClock to determine frame-time
+
+	Conditionally use Gdk.FrameClock if Gtk+ >= 3.8 is available
+
+2015-06-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Move frame-time handling into AnimatedRenderer
+
+	Make AnimatedRenderer-class responsible to perform and schedule
+	redraws.
+
+2015-06-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: Make icon_theme creation thread-safe
+
+2015-06-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Schedule icon-theme-changed callback "as late as possible"
+
+2015-06-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Schedule unhide-on-start callback "as late as possible"
+
+2015-06-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	src: Use more reasonable class-name and namespace-structure
+
+2015-06-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-06-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: Use string-array directly and don't copy to
+	Gee.ArrayList
+
+2015-06-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Fix make distcheck
+
+2015-06-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Drop unused code
+
+2015-06-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	worker: Make ThreadPool non-exclusive and use GLib.get_num_processors()
+
+2015-06-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	logger: Partial rewrite, with strip down to the "nearly" bare minimum
+
+2015-06-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Add the "surface == null" surface-status
+
+2015-06-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Avoid some superfluous string-copying
+
+2015-06-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Use Gtk.IconTheme in a thread-safe way
+
+2015-06-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Rework threaded-drawing of internal surface
+
+2015-06-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	worker: Schedule async-callback with priority HIGH_IDLE
+
+2015-06-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Fix docs build
+
+2015-06-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update symbols
+
+2015-06-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Bail early if this is not running in a X11 session
+
+2015-06-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Force "deep" initializtion of Gtk.IconTheme early
+
+2015-06-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Use threaded icon-drawing for all item and add draw_icon_fast()
+
+	Makes use of Worker.add_task_with_result().
+
+	Prevent foreground and background drawing until the final icon is done.
+
+	draw_icon_fast() will be used before the real icon is ready.
+	It allows items to draw a specific shape for a smoother transitions
+	between placeholder and final icon.
+
+2015-06-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	worker: Add asynchronous add_task_with_result()
+
+2015-06-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Update drag-icon if the drag-item's icon got changed
+
+2015-06-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Use Worker to load and draw file-icons for pinned folders
+
+2015-06-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	services: Add ThreadPool-based Worker to run tasks without blocking GUI
+
+2015-06-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-05-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Fix autoconf warning about ignoring --datarootdir
+
+2015-05-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: Small clean up of draw_background()
+
+2015-05-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-05-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Use Gdk.Rectangle.union()
+
+	This additionally catches the case where first_rect is actually located
+	on the "right" of last_rect.
+
+2015-05-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Simplify initialization of some structs
+
+	"var f = Foo ()" will cause a superfluous memset.
+	"Foo f = {0}" will additionally set the first field (if it is
+	an integer)
+	and doesn't translate to C-equivalent.
+
+2015-05-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferences: GLib.File.replace() is creating non-existing files already
+
+2015-05-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: No need to specialize default-provider as
+	AppDockItemProvider
+
+2015-05-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Use dedicated callback to handle icon-file-changes
+
+2015-05-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Make DockItem abstract
+
+2015-05-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	logger: Adjust LogLevel-naming, ERROR -> CRITICAL and FATAL -> ERROR
+
+2015-05-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docksurface: Cache kernel[k] in gaussian_blur_*
+
+2015-05-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Small optimization in ar_scale()
+
+2015-05-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Make hide-animation non-linear and default to 250ms
+
+2015-05-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Pass-through the event_time of click/scroll events if available
+
+	This will result in passing proper timestamps to Wnck-based calls.
+
+2015-05-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Automatically remove invalid items and their corresponding
+	dockitem-file
+
+	Additionally to the validity check of dockitem-files invalid one
+	will be
+	deleted. On runtime indicate broken-items and remove them after
+	3 seconds
+	without further actions needed.
+
+2015-05-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Refactor public API to reflect its generality
+
+2015-05-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Make "Item for Dock" really special and add setting to show/hide it
+
+2015-05-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Allow DockItems to be added to the DockController directly
+
+2015-05-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontainer: Add prepend_item()
+
+2015-05-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Collect item-related enums in their own source-file
+
+2015-05-06  Daniel Foré  <daniel@elementary.io>
+
+	data: New and more detailed poof animation with 8 frames
+
+2015-05-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	poofwindow: Retrieve size and frame-count from given animation-file
+
+2015-05-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2015-05-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.9.1 release
+
+2015-05-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Start icon-file-monitor as soon as possible if needed
+
+2015-05-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockelement: Use Gdk.BUTTON_* constants
+
+2015-04-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Fix typos in documentation
+
+2015-04-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Tweak internal callbacks
+
+2015-04-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Split-out item_animation_needed()
+
+2015-04-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Don't add-animate an item if its container got added later
+
+	E.g. this avoids animating *all* items on startup.
+
+2015-04-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontainer: Synchronize Add-/RemoveTime with existing child-items
+
+2015-04-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	defaultprovider: Use add_items instead of add_item_without_signaling
+
+2015-04-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docksurface: Cache "Context" property
+
+2015-04-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use Cairo.Operator.CLEAR instead of
+	Cairo.Operator.SOURCE/set_source_rgba
+
+2015-04-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add LGPL v2.1 for "TitledSeparatorMenuItem.vala"
+
+2015-04-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	The 'This file is part of Plank' commit
+
+	Add references to 'Plank' in copyright-headers where possible.
+
+2015-04-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-04-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Explictly request/specify the FileMonitor-type which is needed
+
+2015-04-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: launchers_folder is not a public/construct property
+
+2015-04-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Make sure to unhide the dock on login when there are
+	no windows
+
+	After transparently filling window on start-up make sure to force a
+	redraw and a following unhide animation.
+
+2015-04-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-04-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	HACKING: Mention ppa:docky-core/stable containing release builds
+
+2015-04-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Add libbamf3.deps
+
+2015-04-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	src: Initialize i18n as suggested
+
+2015-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2015-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.9.0 release
+
+2015-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	coverage-html: Make sure to reference files located in builddir
+
+2015-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Fix build with gee-1.0
+
+2015-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add some hidden menu-items for easier debugging
+
+2015-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update symbols
+
+2015-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Make the Preferences menu-item visible in Pantheon too
+
+2015-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Reverse ordering of menu-items for top-docks
+
+	Ease the access of more important items for this case.
+
+2015-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	themes: Refresh "Default" for comment-changes
+
+2015-04-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: State the extended influence of ItemMoveTime
+
+2015-04-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update email contacts
+
+2015-04-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Split startup-test into "dock" binary and run it separately
+
+2015-04-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Add replacement string if get_monitor_plug_name
+	is null
+
+2015-04-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	m4: Update gcov.m4
+
+2015-04-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Add support for coverage analysis using gcov and lcov
+
+	Based on https://launchpad.net/coverage-tutorial by "Allan LeSage"
+
+2015-04-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-04-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Synchronize resetting buffers and position-manager
+
+	Avoid races on e.g. changing theme. The bargain is a more expensive
+	update for Offset/Alignments changes.
+
+2015-04-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	prefs: Mention "window-dodge" hide-mode
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Check HoverWindow and PreferencesWindow
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Increase DrawingService coverage
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Check Drawing.easing_for_mode
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Increase Color coverage
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	color: Fix naming of "set_min_val"
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Increase Dock-/Theme coverage
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Complete DockSurface coverage
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme/get_theme_list: Returning an array is good enough
+
+2015-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager/get_monitor_plug_names: Returning an array is
+	good enough
+
+2015-04-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Avoid copying "mask_bits" array
+
+2015-04-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Fix -Wreturn-type
+
+2015-04-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docktheme/draw_item_progress: Restrict progress to <= 1.0
+
+2015-04-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add more DockTheme tests
+
+2015-04-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Compare lowlevel pixdata to determine equality
+
+2015-04-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	prefs: Save display-plug-name as Monitor which dock should be shown on
+
+2015-04-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Refactor dealing with monitor-/size-changes to catch races-conditions
+
+	Remove delayed handling in favor of dropping superfluous triggering.
+	Remember the requested window position in case get_position() can't
+	return the correct values.
+
+2015-04-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update symbols
+
+2015-04-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-03-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Fix behavior of "special" dock-menu
+
+	The dock-menu was instantly hidden on button-release if it got
+	triggered on an empty area on dock.
+
+2015-03-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Push logic to determine menu-type into show_menu()
+
+2015-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	defaultappprovider: Only listen to Wnck-signals if necessary
+
+2015-03-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Generally watch for changes of the "Launcher"-file
+
+	This unifies the filemonitor implementations of ApplicationDockItem and
+	FileDockItem and moves it into DockItem.
+
+2015-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: Do not break case-sensitivity, fix for r1211
+
+2015-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update symbols
+
+2015-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: Add support for loading icons with "resource://"-uris
+
+2015-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Refactor internal API
+
+2015-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-03-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Use Gtk.drag_set_icon_default as fallback
+
+2015-03-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Make "handle_deleted" private
+
+2015-03-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Do not animate item if it got removed with drag'n'drop
+
+2015-03-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	element: Add "IsVisible" which *only* controls whether to draw the item
+
+2015-03-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	element: Rename IsVisible to IsAttached
+
+	This matches its function better.
+
+2015-03-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Do not stop motion-events by default
+
+	This fixes fastly-rearranging icon which causes the mouse-cursor
+	leaving
+	the drag-window, so the dockwindow caught and killed the motion-event.
+
+2015-03-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Cache "Internal"-surface property
+
+2015-03-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-03-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Fix background drawing position for panel-mode
+
+	Regression of r1186
+
+2015-03-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Additionally output buildtime versions of glib and gtk+
+
+2015-03-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dbus/client: Keep compatiblity with glib 2.32
+
+2015-03-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add DBusManager to provide some useful remotely accessible actions
+
+	Provide "net.launchpad.plank.Items" interface with "Add", "Remove",
+	"GetCount", "GetPersistentApplications" and "GetTransientApplications"
+	methods.
+
+2015-03-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update symbols
+
+2015-03-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Call update_items while replacing default_provider
+
+2015-03-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Add Items property
+
+	Which actually returns a list of all items regardless their visibility.
+
+2015-03-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Rename property Items to VisibleItems
+
+2015-03-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontainer: Rename property Elements to VisibleElements
+
+2015-03-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	item: Rename protected arraylist-fields *_items to *_elements
+
+2015-03-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-03-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Add window-dodge hide-mode
+
+2015-03-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Drop hack for menu-position with gtk+ 3.15+
+
+	Reverts r1158
+
+2015-03-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Make "distcheck" work independent from originally passed
+	confflags
+
+2015-03-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Draw final internal dock-buffer on window-context at (0,0)
+
+2015-03-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: It is an ApplicationDockItem, no need to use "as"
+
+2015-02-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-02-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Avoid removal-delay when unpinning an application
+
+	Remove an AppDockItem if it doesn't represent a running application and
+	doesn't have visible remote-info coming via LauncherEntry.
+
+2015-02-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Add boolean return-value to public DockContainer/-Provider
+	methods
+
+	This will indicate the success or failure of the corresponding
+	operation.
+
+2015-02-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Make easing_for_mode more robust and document it
+
+2015-02-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add hide-delay setting
+
+2015-01-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: Replace poof.png with newly created poof.svg, Thanks to
+	Daniel Foré
+
+2015-01-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: Optimize application-default-icon.svg
+
+	scour --enable-viewboxing --enable-id-stripping --create-groups
+	--shorten-ids --enable-id-stripping --enable-comment-stripping
+	--disable-embed-rasters --remove-metadata --strip-xml-prolog -p 9
+
+2015-01-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Update according to Gtk.MenuPositionFunc signature fix
+
+2015-01-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: Try to trap some XErrors caused by Wnck/Cairo
+
+2015-01-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Refactor and split up draw_item()
+
+	Add draw_item_shadow() and get_animated_draw_value_for_item()
+	for better
+	separation of drawing and position-calculation.
+
+2015-01-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Don't try to draw shadows-layer too early
+
+2015-01-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: Increase default ItemMoveTime to 450ms
+
+2015-01-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add add/remove animations for dock-items
+
+2015-01-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Add standard set of easing-functions
+
+2015-01-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Redo final drawing to untangle the different layers
+
+	Adds additional drawing operations and therefore slows things down
+	a bit.
+
+2015-01-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Fix warning while building non-HiDPI
+
+2015-01-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2015-01-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.8.1 release
+
+2015-01-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-01-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Make use of Gdk.EVENT_PROPAGATE and Gdk.EVENT_STOP
+
+2015-01-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Compatibility for BSD, use replacement for sys/prctl.h
+
+2015-01-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Request gee-0.8 without an automatic fallback to gee-1.0
+
+2015-01-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Alignment should have same meaning for dock and items
+
+	START and END were treated differently resulting in a contradicting
+	settings-behaviour of Aligment and ItemsAlignment
+
+2015-01-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix broken virtual LauncherEntry-items
+
+	Regression of r1057
+
+2015-01-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Clean up some API
+
+2015-01-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Mark a few more workarounds as such
+
+2015-01-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Fix menu-position with gtk+ 3.15+
+
+2015-01-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Fix valac warning
+
+2015-01-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Fix enable/disable pressure-reveal on runtime
+
+2015-01-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2015-01-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Output information for more enabled features
+
+2015-01-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	prefswindow: Fix some sensitivity assignments
+
+2015-01-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Move plank.gresource.xml to data
+
+2015-01-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Fix benchmark build
+
+2015-01-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Welcome to 2015
+
+2015-01-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translation template
+
+2015-01-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Update symbols
+
+2015-01-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2015-01-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.8.0 release
+
+2015-01-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Fix warning and handle RegexError
+
+2015-01-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2014-12-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Always reset App when "closed" was signaled
+
+2014-12-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: Avoid depending on initialized AbstractMain implementation
+
+2014-12-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Use selected-focused background-color from current gtk+ theme
+
+2014-12-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Fix FileDockItem's constructors
+
+2014-12-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Add FileDockItem.with_file() and expose OwnedFile
+
+2014-12-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	plank.pc: Add pkgdatadir
+
+2014-12-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	plank.pc: Add missing dependency on libbamf3
+
+2014-12-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2014-12-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: Add special theme "Gtk+" which looks in the currently selected
+	gtk-theme
+
+2014-12-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Show window-list and use "Close All" for more than
+	one window
+
+2014-12-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Handle DesktopAppInfo constructors returning NULL
+
+2014-11-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: No need for return-values for
+	DockItemDrawValue-methods
+
+2014-11-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	itemfactory: Do not allow multiple dockitems pointing to same launcher
+
+	Same as r1124
+
+2014-11-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Use posix's getpid() to avoid bumping glib
+
+2014-11-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Don't hide while obstructed by one of our dialogs/windows
+
+2014-11-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add missing Cairo.Context.close_path() calls in conjunction to
+	move_to()
+
+2014-11-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fallback on "application-default-icon" icon only or use internal
+	default
+
+	Also Wnck is returning its default window-icon ignore it and use
+	the our
+	fallback chain instead.
+
+2014-11-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Handle null-return of DrawingService.load_icon_for_scale()
+
+2014-11-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Fix nasty typo in get_menu_items()
+
+2014-11-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Do not allow multiple dockitems pointing to the same
+	application/launcher
+
+2014-11-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Only allow DefaultApplicationDockItemProvider to handle unpinned apps
+
+	Don't expose this property and completely handle it internal.
+
+2014-11-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontainer: Reuse retrieved index and add additional argument check
+
+2014-11-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appddockitemprovider: Fix gee assert caused by
+	handle_name_owner_changed
+
+	Don't expect more item matches after one was already found and bail.
+	There is only one match possible and remove_item() obviously
+	changes the
+	internal_items list which is iterated in this scope.
+
+2014-11-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Explicitly move some field initalizers to construct
+
+2014-11-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitemprovider: Add item_for_uri()
+
+2014-11-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Add more checks for wnck-related null-values
+
+2014-11-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Various optimizations
+
+2014-11-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Add command-line option to show preferences dialog
+
+2014-11-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Rely on new-dtags support to replace RPATH with RUNPATH
+
+2014-11-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: Update manpage
+
+2014-11-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Fix updating item-positions in panel-mode
+
+2014-11-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Accept all supported URIs
+
+2014-11-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Fix updating item-positiions in panel-mode
+
+	Regression of r1059
+
+2014-10-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update Finnish, Norwegian Bokmal, Serbian
+
+2014-10-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Preserve compatibility with valac 0.22/24
+
+2014-10-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Avoid setting empty strings/array
+
+2014-10-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Still allow opening dropped files if LockItems is true
+
+2014-10-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Handle propagated mouse-events if menu is visible
+
+	Gtk+ 3.14 propagates button-press/release and motion-events further
+	even while an attached Gtk.Menu is shown. We need to handle those to
+	restore and preserve the old behaviour.
+
+	Reference gtk+ commit:
+	https://git.gnome.org/browse/gtk+/commit/?id=6b7b55f9b2b9eb7e05f68e9
+
+2014-10-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Reset ClickedItem after processing the button-release-event
+
+2014-10-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	position-manager: Add cached Position of dock and prefer using it
+
+2014-10-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: No need to copy since GdkRectangle is a CairoRectangleInt
+
+2014-10-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	position-manager: Clean up and remove unused public API
+
+2014-10-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Increase hover-window delay to 200ms
+
+2014-10-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Drop obsolete controller-argument from get_plank_menu_items()
+
+2014-10-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use ActionGroup/ActionMap capabilities to provide global-menu functions
+
+2014-10-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Stay compatible with gtk+ 3.4
+
+2014-10-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: No need to rebuild settings-dialog if it is already open
+
+2014-10-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: Set about-dialog as transient for dock-window
+
+2014-10-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Port AbstractMain to inherit directly from Gtk.Application
+
+2014-10-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix make check
+
+2014-10-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Implement (can_)accept_drop() for DockItemProviders and make use of it
+
+2014-10-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Really be compatible with gtk+ 3.4
+
+2014-10-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Add missing source references aka "fix the build"
+
+2014-09-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add simple settings tool
+
+2014-10-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fixing some HiDPI issues
+
+	Additionally require cairo >= 1.13 to enable support.
+	Use Gtk.IconTheme.lookup_icon_for_scale() to pick the proper icon.
+
+2014-09-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Fix DockContainer destructor name
+
+2014-09-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2014-09-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.7.1 release
+
+2014-09-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Improve build- and runtime-checks for barrier-support
+
+2014-09-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Fix hide/unhide in non-compositing mode
+
+	Regression of r1059
+
+2014-09-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Missing the required valac version must be fatal
+
+2014-09-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Add missing HAVE_BARRIERS conditional
+
+	It is needed to guard all initialize_barriers_support calls.
+
+2014-09-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: No need to have a background if there is none
+
+2014-09-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docktheme: Bail early if there is nothing to draw
+
+2014-09-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Do not allow negative dimensions for the background
+
+2014-09-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Clean up internal "using ..." dependencies
+
+2014-09-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Avoid "using ..." for external dependencies
+
+	This has gotten a bit inconsistent so drop those for good and fully
+	qualify external symbols in all places.
+
+2014-09-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2014-09-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.7.0 release
+
+2014-09-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Update symbols
+
+2014-07-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Update the barrier if needed
+
+2014-09-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Properly compare all separate icons for a single match
+
+	Fixes regression of r1038 with gtk+ < 3.13
+
+2014-09-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Fix docs for get_item_hover_region()
+
+2014-09-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	AUTHORS: Promote myself to primary contact
+
+2014-09-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Hide "Quit" while running on Pantheon
+
+2014-09-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Add missing call of prepare()
+
+	Regression from r1066 while changing PinnedOnly setting on runtime.
+
+2014-09-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix build and add DockContainer
+
+2014-09-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Introduce abstract DockContainer and let DockController implement it
+
+	This removes some logic/code duplications and makes thing more abstract
+	while handling DockItemProviders like DockItems.
+
+2014-09-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockpreferences: Fix mix-up in Alignment blurbs
+
+2014-09-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Avoid some superfluous string-copying
+
+2014-09-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Let Drawing.Color inherit from Gdk.RGBA
+
+2014-09-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Drop usage of deprecated Gdk.Color
+
+2014-09-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Prefix functions with "get_" accordingly
+
+2014-09-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Handle changed compositing-support without delay in position-manager
+
+2014-09-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Clean up resize/repositioning code and api of position-manager
+
+2014-09-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Minor clean up using position-manager
+
+2014-09-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Try to avoid adding superfluous LauncherEntry-items
+
+	If an application sends multiple requests referring to different
+	application-uris try not to use/add more than one item.
+
+2014-09-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Remove all LauncherEntry-items which match the vanished
+	dbus-sender-name
+
+2014-09-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Force internal Wnck update when needed and try to redruce races
+	with Bamf
+
+	This is more a workaround. The better solution would be to avoid/reduce
+	the mixed usage of Wnck and Bamf signals.
+
+	The problem surfaced and became reproducable with r1041 which relies on
+	consistency between Wnck and Bamf.
+
+2014-08-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add auto-pinning setting and enable by default
+
+	This makes it possible to disable this existing feature if wanted.
+
+2014-08-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Monitor icon changes if it points to an existing local file
+
+2014-08-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: Add try_get_icon_file() to handle of possible
+	icon-files
+
+2014-08-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Silence c-warnings for plank-binary too
+
+2014-07-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Creating transient-items on dockitem-deletion belongs in
+	default-provider
+
+	Leftover from the refactoring which should have been there since then.
+	Surfaced due the usage of PinnedOnly where the default-provider is
+	actually a simple ApplicationDockItemProvider.
+
+2014-07-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	itemfactory: Only strip the extension from the launcher-filename
+
+	There are desktop-files named like "org.gnome.Polari.desktop" now.
+
+2014-07-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	provider: Handle item-target is placeholder-item correctly
+
+2014-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Update symbols
+
+2014-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Make pressure debug-output optional
+
+2014-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing/load_pixbuf: Properly try icon-name with stripped extension
+
+	This fixes e.g. looking for "skype.png" which is registered as "skype".
+
+2014-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	itemfactory: Update creation of default applications-items
+
+2014-07-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Set Add/RemoveTime of item-providers accordingly
+
+2014-07-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add ability to show pinned applications only
+
+	This adds the "PinnedOnly" setting which defaults to false. If
+	set there
+	will be no transient items shown.
+
+2014-07-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Don't count or provide menu-entries for windows which have a transient
+
+2014-07-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2014-07-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Don't use IconTheme.has_icon()
+
+	While we are checking/handling null this check is superfluous.
+
+2014-07-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Consider "folder" being a default-icon too
+
+2014-07-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Don't optimize drawing of the first frame
+
+2014-07-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use GLib.get_monotonic_time() for timestamps used to calculate
+	animations
+
+	This drop all non-user visible usage of GLib.DateTime.
+
+2014-06-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Make sure to update visibile-items in prepare
+
+	Not pinned items doesnt show up initially.
+
+	Regression caused by r1029
+
+2014-06-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Precalculate top_offset to have it include TopPadding
+
+	This avoids doing this over and over again in several places.
+
+2014-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add pressure-reveal setting and disable by default
+
+2014-04-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add pressure-reveal support to unhide the dockwindow
+
+	Conditionally use XInput2.3 barriers if available to do this.
+
+2014-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Drop debug output
+
+2014-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Shorten window-title shown in menu using application-name
+
+2014-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Refactor dockitem-loading and serialization of pinned items
+
+	Move dock-item creation to item-factory and move more bits of global
+	settings handling to the controller.
+
+2014-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Drop maximize/unmaximize menu-entries
+
+	They are considered clutter and of no real use. Interacting with the
+	actual window is prefered to achieve those actions.
+
+2014-06-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add compile time and runtime retrievable version information
+
+2014-05-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Require valac >= 0.22.0 and obsolete conditionals
+
+2014-05-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2014-05-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.6.1 release
+
+2014-05-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitemprovider: Make controller aware of changed items on
+	replace_item
+
+2014-05-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: Provide and install plank.appdata.xml file
+
+2014-05-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitemprovider: Actually pass all moved items on
+	item_positions_changed
+
+	Optimize the Gee.List operations by implicitly using get/set and avoid
+	unnecessary removes/inserts which are not needed while the item-amount
+	and therefore list-size doesn't change.
+
+2014-04-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Add some checks and criticals to DockItemProviders
+
+2014-04-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Do not copy "Provider" property value
+
+2014-04-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2014-04-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.6.0 release
+
+2014-04-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Update symbols
+
+2014-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Be more restrictive on further actions if the dock
+	is hidden
+
+	This mean do not set a HoveredItem if the hide-manager suggested
+	the dock
+	is currently hidden. Futhermore this avoids showing the hover-window
+	early if an unhide-delay is set.
+	Also make sure to reset HoveredItemProvider along with HoveredItem.
+
+2014-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: When dnd-action is finished make sure to hide dock
+	if needed
+
+2014-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Force initial call hover-item-changed for external-drags
+
+	Dragging a file onto an item without hovering another one before
+	did not
+	trigger the emulated scrolling. Therefore the corresponding windows did
+	not get focused if available.
+
+2014-04-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Make sure to update the icon-regions when needed
+
+	If the newly open window did not trigger a hide or unhide process
+	of the
+	dock then icon-regions were outdated or not set at all on new windows.
+
+2014-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Update libbamf3 bindings
+
+2014-04-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Allow other applications to steal and provide
+	com.canonical.Unity
+
+	Rework status messages for acquiring and losing the bus-name.
+
+2014-03-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	themes: "Transparent" shouldn't draw border-lines
+
+2014-03-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add support for GTK's HiDPI
+
+	The main problem are Pixbuf based drawings which need to be upscaled
+	by the scale-factor and downscaled for the dock-rendering again.
+
+	The Gdk-API is providing scaled coords automatically while Wnck is
+	working with and returning the real unscaled dimensions. So we are
+	adjusting those accordingly.
+
+2014-03-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: Handle delayed window-focus more robust
+
+	While scheduling a delayed focus keep track of vanishing windows
+	and stop
+	the timer if the target-window got already closed to prevent
+	a segfault.
+
+2014-03-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Fix typo
+
+2014-03-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Don't initialize running-applications twice on start-up
+
+	AppDockItemProvider takes care of that already, no need to do it again.
+
+2014-02-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Don't dist c-docs and make their build optional
+
+2014-02-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Don't be verbose by default
+
+2014-02-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	itemfactory: Fix path for google-chrome.desktop
+
+2014-02-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2014-02-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add HoveredAnimation for DockElements
+
+	This adds a smooth animation while the user hovers over items.
+
+2014-02-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Check if there is actually a SeparatorMenuItem needed
+
+2014-02-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Allow to pin/un-pin an item only if LockItems isn't enabled
+
+2014-02-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Make sure the item has chosen a corresponding Animation
+	to draw
+
+2014-02-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add ScrolledAnimation for DockElements
+
+	This adds a simple visual feedback while the user scrolls over items.
+
+	Increase the previously used hard-coded threshold of 200ms to 300ms
+	for application-window-switching by scrolling.
+
+2014-02-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Rename ClickAnimation to Animation
+
+2014-02-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Clean up and reorganize properties/fields
+
+2014-02-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockprefs: Only verify Monitor on start-up and setting-file-change
+
+	While plank is running don't update the Monitor setting if a monitor is
+	disconnected/turned-off in preparation for the system going to suspend.
+
+2014-02-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: Validate Wnck.Window object before further use
+
+	While there was huge delay make sure the given object isn't disposed
+	already before using it.
+
+	This is probably what happened in the referenced bug-report.
+
+2014-02-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Initialize private fields
+
+2014-02-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Initilize private fields
+
+2014-02-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: No need for further things if the dock is already unhidden
+
+2014-02-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Wait for dock to be unhidden before showing the
+	hover-window
+
+2014-02-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Fix build with valac 0.16.x
+
+	Explictly specify type-check-function for GdkX11 classes.
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add simple controller construction tests
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	animatedrenderer: Require widget to be given on construction
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: No need to delay loading the theme
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Add reasonable fallback-padding for non-compositing
+	mode
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: More use of reset_position_manager rather than direct
+	calls
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Handle prefs-changes with one callback
+
+	This mainly reduces calls of position-manager's reset-caches.
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Don't reset-caches if amount of items didn't change
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Squash possible duplicate notify emits on reset_caches
+
+2014-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Don't reset-caches of position-manager twice on start up
+
+2014-02-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferences: Don't try to save_prefs twices, the first would be delayed
+
+2014-02-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Don't emit "notify" for hide_progress/opacity property
+
+2014-02-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests/preferences: Check triggered-count on delay too
+
+2014-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hoverwindow: Let dockwindow own it and drop dockcontroller dependency
+
+2014-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Rename hidemanager.DockHovered to Hovered
+
+2014-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Property-"notify"-optimizations
+
+	Stop listening to our own property changes and make sure to stall
+	"notify" until everything is in a consistent state.
+
+2014-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix build
+
+2014-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: No need to listen to motion-events
+
+	Handling enter/leave events seems to be enough to determine the info we
+	need to properly hide and unhide the dock.
+
+2014-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Adapt to changed GdkX11 bindings
+
+2014-02-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitemprovider: Remove redundant redraw trigger
+
+	Update-requests caused by "Icon" changes are handled with
+	"needs_redraw".
+
+2014-02-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockelement: Factor-out base-class for DockItem and DockItemProvider
+
+2014-02-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitemprovider: Don't use Position for inserting in internal-items
+
+	Only items in visible-items have properly set Position values therefore
+	it should not be used as index for internal-items.
+
+2014-02-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	add_item_with_uri: Don't trigger two updates if a target-item is given
+
+	Push "target" argument up into add_item to commonize api a bit.
+
+2014-02-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Clean up DockHovered updates triggered by d'n'd actions
+
+	Stop listening to External/InteralDragActive changes and add
+	proper call
+	to DragManager.
+
+2014-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Move some item-position handling into DockController
+
+	This goes with some clean up like dropping FirstItemPosition-property
+	of
+	DockItemProvider and removal of the useless position-recovery on
+	drag'n'drop cancellation.
+
+2014-01-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Properly center non-square icons on our surface
+
+2014-01-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: Use dimensions instead of loading full image from file
+
+2014-01-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Make Apport-support optional and enable it by default
+
+2014-01-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Fix cursor_region check
+
+2014-01-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Fix GLib.Source.remove critical
+
+2014-01-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Add HoveredItemProvider property
+
+	Fix edge cases for external drops and prepares for item spacing
+	support.
+
+2014-01-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Update symbols
+
+2014-01-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Handle long-press of mouse-buttons
+
+	This means to ignore the first release-event coming in if a
+	mouse-button
+	got pressed really long (>= 750ms). E.g mousetweaks injects an extra
+	release-event to emulate a right-button-click.
+
+2014-01-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Make sure icons are sized even-numbered
+
+	This at least avoids blurriness caused by odd-numbered sizing.
+
+2014-01-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix build
+
+2014-01-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add a placeholder-item if there would be no item shown at all
+
+2014-01-23  Tigran Gabrielyan  <tigrangab@gmail.com>
+
+	items: Make active window's menu-item insensitive
+
+2014-01-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update INSTALL
+
+2014-01-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Handle desktop-files with Type=Link
+
+2014-01-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Welcome to 2014
+
+2014-01-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Reset HoveredItem before showing the "global" menu
+
+	Prevent the last HoveredItem to be darkened if it should not.
+
+2014-01-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: Hide/Drop unused functions
+
+2014-01-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: Do not uselessly switch workspace
+
+	If windows of to-be-focused application exist on the current workspace
+	then make sure to only get those in the foreground.
+
+	If there is no window of the chosen appliction on the current workspace
+	then switch to the top-most window and focus it with all other
+	application-windows on its workspace.
+
+2014-01-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Ignore events for ScrollDirection.SMOOTH
+
+	Fix semi-broken window switching by scrolling.
+
+2014-01-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: Do not ref/unref Wnck objects
+
+2013-12-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Center menu of items on vertical docks
+
+2013-12-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Fix menu positioning with gtk+ 3.10.6 and later
+
+2013-11-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Reset HoveredItem if the dock isn't hovered anymore
+
+2013-11-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Use a slightly transparent drag-icon
+
+	Move code to set drag-icon into set_drag_icon ().
+	Use drag_set_icon_surface instead of drag_set_icon_pixbuf.
+
+2013-11-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Center non-square thumbnails/icons of folder-stack-items
+
+2013-11-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2013-11-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.5.0 release
+
+2013-11-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Remove superfluous drag_item_changed
+
+2013-11-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	compat.vapi: Move prctl to local namespace to avoid future binding
+	clash
+
+2013-11-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Properly remove and set hover_reposition_timer
+
+	Fixes GLib-Critical after set_hovered (null) was called.
+
+2013-11-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Clean up construction/destruction a bit
+
+	No need for using Matcher where Wnck.Screen is sufficient.
+
+2013-11-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Pin applications which were dragged on the dock
+
+	Re-arranging dock-items is considered one would do if they intend
+	to keep
+	that launcher in the dock and don't expect them to disappear shortly.
+
+2013-11-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Make ClickedItem protected
+
+2013-11-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Do not allow the HoveredItem to be the DragItem
+
+2013-11-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Some clean up
+
+2013-11-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Add some missing documentation
+
+2013-11-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Make sure to pick the matching driver for current valac version
+
+2013-11-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	controller: Intialize DockRenderer as last
+
+	Since r834 DockRenderer relies on properly set HideManager.Hidden
+	property.
+
+2013-11-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Fix showing and handling of PoofWindow
+
+	Refactor PoofWindow for an usage without the need to hold a reference
+	and adapt source-references to the changed API.
+
+	Force an update of HideManager.DockHovered before relying on it. Also
+	make use of the new static PoofWindow instance. Avoid NPE using
+	app_item.
+
+2013-10-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Use subdir-objects and set AC_CONFIG_AUX_DIR to build-aux
+
+2013-10-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Use correct hide-duration to adjust last-hide moment
+
+2013-10-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Reset buffer on theme changes
+
+	Force a full redraw to catch theme changes which don't trigger
+	a resize.
+
+2013-10-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix intersection-checking of point with rectangle
+
+	The check was off by 1 pixel in some places. The most important one in
+	HideManager which broke determining DockHovered for left/top docks.
+
+2013-10-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Fix item-move-animation for right/top docks
+
+2013-10-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2013-10-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.4.0 release
+
+2013-10-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Fix determining if the folder has a custom icon or not
+
+	The check for the default-icon is way to restrictive so just
+	compare the
+	the first element and hoping the best.
+
+2013-10-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Show menu-icons for desktop-file entries (aka
+	applications)
+
+2013-10-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Update INSTALL
+
+2013-10-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docksurface: Use save/restore rather trying to set previous
+	cairo.operator
+
+2013-10-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	widgets: Clear the whole Cairo.Context
+
+	No need to draw a rectangle and fill it with "nothing" if we handle the
+	Cairo.Context of a whole window.
+
+2013-10-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Make ValidItem property to an is_valid() method
+
+2013-10-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix broken link
+
+2013-10-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Fix two valac warnings
+
+2013-10-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Fix doc typo
+
+2013-10-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Add dodge-maximized hide-mode
+
+	Hides the dock only when the active window is maximized (full,
+	vertical or horizontal) and it doesn't obstruct dialogs of active
+	applications.
+
+2013-10-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Demote all remaining error() calls to criticals()
+
+	We don't want to "crash" on purpose and better deal with the
+	consequences
+	resulting deficiencies will bring.
+
+2013-10-11  Robert Dyer  <psybers@gmail.com>
+
+	dont let apps with a dbus quicklist automatically show up on the dock
+
+2013-10-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	item: Show/Keep items which provide a dbusmenu-quicklist
+
+2013-10-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Update symbols file
+
+2013-10-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	main: Add myself to documenters ;-)
+
+2013-10-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Save/restore cairo-rendering state when using Cairo.Operator.CLEAR
+
+2013-10-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hoverwindow: Rewrite to mimic a Gtk.Tooltip drawn based on
+	gtk-css-theme
+
+	Remove custom theming and drawing of the hover-window. Make use of
+	Gtk.STYLE_CLASS_TOOLTIP to rely on the GTK+ CSS engine with render_*.
+	Rework problematic work arround for mutter-derived window-managers.
+
+	hover-window placing works as expected under compiz, metacity, mutter
+	and gnome-shell.
+
+2013-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Initialize buffers earlier and clear output in optimized path
+
+	draw_urgent_glow requires the main_buffer to be intialized.
+	When using the optimized code-path while the dock is fully hidden there
+	is still the need to clear out the previous drawing output.
+
+2013-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Rebuild ccode of internal rdepends if library interface changed
+
+2013-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Listen for application-name updates and use it if needed
+
+2013-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Make common Unity-DBus code static
+
+2013-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Guard set_struts checking for an actual X11Display
+
+2013-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Force to show menu-icons for files
+
+2013-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: Add "metadata::custom-icon-name" as icon-source
+
+	Clean up get_icon_from_file on the way and only query the needed
+	attributes.
+
+2013-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: Fix retrieving thumbnails for files
+
+	FileAttribute.THUMBNAIL_PATH is a FileAttributeType.BYTE_STRING
+
+2013-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Update input-mask after calling draw_dock
+
+	This is needed to set it based on the updated cursor-region. Otherwise
+	the input-mask and the cursor-region, which is used to check whether
+	dock is hovered or not, are out of sync.
+
+2013-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Initialize context using CompositedWindow.draw on start-up
+
+2013-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Make sure to draw last frame for hide-animations
+
+2013-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Avoid performing another type-check if a cast is sufficient
+
+	If there was already a type-check using "is" then there is no need
+	to use
+	"as" afterwards.
+
+2013-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Don't draw the complete dock if it isn't visible at all
+
+2013-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: More use cached opacity value
+
+2013-10-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Check first if the current HoveredItem is still valid
+
+2013-10-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docktheme: Fix nick of BottomPadding property
+
+2013-10-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockprefs: Put more verbose positioning documentations in settings file
+
+2013-10-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Update HoveredItem on button-pressed if needed
+
+	Make sure there is actually no HoveredItem to delegate the received
+	button-click to.
+
+2013-10-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Force to show the icon of menu-items representing open windows
+
+	With GNOME/Gtk+ 3.10 ImageMenuItem is deprecated and the setting
+	showing
+	menu-icons got removed and is ignored while defaulting to false.
+
+2013-10-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Make sure icons still reach the wanted initial bounce-height
+
+2013-10-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawvalue: Don't translate the background_region in move_in()
+
+2013-10-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Drop useless hide() call in construct
+
+2013-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Decrease icon bounce-height depending on animation-progress
+
+2013-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Clean up and optimize animation calculations
+
+2013-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	renderer: Use position_manager.ItemPadding instead of theme.ItemPadding
+
+2013-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Make sure button-pressed/-released occured on same dockitem
+
+2013-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: Update shipped theme-files with new settings
+
+2013-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Animate item's position changes
+
+	This also adds the theme setting "ItemMoveTime" to control the speed
+	of a position change.
+
+	Partly fixes https://bugs.launchpad.net/plank/+bug/707651
+
+2013-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Cache item's "draw-values" and handle item-position changes more
+	specific
+
+2013-10-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Reset all "background" buffers on position changes too
+
+2013-09-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Properly initialize item positions beginning with 0
+
+2013-09-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockcontroller: Refactored to make it able to handle multiple Providers
+
+	Factor out Wnck dependencies of ApplicationDockItemProvider into
+	the new subclass DefaultApplicationDockItemProvider which is suppose to
+	be instanciated once.
+	ApplicationDockItemProvider can be pointed to any subfolder to
+	load/save
+	*.dockitem files from/to.
+
+2013-09-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: Update translations
+
+2013-09-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hoverwindow: No need to force realization/mapping in the construct
+	method
+
+2013-08-28  Julián Unrrein  <junrrein@gmail.com>
+
+	Add developer documentation
+
+2013-08-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Adjust generated ChangeLog format
+
+2013-08-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use Gdk.threads_add_timeout and Gdk.threads_add_idle
+
+	While using timeouts and idles in context of Gtk/Gdk it is not
+	recommended to use the GLib functions which don't implicitly set
+	locks.
+
+2013-08-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Cache hide_progress and opacity in dedicated properties
+
+2013-04-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Remove app-item if its application got uninstalled
+
+2013-08-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	prefs: Add LockItems setting
+
+	Provides the option to prevent drag'n'drop actions and lock items on
+	the dock.
+
+2013-08-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Properly respect the given FadeTime
+
+2013-08-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Use Operator.OVER for drawing the icon shadows
+
+2013-08-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Explictly set struts if the HideMode was changed
+
+	Also only act on HideMode-changes in HideMananger instead of all
+	settings changes.
+
+2013-08-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Sync with bamf 0.5.0+13.10.20130812.1-0ubuntu1
+
+2013-08-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update .bzrignore
+
+2013-06-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add some information to README
+
+2013-06-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Back to development
+
+2013-06-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Prepare 0.3.0 release
+
+2013-06-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Build-depend on plank-internal.vapi
+
+2013-06-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Require enabled docs on distcheck and update docs-build
+
+2013-06-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix some warnings
+
+2013-06-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Prevent handling launcher-changes of TransientDockItems
+
+2013-06-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	factories: Move custom extern bindings into compat.vapi
+
+2013-06-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: update translations
+
+2013-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Minor tweaks
+
+2013-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	matcher: Refactoring for Bamf update
+
+2013-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Update Bamf bindings
+
+2013-06-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Some cleaning
+
+2013-06-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Stop using Gtk.Style which is deprecated
+
+2013-06-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Update Icon and Text on launcher changes
+
+2013-06-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Fix valac warnings with gee-0.8
+
+	There is no need to specify those delegates for "string".
+
+2013-06-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Properly check if the dock is still hovered
+
+	Call update_dock_hovered instead of directly setting DockHovered=false
+	which is wrong in some cases.
+	Also ignore Crossing-Events of NotifyType.INFERIOR.
+
+2013-05-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Properly access GlowSize property
+
+2013-05-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Rename get_hide_offset() to get_hide_progress()
+
+2013-05-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Adjust the IconSize according to size of screen's edge
+
+	This introduces a MaxIconSize which defines the upper bound of the used
+	IconSize. This still restricts the minimum size to 24 therefore it will
+	be still possible to fill up the dock over the screen bounds.
+
+2013-05-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Move "Hidden" property from DockRenderer to HideManager
+
+2013-05-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Don't reset HoveredItem too early
+
+2013-05-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: update symbols
+
+2013-05-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Stop caching cursor_region in class field
+
+	It is recalculated on every call already now.
+
+2013-05-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	factories: Define and show application's license in about-dialog
+
+2013-05-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Update preferences tests for new api, add more signal test-cases
+
+2013-05-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	services: Refactor preferences to reduce signal emmits
+
+	Remove "changed" signal and use the native "notify" signal of gobject
+	and use freeze_notify and thaw_notify to restrict the amount of events
+	triggered by "notify".
+
+	Check for actual changes while reading the backing-file to avoid
+	useless
+	signal emmits.
+
+2013-05-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add some simple widgets tests
+
+2013-05-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	widgets: Make sure to properly restart poof animation on a re-run
+
+2013-05-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Fix and add some color-tests
+
+2013-05-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Fix drawing position of main_buffer, regression of r821
+
+2013-05-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Minor clean up
+
+2013-05-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Check for proper dimensions passed in ar_scale
+
+	Return a properly sized empty pixbuf in load_icon too.
+
+2013-05-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Make sure to draw the dock in one operation on the window
+
+	This hijacks the shadow_buffer which is cleared on every redraw anyway.
+	Therefore it could use some refactoring at some point.
+
+2013-05-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Add some guards to DockItemProvider functions
+
+	Output criticals when trying to add items multiple times or remove
+	non-existing ones to an item-provider.
+
+2013-05-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add DockItemProviders tests
+
+2013-05-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Actually draw the icon overlay surface
+
+	Regression of r816
+
+2013-05-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Make DockItemProvider independent from DockController
+
+	Move DockController dependencies up to AppDockItemProvider.
+
+2013-05-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrender: Refactor the way item-layers are drawn
+
+	Draw item-shadows behind the dock-background.
+	(The theme should disable the shadows if TopPadding isn't < 0)
+
+	Put the badge/progress-bar onto a foreground_surface owned by the
+	dock-item. This avoids the redraw from scratch of the
+	badge/progress-bar
+	on every dock-redraw.
+
+2013-04-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add Preferences subclass test
+
+2013-04-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add more Preferences tests
+
+2013-04-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add some Preferences tests
+
+	Also make sure to clean up previously created testing files
+
+2013-04-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferences: Fix broken initialization for non-existing files
+
+2013-04-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Make more use of gobject-style construction
+
+2013-04-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	factories: Output runtime version of GTK+
+
+2013-04-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	titledseparatormenuitem: Don't use deprecated gtk+ api
+
+	It didn't work before and doesnt completely now either.
+
+2013-04-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use compact way to initialize structs
+
+	Note that all fields need be qualified in their defined order.
+
+2013-04-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Refactor get_background_position to
+	get_background_region
+
+	This makes its usage in DockRenderer easier.
+
+2013-04-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add theme-configurable icon-shaped shadows
+
+	This adds new DockTheme preference "IconShadowSize" to adjust
+	the shadow
+	with a default of 1.0
+
+2013-04-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Use LT_LIB_M instead of hardcoding -lm
+
+2013-04-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Add some documentation
+
+2013-04-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add support for gee-0.8
+
+2013-04-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Always use cached IconSize of PositionManager
+
+2013-04-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferences: reset_properties is already called in constructor
+
+	This also avoids calling it once again after hooking up the notify
+	signal
+	which happens in the construtor too.
+
+2013-04-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: Don't explicitly call base constructor, already implicitly
+	called
+
+2013-04-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: add MaxItemCount
+
+2013-04-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Reformat if-statements and boolean assignments
+
+2013-04-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Remove trailing and leading (real) spaces
+
+2013-04-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Some refactoring of draw_dock
+
+	Also don't call reset_buffers in here. It will be called as needed
+	already.
+
+2013-04-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: move urgent-glow-drawing in separate method
+
+2013-04-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Use frame_time in one more place
+
+	In addition to changes of r791
+
+2013-04-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Don't crash if can't watch launcher folder, output critical
+	instead
+
+2013-04-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	system: Don't crash if internal_launch goes wrong, output critical
+	instead
+
+2013-04-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Add frame_time for optimizations
+
+2013-03-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Don't reuse Thread variable to avoid an early unref
+
+2013-03-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Fix typo
+
+2013-03-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Don't update input_mask on every draw, check for actual
+	change
+
+2013-03-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Make sure to reset application-status while setting App to null
+
+2013-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add --enable-headless-tests configure flag
+
+2013-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	item: Add static desktop_file_for_application_uri
+
+2013-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: update symbols
+
+2013-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Don't run tests headless
+
+2013-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add some data files and more tests
+
+2013-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	appdockitem: Make sure to reparse Launcher and update application-uri
+
+2013-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	transientdockitem: Only hide constructor which uses Bamf API
+
+2013-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	tests: Add some simple tests
+
+2013-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Revamp average-color calculation
+
+	This nearly preserves the resulting color in general compared to
+	the old
+	version, but it will properly return the appropriate color for a
+	transparent, white or black image.
+
+2013-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	color: No need for explict copying
+
+2013-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docksurface: Use Gdk.pixbuf_get_from_surface and
+	DrawingService.average_color
+
+2013-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	No need to get ink_rect from Pango.Layout
+
+2013-03-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hoverwindow: Some minor optimzations and clean ups
+
+2013-03-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Add Disabled property and use it similar to DockHovered
+
+2013-03-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Avoid checking items if we aren't even in the cursor-region
+
+2013-03-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Use the cached DockWindow
+
+2013-03-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Optimize HideManager and avoid concurrent updates of HoveredItem
+
+	While there are two signal handlers for DockWindow.motion_notify_event
+	it is only needed in one place to call update_hovered. Add an explicit
+	update to DragManager.drag_leave to hide HoverWindow for external
+	Drags.
+
+	Only update DockHovered if it actually changed to avoid useless calls
+	of update_hidden.
+
+2013-03-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Clean up object accesses and avoid bumping ref-counts
+
+	Calls like controller.window.* will cause the window object to be
+	retrieved for every call.
+
+	Casting an object to an owned variable will cause taking a reference
+	and
+	freeing it afterwards again.
+
+2013-03-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: brown paper-bag fix of r633
+
+2013-03-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Add DockItem only based on the availablility of a LauncherEntry
+
+	Further check for an actual visible badge or progress-bar to determine
+	the need to show a new DockItem.
+
+2013-03-18  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Stop reusing Gtk.Menu instance
+
+	While all Gtk.MenuItems are removed and destoyed anyway keeping their
+	container is not much of a benefit. Using a new Gtk.Menu instance
+	everytime also fixes the (re)positioning problem.
+
+2013-03-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: explicitly specify the sources for the documentation
+
+2013-03-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Set unity-application-uri based on Launcher
+
+	Fallback on using the Launcher value if we don't have a
+	Bamf.Application
+
+2013-03-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: Summon and delay requests for updating PositionManager
+
+	Only do this for request triggered by Preferences or Theme changes.
+
+2013-03-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dragmanager: Make sure to reset ExternalDragActive to false
+
+	After an dragged element left the dock-area without being dropped
+	we need
+	to consider it gone and reset DragManager back to neutral state.
+
+2013-03-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Remove possible null values from ThemedIcon.get_names ()
+
+2013-03-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Avoid using Gdk.Screen.get_default () where possible
+
+2013-03-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Don't rely get_position() if the window is not realized
+
+2013-02-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix build
+
+2013-02-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: Merge RemoteEntry into ApplicationDockItem
+
+2013-02-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Use regex for exported symbols and hide internal symbols
+
+2013-02-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Move TitledSeparatorMenuItem to public library again
+
+2013-02-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Do not install static internal library
+
+2013-02-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Convert Color to struct
+
+2013-02-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: Minor api visibility changes
+
+2013-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Remove some unnecessary symbol-exports
+
+2013-02-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Use an internal library for non-public independent things
+
+2013-02-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Squash Unity service into ApplicationDockItemProvider
+
+	This avoids circular dependency between our modules and makes
+	it possible
+	to remove Dbusmenu-related symbols from the public API
+
+	Note: The this needs more work. Currently this expects there is only
+	one instance of ApplicationDockItemProvider.
+
+2013-02-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: update symbols
+
+2013-02-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Introduce DockItemProvider and ApplicationDockItemProvider
+
+	Refactor DockItems and rename it to ApplicationDockItemProvider.
+	Add DockItem.IsVisible property.
+
+2013-02-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: update symbols
+
+2013-02-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Make theme choosable through a settings-option
+
+	"Theme" would be the name of a folder located in system's or user's
+	themes-folder (/usr/share/plank/themes/, ~/.local/share/plank/themes/).
+	This folder will contain the *.theme files as we know them.
+
+	There is no transition of the currently used theme-files.
+
+2013-02-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: sync with bamf 0.4.0daily13.02.01
+
+2013-02-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Make sure icon-regions and struts are updated on a dockwindow-resize
+
+2013-02-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	filedockitem: Make sure Hashmap keys are unique
+
+	Clashing keys will result in leftover menuitems leading to a crash
+
+2013-02-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Pass an URI to ApplicationDockItem.parse_launcher ()
+
+	Fixes fallout of r739
+
+2013-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Require valac >= 0.16.0 and fix deprecated syntax
+
+2013-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use URIs instead of paths for saving the location of dockitem's
+	Launcher
+
+2013-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Delay the start of watching our launchers directory
+
+	load_items can actually lead to updates of dockitem files if their
+	syntax was changed. So activing the monitor at the very last is more
+	appropriate.
+
+2013-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Validate an item before adding it here too
+
+2013-01-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	main: Avoid calling Poxis.exit ()
+
+	Change the way we are passing the commandline-arguments through the
+	initalization methods and return EXIT_SUCCESS or EXIT_FAILURE to the
+	actual main function
+
+2013-01-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: No need for a SeparatorMenuItem if the associated folder
+	is empty
+
+2013-01-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitems: Fix crash on malformed settings and outdated dockitem-file
+
+	If an invalid dockitem file is listed in our pinned-items-list we must
+	ignore it.
+
+2013-01-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Output the actual error message too if we decide to quit on that one
+
+2013-01-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Welcome to 2013
+
+2013-01-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Drop --internal argument of glib-compile-resources
+
+	This is only present with glib >= 2.35.2.
+
+2013-01-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add drag and drop functionality
+
+2013-01-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add two options to DockPreferences, Alignment and ItemsAlignment
+
+	Enables some positioning possibilities including a proper panel-mode
+	(Alignment = FILL)
+
+2013-01-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Pick up plank.gresource.xml
+
+2013-01-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use GResource to include resource files directly in libplank
+
+	Stop installing poof.png while it is a GResource now and bump some
+	dependencies accordingly.
+
+2013-01-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Fix docs out-of-source issues and include COPYRIGHT in tarball
+
+2013-01-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Fix make distcheck
+
+2013-01-17  Robert Dyer  <psybers@gmail.com>
+
+	remove LICENSE because we already had COPYING - revert rev 723
+
+2013-01-16  Robert Dyer  <psybers@gmail.com>
+
+	adding license - bug 1100448
+
+2013-01-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Define WNCK_I_KNOW_THIS_IS_UNSTABLE while libwnck-3.0 is used
+
+	libbamf3.pc stopped adding it for us with bamf >= 0.4.0
+
+2013-01-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitems: No need to calculate last_sort that early
+
+	If an item for this application is already available we don't need it.
+
+2013-01-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: Use locally cached IconSize
+
+2012-12-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Check for bamf >= 0.4.0 and update bindings
+
+2012-12-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Adds optional ability to show windows of current workspace only
+
+	DockItems: Removed signals which aren't used in their desired way which
+	makes them useless it this condition, and add a common "changed" signal
+	instead.
+
+2012-12-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitems: Optimize to avoid multiple casts
+
+2012-12-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Refactor update_icon_regions
+
+	Set the icon-geometry for new windows of running applications.
+	If the dock is hidden the icon-geometry is the item-region-center
+	projected to the screen's edge.
+
+2012-12-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: Use get_xids not get_children of Bamf.Application
+
+	get_xids represents the currently associated windows which is the
+	windows-added signal is based on.
+
+2012-11-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Improve non-compositing support for hidden-states
+
+	Move window to hide it and avoid its animation
+
+2012-11-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Make sure to really call set_struts when window is
+	available
+
+2012-11-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	widgets/hovertext: Follow increased font-size of accessibility mode
+
+	Based on patch by Alek (alek900)
+
+2012-11-16  Robert Dyer  <psybers@gmail.com>
+
+	add missing defaults to themes
+
+2012-11-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	item: Fix typo in AppDockItem
+
+2012-11-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix size/position updates while switching screen-resolution
+
+	With enabled compositing support those updates weren't properly handled
+	after the introduction of "static-window" changes.
+
+	Refactor DockWindow.set_size to handle resize and reposition
+	separately.
+
+	Move parts of PositionManager.reset_caches into update_dimensions and
+	cache all needed theme-values.
+
+2012-11-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Rename libplank.pc to plank.pc
+
+	It is more common to have a matching name for vapi, header and
+	pkg-config
+	files.
+
+2012-11-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	update_regions: force triggering a redraw with active compositing
+	support
+
+	A changed static_dock_region doesn't implicate the window-size changed
+	and DockWindow.set_size() won't trigger a redraw.
+
+2012-11-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Revert r704
+
+	It introduced problems with openbox and a race condition with metacity
+	resulting in the dock not showing at all.
+
+2012-11-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Don't delay initial positioning of the dockwindow
+
+2012-11-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix visual clitch on initially showing the dockwindow
+
+	Make the dockwindow invisible until its content is fully drawn
+	the first
+	time. (Reworked patch from Tom Beckmann)
+
+2012-10-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: small optimization and add some convenience methods in Color
+
+2012-10-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use statically sized Gtk.Window and improve non-compositing support
+
+	Avoids visually corruptions on adding/removing items caused by set_size
+	and move operation on Gtk.Window
+
+2012-10-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	misc: remove custom bamf vapi generation
+
+	we are using a patched upstream generated vapi now
+
+2012-10-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: make sure not to show the hoverwindow while a menu is visible
+
+2012-10-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	window-control: output name of current window-manager and on its change
+
+2012-10-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: update Bamf bindings
+
+2012-10-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hoverwindow: wait for move/show/hide to be executed before continuing
+
+	This fixes the appearance of hovers with metacity (introduced
+	with r653)
+
+2012-10-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Move symbols generation in separate target and add non-fatal check rule
+
+2012-10-12  Robert Dyer  <psybers@gmail.com>
+
+	stop timers when destructing objects
+
+2012-10-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: Restrict amount of hover-repositions using a Timeout
+
+	This is suppose to avoid spamming the WM with lots of window
+	repositions
+	while fast hovering dockitems.
+
+2012-10-10  Robert Dyer  <psybers@gmail.com>
+
+	fix theme files - bug 1034755
+
+2012-10-09  Robert Dyer  <psybers@gmail.com>
+
+	Reinstating rev 690 - Plank does not directly support any specific
+	window manager or DE.  IF a specific DE has a problem with our
+	packages, they are welcome to package it themselves.
+
+2012-10-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Revert r690
+
+2012-10-08  Robert Dyer  <psybers@gmail.com>
+
+	plank.desktop was invalid - bug 1063970
+
+2012-10-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Stop including pregenerated c-sources in tarballs
+
+	Shipping c-sources results in problems with custom configure flags and
+	conditional compile options. So drop them for good!
+
+2012-10-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: dbusmenu is optional so enable it conditionally by default
+
+	don't force this dependency and make it more clear it is optional
+
+2012-09-26  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: update translations
+
+2012-09-25  Robert Dyer  <psybers@gmail.com>
+
+	Make the dock follow the primary monitor by default, with ability
+	to override manually - bug 1055833
+
+2012-09-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: update translations
+
+2012-09-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Don't let bamf-window-events trigger an update directly
+
+	Schedule them like for the others to avoid conflicting updates.
+
+2012-09-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: update bamf bindings to 0.3.0
+
+2012-08-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Update .bzrignore
+
+2012-08-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: add dbusmenu requirements to pkg-config-file if necessary
+
+2012-08-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Create plank.deps conditionally
+
+2012-08-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: Fix build for changes of 677
+
+2012-08-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: Add support for dynamic quicklists provided with dbusmenu
+
+2012-08-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	vapi: Merge with bamf 0.2.122 upstream vapi
+
+2012-08-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: update translations (3)
+
+	Thanks to the elementary community
+
+2012-08-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix some static/instance accesses
+
+2012-08-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: fix struts generation
+
+2012-08-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: update translations (2)
+
+	Thanks to the elementary community
+
+2012-08-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: Wnck.WindowType is not a flag, bitmasking is not possible
+
+2012-08-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: update translations
+
+2012-08-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docktheme: adjust position-calculation of badge and progress-bar
+
+	This allows the given surface to be larger than the actual icon-size.
+	Expect the icon to be drawn centered.
+
+2012-08-02  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Clean .bzrignore and POTFILES.skip from minor left-overs
+
+2012-07-31  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Rename ThemeRenderer to Theme and so its subclasses
+
+	The Renderer-suffix is quite confusing and suggests it is some
+	proactive
+	class. So avoid name-clashing with AnimatedRenderer and its subclasses.
+
+2012-07-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: avoid unnecessary operations for some valid "0"
+	argument-values
+
+2012-07-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Use Math.PI_2 constant where possible
+
+2012-07-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Be careful using Prefs.Launcher especially for
+	TransientDockItems
+
+2012-07-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: Remove a possible existing RemoteEntry while removing a DockItem
+
+2012-07-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: add nasty hack for libreoffice
+
+	Closing libreoffice results in destroying its Bamf.Application object
+	and creating a new object which renders our reference useless.
+
+	https://bugs.launchpad.net/bamf/+bug/1026426
+	https://bugs.launchpad.net/plank/+bug/1029555
+
+2012-07-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	services: Use warning instead of error in internal_launch
+
+	There is no need to abort here this isn't fatal.
+
+2012-07-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: some fixes
+
+2012-07-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	matcher: use get_application_for_desktop_file instead of a custom
+	search
+
+2012-06-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: fix blurriness of progress-bar and badge
+
+2012-06-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: Use given X-*-Gettext-Domain for DesktopActions and Static
+	Quicklists
+
+2012-06-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: listen to window-state-changes of "minimized" for
+	active-window
+
+	Minimizing the only window on a workspace which obstructed the dock,
+	doesn't trigger an event we are already listening to.
+
+2012-06-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hidemanager: listen to workspace changes
+
+	This fixes unhiding while switching to an empty workspace.
+
+2012-06-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: add Wnck version output
+
+2012-06-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: Drop support for GTK+2.0
+
+2012-06-10  Robert Dyer  <psybers@gmail.com>
+
+	fix tooltips not moving in mutter - bug 750325
+
+2012-06-08  Robert Dyer  <psybers@gmail.com>
+
+	update potfile
+
+2012-06-08  Robert Dyer  <psybers@gmail.com>
+
+	add ability to remove files/folders from the dock - bug 1010066
+
+2012-05-29  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	applicationdockitem: Fix is_window ()
+
+2012-05-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	unity: handle bamf.application.get_desktop_file () is null
+
+2012-05-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitems: don't bail if bamf.application.get_desktop_file () is null
+
+2012-05-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: add/complete some guards
+
+2012-05-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	matcher: clean up some connected signal
+
+2012-05-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	add initial support for Unity Launcher API
+
+2012-05-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add support for "Desktop Actions" specification
+
+2012-05-25  Robert Dyer  <psybers@gmail.com>
+
+	revert rev 642 - hovers should not be TOPLEVEL
+
+2012-05-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hoverwindow: change the windowtypes to TOPLEVEL and DOCK
+
+2012-05-25  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Fix initial unhide on startup
+
+	Initialize positionmanager before hidemanager and update the
+	dockposition value.
+
+2012-05-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Handle changing user-visible state of Applications
+
+2012-05-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	themerenderer: make draw_rounded_rect public and reusable
+
+2012-05-22  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	theme: Fix calculation of hover-regions with negative TopPadding
+	and large LineWidth
+
+2012-05-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	themerenderer: Fix radius for draw_inner_rect
+
+2012-05-21  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: remove debug code (fixed in 633)
+
+2012-05-20  Robert Dyer  <psybers@gmail.com>
+
+	dont use error() to exit when another intsance is running - avoids
+	a coredump
+
+2012-05-20  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	matcher: Listen to Bamf.View.user-visible-changed for just opened
+	Applications if they aren't visible
+
+2012-05-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: Handle icontheme.changed emmit in Idle queue
+
+2012-05-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: fix build with gtk+2.0
+
+2012-05-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	widgets/*window: use gobject-style construction
+
+2012-05-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	items: use gobject-style construction
+
+2012-05-14  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docksurface: use gobject-style construction
+
+2012-05-09  Robert Dyer  <psybers@launchpad.net>
+
+	revert rev 626 - keep using is_user_visible because either way its
+	broken, but without it its definitely broken for every single user
+	every time - need to file a bug upstream with bamf
+
+2012-05-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Refactor ApplicationDockItem
+
+	Fix some possible NRE, clean up the signal handlers and properly update
+	item states.
+
+2012-05-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitems: Don't check for is_user_visible while Bamf seems to not
+	setting it right everytime
+
+2012-05-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferences: fix doc
+
+2012-04-27  Robert Dyer  <psybers@gmail.com>
+
+	fix regression - icon regions need updated when hiding/showing menus
+	so that window previews dont overlap the menu
+
+2012-04-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: drop vala 0.10/0.12 compat source
+
+2012-04-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: bump dependency to valac 0.14.1
+
+2012-04-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Refactor contruction of preferences and dockitem objects
+
+2012-04-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: some documentation fixes
+
+2012-04-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: reduce calls of update_icon_regions
+
+2012-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	transientdockitem: no need to explicitly call base ()
+
+2012-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: don't hook up deleted signal
+
+	We don't actually have a preference instance with a backing file.
+	Connecting this signal is properly done in the super-classes.
+
+2012-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	itemfactory: don't fallback on an empty basename
+
+2012-04-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: clean up DataOutputStream handling
+
+2012-04-08  Robert Dyer  <psybers@gmail.com>
+
+	make sure delay/apply arent used internally in preferences
+
+2012-03-30  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: avoid fatal warning while clicking on background
+
+2012-03-24  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	po: update translations
+
+2012-03-23  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: Fix make distcheck
+
+2012-03-19  Robert Dyer  <psybers@gmail.com>
+
+	use locale strings when parsing launchers - bug 958907
+
+2012-03-12  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	data: update desktop-file, added GenericName and NotShowIn=Pantheon
+
+2012-03-11  Robert Dyer  <psybers@gmail.com>
+
+	rename apport submitted file to include .txt in the name
+
+2012-03-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: update pkg-config file descriptions and requires fields
+
+2012-03-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	fix apport hook
+
+2012-03-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: fix distclean
+
+2012-03-10  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	abstractmain: make application private to avoid api difference
+	between gtk2/gtk3
+
+2012-03-09  Robert Dyer  <psybers@gmail.com>
+
+	some cleanup - DockItem.get_surface should be private now
+
+2012-03-09  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: fix uniqueness check for gtk3 build
+
+2012-03-09  Robert Dyer  <psybers@gmail.com>
+
+	add apport hooks
+
+2012-03-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockwindow: don't update_icon_regions for closed apps, fixes a
+	bamf warning
+
+2012-03-08  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: fix two possible crashers
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	misc: add simple bamf.vapi creation script
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockpreferences: add verbose log for reset_properties
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	update some copyrights
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	add default cases to switches
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: cache icon_size in draw_item
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	refactor drawing api where docksurfaces are created
+
+	make it more clear that we aren't touching the given docksurface where
+	only its internal cairo.surface is used for creation
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	udpate symbols
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: cache width/height in draw_dock
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: avoid call dockwindow.set_size twice on startup
+
+	add verbose log for dockwindow.set_size
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: add some drawing related verbose log messages
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitem: add get_surface_copy and use it in dockrenderer
+
+	push down the copying of the item's docksurface into dockitem
+
+2012-03-07  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	logger: avoid invalid c-code building with valac 0.12/0.14
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	add missing docs
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	make sure if a verify fails we save, and also delay/apply while
+	loading in case multiple things fail verification or are missing
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	dont show the .2 in log messages for gtk2 builds
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	cleanup preferences
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	fix prefs not actually serializing to disk
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	some better log messages for prefs
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	some cleanup and verbose logs for preferences
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	make verbose() take varargs
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	add verbose option to commandline
+
+2012-03-06  Robert Dyer  <psybers@gmail.com>
+
+	add verbose option to logger
+
+2012-03-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: use srcdir instead of builddir for symbols location
+
+	while shipping the prebuild c-source we need to look in the source dir
+	to fix out-of-source builds
+
+2012-03-06  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockitems: fix dock-resize on deletion of .dockitem file
+
+	if the application isnt running remove_item will trigger the resize
+	otherwise a transient item will take its place
+
+2012-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: add symbols file to dist
+
+2012-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: force struct copy before passing it as argument,
+	fixes vala 0.10/0.12
+
+2012-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: force some values to be double
+
+2012-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: fix item_background_region
+
+2012-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: avoid implicit double-int conversion (fix for vala
+	0.10.x)
+
+2012-03-05  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: fix typo in r565
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: add default cases to switches
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	update symbols
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: refactoring and make use of new drawing api
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: fix calculation of item's draw-region
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: add item_background_region, get_dock_draw_position
+	and get_background_position functions
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockerthemerenderer: add create_background function
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	positionmanager: add get_urgent_glow_position (moved from dockrenderer)
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: don't reset caches on item-state-changes
+
+	item-state-changes aren't affecting the dock-size or the theme and
+	calling animated-draw is sufficient, so handle this in a separate way.
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: use only one symbols file, they are identical
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockrenderer: some clean up
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	dockthemerenderer: add UrgentHueShift
+
+2012-03-04  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	windowcontrol: use a list-iterator instead of a index-based loop
+
+2012-03-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: avoid exporting internal symbols
+
+2012-03-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: show correct valaflags on configure output
+
+2012-03-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	bamf: update bindings for 0.2.110+
+
+2012-03-03  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	lib: Fix typo in pkg-config file
+
+2012-03-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Add support for GTK+3.0 and make it the default
+
+2012-03-01  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: clean up and merge data Makefiles
+
+2012-02-28  Robert Dyer  <psybers@gmail.com>
+
+	pinning a transient should change its Sort value - bug 918049
+
+2012-02-27  Robert Dyer  <psybers@gmail.com>
+
+	trap a crasher
+
+2012-02-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	update symbols
+
+2012-02-16  Robert Dyer  <psybers@gmail.com>
+
+	always test code at 4:30am... add missing call to create the controller
+
+2012-02-16  Robert Dyer  <psybers@gmail.com>
+
+	some refactoring
+
+2012-02-14  Robert Dyer  <psybers@gmail.com>
+
+	make sure set_size is called on any change in dock prefs
+
+2012-02-14  Robert Dyer  <psybers@gmail.com>
+
+	remove duplicated signal handling
+
+2012-02-14  Robert Dyer  <psybers@gmail.com>
+
+	fix animations
+
+2012-02-14  Robert Dyer  <psybers@gmail.com>
+
+	update icon regions after hiding popups
+
+2012-02-14  Robert Dyer  <psybers@gmail.com>
+
+	only call set_size on the dock if the size or position actually changed
+
+2012-02-14  Robert Dyer  <psybers@gmail.com>
+
+	dont need to load prefs if we just generated defaults and saved
+
+2012-02-14  Robert Dyer  <psybers@gmail.com>
+
+	add guards to delay/apply
+
+2012-02-14  Robert Dyer  <psybers@gmail.com>
+
+	dont show the Plank menu on a left click, only on right click on
+	dock or ctrl+right click
+
+2012-02-13  Robert Dyer  <psybers@gmail.com>
+
+	merge trunk
+
+2012-02-13  Robert Dyer  <psybers@gmail.com>
+
+	add delay/apply functions to prefs
+
+2012-02-13  Robert Dyer  <psybers@gmail.com>
+
+	some better error handling
+
+2012-02-13  Robert Dyer  <psybers@gmail.com>
+
+	add some debug output on errors
+
+2012-02-13  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	add GLib version to startup logs
+
+2012-02-13  Robert Dyer  <psybers@gmail.com>
+
+	add more lib versions to startup logs
+
+2012-02-13  Robert Dyer  <psybers@gmail.com>
+
+	remove paths from assert logs
+
+2012-02-13  Robert Dyer  <psybers@gmail.com>
+
+	better log formatting for asserts
+
+2012-02-12  Robert Dyer  <psybers@gmail.com>
+
+	probably should test code first.. this works better
+
+2012-02-12  Robert Dyer  <psybers@gmail.com>
+
+	try to fix a crash
+
+2012-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	docs: some tweaks
+
+2012-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	move draw_badge to DockThemeRenderer
+
+2012-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	move create_urgent_glow to DockThemeRenderer
+
+2012-02-11  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	Adds side and top docks as a configuration
+
+2012-02-05  Robert Dyer  <psybers@gmail.com>
+
+	disable curves when no compositing
+
+2012-02-05  Robert Dyer  <psybers@gmail.com>
+
+	allow popups on any part of the dock
+
+2012-02-05  Robert Dyer  <psybers@gmail.com>
+
+	remove unused enum
+
+2012-02-05  Robert Dyer  <psybers@gmail.com>
+
+	simplify some code
+
+2012-02-05  Robert Dyer  <psybers@gmail.com>
+
+	some code cleanup
+
+2012-02-05  Robert Dyer  <psybers@gmail.com>
+
+	ignore X errors when setting struts
+
+2012-02-05  Robert Dyer  <psybers@gmail.com>
+
+	remove old zoom code, as we dont support it
+
+2012-02-05  Robert Dyer  <psybers@gmail.com>
+
+	refactor out sizing/positioning stuff into its own manager
+
+2012-02-01  Robert Dyer  <psybers@gmail.com>
+
+	update copyrights in headers
+
+2012-02-01  Robert Dyer  <psybers@gmail.com>
+
+	add requires checks to the initialize methods
+
+2012-01-28  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferences: small simplification
+
+	Of course do the same in save_prefs too
+
+2012-01-27  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	bamf: update vapi for 0.2.107+
+
+2012-01-19  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	preferences: small simplification
+
+2012-01-18  Robert Dyer  <psybers@gmail.com>
+
+	remove open/open new window from popups
+
+2012-01-18  Robert Dyer  <psybers@gmail.com>
+
+	remove (un)minimize from popups
+
+2012-01-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	hoverwindow: cache and use get_screen of Gtk.Window
+
+2012-01-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawingservice: cache IconTheme.get_default
+
+2012-01-17  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	libplank.pc: pull in gthread-2.0
+
+2012-01-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: structurize valac call a bit
+
+2012-01-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	build: build and add libplank.symbols
+
+	This is meant to have simple indicator for API breaks and
+	to keep track of intended additions and removals.
+
+	We will keep this file in source repository only.
+
+2012-01-16  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	plank: happy new year
+
+2012-01-15  Rico Tzschichholz  <ricotz@ubuntu.com>
+
+	drawing: Fix huge leak in gaussian_blur of DockSurface
+
+2012-01-13  ricotz@t-online.de
+
+	windowcontrol: replace return_if_fail with warning and null-check
+
+2012-01-13  ricotz@t-online.de
+
+	windowcontrol: get_xids can be null, so check them and add a warning
+
+2012-01-13  ricotz@t-online.de
+
+	services: updates for changes of bamf.vapi
+
+2012-01-13  ricotz@t-online.de
+
+	bamf.vapi: transfer ownership for container-return-types
+
+2012-01-09  Robert Dyer  <psybers@gmail.com>
+
+	remove empty translations
+
+2012-01-09  Robert Dyer  <psybers@gmail.com>
+
+	update translations
+
+2012-01-09  Robert Dyer  <psybers@gmail.com>
+
+	make controller a field
+
+2012-01-09  Rico Tzschichholz  <ricotz@t-online.de>
+
+	clean up some conditional compile flags
+
+2012-01-09  Rico Tzschichholz  <ricotz@t-online.de>
+
+	applicationdockitem: don't allow nullable Bamf.Application for set_app
+
+	Handle the null-case internally since this shouldn't be done from
+	outside.
+
+2012-01-09  Rico Tzschichholz  <ricotz@t-online.de>
+
+	matcher: use warn_if_fail and a proper null check
+
+	Using return_if_fail here is right since it can be overridden by using
+	G_DISABLE_CHECKS which could be fatal.
+
+2012-01-09  Rico Tzschichholz  <ricotz@t-online.de>
+
+	windowcontrol: don't allow nullable Bamf.Application arguments
+
+	Passing null isn't welcome here, so avoid dealing with it and make
+	it fatal.
+	The caller should take care of passing a proper object here.
+
+2012-01-07  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Don't ship m4 scripts
+
+	This only creates issues caused by version mismatches of the m4 scripts
+	with the user autotools, automake and intltool versions.
+
+2012-01-06  Rico Tzschichholz  <ricotz@t-online.de>
+
+	matcher: get running applications to summon active launchers is enough
+
+2012-01-06  Rico Tzschichholz  <ricotz@t-online.de>
+
+	be consistent with other functions arguments
+
+2012-01-06  Rico Tzschichholz  <ricotz@t-online.de>
+
+	bamf.vapi: mark some more things as nullable
+
+2012-01-06  Rico Tzschichholz  <ricotz@t-online.de>
+
+	updates for new bamf bindings
+
+2012-01-06  Rico Tzschichholz  <ricotz@t-online.de>
+
+	bamf.vapi: fix some arguments and return values
+
+2012-01-06  Robert Dyer  <psybers@gmail.com>
+
+	add a fixme
+
+2012-01-06  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Make use of return_if_fail or return_val_if_fail where it is useful
+
+2012-01-02  Robert Dyer  <psybers@gmail.com>
+
+	add unhide delay preference - bug 867953
+
+2012-01-02  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Cache Bamf.Matcher.get_default () to prevent refcount bumps on
+	every call
+
+2012-01-02  Robert Dyer  <psybers@gmail.com>
+
+	grab icon directly from window if bamf cant match the app - bug 719990
+
+2012-01-01  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Don't use get_requisition internally
+
+2011-12-31  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix benchmark configure flag
+
+2011-12-31  Robert Dyer  <psybers@gmail.com>
+
+	fix some minor bugs
+
+2011-12-30  Robert Dyer  <psybers@gmail.com>
+
+	fix dock width caching issue when changing icon size - bug 839938
+
+2011-12-30  Robert Dyer  <psybers@gmail.com>
+
+	add benchmarking code
+
+2011-12-30  Robert Dyer  <psybers@gmail.com>
+
+	only draw active glow if it isnt transparent
+
+2011-12-30  Robert Dyer  <psybers@gmail.com>
+
+	fix urgent glow being cut off on edges - bug 910164
+
+2011-12-30  Robert Dyer  <psybers@gmail.com>
+
+	refactor to have a proper dock controller
+
+2011-12-29  Robert Dyer  <psybers@gmail.com>
+
+	use the primary monitor by default - bug 909824
+
+2011-12-28  Robert Dyer  <psybers@gmail.com>
+
+	refactoring to change some props into methods
+
+2011-12-22  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Avoid ambiguous references of Gtk.Menu and Gtk.MenuItem
+
+	Fixes build with vala 0.15+
+
+2011-10-18  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Explicitly link against gthread-2.0 to fix build on glib 2.31+
+
+2011-09-20  Rico Tzschichholz  <ricotz@t-online.de>
+
+	configure.ac: fix library version description
+
+2011-09-18  Robert Dyer  <psybers@gmail.com>
+
+	add an assert
+
+2011-09-09  Robert Dyer  <psybers@gmail.com>
+
+	cache some more values
+
+2011-09-09  Robert Dyer  <psybers@gmail.com>
+
+	fix operator precedence
+
+2011-09-09  Robert Dyer  <psybers@gmail.com>
+
+	prefs defaults werent loading if the prefs file was missing
+
+2011-09-08  Robert Dyer  <psybers@gmail.com>
+
+	allow specifying where settings are located inside the ~/.config/plank/
+	dir - adds a new commandline argument --name/-n which takes an arg
+	naming the dock, this name is used as a subdir in the config dir
+	and stores the settings and launchers files
+
+2011-09-07  Robert Dyer  <psybers@gmail.com>
+
+	add some missing docs
+
+2011-09-07  Robert Dyer  <psybers@gmail.com>
+
+	fix warnings/errors found from valadoc null checks
+
+2011-09-07  Robert Dyer  <psybers@gmail.com>
+
+	fix doc comment errors
+
+2011-09-06  Robert Dyer  <psybers@gmail.com>
+
+	add lots more documentation
+
+2011-09-06  Robert Dyer  <psybers@gmail.com>
+
+	fix some doc comment links
+
+2011-09-06  Robert Dyer  <psybers@gmail.com>
+
+	fix a doc comment
+
+2011-09-06  Robert Dyer  <psybers@gmail.com>
+
+	add a bunch more comments
+
+2011-09-06  Robert Dyer  <psybers@gmail.com>
+
+	fix doc comments so valadoc is happy
+
+2011-09-06  Rico Tzschichholz  <ricotz@t-online.de>
+
+	ask for the right vcs to build ChangeLog
+
+2011-09-06  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update dependencies of the library development files
+
+2011-09-06  Robert Dyer  <psybers@gmail.com>
+
+	make some stuff internal so Bamf usage doesnt leak out of the library
+
+2011-09-05  Robert Dyer  <psybers@gmail.com>
+
+	some whitespace changes
+
+2011-09-05  Robert Dyer  <psybers@gmail.com>
+
+	rename hide_manager to HideTracker
+
+2011-09-05  Robert Dyer  <psybers@gmail.com>
+
+	optimize poof drawing
+
+2011-09-05  Robert Dyer  <psybers@gmail.com>
+
+	refactor the abstract main to make it more modular/extensible and
+	hide its fields
+
+2011-09-05  Robert Dyer  <psybers@gmail.com>
+
+	add some comments
+
+2011-09-05  Rico Tzschichholz  <ricotz@t-online.de>
+
+	follow small vala api change of bamf
+
+2011-09-05  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update bamf bindings (0.2.96)
+
+2011-09-04  Rico Tzschichholz  <ricotz@t-online.de>
+
+	use utsname of posix bindings for vala 0.12+
+
+2011-09-04  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix indent
+
+2011-09-04  Rico Tzschichholz  <ricotz@t-online.de>
+
+	use some newer api on higher vala versions
+
+2011-09-04  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update docs makefile
+
+2011-09-04  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Revamp buildsys
+	- extend version string for development snapshots
+	- remove m4 scripts and let them be added automatically
+	- enable building release tarballs without having vala
+	- add ChangeLog generation and remove foreign flag
+
+2011-09-02  Robert Dyer  <psybers@gmail.com>
+
+	add my 3 lines BECAUSE I WANT TO
+
+2011-09-02  Robert Dyer  <psybers@gmail.com>
+
+	add prefs support for uints
+
+2011-09-02  Robert Dyer  <psybers@gmail.com>
+
+	fix warning message
+
+2011-09-02  Rico Tzschichholz  <ricotz@t-online.de>
+
+	refactoring CursorRegion and StaticDockRegion
+
+	- using fields instead of properties fixes/works around bug 768722
+	- clean up DockWindow.set_input_mask
+
+2011-09-01  Robert Dyer  <psybers@gmail.com>
+
+	fix enum values for DockItems
+
+2011-09-01  Robert Dyer  <psybers@gmail.com>
+
+	code cleanup
+
+2011-09-01  Robert Dyer  <psybers@gmail.com>
+
+	fix crash when docks cursor area width/height is somehow set to 0 -
+	bug 768722
+
+2011-08-30  Robert Dyer  <psybers@gmail.com>
+
+	Use PKG_PROG_PKG_CONFIG macro rather than hand-coded detection
+
+2011-08-25  Robert Dyer  <psybers@gmail.com>
+
+	remove log warnings when showing menus
+
+2011-08-25  Rico Tzschichholz  <ricotz@t-online.de>
+
+	target GLib 2.26 for vala code generation
+
+2011-08-25  Robert Dyer  <psybers@gmail.com>
+
+	when HideMode changed, the dock wasnt showing/hiding according to
+	the new mode
+
+2011-08-24  Rico Tzschichholz  <ricotz@t-online.de>
+
+	configure.ac: create tar.xz
+
+2011-08-24  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix make distcheck
+
+2011-08-24  Rico Tzschichholz  <ricotz@t-online.de>
+
+	use pkgdatadir where possible
+
+2011-08-24  Robert Dyer  <psybers@gmail.com>
+
+	remove m4 files
+
+2011-08-24  Robert Dyer  <psybers@gmail.com>
+
+	abstract the plank dock item click
+
+2011-08-23  Robert Dyer  <psybers@gmail.com>
+
+	add an initialized signal to the AbstractMain
+
+2011-08-23  Robert Dyer  <psybers@gmail.com>
+
+	make properties have a reset function so loading prefs files with
+	missing values always forces a reset to default values on those
+	missing values
+
+2011-08-22  Robert Dyer  <psybers@gmail.com>
+
+	fix autogen defaults (debug is default, but wasnt being set as such)
+	and show status of enable_debug
+
+2011-08-15  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update m4 scripts
+
+2011-08-11  Robert Dyer  <psybers@gmail.com>
+
+	allow middle click on file dock items to launch them
+
+2011-08-11  Robert Dyer  <psybers@gmail.com>
+
+	if the theme dir doesnt exist, create it
+
+2011-08-11  Robert Dyer  <psybers@gmail.com>
+
+	add some missing property verifications to clamp values
+
+2011-08-11  Robert Dyer  <psybers@gmail.com>
+
+	cleanup the Paths service to use standard GLib functions (which on
+	linux, follow XDG)
+
+2011-07-28  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update translations
+
+2011-07-25  Robert Dyer  <psybers@gmail.com>
+
+	some code cleanup
+
+2011-07-25  Robert Dyer  <psybers@gmail.com>
+
+	change default FadeTime to 250
+
+2011-07-25  Robert Dyer  <psybers@gmail.com>
+
+	fix FadeTime not being used
+
+2011-07-25  Robert Dyer  <psybers@gmail.com>
+
+	update some property descriptions
+
+2011-07-25  Robert Dyer  <psybers@gmail.com>
+
+	add support for fade on hide
+
+2011-07-25  Robert Dyer  <psybers@gmail.com>
+
+	refactor fps into a const, no real reason just makes it more visible
+	in the code :p
+
+2011-07-25  Robert Dyer  <psybers@gmail.com>
+
+	cache the static dock region rect
+
+2011-07-25  Robert Dyer  <psybers@gmail.com>
+
+	fix dock not updating bug
+
+2011-07-24  Robert Dyer  <psybers@gmail.com>
+
+	use the local instead of property
+
+2011-07-24  Robert Dyer  <psybers@gmail.com>
+
+	add caching of width values
+
+2011-07-21  Robert Dyer  <psybers@gmail.com>
+
+	make Matcher constructor private and add a destructor to disconnect
+	signals
+
+2011-07-21  Robert Dyer  <psybers@gmail.com>
+
+	log a warning if the prefs file couldnt be deleted
+
+2011-07-21  Robert Dyer  <psybers@gmail.com>
+
+	this dir is already ensured to exist on startup
+
+2011-07-21  Robert Dyer  <psybers@gmail.com>
+
+	add a note
+
+2011-07-21  Robert Dyer  <psybers@gmail.com>
+
+	fix potential a NPE
+
+2011-07-15  Robert Dyer  <psybers@gmail.com>
+
+	lets cache some stuff that doesnt change often
+
+2011-07-09  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update translations
+
+2011-06-23  Robert Dyer  <psybers@gmail.com>
+
+	add Default theme
+
+2011-06-23  Robert Dyer  <psybers@gmail.com>
+
+	dont error if a prefs file cant be saved, just warn
+
+2011-06-21  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update translations
+
+2011-06-13  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add plank.deps
+
+2011-06-11  Robert Dyer  <psybers@gmail.com>
+
+	oops, pushed more than i wanted
+
+2011-06-11  Robert Dyer  <psybers@gmail.com>
+
+	add a TODO for MBarvian
+
+2011-05-30  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add some translations
+
+2011-05-29  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix compilation with vala 0.13.0pre
+
+2011-05-28  Robert Dyer  <psybers@gmail.com>
+
+	more comments!
+
+2011-05-28  Robert Dyer  <psybers@gmail.com>
+
+	add some comments
+
+2011-05-27  Robert Dyer  <psybers@gmail.com>
+
+	refactor to remove duplicated code
+
+2011-05-26  Robert Dyer  <psybers@gmail.com>
+
+	only show about dialog once - bug 763039
+
+2011-05-20  Robert Dyer  <psybers@gmail.com>
+
+	make new prefs signal act similar to notify signal
+
+2011-05-20  Robert Dyer  <psybers@gmail.com>
+
+	new prefs signal was emitted in wrong spot
+
+2011-05-20  Robert Dyer  <psybers@gmail.com>
+
+	fix bug with the prefs class causing updates with non-validate
+	(and posisbly incorrect) values
+
+2011-05-19  Robert Dyer  <psybers@gmail.com>
+
+	make preferences behave better when missing keys or when verifications
+	fail
+
+2011-05-19  Robert Dyer  <psybers@gmail.com>
+
+	add better multimon support, try to show dock on primary monitor
+	and add ability to specify monitor - bug 785334
+
+2011-05-08  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix make dist
+
+2011-05-07  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix multiple valac calls
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	this param isnt nullable, null with wind up doing nothing at all
+	and is thus useless
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	fix some comments
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	fix log
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	dont set the rate limit, the default limit is 800ms which is even
+	more than we were setting
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	better log messages in prefs class
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	fix some error logs
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	add a note
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	remove redundant visibility modifier
+
+2011-05-07  Robert Dyer  <psybers@gmail.com>
+
+	refactor some methods into properties
+
+2011-05-06  Robert Dyer  <psybers@gmail.com>
+
+	with --enable-debug=yes we now pass in -g to valac
+
+2011-05-06  Robert Dyer  <psybers@gmail.com>
+
+	this method doesnt need to be virtual
+
+2011-05-02  Robert Dyer  <psybers@gmail.com>
+
+	cleanup logging code, remove the unnecessary type parameters
+
+2011-05-02  Robert Dyer  <psybers@gmail.com>
+
+	cleanup logs more
+
+2011-05-02  Robert Dyer  <psybers@gmail.com>
+
+	cleaner looking log messages
+
+2011-05-01  Robert Dyer  <psybers@gmail.com>
+
+	set prgname
+
+2011-05-01  Robert Dyer  <psybers@gmail.com>
+
+	refactor to use the standard glib functions for logging
+
+2011-04-30  Robert Dyer  <psybers@gmail.com>
+
+	ctrl+right click anywhere shows the plank menu
+
+2011-04-28  Robert Dyer  <psybers@gmail.com>
+
+	track add and remove times for items
+
+2011-04-28  Robert Dyer  <psybers@gmail.com>
+
+	set slidetime to 300ms and add a description for it
+
+2011-04-28  Robert Dyer  <psybers@gmail.com>
+
+	i like using var!
+
+2011-04-24  Robert Dyer  <psybers@gmail.com>
+
+	fix dock briefly showing on startup when it should be hidden in
+	Intellihide mode
+
+2011-04-24  Robert Dyer  <psybers@gmail.com>
+
+	some refactoring
+
+2011-04-24  Robert Dyer  <psybers@gmail.com>
+
+	rename a signal so its clearer what its for
+
+2011-04-22  Robert Dyer  <psybers@gmail.com>
+
+	unity quicklists werent showing properly ordered
+
+2011-04-22  Robert Dyer  <psybers@gmail.com>
+
+	make unity quicklists properly honor TargetEnvironment and OnlyShowIn
+	keys
+
+2011-04-22  Robert Dyer  <psybers@gmail.com>
+
+	remove extra null
+
+2011-04-17  Rico Tzschichholz  <ricotz@t-online.de>
+
+	dont install autostart desktop-file
+
+2011-04-17  Robert Dyer  <psybers@gmail.com>
+
+	refactor out the Build stuff
+
+2011-04-17  Robert Dyer  <psybers@gmail.com>
+
+	refactor the paths service to not mention Build
+
+2011-04-16  Robert Dyer  <psybers@gmail.com>
+
+	dont cause error if a prefs group is missing
+
+2011-04-16  Robert Dyer  <psybers@gmail.com>
+
+	fix themes
+
+2011-04-16  Robert Dyer  <psybers@gmail.com>
+
+	use the object name that owns a property as the preferences group
+	name - DELETE YOUR THEMES THEY WILL BREAK
+
+2011-04-16  Robert Dyer  <psybers@gmail.com>
+
+	add bool to preferences types
+
+2011-04-14  Robert Dyer  <psybers@gmail.com>
+
+	dont try to launch on middle click if the item has no associated
+	launcher
+
+2011-04-11  Robert Dyer  <psybers@gmail.com>
+
+	fix include path for plank library
+
+2011-04-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	make build-output nicer
+
+2011-04-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add requirements to libplank.pc
+
+2011-04-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	only give valac vala- or c-files
+
+2011-04-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update m4 Makefile.am
+
+2011-04-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	use AM_SILENT_RULES instead of shave
+
+2011-04-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	make libplank a public library (but the abi is still unstable)
+
+	the vapi should be versioned later when the first release happened
+	and the api can be considered stable
+
+2011-04-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	some cleanups and fix make distcheck
+
+2011-04-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update plank.pot
+
+2011-04-11  Robert Dyer  <psybers@gmail.com>
+
+	make sure we set window_intersect=false if there is no active
+	window/viewport - bug 756278
+
+2011-04-10  Robert Dyer  <psybers@gmail.com>
+
+	make libplank
+
+2011-04-08  Robert Dyer  <psybers@gmail.com>
+
+	move more stuff into the shared Main class
+
+2011-04-07  Robert Dyer  <psybers@gmail.com>
+
+	rearranging menus again
+
+2011-04-07  Robert Dyer  <psybers@gmail.com>
+
+	cleanup and make code easier to extend
+
+2011-04-07  Robert Dyer  <psybers@gmail.com>
+
+	change position and separators with quicklist menus
+
+2011-04-07  Robert Dyer  <psybers@gmail.com>
+
+	NEW FEATURE - support for Unity static quick lists
+
+2011-04-04  Robert Dyer  <psybers@gmail.com>
+
+	show release info in about
+
+2011-04-04  Robert Dyer  <psybers@gmail.com>
+
+	allow disabling the line in titled separators
+
+2011-04-04  Robert Dyer  <psybers@gmail.com>
+
+	fix naming of titled separator file
+
+2011-04-04  Robert Dyer  <psybers@gmail.com>
+
+	add missing signal disconnect
+
+2011-04-04  Robert Dyer  <psybers@gmail.com>
+
+	use cached dock window x/y in the hide manager
+
+2011-04-04  Robert Dyer  <psybers@gmail.com>
+
+	cleanup the code a bit and cache dock window x/y values
+
+2011-04-04  Robert Dyer  <psybers@gmail.com>
+
+	make an item factory
+
+2011-04-03  Robert Dyer  <psybers@gmail.com>
+
+	start abstracting plank some so it can be extended by other docks
+
+2011-04-03  Robert Dyer  <psybers@gmail.com>
+
+	add some missing copyrights
+
+2011-04-02  Robert Dyer  <psybers@gmail.com>
+
+	fix menus
+
+2011-03-31  Robert Dyer  <psybers@gmail.com>
+
+	fix menus
+
+2011-03-31  Robert Dyer  <psybers@gmail.com>
+
+	set Flags attr on PopupButton
+
+2011-03-31  Robert Dyer  <psybers@gmail.com>
+
+	allow overriding ValidItem
+
+2011-03-31  Robert Dyer  <psybers@gmail.com>
+
+	dont pop up menu if no items, and clear the widgets after it closes
+
+2011-03-31  Robert Dyer  <psybers@gmail.com>
+
+	move method to where its used
+
+2011-03-27  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update POTFILES.skip
+
+2011-03-27  Robert Dyer  <psybers@gmail.com>
+
+	add help and translate menu items to plank item
+
+2011-03-24  Robert Dyer  <psybers@gmail.com>
+
+	update stacks if the dir changes - bug 740830
+
+2011-03-23  Robert Dyer  <psybers@gmail.com>
+
+	remove unnecessary const
+
+2011-03-21  Robert Dyer  <psybers@gmail.com>
+
+	fix positioning of urgent glow
+
+2011-03-21  Robert Dyer  <psybers@gmail.com>
+
+	remove debug code
+
+2011-03-21  Robert Dyer  <psybers@gmail.com>
+
+	bump version
+
+2011-03-21  Rico Tzschichholz  <ricotz@t-online.de>
+
+	optimize HideManager.update_window_intersect
+
+2011-03-17  Robert Dyer  <psybers@gmail.com>
+
+	revert revs 284-286, this code was causing several new issues and
+	regressed some earlier fixed bugs - it needs serious thought and
+	design before its put back in
+
+2011-03-17  Robert Dyer  <psybers@gmail.com>
+
+	reuse existing constant
+
+2011-03-17  Robert Dyer  <psybers@gmail.com>
+
+	lets use constants and document them
+
+2011-03-17  Rico Tzschichholz  <ricotz@t-online.de>
+
+	window-controls: add some missing delays
+
+2011-03-17  Rico Tzschichholz  <ricotz@t-online.de>
+
+	buildsys: some minor clean up
+
+2011-03-17  Rico Tzschichholz  <ricotz@t-online.de>
+
+	clean up buildsys
+
+	a complete switch to gtk3 should be done at some point rather
+	than trying
+	to maintain it parallel to gtk2
+
+2011-03-17  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix window stacking order on restore/minize actions - bug 707641
+
+2011-03-17  Robert Dyer  <psybers@gmail.com>
+
+	optimize and clean the invisible item hack
+
+2011-03-17  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix build with vala 0.11.7
+
+2011-03-16  Robert Dyer  <psybers@gmail.com>
+
+	convert Color from struct to class so we can use a PrefsSerializable
+	interface, which is a cleaner way to handle serializing objects to
+	prefs files
+
+2011-03-16  Robert Dyer  <psybers@gmail.com>
+
+	add comment to top of generated prefs files
+
+2011-03-16  Robert Dyer  <psybers@gmail.com>
+
+	add descriptions to the settings prefs files
+
+2011-03-16  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix window-selection on mouse-scoll
+
+2011-03-16  Robert Dyer  <psybers@gmail.com>
+
+	tweak the bounce and click animations some - DELETE YOUR THEMES
+
+2011-03-16  Robert Dyer  <psybers@gmail.com>
+
+	tweak the stacks icon sizes a bit
+
+2011-03-16  Robert Dyer  <psybers@gmail.com>
+
+	make stacks icon drawings corners scale
+
+2011-03-16  Robert Dyer  <psybers@gmail.com>
+
+	mark a buggy vala workaround
+
+2011-03-16  Robert Dyer  <psybers@gmail.com>
+
+	fix the click animations
+
+2011-03-15  Rico Tzschichholz  <ricotz@t-online.de>
+
+	search for dockitem in Items and InvisibleItems
+
+2011-03-15  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add missing signal connections for visible-change
+
+2011-03-15  Rico Tzschichholz  <ricotz@t-online.de>
+
+	watch for user-visibility changes
+	* hide and unhide these dockitems according to their state
+	* supposably fixes applications with a splashscreen
+
+2011-03-11  Robert Dyer  <psybers@gmail.com>
+
+	dont show Keep in Dock for things we cant match
+
+2011-03-10  Robert Dyer  <psybers@gmail.com>
+
+	deleting a dock item could make its neighbor disappear
+
+2011-03-10  Robert Dyer  <psybers@gmail.com>
+
+	tweak the stacks background a bit
+
+2011-03-09  Robert Dyer  <psybers@gmail.com>
+
+	rename make_launcher to make_dock_item and ensure it finds a unique
+	filename to write to when making a .dockitem
+
+2011-03-09  Robert Dyer  <psybers@gmail.com>
+
+	update pot file
+
+2011-03-09  Robert Dyer  <psybers@gmail.com>
+
+	make it possible to toggle keeping items in the dock - bug 718490
+
+2011-03-09  Robert Dyer  <psybers@gmail.com>
+
+	deleting a dock item while the app is running made the app have no item
+
+2011-03-09  Robert Dyer  <psybers@gmail.com>
+
+	oops, i deleted items when they should update and updated when they
+	should delete
+
+2011-03-09  Robert Dyer  <psybers@gmail.com>
+
+	fix dock not updating when dock item deleted - bug 731409
+
+2011-03-08  Robert Dyer  <psybers@gmail.com>
+
+	fix dock intelligent hiding when IconSize changes - bug 731405
+
+2011-03-08  Robert Dyer  <psybers@gmail.com>
+
+	clean up file dock item a bit
+
+2011-03-08  Robert Dyer  <psybers@gmail.com>
+
+	make sure file dock items bounce when launching
+
+2011-03-08  Robert Dyer  <psybers@gmail.com>
+
+	lighten the stacks bg render a bit
+
+2011-03-08  Robert Dyer  <psybers@gmail.com>
+
+	tweak the themes to remove default values
+
+2011-03-08  Robert Dyer  <psybers@gmail.com>
+
+	lets remove zoom code until (if) its added
+
+2011-03-07  Robert Dyer  <psybers@gmail.com>
+
+	add open in nautilus link to stacks menus
+
+2011-03-07  Robert Dyer  <psybers@gmail.com>
+
+	fix the stack rendering
+
+2011-03-06  Robert Dyer  <psybers@gmail.com>
+
+	make stacks icons draw a bit different by default - bug 709023
+
+2011-03-06  Robert Dyer  <psybers@gmail.com>
+
+	add average_color to DockSurface and use it, so item sub-types that
+	override draw_icon still get their average computed automatically
+
+2011-03-06  Robert Dyer  <psybers@gmail.com>
+
+	make sure our launcher shows up by default
+
+2011-03-01  Robert Dyer  <psybers@gmail.com>
+
+	work around a vala bug
+
+2011-03-01  Robert Dyer  <psybers@gmail.com>
+
+	cleanup gaussian a bit
+
+2011-03-01  Rico Tzschichholz  <ricotz@t-online.de>
+
+	make gaussian threaded
+
+2011-03-01  Rico Tzschichholz  <ricotz@t-online.de>
+
+	optimize gaussian blur
+
+2011-03-01  Robert Dyer  <psybers@gmail.com>
+
+	use the posix vapi
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	optimize gaus blur a bit
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	add gaussian blur and fix up the other blurs
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	trap SIGINT and SIGTERM and do a quit() instead, which is a bit cleaner
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	use double.max/min instead of fmax/fmin
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	lets inline this exp method
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	rename a var
+
+2011-02-28  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix define for build
+
+2011-02-28  Rico Tzschichholz  <ricotz@t-online.de>
+
+	optimize fast blur
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	fix compile for us old folks
+
+2011-02-28  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix build for vala 0.11+
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	even though it doesnt matter, lets have the vars match the ARGB
+	format in the blur methods
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	cleanup fast blur some
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	dont use const, its the wrong const :(
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	fast blur is doing 1 extra loop
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	optimize fast blur
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	use a const
+
+2011-02-28  Robert Dyer  <psybers@gmail.com>
+
+	add some blurring algorithms to DockSurface
+
+2011-02-23  Robert Dyer  <psybers@gmail.com>
+
+	remove extra animated_draw call
+
+2011-02-23  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Fix HoveredItem after menu was dismissed with an off-dock-click
+
+2011-02-23  Rico Tzschichholz  <ricotz@t-online.de>
+
+	some cleanup
+
+2011-02-23  Robert Dyer  <psybers@gmail.com>
+
+	fix the input mask
+
+2011-02-22  Robert Dyer  <psybers@gmail.com>
+
+	some cleanup
+
+2011-02-21  Robert Dyer  <psybers@gmail.com>
+
+	make sure dialogs show up in the popup window list
+
+2011-02-16  Robert Dyer  <psybers@gmail.com>
+
+	fix intellihide
+
+2011-02-16  Robert Dyer  <psybers@gmail.com>
+
+	cleanup hide code a bit
+
+2011-02-16  Robert Dyer  <psybers@gmail.com>
+
+	add (broken) intellihide code
+
+2011-02-15  Rico Tzschichholz  <ricotz@t-online.de>
+
+	some changes for gtk+3.0 build testing
+
+2011-02-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix signal-methode-naming issue
+
+2011-02-11  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add destrutors and disconnect signals
+
+2011-02-11  Robert Dyer  <psybers@gmail.com>
+
+	fix hovers - bug 707645
+
+2011-02-10  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update if the icon-theme got changed
+
+2011-02-10  Robert Dyer  <psybers@gmail.com>
+
+	maybe fix - bug 716666
+
+2011-02-09  Robert Dyer  <psybers@gmail.com>
+
+	add kernel version reporting
+
+2011-02-09  Robert Dyer  <psybers@gmail.com>
+
+	tweak the logging so we can get loading timings
+
+2011-02-09  Robert Dyer  <psybers@gmail.com>
+
+	remove warning
+
+2011-02-09  Robert Dyer  <psybers@gmail.com>
+
+	remove a warning
+
+2011-02-09  Robert Dyer  <psybers@gmail.com>
+
+	add shave to the build
+
+2011-02-08  Robert Dyer  <psybers@gmail.com>
+
+	update pot
+
+2011-02-08  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix POTFILE.skip
+
+2011-02-08  Robert Dyer  <psybers@gmail.com>
+
+	remove async keyword
+
+2011-02-07  Robert Dyer  <psybers@gmail.com>
+
+	add default arg
+
+2011-02-07  Robert Dyer  <psybers@gmail.com>
+
+	code cleanup
+
+2011-02-07  Robert Dyer  <psybers@gmail.com>
+
+	yes yes i know, SHHHHH
+
+2011-02-07  Robert Dyer  <psybers@gmail.com>
+
+	cleanup the item code some and make it so files can be on the dock
+
+2011-02-04  Robert Dyer  <psybers@gmail.com>
+
+	tweak the config a bit
+
+2011-02-04  Robert Dyer  <psybers@gmail.com>
+
+	remove dep on gconf
+
+2011-02-04  Robert Dyer  <psybers@gmail.com>
+
+	fix the hide bug
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	fix method name and add surface -> pbuf method
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	refactor out the animation logic
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	cleanup some logic and put a small delay on reposition so new items
+	dont cause the dock to bounce around
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	and THIS is the PROPER fix for 195/207 :)
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	better than rev 195, but still a hack
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	use Gee collections where possible
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	always TEST code...
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	change color serialization to be 0-255
+
+2011-01-31  Rico Tzschichholz  <ricotz@t-online.de>
+
+	clamp sum of top_radius and bottom_radius to min of width and height
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	add default gnome items on first launch - bug 709878
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	remove warning
+
+2011-01-31  Robert Dyer  <psybers@gmail.com>
+
+	add ability to show badges on items - bug 709451
+
+2011-01-30  Robert Dyer  <psybers@gmail.com>
+
+	clamp color serialized values and make them be 0-100
+
+2011-01-30  Robert Dyer  <psybers@gmail.com>
+
+	allow specifying colors in theme files - bug 709025 and also allow
+	prefs to write property blurbs as comments and a custom way of
+	serializing structs/classes
+
+2011-01-30  Robert Dyer  <psybers@gmail.com>
+
+	allow negative horiz pads
+
+2011-01-30  Robert Dyer  <psybers@gmail.com>
+
+	slide dock in on startup if hide mode is off - bug 710039
+
+2011-01-29  Rico Tzschichholz  <ricotz@t-online.de>
+
+	treat plank special to make it matchable
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	update the hide time
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	fix potfiles
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	refactor/clean a bit
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	cleanup the hide code and fix hiding when dismissing popups and not
+	over the dock
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	remove duplicate args for signals
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	fix broken compile
+
+2011-01-29  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fixes and refactoring
+
+	- move application specific parts out of DockItem to
+	ApplicationDockItem
+	- add destructors
+	- fix some signals on item pinning and reload of peristent items
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	add (semi-broken) autohiding
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	active renders were broken
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	simplify some signals
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	refactor out the file dock item code
+
+2011-01-29  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Reduce some event triggering
+
+2011-01-29  Robert Dyer  <psybers@gmail.com>
+
+	refactor out the plank item code
+
+2011-01-29  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Fix item removal leaves empty space
+
+2011-01-29  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Rework the event-trigger-calls for redrawing the dock
+
+	I tried to reduce the redraws caused by changed item properties
+	and make
+	it more efficient.
+
+2011-01-28  Daniel Fore  <daniel.p.fore@gmail.com>
+
+	slight anchor move
+
+2011-01-28  Daniel Fore  <daniel.p.fore@gmail.com>
+
+	plank icons
+
+2011-01-28  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add TransientDockItem.c to POTFILES.skip
+
+2011-01-28  Robert Dyer  <psybers@gmail.com>
+
+	fix log formatting
+
+2011-01-28  Robert Dyer  <psybers@gmail.com>
+
+	cleanup and optimize code a bit
+
+2011-01-28  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Fix usage of Bamf again
+
+	It shouldnt break it more than it already was. It fixes some error
+	outputs and makes DockItems possible which represents applications
+	without a desktop-file (reported by Bamf as an empty string).
+
+	Keep it compatible with bamf 0.2.58
+
+	Anyway this works better than before ;)
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	sort stack items - bug 709020
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	apparently that gio constant was wrong and doesnt exist in constant
+	form?
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	use gio constants
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	hide hidden files in stacks
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	intl a string in transients popup
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	rename New Window in menu
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	rename pin to dock in the menu
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	bounce item when launching from a stack
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	let items set how their popups appear
+
+2011-01-27  Robert Dyer  <psybers@gmail.com>
+
+	revert last rev, it doesnt compile on maverick
+
+2011-01-27  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Fix usage of Bamf
+
+	It shouldnt break it more than it already was. It fixes some error
+	outputs and makes DockItems possible which represents applications
+	without a desktop-file (reported by Bamf as an empty string).
+
+	Anyway this works better than before ;)
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	add plank launcher on first run
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	add icon caching
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	fix buffer size
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	make it possible to stick things right of transients
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	let icons load from uris
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	NO STACKS
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	expose add/remove methods in DockItems
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	fully qualify everything in Matcher and add some new signals
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	add titled menu separator
+
+2011-01-26  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fully qualify Bamf.Window usages
+
+2011-01-26  Rico Tzschichholz  <ricotz@t-online.de>
+
+	POTFILE.skip: add Plank/Items/DockItem.c
+
+2011-01-26  Robert Dyer  <psybers@gmail.com>
+
+	better add/remove code for DockItems
+
+2011-01-25  Robert Dyer  <psybers@gmail.com>
+
+	try to clear stale animations
+
+2011-01-24  Robert Dyer  <psybers@gmail.com>
+
+	add restore/unmaximize menu items
+
+2011-01-24  Robert Dyer  <psybers@gmail.com>
+
+	intl some strings
+
+2011-01-23  Robert Dyer  <psybers@gmail.com>
+
+	add Michal to about box
+
+2011-01-23  Robert Dyer  <psybers@gmail.com>
+
+	clean strut code a bit
+
+2011-01-23  Michal Hruby  <michal.mhr@gmail.com>
+
+	update struts - patch from Michal Hruby
+
+2011-01-23  Daniel Fore  <daniel.p.fore@gmail.com>
+
+	other size plank icons
+
+2011-01-23  Robert Dyer  <psybers@gmail.com>
+
+	improve struts so its easy to set side/top struts later on
+
+2011-01-23  Robert Dyer  <psybers@gmail.com>
+
+	fix struts
+
+2011-01-23  Robert Dyer  <psybers@gmail.com>
+
+	add icon loading from files to drawing service
+
+2011-01-23  Robert Dyer  <psybers@gmail.com>
+
+	update man page
+
+2011-01-23  Rico Tzschichholz  <ricotz@t-online.de>
+
+	some minor build and environment fixes and additions
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	hah, remove some old debug code
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	remove some warnings in bamf event handlers
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	broke compile, oops
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	modify log message a bit
+
+2011-01-22  Rico Tzschichholz  <ricotz@t-online.de>
+
+	do a proper positioning on bottom-center
+
+2011-01-22  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Use cached monitor_geo for position calculation - bug 705016
+
+2011-01-22  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix build
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	temporary disable zoom for everyone since its not implemented
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	add some themes
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	add focus on scroll
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	enable threads
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	make logger thread-aware and safe
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	generalize the log code a bit
+
+2011-01-22  Robert Dyer  <psybers@gmail.com>
+
+	set glib log function to use our logger
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	optimize window focus code some and make sure we call initialize on
+	the window controller
+
+2011-01-22  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Missed fixing one loop :(
+
+2011-01-21  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Enable fixed WindowControl
+
+2011-01-21  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Fix event disconnect of old Bamf.Application
+
+2011-01-21  Rico Tzschichholz  <ricotz@t-online.de>
+
+	Don't invoke HoveredItem.click on ButtonPressedEvent
+
+	It causes a doubled action, because normally it will be called
+	on ButtonReleaseEvent again.
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	tweak the show anim a bit
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	add slide in on start
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	refactor some drawing code
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	fix showing transients for windowless apps - bug 706013
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	tweak the theme a bit
+
+2011-01-21  Rico Tzschichholz  <ricotz@t-online.de>
+
+	delete generated *.c file on 'make clean'
+
+2011-01-21  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix naming after refactoring
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	fix theme
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	damnit rico
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	fix build
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	fix struts
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	use windows icon in popups, fall back to dock icon
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	better item updates from bamf
+
+2011-01-21  Rico Tzschichholz  <ricotz@t-online.de>
+
+	refactoring the hell
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	refactor paths service
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	remove warnings
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	oops, pushed a bad line
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	split vert padding into top/bottom padding
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	changes to bamf handling
+
+2011-01-21  Robert Dyer  <psybers@gmail.com>
+
+	fix indicators counting dialog windows
+
+2011-01-20  Robert Dyer  <psybers@gmail.com>
+
+	update icon regions when popups show/hide
+
+2011-01-20  Robert Dyer  <psybers@gmail.com>
+
+	temporary fix for icons in popups
+
+2011-01-20  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add x11 to dependencies
+
+2011-01-20  Robert Dyer  <psybers@gmail.com>
+
+	fix crash
+
+2011-01-20  Robert Dyer  <psybers@gmail.com>
+
+	work on struts a bit
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	make clicking plank item open about
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	add input mask to dock window
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	list windows in popup and focus on click
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	set icon regions for window previews
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	make times in config be in milliseconds
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	new default theme! delete your old theme dir!
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	fix dock sizing issues w/ neg pads
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	clip the active indicator
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	fix hover/popup locations with negative padding
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	split padding into horiz/vert and add some clamps on values
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	draw active indicator on dock bg
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	fix some render sizes
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	wow, i cant describe this update because WAY TOO MUCH STUFF WAS PUT
+	INTO IT. enjoy!
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	update hovers on theme change
+
+2011-01-19  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add Intl stuff
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	expose padding in themes
+
+2011-01-19  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add plank.pot
+
+2011-01-19  Daniel Fore  <daniel.p.fore@gmail.com>
+
+	icon stuff
+
+2011-01-19  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix build issue with vala 0.11.4
+
+2011-01-19  Daniel Fore  <daniel.p.fore@gmail.com>
+
+	plank icons
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	fix item pinning
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	reposition hovers on dock resizes
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	render fixes
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	fix some rendering
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	add theme support, why not
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	change pin icon
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	add unique id for dock items
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	lots of tweaks and fixes, add pin to dock
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	hover was showing by default
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	update hover code some
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	fix a leak?
+
+2011-01-19  Rico Tzschichholz  <ricotz@t-online.de>
+
+	use launchpad.net reference rather than freedesktop.org
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	fix render
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	fix compile problem for rico
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	cleaner code
+
+2011-01-19  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix conflict between Glib.Application and Bamf.Application while
+	using glib 2.27+
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	add missing file
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	add initial bamf support - active window indicators track, running
+	indicators track, transient items track
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	more render changes
+
+2011-01-19  Robert Dyer  <psybers@gmail.com>
+
+	more render fixes for dan
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	update render for dan
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	better default prefs handling
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	add debug for dan
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	remove ref to matcher
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	update vapi once more, manually editing it to clean it up...
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	remove warning
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	another update to the vapi
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	fix vapi
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	update vapi so it compiles now
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	update vapi again
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	update vapi
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	add vapigen metadata and code to force usage of libbamf - THIS BREAKS
+	THE COMPILE
+
+2011-01-18  Rico Tzschichholz  <ricotz@t-online.de>
+
+	move vapis to dedicated folder
+
+2011-01-18  Rico Tzschichholz  <ricotz@t-online.de>
+
+	removed invalid file reference :(
+
+2011-01-18  Rico Tzschichholz  <ricotz@t-online.de>
+
+	update and clean buildsys
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	fix menu icon size
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	fix copyright in about
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	add default popup menu
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	add quit method
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	add version to about
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	change Open icon
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	fix compile warning
+
+2011-01-18  Rico Tzschichholz  <ricotz@t-online.de>
+
+	add Copyright and Author references
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	add menus
+
+2011-01-18  Robert Dyer  <psybers@gmail.com>
+
+	add active indicators
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	move a log message
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	watch launchers for changes and update
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	add multiple icon loading and icon scaling
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	implement a bunch of color functions and have indicators use them
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	add LineWidth to theme
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	add launcher and icons
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	fix sorting of dock items
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	update some log messages
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	add gee to the build
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	add poof window
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	add package data dir to the paths
+
+2011-01-17  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix path of data-home-folder
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	multiple indicators
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	add indicator support
+
+2011-01-17  Robert Dyer  <psybers@gmail.com>
+
+	better default launcher handling
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	reorganize and tweak the rendering code some
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	let prefs set the group title
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	add hovers
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	fix some bg render issues
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	pretty dock bg
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	minor tweaks
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	fix lighten/darken
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	use libunique
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	add launching capability
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	no need to save/restore context here
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	fix some runtime gtk-criticals
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	remove warning
+
+2011-01-16  Rico Tzschichholz  <ricotz@t-online.de>
+
+	fix compile issue with vala 0.11+
+
+2011-01-16  Robert Dyer  <psybers@gmail.com>
+
+	add non-working plank
+
