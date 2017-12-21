@@ -17,7 +17,6 @@ namespace Gala
         public bool add_window_actor (WindowActorClone window_actor)
         {
             float actor_width = window_actor.width;
-
             float avail_width = max_width - get_real_width ();
             if (actor_width > avail_width + SPACING) {
                 return false;
@@ -31,9 +30,7 @@ namespace Gala
         private float get_real_width ()
         {
             float width = 0;
-
             uint child_count = get_children ().length ();
-
             uint spacing;
             if (child_count > 1) {
                 spacing = (child_count - 1) * SPACING;

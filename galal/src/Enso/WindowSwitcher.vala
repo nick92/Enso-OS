@@ -108,6 +108,7 @@ namespace Gala
 
 			background = new Actor ();
 			background.background_color = { 0, 0, 0, 155 };
+			//DeepinBlurEffect.setup(background, 2, 2);
 
 			wrapper.reactive = true;
 			wrapper.set_pivot_point (0.5f, 0.5f);

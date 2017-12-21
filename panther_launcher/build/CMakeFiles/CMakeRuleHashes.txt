@@ -1,0 +1,5 @@
+# Hashes of file build rules.
+c8fe9459f0d41a443d194dfdbd383b1c src/Config.c
+c8fe9459f0d41a443d194dfdbd383b1c src/Xfce4PantherPlugin.c
+49279b300a0927137635f060a755e3db src/panther_launcher__valac.stamp
+55a84fc1f0ff42954bda327332007c69 src/pantherplugin_valac.stamp
