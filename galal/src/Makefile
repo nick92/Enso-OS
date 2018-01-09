@@ -141,9 +141,9 @@ am__objects_2 = gala-DBus.$(OBJEXT) gala-DBusAccelerator.$(OBJEXT) \
 	Widgets/gala-WorkspaceClone.$(OBJEXT) \
 	Widgets/gala-WorkspaceInsertThumb.$(OBJEXT) \
 	Deepin/gala-DeepinBlurEffect.$(OBJEXT) \
-	Enso/gala-PreviewRow.$(OBJEXT) \
 	Enso/gala-WindowSwitcher.$(OBJEXT) \
-	Enso/gala-PreviewPage.$(OBJEXT) $(am__objects_1)
+	Enso/gala-PreviewPage.$(OBJEXT) Enso/gala-PreviewRow.$(OBJEXT) \
+	$(am__objects_1)
 nodist_gala_OBJECTS = $(am__objects_2) $(am__objects_1)
 gala_OBJECTS = $(nodist_gala_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -219,14 +219,14 @@ CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/Makefile.common \
 	$(top_srcdir)/build-aux/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/nick/work/Enso/galal/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 API_VERSION = 0.2
 AR = ar
-AUTOCONF = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing autoconf
-AUTOHEADER = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing autoheader
-AUTOMAKE = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing automake-1.15
+AUTOCONF = ${SHELL} /home/nick/work/Enso/galal/build-aux/missing autoconf
+AUTOHEADER = ${SHELL} /home/nick/work/Enso/galal/build-aux/missing autoheader
+AUTOMAKE = ${SHELL} /home/nick/work/Enso/galal/build-aux/missing automake-1.15
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -246,7 +246,7 @@ EGREP = /bin/grep -E
 EXEEXT = 
 FGREP = /bin/grep -F
 GALA_CORE_CFLAGS = -pthread -I/usr/include/gtk-3.0 -I/usr/include/granite -I/usr/include/gnome-desktop-3.0 -I/usr/include/plank -I/usr/include/gee-0.8 -I/usr/include/libbamf3 -I/usr/lib/x86_64-linux-gnu/libbamf3/include -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/clutter-1.0 -I/usr/include/cogl -I/usr/include/atk-1.0 -I/usr/include/cogl -I/usr/include/libdrm -I/usr/include/json-glib-1.0 -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircore -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/mutter -I/usr/include/gsettings-desktop-schemas
-GALA_CORE_LIBS = -Wl,--export-dynamic -lgmodule-2.0 -pthread -lgdk-3 -lgranite -lgio-2.0 -lgnome-desktop-3 -lplank -lgee-0.8 -lgthread-2.0 -pthread -lbamf3 -lmutter -lgtk-3 -lclutter-1.0 -lcogl-path -latk-1.0 -lcogl-pango -lcogl -lgmodule-2.0 -pthread -lwayland-egl -lgbm -ldrm -lEGL -lXrandr -ljson-glib-1.0 -lgio-2.0 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgobject-2.0 -lglib-2.0 -lwayland-cursor -lwayland-client -lxkbcommon -lwayland-server -lXext -lXdamage -lXfixes -lXcomposite -lXi -lX11
+GALA_CORE_LIBS = -Wl,--export-dynamic -lgmodule-2.0 -pthread -lgdk-3 -lgranite -lgio-2.0 -lgthread-2.0 -pthread -lgnome-desktop-3 -lplank -lgee-0.8 -lbamf3 -lmutter -lgtk-3 -lclutter-1.0 -lcogl-path -latk-1.0 -lcogl-pango -lcogl -lgmodule-2.0 -pthread -lwayland-egl -lgbm -ldrm -lEGL -lXrandr -ljson-glib-1.0 -lgio-2.0 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgobject-2.0 -lglib-2.0 -lwayland-cursor -lwayland-client -lxkbcommon -lwayland-server -lXext -lXdamage -lXfixes -lXcomposite -lXi -lX11
 GALA_CORE_VALAFLAGS = --target-glib=2.44 --define HAS_MUTTER316 --define HAS_MUTTER318 --define HAVE_PLANK_0_11  -g --pkg gio-unix-2.0                       --pkg gmodule-2.0                       --pkg gtk+-3.0                       --pkg gdk-x11-3.0                       --pkg libbamf3                       --pkg granite                       --pkg gee-0.8                       --pkg gdesktopenums-3.0                       --pkg gnome-desktop-3.0                       --pkg xfixes-4.0                       --pkg plank --pkg cogl-1.0 --pkg clutter-1.0 --pkg libmutter
 GALA_DOCS_VALAFLAGS = --target-glib=2.44 --define HAS_MUTTER316 --define HAS_MUTTER318 --define HAVE_PLANK_0_11 --pkg gio-unix-2.0                       --pkg gmodule-2.0                       --pkg gtk+-3.0                       --pkg gdk-x11-3.0                       --pkg libbamf3                       --pkg granite                       --pkg gee-0.8                       --pkg gdesktopenums-3.0                       --pkg gnome-desktop-3.0                       --pkg xfixes-4.0                       --pkg plank --pkg cogl-1.0 --pkg clutter-1.0 --pkg libmutter
 GALA_MAJOR_MINOR_VERSION = 0.3
@@ -286,7 +286,7 @@ LT_CURRENT = 0
 LT_REVISION = 0
 LT_SYS_LIBRARY_PATH = 
 MAINT = 
-MAKEINFO = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing makeinfo
+MAKEINFO = ${SHELL} /home/nick/work/Enso/galal/build-aux/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 MSGFMT = /usr/bin/msgfmt
@@ -325,7 +325,7 @@ PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
 PKG_CONFIG_PATH = 
 PLANK_0_11_CFLAGS = -pthread -I/usr/include/plank -I/usr/include/gee-0.8 -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mircore -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng12 -I/usr/include/libbamf3 -I/usr/lib/x86_64-linux-gnu/libbamf3/include -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
-PLANK_0_11_LIBS = -lplank -lgee-0.8 -lgthread-2.0 -pthread -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lbamf3 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+PLANK_0_11_LIBS = -lplank -lgee-0.8 -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lbamf3 -lgio-2.0 -lgobject-2.0 -lglib-2.0
 PLUGIN_LDFLAGS = -module -avoid-version
 POSUB = po
 RANLIB = ranlib
@@ -343,10 +343,10 @@ VERSION = UNKNOWN
 XGETTEXT = /usr/bin/xgettext
 XGETTEXT_015 = /usr/bin/xgettext
 XGETTEXT_EXTRA_OPTIONS = 
-abs_builddir = /home/nick/work/Enso-OS/galal/src
-abs_srcdir = /home/nick/work/Enso-OS/galal/src
-abs_top_builddir = /home/nick/work/Enso-OS/galal
-abs_top_srcdir = /home/nick/work/Enso-OS/galal
+abs_builddir = /home/nick/work/Enso/galal/src
+abs_srcdir = /home/nick/work/Enso/galal/src
+abs_top_builddir = /home/nick/work/Enso/galal
+abs_top_srcdir = /home/nick/work/Enso/galal
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -376,7 +376,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/nick/work/Enso-OS/galal/build-aux/install-sh
+install_sh = ${SHELL} /home/nick/work/Enso/galal/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -476,9 +476,9 @@ gala_VALASOURCES = \
 	Widgets/WorkspaceClone.vala \
 	Widgets/WorkspaceInsertThumb.vala \
 	Deepin/DeepinBlurEffect.vala \
-	Enso/PreviewRow.vala \
 	Enso/WindowSwitcher.vala \
 	Enso/PreviewPage.vala \
+	Enso/PreviewRow.vala \
 	$(NULL)
 
 nodist_gala_SOURCES = \
@@ -650,11 +650,11 @@ Enso/$(am__dirstamp):
 Enso/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) Enso/$(DEPDIR)
 	@: > Enso/$(DEPDIR)/$(am__dirstamp)
-Enso/gala-PreviewRow.$(OBJEXT): Enso/$(am__dirstamp) \
-	Enso/$(DEPDIR)/$(am__dirstamp)
 Enso/gala-WindowSwitcher.$(OBJEXT): Enso/$(am__dirstamp) \
 	Enso/$(DEPDIR)/$(am__dirstamp)
 Enso/gala-PreviewPage.$(OBJEXT): Enso/$(am__dirstamp) \
+	Enso/$(DEPDIR)/$(am__dirstamp)
+Enso/gala-PreviewRow.$(OBJEXT): Enso/$(am__dirstamp) \
 	Enso/$(DEPDIR)/$(am__dirstamp)
 
 gala$(EXEEXT): $(gala_OBJECTS) $(gala_DEPENDENCIES) $(EXTRA_gala_DEPENDENCIES) 
@@ -1269,20 +1269,6 @@ Deepin/gala-DeepinBlurEffect.obj: Deepin/DeepinBlurEffect.c
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Deepin/gala-DeepinBlurEffect.obj `if test -f 'Deepin/DeepinBlurEffect.c'; then $(CYGPATH_W) 'Deepin/DeepinBlurEffect.c'; else $(CYGPATH_W) '$(srcdir)/Deepin/DeepinBlurEffect.c'; fi`
 
-Enso/gala-PreviewRow.o: Enso/PreviewRow.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.o -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
-	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
-#	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
-
-Enso/gala-PreviewRow.obj: Enso/PreviewRow.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.obj -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
-	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
-#	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
-
 Enso/gala-WindowSwitcher.o: Enso/WindowSwitcher.c
 	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-WindowSwitcher.o -MD -MP -MF Enso/$(DEPDIR)/gala-WindowSwitcher.Tpo -c -o Enso/gala-WindowSwitcher.o `test -f 'Enso/WindowSwitcher.c' || echo '$(srcdir)/'`Enso/WindowSwitcher.c
 	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-WindowSwitcher.Tpo Enso/$(DEPDIR)/gala-WindowSwitcher.Po
@@ -1310,6 +1296,20 @@ Enso/gala-PreviewPage.obj: Enso/PreviewPage.c
 #	$(AM_V_CC)source='Enso/PreviewPage.c' object='Enso/gala-PreviewPage.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewPage.obj `if test -f 'Enso/PreviewPage.c'; then $(CYGPATH_W) 'Enso/PreviewPage.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewPage.c'; fi`
+
+Enso/gala-PreviewRow.o: Enso/PreviewRow.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.o -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
+	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
+#	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
+
+Enso/gala-PreviewRow.obj: Enso/PreviewRow.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.obj -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
+	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
+#	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

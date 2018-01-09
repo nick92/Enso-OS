@@ -76,8 +76,8 @@ namespace Gala
 		public bool attach_modal_dialogs { get; set; }
 		public bool dim_parents { get; set; }
 		public double alt_tab_window_opacity { get; set; }
-		public bool alternative_alt_tab { get; set; }
 		public string workspace_switcher_background { get; set; }
+		public bool alternative_alt_tab { get; set; }
 
 		static AppearanceSettings? instance = null;
 
@@ -182,7 +182,7 @@ namespace Gala
 		}
 	}
 
-	public class AlternateAltTabSettings : Granite.Services.Settings
+	class AlternateAltTabSettings : Granite.Services.Settings
 	{
 		public bool all_workspaces { get; set; default = false; }
 		public bool animate { get; set; default = true; }

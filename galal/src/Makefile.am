@@ -1,4 +1,3 @@
-
 include $(top_srcdir)/Makefile.common
 
 VAPIDIR = $(top_srcdir)/vapi
@@ -71,9 +70,9 @@ gala_VALASOURCES = \
 	Widgets/WorkspaceClone.vala \
 	Widgets/WorkspaceInsertThumb.vala \
 	Deepin/DeepinBlurEffect.vala \
-	Enso/PreviewRow.vala \
 	Enso/WindowSwitcher.vala \
 	Enso/PreviewPage.vala \
+	Enso/PreviewRow.vala \
 	$(NULL)
 
 nodist_gala_SOURCES = \

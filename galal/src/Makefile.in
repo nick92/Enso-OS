@@ -141,9 +141,9 @@ am__objects_2 = gala-DBus.$(OBJEXT) gala-DBusAccelerator.$(OBJEXT) \
 	Widgets/gala-WorkspaceClone.$(OBJEXT) \
 	Widgets/gala-WorkspaceInsertThumb.$(OBJEXT) \
 	Deepin/gala-DeepinBlurEffect.$(OBJEXT) \
-	Enso/gala-PreviewRow.$(OBJEXT) \
 	Enso/gala-WindowSwitcher.$(OBJEXT) \
-	Enso/gala-PreviewPage.$(OBJEXT) $(am__objects_1)
+	Enso/gala-PreviewPage.$(OBJEXT) Enso/gala-PreviewRow.$(OBJEXT) \
+	$(am__objects_1)
 nodist_gala_OBJECTS = $(am__objects_2) $(am__objects_1)
 gala_OBJECTS = $(nodist_gala_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -476,9 +476,9 @@ gala_VALASOURCES = \
 	Widgets/WorkspaceClone.vala \
 	Widgets/WorkspaceInsertThumb.vala \
 	Deepin/DeepinBlurEffect.vala \
-	Enso/PreviewRow.vala \
 	Enso/WindowSwitcher.vala \
 	Enso/PreviewPage.vala \
+	Enso/PreviewRow.vala \
 	$(NULL)
 
 nodist_gala_SOURCES = \
@@ -650,11 +650,11 @@ Enso/$(am__dirstamp):
 Enso/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) Enso/$(DEPDIR)
 	@: > Enso/$(DEPDIR)/$(am__dirstamp)
-Enso/gala-PreviewRow.$(OBJEXT): Enso/$(am__dirstamp) \
-	Enso/$(DEPDIR)/$(am__dirstamp)
 Enso/gala-WindowSwitcher.$(OBJEXT): Enso/$(am__dirstamp) \
 	Enso/$(DEPDIR)/$(am__dirstamp)
 Enso/gala-PreviewPage.$(OBJEXT): Enso/$(am__dirstamp) \
+	Enso/$(DEPDIR)/$(am__dirstamp)
+Enso/gala-PreviewRow.$(OBJEXT): Enso/$(am__dirstamp) \
 	Enso/$(DEPDIR)/$(am__dirstamp)
 
 gala$(EXEEXT): $(gala_OBJECTS) $(gala_DEPENDENCIES) $(EXTRA_gala_DEPENDENCIES) 
@@ -1269,20 +1269,6 @@ Deepin/gala-DeepinBlurEffect.obj: Deepin/DeepinBlurEffect.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Deepin/gala-DeepinBlurEffect.obj `if test -f 'Deepin/DeepinBlurEffect.c'; then $(CYGPATH_W) 'Deepin/DeepinBlurEffect.c'; else $(CYGPATH_W) '$(srcdir)/Deepin/DeepinBlurEffect.c'; fi`
 
-Enso/gala-PreviewRow.o: Enso/PreviewRow.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.o -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
-
-Enso/gala-PreviewRow.obj: Enso/PreviewRow.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.obj -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
-
 Enso/gala-WindowSwitcher.o: Enso/WindowSwitcher.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-WindowSwitcher.o -MD -MP -MF Enso/$(DEPDIR)/gala-WindowSwitcher.Tpo -c -o Enso/gala-WindowSwitcher.o `test -f 'Enso/WindowSwitcher.c' || echo '$(srcdir)/'`Enso/WindowSwitcher.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-WindowSwitcher.Tpo Enso/$(DEPDIR)/gala-WindowSwitcher.Po
@@ -1310,6 +1296,20 @@ Enso/gala-PreviewPage.obj: Enso/PreviewPage.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Enso/PreviewPage.c' object='Enso/gala-PreviewPage.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewPage.obj `if test -f 'Enso/PreviewPage.c'; then $(CYGPATH_W) 'Enso/PreviewPage.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewPage.c'; fi`
+
+Enso/gala-PreviewRow.o: Enso/PreviewRow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.o -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.o `test -f 'Enso/PreviewRow.c' || echo '$(srcdir)/'`Enso/PreviewRow.c
+
+Enso/gala-PreviewRow.obj: Enso/PreviewRow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -MT Enso/gala-PreviewRow.obj -MD -MP -MF Enso/$(DEPDIR)/gala-PreviewRow.Tpo -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Enso/$(DEPDIR)/gala-PreviewRow.Tpo Enso/$(DEPDIR)/gala-PreviewRow.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Enso/PreviewRow.c' object='Enso/gala-PreviewRow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(gala_CFLAGS) $(CFLAGS) -c -o Enso/gala-PreviewRow.obj `if test -f 'Enso/PreviewRow.c'; then $(CYGPATH_W) 'Enso/PreviewRow.c'; else $(CYGPATH_W) '$(srcdir)/Enso/PreviewRow.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

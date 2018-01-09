@@ -438,7 +438,7 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/nick/work/Enso-OS/galal'
+ac_pwd='/home/nick/work/Enso/galal'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -865,7 +865,7 @@ S["NOTIFICAION_PLUGIN_CFLAGS"]="-D_REENTRANT -pthread -I/usr/include/gtk-3.0 -I/
 "/lib/x86_64-linux-gnu/glib-2.0/include"
 S["MUTTER_CFLAGS"]=""
 S["MUTTER_PKGS"]="cogl-1.0 clutter-1.0 >= 1.12.0 libmutter >= 3.14.4"
-S["GALA_CORE_LIBS"]="-Wl,--export-dynamic -lgmodule-2.0 -pthread -lgdk-3 -lgranite -lgio-2.0 -lgnome-desktop-3 -lplank -lgee-0.8 -lgthread-2.0 -pthread -lbamf3 -lmutter "\
+S["GALA_CORE_LIBS"]="-Wl,--export-dynamic -lgmodule-2.0 -pthread -lgdk-3 -lgranite -lgio-2.0 -lgthread-2.0 -pthread -lgnome-desktop-3 -lplank -lgee-0.8 -lbamf3 -lmutter "\
 "-lgtk-3 -lclutter-1.0 -lcogl-path -latk-1.0 -lcogl-pango -lcogl -lgmodule-2.0 -pthread -lwayland-egl -lgbm -ldrm -lEGL -lXrandr -ljson-glib-1.0 -lgi"\
 "o-2.0 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo -lgobject-2.0 -lglib-2.0 -lwayland-cursor -lwayland-client -lxkb"\
 "common -lwayland-server -lXext -lXdamage -lXfixes -lXcomposite -lXi -lX11"
@@ -880,8 +880,8 @@ S["GSD316_LIBS"]=""
 S["GSD316_CFLAGS"]=""
 S["GSD310_LIBS"]=""
 S["GSD310_CFLAGS"]=""
-S["PLANK_0_11_LIBS"]="-lplank -lgee-0.8 -lgthread-2.0 -pthread -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lbamf3 -lg"\
-"io-2.0 -lgobject-2.0 -lglib-2.0"
+S["PLANK_0_11_LIBS"]="-lplank -lgee-0.8 -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lbamf3 -lgio-2.0 -lgobject-2.0 -l"\
+"glib-2.0"
 S["PLANK_0_11_CFLAGS"]="-pthread -I/usr/include/plank -I/usr/include/gee-0.8 -I/usr/include/gtk-3.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/at-spi-2.0 -I/usr/include/"\
 "dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/gtk-3.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/mirclient -I/usr/include/mi"\
 "rcore -I/usr/include/mircookie -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0 -I/usr/include/atk-1.0"\
@@ -1048,12 +1048,12 @@ S["mkdir_p"]="$(MKDIR_P)"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]="strip"
-S["install_sh"]="${SHELL} /home/nick/work/Enso-OS/galal/build-aux/install-sh"
-S["MAKEINFO"]="${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing makeinfo"
-S["AUTOHEADER"]="${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing autoheader"
-S["AUTOMAKE"]="${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing automake-1.15"
-S["AUTOCONF"]="${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing autoconf"
-S["ACLOCAL"]="${SHELL} /home/nick/work/Enso-OS/galal/build-aux/missing aclocal-1.15"
+S["install_sh"]="${SHELL} /home/nick/work/Enso/galal/build-aux/install-sh"
+S["MAKEINFO"]="${SHELL} /home/nick/work/Enso/galal/build-aux/missing makeinfo"
+S["AUTOHEADER"]="${SHELL} /home/nick/work/Enso/galal/build-aux/missing autoheader"
+S["AUTOMAKE"]="${SHELL} /home/nick/work/Enso/galal/build-aux/missing automake-1.15"
+S["AUTOCONF"]="${SHELL} /home/nick/work/Enso/galal/build-aux/missing autoconf"
+S["ACLOCAL"]="${SHELL} /home/nick/work/Enso/galal/build-aux/missing aclocal-1.15"
 S["VERSION"]="UNKNOWN"
 S["PACKAGE"]="gala"
 S["CYGPATH_W"]="echo"

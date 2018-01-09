@@ -31,7 +31,6 @@ namespace Gala
 		BackgroundSource background_source;
 		Meta.BackgroundActor background_actor;
 		Meta.BackgroundActor? new_background_actor = null;
-		DeepinBlurEffect blur_actor = null;
 
 		public BackgroundManager (Meta.Screen screen, int monitor_index, bool control_position = true)
 		{
@@ -129,8 +128,6 @@ namespace Gala
 			var background_actor = new Meta.BackgroundActor (screen, monitor_index);
 
 			background_actor.background = background.background;
-
-			//blur_actor.setup(background_actor, 5, 10);
 
 			insert_child_below (background_actor, null);
 
