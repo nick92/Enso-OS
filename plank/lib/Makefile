@@ -170,7 +170,7 @@ am__objects_4 = Version.lo $(am__objects_1)
 am__objects_5 = DBusManager.lo DockController.lo DockPreferences.lo \
 	DockRenderer.lo DragManager.lo HideManager.lo \
 	PositionManager.lo DBus/Client.lo DBus/Interfaces.lo \
-	Docklets/Docklet.lo Docklets/DockletItem.lo \
+	DBus/Gala.lo Docklets/Docklet.lo Docklets/DockletItem.lo \
 	Docklets/DockletManager.lo Drawing/Color.lo \
 	Drawing/DrawingService.lo Drawing/DockTheme.lo \
 	Drawing/Easing.lo Drawing/Renderer.lo Drawing/Surface.lo \
@@ -184,13 +184,13 @@ am__objects_5 = DBusManager.lo DockController.lo DockPreferences.lo \
 	Items/DockItemPreferences.lo Items/DockElement.lo \
 	Items/Enums.lo Items/FileDockItem.lo \
 	Items/PlaceholderDockItem.lo Items/PlankDockItem.lo \
-	Items/TransientDockItem.lo Services/Environment.lo \
-	Services/EnvironmentSettings.lo Services/Logger.lo \
-	Services/Paths.lo Services/Preferences.lo Services/Settings.lo \
-	Services/System.lo Services/Unity.lo Services/Worker.lo \
-	Widgets/CompositedWindow.lo Widgets/DockWindow.lo \
-	Widgets/HoverWindow.lo Widgets/PoofWindow.lo \
-	Widgets/PreferencesWindow.lo \
+	Items/SeparatorDockItem.lo Items/TransientDockItem.lo \
+	Services/Environment.lo Services/EnvironmentSettings.lo \
+	Services/Logger.lo Services/Paths.lo Services/Preferences.lo \
+	Services/Settings.lo Services/System.lo Services/Unity.lo \
+	Services/Worker.lo Widgets/CompositedWindow.lo \
+	Widgets/DockWindow.lo Widgets/HoverWindow.lo \
+	Widgets/PoofWindow.lo Widgets/PreferencesWindow.lo \
 	Widgets/TitledSeparatorMenuItem.lo $(am__objects_1)
 nodist_libplank_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_1)
@@ -708,6 +708,7 @@ libplank_la_VALASOURCES = \
 	PositionManager.vala \
 	DBus/Client.vala \
 	DBus/Interfaces.vala \
+	DBus/Gala.vala \
 	Docklets/Docklet.vala \
 	Docklets/DockletItem.vala \
 	Docklets/DockletManager.vala \
@@ -735,6 +736,7 @@ libplank_la_VALASOURCES = \
 	Items/FileDockItem.vala \
 	Items/PlaceholderDockItem.vala \
 	Items/PlankDockItem.vala \
+	Items/SeparatorDockItem.vala \
 	Items/TransientDockItem.vala \
 	Services/Environment.vala \
 	Services/EnvironmentSettings.vala \
@@ -940,6 +942,7 @@ DBus/$(DEPDIR)/$(am__dirstamp):
 DBus/Client.lo: DBus/$(am__dirstamp) DBus/$(DEPDIR)/$(am__dirstamp)
 DBus/Interfaces.lo: DBus/$(am__dirstamp) \
 	DBus/$(DEPDIR)/$(am__dirstamp)
+DBus/Gala.lo: DBus/$(am__dirstamp) DBus/$(DEPDIR)/$(am__dirstamp)
 Docklets/$(am__dirstamp):
 	@$(MKDIR_P) Docklets
 	@: > Docklets/$(am__dirstamp)
@@ -1017,6 +1020,8 @@ Items/PlaceholderDockItem.lo: Items/$(am__dirstamp) \
 	Items/$(DEPDIR)/$(am__dirstamp)
 Items/PlankDockItem.lo: Items/$(am__dirstamp) \
 	Items/$(DEPDIR)/$(am__dirstamp)
+Items/SeparatorDockItem.lo: Items/$(am__dirstamp) \
+	Items/$(DEPDIR)/$(am__dirstamp)
 Items/TransientDockItem.lo: Items/$(am__dirstamp) \
 	Items/$(DEPDIR)/$(am__dirstamp)
 Services/Environment.lo: Services/$(am__dirstamp) \
@@ -1086,6 +1091,7 @@ include ./$(DEPDIR)/libplank_internal_la-InternalQuarks.Plo
 include ./$(DEPDIR)/libplank_internal_la-gtk-compat.Plo
 include ./$(DEPDIR)/plank-resources.Plo
 include DBus/$(DEPDIR)/Client.Plo
+include DBus/$(DEPDIR)/Gala.Plo
 include DBus/$(DEPDIR)/Interfaces.Plo
 include Docklets/$(DEPDIR)/Docklet.Plo
 include Docklets/$(DEPDIR)/DockletItem.Plo
@@ -1114,6 +1120,7 @@ include Items/$(DEPDIR)/Enums.Plo
 include Items/$(DEPDIR)/FileDockItem.Plo
 include Items/$(DEPDIR)/PlaceholderDockItem.Plo
 include Items/$(DEPDIR)/PlankDockItem.Plo
+include Items/$(DEPDIR)/SeparatorDockItem.Plo
 include Items/$(DEPDIR)/TransientDockItem.Plo
 include Services/$(DEPDIR)/Environment.Plo
 include Services/$(DEPDIR)/EnvironmentSettings.Plo

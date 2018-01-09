@@ -1,3 +1,4 @@
+
 include $(top_srcdir)/Makefile.common
 
 AM_CFLAGS = \
@@ -67,6 +68,7 @@ libplank_la_VALASOURCES = \
 	PositionManager.vala \
 	DBus/Client.vala \
 	DBus/Interfaces.vala \
+	DBus/Gala.vala \
 	Docklets/Docklet.vala \
 	Docklets/DockletItem.vala \
 	Docklets/DockletManager.vala \
@@ -94,6 +96,7 @@ libplank_la_VALASOURCES = \
 	Items/FileDockItem.vala \
 	Items/PlaceholderDockItem.vala \
 	Items/PlankDockItem.vala \
+	Items/SeparatorDockItem.vala \
 	Items/TransientDockItem.vala \
 	Services/Environment.vala \
 	Services/EnvironmentSettings.vala \

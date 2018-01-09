@@ -30,17 +30,18 @@ namespace Docky
 		{
 			GLib.Object (Prefs: new DockItemPreferences.with_file (file));
 		}
-		
+
 		construct
 		{
 			Icon = "resource://" + Docky.G_RESOURCE_PATH + "/icons/separator.svg";
 			//Text = _("Show Separator");
 		}
-		
+
 		~SeparatorDockItem ()
 		{
+
 		}
-		
+
 		protected override AnimationType on_clicked (PopupButton button, Gdk.ModifierType mod, uint32 event_time)
 		{
 			return AnimationType.NONE;

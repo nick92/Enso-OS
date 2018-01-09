@@ -421,6 +421,8 @@ namespace Plank
 				items.add (item);
 			}
 
+			items.add (new Gtk.SeparatorMenuItem ());
+
 			var event_time = Gtk.get_current_event_time ();
 			if (is_running () && window_count > 0) {
 				var item_close = create_menu_item ((window_count > 1 ? _("_Close All") : _("_Close")), "window-close-symbolic;;window-close");
@@ -430,6 +432,10 @@ namespace Plank
 				var item_min = create_menu_item ((window_count > 1 ? _("_Minimize All") : _("_Minimize")), "window-minimize-symbolic;;window-minimize");
 				item_min.activate.connect (() => WindowControl.minimize_all (App, event_time));
 				items.add (item_min);
+
+				var item_launch = create_menu_item (( _("_New Window")), "list-add-symbolic");
+				item_launch.activate.connect (() => launch());
+				items.add (item_launch);
 			}
 
 #if HAVE_DBUSMENU

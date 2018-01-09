@@ -312,6 +312,10 @@ namespace Plank
 						center_and_focus_window (window, event_time);
 						break;
 					}
+					else {
+						focus_next(app, event_time);
+						break;
+					}
 				}
 			}
 
@@ -320,19 +324,8 @@ namespace Plank
 			if (xids == null)
 				return;
 
-			/*var v = 0;
-			for (; xids != null && v < xids.length; v++) {
-				unowned Wnck.Window? window = Wnck.Window.@get (xids.index (v));
-				if (window != null && window.is_active ()){
-					i = v + 1;
-					break;
-				}
-			}*/
-
 			if (i == xids.length)
 				i = 0;
-
-			//focus_window_by_xid (xids.index (i), event_time);
 		}
 
 		public static void focus_next (Bamf.Application app, uint32 event_time)

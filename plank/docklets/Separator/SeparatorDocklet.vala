@@ -25,34 +25,34 @@ public static void docklet_init (Plank.DockletManager manager)
 namespace Docky
 {
 	public const string G_RESOURCE_PATH = "/net/launchpad/plank/docklets/separator";
-	
+
 	public class SeparatorDocklet : Object, Plank.Docklet
 	{
 		public unowned string get_id ()
 		{
-			return "separator";
+			return _("separator");
 		}
-		
+
 		public unowned string get_name ()
 		{
 			return _("Separator");
 		}
-		
+
 		public unowned string get_description ()
 		{
 			return _("Show your Separator.");
 		}
-		
+
 		public unowned string get_icon ()
 		{
 			return "resource://" + Docky.G_RESOURCE_PATH + "/icons/separator.svg";
 		}
-		
+
 		public bool is_supported ()
 		{
 			return true;
 		}
-		
+
 		public Plank.DockElement make_element (string launcher, GLib.File file)
 		{
 			return new SeparatorDockItem.with_dockitem_file (file);
