@@ -66,6 +66,7 @@ vala_precompile (VALA_C
     src/Widgets/TimeLabel.vala
     src/Widgets/PowerLabel.vala
     src/Widgets/Wallpaper.vala
+    src/Widgets/Avatar.vala
 
     ${CMAKE_BINARY_DIR}/src/config.vala
 PACKAGES

@@ -368,7 +368,7 @@ public class PantheonGreeter : Gtk.Window {
         get_size (out width, out height);
 
         if(height > NORMAL_HEIGHT)
-          userlist_actor.y = height / 2 - userlist_actor.height / 2 ;
+          userlist_actor.y = height / 2 - userlist_actor.height;
         else {
             userlist_actor.y = height / 2;
         }

@@ -64,17 +64,12 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
         credentials_area = new CredentialsArea (this, user);
 
         var path = user.avatar_path;
-        Gtk.Image avatar;
-        var size = 130;
-        //var size = pixel_size * get_style_context ().get_scale ();
+        Avatar avatar;
 
         if (path != null) {
-            avatar = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_file_at_size(path, size, size));
-            //avatar.get_style_context ().add_class("avatar");
-            //avatar = new Granite.Widgets.Avatar.from_file (path, 130);
+            avatar = new Avatar.from_file (path, 160);
         } else {
-            avatar = new Gtk.Image.from_pixbuf (icon_theme.load_icon ("avatar-default", size, 0));
-            //avatar = new Granite.Widgets.Avatar.with_default_icon (130);
+            avatar = new Avatar.with_default_icon (160);
         }
 
         var grid = new Gtk.Grid ();
@@ -96,7 +91,8 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
             var logged_in = new Gtk.Image.from_file (Constants.PKGDATADIR + "/checked.svg");
 
             var logged_in_actor = new GtkClutter.Actor ();
-            logged_in_actor.x = logged_in_actor.y = 75;
+            logged_in_actor.x = 90;
+            logged_in_actor.y = 140;
 
             ((Gtk.Container) logged_in_actor.get_widget ()).add (logged_in);
 
@@ -114,8 +110,9 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
 
     }
 
-    /*string get_default () {
+    string get_default () {
         var settings = new KeyFile ();
+        string default_wallpaper = "";
         //string default_wallpaper = "/usr/share/backgrounds/elementaryos-default";
         try {
             settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
@@ -124,7 +121,7 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
             warning (e.message);
         }
         return default_wallpaper;
-    }*/
+    }
 
     /**
      * Starts the login procedure. Necessary to call this before the user
