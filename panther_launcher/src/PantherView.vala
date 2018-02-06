@@ -192,7 +192,6 @@ namespace Panther {
             this.focus_on_map = true;
             this.decorated = false;
             this.avoid_show = false;
-            this.set_opacity (0.5);
 
             //get_style_context ().add_class ("view2");
 
@@ -235,8 +234,8 @@ namespace Panther {
             Gdk.Rectangle geometry;
             screen.get_monitor_geometry (primary_monitor, out geometry);
             Panther.settings.screen_resolution = @"$(geometry.width)x$(geometry.height)";
-            default_columns = 6;
-            default_rows = 5;
+            //default_columns = 6;
+            //default_rows = 5;
             while ((calculate_grid_width () >= 2 * geometry.width / 3)) {
                 default_columns--;
             }
@@ -487,6 +486,7 @@ namespace Panther {
                 screen.get_monitor_geometry (screen.get_primary_monitor (), out geometry);
                 if (Panther.settings.screen_resolution != @"$(geometry.width)x$(geometry.height)") {
                     setup_size ();
+                    setup_ui ();
                 }
                 reposition ();
             });
