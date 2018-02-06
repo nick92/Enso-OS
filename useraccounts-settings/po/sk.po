@@ -1,0 +1,279 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-22 14:36-0500\n"
+"PO-Revision-Date: 2016-01-15 15:22+0000\n"
+"Last-Translator: Ľubomír Hlavko <5lubo555@azet.sk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-02-09 06:00+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
+
+#: ../src/Views/GuestSettingsView.vala:29 ../src/Views/UserSettingsView.vala:52
+msgid "You do not have permission to change this"
+msgstr "Nemáte oprávnenie na zmenu tohto"
+
+#: ../src/Views/GuestSettingsView.vala:52 ../src/Widgets/UserListBox.vala:104
+msgid "Guest Session"
+msgstr "Relácia pre hosťa"
+
+#: ../src/Views/GuestSettingsView.vala:88
+#: ../src/Views/UserSettingsView.vala:178
+msgid "Log In automatically:"
+msgstr "Automatické prihlásenie:"
+
+#: ../src/Views/GuestSettingsView.vala:97
+msgid ""
+"The Guest Session allows someone to use a temporary default account without "
+"a password."
+msgstr ""
+"Relácia pre hosťa umožňuje niekomu používať dočasne užívateľský účet bez "
+"hesla."
+
+#: ../src/Views/GuestSettingsView.vala:98
+msgid "Once they log out, all of their settings and data will be deleted."
+msgstr "Po odhlásení budú všetky ich nastavenia a dáta odstránené."
+
+#: ../src/Views/MainView.vala:38
+msgid "Undo last user account removal"
+msgstr "Vrátiť späť posledné odstránenie používateľského účtu"
+
+#: ../src/Views/MainView.vala:39
+msgid "Undo"
+msgstr ""
+
+#: ../src/Views/UserSettingsView.vala:53
+msgid "You cannot change this for the currently active user"
+msgstr "Nemôžte toto zmeniť pre práve aktívneho používateľa"
+
+#: ../src/Views/UserSettingsView.vala:54
+msgid "You cannot remove the last administrator's privileges"
+msgstr "Nemôžete zrušiť práva posledného administrátora"
+
+#: ../src/Views/UserSettingsView.vala:94
+msgid "Account type:"
+msgstr "Typ konta:"
+
+#: ../src/Views/UserSettingsView.vala:99
+msgid "Standard"
+msgstr "Štandardné"
+
+#: ../src/Views/UserSettingsView.vala:100 ../src/Widgets/UserItem.vala:52
+#: ../src/Widgets/Popovers/NewUserPopover.vala:61
+msgid "Administrator"
+msgstr "Administrátor"
+
+#: ../src/Views/UserSettingsView.vala:107
+msgid "Language:"
+msgstr "Jazyk:"
+
+#: ../src/Views/UserSettingsView.vala:174
+msgid "Click to switch to Language & Locale Settings"
+msgstr "Kliknite pre prenutie Jazyka & Regionálne nastavenia"
+
+#: ../src/Views/UserSettingsView.vala:190
+msgid "Password:"
+msgstr "Heslo :"
+
+#: ../src/Views/UserSettingsView.vala:350
+msgid "Enable User Account"
+msgstr "Aktivovať účet používateľa"
+
+#: ../src/Views/UserSettingsView.vala:353
+msgid "Disable User Account"
+msgstr "Deaktivovať účet použivateľa"
+
+#: ../src/Views/UserSettingsView.vala:358
+msgid "None set"
+msgstr "Nič nie je nastavené"
+
+#: ../src/Widgets/ListFooter.vala:35
+msgid "Create user account"
+msgstr "Vytvoriť používateľský účet"
+
+#: ../src/Widgets/ListFooter.vala:39 ../src/Widgets/ListFooter.vala:69
+msgid "Remove user account and its data"
+msgstr "Odstrániť používateľský účet a jeho dáta"
+
+#: ../src/Widgets/ListFooter.vala:73
+msgid "You cannot remove your own user account"
+msgstr "Nemôžte odstrániť svoj vlastný používateľský účet"
+
+#: ../src/Widgets/UserListBox.vala:38
+msgid "My Account"
+msgstr "Môj účet"
+
+#: ../src/Widgets/UserListBox.vala:42
+msgid "Other Accounts"
+msgstr "Iné účty"
+
+#: ../src/Widgets/UserListBox.vala:84
+msgid "Enabled"
+msgstr "Povolené"
+
+#: ../src/Widgets/UserListBox.vala:88
+msgid "Disabled"
+msgstr "Zakázané"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:35
+msgid "Remove"
+msgstr "Odstrániť"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:38
+msgid "Set from File…"
+msgstr "Nastaviť zo súboru..."
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:62
+msgid "Select an image"
+msgstr "Vyberte obrázok"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:63
+#: ../src/Dialogs/AvatarDialog.vala:71
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:64
+msgid "Open"
+msgstr "Otvoriť"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:67
+msgid "Images"
+msgstr "Obrázky"
+
+#: ../src/Widgets/Popovers/PasswordPopover.vala:47
+msgid "Change Password"
+msgstr "Zmeniť heslo"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:60
+msgid "Standard User"
+msgstr "Štandardný používateľ"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:68
+msgid "Full Name"
+msgstr "Celé meno"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:78
+msgid "Username"
+msgstr "Užívateľské meno:"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:82
+msgid "Can only contain lower case letters, numbers and no spaces"
+msgstr "Môže obsahovať len malé písmena, čísla a nemôže obsahovať medzery"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:100
+msgid "Set password now"
+msgstr "Nastavte heslo"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:102
+msgid "Set no password for login"
+msgstr "Nastavte prázdne heslo pre prihlásenie"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:104
+msgid "Let user create password on first login"
+msgstr "Užívateľ vytvorí heslo pri prvom prihlásení"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:128
+msgid "Create User"
+msgstr "Vytvoriť používateľa"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:170
+msgid "Username is already taken"
+msgstr "Použivateľské meno je už zabrané"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:173
+msgid "Username is not valid"
+msgstr "Používateľské meno je nesprávne"
+
+#: ../src/Widgets/PasswordEditor.vala:67
+msgid "Current Password"
+msgstr "Súčasné heslo"
+
+#: ../src/Widgets/PasswordEditor.vala:71
+msgid "Press to authenticate"
+msgstr "Stlač pre autentifikovanie"
+
+#: ../src/Widgets/PasswordEditor.vala:89
+msgid "Authentication failed"
+msgstr "Autentifikácia neúspešná"
+
+#: ../src/Widgets/PasswordEditor.vala:121
+msgid "New Password"
+msgstr "Nové heslo"
+
+#: ../src/Widgets/PasswordEditor.vala:125
+msgid "Password cannot be empty"
+msgstr "Heslo nemôže byť prázdne"
+
+#: ../src/Widgets/PasswordEditor.vala:141
+msgid "Confirm New Password"
+msgstr "Potvrdenie nového hesla"
+
+#: ../src/Widgets/PasswordEditor.vala:144
+msgid "Passwords do not match"
+msgstr "Heslá sa nezhodujú"
+
+#: ../src/Widgets/PasswordEditor.vala:148
+msgid "Show passwords"
+msgstr "Zobraziť heslá"
+
+#: ../src/Widgets/PasswordEditor.vala:169
+msgid "Password accepted"
+msgstr "Heslo prijaté"
+
+#: ../src/Widgets/PasswordEditor.vala:190
+msgid "Weak password strength"
+msgstr "Slabá silá hesla"
+
+#: ../src/Widgets/PasswordEditor.vala:192
+msgid "Medium password strength"
+msgstr "Stredne silné heslo"
+
+#: ../src/Widgets/PasswordEditor.vala:194
+msgid "Strong password strength"
+msgstr "Silné heslo"
+
+#: ../src/Widgets/PasswordEditor.vala:209
+msgid "Resembles your current password"
+msgstr "Podobá sa stávajucemu heslu"
+
+#: ../src/Widgets/PasswordEditor.vala:211
+msgid "New password is too simple"
+msgstr "Nové heslo je príliš jednoduché"
+
+#: ../src/Widgets/PasswordEditor.vala:213
+msgid "New password is a palindrome"
+msgstr "Nové heslo je palindróm"
+
+#: ../src/Plug.vala:35
+msgid "Authentication is required to change user data"
+msgstr "Na zmenu používateľských údajov je vyžadované overenie totožnosti"
+
+#: ../src/Plug.vala:42
+msgid "User Accounts"
+msgstr "Používateľské účty"
+
+#: ../src/Plug.vala:43
+msgid ""
+"Manage account permissions and configure user names, passwords, and photos"
+msgstr ""
+
+#: ../src/Plug.vala:71
+msgid "Password change failed"
+msgstr "Zmena hesla zlyhala"
+
+#: ../src/Plug.vala:85
+msgid ""
+"Guest session changes will not take effect until you restart your system"
+msgstr "Relácia pre hosťa nemá vplyv pokým nereštartujete váš systém"
+
+#: ../src/Plug.vala:104
+msgid "Some settings require administrator rights to be changed"
+msgstr "Na zmenu niektorých nastavení sú potrebné administrátorské práva"
+
+#: ../src/Dialogs/AvatarDialog.vala:72
+msgid "Change Avatar"
+msgstr "Zmeniť avatar"

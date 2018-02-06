@@ -1,0 +1,286 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-22 14:36-0500\n"
+"PO-Revision-Date: 2017-05-07 19:06+0000\n"
+"Last-Translator: Piotr Strebski <strebski@o2.pl>\n"
+"Language-Team: Polish <https://l10n.elementary.io/projects/switchboard/"
+"switchboard-plug-useraccounts/pl/>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-02-09 06:00+0000\n"
+
+#: ../src/Views/GuestSettingsView.vala:29 ../src/Views/UserSettingsView.vala:52
+msgid "You do not have permission to change this"
+msgstr "Nie masz uprawnień, aby to zmienić"
+
+#: ../src/Views/GuestSettingsView.vala:52 ../src/Widgets/UserListBox.vala:104
+msgid "Guest Session"
+msgstr "Sesja gościa"
+
+#: ../src/Views/GuestSettingsView.vala:88
+#: ../src/Views/UserSettingsView.vala:178
+msgid "Log In automatically:"
+msgstr "Zaloguj automatycznie:"
+
+#: ../src/Views/GuestSettingsView.vala:97
+msgid ""
+"The Guest Session allows someone to use a temporary default account without "
+"a password."
+msgstr ""
+"Sesja gościa pozwala dowolnej osobie na używanie tymczasowo domyślnego konta "
+"bez hasła."
+
+#: ../src/Views/GuestSettingsView.vala:98
+msgid "Once they log out, all of their settings and data will be deleted."
+msgstr "Po wylogowaniu, wszystkie ustawienia i pliki zostaną skasowane."
+
+#: ../src/Views/MainView.vala:38
+msgid "Undo last user account removal"
+msgstr "Cofnij ostatnie usunięcie konta użytkownika"
+
+#: ../src/Views/MainView.vala:39
+msgid "Undo"
+msgstr "Cofnij"
+
+#: ../src/Views/UserSettingsView.vala:53
+msgid "You cannot change this for the currently active user"
+msgstr "Nie możesz tego zmienić dla aktywnego użytkownika"
+
+#: ../src/Views/UserSettingsView.vala:54
+msgid "You cannot remove the last administrator's privileges"
+msgstr "Nie możesz usunąć ostatnich przywilejów administratora"
+
+#: ../src/Views/UserSettingsView.vala:94
+msgid "Account type:"
+msgstr "Rodzaj konta:"
+
+#: ../src/Views/UserSettingsView.vala:99
+msgid "Standard"
+msgstr "Standardowe"
+
+#: ../src/Views/UserSettingsView.vala:100 ../src/Widgets/UserItem.vala:52
+#: ../src/Widgets/Popovers/NewUserPopover.vala:61
+msgid "Administrator"
+msgstr "Administrator"
+
+#: ../src/Views/UserSettingsView.vala:107
+msgid "Language:"
+msgstr "Język:"
+
+#: ../src/Views/UserSettingsView.vala:174
+msgid "Click to switch to Language & Locale Settings"
+msgstr "Kliknij, aby zmienić język i ustawienia lokalizacji"
+
+#: ../src/Views/UserSettingsView.vala:190
+msgid "Password:"
+msgstr "Hasło:"
+
+#: ../src/Views/UserSettingsView.vala:350
+msgid "Enable User Account"
+msgstr "Aktywuj konto użytkownika"
+
+#: ../src/Views/UserSettingsView.vala:353
+msgid "Disable User Account"
+msgstr "Wyłącz konto użytkownika"
+
+#: ../src/Views/UserSettingsView.vala:358
+msgid "None set"
+msgstr "Nie ustawiono"
+
+#: ../src/Widgets/ListFooter.vala:35
+msgid "Create user account"
+msgstr "Utwórz konto użytkownika"
+
+#: ../src/Widgets/ListFooter.vala:39 ../src/Widgets/ListFooter.vala:69
+msgid "Remove user account and its data"
+msgstr "Usuń konto użytkownika i jego pliki"
+
+#: ../src/Widgets/ListFooter.vala:73
+msgid "You cannot remove your own user account"
+msgstr "Nie możesz usunąć swojego własnego konta"
+
+#: ../src/Widgets/UserListBox.vala:38
+msgid "My Account"
+msgstr "Moje konto"
+
+#: ../src/Widgets/UserListBox.vala:42
+msgid "Other Accounts"
+msgstr "Inne konta"
+
+#: ../src/Widgets/UserListBox.vala:84
+msgid "Enabled"
+msgstr "Włączone"
+
+#: ../src/Widgets/UserListBox.vala:88
+msgid "Disabled"
+msgstr "Wyłączone"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:35
+msgid "Remove"
+msgstr "Usuń"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:38
+msgid "Set from File…"
+msgstr "Ustaw z pliku…"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:62
+msgid "Select an image"
+msgstr "Wybierz obraz"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:63
+#: ../src/Dialogs/AvatarDialog.vala:71
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:64
+msgid "Open"
+msgstr "Otwórz"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:67
+msgid "Images"
+msgstr "Obrazy"
+
+#: ../src/Widgets/Popovers/PasswordPopover.vala:47
+msgid "Change Password"
+msgstr "Zmień hasło"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:60
+msgid "Standard User"
+msgstr "Zwykły użytkownik"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:68
+msgid "Full Name"
+msgstr "Imię i nazwisko"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:78
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:82
+msgid "Can only contain lower case letters, numbers and no spaces"
+msgstr "Może zawierać tylko małe litery, cyfry, bez spacji"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:100
+msgid "Set password now"
+msgstr "Teraz ustaw hasło"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:102
+msgid "Set no password for login"
+msgstr "Brak hasła przy logowaniu"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:104
+msgid "Let user create password on first login"
+msgstr "Niech użytkownik ustawi hasło przy pierwszym logowaniu"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:128
+msgid "Create User"
+msgstr "Utwórz użytkownika"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:170
+msgid "Username is already taken"
+msgstr "Nazwa użytkownika jest już zajęta"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:173
+msgid "Username is not valid"
+msgstr "Nazwa użytkownika jest błędna"
+
+#: ../src/Widgets/PasswordEditor.vala:67
+msgid "Current Password"
+msgstr "Bieżące hasło"
+
+#: ../src/Widgets/PasswordEditor.vala:71
+msgid "Press to authenticate"
+msgstr "Kliknij, aby autoryzować"
+
+#: ../src/Widgets/PasswordEditor.vala:89
+msgid "Authentication failed"
+msgstr "Błąd uwierzytelnienia"
+
+#: ../src/Widgets/PasswordEditor.vala:121
+msgid "New Password"
+msgstr "Nowe hasło"
+
+#: ../src/Widgets/PasswordEditor.vala:125
+msgid "Password cannot be empty"
+msgstr "Hasło nie może być puste"
+
+#: ../src/Widgets/PasswordEditor.vala:141
+msgid "Confirm New Password"
+msgstr "Potwierdź nowe hasło"
+
+#: ../src/Widgets/PasswordEditor.vala:144
+msgid "Passwords do not match"
+msgstr "Hasła nie pasują do siebie"
+
+#: ../src/Widgets/PasswordEditor.vala:148
+msgid "Show passwords"
+msgstr "Wyświetl hasła"
+
+#: ../src/Widgets/PasswordEditor.vala:169
+msgid "Password accepted"
+msgstr "Hasło zaakceptowane"
+
+#: ../src/Widgets/PasswordEditor.vala:190
+msgid "Weak password strength"
+msgstr "Słabe hasło"
+
+#: ../src/Widgets/PasswordEditor.vala:192
+msgid "Medium password strength"
+msgstr "Średnie hasło"
+
+#: ../src/Widgets/PasswordEditor.vala:194
+msgid "Strong password strength"
+msgstr "Silne hasło"
+
+#: ../src/Widgets/PasswordEditor.vala:209
+msgid "Resembles your current password"
+msgstr "Przypomina Twoje obecne hasło"
+
+#: ../src/Widgets/PasswordEditor.vala:211
+msgid "New password is too simple"
+msgstr "Nowe hasło jest zbyt proste"
+
+#: ../src/Widgets/PasswordEditor.vala:213
+msgid "New password is a palindrome"
+msgstr "Nowe hasło jest palindromem"
+
+#: ../src/Plug.vala:35
+msgid "Authentication is required to change user data"
+msgstr "Wymagane jest uwierzytelnienie, aby zmienić dane użytkowników"
+
+#: ../src/Plug.vala:42
+msgid "User Accounts"
+msgstr "Konta użytkowników"
+
+#: ../src/Plug.vala:43
+msgid ""
+"Manage account permissions and configure user names, passwords, and photos"
+msgstr ""
+"Zarządzaj uprawnieniami konta i konfiguruj nazwy użytkowników, hasła oraz "
+"zdjęcia"
+
+#: ../src/Plug.vala:71
+msgid "Password change failed"
+msgstr "Zmiana hasła nie powiodła się"
+
+#: ../src/Plug.vala:85
+msgid ""
+"Guest session changes will not take effect until you restart your system"
+msgstr ""
+"Zmiany dokonane w sesji gościa nie przyniosą efektu, do czasu restartu "
+"systemu"
+
+#: ../src/Plug.vala:104
+msgid "Some settings require administrator rights to be changed"
+msgstr "Zmiana niektórych ustawień wymaga uprawnień administratora"
+
+#: ../src/Dialogs/AvatarDialog.vala:72
+msgid "Change Avatar"
+msgstr "Zmień awatar"

@@ -1,0 +1,285 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-22 14:36-0500\n"
+"PO-Revision-Date: 2017-05-21 07:48+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"Language-Team: Finnish <https://l10n.elementary.io/projects/switchboard/"
+"switchboard-plug-useraccounts/fi/>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.14\n"
+"X-Launchpad-Export-Date: 2017-02-09 06:00+0000\n"
+
+#: ../src/Views/GuestSettingsView.vala:29 ../src/Views/UserSettingsView.vala:52
+msgid "You do not have permission to change this"
+msgstr "Oikeutesi eivät riitä tämän kohdan muuttamiseen"
+
+#: ../src/Views/GuestSettingsView.vala:52 ../src/Widgets/UserListBox.vala:104
+msgid "Guest Session"
+msgstr "Vierasistunto"
+
+#: ../src/Views/GuestSettingsView.vala:88
+#: ../src/Views/UserSettingsView.vala:178
+msgid "Log In automatically:"
+msgstr "Kirjaudu automaattisesti:"
+
+#: ../src/Views/GuestSettingsView.vala:97
+msgid ""
+"The Guest Session allows someone to use a temporary default account without "
+"a password."
+msgstr ""
+"Vierasistunto sallii järjestelmän käytön väliaikaisella tilillä ilman "
+"salasanaa."
+
+#: ../src/Views/GuestSettingsView.vala:98
+msgid "Once they log out, all of their settings and data will be deleted."
+msgstr "Kirjautumisen yhteydessä kaikki tiedot poistetaan."
+
+#: ../src/Views/MainView.vala:38
+msgid "Undo last user account removal"
+msgstr "Kumoa viimeisin käyttäjätunnuksen poistaminen"
+
+#: ../src/Views/MainView.vala:39
+msgid "Undo"
+msgstr "Kumoa"
+
+#: ../src/Views/UserSettingsView.vala:53
+msgid "You cannot change this for the currently active user"
+msgstr "Et voi vaihtaa tätä parhaillaan aktiivisena olevalle käyttäjälle"
+
+#: ../src/Views/UserSettingsView.vala:54
+msgid "You cannot remove the last administrator's privileges"
+msgstr "Et voi poistaa viimeisiä ylläpitäjän oikeuksia"
+
+#: ../src/Views/UserSettingsView.vala:94
+msgid "Account type:"
+msgstr "Käyttäjätilin tyyppi:"
+
+#: ../src/Views/UserSettingsView.vala:99
+msgid "Standard"
+msgstr "Tavallinen"
+
+#: ../src/Views/UserSettingsView.vala:100 ../src/Widgets/UserItem.vala:52
+#: ../src/Widgets/Popovers/NewUserPopover.vala:61
+msgid "Administrator"
+msgstr "Ylläpitäjä"
+
+#: ../src/Views/UserSettingsView.vala:107
+msgid "Language:"
+msgstr "Kieli:"
+
+#: ../src/Views/UserSettingsView.vala:174
+msgid "Click to switch to Language & Locale Settings"
+msgstr "Napsauta vaihtaaksesi kieliasetuksia"
+
+#: ../src/Views/UserSettingsView.vala:190
+msgid "Password:"
+msgstr "Salasana:"
+
+#: ../src/Views/UserSettingsView.vala:350
+msgid "Enable User Account"
+msgstr "Ota tili käyttöön"
+
+#: ../src/Views/UserSettingsView.vala:353
+msgid "Disable User Account"
+msgstr "Poista tili käytöstä"
+
+#: ../src/Views/UserSettingsView.vala:358
+msgid "None set"
+msgstr "Ei asetettu"
+
+#: ../src/Widgets/ListFooter.vala:35
+msgid "Create user account"
+msgstr "Luo käyttäjätunnus"
+
+#: ../src/Widgets/ListFooter.vala:39 ../src/Widgets/ListFooter.vala:69
+msgid "Remove user account and its data"
+msgstr "Poista käyttäjätunnus ja sen kaikki tiedostot"
+
+#: ../src/Widgets/ListFooter.vala:73
+msgid "You cannot remove your own user account"
+msgstr "Et voi poistaa omaa käyttäjätunnustasi"
+
+#: ../src/Widgets/UserListBox.vala:38
+msgid "My Account"
+msgstr "Oma tili"
+
+#: ../src/Widgets/UserListBox.vala:42
+msgid "Other Accounts"
+msgstr "Muut tilit"
+
+#: ../src/Widgets/UserListBox.vala:84
+msgid "Enabled"
+msgstr "Käytössä"
+
+#: ../src/Widgets/UserListBox.vala:88
+msgid "Disabled"
+msgstr "Ei käytössä"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:35
+msgid "Remove"
+msgstr "Poista"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:38
+msgid "Set from File…"
+msgstr "Aseta tiedostosta…"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:62
+msgid "Select an image"
+msgstr "Valitse kuva"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:63
+#: ../src/Dialogs/AvatarDialog.vala:71
+msgid "Cancel"
+msgstr "Peru"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:64
+msgid "Open"
+msgstr "Avaa"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:67
+msgid "Images"
+msgstr "Kuvat"
+
+#: ../src/Widgets/Popovers/PasswordPopover.vala:47
+msgid "Change Password"
+msgstr "Vaihda salasana"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:60
+msgid "Standard User"
+msgstr "Peruskäyttäjä"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:68
+msgid "Full Name"
+msgstr "Koko nimi"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:78
+msgid "Username"
+msgstr "Käyttäjätunnus"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:82
+msgid "Can only contain lower case letters, numbers and no spaces"
+msgstr "Voi sisältää vain pieniä kirjaimia, numeroita, mutta ei välilyöntejä"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:100
+msgid "Set password now"
+msgstr "Aseta salasana nyt"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:102
+msgid "Set no password for login"
+msgstr "Älä aseta salasanaa kirjautumista varten"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:104
+msgid "Let user create password on first login"
+msgstr "Salli käyttäjän luoda salasana ensimmäisellä kirjautumiskerralla"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:128
+msgid "Create User"
+msgstr "Luo käyttäjä"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:170
+msgid "Username is already taken"
+msgstr "Käyttäjätunnus on jo käytössä"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:173
+msgid "Username is not valid"
+msgstr "Käyttäjätunnus on virheellinen"
+
+#: ../src/Widgets/PasswordEditor.vala:67
+msgid "Current Password"
+msgstr "Nykyinen salasana"
+
+#: ../src/Widgets/PasswordEditor.vala:71
+msgid "Press to authenticate"
+msgstr "Paina tunnistautuaksesi"
+
+#: ../src/Widgets/PasswordEditor.vala:89
+msgid "Authentication failed"
+msgstr "Tunnistautuminen epäonnistui"
+
+#: ../src/Widgets/PasswordEditor.vala:121
+msgid "New Password"
+msgstr "Uusi salasana"
+
+#: ../src/Widgets/PasswordEditor.vala:125
+msgid "Password cannot be empty"
+msgstr "Salasana ei voi olla tyhjä"
+
+#: ../src/Widgets/PasswordEditor.vala:141
+msgid "Confirm New Password"
+msgstr "Vahvista uusi salasana"
+
+#: ../src/Widgets/PasswordEditor.vala:144
+msgid "Passwords do not match"
+msgstr "Salasanat eivät täsmää"
+
+#: ../src/Widgets/PasswordEditor.vala:148
+msgid "Show passwords"
+msgstr "Näytä salasanat"
+
+#: ../src/Widgets/PasswordEditor.vala:169
+msgid "Password accepted"
+msgstr "Salasana hyväksytty"
+
+#: ../src/Widgets/PasswordEditor.vala:190
+msgid "Weak password strength"
+msgstr "Heikko salasana"
+
+#: ../src/Widgets/PasswordEditor.vala:192
+msgid "Medium password strength"
+msgstr "Keskinkertainen salasana"
+
+#: ../src/Widgets/PasswordEditor.vala:194
+msgid "Strong password strength"
+msgstr "Vahva salasana"
+
+#: ../src/Widgets/PasswordEditor.vala:209
+msgid "Resembles your current password"
+msgstr "Muistuttaa nykyistä salasanaasi"
+
+#: ../src/Widgets/PasswordEditor.vala:211
+msgid "New password is too simple"
+msgstr "Uusi salasana on liian yksinkertainen"
+
+#: ../src/Widgets/PasswordEditor.vala:213
+msgid "New password is a palindrome"
+msgstr "Uusi salasana on palindromi"
+
+#: ../src/Plug.vala:35
+msgid "Authentication is required to change user data"
+msgstr "Käyttäjätietojen muuttaminen vaatii tunnistautumisen"
+
+#: ../src/Plug.vala:42
+msgid "User Accounts"
+msgstr "Käyttäjätilit"
+
+#: ../src/Plug.vala:43
+msgid ""
+"Manage account permissions and configure user names, passwords, and photos"
+msgstr ""
+"Hallitse käyttäjätilien oikeuksia ja muokkaa käyttäjätunnuksia, salasanoja "
+"sekä käyttäjien kuvia"
+
+#: ../src/Plug.vala:71
+msgid "Password change failed"
+msgstr "Salasanan vaihtaminen epäonnistui"
+
+#: ../src/Plug.vala:85
+msgid ""
+"Guest session changes will not take effect until you restart your system"
+msgstr ""
+"Vierasistunnon muutokset eivät tule voimaan, ennen kuin käynnistät "
+"järjestelmän uudelleen"
+
+#: ../src/Plug.vala:104
+msgid "Some settings require administrator rights to be changed"
+msgstr "Jotkin asetukset vaativat muutoksia varten ylläpitäjän oikeuksia"
+
+#: ../src/Dialogs/AvatarDialog.vala:72
+msgid "Change Avatar"
+msgstr "Vaihda kuva"

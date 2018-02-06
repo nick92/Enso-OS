@@ -1,0 +1,286 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-22 14:36-0500\n"
+"PO-Revision-Date: 2017-08-16 11:48+0000\n"
+"Last-Translator: gogogogi <trebelnik2@gmail.com>\n"
+"Language-Team: Croatian <https://weblate.elementary.io/projects/switchboard"
+"/switchboard-plug-useraccounts/hr/>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.15\n"
+"X-Launchpad-Export-Date: 2017-02-09 06:00+0000\n"
+
+#: ../src/Views/GuestSettingsView.vala:29 ../src/Views/UserSettingsView.vala:52
+msgid "You do not have permission to change this"
+msgstr "Nemate dozvolu za ovu promjenu"
+
+#: ../src/Views/GuestSettingsView.vala:52 ../src/Widgets/UserListBox.vala:104
+msgid "Guest Session"
+msgstr "Prijava gosta"
+
+#: ../src/Views/GuestSettingsView.vala:88
+#: ../src/Views/UserSettingsView.vala:178
+msgid "Log In automatically:"
+msgstr "Automatska prijava:"
+
+#: ../src/Views/GuestSettingsView.vala:97
+msgid ""
+"The Guest Session allows someone to use a temporary default account without "
+"a password."
+msgstr ""
+"Račun gosta dopušta korisnicima upotrebu privremenog korisničkog računa bez "
+"lozinke."
+
+#: ../src/Views/GuestSettingsView.vala:98
+msgid "Once they log out, all of their settings and data will be deleted."
+msgstr "Nakon odjave sve postavke i datoteke će biti obrisane."
+
+#: ../src/Views/MainView.vala:38
+msgid "Undo last user account removal"
+msgstr "Poništi uklanjanje posljednjeg računa"
+
+#: ../src/Views/MainView.vala:39
+msgid "Undo"
+msgstr ""
+
+#: ../src/Views/UserSettingsView.vala:53
+msgid "You cannot change this for the currently active user"
+msgstr "Ovo ne možete promijeniti za trenutno aktivnog korisnika"
+
+#: ../src/Views/UserSettingsView.vala:54
+msgid "You cannot remove the last administrator's privileges"
+msgstr "Ne možete ukloniti posljednje administratorske ovlasti"
+
+#: ../src/Views/UserSettingsView.vala:94
+msgid "Account type:"
+msgstr "Vrsta računa:"
+
+#: ../src/Views/UserSettingsView.vala:99
+msgid "Standard"
+msgstr "Standardni"
+
+#: ../src/Views/UserSettingsView.vala:100 ../src/Widgets/UserItem.vala:52
+#: ../src/Widgets/Popovers/NewUserPopover.vala:61
+msgid "Administrator"
+msgstr "Administrator"
+
+#: ../src/Views/UserSettingsView.vala:107
+msgid "Language:"
+msgstr "Jezik:"
+
+#: ../src/Views/UserSettingsView.vala:174
+msgid "Click to switch to Language & Locale Settings"
+msgstr "Klikni za odlazak u postavke jezika i regije"
+
+#: ../src/Views/UserSettingsView.vala:190
+msgid "Password:"
+msgstr "Lozinka:"
+
+#: ../src/Views/UserSettingsView.vala:350
+msgid "Enable User Account"
+msgstr "Omogući korisnički račun"
+
+#: ../src/Views/UserSettingsView.vala:353
+msgid "Disable User Account"
+msgstr "Onemogući korisnički račun"
+
+#: ../src/Views/UserSettingsView.vala:358
+msgid "None set"
+msgstr "Ništa nije postavljeno"
+
+#: ../src/Widgets/ListFooter.vala:35
+msgid "Create user account"
+msgstr "Stvori korisnički račun"
+
+#: ../src/Widgets/ListFooter.vala:39 ../src/Widgets/ListFooter.vala:69
+msgid "Remove user account and its data"
+msgstr "Ukloni korisnički račun i njegove podatke"
+
+#: ../src/Widgets/ListFooter.vala:73
+msgid "You cannot remove your own user account"
+msgstr "Ne možete obrisati vlastiti račun"
+
+#: ../src/Widgets/UserListBox.vala:38
+msgid "My Account"
+msgstr "Moj račun"
+
+#: ../src/Widgets/UserListBox.vala:42
+msgid "Other Accounts"
+msgstr "Ostali računi"
+
+#: ../src/Widgets/UserListBox.vala:84
+msgid "Enabled"
+msgstr "Omogućeno"
+
+#: ../src/Widgets/UserListBox.vala:88
+msgid "Disabled"
+msgstr "Onemogućeno"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:35
+msgid "Remove"
+msgstr "Ukloni"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:38
+msgid "Set from File…"
+msgstr "Postavi iz datoteke…"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:62
+msgid "Select an image"
+msgstr "Odaberi sliku"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:63
+#: ../src/Dialogs/AvatarDialog.vala:71
+msgid "Cancel"
+msgstr "Odustani"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:64
+msgid "Open"
+msgstr "Otvori"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:67
+msgid "Images"
+msgstr "Slike"
+
+#: ../src/Widgets/Popovers/PasswordPopover.vala:47
+msgid "Change Password"
+msgstr "Promijeni lozinku"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:60
+msgid "Standard User"
+msgstr "Standardan korisnik"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:68
+msgid "Full Name"
+msgstr "Puno ime"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:78
+msgid "Username"
+msgstr "Korisničko ime"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:82
+msgid "Can only contain lower case letters, numbers and no spaces"
+msgstr "Može sadržavati samo mala slova i brojeve bez razmaka"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:100
+msgid "Set password now"
+msgstr "Sada postavite lozinku"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:102
+msgid "Set no password for login"
+msgstr "Nemojte postaviti lozinku prijave"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:104
+msgid "Let user create password on first login"
+msgstr "Korisnik će stvoriti lozinku prilikom prve prijave"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:128
+msgid "Create User"
+msgstr "Stvori korisnika"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:170
+msgid "Username is already taken"
+msgstr "Korisničko ime je već zauzeto"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:173
+msgid "Username is not valid"
+msgstr "Korisničko ime je neispravno"
+
+#: ../src/Widgets/PasswordEditor.vala:67
+msgid "Current Password"
+msgstr "Trenutna lozinka"
+
+#: ../src/Widgets/PasswordEditor.vala:71
+msgid "Press to authenticate"
+msgstr "Pritisni za ovjeru"
+
+#: ../src/Widgets/PasswordEditor.vala:89
+msgid "Authentication failed"
+msgstr "Ovjera nije uspjela"
+
+#: ../src/Widgets/PasswordEditor.vala:121
+msgid "New Password"
+msgstr "Nova lozinka"
+
+#: ../src/Widgets/PasswordEditor.vala:125
+msgid "Password cannot be empty"
+msgstr "Lozinka ne može biti prazna"
+
+#: ../src/Widgets/PasswordEditor.vala:141
+msgid "Confirm New Password"
+msgstr "Potvrdi novu lozinku"
+
+#: ../src/Widgets/PasswordEditor.vala:144
+msgid "Passwords do not match"
+msgstr "Lozinke se ne podudaraju"
+
+#: ../src/Widgets/PasswordEditor.vala:148
+msgid "Show passwords"
+msgstr "Prikaži lozinke"
+
+#: ../src/Widgets/PasswordEditor.vala:169
+msgid "Password accepted"
+msgstr "Lozinka prihvaćena"
+
+#: ../src/Widgets/PasswordEditor.vala:190
+msgid "Weak password strength"
+msgstr "Slaba lozinka"
+
+#: ../src/Widgets/PasswordEditor.vala:192
+msgid "Medium password strength"
+msgstr "Srednje snažna lozinka"
+
+#: ../src/Widgets/PasswordEditor.vala:194
+msgid "Strong password strength"
+msgstr "Snažna lozinka"
+
+#: ../src/Widgets/PasswordEditor.vala:209
+msgid "Resembles your current password"
+msgstr "Nalikuje na vašu trenutnu lozinku"
+
+#: ../src/Widgets/PasswordEditor.vala:211
+msgid "New password is too simple"
+msgstr "Nova lozinka je preslaba"
+
+#: ../src/Widgets/PasswordEditor.vala:213
+msgid "New password is a palindrome"
+msgstr "Nova lozinka je obrnuta"
+
+#: ../src/Plug.vala:35
+msgid "Authentication is required to change user data"
+msgstr "Potrebna je ovjera za promjenu podataka korisnika"
+
+#: ../src/Plug.vala:42
+msgid "User Accounts"
+msgstr "Korisnički računi"
+
+#: ../src/Plug.vala:43
+msgid ""
+"Manage account permissions and configure user names, passwords, and photos"
+msgstr ""
+"Upravljajte dozvolama računa, prilagodite korisnička imena, lozinke i "
+"fotografije"
+
+#: ../src/Plug.vala:71
+msgid "Password change failed"
+msgstr "Neuspjela promjena lozinke"
+
+#: ../src/Plug.vala:85
+msgid ""
+"Guest session changes will not take effect until you restart your system"
+msgstr ""
+"Promjene prijave gosta neće biti primijenjene sve dok ponovno ne pokrenete "
+"računalo"
+
+#: ../src/Plug.vala:104
+msgid "Some settings require administrator rights to be changed"
+msgstr "Neke postavke zahtijevaju administratorske ovlasti"
+
+#: ../src/Dialogs/AvatarDialog.vala:72
+msgid "Change Avatar"
+msgstr "Promijeni sliku"

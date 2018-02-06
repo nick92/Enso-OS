@@ -1,0 +1,282 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-22 14:36-0500\n"
+"PO-Revision-Date: 2017-06-03 12:24+0000\n"
+"Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
+"Language-Team: Korean <https://l10n.elementary.io/projects/switchboard"
+"/switchboard-plug-useraccounts/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.14\n"
+"X-Launchpad-Export-Date: 2017-02-09 06:00+0000\n"
+
+#: ../src/Views/GuestSettingsView.vala:29 ../src/Views/UserSettingsView.vala:52
+msgid "You do not have permission to change this"
+msgstr "이 설정을 바꿀 권한이 없습니다"
+
+#: ../src/Views/GuestSettingsView.vala:52 ../src/Widgets/UserListBox.vala:104
+msgid "Guest Session"
+msgstr "게스트 세션"
+
+#: ../src/Views/GuestSettingsView.vala:88
+#: ../src/Views/UserSettingsView.vala:178
+msgid "Log In automatically:"
+msgstr "자동 로그인:"
+
+#: ../src/Views/GuestSettingsView.vala:97
+msgid ""
+"The Guest Session allows someone to use a temporary default account without "
+"a password."
+msgstr ""
+"게스트 세션은 다른 사용자가 비밀번호 없이 임시 기본 계정을 사용하도록 해 줍니"
+"다."
+
+#: ../src/Views/GuestSettingsView.vala:98
+msgid "Once they log out, all of their settings and data will be deleted."
+msgstr "로그아웃하면, 모든 설정과 데이터는 지워집니다."
+
+#: ../src/Views/MainView.vala:38
+msgid "Undo last user account removal"
+msgstr "마지막 사용자 계정 삭제 되돌리기"
+
+#: ../src/Views/MainView.vala:39
+msgid "Undo"
+msgstr "되돌리기"
+
+#: ../src/Views/UserSettingsView.vala:53
+msgid "You cannot change this for the currently active user"
+msgstr "현재 활동 중인 사용자의 설정은 변경할 수 없습니다"
+
+#: ../src/Views/UserSettingsView.vala:54
+msgid "You cannot remove the last administrator's privileges"
+msgstr "마지막 남은 관리자의 권한을 제거할 수 없습니다"
+
+#: ../src/Views/UserSettingsView.vala:94
+msgid "Account type:"
+msgstr "계정 형식:"
+
+#: ../src/Views/UserSettingsView.vala:99
+msgid "Standard"
+msgstr "표준"
+
+#: ../src/Views/UserSettingsView.vala:100 ../src/Widgets/UserItem.vala:52
+#: ../src/Widgets/Popovers/NewUserPopover.vala:61
+msgid "Administrator"
+msgstr "관리자"
+
+#: ../src/Views/UserSettingsView.vala:107
+msgid "Language:"
+msgstr "언어:"
+
+#: ../src/Views/UserSettingsView.vala:174
+msgid "Click to switch to Language & Locale Settings"
+msgstr "언어 & 로케일 설정으로 전환하려면 클릭하세요"
+
+#: ../src/Views/UserSettingsView.vala:190
+msgid "Password:"
+msgstr "비밀번호:"
+
+#: ../src/Views/UserSettingsView.vala:350
+msgid "Enable User Account"
+msgstr "사용자 계정 활성화"
+
+#: ../src/Views/UserSettingsView.vala:353
+msgid "Disable User Account"
+msgstr "사용자 계정 비활성화"
+
+#: ../src/Views/UserSettingsView.vala:358
+msgid "None set"
+msgstr "설정하지 않음"
+
+#: ../src/Widgets/ListFooter.vala:35
+msgid "Create user account"
+msgstr "사용자 계정 생성하기"
+
+#: ../src/Widgets/ListFooter.vala:39 ../src/Widgets/ListFooter.vala:69
+msgid "Remove user account and its data"
+msgstr "사용자 계정과 데이터를 지우기"
+
+#: ../src/Widgets/ListFooter.vala:73
+msgid "You cannot remove your own user account"
+msgstr "당신의 사용자 계정을 삭제할 수 없습니다"
+
+#: ../src/Widgets/UserListBox.vala:38
+msgid "My Account"
+msgstr "내 계정"
+
+#: ../src/Widgets/UserListBox.vala:42
+msgid "Other Accounts"
+msgstr "기타 계정"
+
+#: ../src/Widgets/UserListBox.vala:84
+msgid "Enabled"
+msgstr "사용함"
+
+#: ../src/Widgets/UserListBox.vala:88
+msgid "Disabled"
+msgstr "사용 안 함"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:35
+msgid "Remove"
+msgstr "제거"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:38
+msgid "Set from File…"
+msgstr "사용할 파일 찾기…"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:62
+msgid "Select an image"
+msgstr "이미지를 선택하세요"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:63
+#: ../src/Dialogs/AvatarDialog.vala:71
+msgid "Cancel"
+msgstr "취소"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:64
+msgid "Open"
+msgstr "열기"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:67
+msgid "Images"
+msgstr "이미지"
+
+#: ../src/Widgets/Popovers/PasswordPopover.vala:47
+msgid "Change Password"
+msgstr "비밀번호 바꾸기"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:60
+msgid "Standard User"
+msgstr "일반 사용자"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:68
+msgid "Full Name"
+msgstr "전체 이름"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:78
+msgid "Username"
+msgstr "사용자 이름"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:82
+msgid "Can only contain lower case letters, numbers and no spaces"
+msgstr "소문자, 숫자만을 포함할 수 있으며 스페이스는 입력할 수 없습니다"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:100
+msgid "Set password now"
+msgstr "지금 비밀번호 설정하기"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:102
+msgid "Set no password for login"
+msgstr "로그인 비밀번호 설정하지 않기"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:104
+msgid "Let user create password on first login"
+msgstr "사용자가 첫 로그인 때 비밀번호를 설정하도록 하기"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:128
+msgid "Create User"
+msgstr "새 사용자 만들기"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:170
+msgid "Username is already taken"
+msgstr "사용자 이름이 이미 사용 중입니다"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:173
+msgid "Username is not valid"
+msgstr "사용자 이름이 유효하지 않습니다"
+
+#: ../src/Widgets/PasswordEditor.vala:67
+msgid "Current Password"
+msgstr "현재 비밀번호"
+
+#: ../src/Widgets/PasswordEditor.vala:71
+msgid "Press to authenticate"
+msgstr "눌러서 인증하기"
+
+#: ../src/Widgets/PasswordEditor.vala:89
+msgid "Authentication failed"
+msgstr "인증에 실패했습니다"
+
+#: ../src/Widgets/PasswordEditor.vala:121
+msgid "New Password"
+msgstr "새 비밀번호"
+
+#: ../src/Widgets/PasswordEditor.vala:125
+msgid "Password cannot be empty"
+msgstr "비밀번호는 빈칸일 수 없습니다"
+
+#: ../src/Widgets/PasswordEditor.vala:141
+msgid "Confirm New Password"
+msgstr "새 비밀번호 확인"
+
+#: ../src/Widgets/PasswordEditor.vala:144
+msgid "Passwords do not match"
+msgstr "비밀번호가 다릅니다"
+
+#: ../src/Widgets/PasswordEditor.vala:148
+msgid "Show passwords"
+msgstr "비밀번호 보이기"
+
+#: ../src/Widgets/PasswordEditor.vala:169
+msgid "Password accepted"
+msgstr "비밀번호 승인됨"
+
+#: ../src/Widgets/PasswordEditor.vala:190
+msgid "Weak password strength"
+msgstr "비밀번호 강도 약함"
+
+#: ../src/Widgets/PasswordEditor.vala:192
+msgid "Medium password strength"
+msgstr "비밀번호 강도 중간"
+
+#: ../src/Widgets/PasswordEditor.vala:194
+msgid "Strong password strength"
+msgstr "비밀번호 강도 강함"
+
+#: ../src/Widgets/PasswordEditor.vala:209
+msgid "Resembles your current password"
+msgstr "사용 중인 비밀번호와 닮았습니다"
+
+#: ../src/Widgets/PasswordEditor.vala:211
+msgid "New password is too simple"
+msgstr "새 비밀번호가 너무 단순합니다"
+
+#: ../src/Widgets/PasswordEditor.vala:213
+msgid "New password is a palindrome"
+msgstr "새 비밀번호가 앞뒤로 똑같이 읽힙니다"
+
+#: ../src/Plug.vala:35
+msgid "Authentication is required to change user data"
+msgstr "사용자 데이터를 바꾸려면 인증이 필요합니다"
+
+#: ../src/Plug.vala:42
+msgid "User Accounts"
+msgstr "사용자 계정"
+
+#: ../src/Plug.vala:43
+msgid ""
+"Manage account permissions and configure user names, passwords, and photos"
+msgstr ""
+"사용자 권한 설정과 사용자 이름, 비밀번호, 그리고 프로필 사진 등을 관리합니다"
+
+#: ../src/Plug.vala:71
+msgid "Password change failed"
+msgstr "비밀번호 변경 실패"
+
+#: ../src/Plug.vala:85
+msgid ""
+"Guest session changes will not take effect until you restart your system"
+msgstr "게스트 세션의 변경은 재부팅 후에 적용됩니다"
+
+#: ../src/Plug.vala:104
+msgid "Some settings require administrator rights to be changed"
+msgstr "일부 설정은 변경할 때 관리자 권한이 필요합니다"
+
+#: ../src/Dialogs/AvatarDialog.vala:72
+msgid "Change Avatar"
+msgstr "아바타 변경"

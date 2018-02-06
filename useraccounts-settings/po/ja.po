@@ -1,0 +1,283 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-22 14:36-0500\n"
+"PO-Revision-Date: 2017-05-12 11:26+0000\n"
+"Last-Translator: Ryo Nakano <nscnskichiro0911@gmail.com>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
+"switchboard-plug-useraccounts/ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-02-09 06:00+0000\n"
+
+#: ../src/Views/GuestSettingsView.vala:29 ../src/Views/UserSettingsView.vala:52
+msgid "You do not have permission to change this"
+msgstr "これを変更する権限がありません"
+
+#: ../src/Views/GuestSettingsView.vala:52 ../src/Widgets/UserListBox.vala:104
+msgid "Guest Session"
+msgstr "ゲストセッション"
+
+#: ../src/Views/GuestSettingsView.vala:88
+#: ../src/Views/UserSettingsView.vala:178
+msgid "Log In automatically:"
+msgstr "自動的にログインする:"
+
+#: ../src/Views/GuestSettingsView.vala:97
+msgid ""
+"The Guest Session allows someone to use a temporary default account without "
+"a password."
+msgstr ""
+"ゲストセッションは、誰かが一時的な既定のアカウントをパスワードなしに使うこと"
+"を可能にします。"
+
+#: ../src/Views/GuestSettingsView.vala:98
+msgid "Once they log out, all of their settings and data will be deleted."
+msgstr "ログアウトすると、設定やデータは削除されます。"
+
+#: ../src/Views/MainView.vala:38
+msgid "Undo last user account removal"
+msgstr "最後のユーザーアカウント削除を取り消します"
+
+#: ../src/Views/MainView.vala:39
+msgid "Undo"
+msgstr "やり直す"
+
+#: ../src/Views/UserSettingsView.vala:53
+msgid "You cannot change this for the currently active user"
+msgstr "現在アクティブなユーザーのため変更することはできません"
+
+#: ../src/Views/UserSettingsView.vala:54
+msgid "You cannot remove the last administrator's privileges"
+msgstr "最後の管理者の権限を削除することはできません"
+
+#: ../src/Views/UserSettingsView.vala:94
+msgid "Account type:"
+msgstr "アカウントの種類:"
+
+#: ../src/Views/UserSettingsView.vala:99
+msgid "Standard"
+msgstr "標準"
+
+#: ../src/Views/UserSettingsView.vala:100 ../src/Widgets/UserItem.vala:52
+#: ../src/Widgets/Popovers/NewUserPopover.vala:61
+msgid "Administrator"
+msgstr "管理者"
+
+#: ../src/Views/UserSettingsView.vala:107
+msgid "Language:"
+msgstr "言語:"
+
+#: ../src/Views/UserSettingsView.vala:174
+msgid "Click to switch to Language & Locale Settings"
+msgstr "言語と地域の設定を変更する場合はクリックしてください"
+
+#: ../src/Views/UserSettingsView.vala:190
+msgid "Password:"
+msgstr "パスワード:"
+
+#: ../src/Views/UserSettingsView.vala:350
+msgid "Enable User Account"
+msgstr "アカウントを有効にする"
+
+#: ../src/Views/UserSettingsView.vala:353
+msgid "Disable User Account"
+msgstr "アカウントを無効にする"
+
+#: ../src/Views/UserSettingsView.vala:358
+msgid "None set"
+msgstr "未設定"
+
+#: ../src/Widgets/ListFooter.vala:35
+msgid "Create user account"
+msgstr "ユーザーアカウントを追加します"
+
+#: ../src/Widgets/ListFooter.vala:39 ../src/Widgets/ListFooter.vala:69
+msgid "Remove user account and its data"
+msgstr "ユーザーアカウントとデータを削除します"
+
+#: ../src/Widgets/ListFooter.vala:73
+msgid "You cannot remove your own user account"
+msgstr "自分自身のユーザーアカウントは削除できません"
+
+#: ../src/Widgets/UserListBox.vala:38
+msgid "My Account"
+msgstr "自分のアカウント"
+
+#: ../src/Widgets/UserListBox.vala:42
+msgid "Other Accounts"
+msgstr "その他のアカウント"
+
+#: ../src/Widgets/UserListBox.vala:84
+msgid "Enabled"
+msgstr "有効にする"
+
+#: ../src/Widgets/UserListBox.vala:88
+msgid "Disabled"
+msgstr "無効にする"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:35
+msgid "Remove"
+msgstr "削除"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:38
+msgid "Set from File…"
+msgstr "ファイルから設定…"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:62
+msgid "Select an image"
+msgstr "画像を選択する"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:63
+#: ../src/Dialogs/AvatarDialog.vala:71
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:64
+msgid "Open"
+msgstr "開く"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:67
+msgid "Images"
+msgstr "画像"
+
+#: ../src/Widgets/Popovers/PasswordPopover.vala:47
+msgid "Change Password"
+msgstr "パスワードを変更"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:60
+msgid "Standard User"
+msgstr "標準ユーザー"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:68
+msgid "Full Name"
+msgstr "フルネーム"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:78
+msgid "Username"
+msgstr "ユーザー名"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:82
+msgid "Can only contain lower case letters, numbers and no spaces"
+msgstr "英字小文字と数字のみ、空白なし"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:100
+msgid "Set password now"
+msgstr "今すぐパスワードを設定"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:102
+msgid "Set no password for login"
+msgstr "パスワードを設定しない"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:104
+msgid "Let user create password on first login"
+msgstr "初回ログイン時にパスワードを設定する"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:128
+msgid "Create User"
+msgstr "ユーザー作成"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:170
+msgid "Username is already taken"
+msgstr "ユーザー名がすでに使われています"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:173
+msgid "Username is not valid"
+msgstr "ユーザー名が無効です"
+
+#: ../src/Widgets/PasswordEditor.vala:67
+msgid "Current Password"
+msgstr "現在のパスワード"
+
+#: ../src/Widgets/PasswordEditor.vala:71
+msgid "Press to authenticate"
+msgstr "認証するにはクリックしてください"
+
+#: ../src/Widgets/PasswordEditor.vala:89
+msgid "Authentication failed"
+msgstr "認証に失敗しました"
+
+#: ../src/Widgets/PasswordEditor.vala:121
+msgid "New Password"
+msgstr "新しいパスワード"
+
+#: ../src/Widgets/PasswordEditor.vala:125
+msgid "Password cannot be empty"
+msgstr "パスワードは空にできません"
+
+#: ../src/Widgets/PasswordEditor.vala:141
+msgid "Confirm New Password"
+msgstr "新しいパスワードの確認"
+
+#: ../src/Widgets/PasswordEditor.vala:144
+msgid "Passwords do not match"
+msgstr "パスワードが一致しません"
+
+#: ../src/Widgets/PasswordEditor.vala:148
+msgid "Show passwords"
+msgstr "パスワードを表示"
+
+#: ../src/Widgets/PasswordEditor.vala:169
+msgid "Password accepted"
+msgstr "パスワードが承認されました"
+
+#: ../src/Widgets/PasswordEditor.vala:190
+msgid "Weak password strength"
+msgstr "弱いパスワード強度"
+
+#: ../src/Widgets/PasswordEditor.vala:192
+msgid "Medium password strength"
+msgstr "中位のパスワード強度"
+
+#: ../src/Widgets/PasswordEditor.vala:194
+msgid "Strong password strength"
+msgstr "強いパスワード強度"
+
+#: ../src/Widgets/PasswordEditor.vala:209
+msgid "Resembles your current password"
+msgstr "現在のパスワードに似ています"
+
+#: ../src/Widgets/PasswordEditor.vala:211
+msgid "New password is too simple"
+msgstr "新しいパスワードが簡単すぎます"
+
+#: ../src/Widgets/PasswordEditor.vala:213
+msgid "New password is a palindrome"
+msgstr "新しいパスワードが回文です"
+
+#: ../src/Plug.vala:35
+msgid "Authentication is required to change user data"
+msgstr "ユーザーのデータを変更するには認証が必要です"
+
+#: ../src/Plug.vala:42
+msgid "User Accounts"
+msgstr "ユーザーアカウント"
+
+#: ../src/Plug.vala:43
+msgid ""
+"Manage account permissions and configure user names, passwords, and photos"
+msgstr ""
+"アカウントのパーミッションの管理や、ユーザー名、パスワード、写真の設定をしま"
+"す"
+
+#: ../src/Plug.vala:71
+msgid "Password change failed"
+msgstr "パスワード変更に失敗しました"
+
+#: ../src/Plug.vala:85
+msgid ""
+"Guest session changes will not take effect until you restart your system"
+msgstr "ゲストセッションの変更は再起動するまで反映されません"
+
+#: ../src/Plug.vala:104
+msgid "Some settings require administrator rights to be changed"
+msgstr "一部の設定変更には管理者権限が必要です"
+
+#: ../src/Dialogs/AvatarDialog.vala:72
+msgid "Change Avatar"
+msgstr "アバターを変更"

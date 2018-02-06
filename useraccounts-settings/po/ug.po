@@ -1,0 +1,280 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-22 14:36-0500\n"
+"PO-Revision-Date: 2016-12-24 14:45+0000\n"
+"Last-Translator: ablimet <Unknown>\n"
+"Language-Team: \n"
+"Language: ug\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-02-09 06:00+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
+
+#: ../src/Views/GuestSettingsView.vala:29 ../src/Views/UserSettingsView.vala:52
+msgid "You do not have permission to change this"
+msgstr "سىزنىڭ بۇنى ئۆزگەرتىش سالاھىيىتىڭىز يوق"
+
+#: ../src/Views/GuestSettingsView.vala:52 ../src/Widgets/UserListBox.vala:104
+msgid "Guest Session"
+msgstr "مېھمان"
+
+#: ../src/Views/GuestSettingsView.vala:88
+#: ../src/Views/UserSettingsView.vala:178
+msgid "Log In automatically:"
+msgstr "ئاپتوماتىك كىرىش:"
+
+#: ../src/Views/GuestSettingsView.vala:97
+msgid ""
+"The Guest Session allows someone to use a temporary default account without "
+"a password."
+msgstr ""
+"مېھمان دىئالوگى باشقىلارنىڭ پارولسىزلا مەلۇم ۋاقىت ئىشلىتىشىگە يول قويىدۇ."
+
+#: ../src/Views/GuestSettingsView.vala:98
+msgid "Once they log out, all of their settings and data will be deleted."
+msgstr "چىكىنگەن چاغدا، ئۇلارنىڭ بارلىق تەڭشەكلىرى ۋە ئۇچۇرلىرى ئۆچۈرىلىدۇ."
+
+#: ../src/Views/MainView.vala:38
+msgid "Undo last user account removal"
+msgstr "ئالدىنقى قىتىم ئۆچۈرۈلگەن ئابونت ھىساۋاتىنى ئەسلىگە كەلتۈرۈش"
+
+#: ../src/Views/MainView.vala:39
+msgid "Undo"
+msgstr ""
+
+#: ../src/Views/UserSettingsView.vala:53
+msgid "You cannot change this for the currently active user"
+msgstr "ھازىر ئىشلىتىۋاتقان ئابونت بۇ تۈرنى ئۆزگەرتەلمەيدۇ"
+
+#: ../src/Views/UserSettingsView.vala:54
+msgid "You cannot remove the last administrator's privileges"
+msgstr "سىز ئالدىنقى باشقۇرغۇچىنىڭ ھوقۇقىنى ئۆچۈرەلمەيسىز"
+
+#: ../src/Views/UserSettingsView.vala:94
+msgid "Account type:"
+msgstr "ھېسابات تىپى:"
+
+#: ../src/Views/UserSettingsView.vala:99
+msgid "Standard"
+msgstr "ئۆلچەملىك"
+
+#: ../src/Views/UserSettingsView.vala:100 ../src/Widgets/UserItem.vala:52
+#: ../src/Widgets/Popovers/NewUserPopover.vala:61
+msgid "Administrator"
+msgstr "باشقۇرغۇچى"
+
+#: ../src/Views/UserSettingsView.vala:107
+msgid "Language:"
+msgstr "تىل:"
+
+#: ../src/Views/UserSettingsView.vala:174
+msgid "Click to switch to Language & Locale Settings"
+msgstr "تىل ۋە يەرلىك تەڭشەكلەرنى ئالماشتۇرۇش ئۈچۈن بىسىڭ"
+
+#: ../src/Views/UserSettingsView.vala:190
+msgid "Password:"
+msgstr "پارول"
+
+#: ../src/Views/UserSettingsView.vala:350
+msgid "Enable User Account"
+msgstr "ئابونت ھىساۋاتىنى قوزغىتىش"
+
+#: ../src/Views/UserSettingsView.vala:353
+msgid "Disable User Account"
+msgstr "ئابونت ھىساۋاتىنى چەكلەش"
+
+#: ../src/Views/UserSettingsView.vala:358
+msgid "None set"
+msgstr "تەڭشەلمىگەن"
+
+#: ../src/Widgets/ListFooter.vala:35
+msgid "Create user account"
+msgstr "ئابونت ھىساۋاتى قۇرۇش"
+
+#: ../src/Widgets/ListFooter.vala:39 ../src/Widgets/ListFooter.vala:69
+msgid "Remove user account and its data"
+msgstr "ئابونت ھىساۋاتى ۋە ئۇچۇرلىرىنى ئۆچۈرۈش"
+
+#: ../src/Widgets/ListFooter.vala:73
+msgid "You cannot remove your own user account"
+msgstr "ئۆزىڭىزنىڭ ھىساۋاتىڭىزنى ئۆچۈرەلمەيسىز"
+
+#: ../src/Widgets/UserListBox.vala:38
+msgid "My Account"
+msgstr "ھىساۋاتىم"
+
+#: ../src/Widgets/UserListBox.vala:42
+msgid "Other Accounts"
+msgstr "باشقا ھىساۋاتلار"
+
+#: ../src/Widgets/UserListBox.vala:84
+msgid "Enabled"
+msgstr "قوزغىتىلغان"
+
+#: ../src/Widgets/UserListBox.vala:88
+msgid "Disabled"
+msgstr "چەكلەنگەن"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:35
+msgid "Remove"
+msgstr "ئۆچۈرۈش"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:38
+msgid "Set from File…"
+msgstr "ھۆججەتتىن تەڭشەش...."
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:62
+msgid "Select an image"
+msgstr "رەسىم تاللاش"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:63
+#: ../src/Dialogs/AvatarDialog.vala:71
+msgid "Cancel"
+msgstr "ئەمەلدىن قالدۇرۇش"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:64
+msgid "Open"
+msgstr "ئىچىش"
+
+#: ../src/Widgets/Popovers/AvatarPopover.vala:67
+msgid "Images"
+msgstr "رەسىملەر"
+
+#: ../src/Widgets/Popovers/PasswordPopover.vala:47
+msgid "Change Password"
+msgstr "پارولنى ئۆزگەرتىش"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:60
+msgid "Standard User"
+msgstr "ئۆلچەملىك ئابونت"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:68
+msgid "Full Name"
+msgstr "تولۇق ئىسمى"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:78
+msgid "Username"
+msgstr "ئابونت ئىسمى"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:82
+msgid "Can only contain lower case letters, numbers and no spaces"
+msgstr "پەقەت كىچىك ھەرپ ۋە سانلارنى كىرگۈزەلەيسىز"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:100
+msgid "Set password now"
+msgstr "ھازىر پارول بىكىتىش"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:102
+msgid "Set no password for login"
+msgstr "پارولسىز كىرىدىغان قىلىپ تەڭشەش"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:104
+msgid "Let user create password on first login"
+msgstr "ئابونتنى تۇنجى قىتىم كىرگەندە پارول بىكىتكۈزۈش"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:128
+msgid "Create User"
+msgstr "ئابونت قۇرۇش"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:170
+msgid "Username is already taken"
+msgstr "ئابونت ئىسمى ئىشلىتىلىپ بولغان"
+
+#: ../src/Widgets/Popovers/NewUserPopover.vala:173
+msgid "Username is not valid"
+msgstr "ئابونت ئىسمى ئىناۋەتسىز"
+
+#: ../src/Widgets/PasswordEditor.vala:67
+msgid "Current Password"
+msgstr "ھازىرقى پارول"
+
+#: ../src/Widgets/PasswordEditor.vala:71
+msgid "Press to authenticate"
+msgstr "دەلىللەش ئۈچۈن بىسىڭ"
+
+#: ../src/Widgets/PasswordEditor.vala:89
+msgid "Authentication failed"
+msgstr "سالاھىيەت دەلىللەش مەغلۇپ بولدى"
+
+#: ../src/Widgets/PasswordEditor.vala:121
+msgid "New Password"
+msgstr "يىڭى پارول"
+
+#: ../src/Widgets/PasswordEditor.vala:125
+msgid "Password cannot be empty"
+msgstr "پارول قۇرۇق بولسا بولمايدۇ"
+
+#: ../src/Widgets/PasswordEditor.vala:141
+msgid "Confirm New Password"
+msgstr "يىڭى پارولنى قايتا كىرگۈزۈڭ"
+
+#: ../src/Widgets/PasswordEditor.vala:144
+msgid "Passwords do not match"
+msgstr "ئىككى قىتىمدا كىرگۈزگەن پارول بىردەك ئەمەس"
+
+#: ../src/Widgets/PasswordEditor.vala:148
+msgid "Show passwords"
+msgstr "پارولنى كۆرسىتىش"
+
+#: ../src/Widgets/PasswordEditor.vala:169
+msgid "Password accepted"
+msgstr "پارولنى ئىشلەتكىلى بولىدۇ"
+
+#: ../src/Widgets/PasswordEditor.vala:190
+msgid "Weak password strength"
+msgstr "ئاجىز پارول"
+
+#: ../src/Widgets/PasswordEditor.vala:192
+msgid "Medium password strength"
+msgstr "ئوتتۇراھال پارول"
+
+#: ../src/Widgets/PasswordEditor.vala:194
+msgid "Strong password strength"
+msgstr "كۈچلۈك پارول"
+
+#: ../src/Widgets/PasswordEditor.vala:209
+msgid "Resembles your current password"
+msgstr "ھازىرقى پارولىڭىزغا ئوخشايدۇ"
+
+#: ../src/Widgets/PasswordEditor.vala:211
+msgid "New password is too simple"
+msgstr "يىڭى پارول بەك ئاددىي"
+
+#: ../src/Widgets/PasswordEditor.vala:213
+msgid "New password is a palindrome"
+msgstr "يىڭى پارول قايتما سۆزدىن تۈزۈلگەن"
+
+#: ../src/Plug.vala:35
+msgid "Authentication is required to change user data"
+msgstr "ئابونت ئۇچۇرىنى ئۆزگەرتىش ئۈچۈن سالاھىيەت دەلىللەش زۆرۈر"
+
+#: ../src/Plug.vala:42
+msgid "User Accounts"
+msgstr "ئابونت ھىساۋاتلىرى"
+
+#: ../src/Plug.vala:43
+msgid ""
+"Manage account permissions and configure user names, passwords, and photos"
+msgstr ""
+"ھىساۋات ھوقۇقىنى باشقۇرۇش ۋە ئابونتنىڭ ئىسمى، پارولى ۋە سۈرەتلىرىنى تەڭشەش"
+
+#: ../src/Plug.vala:71
+msgid "Password change failed"
+msgstr "پارول ئۆزگەرتىش مەغلۇپ بولدى"
+
+#: ../src/Plug.vala:85
+msgid ""
+"Guest session changes will not take effect until you restart your system"
+msgstr "مىھمان تەڭشەكلىرى سىستېمىنى قايتا قوزغاتقاندىن كىيىن كۈچكە ئىگە بولىدۇ"
+
+#: ../src/Plug.vala:104
+msgid "Some settings require administrator rights to be changed"
+msgstr ""
+"بەزى تەڭشەكلەرنى باشقۇرغۇچىلىق سالاھىيىتى بولغاندىلا ئۆزگەرتكىلى بولىدۇ"
+
+#: ../src/Dialogs/AvatarDialog.vala:72
+msgid "Change Avatar"
+msgstr "باش سۈرەتنى ئۆزگەرتىش"
