@@ -47,9 +47,9 @@ public class Wallpaper : Gtk.Stack {
 
     string get_default () {
         var settings = new KeyFile ();
-        string default_wallpaper = "/usr/share/backgrounds/elementaryos-default";
+        string default_wallpaper="";
         try {
-            //settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+            settings.load_from_file (Constants.CONF_DIR + "/greeter.conf", KeyFileFlags.KEEP_COMMENTS);
             default_wallpaper = settings.get_string ("greeter", "default-wallpaper");
         } catch (Error e) {
             warning (e.message);
