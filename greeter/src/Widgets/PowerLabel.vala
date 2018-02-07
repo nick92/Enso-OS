@@ -51,7 +51,7 @@ public class PowerLabel : Gtk.Grid {
       var settings_popover = new Gtk.Popover (settings);
       //settings_popover.position = Gtk.PositionType.BOTTOM;
       settings_popover.add (settings_list);
-      //settings_popover.bind_property ("visible", settings, "active", GLib.BindingFlags.BIDIRECTIONAL);
+      settings_popover.bind_property ("visible", settings, "active", GLib.BindingFlags.BIDIRECTIONAL);
 
       create_settings_items ();
 
