@@ -14,16 +14,12 @@ Download the leaster release from SourceForge
 
 ### Login 
 
-![login](https://i.imgur.com/g6FmczJ.jpg)
+![login](https://i.imgur.com/Op5Jj5D.png)
 	
 ### Desktop
 
-![enso](https://i.imgur.com/yeANZiW.png)
+![enso](https://i.imgur.com/J7EDEtt.png)
 
 ### Launcher
 
-![panther](https://i.imgur.com/UuxxqxQ.png)
-
-### Multitasking view
-
-![multitask](https://i.imgur.com/79wnAGs.jpg)
+![panther](https://i.imgur.com/28TXE5L.png)
