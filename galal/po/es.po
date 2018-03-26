@@ -8,14 +8,17 @@ msgstr ""
 "Project-Id-Version: gala\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2017-02-20 08:08+0100\n"
-"PO-Revision-Date: 2017-02-26 14:17+0000\n"
-"Last-Translator: Félix Brezo <felixbrezo@gmail.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"PO-Revision-Date: 2017-12-25 00:07+0000\n"
+"Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
+"Language-Team: Spanish "
+"<https://weblate.elementary.io/projects/desktop/gala/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-02-27 05:44+0000\n"
-"X-Generator: Launchpad (build 18328)\n"
 
 #: src/WindowManager.vala:1636
 msgid "Does the display look OK?"
@@ -89,7 +92,7 @@ msgstr "Otro"
 #: data/gala-other.desktop.in:5
 msgid "Fallback desktop file for notifications from outdated applications."
 msgstr ""
-"Archivo de restauración para notificaciones de aplicaciones desactualizadas"
+"Archivo de restauración para notificaciones de aplicaciones desactualizadas."
 
 #: data/gala-other.desktop.in:6
 msgid "applications-other"
@@ -178,7 +181,7 @@ msgstr "Habilitar espacio de trabajo dinámico en lugar de espacios estáticos"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
-"Use a dynamically increasing or decreseasing number, as needed, of "
+"Use a dynamically increasing or decreasing number, as needed, of "
 "workspaces instead of a static, fixed number"
 msgstr ""
 "Utilizar una cantidad dinámica de espacios de trabajo, creciendo o "
@@ -246,7 +249,7 @@ msgstr "Cambiar a la disposición de teclado siguiente"
 #: data/org.pantheon.desktop.gala.gschema.xml.in:137
 #: data/org.pantheon.desktop.gala.gschema.xml.in:142
 msgid "DEPRECATED: This key is deprecated and ignored."
-msgstr "OBSOLETA: Esta clave está obsoleta y será ignorada"
+msgstr "OBSOLETA: Esta clave está obsoleta y será ignorada."
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:141
 msgid "Cycle to previous keyboard layout"

@@ -182,7 +182,7 @@ namespace Gala
 		}
 	}
 
-	class AlternateAltTabSettings : Granite.Services.Settings
+  public class AlternateAltTabSettings : Granite.Services.Settings
 	{
 		public bool all_workspaces { get; set; default = false; }
 		public bool animate { get; set; default = true; }

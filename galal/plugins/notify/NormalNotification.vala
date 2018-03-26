@@ -101,17 +101,27 @@ namespace Gala.Plugins.Notify
 
 		public override void get_preferred_height (float for_width, out float min_height, out float nat_height)
 		{
+#if HAS_MUTTER326
+			var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			var scale = 1;
+#endif
 			float label_height;
-			get_allocation_values (null, null, null, null, out label_height, null);
+			get_allocation_values (null, null, null, null, out label_height, null, scale);
 
 			min_height = nat_height = label_height;
 		}
 
 		public override void allocate (ActorBox box, AllocationFlags flags)
 		{
+#if HAS_MUTTER326
+			var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			var scale = 1;
+#endif
 			float label_x, label_width, summary_height, body_height, label_height, label_y;
 			get_allocation_values (out label_x, out label_width, out summary_height,
-				out body_height, out label_height, out label_y);
+				out body_height, out label_height, out label_y, scale);
 
 			var summary_alloc = ActorBox ();
 			summary_alloc.set_origin (label_x, label_y);
@@ -119,7 +129,7 @@ namespace Gala.Plugins.Notify
 			summary_label.allocate (summary_alloc, flags);
 
 			var body_alloc = ActorBox ();
-			body_alloc.set_origin (label_x, label_y + summary_height + LABEL_SPACING);
+			body_alloc.set_origin (label_x, label_y + summary_height + LABEL_SPACING * scale);
 			body_alloc.set_size (label_width, body_height);
 			body_label.allocate (body_alloc, flags);
 
@@ -127,18 +137,21 @@ namespace Gala.Plugins.Notify
 		}
 
 		void get_allocation_values (out float label_x, out float label_width, out float summary_height,
-			out float body_height, out float label_height, out float label_y)
+			out float body_height, out float label_height, out float label_y, int scale)
 		{
-			var height = Notification.ICON_SIZE;
+			var height = Notification.ICON_SIZE * scale;
+			var margin = Notification.MARGIN * scale;
+			var padding = Notification.PADDING * scale;
+			var spacing = Notification.SPACING * scale;
 
-			label_x = Notification.MARGIN + Notification.PADDING + height + Notification.SPACING;
-			label_width = Notification.WIDTH - label_x - Notification.MARGIN - Notification.SPACING;
+			label_x = margin + padding + height + spacing;
+			label_width = Notification.WIDTH * scale - label_x - margin - spacing;
 
 			summary_label.get_preferred_height (label_width, null, out summary_height);
 			body_label.get_preferred_height (label_width, null, out body_height);
 
-			label_height = summary_height + LABEL_SPACING + body_height;
-			label_y = Notification.MARGIN + Notification.PADDING;
+			label_height = summary_height + LABEL_SPACING * scale + body_height;
+			label_y = margin + padding;
 			// center
 			if (label_height < height) {
 				label_y += (height - (int) label_height) / 2;
@@ -225,7 +238,7 @@ namespace Gala.Plugins.Notify
 
 				content_height = float.max (content_height, old_content_height);
 
-				play_update_transition (content_height + PADDING * 2);
+				play_update_transition (content_height + PADDING * 2 * style_context.get_scale ());
 
 				get_transition ("switch").completed.connect (() => {
 					if (old_notification_content != null)
@@ -258,7 +271,10 @@ namespace Gala.Plugins.Notify
 			// assume a constant width
 			notification_content.get_preferred_height (0, null, out content_height);
 
-			content_container.set_clip (MARGIN, MARGIN, MARGIN * 2 + WIDTH, content_height + PADDING * 2);
+			var scale = style_context.get_scale ();
+			var scaled_margin = MARGIN * scale;
+
+			content_container.set_clip (scaled_margin, scaled_margin, scaled_margin * 2 + WIDTH * scale, content_height + PADDING * 2 * scale);
 		}
 
 		public override void get_preferred_height (float for_width, out float min_height, out float nat_height)
@@ -266,7 +282,7 @@ namespace Gala.Plugins.Notify
 			float content_height;
 			notification_content.get_preferred_height (for_width, null, out content_height);
 
-			min_height = nat_height = content_height + (MARGIN + PADDING) * 2;
+			min_height = nat_height = content_height + (MARGIN + PADDING) * 2 * style_context.get_scale ();
 		}
 
 		public override void activate ()

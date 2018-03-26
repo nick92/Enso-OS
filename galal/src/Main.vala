@@ -52,11 +52,7 @@ namespace Gala
 		GLib.Environment.unset_variable ("NO_GAIL");
 		GLib.Environment.unset_variable ("NO_AT_BRIDGE");
 
-#if HAVE_PLANK_0_11
 		Plank.Paths.initialize ("plank", Config.DATADIR + "/plank");
-#else
-		Plank.Services.Paths.initialize ("plank", Config.DATADIR + "/plank");
-#endif
 
 		// Force initialization of static fields in Utils class
 		// https://bugzilla.gnome.org/show_bug.cgi?id=543189

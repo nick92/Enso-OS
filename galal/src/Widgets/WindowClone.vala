@@ -246,8 +246,8 @@ namespace Gala
 		 */
 		bool should_fade ()
 		{
-			return overview_mode
-				&& window.get_workspace () != window.get_screen ().get_active_workspace ();
+			return (overview_mode
+				&& window.get_workspace () != window.get_screen ().get_active_workspace ()) || window.minimized;
 		}
 
 		void on_all_workspaces_changed ()
@@ -276,6 +276,10 @@ namespace Gala
 
 			set_position (outer_rect.x - offset_x, outer_rect.y - offset_y);
 			set_size (outer_rect.width, outer_rect.height);
+
+			if (should_fade ())
+				opacity = 0;
+
 			restore_easing_state ();
 
 			if (animate)
@@ -283,9 +287,6 @@ namespace Gala
 
 			window_icon.opacity = 0;
 			close_button.opacity = 0;
-
-			if (should_fade ())
-				opacity = 0;
 		}
 
 		/**
@@ -307,9 +308,7 @@ namespace Gala
 
 			toggle_shadow (true);
 
-			// for overview mode, windows may be faded out initially. Make sure
-			// to fade those in.
-			if (overview_mode) {
+			if (opacity < 255) {
 				save_easing_state ();
 				set_easing_mode (AnimationMode.EASE_OUT_QUAD);
 				set_easing_duration (300);

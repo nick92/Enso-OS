@@ -30,6 +30,7 @@ namespace Gala
 		WINDOW_OVERVIEW_ALL
 	}
 
+
 	/**
 	 * Function that should return true if the given shortcut should be blocked.
 	 */
@@ -148,3 +149,4 @@ namespace Gala
 		public abstract void switch_to_next_workspace (Meta.MotionDirection direction);
 	}
 }
+

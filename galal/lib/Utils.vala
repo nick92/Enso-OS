@@ -25,6 +25,7 @@ namespace Gala
 		static uint cache_clear_timeout = 0;
 
 		static Gdk.Pixbuf? close_pixbuf = null;
+		static Gdk.Pixbuf? resize_pixbuf = null;
 
 		static construct
 		{
@@ -86,12 +87,13 @@ namespace Gala
 		 *
 		 * @param window       The window to get an icon for
 		 * @param size         The size of the icon
+		 * @param scale        The desired scale of the icon
 		 * @param ignore_cache Should not be necessary in most cases, if you care about the icon
 		 *                     being loaded correctly, you should consider using the WindowIcon class
 		 */
-		public static Gdk.Pixbuf get_icon_for_window (Meta.Window window, int size, bool ignore_cache = false)
+		public static Gdk.Pixbuf get_icon_for_window (Meta.Window window, int size, int scale = 1, bool ignore_cache = false)
 		{
-			return get_icon_for_xid ((uint32)window.get_xwindow (), size, ignore_cache);
+			return get_icon_for_xid ((uint32)window.get_xwindow (), size, scale, ignore_cache);
 		}
 
 		/**
@@ -99,7 +101,7 @@ namespace Gala
 		 *
 		 * @see get_icon_for_window
 		 */
-		public static Gdk.Pixbuf get_icon_for_xid (uint32 xid, int size, bool ignore_cache = false)
+		public static Gdk.Pixbuf get_icon_for_xid (uint32 xid, int size, int scale = 1, bool ignore_cache = false)
 		{
 			Gdk.Pixbuf? result = null;
 			var xid_key = "%u::%i".printf (xid, size);
@@ -108,7 +110,7 @@ namespace Gala
 				return result;
 
 			var app = Bamf.Matcher.get_default ().get_application_for_xid (xid);
-			result = get_icon_for_application (app, size, ignore_cache);
+			result = get_icon_for_application (app, size, scale, ignore_cache);
 
 			xid_pixbuf_cache.set (xid_key, result);
 
@@ -120,7 +122,7 @@ namespace Gala
 		 *
 		 * @see get_icon_for_window
 		 */
-		static Gdk.Pixbuf get_icon_for_application (Bamf.Application? app, int size,
+		static Gdk.Pixbuf get_icon_for_application (Bamf.Application? app, int size, int scale = 1,
 			bool ignore_cache = false)
 		{
 			Gdk.Pixbuf? image = null;
@@ -132,18 +134,12 @@ namespace Gala
 			if (app != null && app.get_desktop_file () != null) {
 				var appinfo = new DesktopAppInfo.from_filename (app.get_desktop_file ());
 				if (appinfo != null) {
-#if HAVE_PLANK_0_11
 					icon = Plank.DrawingService.get_icon_from_gicon (appinfo.get_icon ());
-#else
-					icon = Plank.Drawing.DrawingService.get_icon_from_gicon (appinfo.get_icon ());
-#endif
-					icon_key = "%s::%i".printf (icon, size);
+					icon_key = "%s::%i::%i".printf (icon, size, scale);
 					if (ignore_cache || (image = icon_pixbuf_cache.get (icon_key)) == null) {
-#if HAVE_PLANK_0_11
-						image = Plank.DrawingService.load_icon (icon, size, size);
-#else
-						image = Plank.Drawing.DrawingService.load_icon (icon, size, size);
-#endif
+						var scaled_size = size * scale;
+						var surface = Plank.DrawingService.load_icon_for_scale (icon, scaled_size, scaled_size, scale);
+						image = Gdk.pixbuf_get_from_surface (surface, 0, 0, scaled_size, scaled_size);
 						not_cached = true;
 					}
 				}
@@ -153,9 +149,9 @@ namespace Gala
 				try {
 					unowned Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
 					icon = "application-default-icon";
-					icon_key = "%s::%i".printf (icon, size);
+					icon_key = "%s::%i::%i".printf (icon, size, scale);
 					if ((image = icon_pixbuf_cache.get (icon_key)) == null) {
-						image = icon_theme.load_icon (icon, size, 0);
+						image = icon_theme.load_icon_for_scale (icon, size, scale, 0);
 						not_cached = true;
 					}
 				} catch (Error e) {
@@ -173,12 +169,8 @@ namespace Gala
 				}
 			}
 
-			if (size != image.width || size != image.height)
-#if HAVE_PLANK_0_11
-				image = Plank.DrawingService.ar_scale (image, size, size);
-#else
-				image = Plank.Drawing.DrawingService.ar_scale (image, size, size);
-#endif
+			if (size * scale != image.width || size * scale != image.height)
+				image = Plank.DrawingService.ar_scale (image, size * scale, size * scale);
 
 			if (not_cached)
 				icon_pixbuf_cache.set (icon_key, image);
@@ -231,7 +223,7 @@ namespace Gala
 		/**
 		 * Creates an actor showing the current contents of the given WindowActor.
 		 *
-		 * @param actor 	 The actor from which to create a shnapshot
+		 * @param actor      The actor from which to create a shnapshot
 		 * @param inner_rect The inner (actually visible) rectangle of the window
 		 * @param outer_rect The outer (input region) rectangle of the window
 		 *
@@ -293,8 +285,13 @@ namespace Gala
 		public static Gdk.Pixbuf? get_close_button_pixbuf ()
 		{
 			if (close_pixbuf == null) {
+#if HAS_MUTTER326
+				var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+				var scale = 1;
+#endif
 				try {
-					close_pixbuf = new Gdk.Pixbuf.from_file_at_scale (Config.PKGDATADIR + "/close.svg", -1, 36, true);
+					close_pixbuf = new Gdk.Pixbuf.from_resource_at_scale (Config.RESOURCEPATH + "/buttons/close.svg", -1, 36 * scale, true);
 				} catch (Error e) {
 					warning (e.message);
 					return null;
@@ -326,7 +323,70 @@ namespace Gala
 				// we'll just make this red so there's at least something as an 
 				// indicator that loading failed. Should never happen and this
 				// works as good as some weird fallback-image-failed-to-load pixbuf
-				texture.set_size (36, 36);
+#if HAS_MUTTER326
+				var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+				var scale = 1;
+#endif
+				texture.set_size (36 * scale, 36 * scale);
+				texture.background_color = { 255, 0, 0, 255 };
+			}
+
+			return texture;
+		}
+		/**
+		 * Returns the pixbuf that is used for resize buttons throughout gala at a
+		 * size of 36px
+		 *
+		 * @return the close button pixbuf or null if it failed to load
+		 */
+		public static Gdk.Pixbuf? get_resize_button_pixbuf ()
+		{
+			if (resize_pixbuf == null) {
+#if HAS_MUTTER326
+				var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+				var scale = 1;
+#endif
+				try {
+					resize_pixbuf = new Gdk.Pixbuf.from_resource_at_scale (Config.RESOURCEPATH + "/buttons/resize.svg", -1, 36 * scale, true);
+				} catch (Error e) {
+					warning (e.message);
+					return null;
+				}
+			}
+
+			return resize_pixbuf;
+		}
+
+		/**
+		 * Creates a new reactive ClutterActor at 36px with the resize pixbuf
+		 *
+		 * @return The resize button actor
+		 */
+		public static Clutter.Actor create_resize_button ()
+		{
+			var texture = new Clutter.Texture ();
+			var pixbuf = get_resize_button_pixbuf ();
+
+			texture.reactive = true;
+
+			if (pixbuf != null) {
+				try {
+					texture.set_from_rgb_data (pixbuf.get_pixels (), pixbuf.get_has_alpha (),
+						pixbuf.get_width (), pixbuf.get_height (),
+						pixbuf.get_rowstride (), (pixbuf.get_has_alpha () ? 4 : 3), 0);
+				} catch (Error e) {}
+			} else {
+				// we'll just make this red so there's at least something as an
+				// indicator that loading failed. Should never happen and this
+				// works as good as some weird fallback-image-failed-to-load pixbuf
+#if HAS_MUTTER326
+				var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+				var scale = 1;
+#endif
+				texture.set_size (36 * scale, 36 * scale);
 				texture.background_color = { 255, 0, 0, 255 };
 			}
 

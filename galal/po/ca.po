@@ -178,7 +178,7 @@ msgstr "Habilita l'espai de treball dinàmic en comptes dels estàtics"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
-"Use a dynamically increasing or decreseasing number, as needed, of "
+"Use a dynamically increasing or decreasing number, as needed, of "
 "workspaces instead of a static, fixed number"
 msgstr ""
 "Usa un nombre dinàmicament creixent o decreixent, segons sigui necessari, "

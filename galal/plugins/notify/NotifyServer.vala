@@ -67,7 +67,7 @@ namespace Gala.Plugins.Notify
 
 		DBus? bus_proxy = null;
 		unowned Canberra.Context? ca_context = null;
-		Gee.HashMap<string, Settings> app_settings_cache;
+		Gee.HashMap<string, GLib.Settings> app_settings_cache;
 		Gee.HashMap<string, AppInfo> app_info_cache;
 
 		public NotifyServer (NotificationStack stack)
@@ -93,7 +93,7 @@ namespace Gala.Plugins.Notify
 			                         null);
 			ca_context.open ();
 
-			app_settings_cache = new Gee.HashMap<string, Settings> ();
+			app_settings_cache = new Gee.HashMap<string, GLib.Settings> ();
 			app_info_cache = new Gee.HashMap<string, AppInfo> ();
 		}
 
@@ -203,11 +203,11 @@ namespace Gala.Plugins.Notify
 					if (!has_notifications_key)
 						app_id = FALLBACK_APP_ID;
 
-					Settings? app_settings = app_settings_cache.get (app_id);
+					GLib.Settings? app_settings = app_settings_cache.get (app_id);
 					if (app_settings == null) {
 						var schema = SettingsSchemaSource.get_default ().lookup ("org.pantheon.desktop.gala.notifications.application", false);
 						if (schema != null) {
-							app_settings = new Settings.full (schema, null, "/org/pantheon/desktop/gala/notifications/applications/%s/".printf (app_id));
+							app_settings = new GLib.Settings.full (schema, null, "/org/pantheon/desktop/gala/notifications/applications/%s/".printf (app_id));
 							app_settings_cache.set (app_id, app_settings);
 						}
 					}
@@ -338,8 +338,13 @@ namespace Gala.Plugins.Notify
 
 			Gdk.Pixbuf? pixbuf = null;
 			Variant? variant = null;
-			var size = Notification.ICON_SIZE;
-			var mask_offset = 4;
+#if HAS_MUTTER326
+			var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			var scale = 1;
+#endif
+			var size = Notification.ICON_SIZE * scale;
+			var mask_offset = 4 * scale;
 			var mask_size_offset = mask_offset * 2;
 			var has_mask = false;
 
@@ -365,7 +370,7 @@ namespace Gala.Plugins.Notify
 						var file_path = File.new_for_commandline_arg (image_path).get_path ();
 						pixbuf = new Gdk.Pixbuf.from_file_at_scale (file_path, size, size, true);
 					} else {
-						pixbuf = Gtk.IconTheme.get_default ().load_icon (image_path, size, 0);
+						pixbuf = Gtk.IconTheme.get_default ().load_icon_for_scale (image_path, Notification.ICON_SIZE, scale, 0);
 					}
 				} catch (Error e) { warning (e.message); }
 
@@ -373,7 +378,7 @@ namespace Gala.Plugins.Notify
 
 				try {
 					var themed = new ThemedIcon.with_default_fallbacks (app_icon);
-					var info = Gtk.IconTheme.get_default ().lookup_by_gicon (themed, size, 0);
+					var info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (themed, Notification.ICON_SIZE, scale, 0);
 					if (info != null) {
 						pixbuf = info.load_symbolic (get_icon_fg_color ());
 
@@ -389,7 +394,7 @@ namespace Gala.Plugins.Notify
 
 				try {
 					var themed = new ThemedIcon (app_name.down ());
-					var info = Gtk.IconTheme.get_default ().lookup_by_gicon (themed, size, 0);
+					var info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (themed, Notification.ICON_SIZE, scale, 0);
 					if (info != null) {
 						pixbuf = info.load_symbolic (get_icon_fg_color ());
 
@@ -399,19 +404,18 @@ namespace Gala.Plugins.Notify
 				} catch (Error e) {
 
 					try {
-						pixbuf = Gtk.IconTheme.get_default ().load_icon (FALLBACK_ICON, size, 0);
+						pixbuf = Gtk.IconTheme.get_default ().load_icon_for_scale (FALLBACK_ICON, Notification.ICON_SIZE, scale, 0);
 					} catch (Error e) { warning (e.message); }
 				}
 			} else if (has_mask) {
-				var mask_size = Notification.ICON_SIZE;
 				var offset_x = mask_offset;
-				var offset_y = mask_offset + 1;
+				var offset_y = mask_offset + scale;
+				var mask_size = Notification.ICON_SIZE * scale;
 
 				var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, mask_size, mask_size);
 				var cr = new Cairo.Context (surface);
 
-				Granite.Drawing.Utilities.cairo_rounded_rectangle (cr,
-					offset_x, offset_y, size, size, 4);
+				Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, offset_x, offset_y, size, size, mask_offset);
 				cr.clip ();
 
 				Gdk.cairo_set_source_pixbuf (cr, pixbuf, offset_x, offset_y);

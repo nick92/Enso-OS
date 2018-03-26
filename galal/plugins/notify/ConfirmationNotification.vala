@@ -55,7 +55,7 @@ namespace Gala.Plugins.Notify
 
 		public override void update_allocation (out float content_height, AllocationFlags flags)
 		{
-			content_height = ICON_SIZE;
+			content_height = ICON_SIZE * style_context.get_scale ();
 		}
 
 		public override void draw_content (Cairo.Context cr)
@@ -63,14 +63,17 @@ namespace Gala.Plugins.Notify
 			if (!has_progress)
 				return;
 
-			var x = MARGIN + PADDING + ICON_SIZE + SPACING;
-			var y = MARGIN + PADDING + (ICON_SIZE - PROGRESS_HEIGHT) / 2;
-			var width = WIDTH - x - MARGIN;
+			var scale = style_context.get_scale ();
+			var scaled_margin = MARGIN * scale;
+			var scaled_width = WIDTH * scale;
+			var x = (MARGIN + PADDING + ICON_SIZE + SPACING) * scale;
+			var y = (MARGIN + PADDING + (ICON_SIZE - PROGRESS_HEIGHT) / 2) * scale;
+			var width = scaled_width - x - scaled_margin;
 
 			if (!transitioning)
 				draw_progress_bar (cr, x, y, width, progress);
 			else {
-				Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, MARGIN, MARGIN, WIDTH - MARGIN * 2, ICON_SIZE + PADDING * 2, 4);
+				Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, scaled_margin, scaled_margin, scaled_width - scaled_margin * 2, ICON_SIZE * scale + PADDING * 2 * scale, 4 * scale);
 				cr.clip ();
 
 				draw_progress_bar (cr, x, y + animation_slide_y_offset, width, old_progress);
@@ -84,14 +87,16 @@ namespace Gala.Plugins.Notify
 		{
 			var fraction = (int) Math.floor (progress.clamp (0, 100) / 100.0 * width);
 
+			var scale = style_context.get_scale ();
+			var scaled_progress_height = PROGRESS_HEIGHT * scale;
 			Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, x, y, width,
-				PROGRESS_HEIGHT, PROGRESS_HEIGHT / 2);
+				scaled_progress_height, scaled_progress_height / 2);
 			cr.set_source_rgb (0.8, 0.8, 0.8);
 			cr.fill ();
 
 			if (progress > 0) {
 				Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, x, y, fraction,
-					PROGRESS_HEIGHT, PROGRESS_HEIGHT / 2);
+					scaled_progress_height, scaled_progress_height / 2);
 				cr.set_source_rgb (0.3, 0.3, 0.3);
 				cr.fill ();
 			}
@@ -111,7 +116,8 @@ namespace Gala.Plugins.Notify
 
 				old_progress = this.progress;
 
-				play_update_transition (ICON_SIZE + PADDING * 2);
+				var scale = style_context.get_scale ();
+				play_update_transition ((ICON_SIZE + PADDING * 2) * scale);
 			}
 
 			if (this.icon_only != icon_only) {

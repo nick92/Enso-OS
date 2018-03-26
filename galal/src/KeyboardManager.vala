@@ -47,8 +47,9 @@ namespace Gala
 		construct
 		{
 			var schema = GLib.SettingsSchemaSource.get_default ().lookup ("org.gnome.desktop.input-sources", true);
-			return_if_fail (schema != null);
-			
+			if (schema == null)
+				return;
+
 			settings = new GLib.Settings.full (schema, null, null);
 			Signal.connect (settings, "changed", (Callback) set_keyboard_layout, this);
 
@@ -61,7 +62,8 @@ namespace Gala
 			display.ungrab_keyboard (display.get_current_time ());
 
 			var sources = settings.get_value ("sources");
-			return_val_if_fail (sources.is_of_type (sources_variant_type), true);
+			if (!sources.is_of_type (sources_variant_type))
+				return true;
 
 			var n_sources = (uint) sources.n_children ();
 			if (n_sources < 2)
@@ -82,7 +84,8 @@ namespace Gala
 			string layout = "us", variant = "", options = "";
 
 			var sources = settings.get_value ("sources");
-			return_if_fail (sources.is_of_type (sources_variant_type));
+			if (!sources.is_of_type (sources_variant_type))
+				return;
 
 			var current = settings.get_uint ("current");
 			unowned string? type = null, name = null;

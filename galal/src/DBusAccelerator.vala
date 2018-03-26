@@ -37,11 +37,7 @@ namespace Gala
 			return instance;
 		}
 
-#if HAS_GSD316
 		public signal void accelerator_activated (uint action, GLib.HashTable<string, Variant> parameters);
-#else
-		public signal void accelerator_activated (uint action, uint device_id, uint timestamp);
-#endif
 
 		WindowManager wm;
 		HashTable<string, uint?> grabbed_accelerators;
@@ -58,15 +54,11 @@ namespace Gala
 		{
 			foreach (string accelerator in grabbed_accelerators.get_keys ()) {
 				if (grabbed_accelerators[accelerator] == action) {
-#if HAS_GSD316
 					var parameters = new GLib.HashTable<string, Variant> (null, null);
 					parameters.set ("device-id", new Variant.uint32 (device_id));
 					parameters.set ("timestamp", new Variant.uint32 (timestamp));
 
 					accelerator_activated (action, parameters);
-#else
-					accelerator_activated (action, device_id, timestamp);
-#endif
 				}
 			}
 		}

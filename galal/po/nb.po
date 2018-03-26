@@ -165,7 +165,7 @@ msgstr "Bruk dynamisk arbeidsområde istedenfor statiske"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
-"Use a dynamically increasing or decreseasing number, as needed, of "
+"Use a dynamically increasing or decreasing number, as needed, of "
 "workspaces instead of a static, fixed number"
 msgstr ""
 "Bruk et dynamisk antall arbeidsområder i steden for et statisk, fastsatt "

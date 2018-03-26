@@ -53,7 +53,7 @@ namespace Gala.Plugins.Notify
 
 		Clutter.Actor close_button;
 
-		Gtk.StyleContext style_context;
+		protected Gtk.StyleContext style_context { get; private set; }
 
 		uint remove_timeout = 0;
 
@@ -88,8 +88,13 @@ namespace Gala.Plugins.Notify
 
 		construct
 		{
+#if HAS_MUTTER326
+			var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			var scale = 1;
+#endif
 			relevancy_time = new DateTime.now_local ().to_unix ();
-			width = WIDTH + MARGIN * 2;
+			width = (WIDTH + MARGIN * 2) * scale;
 			reactive = true;
 			set_pivot_point (0.5f, 0.5f);
 
@@ -131,6 +136,7 @@ namespace Gala.Plugins.Notify
 			style_context.add_provider (default_css, Gtk.STYLE_PROVIDER_PRIORITY_FALLBACK);
 			style_context.add_class ("gala-notification");
 			style_context.set_path (style_path);
+			style_context.set_scale (scale);
 
 			var label_style_path = style_path.copy ();
 			label_style_path.iter_add_class (1, "gala-notification");
@@ -217,7 +223,7 @@ namespace Gala.Plugins.Notify
 			set_easing_mode (AnimationMode.EASE_IN_QUAD);
 			opacity = 0;
 
-			x = WIDTH + MARGIN * 2;
+			x = (WIDTH + MARGIN * 2) * style_context.get_scale ();
 
 			being_destroyed = true;
 			var transition = get_transition ("x");
@@ -306,19 +312,23 @@ namespace Gala.Plugins.Notify
 		{
 			var icon_alloc = ActorBox ();
 
-			icon_alloc.set_origin (icon_only ? (WIDTH - ICON_SIZE) / 2 : MARGIN + PADDING, MARGIN + PADDING);
-			icon_alloc.set_size (ICON_SIZE, ICON_SIZE);
+			var scale = style_context.get_scale ();
+			var scaled_width = WIDTH * scale;
+			var scaled_icon_size = ICON_SIZE * scale;
+			var scaled_margin_padding = (MARGIN + PADDING) * scale;
+			icon_alloc.set_origin (icon_only ? (scaled_width - scaled_icon_size) / 2 : scaled_margin_padding, scaled_margin_padding);
+			icon_alloc.set_size (scaled_icon_size, scaled_icon_size);
 			icon_container.allocate (icon_alloc, flags);
 
 			var close_alloc = ActorBox ();
-			close_alloc.set_origin (MARGIN + PADDING - close_button.width / 2,
-				MARGIN + PADDING - close_button.height / 2);
+			close_alloc.set_origin (scaled_margin_padding - close_button.width / 2,
+				scaled_margin_padding - close_button.height / 2);
 			close_alloc.set_size (close_button.width, close_button.height);
 			close_button.allocate (close_alloc, flags);
 
 			float content_height;
 			update_allocation (out content_height, flags);
-			box.set_size (MARGIN * 2 + WIDTH, (MARGIN + PADDING) * 2 + content_height);
+			box.set_size (MARGIN * 2 * scale + scaled_width, scaled_margin_padding * 2 + content_height);
 
 			base.allocate (box, flags);
 
@@ -331,7 +341,7 @@ namespace Gala.Plugins.Notify
 
 		public override void get_preferred_height (float for_width, out float min_height, out float nat_height)
 		{
-			min_height = nat_height = ICON_SIZE + (MARGIN + PADDING) * 2;
+			min_height = nat_height = (ICON_SIZE + (MARGIN + PADDING) * 2) * style_context.get_scale ();
 		}
 
 		protected void play_update_transition (float slide_height)
@@ -344,9 +354,12 @@ namespace Gala.Plugins.Notify
 
 			animation_slide_height = slide_height;
 
+			var scale = style_context.get_scale ();
+			var scaled_padding = PADDING * scale;
+			var scaled_icon_size = ICON_SIZE * scale;
 			old_texture = new Clutter.Texture ();
 			icon_container.add_child (old_texture);
-			icon_container.set_clip (0, -PADDING, ICON_SIZE, ICON_SIZE + PADDING * 2);
+			icon_container.set_clip (0, -scaled_padding, scaled_icon_size, scaled_icon_size + scaled_padding * 2);
 
 			if (icon != null) {
 				try {
@@ -382,16 +395,20 @@ namespace Gala.Plugins.Notify
 		{
 			var canvas = (Canvas) content;
 
+			var scale = style_context.get_scale ();
 			var x = MARGIN;
 			var y = MARGIN;
-			var width = canvas.width - MARGIN * 2;
-			var height = canvas.height - MARGIN * 2;
+			var width = canvas.width / scale - MARGIN * 2;
+			var height = canvas.height / scale - MARGIN * 2;
 			cr.set_operator (Cairo.Operator.CLEAR);
 			cr.paint ();
 			cr.set_operator (Cairo.Operator.OVER);
 
+			cr.save ();
+			cr.scale (scale, scale);
 			style_context.render_background (cr, x, y, width, height);
 			style_context.render_frame (cr, x, y, width, height);
+			cr.restore ();
 
 			draw_content (cr);
 

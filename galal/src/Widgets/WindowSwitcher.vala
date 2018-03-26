@@ -23,6 +23,8 @@ namespace Gala
 	public class WindowSwitcher : Clutter.Actor
 	{
 		const int MIN_DELTA = 100;
+		const float BACKGROUND_OPACITY = 155.0f;
+		const float DIM_WINDOW_BRIGHTNESS = -BACKGROUND_OPACITY / 255.0f;
 
 		public WindowManager wm { get; construct; }
 
@@ -33,17 +35,15 @@ namespace Gala
 
 		WindowActor? dock_window;
 		Actor dock;
-#if HAVE_PLANK_0_11
 		Plank.Surface? dock_surface;
 		Plank.DockTheme dock_theme;
-#else
-		Plank.Drawing.DockSurface? dock_surface;
-		Plank.Drawing.DockTheme dock_theme;
-#endif
 		Plank.DockPreferences dock_settings;
 		float dock_y_offset;
 		float dock_height_offset;
+		int ui_scale_factor = 1;
 		FileMonitor monitor;
+
+		Actor background;
 
 		uint modifier_mask;
 		int64 last_switch = 0;
@@ -62,20 +62,11 @@ namespace Gala
 		construct
 		{
 			// pull drawing methods from libplank
-#if HAVE_PLANK_0_11
 			dock_settings = new Plank.DockPreferences ("dock1");
-#else
-			var settings_file = Environment.get_user_config_dir () + "/plank/dock1/settings";
-			dock_settings = new Plank.DockPreferences.with_filename (settings_file);
-#endif
 			dock_settings.notify.connect (update_dock);
 			dock_settings.notify["Theme"].connect (load_dock_theme);
 
-#if HAVE_PLANK_0_11
 			var launcher_folder = Plank.Paths.AppConfigFolder.get_child ("dock1").get_child ("launchers");
-#else
-			var launcher_folder = Plank.Services.Paths.AppConfigFolder.get_child ("dock1").get_child ("launchers");
-#endif
 
 			if (launcher_folder.query_exists ()) {
 				try {
@@ -86,6 +77,8 @@ namespace Gala
 				// initial update, pretend a file was created
 				update_n_dock_items (launcher_folder, null, FileMonitorEvent.CREATED);
 			}
+
+			ui_scale_factor = InternalUtils.get_ui_scaling_factor ();
 
 			dock = new Actor ();
 			dock.layout_manager = new BoxLayout ();
@@ -103,10 +96,15 @@ namespace Gala
 			window_clones = new Actor ();
 			window_clones.actor_removed.connect (window_removed);
 
+			background = new Actor ();
+			background.background_color = Color.get_static (StaticColor.BLACK);
+			update_background ();
+
+			add_child (background);
 			add_child (window_clones);
 			add_child (dock);
 
-			wm.get_screen ().monitors_changed.connect (update_dock);
+			wm.get_screen ().monitors_changed.connect (update_actors);
 
 			visible = false;
 		}
@@ -116,7 +114,7 @@ namespace Gala
 			if (monitor != null)
 				monitor.cancel ();
 
-			wm.get_screen ().monitors_changed.disconnect (update_dock);
+			wm.get_screen ().monitors_changed.disconnect (update_actors);
 		}
 
 		void load_dock_theme ()
@@ -124,11 +122,7 @@ namespace Gala
 			if (dock_theme != null)
 				dock_theme.notify.disconnect (update_dock);
 
-#if HAVE_PLANK_0_11
 			dock_theme = new Plank.DockTheme (dock_settings.Theme);
-#else
-			dock_theme = new Plank.Drawing.DockTheme (dock_settings.Theme);
-#endif
 			dock_theme.load ("dock");
 			dock_theme.notify.connect (update_dock);
 
@@ -145,14 +139,14 @@ namespace Gala
 			var layout = (BoxLayout) dock.layout_manager;
 
 			var position = dock_settings.Position;
-			var icon_size = dock_settings.IconSize;
+			var icon_size = dock_settings.IconSize * ui_scale_factor;
 			var scaled_icon_size = icon_size / 10.0f;
 			var horizontal = dock_settings.is_horizontal_dock ();
 
 			var top_padding = (float) dock_theme.TopPadding * scaled_icon_size;
 			var bottom_padding = (float) dock_theme.BottomPadding * scaled_icon_size;
 			var item_padding = (float) dock_theme.ItemPadding * scaled_icon_size;
-			var line_width = dock_theme.LineWidth;
+			var line_width = dock_theme.LineWidth * ui_scale_factor;
 
 			var top_offset = 2 * line_width + top_padding;
 			var bottom_offset = (dock_theme.BottomRoundness > 0 ? 2 * line_width : 0) + bottom_padding;
@@ -191,6 +185,20 @@ namespace Gala
 			dock_surface = null;
 		}
 
+		void update_background ()
+		{
+			int width = 0, height = 0;
+			wm.get_screen ().get_size (out width, out height);
+
+			background.set_size (width, height);
+		}
+
+		void update_actors ()
+		{
+			update_dock ();
+			update_background ();
+		}
+
 		bool draw_dock_background (Cairo.Context cr)
 		{
 			cr.set_operator (Cairo.Operator.CLEAR);
@@ -218,13 +226,9 @@ namespace Gala
 			}
 
 			if (dock_surface == null || dock_surface.Width != width || dock_surface.Height != height) {
-#if HAVE_PLANK_0_11
 				var dummy_surface = new Plank.Surface.with_cairo_surface (1, 1, cr.get_target ());
-#else
-				var dummy_surface = new Plank.Drawing.DockSurface.with_surface (1, 1, cr.get_target ());
-#endif
 
-				dock_surface = dock_theme.create_background (width, height, position, dummy_surface);
+				dock_surface = dock_theme.create_background (width / ui_scale_factor, height / ui_scale_factor, position, dummy_surface);
 			}
 
 			float x = 0, y = 0;
@@ -233,7 +237,7 @@ namespace Gala
 					x = dock_y_offset;
 					break;
 				case Gtk.PositionType.BOTTOM:
-					y = dock_y_offset;
+					y = dock_y_offset / ui_scale_factor;
 					break;
 				case Gtk.PositionType.LEFT:
 					x = 0;
@@ -243,17 +247,22 @@ namespace Gala
 					break;
 			}
 
+			cr.save ();
+			cr.scale (ui_scale_factor, ui_scale_factor);
 			cr.set_source_surface (dock_surface.Internal, x, y);
 			cr.paint ();
+			cr.restore ();
 
 			return false;
 		}
 
 		void place_dock ()
 		{
-			var icon_size = dock_settings.IconSize;
+			ui_scale_factor = InternalUtils.get_ui_scaling_factor ();
+
+			var icon_size = dock_settings.IconSize * ui_scale_factor;
 			var scaled_icon_size = icon_size / 10.0f;
-			var line_width = dock_theme.LineWidth;
+			var line_width = dock_theme.LineWidth * ui_scale_factor;
 			var horiz_padding = dock_theme.HorizPadding * scaled_icon_size;
 			var item_padding = (float) dock_theme.ItemPadding * scaled_icon_size;
 			var items_offset = (int) (2 * line_width + (horiz_padding > 0 ? horiz_padding : 0));
@@ -296,6 +305,24 @@ namespace Gala
 			}
 
 			dock.restore_easing_state ();
+		}
+
+		void show_background ()
+		{
+			background.save_easing_state ();
+			background.set_easing_duration (250);
+			background.set_easing_mode (AnimationMode.EASE_OUT_CUBIC);
+			background.opacity = (uint)BACKGROUND_OPACITY;
+			background.restore_easing_state ();
+		}
+
+		void hide_background ()
+		{
+			background.save_easing_state ();
+			background.set_easing_duration (250);
+			background.set_easing_mode (AnimationMode.EASE_OUT_CUBIC);
+			background.opacity = 0;
+			background.restore_easing_state ();
 		}
 
 		bool clicked_icon (Clutter.ButtonEvent event) {
@@ -408,6 +435,7 @@ namespace Gala
 			};
 
 			animate_dock_width ();
+			show_background ();
 
 			dim_windows ();
 			grab_key_focus ();
@@ -456,6 +484,8 @@ namespace Gala
 				if (clone.window == current_window.window)
 					continue;
 
+				clone.remove_effect_by_name ("brightness");
+
 				// reset order
 				window_clones.set_child_below_sibling (clone, null);
 
@@ -491,6 +521,8 @@ namespace Gala
 				dock_window.opacity = 255;
 				dock_window.restore_easing_state ();
 			}
+
+			hide_background ();
 
 			dock.save_easing_state ();
 			dock.set_easing_duration (250);
@@ -528,7 +560,7 @@ namespace Gala
 
 			window_clones.add_child (clone);
 
-			var icon = new WindowIcon (window, dock_settings.IconSize, true);
+			var icon = new WindowIcon (window, dock_settings.IconSize, ui_scale_factor, true);
 			icon.reactive = true;
 			icon.opacity = 100;
 			icon.x_expand = true;
@@ -544,22 +576,25 @@ namespace Gala
 
 		void dim_windows ()
 		{
-			var window_opacity = (int) Math.floor (AppearanceSettings.get_default ().alt_tab_window_opacity * 255);
-
 			foreach (var actor in window_clones.get_children ()) {
 				unowned SafeWindowClone clone = (SafeWindowClone) actor;
 
 				actor.save_easing_state ();
 				actor.set_easing_duration (250);
-				actor.set_easing_mode (AnimationMode.EASE_OUT_QUAD);
+				actor.set_easing_mode (AnimationMode.EASE_IN_OUT_QUART);
 
 				if (clone.window == current_window.window) {
 					window_clones.set_child_above_sibling (actor, null);
+					actor.remove_effect_by_name ("brightness");
 					actor.z_position = 0;
-					actor.opacity = 255;
 				} else {
-					actor.z_position = -200;
-					actor.opacity = window_opacity;
+					if (actor.get_effect ("brightness") == null) {
+						var brightness_effect = new BrightnessContrastEffect ();
+						brightness_effect.set_brightness (DIM_WINDOW_BRIGHTNESS);
+						actor.add_effect_with_name ("brightness", brightness_effect);
+					}
+
+					actor.z_position = -100;
 				}
 
 				actor.restore_easing_state ();

@@ -20,6 +20,9 @@ namespace Gnome {
 		public static Gdk.Pixbuf scale_down_pixbuf (Gdk.Pixbuf pixbuf, int dest_width, int dest_height);
 	}
 	namespace Languages {
+		[CCode (array_length = false, array_null_terminated = true, cheader_filename = "libgnome-desktop/gnome-languages.h", cname = "gnome_get_all_languages")]
+		[Version (since = "3.8")]
+		public static string[] get_all_languages ();
 		[CCode (array_length = false, array_null_terminated = true, cheader_filename = "libgnome-desktop/gnome-languages.h", cname = "gnome_get_all_locales")]
 		[Version (since = "3.8")]
 		public static string[] get_all_locales ();
@@ -58,6 +61,7 @@ namespace Gnome {
 		public Gdk.Pixbuf create_thumbnail (Gnome.DesktopThumbnailFactory factory, Gdk.Screen screen, int dest_width, int dest_height);
 		public void draw (Gdk.Pixbuf dest, Gdk.Screen screen, bool is_root);
 		public void get_color (GDesktop.BackgroundShading type, Gdk.Color primary, Gdk.Color secondary);
+		public bool get_draw_background ();
 		public unowned string get_filename ();
 		public bool get_image_size (Gnome.DesktopThumbnailFactory factory, int best_width, int best_height, int width, int height);
 		public GDesktop.BackgroundStyle get_placement ();
@@ -67,6 +71,7 @@ namespace Gnome {
 		public void load_from_preferences (GLib.Settings settings);
 		public void save_to_preferences (GLib.Settings settings);
 		public void set_color (GDesktop.BackgroundShading type, Gdk.Color primary, Gdk.Color secondary);
+		public void set_draw_background (bool draw_background);
 		public void set_filename (string filename);
 		public void set_placement (GDesktop.BackgroundStyle placement);
 		public static void set_surface_as_root (Gdk.Screen screen, Cairo.Surface surface);
