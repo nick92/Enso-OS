@@ -1,0 +1,613 @@
+# Hebrew translation for switchboard-plug-keyboard
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the switchboard-plug-keyboard package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-keyboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-11 12:15-0800\n"
+"PO-Revision-Date: 2017-04-25 21:21+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: Hebrew <https://l10n.elementary.io/projects/switchboard"
+"/switchboard-plug-keyboard/he/>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=plural=n==1 ? 0 : (n>2||n==0) ? 1 : 2;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-02-12 06:18+0000\n"
+
+#: ../src/Pages/layout.vala:112
+msgid "Switch layout:"
+msgstr "החלפת פריסה:"
+
+#: ../src/Pages/layout.vala:115 ../src/Pages/layout.vala:133
+#: ../src/Pages/Shortcuts/shortcut.vala:41
+msgid "Disabled"
+msgstr "מושבת"
+
+#: ../src/Pages/layout.vala:116
+msgid "Alt + Caps Lock"
+msgstr "Alt + Caps Lock"
+
+#: ../src/Pages/layout.vala:117
+msgid "Alt + Shift"
+msgstr "Alt + Shift"
+
+#: ../src/Pages/layout.vala:118
+msgid "Alt + Space"
+msgstr "Alt + רווח"
+
+#: ../src/Pages/layout.vala:119
+msgid "Both Shift keys together"
+msgstr "שני מקשי ה־Shift יחד"
+
+#: ../src/Pages/layout.vala:120 ../src/Pages/layout.vala:134
+#: ../src/Pages/layout.vala:238
+msgid "Caps Lock"
+msgstr "Caps Lock"
+
+#: ../src/Pages/layout.vala:121
+msgid "Ctrl + Alt"
+msgstr "Ctrl + Alt"
+
+#: ../src/Pages/layout.vala:122
+msgid "Ctrl + Shift"
+msgstr "Ctrl + Shift"
+
+#: ../src/Pages/layout.vala:123
+msgid "Shift + Caps Lock"
+msgstr "Shift + Caps Lock"
+
+#: ../src/Pages/layout.vala:131
+msgid "Compose key:"
+msgstr "מקש Compose:"
+
+#: ../src/Pages/layout.vala:135 ../src/Pages/layout.vala:239
+#: ../src/Pages/layout.vala:250
+msgid "Right Alt"
+msgstr "Alt ימני"
+
+#: ../src/Pages/layout.vala:136 ../src/Pages/layout.vala:240
+#: ../src/Pages/layout.vala:251
+msgid "Right Ctrl"
+msgstr "Ctrl ימני"
+
+#: ../src/Pages/layout.vala:137 ../src/Pages/layout.vala:241
+#: ../src/Pages/layout.vala:252
+msgid "Right Super"
+msgstr "Super ימני"
+
+#: ../src/Pages/layout.vala:145
+msgid "Caps Lock behavior:"
+msgstr "התנהגות Caps Lock:"
+
+#: ../src/Pages/layout.vala:148 ../src/Pages/layout.vala:237
+#: ../src/Pages/Layout/add_layout.vala:101
+#: ../src/Pages/Layout/add_layout.vala:105 ../src/Pages/Layout/handler.vala:45
+msgid "Default"
+msgstr "בררת מחדל"
+
+#: ../src/Pages/layout.vala:149
+msgid "Caps Lock disabled"
+msgstr "ה־Caps Lock מנוטרל"
+
+#: ../src/Pages/layout.vala:150
+msgid "as Backspace"
+msgstr "בתור Backspace"
+
+#: ../src/Pages/layout.vala:151
+msgid "as Ctrl"
+msgstr "בתור Ctrl"
+
+#: ../src/Pages/layout.vala:152
+msgid "as Escape"
+msgstr "בתור Escape"
+
+#: ../src/Pages/layout.vala:153
+msgid "as Num Lock"
+msgstr "בתור Num Lock"
+
+#: ../src/Pages/layout.vala:154
+msgid "as Super"
+msgstr "בתור Super"
+
+#: ../src/Pages/layout.vala:155
+msgid "Swap with Control"
+msgstr "החלפה עם Ctrl"
+
+#: ../src/Pages/layout.vala:156
+msgid "Swap with Escape"
+msgstr "החלפה עם Escape"
+
+#: ../src/Pages/layout.vala:191
+msgid "Type to test your layout…"
+msgstr "יש להקליד כאן כדי לבדוק את פריסת המקלדת שלך…"
+
+#: ../src/Pages/layout.vala:223 ../src/Pages/layout.vala:235
+msgid "Key to choose 3rd level:"
+msgstr "מקש לבחירת רמה שלישית:"
+
+#: ../src/Pages/layout.vala:247
+msgid "Key to choose 5th level:"
+msgstr "מקש לבחירת הרמה החמישית:"
+
+#: ../src/Pages/layout.vala:267
+msgid "Kana Lock:"
+msgstr "נעילת קאנה:"
+
+#: ../src/Pages/layout.vala:270
+msgid "Nicola F Backspace:"
+msgstr "ה־Backspace של Nicola F:"
+
+#: ../src/Pages/layout.vala:273
+msgid "Zenkaku Hankaku as Escape:"
+msgstr "Zenkaku Hankaku בתור Escape:"
+
+#: ../src/Pages/layout.vala:285
+msgid "Hangul/Hanja keys on Right Alt/Ctrl:"
+msgstr "מקשי הנגול/האנג׳ה עם Alt/Ctrl ימניים:"
+
+#: ../src/Pages/shortcuts.vala:43
+msgid "Windows"
+msgstr "Windows"
+
+#: ../src/Pages/shortcuts.vala:44
+msgid "Workspaces"
+msgstr "סביבות עבודה"
+
+#: ../src/Pages/shortcuts.vala:45
+msgid "Screenshots"
+msgstr "צילומי מסך"
+
+#: ../src/Pages/shortcuts.vala:46
+msgid "Applications"
+msgstr "יישומים"
+
+#: ../src/Pages/shortcuts.vala:47
+msgid "Media"
+msgstr "מדיה"
+
+#: ../src/Pages/shortcuts.vala:48
+msgid "Universal Access"
+msgstr "גישה אוניברסלית"
+
+#: ../src/Pages/shortcuts.vala:49
+msgid "Custom"
+msgstr "התאמה אישית"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:8
+msgid "%s is already used for %s!"
+msgstr "%s כבר משמש לטובת %s!"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:9
+msgid "If you reassign the shortcut to %s, %s will be disabled"
+msgstr "הקצאה מחדש של הקיצור לטובת %s, תנטרל את %s"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:11
+#: ../src/Pages/Layout/add_layout.vala:63
+msgid "Cancel"
+msgstr "ביטול"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:12
+msgid "Reassign"
+msgstr "הקצאה מחדש"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:4
+msgid "Enter Command"
+msgstr "הקלדת פקודה"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:54
+msgid "Command"
+msgstr "פקודה"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:55
+msgid "Shortcut"
+msgstr "קיצור דרך"
+
+#: ../src/Pages/Shortcuts/shortcut.vala:50
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: ../src/Pages/Shortcuts/list.vala:31
+msgid "Close"
+msgstr "סגירה"
+
+#: ../src/Pages/Shortcuts/list.vala:32
+msgid "Lower"
+msgstr "הנמכה"
+
+#: ../src/Pages/Shortcuts/list.vala:33
+msgid "Maximize"
+msgstr "הגדלה"
+
+#: ../src/Pages/Shortcuts/list.vala:34
+msgid "Unmaximize"
+msgstr "ביטול הגדלה"
+
+#: ../src/Pages/Shortcuts/list.vala:35
+msgid "Toggle Maximized"
+msgstr "החלפת מצב הגדלה"
+
+#: ../src/Pages/Shortcuts/list.vala:36
+msgid "Minimize"
+msgstr "מזעור"
+
+#: ../src/Pages/Shortcuts/list.vala:37
+msgid "Toggle Fullscreen"
+msgstr "החלפת מצב מסך מלא"
+
+#: ../src/Pages/Shortcuts/list.vala:38
+msgid "Tile Left"
+msgstr "פריסה שמאלה"
+
+#: ../src/Pages/Shortcuts/list.vala:39
+msgid "Tile Right"
+msgstr "פריסה ימינה"
+
+#: ../src/Pages/Shortcuts/list.vala:40
+msgid "Toggle on all Workspaces"
+msgstr "החלפה בכל סביבות העבודה"
+
+#: ../src/Pages/Shortcuts/list.vala:41
+msgid "Toggle always on Top"
+msgstr "החלפת מצב תמיד עליון"
+
+#: ../src/Pages/Shortcuts/list.vala:42
+msgid "Switch Windows"
+msgstr "החלפה בין חלונות"
+
+#: ../src/Pages/Shortcuts/list.vala:43
+msgid "Switch Windows backwards"
+msgstr "החלפה בין חלונות לאחור"
+
+#: ../src/Pages/Shortcuts/list.vala:44
+msgid "Window Overview"
+msgstr "סקירת חלון"
+
+#: ../src/Pages/Shortcuts/list.vala:45
+msgid "Show All Windows"
+msgstr "הצגת כל החלונות"
+
+#: ../src/Pages/Shortcuts/list.vala:87
+msgid "Show Workspace Switcher"
+msgstr "הצגת מחליף סביבות העבודה"
+
+#: ../src/Pages/Shortcuts/list.vala:88
+msgid "Switch to first"
+msgstr "מעבר לראשונה"
+
+#: ../src/Pages/Shortcuts/list.vala:89
+msgid "Switch to new"
+msgstr "מעבר לחדשה"
+
+#: ../src/Pages/Shortcuts/list.vala:90
+msgid "Switch to workspace 1"
+msgstr "מעבר לסביבת עבודה 1"
+
+#: ../src/Pages/Shortcuts/list.vala:91
+msgid "Switch to workspace 2"
+msgstr "מעבר לסביבת עבודה 2"
+
+#: ../src/Pages/Shortcuts/list.vala:92
+msgid "Switch to workspace 3"
+msgstr "מעבר לסביבת עבודה 3"
+
+#: ../src/Pages/Shortcuts/list.vala:93
+msgid "Switch to workspace 4"
+msgstr "מעבר לסביבת עבודה 4"
+
+#: ../src/Pages/Shortcuts/list.vala:94
+msgid "Switch to workspace 5"
+msgstr "מעבר לסביבת עבודה 5"
+
+#: ../src/Pages/Shortcuts/list.vala:95
+msgid "Switch to workspace 6"
+msgstr "מעבר לסביבת עבודה 6"
+
+#: ../src/Pages/Shortcuts/list.vala:96
+msgid "Switch to workspace 7"
+msgstr "מעבר לסביבת עבודה 7"
+
+#: ../src/Pages/Shortcuts/list.vala:97
+msgid "Switch to workspace 8"
+msgstr "מעבר לסביבת עבודה 8"
+
+#: ../src/Pages/Shortcuts/list.vala:98
+msgid "Switch to workspace 9"
+msgstr "מעבר לסביבת עבודה 9"
+
+#: ../src/Pages/Shortcuts/list.vala:99
+msgid "Switch to left"
+msgstr "מעבר לשמאלי"
+
+#: ../src/Pages/Shortcuts/list.vala:100
+msgid "Switch to right"
+msgstr "מעבר לימני"
+
+#: ../src/Pages/Shortcuts/list.vala:101
+msgid "Move to workspace 1"
+msgstr "העברה לסביבת עבודה 1"
+
+#: ../src/Pages/Shortcuts/list.vala:102
+msgid "Move to workspace 2"
+msgstr "העברה לסביבת עבודה 2"
+
+#: ../src/Pages/Shortcuts/list.vala:103
+msgid "Move to workspace 3"
+msgstr "העברה לסביבת עבודה 3"
+
+#: ../src/Pages/Shortcuts/list.vala:104
+msgid "Move to workspace 4"
+msgstr "העברה לסביבת עבודה 4"
+
+#: ../src/Pages/Shortcuts/list.vala:105
+msgid "Move to workspace 5"
+msgstr "העברה לסביבת עבודה 5"
+
+#: ../src/Pages/Shortcuts/list.vala:106
+msgid "Move to workspace 6"
+msgstr "העברה לסביבת עבודה 6"
+
+#: ../src/Pages/Shortcuts/list.vala:107
+msgid "Move to workspace 7"
+msgstr "העברה לסביבת עבודה 7"
+
+#: ../src/Pages/Shortcuts/list.vala:108
+msgid "Move to workspace 8"
+msgstr "העברה לסביבת עבודה 8"
+
+#: ../src/Pages/Shortcuts/list.vala:109
+msgid "Move to workspace 9"
+msgstr "העברה לסביבת עבודה 9"
+
+#: ../src/Pages/Shortcuts/list.vala:110
+msgid "Move to left"
+msgstr "העברה לשמאלי"
+
+#: ../src/Pages/Shortcuts/list.vala:111
+msgid "Move to right"
+msgstr "העברה לימני"
+
+#: ../src/Pages/Shortcuts/list.vala:175
+msgid "Take a Screenshot"
+msgstr "צילום המסך"
+
+#: ../src/Pages/Shortcuts/list.vala:176
+msgid "Save Screenshot to Clipboard"
+msgstr "שמירת צילום המסך ללוח הגזירים"
+
+#: ../src/Pages/Shortcuts/list.vala:177
+msgid "Take a Screenshot of a Window"
+msgstr "צילום חלון"
+
+#: ../src/Pages/Shortcuts/list.vala:178
+msgid "Save Window-Screenshot to Clipboard"
+msgstr "שמירת צילום חלון ללוח הגזירים"
+
+#: ../src/Pages/Shortcuts/list.vala:179
+msgid "Take a Screenshot of an Area"
+msgstr "צילום אזור במסך"
+
+#: ../src/Pages/Shortcuts/list.vala:180
+msgid "Save Area-Screenshot to Clipboard"
+msgstr "שמירת צילום אזור במסך ללוח הגזירים"
+
+#: ../src/Pages/Shortcuts/list.vala:206
+msgid "Calculator"
+msgstr "מחשבון"
+
+#: ../src/Pages/Shortcuts/list.vala:207
+msgid "Email"
+msgstr "דוא״ל"
+
+#: ../src/Pages/Shortcuts/list.vala:208
+msgid "Help"
+msgstr "עזרה"
+
+#: ../src/Pages/Shortcuts/list.vala:209
+msgid "Home Folder"
+msgstr "תיקיית הבית"
+
+#: ../src/Pages/Shortcuts/list.vala:210
+msgid "File Search"
+msgstr "חיפוש קבצים"
+
+#: ../src/Pages/Shortcuts/list.vala:211
+msgid "Terminal"
+msgstr "מסוף"
+
+#: ../src/Pages/Shortcuts/list.vala:212
+msgid "Internet Browser"
+msgstr "דפדפן אינטרנט"
+
+#: ../src/Pages/Shortcuts/list.vala:213
+msgid "Applications Launcher"
+msgstr "משגר יישומים"
+
+#: ../src/Pages/Shortcuts/list.vala:243
+msgid "Volume Up"
+msgstr "הגברת עצמת השמע"
+
+#: ../src/Pages/Shortcuts/list.vala:244
+msgid "Volume Down"
+msgstr "הנמכת עצמת השמע"
+
+#: ../src/Pages/Shortcuts/list.vala:245
+msgid "Mute"
+msgstr "השתקה"
+
+#: ../src/Pages/Shortcuts/list.vala:246
+msgid "Launch Media Player"
+msgstr "הפעלת נגן המדיה"
+
+#: ../src/Pages/Shortcuts/list.vala:247
+msgid "Play"
+msgstr "נגינה"
+
+#: ../src/Pages/Shortcuts/list.vala:248
+msgid "Pause"
+msgstr "השהיה"
+
+#: ../src/Pages/Shortcuts/list.vala:249
+msgid "Stop"
+msgstr "עצירה"
+
+#: ../src/Pages/Shortcuts/list.vala:250
+msgid "Previous Track"
+msgstr "הרצועה הקודמת"
+
+#: ../src/Pages/Shortcuts/list.vala:251
+msgid "Next Track"
+msgstr "הרצועה הבאה"
+
+#: ../src/Pages/Shortcuts/list.vala:252
+msgid "Eject"
+msgstr "שליפה"
+
+#: ../src/Pages/Shortcuts/list.vala:286
+msgid "Decrease Text Size"
+msgstr "הקטנת גודל הטקסט"
+
+#: ../src/Pages/Shortcuts/list.vala:287
+msgid "Increase Text Size"
+msgstr "הגדלת גודל הטקסט"
+
+#: ../src/Pages/Shortcuts/list.vala:288
+msgid "Toggle Magnifier"
+msgstr "הפעלה או סגירה של זכוכית מגדלת"
+
+#: ../src/Pages/Shortcuts/list.vala:289
+msgid "Magnifier Zoom in"
+msgstr "התקרבות בזכוכית המגדלת"
+
+#: ../src/Pages/Shortcuts/list.vala:290
+msgid "Magnifier Zoom out"
+msgstr "התרחקות בזכוכית המגדלת"
+
+#: ../src/Pages/Shortcuts/list.vala:291
+msgid "Toggle On Screen Keyboard"
+msgstr "הפעלה או סגירה של מקלדת על גבי המסך"
+
+#: ../src/Pages/Shortcuts/list.vala:292
+msgid "Toggle Screenreader"
+msgstr "הפעלה או סגירה של מקריא מסך"
+
+#: ../src/Pages/Shortcuts/list.vala:293
+msgid "Toggle High Contrast"
+msgstr "הפעלה או השבתה של ניגודיות גבוהה"
+
+#: ../src/Pages/Shortcuts/display.vala:42
+#: ../src/Pages/Shortcuts/display.vala:45
+msgid "Add"
+msgstr "הוספה"
+
+#: ../src/Pages/Shortcuts/display.vala:43
+#: ../src/Pages/Shortcuts/display.vala:46 ../src/Pages/Layout/display.vala:49
+#: ../src/Pages/Layout/display.vala:54
+msgid "Remove"
+msgstr "הסרה"
+
+#: ../src/Pages/Layout/display.vala:48 ../src/Pages/Layout/display.vala:53
+msgid "Add…"
+msgstr "הוספה…"
+
+#: ../src/Pages/Layout/display.vala:50 ../src/Pages/Layout/display.vala:55
+msgid "Move up"
+msgstr "העברה למעלה"
+
+#: ../src/Pages/Layout/display.vala:51 ../src/Pages/Layout/display.vala:56
+msgid "Move down"
+msgstr "העברה למטה"
+
+#: ../src/Pages/Layout/add_layout.vala:19
+msgid "Language:"
+msgstr "שפה:"
+
+#: ../src/Pages/Layout/add_layout.vala:20
+msgid "Layout:"
+msgstr "פריסה:"
+
+#: ../src/Pages/Layout/add_layout.vala:62
+msgid "Add Layout"
+msgstr "הוספת פריסה"
+
+#: ../src/Pages/behaviour.vala:20
+msgid "Repeat Keys:"
+msgstr "מקשי חזרה:"
+
+#: ../src/Pages/behaviour.vala:23
+msgid "Delay:"
+msgstr "השהיה:"
+
+#: ../src/Pages/behaviour.vala:24
+msgid "Interval:"
+msgstr "משך החזרה:"
+
+#: ../src/Pages/behaviour.vala:25 ../src/Pages/behaviour.vala:26
+#: ../src/Pages/behaviour.vala:135
+msgid "milliseconds"
+msgstr "מילישניות"
+
+#: ../src/Pages/behaviour.vala:129
+msgid "Cursor Blinking:"
+msgstr "הבהוב סמן:"
+
+#: ../src/Pages/behaviour.vala:133
+msgid "Speed:"
+msgstr "מהירות:"
+
+#: ../src/Pages/behaviour.vala:134
+msgid "Duration:"
+msgstr "משך:"
+
+#: ../src/Pages/behaviour.vala:136
+msgid "seconds"
+msgstr "שניות"
+
+#: ../src/Pages/behaviour.vala:245
+msgid "Type to test your settings…"
+msgstr "כאן ניתן להקליד כדי לבדוק את ההגדרות שלך…"
+
+#: ../src/keyboard.vala:13
+msgid "Keyboard"
+msgstr "מקלדת"
+
+#: ../src/keyboard.vala:14
+msgid "Configure keyboard behavior, layouts, and shortcuts"
+msgstr "הגדרת התנהגות המקלדת, הפריסות ומקשי הקיצור"
+
+#: ../src/keyboard.vala:28
+msgid "Layout"
+msgstr "פריסה"
+
+#: ../src/keyboard.vala:29 ../src/keyboard.vala:65
+msgid "Shortcuts"
+msgstr "קיצורי דרך"
+
+#: ../src/keyboard.vala:30
+msgid "Behavior"
+msgstr "התנהגות"
+
+#: ../src/keyboard.vala:66
+msgid "Repeat Keys"
+msgstr "מקשי חזרה"
+
+#: ../src/keyboard.vala:67
+msgid "Cursor Blinking"
+msgstr "הבהוב סמן"
+
+#: ../src/keyboard.vala:68
+msgid "Switch layout"
+msgstr "החלפת פריסה"
+
+#: ../src/keyboard.vala:69
+msgid "Compose Key"
+msgstr "מקש Compose"
+
+#: ../src/keyboard.vala:70
+msgid "Caps Lock behavior"
+msgstr "התנהגות ה־Caps Lock"

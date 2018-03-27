@@ -1,0 +1,614 @@
+# Italian translation for switchboard-plug-keyboard
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the switchboard-plug-keyboard package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-keyboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-11 12:15-0800\n"
+"PO-Revision-Date: 2017-05-04 21:09+0000\n"
+"Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
+"Language-Team: Italian <https://l10n.elementary.io/projects/switchboard"
+"/switchboard-plug-keyboard/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-02-13 05:55+0000\n"
+
+#: ../src/Pages/layout.vala:112
+msgid "Switch layout:"
+msgstr "Cambia disposizione:"
+
+#: ../src/Pages/layout.vala:115 ../src/Pages/layout.vala:133
+#: ../src/Pages/Shortcuts/shortcut.vala:41
+msgid "Disabled"
+msgstr "Disabilitato"
+
+#: ../src/Pages/layout.vala:116
+msgid "Alt + Caps Lock"
+msgstr "Alt + Bloc Maiusc"
+
+#: ../src/Pages/layout.vala:117
+msgid "Alt + Shift"
+msgstr "Alt + Maiusc"
+
+#: ../src/Pages/layout.vala:118
+msgid "Alt + Space"
+msgstr "Alt + Spazio"
+
+#: ../src/Pages/layout.vala:119
+msgid "Both Shift keys together"
+msgstr "Entrambi i tasti Maiusc insieme"
+
+#: ../src/Pages/layout.vala:120 ../src/Pages/layout.vala:134
+#: ../src/Pages/layout.vala:238
+msgid "Caps Lock"
+msgstr "Bloc Maiusc"
+
+#: ../src/Pages/layout.vala:121
+msgid "Ctrl + Alt"
+msgstr "Ctrl + Alt"
+
+#: ../src/Pages/layout.vala:122
+msgid "Ctrl + Shift"
+msgstr "Ctrl + Maiusc"
+
+#: ../src/Pages/layout.vala:123
+msgid "Shift + Caps Lock"
+msgstr "Maiusc + Bloc Maiusc"
+
+#: ../src/Pages/layout.vala:131
+msgid "Compose key:"
+msgstr "Tasto «componi»:"
+
+#: ../src/Pages/layout.vala:135 ../src/Pages/layout.vala:239
+#: ../src/Pages/layout.vala:250
+msgid "Right Alt"
+msgstr "Alt destro"
+
+#: ../src/Pages/layout.vala:136 ../src/Pages/layout.vala:240
+#: ../src/Pages/layout.vala:251
+msgid "Right Ctrl"
+msgstr "Ctrl destro"
+
+#: ../src/Pages/layout.vala:137 ../src/Pages/layout.vala:241
+#: ../src/Pages/layout.vala:252
+msgid "Right Super"
+msgstr "Super destro"
+
+#: ../src/Pages/layout.vala:145
+msgid "Caps Lock behavior:"
+msgstr "Comportamento del tasto Bloc Maiusc:"
+
+#: ../src/Pages/layout.vala:148 ../src/Pages/layout.vala:237
+#: ../src/Pages/Layout/add_layout.vala:101
+#: ../src/Pages/Layout/add_layout.vala:105 ../src/Pages/Layout/handler.vala:45
+msgid "Default"
+msgstr "Predefinite"
+
+#: ../src/Pages/layout.vala:149
+msgid "Caps Lock disabled"
+msgstr "Bloc Maiusc disabilitato"
+
+#: ../src/Pages/layout.vala:150
+msgid "as Backspace"
+msgstr "come Canc"
+
+#: ../src/Pages/layout.vala:151
+msgid "as Ctrl"
+msgstr "come Ctrl"
+
+#: ../src/Pages/layout.vala:152
+msgid "as Escape"
+msgstr "come Esc"
+
+#: ../src/Pages/layout.vala:153
+msgid "as Num Lock"
+msgstr "come Bloc Num"
+
+#: ../src/Pages/layout.vala:154
+msgid "as Super"
+msgstr "come Super"
+
+#: ../src/Pages/layout.vala:155
+msgid "Swap with Control"
+msgstr "Cambia con Ctrl"
+
+#: ../src/Pages/layout.vala:156
+msgid "Swap with Escape"
+msgstr "Cambia con Esc"
+
+#: ../src/Pages/layout.vala:191
+msgid "Type to test your layout…"
+msgstr "Digita per testare la tua disposizione…"
+
+#: ../src/Pages/layout.vala:223 ../src/Pages/layout.vala:235
+msgid "Key to choose 3rd level:"
+msgstr "Tasto per scegliere il terzo livello:"
+
+#: ../src/Pages/layout.vala:247
+msgid "Key to choose 5th level:"
+msgstr "Tasto per scegliere il quinto livello:"
+
+#: ../src/Pages/layout.vala:267
+msgid "Kana Lock:"
+msgstr "Blocco Kana:"
+
+#: ../src/Pages/layout.vala:270
+msgid "Nicola F Backspace:"
+msgstr "Barra spaziatrice Nicola F:"
+
+#: ../src/Pages/layout.vala:273
+msgid "Zenkaku Hankaku as Escape:"
+msgstr "Zenkaku Hankaku come Esc:"
+
+#: ../src/Pages/layout.vala:285
+msgid "Hangul/Hanja keys on Right Alt/Ctrl:"
+msgstr "Tasti Hangul/Hanja su Alt/Ctrl destro:"
+
+#: ../src/Pages/shortcuts.vala:43
+msgid "Windows"
+msgstr "Finestre"
+
+#: ../src/Pages/shortcuts.vala:44
+msgid "Workspaces"
+msgstr "Spazi di lavoro"
+
+#: ../src/Pages/shortcuts.vala:45
+msgid "Screenshots"
+msgstr "Schermate"
+
+#: ../src/Pages/shortcuts.vala:46
+msgid "Applications"
+msgstr "Applicazioni"
+
+#: ../src/Pages/shortcuts.vala:47
+msgid "Media"
+msgstr "Multimediali"
+
+#: ../src/Pages/shortcuts.vala:48
+msgid "Universal Access"
+msgstr "Accesso universale"
+
+#: ../src/Pages/shortcuts.vala:49
+msgid "Custom"
+msgstr "Personalizzato"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:8
+msgid "%s is already used for %s!"
+msgstr "%s è già utilizzato per %s!"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:9
+msgid "If you reassign the shortcut to %s, %s will be disabled"
+msgstr "Se assegni nuovamente la scorciatoia a %s, %s sarà disattivato"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:11
+#: ../src/Pages/Layout/add_layout.vala:63
+msgid "Cancel"
+msgstr "Annulla"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:12
+msgid "Reassign"
+msgstr "Riassegna"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:4
+msgid "Enter Command"
+msgstr "Inserisci comando"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:54
+msgid "Command"
+msgstr "Comando"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:55
+msgid "Shortcut"
+msgstr "Scorciatoia"
+
+#: ../src/Pages/Shortcuts/shortcut.vala:50
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: ../src/Pages/Shortcuts/list.vala:31
+msgid "Close"
+msgstr "Chiudi"
+
+#: ../src/Pages/Shortcuts/list.vala:32
+msgid "Lower"
+msgstr "Abbassa"
+
+#: ../src/Pages/Shortcuts/list.vala:33
+msgid "Maximize"
+msgstr "Massimizza"
+
+#: ../src/Pages/Shortcuts/list.vala:34
+msgid "Unmaximize"
+msgstr "Demassimizza"
+
+#: ../src/Pages/Shortcuts/list.vala:35
+msgid "Toggle Maximized"
+msgstr "Attiva/disattiva la modalità massimizzata"
+
+#: ../src/Pages/Shortcuts/list.vala:36
+msgid "Minimize"
+msgstr "Minimizza"
+
+#: ../src/Pages/Shortcuts/list.vala:37
+msgid "Toggle Fullscreen"
+msgstr "Attiva/disattiva la modalità a schermo intero"
+
+#: ../src/Pages/Shortcuts/list.vala:38
+msgid "Tile Left"
+msgstr "Affianca a sinistra"
+
+#: ../src/Pages/Shortcuts/list.vala:39
+msgid "Tile Right"
+msgstr "Affianca a destra"
+
+#: ../src/Pages/Shortcuts/list.vala:40
+msgid "Toggle on all Workspaces"
+msgstr "Attiva/disattiva in tutti gli spazi di lavoro"
+
+#: ../src/Pages/Shortcuts/list.vala:41
+msgid "Toggle always on Top"
+msgstr "Attiva/disattiva sempre in primo piano"
+
+#: ../src/Pages/Shortcuts/list.vala:42
+msgid "Switch Windows"
+msgstr "Passa da una finestra all'altra"
+
+#: ../src/Pages/Shortcuts/list.vala:43
+msgid "Switch Windows backwards"
+msgstr "Seleziona finestra precedente"
+
+#: ../src/Pages/Shortcuts/list.vala:44
+msgid "Window Overview"
+msgstr "Mostra finestre"
+
+#: ../src/Pages/Shortcuts/list.vala:45
+msgid "Show All Windows"
+msgstr "Mostra tutte le finestre"
+
+#: ../src/Pages/Shortcuts/list.vala:87
+msgid "Show Workspace Switcher"
+msgstr "Mostra una panoramica degli spazi di lavoro"
+
+#: ../src/Pages/Shortcuts/list.vala:88
+msgid "Switch to first"
+msgstr "Passa al primo spazio di lavoro"
+
+#: ../src/Pages/Shortcuts/list.vala:89
+msgid "Switch to new"
+msgstr "Passa ad un nuovo spazio di lavoro"
+
+#: ../src/Pages/Shortcuts/list.vala:90
+msgid "Switch to workspace 1"
+msgstr "Passa allo spazio di lavoro 1"
+
+#: ../src/Pages/Shortcuts/list.vala:91
+msgid "Switch to workspace 2"
+msgstr "Passa allo spazio di lavoro 2"
+
+#: ../src/Pages/Shortcuts/list.vala:92
+msgid "Switch to workspace 3"
+msgstr "Passa allo spazio di lavoro 3"
+
+#: ../src/Pages/Shortcuts/list.vala:93
+msgid "Switch to workspace 4"
+msgstr "Passa allo spazio di lavoro 4"
+
+#: ../src/Pages/Shortcuts/list.vala:94
+msgid "Switch to workspace 5"
+msgstr "Passa allo spazio di lavoro 5"
+
+#: ../src/Pages/Shortcuts/list.vala:95
+msgid "Switch to workspace 6"
+msgstr "Passa allo spazio di lavoro 6"
+
+#: ../src/Pages/Shortcuts/list.vala:96
+msgid "Switch to workspace 7"
+msgstr "Passa allo spazio di lavoro 7"
+
+#: ../src/Pages/Shortcuts/list.vala:97
+msgid "Switch to workspace 8"
+msgstr "Passa allo spazio di lavoro 8"
+
+#: ../src/Pages/Shortcuts/list.vala:98
+msgid "Switch to workspace 9"
+msgstr "Passa allo spazio di lavoro 9"
+
+#: ../src/Pages/Shortcuts/list.vala:99
+msgid "Switch to left"
+msgstr "Scorri verso sinistra"
+
+#: ../src/Pages/Shortcuts/list.vala:100
+msgid "Switch to right"
+msgstr "Scorri verso destra"
+
+#: ../src/Pages/Shortcuts/list.vala:101
+msgid "Move to workspace 1"
+msgstr "Sposta nello spazio di lavoro 1"
+
+#: ../src/Pages/Shortcuts/list.vala:102
+msgid "Move to workspace 2"
+msgstr "Sposta nello spazio di lavoro 2"
+
+#: ../src/Pages/Shortcuts/list.vala:103
+msgid "Move to workspace 3"
+msgstr "Sposta nello spazio di lavoro 3"
+
+#: ../src/Pages/Shortcuts/list.vala:104
+msgid "Move to workspace 4"
+msgstr "Sposta nello spazio di lavoro 4"
+
+#: ../src/Pages/Shortcuts/list.vala:105
+msgid "Move to workspace 5"
+msgstr "Sposta nello spazio di lavoro 5"
+
+#: ../src/Pages/Shortcuts/list.vala:106
+msgid "Move to workspace 6"
+msgstr "Sposta nello spazio di lavoro 6"
+
+#: ../src/Pages/Shortcuts/list.vala:107
+msgid "Move to workspace 7"
+msgstr "Sposta nello spazio di lavoro 7"
+
+#: ../src/Pages/Shortcuts/list.vala:108
+msgid "Move to workspace 8"
+msgstr "Sposta nello spazio di lavoro 8"
+
+#: ../src/Pages/Shortcuts/list.vala:109
+msgid "Move to workspace 9"
+msgstr "Sposta nello spazio di lavoro 9"
+
+#: ../src/Pages/Shortcuts/list.vala:110
+msgid "Move to left"
+msgstr "Sposta a sinistra"
+
+#: ../src/Pages/Shortcuts/list.vala:111
+msgid "Move to right"
+msgstr "Sposta a destra"
+
+#: ../src/Pages/Shortcuts/list.vala:175
+msgid "Take a Screenshot"
+msgstr "Cattura una schermata"
+
+#: ../src/Pages/Shortcuts/list.vala:176
+msgid "Save Screenshot to Clipboard"
+msgstr "Salva schermata negli appunti"
+
+#: ../src/Pages/Shortcuts/list.vala:177
+msgid "Take a Screenshot of a Window"
+msgstr "Cattura una schermata di una finestra"
+
+#: ../src/Pages/Shortcuts/list.vala:178
+msgid "Save Window-Screenshot to Clipboard"
+msgstr "Salva schermata della finestra negli appunti"
+
+#: ../src/Pages/Shortcuts/list.vala:179
+msgid "Take a Screenshot of an Area"
+msgstr "Cattura una schermata di un'area"
+
+#: ../src/Pages/Shortcuts/list.vala:180
+msgid "Save Area-Screenshot to Clipboard"
+msgstr "Salva schermata di un'area selezionata negli appunti"
+
+#: ../src/Pages/Shortcuts/list.vala:206
+msgid "Calculator"
+msgstr "Calcolatrice"
+
+#: ../src/Pages/Shortcuts/list.vala:207
+msgid "Email"
+msgstr "Posta elettronica"
+
+#: ../src/Pages/Shortcuts/list.vala:208
+msgid "Help"
+msgstr "Aiuto"
+
+#: ../src/Pages/Shortcuts/list.vala:209
+msgid "Home Folder"
+msgstr "Apri cartella iniziale"
+
+#: ../src/Pages/Shortcuts/list.vala:210
+msgid "File Search"
+msgstr "Ricerca file"
+
+#: ../src/Pages/Shortcuts/list.vala:211
+msgid "Terminal"
+msgstr "Terminale"
+
+#: ../src/Pages/Shortcuts/list.vala:212
+msgid "Internet Browser"
+msgstr "Browser Internet"
+
+#: ../src/Pages/Shortcuts/list.vala:213
+msgid "Applications Launcher"
+msgstr "Avvio applicazioni"
+
+#: ../src/Pages/Shortcuts/list.vala:243
+msgid "Volume Up"
+msgstr "Aumenta il volume"
+
+#: ../src/Pages/Shortcuts/list.vala:244
+msgid "Volume Down"
+msgstr "Diminuisci il volume"
+
+#: ../src/Pages/Shortcuts/list.vala:245
+msgid "Mute"
+msgstr "Escludi audio"
+
+#: ../src/Pages/Shortcuts/list.vala:246
+msgid "Launch Media Player"
+msgstr "Avvia il riproduttore multimediale"
+
+#: ../src/Pages/Shortcuts/list.vala:247
+msgid "Play"
+msgstr "Riproduci"
+
+#: ../src/Pages/Shortcuts/list.vala:248
+msgid "Pause"
+msgstr "Metti in pausa"
+
+#: ../src/Pages/Shortcuts/list.vala:249
+msgid "Stop"
+msgstr "Interrompi"
+
+#: ../src/Pages/Shortcuts/list.vala:250
+msgid "Previous Track"
+msgstr "Traccia precedente"
+
+#: ../src/Pages/Shortcuts/list.vala:251
+msgid "Next Track"
+msgstr "Traccia successiva"
+
+#: ../src/Pages/Shortcuts/list.vala:252
+msgid "Eject"
+msgstr "Espelli"
+
+#: ../src/Pages/Shortcuts/list.vala:286
+msgid "Decrease Text Size"
+msgstr "Riduci dimensione del testo"
+
+#: ../src/Pages/Shortcuts/list.vala:287
+msgid "Increase Text Size"
+msgstr "Aumenta dimensione del testo"
+
+#: ../src/Pages/Shortcuts/list.vala:288
+msgid "Toggle Magnifier"
+msgstr "Attiva/disattiva lente di ingrandimento"
+
+#: ../src/Pages/Shortcuts/list.vala:289
+msgid "Magnifier Zoom in"
+msgstr "Aumenta lo zoom della lente di ingrandimento"
+
+#: ../src/Pages/Shortcuts/list.vala:290
+msgid "Magnifier Zoom out"
+msgstr "Diminuisci lo zoom della lente di ingrandimento"
+
+#: ../src/Pages/Shortcuts/list.vala:291
+msgid "Toggle On Screen Keyboard"
+msgstr "Abilita/disabilita tastiera a schermo"
+
+#: ../src/Pages/Shortcuts/list.vala:292
+msgid "Toggle Screenreader"
+msgstr "Attiva/disattiva il lettore dello schermo"
+
+#: ../src/Pages/Shortcuts/list.vala:293
+msgid "Toggle High Contrast"
+msgstr "Abilita/disabilita alto contrasto"
+
+#: ../src/Pages/Shortcuts/display.vala:42
+#: ../src/Pages/Shortcuts/display.vala:45
+msgid "Add"
+msgstr "Aggiungi"
+
+#: ../src/Pages/Shortcuts/display.vala:43
+#: ../src/Pages/Shortcuts/display.vala:46 ../src/Pages/Layout/display.vala:49
+#: ../src/Pages/Layout/display.vala:54
+msgid "Remove"
+msgstr "Rimuovi"
+
+#: ../src/Pages/Layout/display.vala:48 ../src/Pages/Layout/display.vala:53
+msgid "Add…"
+msgstr "Aggiungi…"
+
+#: ../src/Pages/Layout/display.vala:50 ../src/Pages/Layout/display.vala:55
+msgid "Move up"
+msgstr "Sposta in alto"
+
+#: ../src/Pages/Layout/display.vala:51 ../src/Pages/Layout/display.vala:56
+msgid "Move down"
+msgstr "Sposta in basso"
+
+#: ../src/Pages/Layout/add_layout.vala:19
+msgid "Language:"
+msgstr "Lingua:"
+
+#: ../src/Pages/Layout/add_layout.vala:20
+msgid "Layout:"
+msgstr "Disposizione:"
+
+#: ../src/Pages/Layout/add_layout.vala:62
+msgid "Add Layout"
+msgstr "Aggiungi disposizione"
+
+#: ../src/Pages/behaviour.vala:20
+msgid "Repeat Keys:"
+msgstr "Ripetizione dei tasti:"
+
+#: ../src/Pages/behaviour.vala:23
+msgid "Delay:"
+msgstr "Ritardo:"
+
+#: ../src/Pages/behaviour.vala:24
+msgid "Interval:"
+msgstr "Intervallo:"
+
+#: ../src/Pages/behaviour.vala:25 ../src/Pages/behaviour.vala:26
+#: ../src/Pages/behaviour.vala:135
+msgid "milliseconds"
+msgstr "millisecondi"
+
+#: ../src/Pages/behaviour.vala:129
+msgid "Cursor Blinking:"
+msgstr "Cursore lampeggiante:"
+
+#: ../src/Pages/behaviour.vala:133
+msgid "Speed:"
+msgstr "Velocità:"
+
+#: ../src/Pages/behaviour.vala:134
+msgid "Duration:"
+msgstr "Durata:"
+
+#: ../src/Pages/behaviour.vala:136
+msgid "seconds"
+msgstr "secondi"
+
+#: ../src/Pages/behaviour.vala:245
+msgid "Type to test your settings…"
+msgstr "Digita per testare le tue impostazioni…"
+
+#: ../src/keyboard.vala:13
+msgid "Keyboard"
+msgstr "Tastiera"
+
+#: ../src/keyboard.vala:14
+msgid "Configure keyboard behavior, layouts, and shortcuts"
+msgstr ""
+"Configura il comportamento della tastiera, le disposizioni e le scorciatoie"
+
+#: ../src/keyboard.vala:28
+msgid "Layout"
+msgstr "Disposizione"
+
+#: ../src/keyboard.vala:29 ../src/keyboard.vala:65
+msgid "Shortcuts"
+msgstr "Scorciatoie"
+
+#: ../src/keyboard.vala:30
+msgid "Behavior"
+msgstr "Comportamento"
+
+#: ../src/keyboard.vala:66
+msgid "Repeat Keys"
+msgstr "Ripetizione dei tasti"
+
+#: ../src/keyboard.vala:67
+msgid "Cursor Blinking"
+msgstr "Cursore lampeggiante"
+
+#: ../src/keyboard.vala:68
+msgid "Switch layout"
+msgstr "Cambia disposizione"
+
+#: ../src/keyboard.vala:69
+msgid "Compose Key"
+msgstr "Tasto «componi»"
+
+#: ../src/keyboard.vala:70
+msgid "Caps Lock behavior"
+msgstr "Comportamento del tasto Bloc Maiusc"

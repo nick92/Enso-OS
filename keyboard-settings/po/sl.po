@@ -1,0 +1,614 @@
+# Slovenian translation for switchboard-plug-keyboard
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the switchboard-plug-keyboard package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-keyboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-11 12:15-0800\n"
+"PO-Revision-Date: 2017-07-02 09:17+0000\n"
+"Last-Translator: Jernej Virag <jernej@virag.si>\n"
+"Language-Team: Slovenian <https://l10n.elementary.io/projects/switchboard"
+"/switchboard-plug-keyboard/sl/>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 2.14\n"
+"X-Launchpad-Export-Date: 2017-02-12 06:18+0000\n"
+
+#: ../src/Pages/layout.vala:112
+msgid "Switch layout:"
+msgstr "Preklopi razpored:"
+
+#: ../src/Pages/layout.vala:115 ../src/Pages/layout.vala:133
+#: ../src/Pages/Shortcuts/shortcut.vala:41
+msgid "Disabled"
+msgstr "Onemogočeno"
+
+#: ../src/Pages/layout.vala:116
+msgid "Alt + Caps Lock"
+msgstr "Alt + Caps lock"
+
+#: ../src/Pages/layout.vala:117
+msgid "Alt + Shift"
+msgstr "Alt + Shift"
+
+#: ../src/Pages/layout.vala:118
+msgid "Alt + Space"
+msgstr "Alt + preslednica"
+
+#: ../src/Pages/layout.vala:119
+msgid "Both Shift keys together"
+msgstr "Obe tipki Shift hkrati"
+
+#: ../src/Pages/layout.vala:120 ../src/Pages/layout.vala:134
+#: ../src/Pages/layout.vala:238
+msgid "Caps Lock"
+msgstr "Caps Lock"
+
+#: ../src/Pages/layout.vala:121
+msgid "Ctrl + Alt"
+msgstr "Ctrl + Alt"
+
+#: ../src/Pages/layout.vala:122
+msgid "Ctrl + Shift"
+msgstr "Ctrl + Shift"
+
+#: ../src/Pages/layout.vala:123
+msgid "Shift + Caps Lock"
+msgstr "Shift + Caps Lock"
+
+#: ../src/Pages/layout.vala:131
+msgid "Compose key:"
+msgstr "Tipka za sestavljanje:"
+
+#: ../src/Pages/layout.vala:135 ../src/Pages/layout.vala:239
+#: ../src/Pages/layout.vala:250
+msgid "Right Alt"
+msgstr "Desni Alt"
+
+#: ../src/Pages/layout.vala:136 ../src/Pages/layout.vala:240
+#: ../src/Pages/layout.vala:251
+msgid "Right Ctrl"
+msgstr "Desni Ctrl"
+
+#: ../src/Pages/layout.vala:137 ../src/Pages/layout.vala:241
+#: ../src/Pages/layout.vala:252
+msgid "Right Super"
+msgstr "Desni Super"
+
+#: ../src/Pages/layout.vala:145
+msgid "Caps Lock behavior:"
+msgstr "Obnašanje Caps Lock:"
+
+#: ../src/Pages/layout.vala:148 ../src/Pages/layout.vala:237
+#: ../src/Pages/Layout/add_layout.vala:101
+#: ../src/Pages/Layout/add_layout.vala:105 ../src/Pages/Layout/handler.vala:45
+msgid "Default"
+msgstr "Privzeto"
+
+#: ../src/Pages/layout.vala:149
+msgid "Caps Lock disabled"
+msgstr "Caps Lock onemogočen"
+
+#: ../src/Pages/layout.vala:150
+msgid "as Backspace"
+msgstr "kot Backspace"
+
+#: ../src/Pages/layout.vala:151
+msgid "as Ctrl"
+msgstr "kot Ctrl"
+
+#: ../src/Pages/layout.vala:152
+msgid "as Escape"
+msgstr "kot Escape"
+
+#: ../src/Pages/layout.vala:153
+msgid "as Num Lock"
+msgstr "kot Num Lock"
+
+#: ../src/Pages/layout.vala:154
+msgid "as Super"
+msgstr "kot Super"
+
+#: ../src/Pages/layout.vala:155
+msgid "Swap with Control"
+msgstr "zamenjaj z Ctrl"
+
+#: ../src/Pages/layout.vala:156
+msgid "Swap with Escape"
+msgstr "zamenjaj z Escape"
+
+#: ../src/Pages/layout.vala:191
+msgid "Type to test your layout…"
+msgstr "Pišite, da preverite vašo razporeditev…"
+
+#: ../src/Pages/layout.vala:223 ../src/Pages/layout.vala:235
+msgid "Key to choose 3rd level:"
+msgstr "Tipka za izbiro 3. nivoja:"
+
+#: ../src/Pages/layout.vala:247
+msgid "Key to choose 5th level:"
+msgstr "Tipka za izbiro 5. nivoja:"
+
+#: ../src/Pages/layout.vala:267
+msgid "Kana Lock:"
+msgstr "Kana Lock:"
+
+#: ../src/Pages/layout.vala:270
+msgid "Nicola F Backspace:"
+msgstr "Nicola F Backspace:"
+
+#: ../src/Pages/layout.vala:273
+msgid "Zenkaku Hankaku as Escape:"
+msgstr "Zenkaku Hankaku kot Escape:"
+
+#: ../src/Pages/layout.vala:285
+msgid "Hangul/Hanja keys on Right Alt/Ctrl:"
+msgstr "Hangul/Hanja tipke na desnem Alt/Ctrl:"
+
+#: ../src/Pages/shortcuts.vala:43
+msgid "Windows"
+msgstr "Okna"
+
+#: ../src/Pages/shortcuts.vala:44
+msgid "Workspaces"
+msgstr "Delovne površine"
+
+#: ../src/Pages/shortcuts.vala:45
+msgid "Screenshots"
+msgstr "Zaslonske slike"
+
+#: ../src/Pages/shortcuts.vala:46
+msgid "Applications"
+msgstr "Aplikacije"
+
+#: ../src/Pages/shortcuts.vala:47
+msgid "Media"
+msgstr "Predstavnost"
+
+#: ../src/Pages/shortcuts.vala:48
+msgid "Universal Access"
+msgstr "Univerzalni dostop"
+
+#: ../src/Pages/shortcuts.vala:49
+msgid "Custom"
+msgstr "Po meri"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:8
+msgid "%s is already used for %s!"
+msgstr "%s je že v uporabi za %s!"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:9
+msgid "If you reassign the shortcut to %s, %s will be disabled"
+msgstr "Če prestavite bljižnico na %s bo %s onemogočeno"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:11
+#: ../src/Pages/Layout/add_layout.vala:63
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:12
+msgid "Reassign"
+msgstr "Ponovno dodeli"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:4
+msgid "Enter Command"
+msgstr "Vnesite ukaz"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:54
+msgid "Command"
+msgstr "Ukaz"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:55
+msgid "Shortcut"
+msgstr "Bližnjica"
+
+#: ../src/Pages/Shortcuts/shortcut.vala:50
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: ../src/Pages/Shortcuts/list.vala:31
+msgid "Close"
+msgstr "Zapri"
+
+#: ../src/Pages/Shortcuts/list.vala:32
+msgid "Lower"
+msgstr "Nižje"
+
+#: ../src/Pages/Shortcuts/list.vala:33
+msgid "Maximize"
+msgstr "Razpni"
+
+#: ../src/Pages/Shortcuts/list.vala:34
+msgid "Unmaximize"
+msgstr "Pomanjšaj"
+
+#: ../src/Pages/Shortcuts/list.vala:35
+msgid "Toggle Maximized"
+msgstr "Preklopi razpeto"
+
+#: ../src/Pages/Shortcuts/list.vala:36
+msgid "Minimize"
+msgstr "Skrči"
+
+#: ../src/Pages/Shortcuts/list.vala:37
+msgid "Toggle Fullscreen"
+msgstr "Preklopi na celozaslonski način"
+
+#: ../src/Pages/Shortcuts/list.vala:38
+msgid "Tile Left"
+msgstr "Razpostavi levo"
+
+#: ../src/Pages/Shortcuts/list.vala:39
+msgid "Tile Right"
+msgstr "Razpostavi desno"
+
+#: ../src/Pages/Shortcuts/list.vala:40
+msgid "Toggle on all Workspaces"
+msgstr "Preklopi vse delovne površine"
+
+#: ../src/Pages/Shortcuts/list.vala:41
+msgid "Toggle always on Top"
+msgstr "Preklopi vedno na vrhu"
+
+#: ../src/Pages/Shortcuts/list.vala:42
+msgid "Switch Windows"
+msgstr "Preklopi okna"
+
+#: ../src/Pages/Shortcuts/list.vala:43
+msgid "Switch Windows backwards"
+msgstr "Preklopi okna vzvratno"
+
+#: ../src/Pages/Shortcuts/list.vala:44
+msgid "Window Overview"
+msgstr "Pregled oken"
+
+#: ../src/Pages/Shortcuts/list.vala:45
+msgid "Show All Windows"
+msgstr "Pokaži vsa okna"
+
+#: ../src/Pages/Shortcuts/list.vala:87
+msgid "Show Workspace Switcher"
+msgstr "Pokaži preklopnik delovnih površin"
+
+#: ../src/Pages/Shortcuts/list.vala:88
+msgid "Switch to first"
+msgstr "Preklopi na prvo"
+
+#: ../src/Pages/Shortcuts/list.vala:89
+msgid "Switch to new"
+msgstr "Preklopi na novo"
+
+#: ../src/Pages/Shortcuts/list.vala:90
+msgid "Switch to workspace 1"
+msgstr "Preklopi na delovno površino 1"
+
+#: ../src/Pages/Shortcuts/list.vala:91
+msgid "Switch to workspace 2"
+msgstr "Preklopi na delovno površino 2"
+
+#: ../src/Pages/Shortcuts/list.vala:92
+msgid "Switch to workspace 3"
+msgstr "Preklopi na delovno površino 3"
+
+#: ../src/Pages/Shortcuts/list.vala:93
+msgid "Switch to workspace 4"
+msgstr "Preklopi na delovno površino 4"
+
+#: ../src/Pages/Shortcuts/list.vala:94
+msgid "Switch to workspace 5"
+msgstr "Preklopi na delovno površino 5"
+
+#: ../src/Pages/Shortcuts/list.vala:95
+msgid "Switch to workspace 6"
+msgstr "Preklopi na delovno površino 6"
+
+#: ../src/Pages/Shortcuts/list.vala:96
+msgid "Switch to workspace 7"
+msgstr "Preklopi na delovno površino 7"
+
+#: ../src/Pages/Shortcuts/list.vala:97
+msgid "Switch to workspace 8"
+msgstr "Preklopi na delovno površino 8"
+
+#: ../src/Pages/Shortcuts/list.vala:98
+msgid "Switch to workspace 9"
+msgstr "Preklopi na delovno površino 9"
+
+#: ../src/Pages/Shortcuts/list.vala:99
+msgid "Switch to left"
+msgstr "Preklopi na levo"
+
+#: ../src/Pages/Shortcuts/list.vala:100
+msgid "Switch to right"
+msgstr "Preklopi na desno"
+
+#: ../src/Pages/Shortcuts/list.vala:101
+msgid "Move to workspace 1"
+msgstr "Premakni na delovno površino 1"
+
+#: ../src/Pages/Shortcuts/list.vala:102
+msgid "Move to workspace 2"
+msgstr "Premakni na delovno površino 2"
+
+#: ../src/Pages/Shortcuts/list.vala:103
+msgid "Move to workspace 3"
+msgstr "Premakni na delovno površino 3"
+
+#: ../src/Pages/Shortcuts/list.vala:104
+msgid "Move to workspace 4"
+msgstr "Premakni na delovno površino 4"
+
+#: ../src/Pages/Shortcuts/list.vala:105
+msgid "Move to workspace 5"
+msgstr "Premakni na delovno površino 5"
+
+#: ../src/Pages/Shortcuts/list.vala:106
+msgid "Move to workspace 6"
+msgstr "Premakni na delovno površino 6"
+
+#: ../src/Pages/Shortcuts/list.vala:107
+msgid "Move to workspace 7"
+msgstr "Premakni na delovno površino 7"
+
+#: ../src/Pages/Shortcuts/list.vala:108
+msgid "Move to workspace 8"
+msgstr "Premakni na delovno površino 8"
+
+#: ../src/Pages/Shortcuts/list.vala:109
+msgid "Move to workspace 9"
+msgstr "Premakni na delovno površino 9"
+
+#: ../src/Pages/Shortcuts/list.vala:110
+msgid "Move to left"
+msgstr "Premakni na levo"
+
+#: ../src/Pages/Shortcuts/list.vala:111
+msgid "Move to right"
+msgstr "Premakni na desno"
+
+#: ../src/Pages/Shortcuts/list.vala:175
+msgid "Take a Screenshot"
+msgstr "Ustvari zaslonsko sliko"
+
+#: ../src/Pages/Shortcuts/list.vala:176
+msgid "Save Screenshot to Clipboard"
+msgstr "Shrani zaslonsko sliko na odložišče"
+
+#: ../src/Pages/Shortcuts/list.vala:177
+msgid "Take a Screenshot of a Window"
+msgstr "Ustvari zaslonsko sliko okna"
+
+#: ../src/Pages/Shortcuts/list.vala:178
+msgid "Save Window-Screenshot to Clipboard"
+msgstr "Shrani zaslonsko sliko okna na odložišče"
+
+#: ../src/Pages/Shortcuts/list.vala:179
+msgid "Take a Screenshot of an Area"
+msgstr "Ustvari zaslonsko sliko območja"
+
+#: ../src/Pages/Shortcuts/list.vala:180
+msgid "Save Area-Screenshot to Clipboard"
+msgstr "Shrani zaslonsko sliko območja na odložišče"
+
+#: ../src/Pages/Shortcuts/list.vala:206
+msgid "Calculator"
+msgstr "Računalo"
+
+#: ../src/Pages/Shortcuts/list.vala:207
+msgid "Email"
+msgstr "Elektronska pošta"
+
+#: ../src/Pages/Shortcuts/list.vala:208
+msgid "Help"
+msgstr "Pomoč"
+
+#: ../src/Pages/Shortcuts/list.vala:209
+msgid "Home Folder"
+msgstr "Osebna mapa"
+
+#: ../src/Pages/Shortcuts/list.vala:210
+msgid "File Search"
+msgstr "Iskanje datotek"
+
+#: ../src/Pages/Shortcuts/list.vala:211
+msgid "Terminal"
+msgstr "Terminal"
+
+#: ../src/Pages/Shortcuts/list.vala:212
+msgid "Internet Browser"
+msgstr "Internetni brskalnik"
+
+#: ../src/Pages/Shortcuts/list.vala:213
+msgid "Applications Launcher"
+msgstr "Zaganjalnik programov"
+
+#: ../src/Pages/Shortcuts/list.vala:243
+msgid "Volume Up"
+msgstr "Zvišaj glasnost"
+
+#: ../src/Pages/Shortcuts/list.vala:244
+msgid "Volume Down"
+msgstr "Znižaj glasnost"
+
+#: ../src/Pages/Shortcuts/list.vala:245
+msgid "Mute"
+msgstr "Utišaj"
+
+#: ../src/Pages/Shortcuts/list.vala:246
+msgid "Launch Media Player"
+msgstr "Zaženi predvajalnik predstavnosti"
+
+#: ../src/Pages/Shortcuts/list.vala:247
+msgid "Play"
+msgstr "Predvajaj"
+
+#: ../src/Pages/Shortcuts/list.vala:248
+msgid "Pause"
+msgstr "Premor"
+
+#: ../src/Pages/Shortcuts/list.vala:249
+msgid "Stop"
+msgstr "Zaustavi"
+
+#: ../src/Pages/Shortcuts/list.vala:250
+msgid "Previous Track"
+msgstr "Predhodna skladba"
+
+#: ../src/Pages/Shortcuts/list.vala:251
+msgid "Next Track"
+msgstr "Naslednja skladba"
+
+#: ../src/Pages/Shortcuts/list.vala:252
+msgid "Eject"
+msgstr "Izvrzi"
+
+#: ../src/Pages/Shortcuts/list.vala:286
+msgid "Decrease Text Size"
+msgstr "Zmanjšaj velikost pisave"
+
+#: ../src/Pages/Shortcuts/list.vala:287
+msgid "Increase Text Size"
+msgstr "Povečaj velikost pisave"
+
+#: ../src/Pages/Shortcuts/list.vala:288
+msgid "Toggle Magnifier"
+msgstr "Preklopi približevalnik"
+
+#: ../src/Pages/Shortcuts/list.vala:289
+msgid "Magnifier Zoom in"
+msgstr "Približaj z lupo"
+
+#: ../src/Pages/Shortcuts/list.vala:290
+msgid "Magnifier Zoom out"
+msgstr "Oddalji z lupo"
+
+#: ../src/Pages/Shortcuts/list.vala:291
+msgid "Toggle On Screen Keyboard"
+msgstr "Preklopi zaslonsko tipkovnico"
+
+#: ../src/Pages/Shortcuts/list.vala:292
+msgid "Toggle Screenreader"
+msgstr "Preklopi zaslonski bralnik"
+
+#: ../src/Pages/Shortcuts/list.vala:293
+msgid "Toggle High Contrast"
+msgstr "Preklopi visok kontrast"
+
+#: ../src/Pages/Shortcuts/display.vala:42
+#: ../src/Pages/Shortcuts/display.vala:45
+msgid "Add"
+msgstr "Dodaj"
+
+#: ../src/Pages/Shortcuts/display.vala:43
+#: ../src/Pages/Shortcuts/display.vala:46 ../src/Pages/Layout/display.vala:49
+#: ../src/Pages/Layout/display.vala:54
+msgid "Remove"
+msgstr "Odstrani"
+
+#: ../src/Pages/Layout/display.vala:48 ../src/Pages/Layout/display.vala:53
+msgid "Add…"
+msgstr "Dodaj…"
+
+#: ../src/Pages/Layout/display.vala:50 ../src/Pages/Layout/display.vala:55
+msgid "Move up"
+msgstr "Premakni gor"
+
+#: ../src/Pages/Layout/display.vala:51 ../src/Pages/Layout/display.vala:56
+msgid "Move down"
+msgstr "Premakni dol"
+
+#: ../src/Pages/Layout/add_layout.vala:19
+msgid "Language:"
+msgstr "Jezik:"
+
+#: ../src/Pages/Layout/add_layout.vala:20
+msgid "Layout:"
+msgstr "Razporeditev:"
+
+#: ../src/Pages/Layout/add_layout.vala:62
+msgid "Add Layout"
+msgstr "Dodaj razporeditev"
+
+#: ../src/Pages/behaviour.vala:20
+msgid "Repeat Keys:"
+msgstr "Ponavljaj tipke:"
+
+#: ../src/Pages/behaviour.vala:23
+msgid "Delay:"
+msgstr "Zakasnitev:"
+
+#: ../src/Pages/behaviour.vala:24
+msgid "Interval:"
+msgstr "Časovni razmik:"
+
+#: ../src/Pages/behaviour.vala:25 ../src/Pages/behaviour.vala:26
+#: ../src/Pages/behaviour.vala:135
+msgid "milliseconds"
+msgstr "milisekund"
+
+#: ../src/Pages/behaviour.vala:129
+msgid "Cursor Blinking:"
+msgstr "Utripanje kurzorja:"
+
+#: ../src/Pages/behaviour.vala:133
+msgid "Speed:"
+msgstr "Hitrost:"
+
+#: ../src/Pages/behaviour.vala:134
+msgid "Duration:"
+msgstr "Trajanje:"
+
+#: ../src/Pages/behaviour.vala:136
+msgid "seconds"
+msgstr "sekund"
+
+#: ../src/Pages/behaviour.vala:245
+msgid "Type to test your settings…"
+msgstr "Pišite, da preverite vaše nastavitve …"
+
+#: ../src/keyboard.vala:13
+msgid "Keyboard"
+msgstr "Tipkovnica"
+
+#: ../src/keyboard.vala:14
+msgid "Configure keyboard behavior, layouts, and shortcuts"
+msgstr "Nastavite obnašanje, razporeditve in bljižnice na tipkovnici."
+
+#: ../src/keyboard.vala:28
+msgid "Layout"
+msgstr "Razporeditev"
+
+#: ../src/keyboard.vala:29 ../src/keyboard.vala:65
+msgid "Shortcuts"
+msgstr "Tipkovne bližnjice"
+
+#: ../src/keyboard.vala:30
+msgid "Behavior"
+msgstr "Vedenje"
+
+#: ../src/keyboard.vala:66
+msgid "Repeat Keys"
+msgstr "Ponavljajoče tipke"
+
+#: ../src/keyboard.vala:67
+msgid "Cursor Blinking"
+msgstr "Utripanje kazalke"
+
+#: ../src/keyboard.vala:68
+msgid "Switch layout"
+msgstr "Preklop razporeda"
+
+#: ../src/keyboard.vala:69
+msgid "Compose Key"
+msgstr "Sestavna tipka"
+
+#: ../src/keyboard.vala:70
+msgid "Caps Lock behavior"
+msgstr "Obnašanje Caps Lock"

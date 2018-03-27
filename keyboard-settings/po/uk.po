@@ -1,0 +1,614 @@
+# Ukrainian translation for switchboard-plug-keyboard
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the switchboard-plug-keyboard package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-keyboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-11 12:15-0800\n"
+"PO-Revision-Date: 2017-04-09 09:38+0000\n"
+"Last-Translator: Kseniia Shimanska <kshimanska@gmail.com>\n"
+"Language-Team: Ukrainian <http://weblate.elementary.io/projects/desktop"
+"/switchboard-plug-keyboard/uk/>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-02-12 06:18+0000\n"
+
+#: ../src/Pages/layout.vala:112
+msgid "Switch layout:"
+msgstr "Перемикання розкладки:"
+
+#: ../src/Pages/layout.vala:115 ../src/Pages/layout.vala:133
+#: ../src/Pages/Shortcuts/shortcut.vala:41
+msgid "Disabled"
+msgstr "Вимкнено"
+
+#: ../src/Pages/layout.vala:116
+msgid "Alt + Caps Lock"
+msgstr "Alt + Caps Lock"
+
+#: ../src/Pages/layout.vala:117
+msgid "Alt + Shift"
+msgstr "Alt + Shift"
+
+#: ../src/Pages/layout.vala:118
+msgid "Alt + Space"
+msgstr "Alt + Пробіл"
+
+#: ../src/Pages/layout.vala:119
+msgid "Both Shift keys together"
+msgstr "Обидві клавіші Shift разом"
+
+#: ../src/Pages/layout.vala:120 ../src/Pages/layout.vala:134
+#: ../src/Pages/layout.vala:238
+msgid "Caps Lock"
+msgstr "Caps Lock"
+
+#: ../src/Pages/layout.vala:121
+msgid "Ctrl + Alt"
+msgstr "Ctrl + Alt"
+
+#: ../src/Pages/layout.vala:122
+msgid "Ctrl + Shift"
+msgstr "Ctrl + Shift"
+
+#: ../src/Pages/layout.vala:123
+msgid "Shift + Caps Lock"
+msgstr "Shift + Caps Lock"
+
+#: ../src/Pages/layout.vala:131
+msgid "Compose key:"
+msgstr "Клавіша Compose:"
+
+#: ../src/Pages/layout.vala:135 ../src/Pages/layout.vala:239
+#: ../src/Pages/layout.vala:250
+msgid "Right Alt"
+msgstr "Правий Alt"
+
+#: ../src/Pages/layout.vala:136 ../src/Pages/layout.vala:240
+#: ../src/Pages/layout.vala:251
+msgid "Right Ctrl"
+msgstr "Правий Ctrl"
+
+#: ../src/Pages/layout.vala:137 ../src/Pages/layout.vala:241
+#: ../src/Pages/layout.vala:252
+msgid "Right Super"
+msgstr "Права клавіша Super"
+
+#: ../src/Pages/layout.vala:145
+msgid "Caps Lock behavior:"
+msgstr "Поведінка Caps Lock:"
+
+#: ../src/Pages/layout.vala:148 ../src/Pages/layout.vala:237
+#: ../src/Pages/Layout/add_layout.vala:101
+#: ../src/Pages/Layout/add_layout.vala:105 ../src/Pages/Layout/handler.vala:45
+msgid "Default"
+msgstr "Типово"
+
+#: ../src/Pages/layout.vala:149
+msgid "Caps Lock disabled"
+msgstr "Caps Lock вимкнений"
+
+#: ../src/Pages/layout.vala:150
+msgid "as Backspace"
+msgstr "як Backspace"
+
+#: ../src/Pages/layout.vala:151
+msgid "as Ctrl"
+msgstr "як Ctrl"
+
+#: ../src/Pages/layout.vala:152
+msgid "as Escape"
+msgstr "як Escape"
+
+#: ../src/Pages/layout.vala:153
+msgid "as Num Lock"
+msgstr "як Num Lock"
+
+#: ../src/Pages/layout.vala:154
+msgid "as Super"
+msgstr "як as Super"
+
+#: ../src/Pages/layout.vala:155
+msgid "Swap with Control"
+msgstr ""
+
+#: ../src/Pages/layout.vala:156
+msgid "Swap with Escape"
+msgstr ""
+
+#: ../src/Pages/layout.vala:191
+msgid "Type to test your layout…"
+msgstr "Друкуйте для перевірки вашої рокладки"
+
+#: ../src/Pages/layout.vala:223 ../src/Pages/layout.vala:235
+msgid "Key to choose 3rd level:"
+msgstr ""
+
+#: ../src/Pages/layout.vala:247
+msgid "Key to choose 5th level:"
+msgstr ""
+
+#: ../src/Pages/layout.vala:267
+msgid "Kana Lock:"
+msgstr "Kana Lock (японська азбука):"
+
+#: ../src/Pages/layout.vala:270
+msgid "Nicola F Backspace:"
+msgstr ""
+
+#: ../src/Pages/layout.vala:273
+msgid "Zenkaku Hankaku as Escape:"
+msgstr ""
+
+#: ../src/Pages/layout.vala:285
+msgid "Hangul/Hanja keys on Right Alt/Ctrl:"
+msgstr ""
+
+#: ../src/Pages/shortcuts.vala:43
+msgid "Windows"
+msgstr "Вікна"
+
+#: ../src/Pages/shortcuts.vala:44
+msgid "Workspaces"
+msgstr "Робочі простори"
+
+#: ../src/Pages/shortcuts.vala:45
+msgid "Screenshots"
+msgstr "Знімки екрану"
+
+#: ../src/Pages/shortcuts.vala:46
+msgid "Applications"
+msgstr "Програми"
+
+#: ../src/Pages/shortcuts.vala:47
+msgid "Media"
+msgstr "Медіа"
+
+#: ../src/Pages/shortcuts.vala:48
+msgid "Universal Access"
+msgstr "Універсальний доступ"
+
+#: ../src/Pages/shortcuts.vala:49
+msgid "Custom"
+msgstr "Власний"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:8
+msgid "%s is already used for %s!"
+msgstr "%s вже застосовується для %s!"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:9
+msgid "If you reassign the shortcut to %s, %s will be disabled"
+msgstr "Якщо ви призначите %s, %s буде відключений"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:11
+#: ../src/Pages/Layout/add_layout.vala:63
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:12
+msgid "Reassign"
+msgstr "Перепризначити"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:4
+msgid "Enter Command"
+msgstr "Уведіть команду"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:54
+msgid "Command"
+msgstr "Команда"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:55
+msgid "Shortcut"
+msgstr "Гаряча клявіша"
+
+#: ../src/Pages/Shortcuts/shortcut.vala:50
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: ../src/Pages/Shortcuts/list.vala:31
+msgid "Close"
+msgstr "Закрити"
+
+#: ../src/Pages/Shortcuts/list.vala:32
+msgid "Lower"
+msgstr "Нижній"
+
+#: ../src/Pages/Shortcuts/list.vala:33
+msgid "Maximize"
+msgstr "Максимізувати"
+
+#: ../src/Pages/Shortcuts/list.vala:34
+msgid "Unmaximize"
+msgstr "Відновити Розмір"
+
+#: ../src/Pages/Shortcuts/list.vala:35
+msgid "Toggle Maximized"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:36
+msgid "Minimize"
+msgstr "Згорнути"
+
+#: ../src/Pages/Shortcuts/list.vala:37
+msgid "Toggle Fullscreen"
+msgstr "Перемкнути на повний екран"
+
+#: ../src/Pages/Shortcuts/list.vala:38
+msgid "Tile Left"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:39
+msgid "Tile Right"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:40
+msgid "Toggle on all Workspaces"
+msgstr "На всіх Робочих Просторах"
+
+#: ../src/Pages/Shortcuts/list.vala:41
+msgid "Toggle always on Top"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:42
+msgid "Switch Windows"
+msgstr "Перемкнути вікна"
+
+#: ../src/Pages/Shortcuts/list.vala:43
+msgid "Switch Windows backwards"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:44
+msgid "Window Overview"
+msgstr "Огляд вікон"
+
+#: ../src/Pages/Shortcuts/list.vala:45
+msgid "Show All Windows"
+msgstr "Показати всі вікна"
+
+#: ../src/Pages/Shortcuts/list.vala:87
+msgid "Show Workspace Switcher"
+msgstr "Показати перемикач робочих місць"
+
+#: ../src/Pages/Shortcuts/list.vala:88
+msgid "Switch to first"
+msgstr "Перейти до першого"
+
+#: ../src/Pages/Shortcuts/list.vala:89
+msgid "Switch to new"
+msgstr "Перейти до нового"
+
+#: ../src/Pages/Shortcuts/list.vala:90
+msgid "Switch to workspace 1"
+msgstr "Перейти до робочого простору 1"
+
+#: ../src/Pages/Shortcuts/list.vala:91
+msgid "Switch to workspace 2"
+msgstr "Перейти до робочого простору 2"
+
+#: ../src/Pages/Shortcuts/list.vala:92
+msgid "Switch to workspace 3"
+msgstr "Перейти до робочого простору 3"
+
+#: ../src/Pages/Shortcuts/list.vala:93
+msgid "Switch to workspace 4"
+msgstr "Перейти до робочого простору 4"
+
+#: ../src/Pages/Shortcuts/list.vala:94
+msgid "Switch to workspace 5"
+msgstr "Перейти до робочого простору 5"
+
+#: ../src/Pages/Shortcuts/list.vala:95
+msgid "Switch to workspace 6"
+msgstr "Перейти до робочого простору 6"
+
+#: ../src/Pages/Shortcuts/list.vala:96
+msgid "Switch to workspace 7"
+msgstr "Перейти в робочу область 7"
+
+#: ../src/Pages/Shortcuts/list.vala:97
+msgid "Switch to workspace 8"
+msgstr "Перейти в робочу область 8"
+
+#: ../src/Pages/Shortcuts/list.vala:98
+msgid "Switch to workspace 9"
+msgstr "Перейти в робочу область 9"
+
+#: ../src/Pages/Shortcuts/list.vala:99
+msgid "Switch to left"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:100
+msgid "Switch to right"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:101
+msgid "Move to workspace 1"
+msgstr "Перемістити в робочу область 1"
+
+#: ../src/Pages/Shortcuts/list.vala:102
+msgid "Move to workspace 2"
+msgstr "Перемістити в робочу область 2"
+
+#: ../src/Pages/Shortcuts/list.vala:103
+msgid "Move to workspace 3"
+msgstr "Перемістити в робочу область 3"
+
+#: ../src/Pages/Shortcuts/list.vala:104
+msgid "Move to workspace 4"
+msgstr "Перемістити в робочу область 4"
+
+#: ../src/Pages/Shortcuts/list.vala:105
+msgid "Move to workspace 5"
+msgstr "Перемістити в робочу область 5"
+
+#: ../src/Pages/Shortcuts/list.vala:106
+msgid "Move to workspace 6"
+msgstr "Перемістити в робочу область 6"
+
+#: ../src/Pages/Shortcuts/list.vala:107
+msgid "Move to workspace 7"
+msgstr "Перемістити в робочу область 7"
+
+#: ../src/Pages/Shortcuts/list.vala:108
+msgid "Move to workspace 8"
+msgstr "Перемістити в робочу область 8"
+
+#: ../src/Pages/Shortcuts/list.vala:109
+msgid "Move to workspace 9"
+msgstr "Перемістити в робочу область 9"
+
+#: ../src/Pages/Shortcuts/list.vala:110
+msgid "Move to left"
+msgstr "Переміщення вліво"
+
+#: ../src/Pages/Shortcuts/list.vala:111
+msgid "Move to right"
+msgstr "Переміщення вправо"
+
+#: ../src/Pages/Shortcuts/list.vala:175
+msgid "Take a Screenshot"
+msgstr "Зробити знімок екрану"
+
+#: ../src/Pages/Shortcuts/list.vala:176
+msgid "Save Screenshot to Clipboard"
+msgstr "Зберегти знімок у буфері обміну"
+
+#: ../src/Pages/Shortcuts/list.vala:177
+msgid "Take a Screenshot of a Window"
+msgstr "Зробити знімок вікна"
+
+#: ../src/Pages/Shortcuts/list.vala:178
+msgid "Save Window-Screenshot to Clipboard"
+msgstr "Зберегти знімок вікна у буфері обміну"
+
+#: ../src/Pages/Shortcuts/list.vala:179
+msgid "Take a Screenshot of an Area"
+msgstr "Зробити знімок вибраної області"
+
+#: ../src/Pages/Shortcuts/list.vala:180
+msgid "Save Area-Screenshot to Clipboard"
+msgstr "Зберегти знімок вибраної області у буфері обміну"
+
+#: ../src/Pages/Shortcuts/list.vala:206
+msgid "Calculator"
+msgstr "Калькулятор"
+
+#: ../src/Pages/Shortcuts/list.vala:207
+msgid "Email"
+msgstr "Пошта"
+
+#: ../src/Pages/Shortcuts/list.vala:208
+msgid "Help"
+msgstr "Допомога"
+
+#: ../src/Pages/Shortcuts/list.vala:209
+msgid "Home Folder"
+msgstr "Домашня папка"
+
+#: ../src/Pages/Shortcuts/list.vala:210
+msgid "File Search"
+msgstr "Пошук файлів"
+
+#: ../src/Pages/Shortcuts/list.vala:211
+msgid "Terminal"
+msgstr "Термінал"
+
+#: ../src/Pages/Shortcuts/list.vala:212
+msgid "Internet Browser"
+msgstr "Інтернет-переглядач"
+
+#: ../src/Pages/Shortcuts/list.vala:213
+msgid "Applications Launcher"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:243
+msgid "Volume Up"
+msgstr "Збільшити гучність"
+
+#: ../src/Pages/Shortcuts/list.vala:244
+msgid "Volume Down"
+msgstr "Зменшити гучність"
+
+#: ../src/Pages/Shortcuts/list.vala:245
+msgid "Mute"
+msgstr "Вимкнути звук"
+
+#: ../src/Pages/Shortcuts/list.vala:246
+msgid "Launch Media Player"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:247
+msgid "Play"
+msgstr "Пуск"
+
+#: ../src/Pages/Shortcuts/list.vala:248
+msgid "Pause"
+msgstr "Pause"
+
+#: ../src/Pages/Shortcuts/list.vala:249
+msgid "Stop"
+msgstr "Стоп"
+
+#: ../src/Pages/Shortcuts/list.vala:250
+msgid "Previous Track"
+msgstr "Попередня композиція"
+
+#: ../src/Pages/Shortcuts/list.vala:251
+msgid "Next Track"
+msgstr "Наступна композиція"
+
+#: ../src/Pages/Shortcuts/list.vala:252
+msgid "Eject"
+msgstr "Витягнути"
+
+#: ../src/Pages/Shortcuts/list.vala:286
+msgid "Decrease Text Size"
+msgstr "Зменшити розмір тексту"
+
+#: ../src/Pages/Shortcuts/list.vala:287
+msgid "Increase Text Size"
+msgstr "Збільшити розмір тексту"
+
+#: ../src/Pages/Shortcuts/list.vala:288
+msgid "Toggle Magnifier"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:289
+msgid "Magnifier Zoom in"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:290
+msgid "Magnifier Zoom out"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:291
+msgid "Toggle On Screen Keyboard"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:292
+msgid "Toggle Screenreader"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/list.vala:293
+msgid "Toggle High Contrast"
+msgstr ""
+
+#: ../src/Pages/Shortcuts/display.vala:42
+#: ../src/Pages/Shortcuts/display.vala:45
+msgid "Add"
+msgstr "Додати"
+
+#: ../src/Pages/Shortcuts/display.vala:43
+#: ../src/Pages/Shortcuts/display.vala:46 ../src/Pages/Layout/display.vala:49
+#: ../src/Pages/Layout/display.vala:54
+msgid "Remove"
+msgstr "Вилучити"
+
+#: ../src/Pages/Layout/display.vala:48 ../src/Pages/Layout/display.vala:53
+msgid "Add…"
+msgstr "Додати…"
+
+#: ../src/Pages/Layout/display.vala:50 ../src/Pages/Layout/display.vala:55
+msgid "Move up"
+msgstr "Перемістити вгору"
+
+#: ../src/Pages/Layout/display.vala:51 ../src/Pages/Layout/display.vala:56
+msgid "Move down"
+msgstr "Перемістити вниз"
+
+#: ../src/Pages/Layout/add_layout.vala:19
+msgid "Language:"
+msgstr "Мова:"
+
+#: ../src/Pages/Layout/add_layout.vala:20
+msgid "Layout:"
+msgstr "Розкладка:"
+
+#: ../src/Pages/Layout/add_layout.vala:62
+msgid "Add Layout"
+msgstr "Додати розкладку"
+
+#: ../src/Pages/behaviour.vala:20
+msgid "Repeat Keys:"
+msgstr ""
+
+#: ../src/Pages/behaviour.vala:23
+msgid "Delay:"
+msgstr "Затримка:"
+
+#: ../src/Pages/behaviour.vala:24
+msgid "Interval:"
+msgstr "Інтервал:"
+
+#: ../src/Pages/behaviour.vala:25 ../src/Pages/behaviour.vala:26
+#: ../src/Pages/behaviour.vala:135
+msgid "milliseconds"
+msgstr "мілісекунди"
+
+#: ../src/Pages/behaviour.vala:129
+msgid "Cursor Blinking:"
+msgstr ""
+
+#: ../src/Pages/behaviour.vala:133
+msgid "Speed:"
+msgstr "Швидкість:"
+
+#: ../src/Pages/behaviour.vala:134
+msgid "Duration:"
+msgstr "Тривалість:"
+
+#: ../src/Pages/behaviour.vala:136
+msgid "seconds"
+msgstr "секунди"
+
+#: ../src/Pages/behaviour.vala:245
+msgid "Type to test your settings…"
+msgstr "Друкуйте для перевірки налаштувань..."
+
+#: ../src/keyboard.vala:13
+msgid "Keyboard"
+msgstr "Клавіатура"
+
+#: ../src/keyboard.vala:14
+msgid "Configure keyboard behavior, layouts, and shortcuts"
+msgstr "Налаштування поведінки клавіатури, макетів та ярликів"
+
+#: ../src/keyboard.vala:28
+msgid "Layout"
+msgstr "Розкладка"
+
+#: ../src/keyboard.vala:29 ../src/keyboard.vala:65
+msgid "Shortcuts"
+msgstr "Поєднання клавіш"
+
+#: ../src/keyboard.vala:30
+msgid "Behavior"
+msgstr "Поведінка"
+
+#: ../src/keyboard.vala:66
+msgid "Repeat Keys"
+msgstr ""
+
+#: ../src/keyboard.vala:67
+msgid "Cursor Blinking"
+msgstr ""
+
+#: ../src/keyboard.vala:68
+msgid "Switch layout"
+msgstr ""
+
+#: ../src/keyboard.vala:69
+msgid "Compose Key"
+msgstr ""
+
+#: ../src/keyboard.vala:70
+msgid "Caps Lock behavior"
+msgstr ""

@@ -1,0 +1,613 @@
+# Danish translation for switchboard-plug-keyboard
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the switchboard-plug-keyboard package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-keyboard\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-11 12:15-0800\n"
+"PO-Revision-Date: 2017-07-01 22:11+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
+"Language-Team: Danish <https://l10n.elementary.io/projects/switchboard"
+"/switchboard-plug-keyboard/da/>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.14\n"
+"X-Launchpad-Export-Date: 2017-03-19 06:32+0000\n"
+
+#: ../src/Pages/layout.vala:112
+msgid "Switch layout:"
+msgstr "Skift layout:"
+
+#: ../src/Pages/layout.vala:115 ../src/Pages/layout.vala:133
+#: ../src/Pages/Shortcuts/shortcut.vala:41
+msgid "Disabled"
+msgstr "Deaktiveret"
+
+#: ../src/Pages/layout.vala:116
+msgid "Alt + Caps Lock"
+msgstr "Alt + Caps Lock"
+
+#: ../src/Pages/layout.vala:117
+msgid "Alt + Shift"
+msgstr "Alt + Skift"
+
+#: ../src/Pages/layout.vala:118
+msgid "Alt + Space"
+msgstr "Alt + Mellemrum"
+
+#: ../src/Pages/layout.vala:119
+msgid "Both Shift keys together"
+msgstr "Begge Skift-taster på samme tid"
+
+#: ../src/Pages/layout.vala:120 ../src/Pages/layout.vala:134
+#: ../src/Pages/layout.vala:238
+msgid "Caps Lock"
+msgstr "Caps Lock"
+
+#: ../src/Pages/layout.vala:121
+msgid "Ctrl + Alt"
+msgstr "Ctrl + Alt"
+
+#: ../src/Pages/layout.vala:122
+msgid "Ctrl + Shift"
+msgstr "Ctrl + Skift"
+
+#: ../src/Pages/layout.vala:123
+msgid "Shift + Caps Lock"
+msgstr "Skift + Caps Lock"
+
+#: ../src/Pages/layout.vala:131
+msgid "Compose key:"
+msgstr "Skriv-tast:"
+
+#: ../src/Pages/layout.vala:135 ../src/Pages/layout.vala:239
+#: ../src/Pages/layout.vala:250
+msgid "Right Alt"
+msgstr "Højre Alt"
+
+#: ../src/Pages/layout.vala:136 ../src/Pages/layout.vala:240
+#: ../src/Pages/layout.vala:251
+msgid "Right Ctrl"
+msgstr "Højre Ctrl"
+
+#: ../src/Pages/layout.vala:137 ../src/Pages/layout.vala:241
+#: ../src/Pages/layout.vala:252
+msgid "Right Super"
+msgstr "Højre Super"
+
+#: ../src/Pages/layout.vala:145
+msgid "Caps Lock behavior:"
+msgstr "Caps Lock adfædr:"
+
+#: ../src/Pages/layout.vala:148 ../src/Pages/layout.vala:237
+#: ../src/Pages/Layout/add_layout.vala:101
+#: ../src/Pages/Layout/add_layout.vala:105 ../src/Pages/Layout/handler.vala:45
+msgid "Default"
+msgstr "Standard"
+
+#: ../src/Pages/layout.vala:149
+msgid "Caps Lock disabled"
+msgstr "Caps Lock deaktiveret"
+
+#: ../src/Pages/layout.vala:150
+msgid "as Backspace"
+msgstr "som Backspace"
+
+#: ../src/Pages/layout.vala:151
+msgid "as Ctrl"
+msgstr "som Ctrl"
+
+#: ../src/Pages/layout.vala:152
+msgid "as Escape"
+msgstr "som Escape"
+
+#: ../src/Pages/layout.vala:153
+msgid "as Num Lock"
+msgstr "som Num Lock"
+
+#: ../src/Pages/layout.vala:154
+msgid "as Super"
+msgstr "som Super"
+
+#: ../src/Pages/layout.vala:155
+msgid "Swap with Control"
+msgstr "Byt med Control"
+
+#: ../src/Pages/layout.vala:156
+msgid "Swap with Escape"
+msgstr "Byt med Escape"
+
+#: ../src/Pages/layout.vala:191
+msgid "Type to test your layout…"
+msgstr "Skriv for at teste dit layout…"
+
+#: ../src/Pages/layout.vala:223 ../src/Pages/layout.vala:235
+msgid "Key to choose 3rd level:"
+msgstr "Tast til at vælge 3. niveau:"
+
+#: ../src/Pages/layout.vala:247
+msgid "Key to choose 5th level:"
+msgstr "Tast til at vælge 5. niveau:"
+
+#: ../src/Pages/layout.vala:267
+msgid "Kana Lock:"
+msgstr "Kana Lock:"
+
+#: ../src/Pages/layout.vala:270
+msgid "Nicola F Backspace:"
+msgstr "Nicola F Backspace:"
+
+#: ../src/Pages/layout.vala:273
+msgid "Zenkaku Hankaku as Escape:"
+msgstr "Zenkaku Hankaku som Escape:"
+
+#: ../src/Pages/layout.vala:285
+msgid "Hangul/Hanja keys on Right Alt/Ctrl:"
+msgstr "Hangul/Hanja-taster på højre Alt/Ctrl:"
+
+#: ../src/Pages/shortcuts.vala:43
+msgid "Windows"
+msgstr "Vinduer"
+
+#: ../src/Pages/shortcuts.vala:44
+msgid "Workspaces"
+msgstr "Arbejdsområder"
+
+#: ../src/Pages/shortcuts.vala:45
+msgid "Screenshots"
+msgstr "Skærmbilleder"
+
+#: ../src/Pages/shortcuts.vala:46
+msgid "Applications"
+msgstr "Programmer"
+
+#: ../src/Pages/shortcuts.vala:47
+msgid "Media"
+msgstr "Medie"
+
+#: ../src/Pages/shortcuts.vala:48
+msgid "Universal Access"
+msgstr "Universel adgang"
+
+#: ../src/Pages/shortcuts.vala:49
+msgid "Custom"
+msgstr "Brugerdefineret"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:8
+msgid "%s is already used for %s!"
+msgstr "%s er allerede i brug til %s!"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:9
+msgid "If you reassign the shortcut to %s, %s will be disabled"
+msgstr "Hvis du gentildeler genvejen til %s vil %s blive deaktiveret"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:11
+#: ../src/Pages/Layout/add_layout.vala:63
+msgid "Cancel"
+msgstr "Annuller"
+
+#: ../src/Pages/Shortcuts/conflict_dialog.vala:12
+msgid "Reassign"
+msgstr "Gentildel"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:4
+msgid "Enter Command"
+msgstr "Indtast kommando"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:54
+msgid "Command"
+msgstr "Kommando"
+
+#: ../src/Pages/Shortcuts/custom_tree.vala:55
+msgid "Shortcut"
+msgstr "Genvej"
+
+#: ../src/Pages/Shortcuts/shortcut.vala:50
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: ../src/Pages/Shortcuts/list.vala:31
+msgid "Close"
+msgstr "Luk"
+
+#: ../src/Pages/Shortcuts/list.vala:32
+msgid "Lower"
+msgstr "Lavere"
+
+#: ../src/Pages/Shortcuts/list.vala:33
+msgid "Maximize"
+msgstr "Maksimer"
+
+#: ../src/Pages/Shortcuts/list.vala:34
+msgid "Unmaximize"
+msgstr "Gendan fra maksimeret"
+
+#: ../src/Pages/Shortcuts/list.vala:35
+msgid "Toggle Maximized"
+msgstr "Maksimeret til/fra"
+
+#: ../src/Pages/Shortcuts/list.vala:36
+msgid "Minimize"
+msgstr "Minimér"
+
+#: ../src/Pages/Shortcuts/list.vala:37
+msgid "Toggle Fullscreen"
+msgstr "Slå fuldskærm til/fra"
+
+#: ../src/Pages/Shortcuts/list.vala:38
+msgid "Tile Left"
+msgstr "Flæselæg til venstre"
+
+#: ../src/Pages/Shortcuts/list.vala:39
+msgid "Tile Right"
+msgstr "Flæselæg til højre"
+
+#: ../src/Pages/Shortcuts/list.vala:40
+msgid "Toggle on all Workspaces"
+msgstr "På alle arbejdsområder til/fra"
+
+#: ../src/Pages/Shortcuts/list.vala:41
+msgid "Toggle always on Top"
+msgstr "Altid øverst til/fra"
+
+#: ../src/Pages/Shortcuts/list.vala:42
+msgid "Switch Windows"
+msgstr "Skift vinduer"
+
+#: ../src/Pages/Shortcuts/list.vala:43
+msgid "Switch Windows backwards"
+msgstr "Skift vinduer baglæns"
+
+#: ../src/Pages/Shortcuts/list.vala:44
+msgid "Window Overview"
+msgstr "Vinduesoversigt"
+
+#: ../src/Pages/Shortcuts/list.vala:45
+msgid "Show All Windows"
+msgstr "Vis alle vinduer"
+
+#: ../src/Pages/Shortcuts/list.vala:87
+msgid "Show Workspace Switcher"
+msgstr "Vis arbejdsområdeskifter"
+
+#: ../src/Pages/Shortcuts/list.vala:88
+msgid "Switch to first"
+msgstr "Skift til første"
+
+#: ../src/Pages/Shortcuts/list.vala:89
+msgid "Switch to new"
+msgstr "Skift til nye"
+
+#: ../src/Pages/Shortcuts/list.vala:90
+msgid "Switch to workspace 1"
+msgstr "Skift til arbejdsområde 1"
+
+#: ../src/Pages/Shortcuts/list.vala:91
+msgid "Switch to workspace 2"
+msgstr "Skift til arbejdsområde 2"
+
+#: ../src/Pages/Shortcuts/list.vala:92
+msgid "Switch to workspace 3"
+msgstr "Skift til arbejdsområde 3"
+
+#: ../src/Pages/Shortcuts/list.vala:93
+msgid "Switch to workspace 4"
+msgstr "Skift til arbejdsområde 4"
+
+#: ../src/Pages/Shortcuts/list.vala:94
+msgid "Switch to workspace 5"
+msgstr "Skift til arbejdsområde 5"
+
+#: ../src/Pages/Shortcuts/list.vala:95
+msgid "Switch to workspace 6"
+msgstr "Skift til arbejdsområde 6"
+
+#: ../src/Pages/Shortcuts/list.vala:96
+msgid "Switch to workspace 7"
+msgstr "Skift til arbejdsområde 7"
+
+#: ../src/Pages/Shortcuts/list.vala:97
+msgid "Switch to workspace 8"
+msgstr "Skift til arbejdsområde 8"
+
+#: ../src/Pages/Shortcuts/list.vala:98
+msgid "Switch to workspace 9"
+msgstr "Skift til arbejdsområde 9"
+
+#: ../src/Pages/Shortcuts/list.vala:99
+msgid "Switch to left"
+msgstr "Skift til venstre"
+
+#: ../src/Pages/Shortcuts/list.vala:100
+msgid "Switch to right"
+msgstr "Skift til højre"
+
+#: ../src/Pages/Shortcuts/list.vala:101
+msgid "Move to workspace 1"
+msgstr "Flyt til arbejdsområde 1"
+
+#: ../src/Pages/Shortcuts/list.vala:102
+msgid "Move to workspace 2"
+msgstr "Flyt til arbejdsområde 2"
+
+#: ../src/Pages/Shortcuts/list.vala:103
+msgid "Move to workspace 3"
+msgstr "Flyt til arbejdsområde 3"
+
+#: ../src/Pages/Shortcuts/list.vala:104
+msgid "Move to workspace 4"
+msgstr "Flyt til arbejdsområde 4"
+
+#: ../src/Pages/Shortcuts/list.vala:105
+msgid "Move to workspace 5"
+msgstr "Flyt til arbejdsområde 5"
+
+#: ../src/Pages/Shortcuts/list.vala:106
+msgid "Move to workspace 6"
+msgstr "Flyt til arbejdsområde 6"
+
+#: ../src/Pages/Shortcuts/list.vala:107
+msgid "Move to workspace 7"
+msgstr "Flyt til arbejdsområde 7"
+
+#: ../src/Pages/Shortcuts/list.vala:108
+msgid "Move to workspace 8"
+msgstr "Flyt til arbejdsområde 8"
+
+#: ../src/Pages/Shortcuts/list.vala:109
+msgid "Move to workspace 9"
+msgstr "Flyt til arbejdsområde 9"
+
+#: ../src/Pages/Shortcuts/list.vala:110
+msgid "Move to left"
+msgstr "Flyt til venstre"
+
+#: ../src/Pages/Shortcuts/list.vala:111
+msgid "Move to right"
+msgstr "Flyt til højre"
+
+#: ../src/Pages/Shortcuts/list.vala:175
+msgid "Take a Screenshot"
+msgstr "Tag et skærmbillede"
+
+#: ../src/Pages/Shortcuts/list.vala:176
+msgid "Save Screenshot to Clipboard"
+msgstr "Gem skærmbillede til udklipsholder"
+
+#: ../src/Pages/Shortcuts/list.vala:177
+msgid "Take a Screenshot of a Window"
+msgstr "Tag skærmbillede af et vindue"
+
+#: ../src/Pages/Shortcuts/list.vala:178
+msgid "Save Window-Screenshot to Clipboard"
+msgstr "Gem skærmbillede af vindue til udklipsholder"
+
+#: ../src/Pages/Shortcuts/list.vala:179
+msgid "Take a Screenshot of an Area"
+msgstr "Tag skærmbillede af et område"
+
+#: ../src/Pages/Shortcuts/list.vala:180
+msgid "Save Area-Screenshot to Clipboard"
+msgstr "Gem skærmbillede af område til udklipsholder"
+
+#: ../src/Pages/Shortcuts/list.vala:206
+msgid "Calculator"
+msgstr "Lommeregner"
+
+#: ../src/Pages/Shortcuts/list.vala:207
+msgid "Email"
+msgstr "E-mail"
+
+#: ../src/Pages/Shortcuts/list.vala:208
+msgid "Help"
+msgstr "Hjælp"
+
+#: ../src/Pages/Shortcuts/list.vala:209
+msgid "Home Folder"
+msgstr "Hjemmemappe"
+
+#: ../src/Pages/Shortcuts/list.vala:210
+msgid "File Search"
+msgstr "Filsøgning"
+
+#: ../src/Pages/Shortcuts/list.vala:211
+msgid "Terminal"
+msgstr "Terminal"
+
+#: ../src/Pages/Shortcuts/list.vala:212
+msgid "Internet Browser"
+msgstr "Internetbrowser"
+
+#: ../src/Pages/Shortcuts/list.vala:213
+msgid "Applications Launcher"
+msgstr "Programstarter"
+
+#: ../src/Pages/Shortcuts/list.vala:243
+msgid "Volume Up"
+msgstr "Lydstyrke op"
+
+#: ../src/Pages/Shortcuts/list.vala:244
+msgid "Volume Down"
+msgstr "Lydstyrke ned"
+
+#: ../src/Pages/Shortcuts/list.vala:245
+msgid "Mute"
+msgstr "Lydløs"
+
+#: ../src/Pages/Shortcuts/list.vala:246
+msgid "Launch Media Player"
+msgstr "Start medieafspiller"
+
+#: ../src/Pages/Shortcuts/list.vala:247
+msgid "Play"
+msgstr "Afspil"
+
+#: ../src/Pages/Shortcuts/list.vala:248
+msgid "Pause"
+msgstr "Pause"
+
+#: ../src/Pages/Shortcuts/list.vala:249
+msgid "Stop"
+msgstr "Stop"
+
+#: ../src/Pages/Shortcuts/list.vala:250
+msgid "Previous Track"
+msgstr "Forrige spor"
+
+#: ../src/Pages/Shortcuts/list.vala:251
+msgid "Next Track"
+msgstr "Næste spor"
+
+#: ../src/Pages/Shortcuts/list.vala:252
+msgid "Eject"
+msgstr "Skub ud"
+
+#: ../src/Pages/Shortcuts/list.vala:286
+msgid "Decrease Text Size"
+msgstr "Formindsk tekststørrelse"
+
+#: ../src/Pages/Shortcuts/list.vala:287
+msgid "Increase Text Size"
+msgstr "Forøg tekststørrelse"
+
+#: ../src/Pages/Shortcuts/list.vala:288
+msgid "Toggle Magnifier"
+msgstr "Forstørrelsesglas til/fra"
+
+#: ../src/Pages/Shortcuts/list.vala:289
+msgid "Magnifier Zoom in"
+msgstr "Zoom ind med forstørrelsesglas"
+
+#: ../src/Pages/Shortcuts/list.vala:290
+msgid "Magnifier Zoom out"
+msgstr "Zoom ud med forstørrelsesglas"
+
+#: ../src/Pages/Shortcuts/list.vala:291
+msgid "Toggle On Screen Keyboard"
+msgstr "Skærmtastatur til/fra"
+
+#: ../src/Pages/Shortcuts/list.vala:292
+msgid "Toggle Screenreader"
+msgstr "Skærmlæser til/fra"
+
+#: ../src/Pages/Shortcuts/list.vala:293
+msgid "Toggle High Contrast"
+msgstr "Høj kontrast til/fra"
+
+#: ../src/Pages/Shortcuts/display.vala:42
+#: ../src/Pages/Shortcuts/display.vala:45
+msgid "Add"
+msgstr "Tilføj"
+
+#: ../src/Pages/Shortcuts/display.vala:43
+#: ../src/Pages/Shortcuts/display.vala:46 ../src/Pages/Layout/display.vala:49
+#: ../src/Pages/Layout/display.vala:54
+msgid "Remove"
+msgstr "Fjern"
+
+#: ../src/Pages/Layout/display.vala:48 ../src/Pages/Layout/display.vala:53
+msgid "Add…"
+msgstr "Tilføj…"
+
+#: ../src/Pages/Layout/display.vala:50 ../src/Pages/Layout/display.vala:55
+msgid "Move up"
+msgstr "Flyt op"
+
+#: ../src/Pages/Layout/display.vala:51 ../src/Pages/Layout/display.vala:56
+msgid "Move down"
+msgstr "Flyt ned"
+
+#: ../src/Pages/Layout/add_layout.vala:19
+msgid "Language:"
+msgstr "Sprog:"
+
+#: ../src/Pages/Layout/add_layout.vala:20
+msgid "Layout:"
+msgstr "Layout:"
+
+#: ../src/Pages/Layout/add_layout.vala:62
+msgid "Add Layout"
+msgstr "Tilføj layout"
+
+#: ../src/Pages/behaviour.vala:20
+msgid "Repeat Keys:"
+msgstr "Gentag taster:"
+
+#: ../src/Pages/behaviour.vala:23
+msgid "Delay:"
+msgstr "Forsinkelse:"
+
+#: ../src/Pages/behaviour.vala:24
+msgid "Interval:"
+msgstr "Interval:"
+
+#: ../src/Pages/behaviour.vala:25 ../src/Pages/behaviour.vala:26
+#: ../src/Pages/behaviour.vala:135
+msgid "milliseconds"
+msgstr "millisekunder"
+
+#: ../src/Pages/behaviour.vala:129
+msgid "Cursor Blinking:"
+msgstr "Markørblink:"
+
+#: ../src/Pages/behaviour.vala:133
+msgid "Speed:"
+msgstr "Hastighed:"
+
+#: ../src/Pages/behaviour.vala:134
+msgid "Duration:"
+msgstr "Varighed:"
+
+#: ../src/Pages/behaviour.vala:136
+msgid "seconds"
+msgstr "sekunder"
+
+#: ../src/Pages/behaviour.vala:245
+msgid "Type to test your settings…"
+msgstr "Skriv for at teste dine indstillinger…"
+
+#: ../src/keyboard.vala:13
+msgid "Keyboard"
+msgstr "Tastatur"
+
+#: ../src/keyboard.vala:14
+msgid "Configure keyboard behavior, layouts, and shortcuts"
+msgstr "Konfigurer tastaturopførsel, layouts og genveje"
+
+#: ../src/keyboard.vala:28
+msgid "Layout"
+msgstr "Layout"
+
+#: ../src/keyboard.vala:29 ../src/keyboard.vala:65
+msgid "Shortcuts"
+msgstr "Tastaturgenveje"
+
+#: ../src/keyboard.vala:30
+msgid "Behavior"
+msgstr "Opførsel"
+
+#: ../src/keyboard.vala:66
+msgid "Repeat Keys"
+msgstr "Gentag taster"
+
+#: ../src/keyboard.vala:67
+msgid "Cursor Blinking"
+msgstr "Markørblink"
+
+#: ../src/keyboard.vala:68
+msgid "Switch layout"
+msgstr "Skift layout"
+
+#: ../src/keyboard.vala:69
+msgid "Compose Key"
+msgstr "Skriv-tast"
+
+#: ../src/keyboard.vala:70
+msgid "Caps Lock behavior"
+msgstr "Caps Lock-opførsel"

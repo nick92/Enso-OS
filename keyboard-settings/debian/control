@@ -1,0 +1,18 @@
+Source: keyboard-settings
+Section: x11
+Priority: optional
+Maintainer: Nick Wilkins <nickawilkins@hotmail.com>
+Build-Depends:  debhelper (>= 9), 
+		cmake (>= 2.8), 
+		libgranite-dev, 
+		libgtk-3-dev(>= 3.14), 
+		libxml2-dev, 
+		valac (>= 0.26)
+Standards-Version: 3.9.2
+Homepage: https://code.launchpad.net/enso-keyboard-settings
+
+Package: keyboard-settings
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Keyboard settings
+	Change keyboard layout and shortcuts 

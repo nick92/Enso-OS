@@ -1,0 +1,27 @@
+keyboard-settings (1.0.4) xenial; urgency=medium
+
+  * Main release for Enso 0.2
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Mon, 11 Sep 2017 20:16:43 -0600
+
+
+keyboard-settings (0.0.4) xenial; urgency=medium
+
+  * Fix main not found build error
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Mon, 14 Aug 2017 20:16:43 -0600
+
+
+keyboard-settings (0.0.2) xenial; urgency=medium
+
+  * Remove switchboard dependency
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Mon, 14 Aug 2017 20:16:43 -0600
+
+
+keyboard-settings (0.0.1) xenial; urgency=medium
+
+  * Initial release
+
+ -- Nick Wilkins <nickawilkins@hotmail.com>  Mon, 14 Aug 2017 20:16:43 -0600
+
