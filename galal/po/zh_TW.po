@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-20 08:08+0100\n"
-"PO-Revision-Date: 2016-08-06 09:09+0000\n"
+"PO-Revision-Date: 2017-12-26 00:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Chinese (Traditional) "
+"<https://weblate.elementary.io/projects/desktop/gala/zh_TW/>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-02-21 05:48+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
-"Language: zh_TW\n"
 
 #: src/WindowManager.vala:1636
 msgid "Does the display look OK?"
@@ -81,19 +83,19 @@ msgstr "檢視所有開啟的視窗與工作區"
 
 #: data/gala-multitaskingview.desktop.in:7
 msgid "multitasking-view"
-msgstr ""
+msgstr "多工作業-檢視"
 
 #: data/gala-other.desktop.in:4
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #: data/gala-other.desktop.in:5
 msgid "Fallback desktop file for notifications from outdated applications."
-msgstr ""
+msgstr "過期應用程式通知的後備桌面檔。"
 
 #: data/gala-other.desktop.in:6
 msgid "applications-other"
-msgstr ""
+msgstr "應用程式-其他"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:21
 msgid "Action for the top left corner"
@@ -165,7 +167,7 @@ msgstr "啟用動態工作區而非靜態工作區"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
-"Use a dynamically increasing or decreseasing number, as needed, of "
+"Use a dynamically increasing or decreasing number, as needed, of "
 "workspaces instead of a static, fixed number"
 msgstr "根據需要而動態增減工作區，而非靜態、固定的工作區數目"
 
@@ -224,7 +226,7 @@ msgstr "循環切換至下個鍵盤配置"
 #: data/org.pantheon.desktop.gala.gschema.xml.in:137
 #: data/org.pantheon.desktop.gala.gschema.xml.in:142
 msgid "DEPRECATED: This key is deprecated and ignored."
-msgstr ""
+msgstr "棄用：此金鑰已棄用並忽略。"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:141
 msgid "Cycle to previous keyboard layout"
@@ -371,7 +373,7 @@ msgstr "全螢幕時停用轉角遮罩"
 msgid ""
 "If enabled, when an application is fullscreen (fills the monitor), the "
 "corner masks will be disabled on that monitor."
-msgstr ""
+msgstr "若啟用，則應用程式在全螢幕時（畫面填滿螢幕），該螢幕的角落遮罩將停用。"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:271
 msgid "Only show corner masks on primary monitor"

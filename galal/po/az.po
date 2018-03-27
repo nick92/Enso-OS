@@ -8,26 +8,29 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2017-02-20 08:08+0100\n"
-"PO-Revision-Date: 2014-04-17 10:52+0000\n"
-"Last-Translator: Emin Mastizada <emin@mastizada.com>\n"
-"Language-Team: Azerbaijani <az@li.org>\n"
+"PO-Revision-Date: 2017-12-20 00:05+0000\n"
+"Last-Translator: Вагиф Кязым <vaqif134@gmail.com>\n"
+"Language-Team: Azerbaijani "
+"<https://weblate.elementary.io/projects/desktop/gala/az/>\n"
+"Language: az\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-02-21 05:47+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: src/WindowManager.vala:1636
 msgid "Does the display look OK?"
-msgstr ""
+msgstr "Monitor düzgün ayarlanıb?"
 
 #: src/WindowManager.vala:1639
 msgid "Keep This Configuration"
-msgstr ""
+msgstr "Hazırki ayarları yadda saxla"
 
 #: src/WindowManager.vala:1640
 msgid "Restore Previous Configuration"
-msgstr ""
+msgstr "Öncəki ayarları qaytar"
 
 #: src/Widgets/WindowMenu.vala:56
 msgid "Minimize"
@@ -160,7 +163,7 @@ msgstr ""
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
-"Use a dynamically increasing or decreseasing number, as needed, of "
+"Use a dynamically increasing or decreasing number, as needed, of "
 "workspaces instead of a static, fixed number"
 msgstr ""
 

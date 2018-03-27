@@ -127,11 +127,7 @@ namespace Gala
 			file_watches[filename] = cache.file_changed.connect ((changed_file) => {
 				if (changed_file == filename) {
 					var image_cache = Meta.BackgroundImageCache.get_default ();
-#if HAS_MUTTER316
 					image_cache.purge (File.new_for_path (changed_file));
-#else
-					image_cache.purge (changed_file);
-#endif
 					changed ();
 				}
 			});
@@ -148,7 +144,6 @@ namespace Gala
 		void update_animation ()
 		{
 			update_animation_timeout_id = 0;
-			message("update");
 
 			animation.update (screen.get_monitor_geometry (monitor_index));
 			var files = animation.key_frame_files;
@@ -157,19 +152,11 @@ namespace Gala
 				set_loaded ();
 
 				if (files.length > 1)
-#if HAS_MUTTER316
 					background.set_blend (File.new_for_path (files[0]), File.new_for_path (files[1]), animation.transition_progress, style);
 				else if (files.length > 0)
 					background.set_file (File.new_for_path (files[0]), style);
 				else
 					background.set_file (null, style);
-#else
-					background.set_blend (files[0], files[1], animation.transition_progress, style);
-				else if (files.length > 0)
-					background.set_filename (files[0], style);
-				else
-					background.set_filename (null, style);
-#endif
 
 				queue_update_animation ();
 			};
@@ -179,11 +166,7 @@ namespace Gala
 			for (var i = 0; i < files.length; i++) {
 				watch_file (files[i]);
 
-#if HAS_MUTTER316
 				var image = cache.load (File.new_for_path (files[i]));
-#else
-				var image = cache.load (files[i]);
-#endif
 
 				if (image.is_loaded ()) {
 					num_pending_images--;
@@ -240,19 +223,11 @@ namespace Gala
 
 		void load_image (string filename)
 		{
-#if HAS_MUTTER316
 			background.set_file (File.new_for_path (filename), style);
-#else
-			background.set_filename (filename, style);
-#endif
 			watch_file (filename);
 
 			var cache = Meta.BackgroundImageCache.get_default ();
-#if HAS_MUTTER316
 			var image = cache.load (File.new_for_path (filename));
-#else
-			var image = cache.load (filename);
-#endif
 			if (image.is_loaded ())
 				set_loaded();
 			else {
@@ -288,3 +263,4 @@ namespace Gala
 		}
 	}
 }
+

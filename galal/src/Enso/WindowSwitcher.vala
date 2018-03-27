@@ -87,7 +87,7 @@ namespace Gala
 		}
 
 		PreviewPage? current_page = null;
-		DeepinBlurEffect? actor_blur = null;
+//		DeepinBlurEffect? actor_blur = null;
 		Actor background = null;
 
 		public EnsoWindowSwitcher (WindowManager wm)
@@ -108,6 +108,7 @@ namespace Gala
 
 			background = new Actor ();
 			background.background_color = { 0, 0, 0, 155 };
+//			background.add_effect_with_name ("darken", new Clutter.BlurEffect ());
 			//DeepinBlurEffect.setup(background, 2, 2);
 
 			wrapper.reactive = true;

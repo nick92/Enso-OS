@@ -33,6 +33,7 @@ namespace Gala
 
 		public Meta.Window window { get; construct; }
 		public int icon_size { get; construct; }
+		public int scale { get; construct; }
 
 		/**
 		 * If set to true, the SafeWindowClone will destroy itself when the connected
@@ -63,19 +64,21 @@ namespace Gala
 		 *
 		 * @param window               The window for which to create the icon
 		 * @param icon_size            The size of the icon in pixels
+		 * @param scale                The desired scale of the icon
 		 * @param destroy_on_unmanaged see destroy_on_unmanaged property
 		 */
-		public WindowIcon (Meta.Window window, int icon_size, bool destroy_on_unmanaged = false)
+		public WindowIcon (Meta.Window window, int icon_size, int scale = 1, bool destroy_on_unmanaged = false)
 		{
 			Object (window: window,
 					icon_size: icon_size,
-					destroy_on_unmanaged: destroy_on_unmanaged);
+					destroy_on_unmanaged: destroy_on_unmanaged,
+					scale: scale);
 		}
 
 		construct
 		{
-			width = icon_size;
-			height = icon_size;
+			width = icon_size * scale;
+			height = icon_size * scale;
 			xid = (uint32) window.get_xwindow ();
 
 			// new windows often reach mutter earlier than bamf, that's why
@@ -112,7 +115,7 @@ namespace Gala
 
 		void update_texture (bool initial)
 		{
-			var pixbuf = Gala.Utils.get_icon_for_xid (xid, icon_size, !initial);
+			var pixbuf = Gala.Utils.get_icon_for_xid (xid, icon_size, scale, !initial);
 
 			try {
 				set_from_rgb_data (pixbuf.get_pixels (), pixbuf.get_has_alpha (),

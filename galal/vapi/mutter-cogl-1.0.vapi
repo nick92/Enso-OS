@@ -656,9 +656,9 @@ namespace Cogl {
 	[CCode (cheader_filename = "cogl/cogl.h")]
 	public static void clip_push (float x_offset, float y_offset, float width, float height);
 	[CCode (cheader_filename = "cogl/cogl.h")]
-	public static void clip_push_from_path ();
+	public static void clip_push_from_path (Cogl.Path path);
 	[CCode (cheader_filename = "cogl/cogl.h")]
-	public static void clip_push_from_path_preserve ();
+	public static void clip_push_from_path_preserve (Cogl.Path path);
 	[CCode (cheader_filename = "cogl/cogl.h")]
 	public static void clip_push_rectangle (float x0, float y0, float x1, float y1);
 	[CCode (cheader_filename = "cogl/cogl.h")]

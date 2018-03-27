@@ -25,4 +25,5 @@ namespace Config
 	public const string VERSION_INFO;
 	public const string PLUGINDIR;
 	public const string SCHEMA;
+	public const string RESOURCEPATH;
 }

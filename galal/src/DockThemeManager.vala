@@ -33,35 +33,18 @@ namespace Gala
 		}
 
 		Plank.DockPreferences? dock_settings = null;
-#if HAVE_PLANK_0_11
 		Plank.DockTheme? dock_theme = null;
 
 		public signal void dock_theme_changed (Plank.DockTheme? old_theme,
 			Plank.DockTheme new_theme);
-#else
-		Plank.Drawing.DockTheme? dock_theme = null;
-
-		public signal void dock_theme_changed (Plank.Drawing.DockTheme? old_theme,
-			Plank.Drawing.DockTheme new_theme);
-#endif
 
 		DockThemeManager ()
 		{
-#if HAVE_PLANK_0_11
 			dock_settings = new Plank.DockPreferences ("dock1");
-#else
-			var file = Environment.get_user_config_dir () + "/plank/dock1/settings";
-
-			dock_settings = new Plank.DockPreferences.with_filename (file);
-#endif
 			dock_settings.notify["Theme"].connect (load_dock_theme);
 		}
 
-#if HAVE_PLANK_0_11
 		public Plank.DockTheme get_dock_theme ()
-#else
-		public Plank.Drawing.DockTheme get_dock_theme ()
-#endif
 		{
 			if (dock_theme == null)
 				load_dock_theme ();
@@ -76,11 +59,7 @@ namespace Gala
 
 		void load_dock_theme ()
 		{
-#if HAVE_PLANK_0_11
 			var new_theme = new Plank.DockTheme (dock_settings.Theme);
-#else
-			var new_theme = new Plank.Drawing.DockTheme (dock_settings.Theme);
-#endif
 			new_theme.load ("dock");
 			dock_theme_changed (dock_theme, new_theme);
 			dock_theme = new_theme;

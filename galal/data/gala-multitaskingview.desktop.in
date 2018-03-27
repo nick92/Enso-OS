@@ -8,3 +8,4 @@ Terminal=false
 Categories=GNOME;GTK;System;
 Exec=dbus-send --session --dest=org.pantheon.gala --print-reply /org/pantheon/gala org.pantheon.gala.PerformAction int32:1
 X-AppStream-Ignore=true
+OnlyShowIn=Pantheon;

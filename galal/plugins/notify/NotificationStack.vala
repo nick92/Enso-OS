@@ -38,20 +38,30 @@ namespace Gala.Plugins.Notify
 
 		construct
 		{
-			width = Notification.WIDTH + 2 * Notification.MARGIN + ADDITIONAL_MARGIN;
+#if HAS_MUTTER326
+			var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			var scale = 1;
+#endif
+			width = (Notification.WIDTH + 2 * Notification.MARGIN + ADDITIONAL_MARGIN) * scale;
 			clip_to_allocation = true;
 		}
 
 		public void show_notification (Notification notification)
 		{
 			animations_changed (true);
+#if HAS_MUTTER326
+			var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			var scale = 1;
+#endif
 
 			// raise ourselves when we got something to show
 			get_parent ().set_child_above_sibling (this, null);
 
 			// we have a shoot-over on the start of the close animation, which gets clipped
 			// unless we make our container a bit wider and move the notifications over
-			notification.margin_left = ADDITIONAL_MARGIN;
+			notification.margin_left = ADDITIONAL_MARGIN * scale;
 
 			notification.notify["being-destroyed"].connect (() => {
 				animations_changed (true);
@@ -67,16 +77,21 @@ namespace Gala.Plugins.Notify
 			});
 
 			float height;
-			notification.get_preferred_height (Notification.WIDTH, out height, null);
+			notification.get_preferred_height (Notification.WIDTH * scale, out height, null);
 			update_positions (height);
 
-			notification.y = TOP_OFFSET;
+			notification.y = TOP_OFFSET * scale;
 			insert_child_at_index (notification, 0);
 		}
 
 		void update_positions (float add_y = 0.0f)
 		{
-			var y = add_y + TOP_OFFSET;
+#if HAS_MUTTER326
+			var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			var scale = 1;
+#endif
+			var y = add_y + TOP_OFFSET * scale;
 			var i = get_n_children ();
 			var delay_step = i > 0 ? 150 / i : 0;
 			foreach (var child in get_children ()) {

@@ -50,17 +50,18 @@ namespace Gala
 			int width, height;
 			wm.get_screen ().get_size (out width, out height);
 
-			var image = take_screenshot (0, 0, width, height);
+			var image = take_screenshot (0, 0, width, height, include_cursor);
 			success = save_image (image, filename, out filename_used);
 		}
 
 		public void screenshot_area (int x, int y, int width, int height, bool flash, string filename, out bool success, out string filename_used) throws DBusError
 		{
-			warning ("ScreenShotArea not implemented");
-			filename_used = "";
-			success = false;
-
-			throw new DBusError.FAILED ("ScreenShotArea not implemented");
+			debug ("Taking area screenshot");
+			
+			var image = take_screenshot (x, y, width, height, false);
+			success = save_image (image, filename, out filename_used);
+			if (!success)
+				throw new DBusError.FAILED ("Failed to save image");
 		}
 
 		public void screenshot_window (bool include_frame, bool include_cursor, bool flash, string filename, out bool success, out string filename_used)
@@ -81,15 +82,23 @@ namespace Gala
 
 			Cairo.RectangleInt clip = { rect.x - (int) actor_x, rect.y - (int) actor_y, rect.width, rect.height };
 			var image = (Cairo.ImageSurface) window_texture.get_image (clip);
+			if (include_cursor) {
+				image = composite_stage_cursor (image, { rect.x, rect.y, rect.width, rect.height });
+			}
+
 			success = save_image (image, filename, out filename_used);
 		}
 
-		public void select_area (out int x, out int y, out int width, out int height) throws DBusError
+		public async void select_area (out int x, out int y, out int width, out int height)
 		{
-			warning ("SelectArea not implemented");
-			x = y = width = height = 0;
+			var selection_area = new SelectionArea (wm);
+			selection_area.closed.connect (() => Idle.add (select_area.callback));
+			wm.ui_group.add (selection_area);
+			selection_area.start_selection ();
 
-			throw new DBusError.FAILED ("SelectArea not implemented");
+			yield;
+			selection_area.get_selection_rectangle (out x, out y, out width, out height);
+			wm.ui_group.remove (selection_area);
 		}
 
 		static bool save_image (Cairo.ImageSurface image, string filename, out string used_filename)
@@ -118,7 +127,7 @@ namespace Gala
 			}
 		}
 
-		Cairo.ImageSurface take_screenshot (int x, int y, int width, int height)
+		Cairo.ImageSurface take_screenshot (int x, int y, int width, int height, bool include_cursor)
 		{
 			Cairo.ImageSurface image;
 #if HAS_MUTTER322
@@ -138,9 +147,13 @@ namespace Gala
 			image = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
 			var bitmap = Cogl.bitmap_new_for_data (context, width, height, Cogl.PixelFormat.BGRA_8888_PRE, image.get_stride (), image.get_data ());
 			Cogl.framebuffer_read_pixels_into_bitmap (Cogl.get_draw_framebuffer (), x, y, Cogl.ReadPixelsFlags.BUFFER, bitmap);
-			image.mark_dirty ();
 #endif
 
+			if (include_cursor) {
+				image = composite_stage_cursor (image, { x, y, width, height});
+			}
+
+			image.mark_dirty ();
 			return image;
 		}
 
@@ -167,5 +180,43 @@ namespace Gala
 			return image;
 		}
 #endif
+
+		Cairo.ImageSurface composite_stage_cursor (Cairo.ImageSurface image, Cairo.RectangleInt image_rect)
+		{
+			unowned Meta.CursorTracker cursor_tracker = Meta.CursorTracker.get_for_screen (wm.get_screen ());
+
+			int x, y;
+			cursor_tracker.get_pointer (out x, out y, null);
+
+			var region = new Cairo.Region.rectangle (image_rect);
+			if (!region.contains_point (x, y)) {
+				return image;
+			}
+
+			unowned Cogl.Texture texture = cursor_tracker.get_sprite ();
+			if (texture == null) {
+				return image;
+			}
+
+			int width = (int)texture.get_width ();
+			int height = (int)texture.get_height ();
+
+			uint8[] data = new uint8[width * height * 4];
+			CoglFixes.texture_get_data (texture, Cogl.PixelFormat.RGBA_8888, 0, data);
+
+			var cursor_image = new Cairo.ImageSurface.for_data (data, Cairo.Format.ARGB32, width, height, width * 4);
+			var target = new Cairo.ImageSurface (Cairo.Format.ARGB32, image_rect.width, image_rect.height);
+
+			var cr = new Cairo.Context (target);
+			cr.set_operator (Cairo.Operator.OVER);
+			cr.set_source_surface (image, 0, 0);
+			cr.paint ();
+
+			cr.set_operator (Cairo.Operator.OVER);
+			cr.set_source_surface (cursor_image, x - image_rect.x, y - image_rect.y);
+			cr.paint ();
+
+			return (Cairo.ImageSurface)cr.get_target ();
+		}
 	}
 }

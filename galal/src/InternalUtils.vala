@@ -142,24 +142,24 @@ namespace Gala
 		 */
 		public static void insert_workspace_with_window (int index, Window new_window)
 		{
-			unowned List<WindowActor> actors = Compositor.get_window_actors (new_window.get_screen ());
-
-			var workspace_manager = WorkspaceManager.get_default ();
+			unowned WorkspaceManager workspace_manager = WorkspaceManager.get_default ();
 			workspace_manager.freeze_remove ();
 
 			new_window.change_workspace_by_index (index, false);
 
+			unowned List<WindowActor> actors = Compositor.get_window_actors (new_window.get_screen ());
 			foreach (unowned Meta.WindowActor actor in actors) {
-				unowned Meta.Window window = actor.get_meta_window ();
 				if (actor.is_destroyed ())
 					continue;
 
-				var window_index = window.get_workspace ().index ();
+				unowned Meta.Window window = actor.get_meta_window ();
+				if (window == new_window)
+					continue;
 
-				if (!window.on_all_workspaces
-					&& window != new_window
-					&& window_index >= index) {
-					window.change_workspace_by_index (window_index + 1, true);
+				var current_index = window.get_workspace ().index ();
+				if (current_index >= index
+					&& !window.on_all_workspaces) {
+					window.change_workspace_by_index (current_index + 1, true);
 				}
 			}
 
@@ -297,7 +297,7 @@ namespace Gala
 				// Work out where the slot is
 				Meta.Rectangle target = {area.x + (slot % columns) * slot_width,
 				                         area.y + (slot / columns) * slot_height,
-				                         slot_width,
+				                         slot_width, 
 				                         slot_height};
 				target = rect_adjusted (target, 10, 10, -10, -10);
 
@@ -319,7 +319,7 @@ namespace Gala
 					scale = 1.0f;
 					target = {rect_center (target).x - (int)Math.floorf (rect.width * scale) / 2,
 					          rect_center (target).y - (int)Math.floorf (rect.height * scale) / 2,
-					          (int)Math.floorf (scale * rect.width),
+					          (int)Math.floorf (scale * rect.width), 
 					          (int)Math.floorf (scale * rect.height)};
 				}
 
@@ -334,7 +334,7 @@ namespace Gala
 			return result;
 		}
 
-		/* TODO needs porting */
+		/* TODO needs porting
 		public List<Meta.Rectangle?> natural_placement (Meta.Rectangle area, List<Meta.Rectangle?> windows)
 		{
 			Meta.Rectangle bounds = {area.x, area.y, area.width, area.height};
@@ -347,7 +347,7 @@ namespace Gala
 
 			for (int i = 0; i < window_count; i++) {
 				// save rectangles into 4-dimensional arrays representing two corners of the rectangular: [left_x, top_y, right_x, bottom_y]
-				var rect = windows.nth_data (i);
+				var rect = clones.nth_data (i);
 				rect = rect_adjusted(rect, -GAPS, -GAPS, GAPS, GAPS);
 				rects[i] = rect;
 				bounds = bounds.union (rect);
@@ -484,7 +484,7 @@ namespace Gala
 				foreach (var rect in rects) {
 
 					int width_diff = ACCURACY;
-					int height_diff = (int)Math.floorf ((((rect.width + width_diff) - rect.height) /
+					int height_diff = (int)Math.floorf ((((rect.width + width_diff) - rect.height) / 
 					    (float)rect.width) * rect.height);
 					int x_diff = width_diff / 2;
 					int y_diff = height_diff / 2;
@@ -530,7 +530,7 @@ namespace Gala
 
 			index = 0;
 			foreach (var rect in rects) {
-				var window_rect = windows.nth_data (index);
+				var window_rect = clones.nth_data (index);
 
 				rect = rect_adjusted (rect, GAPS, GAPS, -GAPS, -GAPS);
 				scale = rect.width / (float)window_rect.width;
@@ -549,6 +549,15 @@ namespace Gala
 
 			result.reverse ();
 			return result;
+		}*/
+
+		public static int get_ui_scaling_factor ()
+		{
+#if HAS_MUTTER326
+			return Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			return 1;
+#endif
 		}
 	}
 }

@@ -65,6 +65,7 @@ namespace Gala
 			destroy_all_children ();
 
 			var icon = new WindowIcon (window, IconGroupContainer.GROUP_WIDTH);
+			icon.x = IconGroupContainer.SPACING;
 			icon.x_align = ActorAlign.CENTER;
 			add_child (icon);
 		}

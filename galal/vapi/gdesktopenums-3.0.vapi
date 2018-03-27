@@ -164,6 +164,12 @@ namespace GDesktop {
 		LEFT,
 		MOUSE
 	}
+	[CCode (cheader_filename = "gsettings-desktop-schemas/gdesktop-enums.h", cprefix = "G_DESKTOP_TOUCHPAD_SCROLL_METHOD_", has_type_id = false)]
+	public enum TouchpadScrollMethod {
+		DISABLED,
+		EDGE_SCROLLING,
+		TWO_FINGER_SCROLLING
+	}
 	[CCode (cheader_filename = "gsettings-desktop-schemas/gdesktop-enums.h", cprefix = "G_DESKTOP_VISUAL_BELL_", has_type_id = false)]
 	public enum VisualBellType {
 		FULLSCREEN_FLASH,

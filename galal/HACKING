@@ -15,33 +15,34 @@ Join #elementary-dev on Freenode (irc.freenode.net).
 Go through problem reports and check unconfirmed bugs or those lacking
 information and mark any duplicates you spot.
 
-    http://bugs.launchpad.net/gala
+    https://github.com/elementary/gala/issues
 
 Help getting Gala translated in your language!
 
-    https://translations.launchpad.net/gala
+    https://l10n.elementary.io/projects/desktop/gala/
 
 Answer questions.
 
-    https://answers.launchpad.net/gala
+    https://elementaryos.stackexchange.com/questions/tagged/gala
 
 ====== Check out the sources ======
 
-    bzr branch lp:gala
+    git clone https://github.com/elementary/gala.git
 
 The development trunk (master, tip) is the latest iteration of the next
 release. Browse it online and look for other branches at:
 
-    http://code.launchpad.net/gala
+    https://github.com/elementary/gala
 
 ====== Build the code ======
 
 Prepare the source and compile:
-    ./autogen.sh --prefix=/usr
-    make
+    meson --prefix=/usr build
+    ninja -C build
+    sudo ninja -C build install
 
 Run Gala:
-    ./src/gala --replace
+    ./build/src/gala --replace
 
 For more detailed instructions, please see the INSTALL file.
 
@@ -152,107 +153,95 @@ Of course the best example is the current source code itself.
 
 You can also have a look at this doc for some parts:
 
-   http://elementaryos.org/docs/code/code-style
+   https://elementary.io/docs/code/reference#code-style
 
 Keep in mind that neither the indentation rules or curly
 bracket positions mentioned there apply for Gala.
 
 ====== Committing code ======
 
+On Github, you should fork the Gala repo and then clone your fork.
+
 Make a branch which will contain your changes for fixing bug 123456:
 
-    bzr branch lp:gala fix-123456
+    git branch fix-123456
+    git checkout fix-123456
 
-Tell Bazaar your name if you haven't yet:
+Tell Git your name and email if you haven't yet:
 
-    bzr whoami "Real Name <email@address>"
+    git config --global user.name "Real Name"
+    git config --global user.email email@address
 
 See what you did so far:
 
-    bzr diff
-    bzr diff | less
+    git diff
 
 Get an overview of changed and new files:
 
-    bzr status
+    git status
 
 Add new files, move/ rename or delete:
 
-    bzr add FILENAME
-    bzr mv OLDFILENAME NEWFILENAME
-    bzr rm FILENAME
+    git add FILENAME
+    git mv OLDFILENAME NEWFILENAME
+    git rm FILENAME
 
-Note: 'bzr add' should be used only when new source or data files are added
-to Gala's source directory.
+Note: 'git add' should be used when a file has been changed to add it to the commit.
 
 After making your changes, you need to commit your work as a new revision.
 
-    bzr commit
+    git commit
 
-Bazaar will open the default text editor (in most systems, nano) where you
-will write the commit message, save the document, and close it. Bazaar will
+Git will open the default text editor (in most systems, nano) where you
+will write the commit message, save the document, and close it. Git will
 use the commit message as commentary for the new revision, so it should be
 a concise summary of what you did.
 
-To change Bazaar's text editor, add the following line to Bazaar's
-configuration file (usually located at ~/.bazaar/bazaar.conf):
+To change Git's text editor:
 
-    editor = your_text_editor_here
+    git config --global core.editor your_text_editor_here
     
 For example:
 
-    editor = gedit
+    git config --global core.editor emacs
 
 Commit your changes in small increments. It is better to keep different
 changes in different commits.
 
-If a commit fixes a reported bug in Launchpad, it is useful to make a
-reference to that bug report when committing:
-
-    bzr commit --fixes lp:123456
-
-Did you make changes to more than one file, but don't want to commit the
-changes of all of them? You can specify which files you want to commit:
-
-    bzr commit file1 file2
-
 To see the last 5 revisions in the current branch:
 
-    bzr log -l5
-    bzr log -l5 -p | less
+    git log -5
 
-In the case you committed something wrong or want to ammend it:
+In the case you added something wrong or want to ammend it:
 
-    bzr uncommit
+    git reset HEAD file
 
 If you want to revert all the changes made after the last revision:
 
-    bzr revert
+    git checkout -- *
 
 Remember to keep your branch updated:
 
-    bzr pull
+    git remote add upstream https://github.com/elementary/gala.git
+    git fetch upstream
+    git pull upstream master
 
-As a general rule of thumb, 'bzr help COMMAND' gives you an explanation of any
-command and 'bzr help commands' lists all available commands.
+As a general rule of thumb, 'man git COMMAND' gives you an explanation of any
+command and 'git help' lists all available commands.
 
 ====== Push proposed changes ======
 
-If you haven't yet, https://launchpad.net/~/+editsshkeys check that Launchpad
-has your SSH key - you can create an SSH key with Passwords and Keys aka
-Seahorse or 'ssh-keygen -t rsa' - and use 'bzr launchpad-login' to make
-youself known to bzr locally.
-
-If you checked out trunk, and commited your patch(es), just push it under your
-username in Launchpad and you can propose it for merging into trunk. This will
+After you have commited your patch(es), just push it to your fork
+on Github and you can propose it for merging into master by creating a pull request. This will
 automatically request a review from other developers who can then comment on
 it and provide feedback.
 
-    bzr push lp:~USERNAME/gala/fix-123456
-    bzr lp-open
+    git push --set-upstream origin fix-123456
 
-The last command will open a summary of the current branch in your web
-browser. There, you will be able to propose it for merging into trunk.
+If a commit fixes a reported bug on Github, it is useful to make a
+reference to that bug report in the pull request
+
+On Github, you will be able to propose it for merging into master.
 Your branch will be reviewed by another developer. At this stage, you may be
 notified that changes need to be made to your branch, so keep an eye on your
 email inbox!
@@ -262,40 +251,25 @@ project's source code.
 
 What happens to all the branches?
 
-Leave the branches alone, approved branches are cleared automatically by
-Launchpad.
+Leave the branches alone, approved branches will be removed after they
+have been merged.
 
-For larger feature branches, use the team in Launchpad to allow other
+For larger feature branches, you can add collaborators on Github to allow other
 developers to work on the code with you.
 
 What if I want to help out on an existing merge request that I can't push to?
 
-    bzr branch lp:~OTHERPERSON/gala/fix-123456
-    cd fix-123456
-    # make commits
-    bzr push lp:~USERNAME/gala/fix-123456
-    bzr lp-open
-
-And in the Launchpad web overview of your branch, propose your branch for
-merging into lp:~OTHERPERSON/gala/fix-123456
+Similarly to with master you can create pull requests to other branches on Github,
+if the pull request is from a fork you will have to clone that fork first however.
 
 Updating a branch that may be out of sync with trunk:
 
-    bzr pull
-    bzr: ERROR: These branches have diverged
-    bzr merge lp:gala
+    git pull
+    git: Automatic merge failed; fix conflicts and then commit the result.
     # Hand-edit conflicting changes
-    bzr resolve FILENAME
+    git add FILENAME
     # If any conflicts remain continue fixing
-    bzr commit -m 'Merge changes from lp:gala'
-
-Save a little bandwidth, branch from an existing local copy that you keep
-around:
-
-    bzr branch lp:gala gala
-    bzr branch gala/ gala-fix-123456
-    cd gala-fix-123456
-    bzr pull lp:gala
+    git commit -m 'Merge master into fix-123456'
 
 ====== License ======
 

@@ -79,6 +79,8 @@ namespace Gala
 		Clutter.Actor? last_hotcorner;
 		ScreenSaver? screensaver;
 
+		Clutter.Actor? tile_preview;
+
 		Window? moving; //place for the window that is being moved over
 
 		LoginDRemote? logind_proxy = null;
@@ -91,9 +93,7 @@ namespace Gala
 		Gee.HashSet<Meta.WindowActor> mapping = new Gee.HashSet<Meta.WindowActor> ();
 		Gee.HashSet<Meta.WindowActor> destroying = new Gee.HashSet<Meta.WindowActor> ();
 		Gee.HashSet<Meta.WindowActor> unminimizing = new Gee.HashSet<Meta.WindowActor> ();
-#if HAS_MUTTER318
 		GLib.HashTable<Meta.Window, int> ws_assoc = new GLib.HashTable<Meta.Window, int> (direct_hash, direct_equal);
-#endif
 
 		public WindowManagerGala ()
 		{
@@ -120,7 +120,7 @@ namespace Gala
 					logind_proxy.prepare_for_sleep.connect (prepare_for_sleep);
 				} catch (Error e) {
 					warning ("Failed to get LoginD proxy: %s", e.message);
-				}
+				}				
 			}
 		}
 
@@ -138,10 +138,8 @@ namespace Gala
 			var display = screen.get_display ();
 
 			DBus.init (this);
-#if HAS_GSD310
 			DBusAccelerator.init (this);
 			MediaFeedback.init ();
-#endif
 			WindowListener.init (screen);
 			KeyboardManager.init (display);
 
@@ -190,7 +188,7 @@ namespace Gala
 			background_group = new BackgroundContainer (screen);
 		 	background_group.set_reactive(true);
 			background_group.button_release_event.connect(on_background_click);
-
+			
 			window_group.add_child (background_group);
 			window_group.set_child_below_sibling (background_group, null);
 
@@ -292,7 +290,7 @@ namespace Gala
 				}
 			}
 
-			/*if (plugin_manager.window_overview_provider == null
+			if (plugin_manager.window_overview_provider == null
 				|| (window_overview = (plugin_manager.get_plugin (plugin_manager.window_overview_provider) as ActivatableComponent)) == null) {
 				window_overview = new WindowOverview (this);
 				ui_group.add_child ((Clutter.Actor) window_overview);
@@ -312,7 +310,7 @@ namespace Gala
 					hints.@set ("all-windows", true);
 					window_overview.open (hints);
 				}
-			});*/
+			});
 
 			update_input_area ();
 
@@ -409,9 +407,12 @@ namespace Gala
 		{
 			var direction = (binding.get_name () == "cycle-workspaces-next" ? 1 : -1);
 			var index = screen.get_active_workspace_index () + direction;
+
+			int dynamic_offset = Prefs.get_dynamic_workspaces () ? 1 : 0;
+
 			if (index < 0)
-				index = screen.get_n_workspaces () - 1;
-			else if (index > screen.get_n_workspaces () - 1)
+				index = screen.get_n_workspaces () - 1 - dynamic_offset;
+			else if (index > screen.get_n_workspaces () - 1 - dynamic_offset)
 				index = 0;
 
 			screen.get_workspace_by_index (index).activate (display.get_current_time ());
@@ -626,13 +627,12 @@ namespace Gala
 
 		public void dim_window (Window window, bool dim)
 		{
-			/*FIXME we need a super awesome blureffect here, the one from clutter is just... bah! */
+			/*FIXME we need a super awesome blureffect here, the one from clutter is just... bah!*/
 			var win = window.get_compositor_private () as WindowActor;
 			if (dim) {
 				if (win.has_effects ())
 					return;
-				//win.add_effect_with_name ("darken", new Clutter.BlurEffect ());
-				DeepinBlurEffect.setup(win, 2, 2);
+				win.add_effect_with_name ("darken", new Clutter.BlurEffect ());
 			} else
 				win.clear_effects ();
 		}
@@ -762,6 +762,58 @@ namespace Gala
 			}
 		}
 
+		public override void show_tile_preview (Meta.Window window, Meta.Rectangle tile_rect, int tile_monitor_number)
+		{
+			if (tile_preview == null) {
+				tile_preview = new Clutter.Actor ();
+				tile_preview.background_color = { 100, 186, 255, 100 };
+				tile_preview.opacity = 0U;
+
+				window_group.add_child (tile_preview);
+			} else if (tile_preview.is_visible ()) {
+				float width, height, x, y;
+				tile_preview.get_position (out x, out y);
+				tile_preview.get_size (out width, out height);
+
+				if ((tile_rect.width == width && tile_rect.height == height && tile_rect.x == x && tile_rect.y == y)
+					|| tile_preview.get_transition ("size") != null)  {
+					return;
+				}
+			}
+
+			unowned Meta.WindowActor window_actor = window.get_compositor_private () as Meta.WindowActor;
+			window_group.set_child_below_sibling (tile_preview, window_actor);
+
+			unowned AnimationSettings animation_settings = AnimationSettings.get_default ();
+			var duration = animation_settings.snap_duration / 2U;
+
+			var rect = window.get_frame_rect ();
+			tile_preview.set_position (rect.x, rect.y);
+			tile_preview.set_size (rect.width, rect.height);
+			tile_preview.show ();
+
+			if (animation_settings.enable_animations) {
+				tile_preview.save_easing_state ();
+				tile_preview.set_easing_mode (Clutter.AnimationMode.EASE_IN_OUT_QUAD);
+				tile_preview.set_easing_duration (duration);
+				tile_preview.opacity = 255U;
+				tile_preview.set_position (tile_rect.x, tile_rect.y);
+				tile_preview.set_size (tile_rect.width, tile_rect.height);
+				tile_preview.restore_easing_state ();
+			} else {
+				tile_preview.opacity = 255U;
+			}
+		}
+
+		public override void hide_tile_preview ()
+		{
+			if (tile_preview != null) {
+				tile_preview.remove_all_transitions ();
+				tile_preview.opacity = 0U;
+				tile_preview.hide ();
+			}
+		}
+
 		public override void show_window_menu_for_rect (Meta.Window window, Meta.WindowMenuType menu, Meta.Rectangle rect)
 		{
 			show_window_menu (window, menu, rect.x, rect.y);
@@ -771,7 +823,6 @@ namespace Gala
 		 * effects
 		 */
 
-#if HAS_MUTTER318
 		void handle_fullscreen_window (Meta.Window window, Meta.SizeChange which_change)
 		{
 			// Only handle windows which are located on the primary monitor
@@ -793,8 +844,10 @@ namespace Gala
 				if (Utils.get_n_windows (win_ws) <= 1)
 					return;
 
-				var new_ws_index = screen.get_n_workspaces () - 1;
 				var old_ws_index = win_ws.index ();
+				var new_ws_index = old_ws_index + 1;
+				InternalUtils.insert_workspace_with_window (new_ws_index, window);
+
 				var new_ws_obj = screen.get_workspace_by_index (new_ws_index);
 				window.change_workspace (new_ws_obj);
 				new_ws_obj.activate_with_focus (window, time);
@@ -817,7 +870,7 @@ namespace Gala
 		public override void size_change (Meta.WindowActor actor, Meta.SizeChange which_change, Meta.Rectangle old_frame_rect, Meta.Rectangle old_buffer_rect)
 		{
 			var new_rect = actor.get_meta_window ().get_frame_rect ();
-
+			
 			switch (which_change) {
 				case Meta.SizeChange.MAXIMIZE:
 					maximize (actor, new_rect.x, new_rect.y, new_rect.width, new_rect.height);
@@ -833,13 +886,12 @@ namespace Gala
 
 			size_change_completed (actor);
 		}
-#endif
 
 		public override void minimize (WindowActor actor)
 		{
 			unowned AnimationSettings animation_settings = AnimationSettings.get_default ();
 			var duration = animation_settings.minimize_duration;
-
+			
 			if (!animation_settings.enable_animations
 				|| duration == 0
 				|| actor.get_meta_window ().window_type != WindowType.NORMAL) {
@@ -901,22 +953,13 @@ namespace Gala
 			}
 		}
 
-#if HAS_MUTTER318
-		inline void maximize_completed (WindowActor actor)
-		{
-		}
-
 		void maximize (WindowActor actor, int ex, int ey, int ew, int eh)
-#else
-		public override void maximize (WindowActor actor, int ex, int ey, int ew, int eh)
-#endif
 		{
 			unowned AnimationSettings animation_settings = AnimationSettings.get_default ();
 			var duration = animation_settings.snap_duration;
 
 			if (!animation_settings.enable_animations
 				|| duration == 0) {
-				maximize_completed (actor);
 				return;
 			}
 
@@ -930,7 +973,6 @@ namespace Gala
 
 				var old_actor = Utils.get_window_actor_snapshot (actor, old_inner_rect, old_outer_rect);
 				if (old_actor == null) {
-					maximize_completed (actor);
 					return;
 				}
 
@@ -979,8 +1021,6 @@ namespace Gala
 				});
 				old_actor.restore_easing_state ();
 
-				maximize_completed (actor);
-
 				actor.set_pivot_point (0.0f, 0.0f);
 				actor.set_translation (old_inner_rect.x - ex, old_inner_rect.y - ey, 0.0f);
 				actor.set_scale (1.0f / scale_x, 1.0f / scale_y);
@@ -991,11 +1031,7 @@ namespace Gala
 				actor.set_scale (1.0f, 1.0f);
 				actor.set_translation (0.0f, 0.0f, 0.0f);
 				actor.restore_easing_state ();
-
-				return;
 			}
-
-			maximize_completed (actor);
 		}
 
 		public override void unminimize (WindowActor actor)
@@ -1077,7 +1113,7 @@ namespace Gala
 						var outer_rect = window.get_frame_rect ();
 						actor.set_position (outer_rect.x, outer_rect.y);
 					}
-
+					
 					actor.set_pivot_point (0.5f, 1.0f);
 					actor.set_scale (0.01f, 0.1f);
 					actor.opacity = 0;
@@ -1166,9 +1202,7 @@ namespace Gala
 			unowned AnimationSettings animation_settings = AnimationSettings.get_default ();
 			var window = actor.get_meta_window ();
 
-#if HAS_MUTTER318
 			ws_assoc.remove (window);
-#endif
 
 			if (!animation_settings.enable_animations) {
 				destroy_completed (actor);
@@ -1262,22 +1296,13 @@ namespace Gala
 			}
 		}
 
-#if HAS_MUTTER318
-		inline void unmaximize_completed (Meta.WindowActor actor)
-		{
-		}
-
 		void unmaximize (Meta.WindowActor actor, int ex, int ey, int ew, int eh)
-#else
-		public override void unmaximize (Meta.WindowActor actor, int ex, int ey, int ew, int eh)
-#endif
 		{
 			unowned AnimationSettings animation_settings = AnimationSettings.get_default ();
 			var duration = animation_settings.snap_duration;
 
 			if (!animation_settings.enable_animations
 				|| duration == 0) {
-				unmaximize_completed (actor);
 				return;
 			}
 
@@ -1303,7 +1328,6 @@ namespace Gala
 				var old_actor = Utils.get_window_actor_snapshot (actor, old_rect, old_rect);
 
 				if (old_actor == null) {
-					unmaximize_completed (actor);
 					return;
 				}
 
@@ -1330,7 +1354,6 @@ namespace Gala
 
 				var maximized_x = actor.x;
 				var maximized_y = actor.y;
-				unmaximize_completed (actor);
 				actor.set_pivot_point (0.0f, 0.0f);
 				actor.set_position (ex, ey);
 				actor.set_translation (-ex + offset_x * (1.0f / scale_x - 1.0f) + maximized_x, -ey + offset_y * (1.0f / scale_y - 1.0f) + maximized_y, 0.0f);
@@ -1342,11 +1365,7 @@ namespace Gala
 				actor.set_scale (1.0f, 1.0f);
 				actor.set_translation (0.0f, 0.0f, 0.0f);
 				actor.restore_easing_state ();
-
-				return;
 			}
-
-			unmaximize_completed (actor);
 		}
 
 		// Cancel attached animation of an actor and reset it
@@ -1379,17 +1398,9 @@ namespace Gala
 			if (end_animation (ref minimizing, actor))
 				minimize_completed (actor);
 			if (end_animation (ref maximizing, actor))
-#if HAS_MUTTER318
 				size_change_completed (actor);
-#else
-				maximize_completed (actor);
-#endif
 			if (end_animation (ref unmaximizing, actor))
-#if HAS_MUTTER318
 				size_change_completed (actor);
-#else
-				unmaximize_completed (actor);
-#endif
 			if (end_animation (ref destroying, actor))
 				destroy_completed (actor);
 		}

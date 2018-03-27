@@ -8,14 +8,17 @@ msgstr ""
 "Project-Id-Version: gala\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2017-02-20 08:08+0100\n"
-"PO-Revision-Date: 2015-08-15 13:35+0000\n"
-"Last-Translator: Wanno Drijfhout <wrcdrijfhout+ubuntu@imperamus.eu>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"PO-Revision-Date: 2017-10-31 23:55+0000\n"
+"Last-Translator: Dieter Debast <dieter_debast@hotmail.com>\n"
+"Language-Team: Dutch "
+"<https://weblate.elementary.io/projects/desktop/gala/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.16\n"
 "X-Launchpad-Export-Date: 2017-02-21 05:47+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: src/WindowManager.vala:1636
 msgid "Does the display look OK?"
@@ -59,7 +62,7 @@ msgstr "Verplaats naar rechter werkblad"
 
 #: src/Widgets/WindowMenu.vala:119
 msgid "Close"
-msgstr "Sluit"
+msgstr "Sluiten"
 
 #: src/Widgets/WindowMenu.vala:131
 msgid "Unmaximize"
@@ -80,11 +83,11 @@ msgstr "Toon alle open vensters en werkbladen"
 
 #: data/gala-multitaskingview.desktop.in:7
 msgid "multitasking-view"
-msgstr ""
+msgstr "multitasking-weergave"
 
 #: data/gala-other.desktop.in:4
 msgid "Other"
-msgstr ""
+msgstr "Andere"
 
 #: data/gala-other.desktop.in:5
 msgid "Fallback desktop file for notifications from outdated applications."
@@ -123,8 +126,8 @@ msgid ""
 "The command that will be executed for the hotcorner action 'custom-command' "
 "or multiple"
 msgstr ""
-"Deze opdracht wordt uitgevoerd als actieve hoeken actie 'custom-command'. Er "
-"zijn verschillende mogelijk."
+"Deze opdracht wordt uitgevoerd als actieve hoeken actie 'custom-command' ("
+"meerdere mogelijk)"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:47
 msgid ""
@@ -168,7 +171,7 @@ msgid ""
 "Sets the command to run when the panel-main-menu keybinding is pressed"
 msgstr ""
 "Hiermee stelt u de opdracht in die bij het indrukken van de paneelhoofdmenu-"
-"sneltoets wordt uitgevoerd."
+"sneltoets wordt uitgevoerd"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:76
 msgid "Enable dynamic workspace instead of static ones"
@@ -177,11 +180,11 @@ msgstr ""
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
-"Use a dynamically increasing or decreseasing number, as needed, of "
+"Use a dynamically increasing or decreasing number, as needed, of "
 "workspaces instead of a static, fixed number"
 msgstr ""
 "Maak automatisch nieuwe bureaubladen aan wanneer nodig en verwijder "
-"ongebruikte in plaats van een vast aantal bureaubladen."
+"ongebruikte in plaats van een vast aantal bureaubladen"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:81
 msgid "Names that are recognized as dock windows for the window switcher"

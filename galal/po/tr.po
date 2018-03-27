@@ -172,7 +172,7 @@ msgstr "Dinamik çalışma alanını etkinleştir"
 
 #: data/org.pantheon.desktop.gala.gschema.xml.in:77
 msgid ""
-"Use a dynamically increasing or decreseasing number, as needed, of "
+"Use a dynamically increasing or decreasing number, as needed, of "
 "workspaces instead of a static, fixed number"
 msgstr ""
 "Durağan ve sabit sayıda çalışma alanı yerine ihtiyaca göre dinamik olarak "

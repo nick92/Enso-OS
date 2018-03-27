@@ -50,9 +50,15 @@ namespace Gala.Plugins.MaskCorners
 			if (!settings.enable)
 				return;
 
+#if HAS_MUTTER326
+			var scale = Meta.Backend.get_backend ().get_settings ().get_ui_scaling_factor ();
+#else
+			var scale = 1;
+#endif
+
 			int n_monitors = screen.get_n_monitors ();
 			cornermasks = new List<Actor>[n_monitors];
-			corner_radius = settings.corner_radius;
+			corner_radius = settings.corner_radius * scale;
 
 			if (settings.only_on_primary) {
 				add_cornermasks (screen.get_primary_monitor ());

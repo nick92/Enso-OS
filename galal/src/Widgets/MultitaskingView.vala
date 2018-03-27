@@ -164,6 +164,9 @@ namespace Gala
 		 */
 		public override bool scroll_event (ScrollEvent scroll_event)
 		{
+			if (!opened)
+				return true;
+
 			if (scroll_event.direction != ScrollDirection.SMOOTH)
 				return false;
 
@@ -337,10 +340,12 @@ namespace Gala
 		 */
 		public override bool key_press_event (Clutter.KeyEvent event)
 		{
+			if (!opened)
+				return true;
+
 			switch (event.keyval) {
 				case Clutter.Key.Escape:
-					if (opened)
-						toggle ();
+					toggle ();
 					break;
 				case Clutter.Key.Down:
 					select_window (MotionDirection.DOWN);
