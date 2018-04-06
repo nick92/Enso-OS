@@ -42,13 +42,13 @@ namespace Plank
 			warning ("Caught signal (%d), exiting", sig);
 			GLib.Application.get_default ().quit ();
 		}
-
+		
 		static construct
 		{
 			Posix.signal(Posix.SIGINT, sig_handler);
 			Posix.signal(Posix.SIGTERM, sig_handler);
 		}
-
+		
 		/**
 		 * Should be Build.DATADIR
 		 */
@@ -69,7 +69,7 @@ namespace Plank
 		 * Should be Build.VERSION_INFO
 		 */
 		public string build_version_info { get; construct; }
-
+		
 		/**
 		 * The displayed name of the program.
 		 */
@@ -78,7 +78,7 @@ namespace Plank
 		 * The executable name of the program.
 		 */
 		public string exec_name { get; construct; }
-
+		
 		/**
 		 * The copyright year(s).
 		 */
@@ -108,7 +108,7 @@ namespace Plank
 		 * The URL for translating this program.
 		 */
 		public string translate_url { get; construct set; }
-
+		
 		/**
 		 * The list of authors (to show in about dialog).
 		 */
@@ -129,19 +129,19 @@ namespace Plank
 		 * The license of this program (to show in about dialog).
 		 */
 		public Gtk.License about_license_type { get; construct set; default = Gtk.License.UNKNOWN; }
-
+		
 		string dock_name = "";
-
+		
 		Gtk.AboutDialog? about_dlg;
 		PreferencesWindow? preferences_dlg;
 		DockController? primary_dock;
 		Gee.ArrayList<DockController> docks;
-
+		
 		construct
 		{
 			flags = ApplicationFlags.HANDLES_COMMAND_LINE;
 			docks = new Gee.ArrayList<DockController> ();
-
+			
 			// set program name
 #if HAVE_SYS_PRCTL_H
 			prctl (15, exec_name);
@@ -149,13 +149,13 @@ namespace Plank
 			setproctitle (exec_name);
 #endif
 			Environment.set_prgname (exec_name);
-
+			
 			Intl.bindtextdomain (Build.GETTEXT_PACKAGE, Build.DATADIR + "/locale");
 			Intl.bind_textdomain_codeset (Build.GETTEXT_PACKAGE, "UTF-8");
-
+			
 			add_main_option_entries (options);
 		}
-
+		
 		/**
 		 * {@inheritDoc}
 		 */
@@ -163,7 +163,7 @@ namespace Plank
 		{
 			//TODO Maybe let the dock hide/show for a visible feedback
 		}
-
+		
 		/**
 		 * {@inheritDoc}
 		 */
@@ -173,39 +173,39 @@ namespace Plank
 				print ("%s\n", build_version);
 				return 0;
 			}
-
+			
 			Logger.initialize (program_name);
-
+			
 			if (options.contains ("verbose"))
 				Logger.DisplayLevel = LogLevel.VERBOSE;
 			else if (options.contains ("debug"))
 				Logger.DisplayLevel = LogLevel.DEBUG;
 			else
 				Logger.DisplayLevel = LogLevel.WARN;
-
+			
 			if (options.lookup ("name", "&s", out dock_name)) {
 				application_id = "%s.%s".printf (app_dbus, dock_name);
 			} else {
 				dock_name = "";
 				application_id = app_dbus;
 			}
-
+			
 			return -1;
 		}
-
+		
 		/**
 		 * {@inheritDoc}
 		 */
 		public override int command_line (ApplicationCommandLine command_line)
 		{
 			var options = command_line.get_options_dict ();
-
+			
 			if (options.contains ("preferences"))
 				activate_action ("preferences", null);
-
+			
 			return 0;
 		}
-
+		
 		/**
 		 * {@inheritDoc}
 		 */
@@ -220,12 +220,12 @@ namespace Plank
 			assert (program_name != null);
 			assert (exec_name != null);
 			assert (app_dbus != null);
-
+			
 			base.startup ();
-
+			
 			if (!Thread.supported ())
 				critical ("Problem initializing thread support.");
-
+			
 			message ("%s version: %s", program_name, build_version);
 			message ("Kernel version: %s", Posix.utsname ().release);
 			message ("GLib version: %u.%u.%u (%u.%u.%u)",
@@ -248,34 +248,33 @@ namespace Plank
 #endif
 			if (Gtk.Widget.get_default_direction () == Gtk.TextDirection.RTL)
 				message ("+ RTL support enabled");
-
+			
 			internal_quarks_initialize ();
 			environment_initialize ();
-
+			
 			// Make sure we are not doing silly things like trying to run in a wayland-session!
 			if (!environment_is_session_type (XdgSessionType.X11)) {
 				critical ("Only X11 environments are supported.");
 				quit ();
 				return;
 			}
-
+			
 			Paths.initialize (exec_name, build_pkg_data_dir);
 			WindowControl.initialize ();
 			DockletManager.get_default ().load_docklets ();
-			GalaDBus.get_instance(); 
-
+			
 			initialize ();
 			create_docks ();
 			create_actions ();
 		}
-
+		
 		/**
 		 * Additional initializations before the dock is created.
 		 */
 		protected virtual void initialize ()
 		{
 		}
-
+		
 		/**
 		 * Creates the docks.
 		 */
@@ -286,10 +285,10 @@ namespace Plank
 				add_dock (create_dock (dock_name));
 				return;
 			}
-
+			
 			var settings = create_settings ("net.launchpad.plank");
 			var enabled_docks = settings.get_strv ("enabled-docks");
-
+			
 			// Allow up to 8 docks
 			if (enabled_docks.length <= 0) {
 				enabled_docks = { "dock1" };
@@ -298,91 +297,85 @@ namespace Plank
 				enabled_docks = enabled_docks[0:8];
 				settings.set_strv ("enabled-docks", enabled_docks);
 			}
-
+			
 			message ("Running with %i docks ('%s')", enabled_docks.length, string.joinv ("', '", enabled_docks));
 			foreach (unowned string dock_name in enabled_docks)
 				add_dock (create_dock (dock_name));
 		}
-
+		
 		DockController create_dock (string dock_name)
 		{
 			var config_folder = Paths.AppConfigFolder.get_child (dock_name);
 			// Make sure our config-directory exists
 			Paths.ensure_directory_exists (config_folder);
-
+			
 			var dock = new DockController (dock_name, config_folder);
 			dock.initialize ();
-
+			
 			return dock;
 		}
-
+		
 		void add_dock (DockController dock)
 		{
 			// Make sure to populate our primary-dock field
 			if (primary_dock == null
 				|| (primary_dock.prefs.PinnedOnly && !dock.prefs.PinnedOnly))
 				primary_dock = dock;
-
+			
 			docks.add (dock);
 			add_window (dock.window);
 		}
-
+		
 		void remove_dock (DockController dock)
 		{
 			if (docks.size == 1)
 				return;
-
+			
 			remove_window (dock.window);
 			docks.remove (dock);
-
+			
 			if (primary_dock == dock)
 				primary_dock = docks[0];
 		}
-
+		
 		/**
 		 * Creates the actions and adds them to this {@link GLib.Application}.
 		 */
 		protected virtual void create_actions ()
 		{
 			SimpleAction action;
-
+			
 			action = new SimpleAction ("help", null);
 			action.activate.connect (() => {
 				System.get_default ().open_uri (help_url);
 			});
 			add_action (action);
-
+			
 			action = new SimpleAction ("translate", null);
 			action.activate.connect (() => {
 				System.get_default ().open_uri (translate_url);
 			});
 			add_action (action);
-
+			
 			action = new SimpleAction ("preferences", null);
 			action.activate.connect (() => {
 				show_preferences (primary_dock);
 			});
 			add_action (action);
-
+			
 			action = new SimpleAction ("about", null);
 			action.activate.connect (() => {
 				show_about ();
 			});
 			add_action (action);
-
-			action = new SimpleAction ("separator", null);
-			action.activate.connect (() => {
-				add_separator ();
-			});
-			add_action (action);
-
+			
 			action = new SimpleAction ("quit", null);
 			action.activate.connect (() => {
 				quit ();
 			});
 			add_action (action);
 		}
-
+		
 		/**
 		 * Is true if the launcher given is the launcher for this dock.
 		 *
@@ -392,12 +385,7 @@ namespace Plank
 		{
 			return launcher.has_suffix (app_launcher);
 		}
-
-		void add_separator ()
-		{
-			primary_dock.add_separator_as_dock_item();
-		}
-
+		
 		/**
 		 * Displays the about dialog.
 		 */
@@ -407,21 +395,21 @@ namespace Plank
 				about_dlg.show_all ();
 				return;
 			}
-
+			
 			about_dlg = new Gtk.AboutDialog ();
 			about_dlg.window_position = Gtk.WindowPosition.CENTER;
 			about_dlg.gravity = Gdk.Gravity.CENTER;
 			about_dlg.set_transient_for (primary_dock.window);
-
+			
 			about_dlg.set_program_name (exec_name);
 			about_dlg.set_version ("%s\n%s".printf (build_version, build_version_info));
 			about_dlg.set_logo_icon_name (app_icon);
-
+			
 			about_dlg.set_comments ("%s. %s".printf (program_name, build_release_name));
 			about_dlg.set_copyright ("Copyright © %s %s Developers".printf (app_copyright, program_name));
 			about_dlg.set_website (main_url);
 			about_dlg.set_website_label ("Website");
-
+			
 			if (about_authors != null && about_authors.length > 0)
 				about_dlg.set_authors (about_authors);
 			if (about_documenters != null && about_documenters.length > 0)
@@ -433,19 +421,19 @@ namespace Plank
 			else
 				about_dlg.set_translator_credits (_("translator-credits"));
 			about_dlg.set_license_type (about_license_type);
-
+			
 			about_dlg.response.connect (() => {
 				about_dlg.hide ();
 			});
-
+			
 			about_dlg.hide.connect (() => {
 				about_dlg.destroy ();
 				about_dlg = null;
 			});
-
+			
 			about_dlg.show_all ();
 		}
-
+		
 		/**
 		 * Displays the preferences dialog.
 		 *
@@ -459,19 +447,19 @@ namespace Plank
 				preferences_dlg.show ();
 				return;
 			}
-
+			
 			preferences_dlg = new PreferencesWindow (controller);
 			preferences_dlg.set_transient_for (controller.window);
-
+			
 			preferences_dlg.destroy.connect (() => {
 				preferences_dlg = null;
 			});
-
+			
 			preferences_dlg.hide.connect (() => {
 				preferences_dlg.destroy ();
 				preferences_dlg = null;
 			});
-
+			
 			preferences_dlg.show ();
 		}
 	}

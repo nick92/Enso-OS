@@ -193,10 +193,10 @@ namespace Plank
 
 		public void add_separator_as_dock_item ()
 		{
-			if (separator_dock_item == null)
+			/*if (separator_dock_item == null)
 				separator_dock_item = Factory.item_factory.get_separator_item ();
 			if (!internal_elements.contains (separator_dock_item))
-				visible_items.add (separator_dock_item);
+				visible_items.add (separator_dock_item);*/
 		}
 
 		protected override void connect_element (DockElement element)
