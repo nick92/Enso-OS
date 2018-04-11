@@ -111,6 +111,7 @@ granite_dep = dependency('granite')
 gnome_desktop_dep = dependency('gnome-desktop-3.0')
 gsd_dep = dependency('gnome-settings-daemon', version: '>= @0@'.format(gsd_version_required))
 m_dep = cc.find_library('m', required: false)
+xfconf_dep = dependency('libxfconf-0')
 
 mutter_dep = []
 libmutter_dep = []
@@ -242,7 +243,7 @@ subdir('lib')
 subdir('src')
 subdir('plugins/maskcorners')
 subdir('plugins/notify')
-subdir('plugins/pip')
+#subdir('plugins/pip')
 subdir('plugins/template')
 subdir('plugins/zoom')
 if get_option('documentation')

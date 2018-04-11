@@ -83,6 +83,11 @@ namespace Synapse
     public signal void executed ();
   }
   
+  public abstract class ActionMatch : Match
+  {
+    public abstract void do_action ();
+  }
+
   public interface ApplicationMatch: Match
   {
     public abstract AppInfo? app_info { get; set; }

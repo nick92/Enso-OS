@@ -45,7 +45,7 @@ gala_bin_sources = files(
 gala_bin = executable(
 	'gala',
 	gala_bin_sources,
-	dependencies: [gala_dep, gala_base_dep],
+	dependencies: [gala_dep, gala_base_dep, xfconf_dep],
 	include_directories: config_inc_dir,
 	install_rpath: mutter_typelib_dir,
 	install: true,

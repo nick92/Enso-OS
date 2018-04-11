@@ -221,12 +221,12 @@ namespace Gala
 				} catch (Error e) { warning (e.message); }
 			});
 
-			KeyBinding.set_custom_handler ("toggle-recording", () => {
+			/*KeyBinding.set_custom_handler ("toggle-recording", () => {
 				try {
 					Process.spawn_command_line_async (
 						BehaviorSettings.get_default ().toggle_recording_action);
 				} catch (Error e) { warning (e.message); }
-			});
+			});*/
 
 			KeyBinding.set_custom_handler ("switch-to-workspace-up", () => {});
 			KeyBinding.set_custom_handler ("switch-to-workspace-down", () => {});
@@ -246,10 +246,10 @@ namespace Gala
 			ShadowSettings.get_default ().notify.connect (InternalUtils.reload_shadow);
 
 			/*hot corner, getting enum values from GraniteServicesSettings did not work, so we use GSettings directly*/
-			configure_hotcorners ();
-			screen.monitors_changed.connect (configure_hotcorners);
+			//configure_hotcorners ();
+			//screen.monitors_changed.connect (configure_hotcorners);
 
-			BehaviorSettings.get_default ().schema.changed.connect (configure_hotcorners);
+			//BehaviorSettings.get_default ().schema.changed.connect (configure_hotcorners);
 
 			// initialize plugins and add default components if no plugin overrides them
 			var plugin_manager = PluginManager.get_default ();
@@ -290,7 +290,7 @@ namespace Gala
 				}
 			}
 
-			if (plugin_manager.window_overview_provider == null
+			/*if (plugin_manager.window_overview_provider == null
 				|| (window_overview = (plugin_manager.get_plugin (plugin_manager.window_overview_provider) as ActivatableComponent)) == null) {
 				window_overview = new WindowOverview (this);
 				ui_group.add_child ((Clutter.Actor) window_overview);
@@ -310,7 +310,7 @@ namespace Gala
 					hints.@set ("all-windows", true);
 					window_overview.open (hints);
 				}
-			});
+			});*/
 
 			update_input_area ();
 
@@ -375,11 +375,11 @@ namespace Gala
 			hot_corner.y = y;
 		}
 
-		/**
+	/**
      * Launch menu manager with our wallpaper
      */
 
-		DesktopMenu desktop_menu = null;
+	DesktopMenu desktop_menu = null;
 
     private bool on_background_click(Clutter.ButtonEvent? event)
 		{
@@ -632,7 +632,7 @@ namespace Gala
 			if (dim) {
 				if (win.has_effects ())
 					return;
-				win.add_effect_with_name ("darken", new Clutter.BlurEffect ());
+				//win.add_effect_with_name ("darken", new Clutter.BlurEffect ());
 			} else
 				win.clear_effects ();
 		}
