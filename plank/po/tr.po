@@ -1,0 +1,246 @@
+# Turkish translation for plank
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the plank package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plank\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-03-24 17:21+0000\n"
+"PO-Revision-Date: 2016-02-17 00:36+0000\n"
+"Last-Translator: Rico Tzschichholz <Unknown>\n"
+"Language-Team: Turkish <tr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-03-27 17:40+0000\n"
+"X-Generator: Launchpad (build 18334)\n"
+
+#: ../data/plank.appdata.xml.in.h:1 ../data/plank.desktop.in.h:1
+msgid "Stupidly simple."
+msgstr "Son derece basit."
+
+#: ../data/plank.appdata.xml.in.h:2
+msgid ""
+"Plank is meant to be the simplest dock on the planet. The goal is to provide "
+"just what a dock needs and absolutely nothing more."
+msgstr ""
+"Plank, gezegendeki en basit dock demektir. Hedefi, bir docktan beklediğiniz "
+"tüm ihtiyaçları karşılamaktır, fazlası değil."
+
+#: ../data/plank.appdata.xml.in.h:3
+msgid ""
+"It is, however, a library which can be extended to create other dock "
+"programs with more advanced features. Thus, Plank is the underlying "
+"technology for Docky (starting in version 3.0.0) and aims to provide all the "
+"core features while Docky extends it to add fancier things like Docklets, "
+"painters, settings dialogs, etc."
+msgstr ""
+"Ancak, daha gelişmiş özelliklerle başka dock programları oluşturabilecek "
+"genişletilebilir bir kütüphanedir de. Bu yüzden Plank, Docky'nin (sürüm "
+"3.0.0'dan itibaren) altında yatan teknolojidir ve Docky'nin Docklets, "
+"resimler, ayarlar, iletişim kutuları gibi süslü tüm temel özelliklerini "
+"karşılamayı amaçlar."
+
+#: ../data/ui/preferences.ui.h:1
+msgid "Theme:"
+msgstr "Tema:"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "Position:"
+msgstr "Yer :"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Left"
+msgstr "Sol"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Right"
+msgstr "Sağ"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Top"
+msgstr "Üst"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Bottom"
+msgstr "Alt"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Alignment:"
+msgstr "Hizalama:"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Fill"
+msgstr "Doldur"
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Start"
+msgstr "Başla"
+
+#: ../data/ui/preferences.ui.h:10
+msgid "End"
+msgstr "Bitir"
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Center"
+msgstr "Orta"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "On Primary Display:"
+msgstr "Ana Ekranda:"
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Offset in percent from the center of the screen-edge"
+msgstr "Ekran merkezine olan uzaklık"
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Icon Alignment:"
+msgstr "Simge Hizası:"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Icon Size:"
+msgstr "Simge Boyutu:"
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Icon Zoom:"
+msgstr "Simgeleri Yaklaştır:"
+
+#: ../data/ui/preferences.ui.h:17
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: ../data/ui/preferences.ui.h:18
+msgid "Intellihide"
+msgstr "Akıllı Gizlenme"
+
+#: ../data/ui/preferences.ui.h:19
+msgid "Autohide"
+msgstr "Otomatik Gizlenme"
+
+#: ../data/ui/preferences.ui.h:20
+msgid "Dodge maximized window"
+msgstr "Büyütülmüş pencerede yana çekil"
+
+#: ../data/ui/preferences.ui.h:21
+msgid "Window Dodge"
+msgstr "Pencere Çekilmesi"
+
+#: ../data/ui/preferences.ui.h:22
+msgid "Dodge active window"
+msgstr "Pencere atlatmayı aktifleştir"
+
+#: ../data/ui/preferences.ui.h:23
+msgid "Hide Dock"
+msgstr "Dock'u Gizle"
+
+#: ../data/ui/preferences.ui.h:24
+msgid "Hide Delay:"
+msgstr "Gizlenme Süresi:"
+
+#: ../data/ui/preferences.ui.h:25
+msgid "Delay in ms before hiding the dock"
+msgstr "Gizlenme öncesi gecikme süresi"
+
+#: ../data/ui/preferences.ui.h:26
+msgid "Unhide Delay:"
+msgstr "Gizlenme Gecikmesi:"
+
+#: ../data/ui/preferences.ui.h:27
+msgid "Delay in ms before showing the dock"
+msgstr "Dock'un gösteriminden önceki milisaniye gecikmesi"
+
+#: ../data/ui/preferences.ui.h:28
+msgid "Pressure Reveal:"
+msgstr "Zorla Gösterme:"
+
+#: ../data/ui/preferences.ui.h:29
+msgid "Item Management"
+msgstr "Nesne Yönetimi"
+
+#: ../data/ui/preferences.ui.h:30
+msgid "Show Unpinned:"
+msgstr "Tutturulmamışları Göster:"
+
+#: ../data/ui/preferences.ui.h:31
+msgid "Restrict to Workspace:"
+msgstr "Çalışma Alanını Sınırla:"
+
+#: ../data/ui/preferences.ui.h:32
+msgid "Lock Icons:"
+msgstr "Simgeleri Kilitle:"
+
+#: ../data/ui/preferences.ui.h:33
+msgid "Behaviour"
+msgstr "Davranış"
+
+#: ../data/ui/preferences.ui.h:34
+msgid "Docklets"
+msgstr "Uygulamacıklar"
+
+#: ../lib/DragManager.vala:477 ../lib/Items/PlaceholderDockItem.vala:51
+msgid "Drop to add to dock"
+msgstr "Rıhtıma eklemek için bırakın"
+
+#: ../lib/Factories/AbstractMain.vala:422 ../src/Main.vala:75
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Ahmet Onur YILDIRIM https://launchpad.net/~aonury\n"
+"  Can Umay https://launchpad.net/~canumaydestek\n"
+"  Dinçer Kavraal https://launchpad.net/~dkavraal\n"
+"  Fatih Dayioglu https://launchpad.net/~fthd\n"
+"  Mehmet Bozoklu https://launchpad.net/~mehmet-bozoklu\n"
+"  Mesut Yaver https://launchpad.net/~afg-mesut\n"
+"  Onur https://launchpad.net/~onurmidilli\n"
+"  Rico Tzschichholz https://launchpad.net/~ricotz\n"
+"  empax https://launchpad.net/~uniteam01\n"
+"  mumi https://launchpad.net/~mkocadere\n"
+"  sakir.mehmetoglu https://launchpad.net/~sakir-mehmetoglu-a"
+
+#: ../lib/Items/ApplicationDockItem.vala:412 ../lib/Items/FileDockItem.vala:317
+#: ../lib/Items/FileDockItem.vala:339
+msgid "_Keep in Dock"
+msgstr "_Başlatıcıda tut"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close All"
+msgstr "Hepsini _Kapat"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close"
+msgstr "_Kapat"
+
+#: ../lib/Items/ApplicationDockItem.vala:492
+#, c-format
+msgid "Drop to open with %s"
+msgstr "%s ile açmak için bırakın"
+
+#: ../lib/Items/FileDockItem.vala:323
+msgid "_Open in File Browser"
+msgstr "_Dosya Yöneticisinde Aç"
+
+#: ../lib/Items/FileDockItem.vala:345
+msgid "_Open"
+msgstr "_Aç"
+
+#: ../lib/Items/FileDockItem.vala:349
+msgid "Open Containing _Folder"
+msgstr "Bulunduğu _Klasörü Aç"
+
+#: ../lib/Items/PlaceholderDockItem.vala:37
+msgid "Drop applications or files here"
+msgstr "Uygulamaları veya dosyaları buraya bırak"
+
+#: ../lib/Items/PlankDockItem.vala:73
+msgid "Get _Help Online..."
+msgstr "Çev_rimiçi Yardım Al..."
+
+#: ../lib/Items/PlankDockItem.vala:77
+msgid "_Translate This Application..."
+msgstr "Bu _Uygulamayı Çevir..."
+
+#: ../lib/Widgets/PreferencesWindow.vala:90
+msgid "Preferences"
+msgstr "Tercihler"

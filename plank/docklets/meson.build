@@ -1,0 +1,6 @@
+subdir('Applications')
+subdir('Clippy')
+subdir('Clock')
+subdir('CPUMonitor')
+subdir('Desktop')
+subdir('Trash')

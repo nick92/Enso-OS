@@ -1,0 +1,242 @@
+# Greek translation for plank
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the plank package.
+# Kostas Milonas <milonas.ko@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plank\n"
+"Report-Msgid-Bugs-To: Kostas Milonas <milonas.ko@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 17:21+0000\n"
+"PO-Revision-Date: 2016-02-17 00:36+0000\n"
+"Last-Translator: Rico Tzschichholz <Unknown>\n"
+"Language-Team: Greek <el@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-03-27 17:40+0000\n"
+"X-Generator: Launchpad (build 18334)\n"
+
+#: ../data/plank.appdata.xml.in.h:1 ../data/plank.desktop.in.h:1
+msgid "Stupidly simple."
+msgstr "Βλακωδώς απλό."
+
+#: ../data/plank.appdata.xml.in.h:2
+msgid ""
+"Plank is meant to be the simplest dock on the planet. The goal is to provide "
+"just what a dock needs and absolutely nothing more."
+msgstr ""
+"Το Plank προορίζεται να είναι η απλούστερη υποδοχή εικονιδίων στον πλανήτη. "
+"Ο στόχος είναι να παρέχει ακριβώς ό, τι χρειάζεται μια υποδοχή εικονιδίων "
+"και τίποτα απολύτως περισσότερο."
+
+#: ../data/plank.appdata.xml.in.h:3
+msgid ""
+"It is, however, a library which can be extended to create other dock "
+"programs with more advanced features. Thus, Plank is the underlying "
+"technology for Docky (starting in version 3.0.0) and aims to provide all the "
+"core features while Docky extends it to add fancier things like Docklets, "
+"painters, settings dialogs, etc."
+msgstr ""
+"Είναι, ωστόσο, μια βιβλιοθήκη η οποία μπορεί να επεκταθεί για να "
+"δημιουργήσει άλλα προγράμματα υποδοχής με πιο προηγμένα χαρακτηριστικά. "
+"Έτσι, το Plank είναι η υποκείμενη τεχνολογία για το Docky (αρχής γενομένης "
+"από την έκδοση 3.0.0) και έχει ως στόχο να παρέχει όλα τα βασικά "
+"χαρακτηριστικά, ενώ το Docky επεκτείνεται για να προσθέσετε πιο φανταχτερά "
+"πράγματα όπως Υποδοχίδια, χρωματιστές, ρυθμίσεις διαλόγων, κλπ."
+
+#: ../data/ui/preferences.ui.h:1
+msgid "Theme:"
+msgstr "Εμφάνιση:"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "Position:"
+msgstr "Θέση:"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Left"
+msgstr "Αριστερά"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Right"
+msgstr "Δεξιά"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Top"
+msgstr "Κορυφή"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Bottom"
+msgstr "Κάτω"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Alignment:"
+msgstr "Στοίχιση:"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Fill"
+msgstr "Συμπλήρωση"
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Start"
+msgstr "Εκκίνηση"
+
+#: ../data/ui/preferences.ui.h:10
+msgid "End"
+msgstr "Λήξη"
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Center"
+msgstr "Κέντρο"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "On Primary Display:"
+msgstr "Στην κύρια οθόνη:"
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Offset in percent from the center of the screen-edge"
+msgstr "Αντιστάθμιση σε ποσοστό απο το κέντρο της άκρης της οθόνης"
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Icon Alignment:"
+msgstr "Στοίχιση εικονιδίων:"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Icon Size:"
+msgstr "Μέγεθος εικονιδίου:"
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Icon Zoom:"
+msgstr "Μεγέθυνση εικονιδίων:"
+
+#: ../data/ui/preferences.ui.h:17
+msgid "Appearance"
+msgstr "Εμφάνιση"
+
+#: ../data/ui/preferences.ui.h:18
+msgid "Intellihide"
+msgstr "Έξυπνη απόκρυψη"
+
+#: ../data/ui/preferences.ui.h:19
+msgid "Autohide"
+msgstr "Αυτόματη Απόκρυψη"
+
+#: ../data/ui/preferences.ui.h:20
+msgid "Dodge maximized window"
+msgstr "Αποφυγή μεγιστοποιημένου παραθύρου"
+
+#: ../data/ui/preferences.ui.h:21
+msgid "Window Dodge"
+msgstr "Αποφυγή παραθύρου"
+
+#: ../data/ui/preferences.ui.h:22
+msgid "Dodge active window"
+msgstr "Αποφυγή ενεργού παραθύρου"
+
+#: ../data/ui/preferences.ui.h:23
+msgid "Hide Dock"
+msgstr "Απόκρυψη της υποδοχής"
+
+#: ../data/ui/preferences.ui.h:24
+msgid "Hide Delay:"
+msgstr "Καθυστέρηση απόκρυψης:"
+
+#: ../data/ui/preferences.ui.h:25
+msgid "Delay in ms before hiding the dock"
+msgstr "Καθυστέρηση σε ms πριν την απόκρυψη της υποδοχής"
+
+#: ../data/ui/preferences.ui.h:26
+msgid "Unhide Delay:"
+msgstr "Καθυστέρηση επανεμφάνισης:"
+
+#: ../data/ui/preferences.ui.h:27
+msgid "Delay in ms before showing the dock"
+msgstr "Καθυστέρηση σε ms πριν την εμφάνιση της υποδοχής"
+
+#: ../data/ui/preferences.ui.h:28
+msgid "Pressure Reveal:"
+msgstr "Αποκάλυψη Πίεσης:"
+
+#: ../data/ui/preferences.ui.h:29
+msgid "Item Management"
+msgstr "Διαχείριση Αντικειμένων"
+
+#: ../data/ui/preferences.ui.h:30
+msgid "Show Unpinned:"
+msgstr "Εμφάνιση μη-Καρφιτσωμένων:"
+
+#: ../data/ui/preferences.ui.h:31
+msgid "Restrict to Workspace:"
+msgstr "Περιορισμός στο Χώρο Εργασίας:"
+
+#: ../data/ui/preferences.ui.h:32
+msgid "Lock Icons:"
+msgstr "Κλείδωμα εικονιδίων:"
+
+#: ../data/ui/preferences.ui.h:33
+msgid "Behaviour"
+msgstr "Συμπεριφορά"
+
+#: ../data/ui/preferences.ui.h:34
+msgid "Docklets"
+msgstr "Εφαρμογίδια"
+
+#: ../lib/DragManager.vala:477 ../lib/Items/PlaceholderDockItem.vala:51
+msgid "Drop to add to dock"
+msgstr ""
+
+#: ../lib/Factories/AbstractMain.vala:422 ../src/Main.vala:75
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Kostas Milonas https://launchpad.net/~grimmoner\n"
+"  Panagiotis Tabakis https://launchpad.net/~tabakisp\n"
+"  Rico Tzschichholz https://launchpad.net/~ricotz\n"
+"  Tom Tryfonidis https://launchpad.net/~thanostx\n"
+"  grrrk https://launchpad.net/~grrrk"
+
+#: ../lib/Items/ApplicationDockItem.vala:412 ../lib/Items/FileDockItem.vala:317
+#: ../lib/Items/FileDockItem.vala:339
+msgid "_Keep in Dock"
+msgstr "Παραμονή _στο dock"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close All"
+msgstr "_Κλείσιμο όλων"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close"
+msgstr "_Κλείσιμο"
+
+#: ../lib/Items/ApplicationDockItem.vala:492
+#, c-format
+msgid "Drop to open with %s"
+msgstr ""
+
+#: ../lib/Items/FileDockItem.vala:323
+msgid "_Open in File Browser"
+msgstr "Άνοιγμα στον πε_ριηγητή αρχείων"
+
+#: ../lib/Items/FileDockItem.vala:345
+msgid "_Open"
+msgstr "Ά_νοιγμα"
+
+#: ../lib/Items/FileDockItem.vala:349
+msgid "Open Containing _Folder"
+msgstr "Άνοιγμα του _φακέλου που περιέχει"
+
+#: ../lib/Items/PlaceholderDockItem.vala:37
+msgid "Drop applications or files here"
+msgstr "Αποθέστε εφαρμογές ή αρχεία εδώ"
+
+#: ../lib/Items/PlankDockItem.vala:73
+msgid "Get _Help Online..."
+msgstr "Λήψη online _βοήθειας..."
+
+#: ../lib/Items/PlankDockItem.vala:77
+msgid "_Translate This Application..."
+msgstr "Με_ταφράστε αυτήν την εφαρμογή..."
+
+#: ../lib/Widgets/PreferencesWindow.vala:90
+msgid "Preferences"
+msgstr "Προτιμήσεις"

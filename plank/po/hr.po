@@ -1,0 +1,232 @@
+# Croatian translation for plank
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the plank package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plank\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-03-24 17:21+0000\n"
+"PO-Revision-Date: 2016-02-17 00:36+0000\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"Language-Team: Croatian <hr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-03-27 17:40+0000\n"
+"X-Generator: Launchpad (build 18334)\n"
+
+#: ../data/plank.appdata.xml.in.h:1 ../data/plank.desktop.in.h:1
+msgid "Stupidly simple."
+msgstr "Neviđeno jednostavan"
+
+#: ../data/plank.appdata.xml.in.h:2
+msgid ""
+"Plank is meant to be the simplest dock on the planet. The goal is to provide "
+"just what a dock needs and absolutely nothing more."
+msgstr ""
+
+#: ../data/plank.appdata.xml.in.h:3
+msgid ""
+"It is, however, a library which can be extended to create other dock "
+"programs with more advanced features. Thus, Plank is the underlying "
+"technology for Docky (starting in version 3.0.0) and aims to provide all the "
+"core features while Docky extends it to add fancier things like Docklets, "
+"painters, settings dialogs, etc."
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:1
+msgid "Theme:"
+msgstr "Tema:"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "Position:"
+msgstr "Položaj:"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Left"
+msgstr "Lijevo"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Right"
+msgstr "Desno"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Top"
+msgstr "Gore"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Bottom"
+msgstr "Dolje"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Alignment:"
+msgstr "Poravnanje:"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Fill"
+msgstr "Popuni"
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Start"
+msgstr "Početak"
+
+#: ../data/ui/preferences.ui.h:10
+msgid "End"
+msgstr "Kraj"
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Center"
+msgstr "Sredina"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "On Primary Display:"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Offset in percent from the center of the screen-edge"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Icon Alignment:"
+msgstr "Poravnanje ikona:"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Icon Size:"
+msgstr "Veličina ikone:"
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Icon Zoom:"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:17
+msgid "Appearance"
+msgstr "Izgled"
+
+#: ../data/ui/preferences.ui.h:18
+msgid "Intellihide"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:19
+msgid "Autohide"
+msgstr "Automatsko skrivanje"
+
+#: ../data/ui/preferences.ui.h:20
+msgid "Dodge maximized window"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:21
+msgid "Window Dodge"
+msgstr "Izbjegavanje Prozora"
+
+#: ../data/ui/preferences.ui.h:22
+msgid "Dodge active window"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:23
+msgid "Hide Dock"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:24
+msgid "Hide Delay:"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:25
+msgid "Delay in ms before hiding the dock"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:26
+msgid "Unhide Delay:"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:27
+msgid "Delay in ms before showing the dock"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:28
+msgid "Pressure Reveal:"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:29
+msgid "Item Management"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:30
+msgid "Show Unpinned:"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:31
+msgid "Restrict to Workspace:"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:32
+msgid "Lock Icons:"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:33
+msgid "Behaviour"
+msgstr ""
+
+#: ../data/ui/preferences.ui.h:34
+msgid "Docklets"
+msgstr ""
+
+#: ../lib/DragManager.vala:477 ../lib/Items/PlaceholderDockItem.vala:51
+msgid "Drop to add to dock"
+msgstr "Ispustite da biste dodali na dok"
+
+#: ../lib/Factories/AbstractMain.vala:422 ../src/Main.vala:75
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Ivan https://launchpad.net/~ivan-os\n"
+"  Ivan Vrljić https://launchpad.net/~vrlja92\n"
+"  Rico Tzschichholz https://launchpad.net/~ricotz\n"
+"  gogo https://launchpad.net/~trebelnik-stefina"
+
+#: ../lib/Items/ApplicationDockItem.vala:412 ../lib/Items/FileDockItem.vala:317
+#: ../lib/Items/FileDockItem.vala:339
+msgid "_Keep in Dock"
+msgstr "_Zadrži u Docku"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close All"
+msgstr "_Zatvori sve"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close"
+msgstr "_Zatvori"
+
+#: ../lib/Items/ApplicationDockItem.vala:492
+#, c-format
+msgid "Drop to open with %s"
+msgstr ""
+
+#: ../lib/Items/FileDockItem.vala:323
+msgid "_Open in File Browser"
+msgstr "_Otvori u Pregledniku datoteka"
+
+#: ../lib/Items/FileDockItem.vala:345
+msgid "_Open"
+msgstr "_Otvori"
+
+#: ../lib/Items/FileDockItem.vala:349
+msgid "Open Containing _Folder"
+msgstr "Otvori sadržajnu _mapu"
+
+#: ../lib/Items/PlaceholderDockItem.vala:37
+msgid "Drop applications or files here"
+msgstr ""
+
+#: ../lib/Items/PlankDockItem.vala:73
+msgid "Get _Help Online..."
+msgstr "Potraži_Pomoć na mreži"
+
+#: ../lib/Items/PlankDockItem.vala:77
+msgid "_Translate This Application..."
+msgstr "_Prevedi ovu aplikaciju..."
+
+#: ../lib/Widgets/PreferencesWindow.vala:90
+msgid "Preferences"
+msgstr "Postavke"

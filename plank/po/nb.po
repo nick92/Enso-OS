@@ -1,0 +1,242 @@
+# Norwegian Bokmal translation for plank
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the plank package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plank\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-03-24 17:21+0000\n"
+"PO-Revision-Date: 2016-02-17 00:36+0000\n"
+"Last-Translator: Rico Tzschichholz <Unknown>\n"
+"Language-Team: Norwegian Bokmal <nb@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-03-27 17:40+0000\n"
+"X-Generator: Launchpad (build 18334)\n"
+
+#: ../data/plank.appdata.xml.in.h:1 ../data/plank.desktop.in.h:1
+msgid "Stupidly simple."
+msgstr "Uforstandig enkelt."
+
+#: ../data/plank.appdata.xml.in.h:2
+msgid ""
+"Plank is meant to be the simplest dock on the planet. The goal is to provide "
+"just what a dock needs and absolutely nothing more."
+msgstr ""
+"Plank er ment å være den enkelste dokken på planeten. Målet er å gi akkurat "
+"det en dokk trenger og ingenting mer."
+
+#: ../data/plank.appdata.xml.in.h:3
+msgid ""
+"It is, however, a library which can be extended to create other dock "
+"programs with more advanced features. Thus, Plank is the underlying "
+"technology for Docky (starting in version 3.0.0) and aims to provide all the "
+"core features while Docky extends it to add fancier things like Docklets, "
+"painters, settings dialogs, etc."
+msgstr ""
+"Det er imidlertid et bibliotek som kan utvides for å skape andre dokk "
+"programmer med flere avanserte funksjoner. Dermed er Plank den underliggende "
+"teknologien for Docky (starter i versjon 3.0.0) og har som mål å gi alle "
+"kjernefunksjonene mens Docky utvider det til å legge til mer avanserte ting "
+"som docklets, malere, innstillingsdialoger, etc."
+
+#: ../data/ui/preferences.ui.h:1
+msgid "Theme:"
+msgstr "Utseende:"
+
+#: ../data/ui/preferences.ui.h:2
+msgid "Position:"
+msgstr "Posisjon:"
+
+#: ../data/ui/preferences.ui.h:3
+msgid "Left"
+msgstr "Venstre"
+
+#: ../data/ui/preferences.ui.h:4
+msgid "Right"
+msgstr "Høyre"
+
+#: ../data/ui/preferences.ui.h:5
+msgid "Top"
+msgstr "Topp"
+
+#: ../data/ui/preferences.ui.h:6
+msgid "Bottom"
+msgstr "Bunn"
+
+#: ../data/ui/preferences.ui.h:7
+msgid "Alignment:"
+msgstr "Justering:"
+
+#: ../data/ui/preferences.ui.h:8
+msgid "Fill"
+msgstr "Fyll"
+
+#: ../data/ui/preferences.ui.h:9
+msgid "Start"
+msgstr "Start"
+
+#: ../data/ui/preferences.ui.h:10
+msgid "End"
+msgstr "Ende"
+
+#: ../data/ui/preferences.ui.h:11
+msgid "Center"
+msgstr "Sentrér"
+
+#: ../data/ui/preferences.ui.h:12
+msgid "On Primary Display:"
+msgstr "På primær skjerm:"
+
+#: ../data/ui/preferences.ui.h:13
+msgid "Offset in percent from the center of the screen-edge"
+msgstr "Forskyvning i prosent fra midten av skjermkanten"
+
+#: ../data/ui/preferences.ui.h:14
+msgid "Icon Alignment:"
+msgstr "Ikonjustering:"
+
+#: ../data/ui/preferences.ui.h:15
+msgid "Icon Size:"
+msgstr "Ikonstørrelse:"
+
+#: ../data/ui/preferences.ui.h:16
+msgid "Icon Zoom:"
+msgstr "Ikon zoom:"
+
+#: ../data/ui/preferences.ui.h:17
+msgid "Appearance"
+msgstr "Utseende"
+
+#: ../data/ui/preferences.ui.h:18
+msgid "Intellihide"
+msgstr "Smartskjul"
+
+#: ../data/ui/preferences.ui.h:19
+msgid "Autohide"
+msgstr "Skjul automatisk"
+
+#: ../data/ui/preferences.ui.h:20
+msgid "Dodge maximized window"
+msgstr "Unnvike maksimert vindu"
+
+#: ../data/ui/preferences.ui.h:21
+msgid "Window Dodge"
+msgstr "Unnvik vindu"
+
+#: ../data/ui/preferences.ui.h:22
+msgid "Dodge active window"
+msgstr "Unnvik aktivt vindu"
+
+#: ../data/ui/preferences.ui.h:23
+msgid "Hide Dock"
+msgstr "Skjul dokk"
+
+#: ../data/ui/preferences.ui.h:24
+msgid "Hide Delay:"
+msgstr "Forsinkelse for skjule:"
+
+#: ../data/ui/preferences.ui.h:25
+msgid "Delay in ms before hiding the dock"
+msgstr "Forsinkelse i ms før dokken skjules"
+
+#: ../data/ui/preferences.ui.h:26
+msgid "Unhide Delay:"
+msgstr "Forsinkelse for vise:"
+
+#: ../data/ui/preferences.ui.h:27
+msgid "Delay in ms before showing the dock"
+msgstr "Forsinkelse i ms før dokken vises etter skjuling"
+
+#: ../data/ui/preferences.ui.h:28
+msgid "Pressure Reveal:"
+msgstr "Avslør trykk:"
+
+#: ../data/ui/preferences.ui.h:29
+msgid "Item Management"
+msgstr "Håndtering av elementer"
+
+#: ../data/ui/preferences.ui.h:30
+msgid "Show Unpinned:"
+msgstr "Vis løsnede:"
+
+#: ../data/ui/preferences.ui.h:31
+msgid "Restrict to Workspace:"
+msgstr "Begrens til arbeidsområde:"
+
+#: ../data/ui/preferences.ui.h:32
+msgid "Lock Icons:"
+msgstr "Lås ikoner:"
+
+#: ../data/ui/preferences.ui.h:33
+msgid "Behaviour"
+msgstr "Oppførsel"
+
+#: ../data/ui/preferences.ui.h:34
+msgid "Docklets"
+msgstr "Dokkprogrammer"
+
+#: ../lib/DragManager.vala:477 ../lib/Items/PlaceholderDockItem.vala:51
+msgid "Drop to add to dock"
+msgstr "Slipp for å legge til en dokk"
+
+#: ../lib/Factories/AbstractMain.vala:422 ../src/Main.vala:75
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Bariuz https://launchpad.net/~spaceboundprod-deactivatedaccount\n"
+"  ProsjektX https://launchpad.net/~prosjektx\n"
+"  Rico Tzschichholz https://launchpad.net/~ricotz\n"
+"  Skandee https://launchpad.net/~skandee\n"
+"  Thomas Lekanger https://launchpad.net/~datagutt\n"
+"  Tor Inge Røttum https://launchpad.net/~tor-u4\n"
+"  kingu https://launchpad.net/~comradekingu"
+
+#: ../lib/Items/ApplicationDockItem.vala:412 ../lib/Items/FileDockItem.vala:317
+#: ../lib/Items/FileDockItem.vala:339
+msgid "_Keep in Dock"
+msgstr "_Behold i Dokken"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close All"
+msgstr "_Lukk alle"
+
+#: ../lib/Items/ApplicationDockItem.vala:420
+msgid "_Close"
+msgstr "_Lukk"
+
+#: ../lib/Items/ApplicationDockItem.vala:492
+#, c-format
+msgid "Drop to open with %s"
+msgstr "Slipp for å åpne med %s"
+
+#: ../lib/Items/FileDockItem.vala:323
+msgid "_Open in File Browser"
+msgstr "_Åpne i Filbehandler"
+
+#: ../lib/Items/FileDockItem.vala:345
+msgid "_Open"
+msgstr "_Åpne"
+
+#: ../lib/Items/FileDockItem.vala:349
+msgid "Open Containing _Folder"
+msgstr "Åpne opphavs_mappe"
+
+#: ../lib/Items/PlaceholderDockItem.vala:37
+msgid "Drop applications or files here"
+msgstr "Slipp applikasjoner eller filer her"
+
+#: ../lib/Items/PlankDockItem.vala:73
+msgid "Get _Help Online..."
+msgstr "Få _hjelp på nettet..."
+
+#: ../lib/Items/PlankDockItem.vala:77
+msgid "_Translate This Application..."
+msgstr "_Oversett denne applikasjonen...."
+
+#: ../lib/Widgets/PreferencesWindow.vala:90
+msgid "Preferences"
+msgstr "Innstillinger"
