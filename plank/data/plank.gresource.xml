@@ -21,7 +21,6 @@
 	<gresource prefix="/net/launchpad/plank">
 		<file alias="img/application-default-icon.svg" compressed="true" preprocess="xml-stripblanks">application-default-icon.svg</file>
 		<file alias="img/poof.svg" compressed="true" preprocess="xml-stripblanks">poof.svg</file>
-		<file alias="img/separator.svg" compressed="true" preprocess="xml-stripblanks">separator.svg</file>
 		<file compressed="true" preprocess="xml-stripblanks">ui/preferences.ui</file>
 	</gresource>
 </gresources>
