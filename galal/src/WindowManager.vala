@@ -213,7 +213,8 @@ namespace Gala
 						BehaviorSettings.get_default ().overlay_action);
 				} catch (Error e) { warning (e.message); }
 			});
-
+			
+			/*
 			KeyBinding.set_custom_handler ("panel-main-menu", () => {
 				try {
 					Process.spawn_command_line_async (
@@ -221,7 +222,7 @@ namespace Gala
 				} catch (Error e) { warning (e.message); }
 			});
 
-			/*KeyBinding.set_custom_handler ("toggle-recording", () => {
+			KeyBinding.set_custom_handler ("toggle-recording", () => {
 				try {
 					Process.spawn_command_line_async (
 						BehaviorSettings.get_default ().toggle_recording_action);
@@ -263,10 +264,15 @@ namespace Gala
 			}
 
 			KeyBinding.set_custom_handler ("show-desktop", () => {
-				if (workspace_view.is_opened ())
+				try {
+					perform_action (ActionType.MINIMIZE_ALL);
+				} catch (Error e) {
+					warning (e.message);
+				}
+				/*if (workspace_view.is_opened ())
 					workspace_view.close ();
 				else
-					workspace_view.open ();
+					workspace_view.open ();*/
 			});
 
 			if (plugin_manager.window_switcher_provider == null) {
@@ -382,24 +388,21 @@ namespace Gala
 	DesktopMenu desktop_menu = null;
 
     private bool on_background_click(Clutter.ButtonEvent? event)
+	{
+		if(event.button == 3)
 		{
-			int x = 0;
-			int y = 0;
+			var time = get_screen ().get_display ().get_current_time_roundtrip ();
 
-			if(event.button == 3)
-			{
-				var time = get_screen ().get_display ().get_current_time_roundtrip ();
+			if(desktop_menu == null)
+				desktop_menu = new DesktopMenu (this);
+				//get_current_cursor_position(out x, out y);
+				desktop_menu.show_all ();
 
-				if(desktop_menu == null)
-					desktop_menu = new DesktopMenu (this);
-					//get_current_cursor_position(out x, out y);
-					desktop_menu.show_all ();
+				desktop_menu.popup (null, null, null, Gdk.BUTTON_SECONDARY, time);
 
-					desktop_menu.popup (null, null, null, Gdk.BUTTON_SECONDARY, time);
-
-			}
-			return true;
 		}
+		return true;
+	}
 
 		[CCode (instance_pos = -1)]
 		void handle_cycle_workspaces (Meta.Display display, Meta.Screen screen, Meta.Window? window,
@@ -915,7 +918,7 @@ namespace Gala
 				actor.set_pivot_point (anchor_x, anchor_y);
 
 				actor.save_easing_state ();
-				actor.set_easing_mode (Clutter.AnimationMode.EASE_IN_EXPO);
+				actor.set_easing_mode (Clutter.AnimationMode.EASE_IN_CUBIC);
 				actor.set_easing_duration (duration);
 				actor.set_scale (scale_x, scale_y);
 				actor.opacity = 0U;
@@ -935,7 +938,7 @@ namespace Gala
 				actor.set_pivot_point (0.5f, 1.0f);
 
 				actor.save_easing_state ();
-				actor.set_easing_mode (Clutter.AnimationMode.EASE_IN_EXPO);
+				actor.set_easing_mode (Clutter.AnimationMode.EASE_IN_CUBIC);
 				actor.set_easing_duration (duration);
 				actor.set_scale (0.0f, 0.0f);
 				actor.opacity = 0U;
@@ -1002,7 +1005,7 @@ namespace Gala
 				var scale_y = (double) eh / old_inner_rect.height;
 
 				old_actor.save_easing_state ();
-				old_actor.set_easing_mode (Clutter.AnimationMode.EASE_IN_OUT_QUAD);
+				old_actor.set_easing_mode (Clutter.AnimationMode.EASE_IN_OUT_CUBIC);
 				old_actor.set_easing_duration (duration);
 				old_actor.set_position (ex, ey);
 				old_actor.set_scale (scale_x, scale_y);
@@ -1026,7 +1029,7 @@ namespace Gala
 				actor.set_scale (1.0f / scale_x, 1.0f / scale_y);
 
 				actor.save_easing_state ();
-				actor.set_easing_mode (Clutter.AnimationMode.EASE_IN_OUT_QUAD);
+				actor.set_easing_mode (Clutter.AnimationMode.EASE_IN_OUT_CUBIC);
 				actor.set_easing_duration (duration);
 				actor.set_scale (1.0f, 1.0f);
 				actor.set_translation (0.0f, 0.0f, 0.0f);
@@ -1064,7 +1067,7 @@ namespace Gala
 					actor.opacity = 0U;
 
 					actor.save_easing_state ();
-					actor.set_easing_mode (Clutter.AnimationMode.EASE_OUT_EXPO);
+					actor.set_easing_mode (Clutter.AnimationMode.EASE_OUT_CUBIC);
 					actor.set_easing_duration (duration);
 					actor.set_scale (1.0f, 1.0f);
 					actor.opacity = 255U;

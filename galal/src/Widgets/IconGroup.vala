@@ -352,13 +352,13 @@ namespace Gala
 			// more than one => we need a folder
 			Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, 0.5, 0.5, (int) width - 1, (int) height - 1, 5);
 
-			cr.set_source_rgba (0, 0, 0, 0.1);
+			cr.set_source_rgba (0, 0, 0, 0.7);
 			cr.fill_preserve ();
 
 			cr.set_line_width (1);
 
 			var grad = new Cairo.Pattern.linear (0, 0, 0, height);
-			grad.add_color_stop_rgba (0.8, 0, 0, 0, 0);
+			grad.add_color_stop_rgba (0.8, 0, 0, 0, 0.1);
 			grad.add_color_stop_rgba (1.0, 1, 1, 1, 0.1);
 
 			cr.set_source (grad);
@@ -396,7 +396,7 @@ namespace Gala
 				buffer.context.fill_preserve ();
 				buffer.exponential_blur (5);
 
-				buffer.context.set_source_rgb (1, 1, 1);
+				buffer.context.set_source_rgb (220, 220, 220);
 				buffer.context.set_line_width (1);
 				buffer.context.stroke_preserve ();
 
