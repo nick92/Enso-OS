@@ -1,0 +1,68 @@
+/*
+* Copyright (c) 2017 Dane Henson (http://brainofdane.com)
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA
+*/
+
+.welcome {
+    background-color: #F3F4F5;
+}
+
+.button-green {
+	padding: 7px;
+	background-color: #6DC82A;
+	color: #fff;
+      }
+      .button-red {
+	padding: 7px;
+	background-color: #D1005F;
+	color: #fff;
+}
+
+.options {
+	/*background-image: linear-gradient(to bottom,
+							  #fafafa,
+							  #f2f2f2
+							  );*/
+	background-image: linear-gradient(to bottom,
+							  #fff,
+							  #f2f2f2
+							  );
+	background-position: center center;
+	background-repeat: no-repeat;
+	border: 1px solid alpha (#000, 0.15);
+	border-radius: 3px;
+
+	/*box-shadow: inset 0 0 0 1px alpha (#fff, 0.05),
+				inset 0 1px 0 0 alpha (#fff, 0.45),
+				inset 0 -1px 0 0 alpha (#fff, 0.15),
+				0 3px 2px -1px alpha (#000, 0.15),
+				0 3px 5px alpha (#000, 0.10);*/
+	color: #4d4d4d;
+	font-size: 25px;
+	font-weight: 300;
+}
+
+.options.install {
+	background:linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);
+	border-color: alpha (#a25812, 0.8);
+	color: #fff8ef;
+	icon-shadow: 0 1px 1px alpha (#6c1900, 0.5),
+				 0 2px 3px alpha (#6c1900, 0.5);
+	text-shadow: 0 1px 1px alpha (#6c1900, 0.5),
+				 0 2px 3px alpha (#6c1900, 0.5);
+
+}

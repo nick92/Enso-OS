@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Welcome
+Comment=A simple welcome screen
+Exec=enso-welcome
+Icon=help
+Terminal=false
+Categories=Utility;

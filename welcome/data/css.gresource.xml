@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/enso/welcome">
+    <file alias="application.css" compressed="true">application.css</file>
+		<file alias="icon/flower.svg" compressed="true" preprocess="xml-stripblanks">icon/flower.svg</file>
+  </gresource>
+</gresources>
