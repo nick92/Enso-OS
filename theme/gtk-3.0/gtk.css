@@ -31,6 +31,23 @@
   color: #5c616c;
   background-color: rgba(245, 246, 247, 0.99); }
 
+.h1 {
+	font-size: 40px;
+}
+
+.h2 {
+	font-size: 25px;
+}
+
+.h3 {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.h4 {
+	font-size: 15px;
+}
+
 *:disabled {
   -gtk-icon-effect: dim; }
 
@@ -961,12 +978,12 @@ headerbar,
   headerbar.selection-mode,
   .selection-mode.titlebar:not(headerbar) {
     color: #ffffff;
-    background-color: rgba(82, 148, 226, 0.95);
+    background-color: rgba(16, 167, 182, 0.95);
     border-color: rgba(65, 137, 223, 0.95);
     box-shadow: none; }
     headerbar.selection-mode:backdrop,
     .selection-mode.titlebar:backdrop:not(headerbar) {
-      background-color: rgba(82, 148, 226, 0.95);
+      background-color: rgba(16, 167, 182, 0.95);
       color: rgba(255, 255, 255, 0.6); }
     headerbar.selection-mode .selection-menu, .selection-mode.titlebar:not(headerbar) .selection-menu {
       box-shadow: none;
@@ -2196,7 +2213,7 @@ scale {
     border-radius: 2.5px;
     background-color: #15909C; }
     scale highlight:disabled {
-      background-color: rgba(82, 148, 226, 0.55); }
+          background-color: rgba(16, 167, 182, 0.55); }
   scale fill {
     border-radius: 2.5px;
     background-color: rgba(82, 148, 226, 0.5); }
