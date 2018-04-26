@@ -4,7 +4,7 @@
             <default>[]</default>
         </key>
         <key name="window-size" type="ai">
-            <default>[]</default>
+            <default>[512, 655]</default>
         </key>
         <key name="first-time" type="b">
             <default>true</default>
