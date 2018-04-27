@@ -88,9 +88,10 @@ namespace Plank
 			item.activate.connect (() => Application.get_default ().activate_action ("about", null));
 			items.add (item);
 
+			/* -- TODO -- add separator item via menu
 			item = create_menu_item (_("_Add Separator To Plank"), "add");
 			item.activate.connect (() => Application.get_default ().activate_action ("separator", null));
-			items.add (item);
+			items.add (item); */
 
 			// No explicit quit-item on elementary OS
 			if (!environment_is_session_desktop (XdgSessionDesktop.PANTHEON)) {

@@ -33,7 +33,7 @@ namespace Docky
 
 		construct
 		{
-			Icon = "preferences-system-login";
+			Icon = "launchy";
 			Text = _("Applications");
 		}
 
