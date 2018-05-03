@@ -21,10 +21,38 @@
 public class UserLogin : LoginOption {
 
     public LightDM.User lightdm_user { get; private set; }
+    private string background_path;
 
     public UserLogin (int index, LightDM.User user) {
         base (index);
         this.lightdm_user = user;
+        
+        warning(lightdm_user.background);
+        
+        if (lightdm_user.background == null) {
+            try {
+                string path = Path.build_filename ("/var", "lib", "lightdm-data", lightdm_user.name, "wallpaper");
+                var background_directory = File.new_for_path (path);
+                var enumerator = background_directory.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                
+                FileInfo file_info;
+                string file_name = "";
+                while ((file_info = enumerator.next_file ()) != null) {
+                    if (file_info.get_file_type () == FileType.REGULAR) {
+                        file_name = file_info.get_name ();
+                        break;
+                    }
+                }
+
+                path = Path.build_filename (path, file_name);
+                background_path = path;
+            } catch (Error e) {
+                warning (e.message);
+                background_path = "";
+            }
+        } else {
+            background_path = lightdm_user.background;
+        }
     }
 
     public override string? avatar_path {
@@ -35,7 +63,8 @@ public class UserLogin : LoginOption {
 
     public override string background {
         get {
-            return lightdm_user.background;
+            //return lightdm_user.background;
+            return background_path;
         }
     }
 

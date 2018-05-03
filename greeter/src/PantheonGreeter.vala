@@ -161,21 +161,6 @@ public class PantheonGreeter : Gtk.Window {
         if(blur_effect)
         {
             blur_effect_actor.setup(wallpaper_actor, g_width, g_height, setting_brightness, 10);
-            //old blur effect using glsl
-            /*var shaderEffectVer = new Clutter.ShaderEffect(Clutter.ShaderType.FRAGMENT_SHADER);
-
-            shaderEffectVer.set_shader_source(load_from_resource(Constants.PKGDATADIR + "/shader.glsl"));
-            shaderEffectVer.set_uniform_value("dir", 1.0);
-            shaderEffectVer.set_uniform_value("width", g_width);
-            shaderEffectVer.set_uniform_value("height", g_height);
-            shaderEffectVer.set_uniform_value("radius", 10.0);
-            if(setting_brightness < 1)
-            	shaderEffectVer.set_uniform_value("brightness", setting_brightness);
-            else
-            	shaderEffectVer.set_uniform_value("brightness", 1.0);
-
-            //wallpaper_actor.add_effect_with_name("horizontal_blur",shaderEffectHor);
-            wallpaper_actor.add_effect_with_name("blur",shaderEffectVer);*/
         }
 
         monitors_changed ();
