@@ -22,7 +22,7 @@ namespace Docky
 	public class ApplicationsDockItem : DockletItem
 	{
 		//GMenu.Tree apps_menu;
-
+		GLib.Settings launchy_settings;
 		/**
 		 * {@inheritDoc}
 		 */
@@ -35,6 +35,8 @@ namespace Docky
 		{
 			Icon = "launchy";
 			Text = _("Applications");
+
+			launchy_settings = new GLib.Settings("org.enso.launchy");
 		}
 
 		~ApplicationsDockItem ()
@@ -50,6 +52,11 @@ namespace Docky
 		protected override AnimationType on_clicked (PopupButton button, Gdk.ModifierType mod, uint32 event_time)
 		{
 			try {
+
+				int x, y;
+				get_icon_location(out x, out y);
+				launchy_settings.set_value ("window-position", new int[] { x, y });
+				
 				Process.spawn_command_line_async ("launchy");
 			}catch(Error ex){
 				warning (ex.message);

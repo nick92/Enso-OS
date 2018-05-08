@@ -84,12 +84,12 @@ namespace Plank
 		/**
 		 * The dock item's last X position on the dock.
 		 */
-		public int Position_X { get; }
+		public int Position_X { get; protected set; default = -1; }
 
 		/**
 		 * The dock item's last Y position on the dock.
 		 */
-		public int Position_Y { get; }
+		public int Position_Y { get; protected set; default = -1; }
 
 		/**
 		 * The dock item's last position on the dock.
@@ -599,12 +599,15 @@ namespace Plank
 			cr.fill ();
 		}
 
-		public void get_icon_location (out x, out y)
+		public void get_icon_location (out int x, out int y)
 		{
-			var dock_controller = get_dock ();
+			var controller = get_dock ();
+			x = 0;
+			y = 0;
 
-			
+			controller.position_manager.get_dockitem_position(this, out x, out y);
 
+			warning("x:" + x.to_string() + "y:" + y.to_string());
 		}
 
 		/**
