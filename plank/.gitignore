@@ -49,9 +49,6 @@ examples/*.c
 examples/*.stamp
 lib/abi*
 lib/*-abi
-lib/*.c
-lib/*.h
-lib/*.deps
 lib/*.vapi
 lib/*.pc
 lib/*.stamp
@@ -76,5 +73,4 @@ data/plank.appdata.xml
 data/gschemas.compiled
 data/net.launchpad.plank.gschema.valid
 data/net.launchpad.plank.gschema.xml
-data/net.launchpad.plank.gschema.xml.in
 data/plank.desktop
