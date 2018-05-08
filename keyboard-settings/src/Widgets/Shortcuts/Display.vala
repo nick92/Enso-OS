@@ -1,121 +1,115 @@
+/*
+* Copyright (c) 2017-2018 elementary, LLC. (https://elementary.io)
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA
+*/
+
 // TODO use new Gtk.Stack widget here
-namespace Pantheon.Keyboard.Shortcuts
-{
-	// creates a grid containing a tree view and an inline toolbar
-	class ShortcutDisplay : Gtk.Grid
-	{
-		int selected;
-		
-		Gtk.ScrolledWindow scroll;
-		DisplayTree[] trees;
-		
-		Gtk.Toolbar tbar;
-		Gtk.ToolButton add_button;
-		Gtk.ToolButton remove_button;
-		
-		public ShortcutDisplay (DisplayTree[] t)
-		{
-			selected = 0;
-			
-			foreach (var tree in t) {
-				trees += tree;
-			}
-			
-			scroll = new Gtk.ScrolledWindow (null, null);
-			scroll.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
-			scroll.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
-			scroll.shadow_type = Gtk.ShadowType.IN;
-			scroll.expand = true;
-			scroll.add (t[selected]);
-	
-			tbar = new Gtk.Toolbar ();
-			tbar.set_style (Gtk.ToolbarStyle.ICONS);
-			tbar.set_icon_size (Gtk.IconSize.SMALL_TOOLBAR);
-			tbar.set_show_arrow (false);
-			tbar.hexpand = true;
-			tbar.no_show_all = true;
-			
-			scroll.get_style_context ().set_junction_sides(Gtk.JunctionSides.BOTTOM);
-			tbar.get_style_context ().add_class(Gtk.STYLE_CLASS_INLINE_TOOLBAR);
-			tbar.get_style_context ().set_junction_sides(Gtk.JunctionSides.TOP);
+namespace Pantheon.Keyboard.Shortcuts {
+    class ShortcutDisplay : Gtk.Grid {
+        private int selected;
 
-			add_button = new Gtk.ToolButton (null, _("Add"));
-			remove_button = new Gtk.ToolButton (null, _("Remove"));
-		
-			add_button.set_tooltip_text    (_("Add"));
-			remove_button.set_tooltip_text (_("Remove"));
-			
-			add_button.set_icon_name    ("list-add-symbolic");
-			remove_button.set_icon_name ("list-remove-symbolic");
+        private Gtk.ScrolledWindow scroll;
+        private DisplayTree[] trees;
 
-			tbar.insert (add_button,    -1);
-			tbar.insert (remove_button, -1);
+        private Gtk.ActionBar actionbar;
+        private Gtk.Button add_button;
+        private Gtk.Button remove_button;
 
-			this.attach (scroll, 0, 0, 1, 1);
-			this.attach (tbar,   0, 1, 1, 1);
+        public ShortcutDisplay (DisplayTree[] t) {
+            selected = 0;
 
-			add_button.clicked.connect (() => 
-			    (trees[selected] as CustomTree).on_add_clicked ());
-			remove_button.clicked.connect (() =>
-			    (trees[selected] as CustomTree).on_remove_clicked ());
+            foreach (var tree in t) {
+                trees += tree;
+            }
 
-			remove_button.sensitive = false;
-		}
+            scroll = new Gtk.ScrolledWindow (null, null);
+            scroll.expand = true;
+            scroll.add (t[selected]);
 
-		// replace old tree view with new one
-		public bool change_selection (int new_selection)
-		{
-			scroll.remove (trees[selected]);
-			scroll.add (trees[new_selection]);
+            add_button = new Gtk.Button.from_icon_name ("list-add-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            add_button.tooltip_text = _("Add");
 
-			if (new_selection == SectionID.CUSTOM) {
-				var custom_tree = trees[new_selection] as CustomTree;
-				custom_tree.row_selected.connect (row_selected);
-				custom_tree.row_unselected.connect (row_unselected);
+            remove_button = new Gtk.Button.from_icon_name ("list-remove-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            remove_button.sensitive = false;
+            remove_button.tooltip_text = _("Remove");
 
-				custom_tree.command_editing_started.connect (disable_add);
-				custom_tree.command_editing_ended.connect (enable_add);
-			}
+            actionbar = new Gtk.ActionBar ();
+            actionbar.hexpand = true;
+            actionbar.no_show_all = true;
+            actionbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
+            actionbar.add (add_button);
+            actionbar.add (remove_button);
 
-			if (selected == SectionID.CUSTOM) {
-				var custom_tree = trees[selected] as CustomTree;
-				custom_tree.row_selected.disconnect (row_selected);
-				custom_tree.row_unselected.disconnect (row_unselected);
+            attach (scroll, 0, 0, 1, 1);
+            attach (actionbar, 0, 1, 1, 1);
 
-				custom_tree.command_editing_started.disconnect (disable_add);
-				custom_tree.command_editing_ended.disconnect (enable_add);
+            add_button.clicked.connect (() => (trees[selected] as CustomTree).on_add_clicked ());
+            remove_button.clicked.connect (() => (trees[selected] as CustomTree).on_remove_clicked ());
+        }
 
-			}
+        // replace old tree view with new one
+        public bool change_selection (int new_selection) {
+            scroll.remove (trees[selected]);
+            scroll.add (trees[new_selection]);
 
-			selected = new_selection;
+            if (new_selection == SectionID.CUSTOM) {
+                var custom_tree = trees[new_selection] as CustomTree;
+                custom_tree.row_selected.connect (row_selected);
+                custom_tree.row_unselected.connect (row_unselected);
 
-			tbar.no_show_all = new_selection != SectionID.CUSTOM;
-			tbar.visible = new_selection == SectionID.CUSTOM;
+                custom_tree.command_editing_started.connect (disable_add);
+                custom_tree.command_editing_ended.connect (enable_add);
+            }
 
-			show_all ();
+            if (selected == SectionID.CUSTOM) {
+                var custom_tree = trees[selected] as CustomTree;
+                custom_tree.row_selected.disconnect (row_selected);
+                custom_tree.row_unselected.disconnect (row_unselected);
 
-			return true;
-		}
+                custom_tree.command_editing_started.disconnect (disable_add);
+                custom_tree.command_editing_ended.disconnect (enable_add);
 
-		private void row_selected ()
-		{
-			remove_button.sensitive = true;
-		}
+            }
 
-		private void row_unselected ()
-		{
-			remove_button.sensitive = false;
-		}
+            selected = new_selection;
 
-		private void disable_add ()
-		{
-			add_button.sensitive = false;
-		}
+            actionbar.no_show_all = new_selection != SectionID.CUSTOM;
+            actionbar.visible = new_selection == SectionID.CUSTOM;
 
-		private void enable_add ()
-		{
-			add_button.sensitive = true;
-		}
-		
-	}
+            show_all ();
+
+            return true;
+        }
+
+        private void row_selected () {
+            remove_button.sensitive = true;
+        }
+
+        private void row_unselected () {
+            remove_button.sensitive = false;
+        }
+
+        private void disable_add () {
+            add_button.sensitive = false;
+        }
+
+        private void enable_add () {
+            add_button.sensitive = true;
+        }
+
+    }
 }

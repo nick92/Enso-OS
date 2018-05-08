@@ -1,7 +1,7 @@
 find_package (PkgConfig)
 
 # Add all your dependencies to the list below
-pkg_check_modules (DEPS REQUIRED gthread-2.0 gtk+-3.0>=3.10 granite libxml-2.0 gee-0.8 glib-2.0>=2.39)
+pkg_check_modules (DEPS REQUIRED gthread-2.0 gtk+-3.0>=3.10 granite libxml-2.0 gee-0.8 glib-2.0>=2.39 gdk-x11-3.0)
 
 add_definitions (${DEPS_CFLAGS})
 link_libraries(${DEPS_LIBRARIES})
@@ -53,6 +53,7 @@ PACKAGES
     gee-0.8
     libxml-2.0
     glib-2.0
+    gdk-x11-3.0
 OPTIONS
     --thread
 )

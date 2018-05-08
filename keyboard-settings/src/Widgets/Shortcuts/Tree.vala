@@ -13,7 +13,6 @@ namespace Pantheon.Keyboard.Shortcuts {
 
             load_and_display_shortcuts ();
 
-            set_rules_hint (true);
             var cell_desc = new Gtk.CellRendererText ();
             var cell_edit = new Gtk.CellRendererAccel ();
 
@@ -124,8 +123,9 @@ namespace Pantheon.Keyboard.Shortcuts {
 
             if (shortcut != null) {
                 foreach (var tree in trees) {
-                    if (tree.shortcut_conflicts (shortcut, out conflict_name) == false)
+                    if (tree.shortcut_conflicts (shortcut, out conflict_name) == false || conflict_name == (string) name) {
                         continue;
+                    }
 
                     var dialog = new ConflictDialog (shortcut.to_readable (), conflict_name, (string) name);
                     dialog.reassign.connect (() => {
@@ -133,7 +133,8 @@ namespace Pantheon.Keyboard.Shortcuts {
                         settings.set_val ((Schema) schema, (string) key, shortcut);
                         load_and_display_shortcuts ();
                     });
-                    dialog.show ();
+                    dialog.transient_for = (Gtk.Window) this.get_toplevel ();
+                    dialog.present ();
                     return false;
                 }
             }

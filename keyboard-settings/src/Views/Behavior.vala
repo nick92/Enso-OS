@@ -1,3 +1,22 @@
+/*
+* Copyright (c) 2017 elementary, LLC. (https://elementary.io)
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA
+*/
+
 class Pantheon.Keyboard.Behaviour.Page : Pantheon.Keyboard.AbstractPage {
     Settings gsettings_blink;
     Settings gsettings_repeat;
@@ -105,7 +124,7 @@ class Pantheon.Keyboard.Behaviour.Page : Pantheon.Keyboard.AbstractPage {
 
         var entry_test = new Gtk.Entry ();
         entry_test.margin_top = 24;
-        entry_test.placeholder_text = (_("Type to test your settings…"));
+        entry_test.placeholder_text = (_("Type to test your settings"));
         entry_test.hexpand = true;
 
         attach (label_repeat, 0, 0, 1, 1);
@@ -197,5 +216,7 @@ class Pantheon.Keyboard.Behaviour.Page : Pantheon.Keyboard.AbstractPage {
         settings_blink.changed["cursor-blink-timeout"].connect (() => {
             scale_blink_time.adjustment.value = spin_blink_time.adjustment.value = (double) settings_blink.cursor_blink_timeout;
         });
+
+        scale_repeat_delay.grab_focus (); /* We want entry unfocussed so that placeholder shows */
     }
 }

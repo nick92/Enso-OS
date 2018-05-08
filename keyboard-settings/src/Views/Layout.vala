@@ -21,28 +21,33 @@ namespace Pantheon.Keyboard.LayoutPage {
     // global handler
     LayoutHandler handler;
 
-	public class Page : Pantheon.Keyboard.AbstractPage {
-		private LayoutPage.Display display;
-		private LayoutSettings settings;
+    public class Page : Pantheon.Keyboard.AbstractPage {
+        private LayoutPage.Display display;
+        private LayoutSettings settings;
         private Gtk.SizeGroup [] size_group;
         private AdvancedSettings advanced_settings;
 
-		public override void reset () {
-			settings.reset_all ();
-			display.reset_all ();
-			return;
-		}
+        public override void reset () {
+            settings.reset_all ();
+            display.reset_all ();
+            return;
+        }
 
-		public Page () {
-			handler  = new LayoutHandler ();
-			settings = LayoutSettings.get_instance ();
-            size_group = { new Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL),
-                           new Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL) };
+        public Page () {
+            this.column_homogeneous = true;
+
+            handler  = new LayoutHandler ();
+            settings = LayoutSettings.get_instance ();
+            size_group = {new Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL),
+                          new Gtk.SizeGroup(Gtk.SizeGroupMode.HORIZONTAL)};
+
+            // tree view to display the current layouts
+            display = new LayoutPage.Display ();
+
+            var switch_layout_label = new SettingsLabel (_("Switch layout:"), size_group[0]);
 
             // Layout switching keybinding
-            new_label (this, _("Switch layout:"), 0, 1);
-            Xkb_modifier modifier = new Xkb_modifier ("switch-layout");
-
+            var modifier = new Xkb_modifier ("switch-layout");
             modifier.append_xkb_option ("", _("Disabled"));
             modifier.append_xkb_option ("grp:alt_caps_toggle", _("Alt + Caps Lock"));
             modifier.append_xkb_option ("grp:alt_shift_toggle", _("Alt + Shift"));
@@ -52,29 +57,45 @@ namespace Pantheon.Keyboard.LayoutPage {
             modifier.append_xkb_option ("grp:ctrl_alt_toggle", _("Ctrl + Alt"));
             modifier.append_xkb_option ("grp:ctrl_shift_toggle", _("Ctrl + Shift"));
             modifier.append_xkb_option ("grp:shift_caps_toggle", _("Shift + Caps Lock"));
-
             modifier.set_default_command ("");
+
             settings.add_xkb_modifier (modifier);
 
-            new_combo_box (this, modifier, 0, 2);
+            var switch_layout_combo = new XkbComboBox (modifier, size_group[1]);
+
+            var compose_key_label = new SettingsLabel (_("Compose key:"), size_group[0]);
 
             // Compose key position menu
-            new_label (this, _("Compose key:"), 1, 1);
             modifier = new Xkb_modifier ();
             modifier.append_xkb_option ("", _("Disabled"));
             modifier.append_xkb_option ("compose:caps", _("Caps Lock"));
+            modifier.append_xkb_option ("compose:menu", _("Menu"));
             modifier.append_xkb_option ("compose:ralt", _("Right Alt"));
             modifier.append_xkb_option ("compose:rctrl", _("Right Ctrl"));
-            modifier.append_xkb_option ("compose:rwin", _("Right Super"));
-
+            modifier.append_xkb_option ("compose:rwin", _("Right ⌘"));
             modifier.set_default_command ("");
+
             settings.add_xkb_modifier (modifier);
 
-            new_combo_box (this, modifier, 1, 2);
+            var compose_key_combo = new XkbComboBox (modifier, size_group[1]);
+
+            var overlay_key_label = new SettingsLabel (_("⌘ key behavior:"), size_group[0]);
+
+            var overlay_key_combo = new Gtk.ComboBoxText ();
+            overlay_key_combo.halign = Gtk.Align.START;
+            overlay_key_combo.append_text (_("Disabled"));
+            overlay_key_combo.append_text (_("Applications Menu"));
+
+            string? cheatsheet_path = Environment.find_program_in_path ("io.elementary.shortcut-overlay");
+            if (cheatsheet_path != null) {
+                overlay_key_combo.append_text (_("Shortcut Overlay"));
+            }
+
+            size_group[1].add_widget (overlay_key_combo);
+
+            var caps_lock_label = new SettingsLabel (_("Caps Lock behavior:"), size_group[0]);
 
             // Caps Lock key functionality
-            new_label (this, _("Caps Lock behavior:"), 2, 1);
-
             modifier = new Xkb_modifier ();
             modifier.append_xkb_option ("", _("Default"));
             modifier.append_xkb_option ("caps:none", _("Caps Lock disabled"));
@@ -82,30 +103,41 @@ namespace Pantheon.Keyboard.LayoutPage {
             modifier.append_xkb_option ("ctrl:nocaps", _("as Ctrl"));
             modifier.append_xkb_option ("caps:escape", _("as Escape"));
             modifier.append_xkb_option ("caps:numlock", _("as Num Lock"));
-            modifier.append_xkb_option ("caps:super", _("as Super"));
+            modifier.append_xkb_option ("caps:super", _("as ⌘"));
             modifier.append_xkb_option ("ctrl:swapcaps", _("Swap with Control"));
             modifier.append_xkb_option ("caps:swapescape", _("Swap with Escape"));
 
             modifier.set_default_command ("");
             settings.add_xkb_modifier (modifier);
 
-            new_combo_box (this, modifier, 2, 2);
-
-			// tree view to display the current layouts
-			display = new LayoutPage.Display ();
-            this.attach (display, 0, 0, 1, 5);
+            var caps_lock_combo = new XkbComboBox (modifier, size_group[1]);
 
             // Advanced settings panel
-            AdvancedSettingsPanel [] panels = { fifth_level_layouts_panel (),
+            AdvancedSettingsPanel? [] panels = {fifth_level_layouts_panel (),
                                                 japanese_layouts_panel (),
                                                 korean_layouts_panel (),
                                                 third_level_layouts_panel ()};
 
-            this.advanced_settings = new AdvancedSettings (panels);
-
+            advanced_settings = new AdvancedSettings (panels);
             advanced_settings.hexpand = advanced_settings.vexpand = true;
             advanced_settings.valign = Gtk.Align.START;
-            this.attach (advanced_settings, 1, 3, 2, 1);
+
+            var entry_test = new Gtk.Entry ();
+            entry_test.hexpand = entry_test.vexpand = true;
+            entry_test.placeholder_text = (_("Type to test your layout"));
+            entry_test.valign = Gtk.Align.END;
+
+            attach (display, 0, 0, 1, 6);
+            attach (switch_layout_label, 1, 0, 1, 1);
+            attach (switch_layout_combo, 2, 0, 1, 1);
+            attach (compose_key_label, 1, 1, 1, 1);
+            attach (compose_key_combo, 2, 1, 1, 1);
+            attach (overlay_key_label, 1, 2, 1, 1);
+            attach (overlay_key_combo, 2, 2, 1, 1);
+            attach (caps_lock_label, 1, 3, 1, 1);
+            attach (caps_lock_combo, 2, 3, 1, 1);
+            attach (advanced_settings, 1, 4, 2, 1);
+            attach (entry_test, 1, 5, 2, 1);
 
             // Cannot be just called from the constructor because the stack switcher
             // shows every child after the constructor has been called
@@ -117,17 +149,42 @@ namespace Pantheon.Keyboard.LayoutPage {
                 show_panel_for_active_layout ();
             });
 
-			// Test entry
-			var entry_test = new Gtk.Entry ();
-			entry_test.placeholder_text = (_("Type to test your layout…"));
+            var gala_behavior_settings = new GLib.Settings ("org.pantheon.desktop.gala.behavior");
 
-			entry_test.hexpand = entry_test.vexpand = true;
-			entry_test.valign  = Gtk.Align.END;
+            var overlay_string = gala_behavior_settings.get_string ("overlay-action");
 
-            this.attach (entry_test, 1, 4, 2, 1);
-		}
+            switch (overlay_string) {
+                case "":
+                    overlay_key_combo.active = 0;
+                    break;
+                case "launchy":
+                    overlay_key_combo.active = 1;
+                    break;
+                case "io.elementary.shortcut-overlay":
+                    overlay_key_combo.active = 2;
+                    break;
+            }
 
-        private AdvancedSettingsPanel third_level_layouts_panel () {
+            overlay_key_combo.changed.connect (() => {
+                var combo_active = overlay_key_combo.active;
+
+                if (combo_active == 0) {
+                    gala_behavior_settings.set_string ("overlay-action", "");
+                } else if (combo_active == 1) {
+                    gala_behavior_settings.set_string ("overlay-action", "launchy");
+                } else if (combo_active == 2) {
+                    gala_behavior_settings.set_string ("overlay-action", "io.elementary.shortcut-overlay");
+                }
+            });
+        }
+
+        private AdvancedSettingsPanel? third_level_layouts_panel () {
+            var modifier = settings.get_xkb_modifier_by_name ("third_level_key");
+
+            if (modifier == null) {
+                return null;
+            }
+
             string [] invalid_input_sources = {"am*", "ara*", "az+cyrillic",
                                                "bg*", "by", "by+legacy",
                                                "ca+eng", "ca+ike", "cm", "cn*", "cz+ucw",
@@ -149,11 +206,14 @@ namespace Pantheon.Keyboard.LayoutPage {
                                                "ua+typewriter", "ua+winkeys", "us", "us+chr", "us+dvorak", "us+dvorak-classic",
                                                "us+dvorak-l", "us+dvorak-r", "uz*"};
 
+            var third_level_label = new SettingsLabel (_("Key to choose 3rd level:"), size_group[0]);
+
             var panel = new AdvancedSettingsPanel ("third_level_layouts", {}, invalid_input_sources);
 
-            new_label (panel, _("Key to choose 3rd level:"), 0);
-            Xkb_modifier modifier = settings.get_xkb_modifier_by_name ("third_level_key");
-            new_combo_box (panel, modifier, 0);
+            var third_level_combo = new XkbComboBox (modifier, size_group[1]);
+
+            panel.attach (third_level_label, 0, 0, 1, 1);
+            panel.attach (third_level_combo, 1, 0, 1, 1);
 
             panel.show_all ();
 
@@ -163,151 +223,147 @@ namespace Pantheon.Keyboard.LayoutPage {
         private AdvancedSettingsPanel fifth_level_layouts_panel () {
             var panel = new AdvancedSettingsPanel ("fifth_level_layouts", {"ca+multix"});
 
-            new_label (panel, _("Key to choose 3rd level:"), 0);
+            var third_level_label = new SettingsLabel (_("Key to choose 3rd level:"), size_group[0]);
+
             Xkb_modifier modifier = new Xkb_modifier ("third_level_key");
             modifier.append_xkb_option ("", _("Default"));
             modifier.append_xkb_option ("lv3:caps_switch", _("Caps Lock"));
             modifier.append_xkb_option ("lv3:lalt_switch", _("Left Alt"));
             modifier.append_xkb_option ("lv3:ralt_switch", _("Right Alt"));
             modifier.append_xkb_option ("lv3:switch", _("Right Ctrl"));
-            modifier.append_xkb_option ("lv3:rwin", _("Right Super"));
+            modifier.append_xkb_option ("lv3:rwin", _("Right ⌘"));
 
             modifier.set_default_command ("");
             settings.add_xkb_modifier (modifier);
-            new_combo_box (panel, modifier, 0);
 
-            new_label (panel, _("Key to choose 5th level:"), 1);
+            var third_level_combo = new XkbComboBox (modifier, size_group[1]);
+
+            var fifth_level_label = new SettingsLabel (_("Key to choose 5th level:"), size_group[0]);
 
             modifier = new Xkb_modifier ();
             modifier.append_xkb_option ("lv5:ralt_switch_lock", _("Right Alt"));
             modifier.append_xkb_option ("", _("Right Ctrl"));
-            modifier.append_xkb_option ("lv5:rwin_switch_lock", _("Right Super"));
-            modifier.set_default_command ( "" );
+            modifier.append_xkb_option ("lv5:rwin_switch_lock", _("Right ⌘"));
+            modifier.set_default_command ("");
             settings.add_xkb_modifier (modifier);
 
-            new_combo_box (panel, modifier, 1);
+            var fifth_level_combo = new XkbComboBox (modifier, size_group[1]);
 
+            panel.attach (third_level_label, 0, 0, 1, 1);
+            panel.attach (third_level_combo, 1, 0, 1, 1);
+            panel.attach (fifth_level_label, 0, 1, 1, 1);
+            panel.attach (fifth_level_combo, 1, 1, 1, 1);
             panel.show_all ();
 
             return panel;
         }
 
         private AdvancedSettingsPanel japanese_layouts_panel () {
+            var kana_lock_label = new SettingsLabel (_("Kana Lock:"), size_group[0]);
+            var kana_lock_switch = new XkbOptionSwitch (settings, "japan:kana_lock");
+
+            // Used to align this grid without expanding the switch itself
+            var spacer_grid = new Gtk.Grid ();
+            spacer_grid.add (kana_lock_switch);
+            size_group[1].add_widget (spacer_grid);
+
+            var nicola_backspace_label = new SettingsLabel (_("Nicola F Backspace:"), size_group[0]);
+            var nicola_backspace_switch = new XkbOptionSwitch (settings, "japan:nicola_f_bs");
+
+            var zenkaku_label = new SettingsLabel (_("Zenkaku Hankaku as Escape:"), size_group[0]);
+            var zenkaku_switch = new XkbOptionSwitch (settings, "japan:hztg_escape");
+
             string [] valid_input_sources = {"jp"};
             var panel = new AdvancedSettingsPanel ( "japanese_layouts", valid_input_sources );
-
-            new_label (panel, _("Kana Lock:"), 0);
-            new_xkb_option_switch (panel, "japan:kana_lock", 0);
-
-            new_label (panel, _("Nicola F Backspace:"), 1);
-            new_xkb_option_switch (panel, "japan:nicola_f_bs", 1);
-
-            new_label (panel, _("Zenkaku Hankaku as Escape:"), 2);
-            new_xkb_option_switch (panel, "japan:hztg_escape", 2);
-
+            panel.attach (kana_lock_label, 0, 0, 1, 1);
+            panel.attach (spacer_grid, 1, 0, 1, 1);
+            panel.attach (nicola_backspace_label, 0, 1, 1, 1);
+            panel.attach (nicola_backspace_switch, 1, 1, 1, 1);
+            panel.attach (zenkaku_label, 0, 2, 1, 1);
+            panel.attach (zenkaku_switch, 1, 2, 1, 1);
             panel.show_all ();
 
             return panel;
         }
 
         private AdvancedSettingsPanel korean_layouts_panel () {
+            var hangul_label = new SettingsLabel (_("Hangul/Hanja keys on Right Alt/Ctrl:"), size_group[0]);
+            var hangul_switch = new XkbOptionSwitch (settings, "korean:ralt_rctrl");
+
+            // Used to align this grid without expanding the switch itself
+            var spacer_grid = new Gtk.Grid ();
+            spacer_grid.add (hangul_switch);
+            size_group[1].add_widget (spacer_grid);
+
             string [] valid_input_sources = {"kr"};
             var panel = new AdvancedSettingsPanel ("korean_layouts", valid_input_sources);
-
-            new_label (panel, _("Hangul/Hanja keys on Right Alt/Ctrl:"), 0);
-            new_xkb_option_switch (panel, "korean:ralt_rctrl", 0);
-
+            panel.attach (hangul_label, 0, 0, 1, 1);
+            panel.attach (spacer_grid, 1, 0, 1, 1);
             panel.show_all ();
 
             return panel;
         }
 
-        // Function that adds a new switch to panel, and sets it up visually
-        // and aligns it with external buttons
-        private Gtk.Switch new_switch (Gtk.Grid panel, int v_position, int h_position = 1) {
-            var new_switch = new Gtk.Switch ();
-            new_switch.halign = Gtk.Align.START;
-            new_switch.valign = Gtk.Align.CENTER;
-
-            // There is a bug that makes the switch go outside its socket,
-            // enclosing the switch in a box fixes that.
-            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            box.pack_start (new_switch, false, false, 0);
-            panel.attach (box, h_position, v_position, 1, 1);
-            size_group[1].add_widget (box);
-
-            return new_switch;
-        }
-
-        // Function that adds a new switch but also configures its functionality
-        // to enable/disable an xkb-option
-        private Gtk.Switch new_xkb_option_switch
-            (Gtk.Grid panel, string xkb_command, int v_position, int h_position = 1) {
-            var new_switch = new_switch (panel, v_position, h_position);
-            Xkb_modifier modifier = new Xkb_modifier (""+xkb_command);
-            modifier.append_xkb_option ("", "option off");
-            modifier.append_xkb_option (xkb_command, "option on");
-            settings.add_xkb_modifier (modifier);
-
-            if (modifier.get_active_command () == "") {
-                new_switch.active = false;
-            } else {
-                new_switch.active = true;
-            }
-
-            new_switch.notify["active"].connect(() => {
-                if (new_switch.active) {
-                    modifier.update_active_command ( xkb_command );
-                } else {
-                    modifier.update_active_command ( "" );
-                }
-            });
-
-            return new_switch;
-        }
-
-        private Gtk.ComboBoxText new_combo_box
-            (Gtk.Grid panel, Xkb_modifier modifier, int v_position, int h_position = 1) {
-            var new_combo_box = new Gtk.ComboBoxText ();
-
-            for (int i = 0; i < modifier.xkb_option_commands.length; i++) {
-                new_combo_box.append (modifier.xkb_option_commands[i], modifier.option_descriptions[i]);
-            }
-
-            new_combo_box.set_active_id (modifier.get_active_command () );
-
-            new_combo_box.changed.connect (() => {
-                modifier.update_active_command ( new_combo_box.active_id );
-            });
-
-            modifier.active_command_updated.connect (() => {
-                new_combo_box.set_active_id (modifier.get_active_command () );
-            });
-
-
-            new_combo_box.halign = Gtk.Align.START;
-            new_combo_box.valign = Gtk.Align.CENTER;
-            panel.attach (new_combo_box, h_position, v_position, 1, 1);
-            size_group[1].add_widget (new_combo_box);
-
-            return new_combo_box;
-        }
-
-
-        private Gtk.Label new_label (Gtk.Grid panel, string text, int v_position, int h_position = 0) {
-            // v_position and h_position is relative to the panel provided
-            var new_label = new Gtk.Label (text);
-            new_label.valign = Gtk.Align.CENTER;
-            ((Gtk.Misc) new_label).xalign = 1;
-            panel.attach (new_label, h_position, v_position, 1, 1);
-            size_group[0].add_widget (new_label);
-
-            return new_label;
-        }
-
         private void show_panel_for_active_layout () {
             Layout active_layout = settings.layouts.get_layout (settings.layouts.active);
             advanced_settings.set_visible_panel_from_layout (active_layout.name);
+        }
+
+        private class XkbComboBox : Gtk.ComboBoxText {
+            public XkbComboBox (Xkb_modifier modifier, Gtk.SizeGroup size_group) {
+                halign = Gtk.Align.START;
+                valign = Gtk.Align.CENTER;
+                size_group.add_widget (this);
+
+                for (int i = 0; i < modifier.xkb_option_commands.length; i++) {
+                    append (modifier.xkb_option_commands[i], modifier.option_descriptions[i]);
+                }
+
+                set_active_id (modifier.get_active_command ());
+
+                changed.connect (() => {
+                    modifier.update_active_command (active_id);
+                });
+
+                modifier.active_command_updated.connect (() => {
+                    set_active_id (modifier.get_active_command ());
+                });
+            }
+        }
+
+        private class XkbOptionSwitch : Gtk.Switch {
+            public XkbOptionSwitch (LayoutSettings settings, string xkb_command) {
+                halign = Gtk.Align.START;
+                valign = Gtk.Align.CENTER;
+
+                var modifier = new Xkb_modifier ("" + xkb_command);
+                modifier.append_xkb_option ("", "option off");
+                modifier.append_xkb_option (xkb_command, "option on");
+
+                settings.add_xkb_modifier (modifier);
+
+                if (modifier.get_active_command () == "") {
+                    active = false;
+                } else {
+                    active = true;
+                }
+
+                notify["active"].connect(() => {
+                    if (active) {
+                        modifier.update_active_command (xkb_command);
+                    } else {
+                        modifier.update_active_command ("");
+                    }
+                });
+            }
+        }
+
+        private class SettingsLabel : Gtk.Label {
+            public SettingsLabel (string label, Gtk.SizeGroup size_group) {
+                Object (label: label);
+                xalign = 1;
+                size_group.add_widget (this);
+            }
         }
     }
 }

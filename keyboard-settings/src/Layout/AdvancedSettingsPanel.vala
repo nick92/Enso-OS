@@ -16,24 +16,29 @@
 * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 * Boston, MA 02110-1301 USA
 */
-    
+
 public class AdvancedSettingsPanel : Gtk.Grid {
-    public string name;
-    public string [] input_sources;
-    public string [] exclusions;
+    public string panel_name {get; construct;}
+    public string [] input_sources  {get; construct;}
+    public string [] exclusions {get; construct;}
+
+    construct {
+        row_spacing = 12;
+        column_spacing = 12;
+        margin_top = 0;
+        margin_bottom  = 12;
+        column_homogeneous = true;
+        row_homogeneous = false;
+
+        hexpand = true;
+        halign = Gtk.Align.CENTER;
+    }
+
     public AdvancedSettingsPanel (string name, string [] input_sources, string [] exclusions = {}) {
-        this.name = name;
-        this.input_sources = input_sources;
-        this.exclusions = exclusions;
-
-        this.row_spacing = 12;
-        this.column_spacing = 12;
-        this.margin_top = 0;
-        this.margin_bottom  = 12;
-        this.column_homogeneous = false;
-        this.row_homogeneous = false;
-
-        this.hexpand = true;
-        this.halign = Gtk.Align.CENTER;
+        Object (
+            panel_name: name,
+            input_sources: input_sources,
+            exclusions: exclusions
+        );
     }
 }

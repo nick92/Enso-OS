@@ -1,3 +1,22 @@
+/*
+* Copyright (c) 2017 elementary, LLC. (https://elementary.io)
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA
+*/
+
 namespace Pantheon.Keyboard.Shortcuts {
 
     private class CustomTree : Gtk.Viewport, DisplayTree {
@@ -54,7 +73,6 @@ namespace Pantheon.Keyboard.Shortcuts {
             tv.insert_column_with_attributes (-1, _("Command"), cell_desc, "markup", Column.COMMAND);
             tv.insert_column_with_attributes (-1, _("Shortcut"), cell_edit, "text", Column.SHORTCUT);
 
-            tv.set_rules_hint (true);
             tv.headers_visible = false;
             tv.expand = true;
             tv.get_column (0).expand = true;
@@ -237,7 +255,8 @@ namespace Pantheon.Keyboard.Shortcuts {
                             CustomShortcutSettings.edit_shortcut ((string) relocatable_schema, not_null_shortcut.to_gsettings ());
                             load_and_display_custom_shortcuts ();
                         });
-                    dialog.show ();
+                    dialog.transient_for = (Gtk.Window) this.get_toplevel ();
+                    dialog.present ();
                     return false;
                 }
             }
