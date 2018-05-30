@@ -47,6 +47,7 @@ public class DesktopWindow : Gtk.Window {
           stack = new Gtk.Stack ();
           stack.add_titled (new Wallpaper (), "wallpaper", _("Wallpaper"));
           stack.add_titled (new Dock (), "dock", _("Dock"));
+          stack.add_titled (new Launchy (), "launcher", _("Launcher"));
           //stack.add_titled (new HotCorners (), "hotc", _("Hot Corners"));
 
           var stack_switcher = new Gtk.StackSwitcher ();
