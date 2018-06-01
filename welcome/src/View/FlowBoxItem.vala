@@ -62,12 +62,12 @@ public class Welcome.FlowBoxItem : Gtk.FlowBoxChild {
         child = themed_grid;
 
         //tooltip_text = app_category.summary ?? "";
-        
-		display_image.icon_name = icon;
-		((Gtk.Misc) name_label).xalign = 0;
-		name_label.halign = Gtk.Align.START;
-		name_label.label = title;
-		
+
+    		display_image.icon_name = icon;
+    		((Gtk.Misc) name_label).xalign = 0;
+    		name_label.halign = Gtk.Align.START;
+    		name_label.label = title;
+
         /*} else {
             display_image.destroy ();
             name_label.justify = Gtk.Justification.CENTER;
@@ -77,6 +77,6 @@ public class Welcome.FlowBoxItem : Gtk.FlowBoxChild {
     }
 
     construct {
-        
+
     }
 }
