@@ -17,29 +17,29 @@
 ***/
 
 namespace Welcome {
-	
+
 	public class WelcomeView : Gtk.EventBox {
-		
-		private Granite.Widgets.Welcome agenda_welcome;
+
+		private Granite.Widgets.Welcome enso_welcome;
 		private Gtk.Image 				rose_image;
 		private Gtk.Grid				grid;
-		
+
 		construct {
 			/**
-             *  Initialize the GUI components
-             */
-            agenda_welcome = new Granite.Widgets.Welcome (_("Welcome to Enso!"), _("0.3 - Rabling Rose"));
-                                                           
-			rose_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource ("/org/enso/welcome/icon/flower.svg"));
-			
+           *  Initialize the GUI components
+   	 */
+      enso_welcome = new Granite.Widgets.Welcome (_("Welcome to Enso!"), _("0.3 - Rabling Rose"));
+
+			rose_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale ("/org/enso/welcome/icon/flower.svg", 400, 400, true));
+
 			grid = new Gtk.Grid ();
 			grid.expand = true;   // expand the box to fill the whole window
-            grid.row_homogeneous = false;
-			grid.attach (agenda_welcome, 0, 0, 1, 1);
+      grid.row_homogeneous = false;
+			grid.attach (enso_welcome, 0, 0, 1, 1);
 			grid.attach (rose_image, 0, 1, 1, 1);
-			
+
 			add(grid);
 		}
 	}
-	
+
 }

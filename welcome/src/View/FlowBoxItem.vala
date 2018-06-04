@@ -26,7 +26,7 @@ public class Welcome.FlowBoxItem : Gtk.FlowBoxChild {
     private string s_icon_name;
 
     public FlowBoxItem (string title, string icon) {
-		s_title = title;
+		    s_title = title;
         var display_image = new Gtk.Image ();
         display_image.icon_size = Gtk.IconSize.DIALOG;
         display_image.valign = Gtk.Align.CENTER;

@@ -53,12 +53,12 @@ namespace Pantheon.Keyboard.Shortcuts {
             add_action (ref windows_group, Schema.WM, _("Cycle Windows backwards"), "switch-windows-backward");
             add_action (ref windows_group, Schema.MUTTER, _("Tile Left"), "toggle-tiled-left");
             add_action (ref windows_group, Schema.MUTTER, _("Tile Right"), "toggle-tiled-right");
-            add_action (ref windows_group, Schema.GALA, _("Window Overview"), "expose-windows");
-            add_action (ref windows_group, Schema.GALA, _("Show All Windows"), "expose-all-windows");
-            add_action (ref windows_group, Schema.GALA, _("Picture in Picture Mode"), "pip");
+            //add_action (ref windows_group, Schema.GALA, _("Window Overview"), "expose-windows");
+            //add_action (ref windows_group, Schema.GALA, _("Show All Windows"), "expose-all-windows");
+            //add_action (ref windows_group, Schema.GALA, _("Picture in Picture Mode"), "pip");
 
             workspaces_group = {};
-            workspaces_group.icon_name = "preferences-desktop-wallpaper";
+            workspaces_group.icon_name = "workspace-switcher";
             workspaces_group.label = _("Workspaces");
             add_action (ref workspaces_group, Schema.WM, _("Multitasking View"), "show-desktop");
             add_action (ref workspaces_group, Schema.WM, _("Switch left"), "switch-to-workspace-left");
@@ -128,7 +128,7 @@ namespace Pantheon.Keyboard.Shortcuts {
             add_action (ref a11y_group, Schema.GALA, _("Magnifier Zoom in"), "zoom-in");
             add_action (ref a11y_group, Schema.GALA, _("Magnifier Zoom out"), "zoom-out");
             add_action (ref a11y_group, Schema.MEDIA, _("Toggle On Screen Keyboard"), "on-screen-keyboard");
-            add_action (ref a11y_group, Schema.MEDIA, _("Toggle Screenreader"), "screenreader");
+            //add_action (ref a11y_group, Schema.MEDIA, _("Toggle Screenreader"), "screenreader");
             add_action (ref a11y_group, Schema.MEDIA, _("Toggle High Contrast"), "toggle-contrast");
 
             system_group = {};
@@ -137,7 +137,7 @@ namespace Pantheon.Keyboard.Shortcuts {
             add_action (ref system_group, Schema.WM, _("Applications Menu"), "panel-main-menu");
             add_action (ref system_group, Schema.MEDIA, _("Lock"), "screensaver");
             add_action (ref system_group, Schema.MEDIA, _("Log Out"), "logout");
-            
+
             custom_group = {};
             custom_group.icon_name = "applications-other";
             custom_group.label = _("Custom");

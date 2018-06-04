@@ -139,6 +139,8 @@ namespace Pantheon.Keyboard.Shortcuts {
                 }
             }
 
+            warning((string) key);
+
             settings.set_val ((Schema) schema, (string) key, shortcut ?? new Shortcut ());
             load_and_display_shortcuts ();
             return true;
