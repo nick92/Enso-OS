@@ -136,8 +136,7 @@ public class Dock : Gtk.Grid {
 
         var theme_select = new Gtk.ComboBoxText ();
         int pos = 0;
-        foreach (unowned string theme in Plank.Theme.
-           ()) {
+        foreach (unowned string theme in Plank.Theme.get_theme_list ()) {
           theme_select.append_text(_(theme));
           if(theme == dock_preferences.Theme)
             theme_select.set_active(pos);
@@ -214,8 +213,8 @@ public class Dock : Gtk.Grid {
         attach (pressure_switch, 2, 5, 1, 1);
         attach (theme_label, 1, 6, 1, 1);
         attach (theme_select, 2, 6, 1, 1);
-        attach (docklets_label, 1, 7, 1, 1);
-        attach (docklets_select, 2, 7, 1, 1);
+        //attach (docklets_label, 1, 7, 1, 1);
+        //attach (docklets_select, 2, 7, 1, 1);
 
         check_for_screens ();
     }

@@ -20,5 +20,5 @@ To install, use `make install`
 	
 Then run with
 
-	./src/desktop-settings
+    ./src/desktop-settings
 

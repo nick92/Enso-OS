@@ -23,19 +23,19 @@ namespace Gala
 	{
 		static KeyboardManager? instance;
 		static VariantType sources_variant_type;
-		static Xfconf.Channel channel;
-		
+		//static Xfconf.Channel channel;
+
 		public string prop_string;
 
 		public static void init (Meta.Display display)
 		{
 			if (instance != null)
 				return;
-				
-			try { Xfconf.init (); } catch (Xfconf.Error ex){return;}
+
+			//try { Xfconf.init (); } catch (Xfconf.Error ex){return;}
 
 			instance = new KeyboardManager ();
-			
+
 			display.modifiers_accelerator_activated.connect (instance.handle_modifiers_accelerator_activated);
 		}
 
@@ -50,9 +50,9 @@ namespace Gala
 		{
 			Object ();
 		}
-		
+
 		construct
-		{			
+		{
 			var schema = GLib.SettingsSchemaSource.get_default ().lookup ("org.gnome.desktop.input-sources", true);
 			if (schema == null)
 				return;
@@ -60,16 +60,16 @@ namespace Gala
 			settings = new GLib.Settings.full (schema, null, null);
 			Signal.connect (settings, "changed", (Callback) set_keyboard_layout, this);
 
-			channel = new Xfconf.Channel ("keyboard-layout");
+			/*channel = new Xfconf.Channel ("keyboard-layout");
 			if(channel != null){
-				prop_string = channel.get_string("/Default/XkbLayout", "").substring(0, channel.get_string("/Default/XkbLayout", "").index_of(","));	
+				prop_string = channel.get_string("/Default/XkbLayout", "").substring(0, channel.get_string("/Default/XkbLayout", "").index_of(","));
 				if(prop_string != "") {
 					set_keyboard_layout (settings, "current", prop_string);
 				}
-				
-			}
-			
-			//set_keyboard_layout (settings, "current", "");
+
+			}*/
+
+			set_keyboard_layout (settings, "current", "");
 		}
 
 		[CCode (instance_pos = -1)]
@@ -126,8 +126,8 @@ namespace Gala
 				layout = layout + ",us";
 				variant = variant + ",";
 			}
-			
-			warning("settings change to : " + layout); 
+
+			warning("settings change to : " + layout);
 
 			Meta.Backend.get_backend ().set_keymap (layout, variant, options);
 		}

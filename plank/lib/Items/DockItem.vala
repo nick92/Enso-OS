@@ -599,6 +599,12 @@ namespace Plank
 			cr.fill ();
 		}
 
+		/**
+		 * Gets the X and Y position of the icon.
+		 *
+		 * @param x the resulting x position
+		 * @param y the resulting y position
+		 */
 		public void get_icon_location (out int x, out int y)
 		{
 			var controller = get_dock ();
@@ -606,8 +612,6 @@ namespace Plank
 			y = 0;
 
 			controller.position_manager.get_dockitem_position(this, out x, out y);
-
-			warning("x:" + x.to_string() + "y:" + y.to_string());
 		}
 
 		/**

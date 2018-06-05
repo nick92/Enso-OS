@@ -44,10 +44,10 @@ public class Launchy : Gtk.Grid {
             case 44:
                 icon_size.selected = 0;
                 break;
-            case 55:
+            case 50:
                 icon_size.selected = 1;
                 break;
-            case 64:
+            case 60:
                 icon_size.selected = 2;
                 break;
             default:
@@ -59,13 +59,13 @@ public class Launchy : Gtk.Grid {
         icon_size.mode_changed.connect (() => {
             switch (icon_size.selected) {
                 case 0:
-                    settings.set_int("icon-size", 44);
+                    settings.set_int("icon-size", 45);
                     break;
                 case 1:
-                    settings.set_int("icon-size", 55);
+                    settings.set_int("icon-size", 50);
                     break;
                 case 2:
-                    settings.set_int("icon-size", 64);
+                    settings.set_int("icon-size", 60);
                     break;
                 case 3:
                     settings.set_int("icon-size", current);

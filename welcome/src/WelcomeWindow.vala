@@ -22,11 +22,11 @@ namespace Welcome {
     const int MIN_HEIGHT = 600;
 
     public class WelcomeWindow : Gtk.Window {
-		
-        private GLib.Settings agenda_settings = new GLib.Settings ("org.enso.welcome");
+
+        private GLib.Settings welcome_settings = new GLib.Settings ("org.enso.welcome");
 
         /* GUI components */
-        private Granite.Widgets.Welcome agenda_welcome;     // The Welcome screen when there are no tasks
+        private Granite.Widgets.Welcome welcome_welcome;     // The Welcome screen when there are no tasks
         private Gtk.Image 				rose_image;
         private Gtk.Grid                grid;               // Container for everything
         private Gtk.Grid                bottom;               // Container for everything
@@ -35,11 +35,11 @@ namespace Welcome {
         private Gtk.CssProvider 		provider;
         private Gtk.Stack 				stack;
         private Gtk.Revealer 			view_selector_revealer;
-        
+
         /* Views */
         private WelcomeView				welcome_view;
         private OptionsView				options_view;
-        
+
         public WelcomeWindow () {
             this.get_style_context ().add_class ("rounded");
 
@@ -47,8 +47,8 @@ namespace Welcome {
 
             // Set up geometry
             Gdk.Geometry geo = Gdk.Geometry();
-            geo.min_width = MIN_WIDTH;
-            geo.min_height = MIN_HEIGHT;
+            //geo.min_width = MIN_WIDTH;
+            //geo.min_height = MIN_HEIGHT;
             geo.max_width = 1024;
             geo.max_height = 2048;
             geo.win_gravity = Gdk.Gravity.CENTER;
@@ -57,7 +57,7 @@ namespace Welcome {
 
             restore_window_position ();
 
-            var first = agenda_settings.get_boolean ("first-time");                                    
+            var first = welcome_settings.get_boolean ("first-time");
 
             setup_ui ();    // Set up the GUI
         }
@@ -69,56 +69,56 @@ namespace Welcome {
             this.set_title ("Welcome");
             grid = new Gtk.Grid ();
             //this.key_press_event.connect (key_down_event);
-             
+
 			button_started = new Gtk.Button ();
             button_started.label = "Get Started";
             button_started.valign = Gtk.Align.END;
             button_started.halign = Gtk.Align.END;
             button_started.hexpand = true;
             button_started.get_style_context ().add_class ("button-green");
-            
+
             button_started.clicked.connect (() => {
 				stack.set_visible_child_name ("options");
 				button_started.visible = false;
 			});
-            
+
             button_close = new Gtk.Button ();
             button_close.label = "Close";
             button_close.valign = Gtk.Align.END;
             button_close.halign = Gtk.Align.START;
             button_close.hexpand = true;
             button_close.get_style_context ().add_class ("button-red");
-            
+
             button_close.clicked.connect (() => {
 				main_quit ();
 			});
-             
+
             bottom = new Gtk.Grid ();
             bottom.orientation = Gtk.Orientation.HORIZONTAL;
             bottom.margin_start = 10;
             bottom.margin_end = 10;
             bottom.margin_top = 10;
             bottom.margin_bottom = 10;
-            
+
             bottom.add(button_close);
             bottom.add(button_started);
 
-            agenda_welcome.expand = true;
-            
+            welcome_welcome.expand = true;
+
             stack = new Gtk.Stack ();
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
-            
+
             welcome_view = new WelcomeView ();
             options_view = new OptionsView ();
-            
+
             stack.add_named (welcome_view, "welcome");
             stack.add_named (options_view, "options");
-            
+
             stack.set_visible_child_name ("welcome");
 
             grid.expand = true;   // expand the box to fill the whole window
             grid.row_homogeneous = false;
-            //grid.attach (agenda_welcome, 0, 0, 1, 1);
+            //grid.attach (welcome_welcome, 0, 0, 1, 1);
             grid.attach (stack, 0, 0, 1, 1);
             grid.attach (bottom, 0, 1, 1, 1);
 
@@ -129,8 +129,8 @@ namespace Welcome {
          *  Restore window position.
          */
         public void restore_window_position () {
-            var position = agenda_settings.get_value ("window-position");
-            var win_size = agenda_settings.get_value ("window-size");
+            var position = welcome_settings.get_value ("window-position");
+            var win_size = welcome_settings.get_value ("window-size");
 
             /*if (position.n_children () == 2) {
                 var x = (int32) position.get_child_value (0);
@@ -162,11 +162,11 @@ namespace Welcome {
             this.get_position (out x, out y);
             this.get_size (out width, out height);
             debug ("Saving window position to %d, %d", x, y);
-            agenda_settings.set_value ("window-position", new int[] { x, y });
-            debug ("Saving window size of width and height: %d, %d", width, height); 
-            agenda_settings.set_value ("window-size", new int[] { width, height });
+            welcome_settings.set_value ("window-position", new int[] { x, y });
+            debug ("Saving window size of width and height: %d, %d", width, height);
+            welcome_settings.set_value ("window-size", new int[] { width, height });
         }
-        
+
         /**
          *  Quit from the program.
          */

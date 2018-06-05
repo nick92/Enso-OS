@@ -70,7 +70,7 @@ public class PantheonGreeter : Gtk.Window {
     //from this width on we use the shrinked down version
     const int NORMAL_HEIGHT = 600;
     //from this width on the clock wont fit anymore
-    const int NO_CLOCK_WIDTH = 1500;
+    const int NO_CLOCK_WIDTH = 600;
 
     const int DEFAULT_CLOCK_HEIGHT = 296;
     const int DEFAULT_CLOCK_WIDTH = 617;

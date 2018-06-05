@@ -1,6 +1,7 @@
 ABOUT-NLS
 aclocal.m4
 autom4te.cache
+/build/*
 /build-aux/*
 ChangeLog
 config.h
