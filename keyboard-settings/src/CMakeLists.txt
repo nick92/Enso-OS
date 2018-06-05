@@ -18,6 +18,7 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     KeyboardWindow.vala
 
     Behavior/Settings.vala
+    Behavior/XfceSettings.vala
 
     Dialogs/ConflictDialog.vala
 
@@ -54,6 +55,8 @@ PACKAGES
     libxml-2.0
     glib-2.0
     gdk-x11-3.0
+CUSTOM_VAPIS
+  	${CMAKE_SOURCE_DIR}/vapi/libxfconf-0.vapi
 OPTIONS
     --thread
 )

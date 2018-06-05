@@ -39,6 +39,8 @@ class Pantheon.Keyboard.Shortcuts.CustomShortcutSettings : Object {
     public static void init () {
         var schema_source = GLib.SettingsSchemaSource.get_default ();
 
+        var xfsettings = new Behavior.XfceSettings ();
+
         var schema = schema_source.lookup (SCHEMA, true);
 
         if (schema == null) {
