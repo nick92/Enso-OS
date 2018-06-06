@@ -60,9 +60,10 @@ namespace Pantheon.Keyboard.Shortcuts {
             workspaces_group = {};
             workspaces_group.icon_name = "workspace-switcher";
             workspaces_group.label = _("Workspaces");
-            add_action (ref workspaces_group, Schema.WM, _("Multitasking View"), "show-desktop");
+            add_action (ref workspaces_group, Schema.WM, _("Show Desktop"), "show-desktop");
             add_action (ref workspaces_group, Schema.WM, _("Switch left"), "switch-to-workspace-left");
             add_action (ref workspaces_group, Schema.WM, _("Switch right"), "switch-to-workspace-right");
+            add_action (ref workspaces_group, Schema.GALA, _("Multitasking View"), "show-workspace-view");
             add_action (ref workspaces_group, Schema.GALA, _("Switch to first"), "switch-to-workspace-first");
             add_action (ref workspaces_group, Schema.GALA, _("Switch to new"), "switch-to-workspace-last");
             add_action (ref workspaces_group, Schema.WM, _("Switch to workspace 1"), "switch-to-workspace-1");

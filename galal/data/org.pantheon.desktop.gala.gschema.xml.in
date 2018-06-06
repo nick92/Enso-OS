@@ -95,6 +95,11 @@
 	</schema>
 	
 	<schema path="/org/pantheon/desktop/gala/keybindings/" id="org.pantheon.desktop.gala.keybindings" gettext-domain="@GETTEXT_PACKAGE@">
+		<key type="as" name="show-workspace-view">
+			<default><![CDATA[['<Super>a']]]></default>
+			<summary>Display Multitasking View</summary>
+			<description></description>
+		</key>
 		<key type="as" name="switch-to-workspace-first">
 			<default><![CDATA[['<Super>Home']]]></default>
 			<summary>Shortcut to move to first workspace</summary>
@@ -130,7 +135,7 @@
 			<description></description>
 		</key>
 		<key type="as" name="expose-all-windows">
-			<default><![CDATA[['<Super>a']]]></default>
+			<default><![CDATA[['<Super>q']]]></default>
 			<summary>Shortcut to open the window overview for all windows</summary>
 			<description></description>
 		</key>

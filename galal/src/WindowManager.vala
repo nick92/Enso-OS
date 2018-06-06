@@ -120,7 +120,7 @@ namespace Gala
 					logind_proxy.prepare_for_sleep.connect (prepare_for_sleep);
 				} catch (Error e) {
 					warning ("Failed to get LoginD proxy: %s", e.message);
-				}				
+				}
 			}
 		}
 
@@ -188,7 +188,7 @@ namespace Gala
 			background_group = new BackgroundContainer (screen);
 		 	background_group.set_reactive(true);
 			background_group.button_release_event.connect(on_background_click);
-			
+
 			window_group.add_child (background_group);
 			window_group.set_child_below_sibling (background_group, null);
 
@@ -213,7 +213,7 @@ namespace Gala
 						BehaviorSettings.get_default ().overlay_action);
 				} catch (Error e) { warning (e.message); }
 			});
-			
+
 			/*
 			KeyBinding.set_custom_handler ("panel-main-menu", () => {
 				try {
@@ -269,10 +269,13 @@ namespace Gala
 				} catch (Error e) {
 					warning (e.message);
 				}
-				/*if (workspace_view.is_opened ())
+			});
+
+			KeyBinding.set_custom_handler ("show-workspace-view", () => {
+				if (workspace_view.is_opened ())
 					workspace_view.close ();
 				else
-					workspace_view.open ();*/
+					workspace_view.open ();
 			});
 
 			if (plugin_manager.window_switcher_provider == null) {
@@ -873,7 +876,7 @@ namespace Gala
 		public override void size_change (Meta.WindowActor actor, Meta.SizeChange which_change, Meta.Rectangle old_frame_rect, Meta.Rectangle old_buffer_rect)
 		{
 			var new_rect = actor.get_meta_window ().get_frame_rect ();
-			
+
 			switch (which_change) {
 				case Meta.SizeChange.MAXIMIZE:
 					maximize (actor, new_rect.x, new_rect.y, new_rect.width, new_rect.height);
@@ -894,7 +897,7 @@ namespace Gala
 		{
 			unowned AnimationSettings animation_settings = AnimationSettings.get_default ();
 			var duration = animation_settings.minimize_duration;
-			
+
 			if (!animation_settings.enable_animations
 				|| duration == 0
 				|| actor.get_meta_window ().window_type != WindowType.NORMAL) {
@@ -1116,7 +1119,7 @@ namespace Gala
 						var outer_rect = window.get_frame_rect ();
 						actor.set_position (outer_rect.x, outer_rect.y);
 					}
-					
+
 					actor.set_pivot_point (0.5f, 1.0f);
 					actor.set_scale (0.01f, 0.1f);
 					actor.opacity = 0;

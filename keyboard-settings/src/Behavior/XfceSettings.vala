@@ -25,13 +25,25 @@ namespace Pantheon.Keyboard.Behavior
         try { Xfconf.init (); } catch (Xfconf.Error ex){return;}
     }
 
-    public void set_config_string (string channel, string property, string value) {
+    public void set_property_value (string channel, string property, string value) {
+      var xfchannel = new Xfconf.Channel (channel);
+
+			if(xfchannel != null){
+				//if(xfchannel.get_string(property, "") != "")
+          warning("setting value" + property + ":" + value);
+					xfchannel.set_string (property, value);
+				}
+		}
+
+    public string get_property_value (string channel, string property, string value) {
       var xfchannel = new Xfconf.Channel (channel);
 
 			if(xfchannel != null){
 				if(xfchannel.get_string(property, "") != "")
-					xfchannel.set_string (property, value);
-				}
+					return xfchannel.get_string (property, value);
 			}
+
+      return "";
+		}
   }
 }

@@ -28,6 +28,8 @@ class Pantheon.Keyboard.Shortcuts.CustomShortcutSettings : Object {
 
     static GLib.Settings settings;
 
+    static Behavior.XfceSettings xfsettings;
+
     public static bool available = false;
 
     public struct CustomShortcut {
@@ -39,7 +41,7 @@ class Pantheon.Keyboard.Shortcuts.CustomShortcutSettings : Object {
     public static void init () {
         var schema_source = GLib.SettingsSchemaSource.get_default ();
 
-        var xfsettings = new Behavior.XfceSettings ();
+        xfsettings = new Behavior.XfceSettings ();
 
         var schema = schema_source.lookup (SCHEMA, true);
 
@@ -119,17 +121,17 @@ class Pantheon.Keyboard.Shortcuts.CustomShortcutSettings : Object {
 
     public static bool edit_shortcut (string relocatable_schema, string shortcut)
         requires (available) {
-
         var relocatable_settings = get_relocatable_schema_settings (relocatable_schema);
+        var command = relocatable_settings.get_string ("command");
         relocatable_settings.set_string ("binding", shortcut);
         apply_settings (relocatable_settings);
+        xfsettings.set_property_value ("xfce4-keyboard-shortcuts", "/commands/custom/" + shortcut, command);
         return true;
     }
 
     public static bool edit_command (string relocatable_schema, string command)
         requires (available) {
-
-        var relocatable_settings = get_relocatable_schema_settings (relocatable_schema);
+        var relocatable_settings = get_relocatable_schema_settings (relocatable_schema);;
         relocatable_settings.set_string ("command", command);
         relocatable_settings.set_string ("name", command);
         apply_settings (relocatable_settings);

@@ -19,7 +19,7 @@
 
 namespace Pantheon.Keyboard.Shortcuts
 {
-    private enum Schema { WM, MUTTER, GALA, MEDIA, COUNT }
+    private enum Schema { WM, MUTTER, GALA, MEDIA, COUNT, XFCE }
 
     // helper class for gsettings
     // note that media key are stored as strings, all others as string vectors
