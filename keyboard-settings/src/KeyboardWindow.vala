@@ -30,7 +30,7 @@ public class Pantheon.Keyboard.PlugWindow : Gtk.Window {
     geo.max_height = 2048;
 
     this.set_geometry_hints(null, geo, Gdk.WindowHints.MIN_SIZE | Gdk.WindowHints.MAX_SIZE);
-
+    this.set_title("Keyboard Settings");
     this.add(get_widget ());
   }
 
