@@ -251,4 +251,4 @@ if get_option('documentation')
 endif
 subdir('po')
 
-meson.add_install_script('build-aux/meson/post_install.py')
+#meson.add_install_script('build-aux/meson/post_install.py')

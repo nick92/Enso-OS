@@ -28,7 +28,7 @@ class Pantheon.Keyboard.Shortcuts.CustomShortcutSettings : Object {
 
     static GLib.Settings settings;
 
-    static Behavior.XfceSettings xfsettings;
+    static XfceSettings xfsettings;
 
     public static bool available = false;
 
@@ -41,7 +41,7 @@ class Pantheon.Keyboard.Shortcuts.CustomShortcutSettings : Object {
     public static void init () {
         var schema_source = GLib.SettingsSchemaSource.get_default ();
 
-        xfsettings = new Behavior.XfceSettings ();
+        xfsettings = new XfceSettings ();
 
         var schema = schema_source.lookup (SCHEMA, true);
 

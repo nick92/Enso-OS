@@ -127,8 +127,6 @@ namespace Gala
 				variant = variant + ",";
 			}
 
-			warning("settings change to : " + layout);
-
 			Meta.Backend.get_backend ().set_keymap (layout, variant, options);
 		}
 	}

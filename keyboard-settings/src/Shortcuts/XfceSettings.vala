@@ -17,7 +17,7 @@
 * Boston, MA 02110-1301 USA
 */
 
-namespace Pantheon.Keyboard.Behavior
+namespace Pantheon.Keyboard.Shortcuts
 {
   public class XfceSettings : Object {
 
@@ -30,7 +30,6 @@ namespace Pantheon.Keyboard.Behavior
 
 			if(xfchannel != null){
 				//if(xfchannel.get_string(property, "") != "")
-          warning("setting value" + property + ":" + value);
 					xfchannel.set_string (property, value);
 				}
 		}

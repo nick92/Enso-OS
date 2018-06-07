@@ -124,8 +124,8 @@ public class Dock : Gtk.Grid {
         var docklets_select = new Gtk.ComboBoxText ();
 
         foreach (var docklet in Plank.DockletManager.get_default ().list_docklets ()) {
-          warning (_(docklet.get_id ()));
-          docklets_select.append_text(_(docklet.get_name ()));
+          warning ("docklet.get_id ()");
+          //docklets_select.append_text(_(docklet.get_name ()));
   			}
 
         docklets_select.set_active(0);
@@ -213,8 +213,8 @@ public class Dock : Gtk.Grid {
         attach (pressure_switch, 2, 5, 1, 1);
         attach (theme_label, 1, 6, 1, 1);
         attach (theme_select, 2, 6, 1, 1);
-        //attach (docklets_label, 1, 7, 1, 1);
-        //attach (docklets_select, 2, 7, 1, 1);
+        attach (docklets_label, 1, 7, 1, 1);
+        attach (docklets_select, 2, 7, 1, 1);
 
         check_for_screens ();
     }

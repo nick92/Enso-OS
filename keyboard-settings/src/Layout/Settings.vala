@@ -209,6 +209,8 @@ namespace Pantheon.Keyboard.LayoutPage
 
         GLib.Settings settings;
 
+        Shortcuts.XfceSettings xfsettings;
+
         /**
          * True if and only if we are currently writing to gsettings
          * by ourselves.
@@ -232,6 +234,13 @@ namespace Pantheon.Keyboard.LayoutPage
         void write_active_to_gsettings () {
             uint active = layouts.active;
             settings.set_uint ("current", active);
+
+            string elements = layouts.get_layout (active).name + ",";
+            for (uint i = 0; i < layouts.length; i++) {
+                if(i != active)
+                  elements += layouts.get_layout (i).name + ",";
+            }
+            xfsettings.set_property_value ("keyboard-layout", "/Default/XkbLayout", elements);
         }
 
         void update_list_from_gsettings () {
@@ -352,6 +361,7 @@ namespace Pantheon.Keyboard.LayoutPage
 
         private LayoutSettings () {
             settings = new Settings ("org.gnome.desktop.input-sources");
+            xfsettings = new Shortcuts.XfceSettings ();
             layouts = new LayoutList ();
 
             update_list_from_gsettings ();

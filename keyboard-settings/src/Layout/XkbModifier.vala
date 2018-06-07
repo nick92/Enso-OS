@@ -81,13 +81,13 @@ namespace Pantheon.Keyboard.LayoutPage
             foreach (string xkb_command in old_xkb_options) {
                 if (!(xkb_command in old_arr) || (xkb_command in new_arr)) {
                     new_xkb_options += xkb_command;
-                } 
+                }
             }
 
             foreach (string xkb_command in new_arr) {
                 if (!(xkb_command in new_xkb_options)) {
                     new_xkb_options += xkb_command;
-                } 
+                }
             }
 
             settings.changed[gsettings_key].disconnect (update_from_gsettings);
@@ -111,6 +111,3 @@ namespace Pantheon.Keyboard.LayoutPage
         }
     }
 }
-
-
-

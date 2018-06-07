@@ -1,7 +1,7 @@
 find_package (PkgConfig)
 
 # Add all your dependencies to the list below
-pkg_check_modules (DEPS REQUIRED gthread-2.0 gtk+-3.0>=3.10 granite libxml-2.0 gee-0.8 glib-2.0>=2.39 gdk-x11-3.0)
+pkg_check_modules (DEPS REQUIRED gthread-2.0 gtk+-3.0>=3.10 granite libxml-2.0 gee-0.8 glib-2.0>=2.39 gdk-x11-3.0 libxfconf-0)
 
 add_definitions (${DEPS_CFLAGS})
 link_libraries(${DEPS_LIBRARIES})
@@ -18,7 +18,6 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     KeyboardWindow.vala
 
     Behavior/Settings.vala
-    Behavior/XfceSettings.vala
 
     Dialogs/ConflictDialog.vala
 
@@ -31,6 +30,7 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
     Shortcuts/CustomShortcutSettings.vala
     Shortcuts/List.vala
     Shortcuts/Settings.vala
+    Shortcuts/XfceSettings.vala
     Shortcuts/Shortcut.vala
 
     Views/AbstractPage.vala
@@ -56,7 +56,7 @@ PACKAGES
     glib-2.0
     gdk-x11-3.0
 CUSTOM_VAPIS
-  	${CMAKE_SOURCE_DIR}/vapi/libxfconf-0.vapi
+    ${CMAKE_SOURCE_DIR}/vapi/libxfconf-0.vapi
 OPTIONS
     --thread
 )

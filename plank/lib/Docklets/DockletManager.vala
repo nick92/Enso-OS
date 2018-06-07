@@ -56,8 +56,10 @@ namespace Plank
 
 		public static unowned DockletManager get_default ()
 		{
-			if (instance == null)
+			if (instance == null) {
+				warning("no instnace found");
 				instance = new DockletManager ();
+			}
 
 			return instance;
 		}
@@ -150,6 +152,7 @@ namespace Plank
 		 */
 		public Gee.Collection<Docklet> list_docklets ()
 		{
+			warning("returning docklets");
 			return docklets.values;
 		}
 

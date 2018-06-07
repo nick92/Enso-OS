@@ -271,7 +271,7 @@ namespace Gala
 				}
 			});
 
-			KeyBinding.set_custom_handler ("show-workspace-view", () => {
+			display.add_keybinding ("show-workspace-view", keybinding_schema, 0, () => {
 				if (workspace_view.is_opened ())
 					workspace_view.close ();
 				else
