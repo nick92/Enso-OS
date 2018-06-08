@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-02 05:12-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/Indicator.vala:38
+msgid "Date & Time"
+msgstr ""
+
+#: ../src/Indicator.vala:39
+msgid "The date and time indicator"
+msgstr ""
+
+#: ../src/Indicator.vala:81
+msgid "Date & Time Settings…"
+msgstr ""
+
+#. //valadoc.org/#!api=glib-2.0/GLib.DateTime.format
+#: ../src/Indicator.vala:142
+msgid "%B %e, %Y"
+msgstr ""
+
+#. / TRANSLATORS: Date format in the panel following http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format */
+#: ../src/Widgets/PanelLabel.vala:60
+msgid "%a, %b %e"
+msgstr ""
+
+#. / TRANSLATORS: Time format in the panel following http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format */
+#: ../src/Widgets/PanelLabel.vala:66
+msgid "%l:%M %p"
+msgstr ""

@@ -1,0 +1,40 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-02 05:12-0500\n"
+"PO-Revision-Date: 2016-02-24 16:54+0000\n"
+"Last-Translator: momit rahman <momitrahman@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2017-02-19 05:57+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
+
+#: ../src/Indicator.vala:38
+msgid "Date & Time"
+msgstr "তারিখ এবং সময়"
+
+#: ../src/Indicator.vala:39
+msgid "The date and time indicator"
+msgstr "তারিখ এবং সময় নির্দেশক"
+
+#: ../src/Indicator.vala:81
+msgid "Date & Time Settings…"
+msgstr "তারিখ এবং সময় সেটিংস..."
+
+#. //valadoc.org/#!api=glib-2.0/GLib.DateTime.format
+#: ../src/Indicator.vala:142
+msgid "%B %e, %Y"
+msgstr "%B %e, %Y"
+
+#. / TRANSLATORS: Date format in the panel following http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format */
+#: ../src/Widgets/PanelLabel.vala:60
+msgid "%a, %b %e"
+msgstr "%a, %b %e"
+
+#. / TRANSLATORS: Time format in the panel following http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format */
+#: ../src/Widgets/PanelLabel.vala:66
+msgid "%l:%M %p"
+msgstr "%l:%M %p"

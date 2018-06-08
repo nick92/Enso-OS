@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema path="/org/pantheon/desktop/wingpanel/indicators/datetime/" id="org.pantheon.desktop.wingpanel.indicators.datetime" gettext-domain="datetime-indicator">
+        <key type="b" name="show-weeks">
+            <default>false</default>
+            <summary>Show week numbers.</summary>
+            <description>If this is set to true, week numbers will be shown in the calendar.</description>
+        </key>
+    </schema>
+</schemalist>

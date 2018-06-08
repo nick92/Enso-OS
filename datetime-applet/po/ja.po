@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-02 05:12-0500\n"
+"PO-Revision-Date: 2018-05-06 00:12+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
+"Language-Team: Japanese <https://weblate.elementary.io/projects/wingpanel"
+"/wingpanel-indicator-datetime/ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.18\n"
+"X-Launchpad-Export-Date: 2017-02-19 05:57+0000\n"
+
+#: ../src/Indicator.vala:38
+msgid "Date & Time"
+msgstr "日付と時刻"
+
+#: ../src/Indicator.vala:39
+msgid "The date and time indicator"
+msgstr "日付と時刻のインジケーター"
+
+#: ../src/Indicator.vala:81
+msgid "Date & Time Settings…"
+msgstr "日付と時刻の設定…"
+
+#. //valadoc.org/#!api=glib-2.0/GLib.DateTime.format
+#: ../src/Indicator.vala:142
+msgid "%B %e, %Y"
+msgstr "%Y年%B%e日"
+
+#. / TRANSLATORS: Date format in the panel following http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format */
+#: ../src/Widgets/PanelLabel.vala:60
+msgid "%a, %b %e"
+msgstr "%b%e日 (%a)"
+
+#. / TRANSLATORS: Time format in the panel following http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format */
+#: ../src/Widgets/PanelLabel.vala:66
+msgid "%l:%M %p"
+msgstr "%p %l:%M"

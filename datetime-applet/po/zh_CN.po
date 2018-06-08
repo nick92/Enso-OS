@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-02 05:12-0500\n"
+"PO-Revision-Date: 2017-04-14 02:05+0000\n"
+"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"Language-Team: Chinese (Simplified) "
+"<https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-"
+"datetime/zh_CN/>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
+"X-Launchpad-Export-Date: 2017-02-19 05:58+0000\n"
+
+#: ../src/Indicator.vala:38
+msgid "Date & Time"
+msgstr "日期和时间"
+
+#: ../src/Indicator.vala:39
+msgid "The date and time indicator"
+msgstr "日期和时间指示器"
+
+#: ../src/Indicator.vala:81
+msgid "Date & Time Settings…"
+msgstr "日期和时间设置…"
+
+#. //valadoc.org/#!api=glib-2.0/GLib.DateTime.format
+#: ../src/Indicator.vala:142
+msgid "%B %e, %Y"
+msgstr "%Y年%b%e日"
+
+#. / TRANSLATORS: Date format in the panel following http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format */
+#: ../src/Widgets/PanelLabel.vala:60
+msgid "%a, %b %e"
+msgstr "%b%e日 星期%a"
+
+#. / TRANSLATORS: Time format in the panel following http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format */
+#: ../src/Widgets/PanelLabel.vala:66
+msgid "%l:%M %p"
+msgstr "%p %l:%M"
