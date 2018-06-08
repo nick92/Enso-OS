@@ -23,6 +23,9 @@ public class Dock : Gtk.Grid {
     Gtk.Label monitor_label;
     Gtk.ComboBoxText monitor;
     Plank.DockPreferences dock_preferences;
+    Plank.DBusClient client;
+
+    public const string DOCKLET_URI_PREFIX = "docklet://";
 
     public Dock () {
         column_spacing = 12;
@@ -34,6 +37,8 @@ public class Dock : Gtk.Grid {
         icon_size.append_text (_("Small"));
         icon_size.append_text (_("Normal"));
         icon_size.append_text (_("Large"));
+
+        client = Plank.DBusClient.get_instance ();
 
 #if HAVE_PLANK_0_11
         Plank.Paths.initialize ("plank", Build.PLANKDATADIR);
@@ -123,15 +128,21 @@ public class Dock : Gtk.Grid {
 
         var docklets_select = new Gtk.ComboBoxText ();
 
+        Plank.DockletManager.get_default ().load_docklets ();
+
         foreach (var docklet in Plank.DockletManager.get_default ().list_docklets ()) {
-          warning ("docklet.get_id ()");
-          //docklets_select.append_text(_(docklet.get_name ()));
+          docklets_select.append_text(_(docklet.get_id ()));
   			}
 
         docklets_select.set_active(0);
 
-        docklets_select.changed.connect (() => {
+        var add_docklet = new Gtk.Button ();
+        add_docklet.image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.BUTTON);
+        add_docklet.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
+        add_docklet.clicked.connect (() => {
+            var uri = "%s%s".printf (DOCKLET_URI_PREFIX, docklets_select.get_active_text ());
+            client.add_item (uri);
         });
 
         var theme_select = new Gtk.ComboBoxText ();
@@ -194,9 +205,9 @@ public class Dock : Gtk.Grid {
         primary_monitor_grid.add (primary_monitor);
         var pressure_label = new Gtk.Label (_("Pressure reveal:"));
         pressure_label.halign = Gtk.Align.END;
-        var theme_label = new Gtk.Label (_("Theme:"));
+        var theme_label = new Gtk.Label (_("Themes:"));
         theme_label.halign = Gtk.Align.END;
-        var docklets_label = new Gtk.Label (_("Docklet:"));
+        var docklets_label = new Gtk.Label (_("Docklets:"));
         docklets_label.halign = Gtk.Align.END;
 
         attach (icon_label, 1, 0, 1, 1);
@@ -215,6 +226,7 @@ public class Dock : Gtk.Grid {
         attach (theme_select, 2, 6, 1, 1);
         attach (docklets_label, 1, 7, 1, 1);
         attach (docklets_select, 2, 7, 1, 1);
+        attach (add_docklet, 3, 7, 1, 1);
 
         check_for_screens ();
     }
