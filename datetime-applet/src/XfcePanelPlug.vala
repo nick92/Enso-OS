@@ -47,10 +47,11 @@ public class DateTime.Plugin : Xfce.PanelPlugin {
           app_button.active = false;
       });
 
-      position_widget (indicator, null, out x, out y);
-      indicator.move (x, y);
-
       app_button.toggled.connect (() => {
+
+        position_widget (indicator, null, out x, out y);
+        indicator.move (x, y);
+        
         if(app_button.active)
         {
           indicator.show_all ();
