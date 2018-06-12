@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Keyboard
+Comment=Set keyboard layout and shortcuts
+Exec=keyboard-settings
+Icon=preferences-desktop-keyboard
+Terminal=false
+Type=Application
+Categories=XFCE;GTK;Settings;KeyboardSettings;X-XFCE-SettingsDialog;X-XFCE-HardwareSettings;
+OnlyShowIn=XFCE;
+StartupNotify=true

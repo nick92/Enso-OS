@@ -40,3 +40,7 @@ add_definitions (-w)
 add_subdirectory (po)
 
 add_subdirectory(src)
+
+# install desktop file
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/keyboard-settings.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/)
+

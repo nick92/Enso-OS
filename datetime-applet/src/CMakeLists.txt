@@ -9,7 +9,7 @@ link_directories (${DEPS_LIBRARY_DIRS})
 
 find_package (Vala REQUIRED)
 include (ValaVersion)
-ensure_vala_version ("0.40.3" MINIMUM)
+ensure_vala_version ("0.34.1" MINIMUM)
 
 include (ValaPrecompile)
 # Add all your vala files and requires packages to the List below to include them in the build

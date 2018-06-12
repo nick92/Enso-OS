@@ -41,9 +41,11 @@ OPTIONS
     ${PLANK_OPTIONS}
 )
 
+include (GResource)
+glib_compile_resources (GLIB_RESOURCES_CSS SOURCE ../data/css.gresource.xml)
+
 add_definitions(${CFLAGS} -Wall -Winit-self -Wwrite-strings -Wunreachable-code -Wstrict-prototypes)
-add_executable (${PLUGNAME} ${VALA_C})
-#target_link_libraries(${PLUGNAME} m)
+add_executable (${PLUGNAME} ${VALA_C} ${GLIB_RESOURCES_CSS})
 
 # Installation
 install (TARGETS ${PLUGNAME} RUNTIME DESTINATION bin)

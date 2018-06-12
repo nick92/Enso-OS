@@ -50,8 +50,9 @@ file (GLOB resources ${CMAKE_CURRENT_SOURCE_DIR}/data/*.svg)
 
 # Traslation stuff
 add_subdirectory (po)
-# Info-plug
-install (FILES ${resources} DESTINATION ${PKGDATADIR})
 
 add_subdirectory(src)
 add_subdirectory(set-wallpaper-contract)
+
+# install desktop file
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/desktop-settings.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications/)

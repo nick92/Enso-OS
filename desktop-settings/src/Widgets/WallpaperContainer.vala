@@ -114,7 +114,7 @@ public class WallpaperContainer : Gtk.FlowBoxChild {
         card_box.add (image);
         card_box.margin = 9;
 
-        var check = new Gtk.Image.from_file (Build.PKGDATADIR + "/checked.svg");
+        var check = new Gtk.Image.from_resource ("/org/enso/desktop/checked.svg");
         check.halign = Gtk.Align.START;
         check.valign = Gtk.Align.START;
 
