@@ -96,8 +96,8 @@ namespace Pantheon.Keyboard.Shortcuts {
             add_action (ref screenshot_group, Schema.MEDIA, _("Copy the whole screen to clipboard"), "screenshot-clip");
             add_action (ref screenshot_group, Schema.MEDIA, _("Grab the current window"), "window-screenshot");
             add_action (ref screenshot_group, Schema.MEDIA, _("Copy the current window to clipboard"), "window-screenshot-clip");
-            add_action (ref screenshot_group, Schema.MEDIA, _("Select an area to grab"), "area-screenshot");
-            add_action (ref screenshot_group, Schema.MEDIA, _("Copy an area to clipboard"), "area-screenshot-clip");
+            //add_action (ref screenshot_group, Schema.MEDIA, _("Select an area to grab"), "area-screenshot");
+            //add_action (ref screenshot_group, Schema.MEDIA, _("Copy an area to clipboard"), "area-screenshot-clip");
 
             launchers_group = {};
             launchers_group.icon_name = "preferences-desktop-applications";
@@ -124,18 +124,18 @@ namespace Pantheon.Keyboard.Shortcuts {
             a11y_group = {};
             a11y_group.icon_name = "preferences-desktop-accessibility";
             a11y_group.label = _("Universal Access");
-            add_action (ref a11y_group, Schema.MEDIA, _("Decrease Text Size"), "decrease-text-size");
-            add_action (ref a11y_group, Schema.MEDIA, _("Increase Text Size"), "increase-text-size");
+            //add_action (ref a11y_group, Schema.MEDIA, _("Decrease Text Size"), "decrease-text-size");
+            //add_action (ref a11y_group, Schema.MEDIA, _("Increase Text Size"), "increase-text-size");
             add_action (ref a11y_group, Schema.GALA, _("Magnifier Zoom in"), "zoom-in");
             add_action (ref a11y_group, Schema.GALA, _("Magnifier Zoom out"), "zoom-out");
             add_action (ref a11y_group, Schema.MEDIA, _("Toggle On Screen Keyboard"), "on-screen-keyboard");
             //add_action (ref a11y_group, Schema.MEDIA, _("Toggle Screenreader"), "screenreader");
-            add_action (ref a11y_group, Schema.MEDIA, _("Toggle High Contrast"), "toggle-contrast");
+            //add_action (ref a11y_group, Schema.MEDIA, _("Toggle High Contrast"), "toggle-contrast");
 
             system_group = {};
             system_group.icon_name = "preferences-system";
             system_group.label = _("System");
-            add_action (ref system_group, Schema.WM, _("Applications Menu"), "panel-main-menu");
+            //add_action (ref system_group, Schema.WM, _("Applications Menu"), "panel-main-menu");
             add_action (ref system_group, Schema.MEDIA, _("Lock"), "screensaver");
             add_action (ref system_group, Schema.MEDIA, _("Log Out"), "logout");
 
