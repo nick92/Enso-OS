@@ -1,0 +1,8 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+Name=Enso Datetime Plugin
+Comment=Display Current Date Time and Calendar View
+Icon=cs-date-time
+X-XFCE-Module=datetime
+X-XFCE-API=2.0

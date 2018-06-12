@@ -12,10 +12,10 @@
   -GtkTreeView-horizontal-separator: 4;
   -GtkMenu-horizontal-padding: 0;
   -GtkMenu-vertical-padding: 0;
-  -GtkWidget-link-color: #2679db;
+  /*-GtkWidget-link-color: #2679db;
   -GtkWidget-visited-link-color: #1e61b0;
   -GtkWidget-focus-padding: 2;
-  -GtkWidget-focus-line-width: 1;
+  -GtkWidget-focus-line-width: 1;*/
   -GtkWidget-text-handle-width: 20;
   -GtkWidget-text-handle-height: 20;
   -GtkDialog-button-spacing: 4;
@@ -25,7 +25,7 @@
   outline-style: dashed;
   outline-offset: -3px;
   outline-width: 1px;
-  outline-radius: 2px; }
+  /*outline-radius: 2px;*/ }
 
 .background {
   color: #5c616c;

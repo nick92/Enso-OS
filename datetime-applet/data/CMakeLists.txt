@@ -1,2 +1,2 @@
-#install(FILES ${CMAKE_CURRENT_BINARY_DIR}/datetime.desktop DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/xfce4/panel/plugins)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/datetime.desktop DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/xfce4/panel/plugins)
 
