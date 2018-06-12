@@ -9,7 +9,7 @@ link_directories (${DEPS_LIBRARY_DIRS})
 
 find_package (Vala REQUIRED)
 include (ValaVersion)
-ensure_vala_version ("0.34.1" MINIMUM)
+ensure_vala_version ("0.40.3" MINIMUM)
 
 include (ValaPrecompile)
 # Add all your vala files and requires packages to the List below to include them in the build
@@ -41,12 +41,11 @@ PACKAGES
 OPTIONS
   --target-glib=2.32
   --vapidir=${CMAKE_SOURCE_DIR}/vapi
-  --gresources=${CMAKE_CURRENT_SOURCE_DIR}/css.gresource.xml
   --thread
 )
 
 include (GResource)
-glib_compile_resources (GLIB_RESOURCES_CSS SOURCE css.gresource.xml)
+glib_compile_resources (GLIB_RESOURCES_CSS SOURCE ../data/css.gresource.xml)
 
 add_library (${CMAKE_PROJECT_NAME} MODULE ${VALA_C} ${GLIB_RESOURCES_CSS})
 target_link_libraries(${CMAKE_PROJECT_NAME} ${DEPS_LIBRARIES})
