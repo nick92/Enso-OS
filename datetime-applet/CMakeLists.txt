@@ -11,7 +11,7 @@ set (INDICATORTITLE "Date & Time")
 set (INDICATORDESCRIPTION "Date and Time indicator")
 
 # Projectname
-project (datetime)
+project (ensodatetime)
 
 #########################################################
 # Only alter stuff below if you know what you are doing #
@@ -45,6 +45,8 @@ add_subdirectory(src)
 
 # Data
 add_subdirectory(data)
+
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/ensodatetime.desktop DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/xfce4/panel/plugins)
 
 # Uninstall target
 configure_file(
