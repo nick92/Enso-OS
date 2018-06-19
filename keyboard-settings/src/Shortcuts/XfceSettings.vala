@@ -34,6 +34,15 @@ namespace Pantheon.Keyboard.Shortcuts
 				}
 		}
 
+    public void set_property_boolean (string channel, string property, bool value) {
+      var xfchannel = new Xfconf.Channel (channel);
+
+			if(xfchannel != null){
+				//if(xfchannel.get_string(property, "") != "")
+					xfchannel.set_bool (property, value);
+				}
+		}
+
     public string get_property_value (string channel, string property, string value) {
       var xfchannel = new Xfconf.Channel (channel);
 

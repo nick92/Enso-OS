@@ -240,6 +240,8 @@ namespace Pantheon.Keyboard.LayoutPage
                 if(i != active)
                   elements += layouts.get_layout (i).name + ",";
             }
+
+            xfsettings.set_property_boolean ("keyboard-layout", "/Default/XkbDisable", false);
             xfsettings.set_property_value ("keyboard-layout", "/Default/XkbLayout", elements);
         }
 
