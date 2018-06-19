@@ -29,7 +29,7 @@ public class GalaPlug : Gtk.Application {
     public GalaPlug () {
         Object (application_id: "com.enso.plug.desktop",
         flags: ApplicationFlags.FLAGS_NONE);
-        var settings = new Gee.TreeMap<string, string?> (null, null);
+        /*var settings = new Gee.TreeMap<string, string?> (null, null);
         settings.set ("desktop", null);
         settings.set ("desktop/wallpaper", "wallpaper");
         settings.set ("desktop/dock", "dock");
@@ -67,33 +67,5 @@ public class GalaPlug : Gtk.Application {
         window.delete_event.connect(window.main_quit);
         window.show_all ();
 
-    }
-
-
-    public void search_callback (string location) {
-        switch (location) {
-            case "wallpaper":
-                stack.set_visible_child_name ("wallpaper");
-                break;
-            case "dock":
-                stack.set_visible_child_name ("dock");
-                break;
-            case "hotc":
-                stack.set_visible_child_name ("hotc");
-                break;
-        }
-    }
-
-    // 'search' returns results like ("Keyboard → Behavior → Duration", "keyboard<sep>behavior")
-    public async Gee.TreeMap<string, string> search (string search) {
-        var search_results = new Gee.TreeMap<string, string> ((GLib.CompareDataFunc<string>)strcmp, (Gee.EqualDataFunc<string>)str_equal);
-        search_results.set ("%s → %s".printf (display_name, _("Wallpaper")), "wallpaper");
-        search_results.set ("%s → %s".printf (display_name, _("Dock")), "dock");
-        search_results.set ("%s → %s → %s".printf (display_name, _("Dock"), _("Theme")), "dock");
-        search_results.set ("%s → %s → %s".printf (display_name, _("Dock"), _("Hide Mode")), "dock");
-        search_results.set ("%s → %s → %s".printf (display_name, _("Dock"), _("Icon Size")), "dock");
-        search_results.set ("%s → %s → %s".printf (display_name, _("Dock"), _("Display")), "dock");
-        search_results.set ("%s → %s".printf (display_name, _("Hot Corners")), "hotc");
-        return search_results;
     }
 }
