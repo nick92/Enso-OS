@@ -319,7 +319,7 @@ namespace Pantheon.Keyboard.LayoutPage
             var variants = xkb_variant.split (",");
             var xkb_layouts  = xkb_layout.split (",");
 
-            for (int i = 0; i < layouts.length; i++) {
+            for (int i = 0; i < xkb_layouts.length; i++) {
                 if (variants[i] != null && variants[i] != "")
                     layouts.add_layout (new Layout (LayoutType.XKB, xkb_layouts[i] + "+" + variants[i]));
                 else
