@@ -2,24 +2,20 @@
 
 Here is a list of all wallpapers that are included in the release of Enso OS. They are all released under the creative commons license and we would like to thank all the photographers for their great work
 
-[Purple Flowers](http://www.uhdwallpapers.org/2016/05/purple-flowers-covered-water-drops-images-photos.html) by [Stefan Stefancik](https://dribbble.com/cikstefan) 
+[Calm Water Beside Sand](https://www.pexels.com/photo/calm-body-of-water-beside-sand-673865/) by [Pok Rie](https://www.pexels.com/@pok-rie-33563)
 
-[Natural Landscape from Alberta, Canada](http://www.uhdwallpapers.org/2017/05/natural-landscape-alberta-canada-picture-desktop-wallpaper-photo-image.html) by [Mattheus Bandoch](https://www.flickr.com/photos/mbandoch/)
+[Wooden Footbridge on Lake](https://www.pexels.com/photo/brown-wooden-footbridge-on-body-of-water-during-sunrise-129441/) by [Pok Rie](https://www.pexels.com/@pok-rie-33563)
 
-[Natural Landscape from Alps](http://www.uhdwallpapers.org/2016/08/natural-landscapes-from-alps-hd-wallpapers-4k-images.html) by [Sam Ferrara](http://samferrara.ch/)
+[Forest in Fog ](https://www.pexels.com/photo/nature-forest-trees-fog-4827/) by [Jaymantri](https://www.pexels.com/@jaymantri)
 
-[Blooming Trees in Spring](http://www.uhdwallpapers.org/2017/03/blooming-trees-in-spring-free-photo-desktop-wallpaper-phone-image.html) by [Arno Smit](https://www.fundedbyme.com/)
+[Snowy Mountain](https://www.pexels.com/photo/snowy-mountain-944403/) by [ederhard grossgasteiger](https://www.pexels.com/@eberhardgross)
 
-[Puffin in Svalbard](http://www.uhdwallpapers.org/2016/10/puffin-in-svalbard-hdwallpaper-4kimage.html) by [Christopher Michel](http://www.christophermichel.com/)
+[Overhead Shot of Beach](https://www.pexels.com/photo/beach-daylight-high-angle-shot-island-941913/) by [Pok Rie](https://www.pexels.com/@pok-rie-33563)
 
-[Mangrove on Sandy Beach](http://www.uhdwallpapers.org/2015/06/mangrove-on-sandy-beach.html) by [Srslyguys](https://flic.kr/p/krMH2G)
+[Blades of Grass](https://www.pexels.com/photo/blade-of-grass-blur-close-up-dewdrops-414702/) by [Pixabay](https://www.pexels.com/@pixabay)
 
-[Ocean Waves Smashing](http://www.uhdwallpapers.org/2017/07/ocean-waves-smashing-hdwallpaper-desktop-phone-picture.html) by [Dimitris Vetsikas](https://pixabay.com/en/wave-smashing-transparent-water-2520340/)
- 
-[Sunset and Ocean Waves](http://www.uhdwallpapers.org/2015/08/sunset-and-ocean-waves-4k-pictures-wallpapers-gallery.html) by [Austin Schmid](http://www.schmidy.com/)
+[Rolling Sea Shore](https://www.pexels.com/photo/beach-blue-motion-nature-414320/) by [Pixabay](https://www.pexels.com/@pixabay)
 
-[Durdle Door in Dorset](https://www.reddit.com/r/EarthPorn/comments/6i0tc0/dusk_at_durdle_door_in_dorset_delightful_oc/) by [vendetta6](https://www.reddit.com/user/vendetta6)
+[Daylight Forest](https://www.pexels.com/photo/conifer-daylight-environment-evergreen-338936/) by [Nejc Kosir](https://www.pexels.com/@nejc-kosir-108379)
 
-[Nexus 5 Mountain Wallpaper](https://i.imgpile.com/n4Osuc.jpg) by [Ninja School hack](http://ninjaschoolhack.info) 
-
-[Stars at Night](https://picalls.com/stars-at-night/) by [Anunturi Gratuite](https://www.pexels.com/u/anunturigratuite/)
+[Scenic Rice Paddys](https://www.pexels.com/photo/scenic-view-of-rice-paddy-247599/) by [Pixabay](https://www.pexels.com/@pixabay)
