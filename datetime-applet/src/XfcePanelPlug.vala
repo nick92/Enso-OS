@@ -51,7 +51,7 @@ public class DateTime.Plugin : Xfce.PanelPlugin {
 
         position_widget (indicator, null, out x, out y);
         indicator.move (x, y);
-        
+
         if(app_button.active)
         {
           indicator.show_all ();

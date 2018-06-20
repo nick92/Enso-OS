@@ -40,7 +40,7 @@ namespace Welcome {
         private WelcomeView				welcome_view;
         private OptionsView				options_view;
 
-        public WelcomeWindow () {
+        public WelcomeWindow (bool start_launch) {
             this.get_style_context ().add_class ("rounded");
 
             this.set_size_request(MIN_WIDTH, MIN_HEIGHT);
@@ -59,6 +59,9 @@ namespace Welcome {
 
             var first = welcome_settings.get_boolean ("first-time");
 
+            if(start_launch && !first)
+              main_quit ();
+
             setup_ui ();    // Set up the GUI
         }
 
@@ -70,7 +73,7 @@ namespace Welcome {
             grid = new Gtk.Grid ();
             //this.key_press_event.connect (key_down_event);
 
-			button_started = new Gtk.Button ();
+			      button_started = new Gtk.Button ();
             button_started.label = "Get Started";
             button_started.valign = Gtk.Align.END;
             button_started.halign = Gtk.Align.END;
@@ -78,9 +81,9 @@ namespace Welcome {
             button_started.get_style_context ().add_class ("button-green");
 
             button_started.clicked.connect (() => {
-				stack.set_visible_child_name ("options");
-				button_started.visible = false;
-			});
+      				stack.set_visible_child_name ("options");
+      				button_started.visible = false;
+      			});
 
             button_close = new Gtk.Button ();
             button_close.label = "Close";
@@ -90,8 +93,9 @@ namespace Welcome {
             button_close.get_style_context ().add_class ("button-red");
 
             button_close.clicked.connect (() => {
-				main_quit ();
-			});
+              welcome_settings.set_boolean ("first-time", false);
+      				main_quit ();
+      			});
 
             bottom = new Gtk.Grid ();
             bottom.orientation = Gtk.Orientation.HORIZONTAL;
