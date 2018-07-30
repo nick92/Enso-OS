@@ -12,7 +12,7 @@ Download the leaster release from SourceForge
 
 ## Screens
 
-[![enso](https://i.imgur.com/ddmHGFF.png)]
+![enso](https://i.imgur.com/ddmHGFF.png)
 
 ## Contributors 
 
