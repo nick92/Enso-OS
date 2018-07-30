@@ -12,14 +12,13 @@ Download the leaster release from SourceForge
 
 ## Screens
 
-### Login 
+[enso](https://i.imgur.com/ddmHGFF.png)
 
-![login](https://i.imgur.com/Op5Jj5D.png)
-	
-### Desktop
+## Contributors 
 
-![enso](https://i.imgur.com/J7EDEtt.png)
+Get involved, fork and send a pull request 
 
-### Launcher
+## Thanks you
 
-![panther](https://i.imgur.com/28TXE5L.png)
+[Malysps](https://github.com/malysps) - Testing
+[JonnyCodeWalker](https://github.com/JonnyCodewalker) - Testing 
