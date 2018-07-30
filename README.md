@@ -14,7 +14,7 @@ Download the leaster release from SourceForge
 
 ![enso](https://i.imgur.com/ddmHGFF.png)
 
-## Contributors 
+## Contribute 
 
 Get involved, fork and send a pull request 
 
