@@ -12,13 +12,14 @@ Download the leaster release from SourceForge
 
 ## Screens
 
-[enso](https://i.imgur.com/ddmHGFF.png)
+[![enso](https://i.imgur.com/ddmHGFF.png)]
 
 ## Contributors 
 
 Get involved, fork and send a pull request 
 
-## Thanks you
+## Thank you
 
 [Malysps](https://github.com/malysps) - Testing
+
 [JonnyCodeWalker](https://github.com/JonnyCodewalker) - Testing 
