@@ -29,10 +29,22 @@ public class UserListActor : Clutter.Actor {
     public UserListActor (UserList userlist) {
         this.userlist = userlist;
 
-        for (int i = 0; i < userlist.size; i++) {
-            var user = userlist.get_user (i);
+        if(userlist.size > 2) {
+            for (int i = 0; i < userlist.size; i++) {
+                var user = userlist.get_user (i);
+                var box = new LoginBox (user);
+                box.set_z_position (userlist.size - i);
+                box.get_avatar().button_press_event.connect ((e) => {
+                    userlist.current_user = user;
+                    return false;
+                });
+                boxes.set (user, box);
+                add_child (box);
+            }
+        } else {
+            var user = userlist.get_user (0);
             var box = new LoginBox (user);
-            box.button_press_event.connect ((e) => {
+            box.get_avatar().button_press_event.connect ((e) => {
                 userlist.current_user = user;
                 return false;
             });
