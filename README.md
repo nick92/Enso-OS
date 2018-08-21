@@ -1,3 +1,4 @@
+
 # Enso OS
 
 A simple OS designed for ease of use and ageing computers
@@ -19,6 +20,8 @@ Download the leaster release from SourceForge
 Get involved, fork and send a pull request 
 
 ## Thank you
+
+[EasyDevCpp](https://github.com/EasyDevCpp) - Development
 
 [Malysps](https://github.com/malysps) - Testing
 
