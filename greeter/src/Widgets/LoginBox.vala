@@ -21,6 +21,7 @@
 
 public class LoginBox : GtkClutter.Actor, LoginMask {
     private CredentialsArea credentials_area;
+    private Avatar avatar;
 
     bool _selected = false;
 
@@ -64,7 +65,6 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
         credentials_area = new CredentialsArea (this, user);
 
         var path = user.avatar_path;
-        Avatar avatar;
 
         if (path != null) {
             avatar = new Avatar.from_file (path, 160);
@@ -121,6 +121,10 @@ public class LoginBox : GtkClutter.Actor, LoginMask {
             warning (e.message);
         }
         return default_wallpaper;
+    }
+
+    public Avatar get_avatar() {
+        return avatar;
     }
 
     /**
