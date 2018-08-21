@@ -27,20 +27,12 @@ namespace Gala
 
 	public class WindowManagerGala : Meta.Plugin, WindowManager
 	{
-		const uint GL_VENDOR = 0x1F00;
 		const string LOGIND_DBUS_NAME = "org.freedesktop.login1";
 		const string LOGIND_DBUS_OBJECT_PATH = "/org/freedesktop/login1";
 
-		delegate unowned string? GlQueryFunc (uint id);
-
 		static bool is_nvidia ()
 		{
-			var gl_get_string = (GlQueryFunc) Cogl.get_proc_address ("glGetString");
-			if (gl_get_string == null)
-				return false;
-
-			unowned string? vendor = gl_get_string (GL_VENDOR);
-			return (vendor != null && vendor.contains ("NVIDIA Corporation"));
+			return RendererInfo.get_default ().vendor == Vendor.NVIDIA;
 		}
 
 		/**

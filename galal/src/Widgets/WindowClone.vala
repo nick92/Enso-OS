@@ -119,10 +119,12 @@ namespace Gala
 		int prev_index = -1;
 		ulong check_confirm_dialog_cb = 0;
 		uint shadow_update_timeout = 0;
+		int scale_factor = 0;
 
 		Actor close_button;
 		Actor active_shape;
 		Actor window_icon;
+		BlurActor? blur_actor;
 
 		public WindowClone (Meta.Window window, bool overview_mode = false)
 		{
@@ -162,7 +164,9 @@ namespace Gala
 				return true;
 			});
 
-			window_icon = new WindowIcon (window, WINDOW_ICON_SIZE);
+			scale_factor = InternalUtils.get_ui_scaling_factor ();
+
+			window_icon = new WindowIcon (window, WINDOW_ICON_SIZE, scale_factor);
 			window_icon.opacity = 0;
 			window_icon.set_pivot_point (0.5f, 0.5f);
 
@@ -193,7 +197,7 @@ namespace Gala
 		 * itself at the location of the original window. Also adds the shadow
 		 * effect and makes sure the shadow is updated on size changes.
 		 *
-		 * @param was_waiting Internal argument used to indicate that we had to 
+		 * @param was_waiting Internal argument used to indicate that we had to
 		 *                    wait before the window's texture became available.
 		 */
 		void load_clone (bool was_waiting = false)
@@ -214,6 +218,16 @@ namespace Gala
 
 			clone = new Clone (actor.get_texture ());
 			add_child (clone);
+
+			unowned Meta.WindowActor window_actor = (Meta.WindowActor)window.get_compositor_private ();
+			if (window_actor != null) {
+				window_actor.actor_added.connect (actor_added_compositor);
+				window_actor.actor_removed.connect (actor_removed_compositor);
+				unowned Clutter.Actor? existing = window_actor.find_child_by_name ("blur-actor");
+				if (existing != null) {
+					actor_added_compositor (existing);
+				}
+			}
 
 			set_child_below_sibling (active_shape, clone);
 			set_child_above_sibling (close_button, clone);
@@ -353,6 +367,22 @@ namespace Gala
 			                  (input_rect.y - outer_rect.y) * scale_factor);
 			alloc.set_size (actor.width * scale_factor, actor.height * scale_factor);
 
+			if (blur_actor != null) {
+				var blur_rect = blur_actor.blur_clip_rect;
+
+				float blur_width = blur_rect.width > 0 ? blur_rect.width : outer_rect.width;
+				float blur_height = blur_rect.height > 0 ? blur_rect.height : outer_rect.height;
+
+				blur_width = blur_width.clamp (0, blur_width - blur_rect.x);
+				blur_height = blur_height.clamp (0, blur_height - blur_rect.y);
+
+				ActorBox blur_alloc = {};
+				blur_alloc.set_origin (blur_rect.x * scale_factor, blur_rect.y * scale_factor);
+				blur_alloc.set_size (blur_width * scale_factor * (float)clone.scale_x,
+									blur_height * scale_factor * (float)clone.scale_y);
+				blur_actor.allocate (blur_alloc, flags);
+			}
+
 			clone.allocate (alloc, flags);
 		}
 
@@ -367,7 +397,7 @@ namespace Gala
 
 			return false;
 		}
-		
+
 		public override	bool leave_event (Clutter.CrossingEvent event)
 		{
 			close_button.opacity = 0;
@@ -403,7 +433,7 @@ namespace Gala
 				window_icon.save_easing_state ();
 				window_icon.set_easing_duration (0);
 
-				window_icon.set_position ((dest_width - WINDOW_ICON_SIZE) / 2, dest_height - WINDOW_ICON_SIZE * 0.75f);
+				window_icon.set_position ((dest_width - WINDOW_ICON_SIZE) / 2, dest_height - (WINDOW_ICON_SIZE * scale_factor) * 0.75f);
 
 				window_icon.restore_easing_state ();
 			}
@@ -491,6 +521,37 @@ namespace Gala
 			}
 		}
 
+		void actor_added_compositor (Clutter.Actor added)
+		{
+			if (blur_actor != null || added.get_name () != "blur-actor") {
+				return;
+			}
+
+			var source = (BlurActor)added;
+
+			blur_actor = new BlurActor (null);
+			blur_actor.opacity = source.opacity;
+			blur_actor.blur_clip_rect = source.blur_clip_rect;
+
+			source.notify["opacity"].connect (() => blur_actor.opacity = source.opacity);
+			source.clip_updated.connect (() => {
+				blur_actor.blur_clip_rect = source.blur_clip_rect;
+				queue_relayout ();
+			});
+
+			insert_child_at_index (blur_actor, 0);
+		}
+
+		void actor_removed_compositor (Clutter.Actor removed)
+		{
+			if (blur_actor == null || removed.get_name () != "blur-actor") {
+				return;
+			}
+
+			blur_actor.destroy ();
+			blur_actor = null;
+		}
+
 		/**
 		 * A drag action has been initiated on us, we reparent ourselves to the stage so
 		 * we can move freely, scale ourselves to a smaller scale and request that the
@@ -544,7 +605,7 @@ namespace Gala
 
 		/**
 		 * When we cross an IconGroup, we animate to an even smaller size and slightly
-		 * less opacity and add ourselves as temporary window to the group. When left, 
+		 * less opacity and add ourselves as temporary window to the group. When left,
 		 * we reverse those steps.
 		 */
 		void drag_destination_crossed (Actor destination, bool hovered)
@@ -689,4 +750,3 @@ namespace Gala
 		}
 	}
 }
-

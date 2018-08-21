@@ -20,6 +20,8 @@ Get involved, fork and send a pull request
 
 ## Thank you
 
+[EasyDevCpp](https://github.com/EasyDevCpp) - Development
+
 [Malysps](https://github.com/malysps) - Testing
 
 [JonnyCodeWalker](https://github.com/JonnyCodewalker) - Testing 
