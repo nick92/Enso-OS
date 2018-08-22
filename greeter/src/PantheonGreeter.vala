@@ -390,10 +390,14 @@ public class PantheonGreeter : Gtk.Window {
                 settings.set_boolean ("greeter", "activate-numlock", !activate_numlock);
                 break;
             case Gdk.Key.Left:
-                userlist.select_prev_user ();
+                if (userlist.size > 2) {
+                    userlist.select_prev_user ();
+                }
                 break;
             case Gdk.Key.Right:
-                userlist.select_next_user ();
+                if (userlist.size > 2) {
+                    userlist.select_next_user ();
+                }
                 break;
             default:
                 return false;
