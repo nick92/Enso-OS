@@ -8,7 +8,7 @@ blur effeet can be enabled by amending greeter.conf in /etc/lightdm and setting 
 
 ## Building and Installation
 
-You'll need the following dependencies:
+You'll need the following dependencies(Ubuntu):
 
 * cmake
 * libclutter-gtk-1.0-dev
@@ -16,6 +16,18 @@ You'll need the following dependencies:
 * libgee-0.8-dev
 * libgtk-3-dev
 * liblightdm-gobject-1-dev
+* libx11-dev
+* valac
+
+You'll need the following dependencies(Debian):
+
+* cmake
+* libclutter-gtk-1.0-dev
+* libgdk-pixbuf2.0-dev
+* libgee-0.8-dev
+* libgtk-3-dev
+* liblightdm-gobject-dev
+* lightdm-vala
 * libx11-dev
 * valac
 
