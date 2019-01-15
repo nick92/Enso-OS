@@ -170,6 +170,7 @@ public class CredentialsArea : Gtk.Revealer {
                 return;
         }
         grid.attach (credentials, 0, 1, 1, 1);
+        credentials.grab_focus(); // grab facus on init
         credentials.replied.connect ((answer) => {
             replied (answer);
         });

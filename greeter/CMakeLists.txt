@@ -59,7 +59,6 @@ vala_precompile (VALA_C
 
     src/Widgets/CredentialsArea.vala
     src/Widgets/DeepinBlurEffect.vala
-    src/Widgets/BlurActor.vala
     src/Widgets/FingerprintCredentials.vala
     src/Widgets/LoginBox.vala
     src/Widgets/LoginButtonCredentials.vala
