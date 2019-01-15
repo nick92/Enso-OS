@@ -152,7 +152,6 @@ namespace Plank
 		 */
 		public Gee.Collection<Docklet> list_docklets ()
 		{
-			warning("returning docklets");
 			return docklets.values;
 		}
 

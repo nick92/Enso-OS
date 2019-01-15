@@ -172,7 +172,7 @@ namespace Gala
 			});
 			append (show_desktop);
 
-			workspace_view = new Gtk.MenuItem.with_label (_("Workspace View"));
+			workspace_view = new Gtk.MenuItem.with_label (_("Multitasking View"));
 			workspace_view.activate.connect (() => {
 				try {
 					wm.perform_action (ActionType.SHOW_WORKSPACE_VIEW);

@@ -53,13 +53,16 @@ namespace Docky
 		protected override AnimationType on_clicked (PopupButton button, Gdk.ModifierType mod, uint32 event_time)
 		{
 			try {
-				GalaDBus galaDBus = Bus.get_proxy_sync (BusType.SESSION, "org.pantheon.gala", "/org/pantheon/gala");
-				  
-				galaDBus.perform_action(1);
+				if (button == PopupButton.LEFT) {
+					GalaDBus galaDBus = Bus.get_proxy_sync (BusType.SESSION, "org.pantheon.gala", "/org/pantheon/gala");
+					
+					galaDBus.perform_action(1);
+					return AnimationType.LIGHTEN;
+				}
 			}catch(Error ex){
 				error (ex.message);
 			}
-			return AnimationType.BOUNCE;
+			return AnimationType.NONE;
 		}
 	}
 }
