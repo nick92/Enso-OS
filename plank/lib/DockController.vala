@@ -40,6 +40,7 @@ namespace Plank
 		public DockRenderer renderer { get; protected set; }
 		public DockWindow window { get; protected set; }
 		public HoverWindow hover { get; protected set; }
+		public PopoverWindow popover { get; protected set; }
 
 		public DockItemProvider? default_provider { get; private set; }
 
@@ -100,6 +101,7 @@ namespace Plank
 			hide_manager = new HideManager (this);
 			window = new DockWindow (this);
 			hover = new HoverWindow ();
+			popover = new PopoverWindow ();
 			renderer = new DockRenderer (this, window);
 		}
 

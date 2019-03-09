@@ -608,10 +608,7 @@ namespace Plank
 		public void get_icon_location (out int x, out int y)
 		{
 			var controller = get_dock ();
-			x = 0;
-			y = 0;
-
-			controller.position_manager.get_dockitem_position(this, out x, out y);
+			controller.position_manager.get_hover_position(this, out x, out y);
 		}
 
 		/**

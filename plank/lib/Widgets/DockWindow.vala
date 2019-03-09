@@ -133,11 +133,11 @@ namespace Plank
 				update_hovered ((int) event.x, (int) event.y);
 			
 			ClickedItem = HoveredItem;
-			
+
 			// Check and try to show the menu
 			if (show_menu (HoveredItem, event))
 				return Gdk.EVENT_STOP;
-			
+
 			long_press_active = false;
 			long_press_button = event.button;
 			if (long_press_timer_id > 0U)
@@ -216,6 +216,8 @@ namespace Plank
 				set_hovered (null);
 			} else
 				controller.hover.hide ();
+
+			controller.popover.hide ();
 			
 			return Gdk.EVENT_STOP;
 		}
@@ -365,6 +367,7 @@ namespace Plank
 				return;
 			
 			controller.hover.hide ();
+			controller.popover.hide ();
 			
 			if (HoveredItem == null
 				|| !controller.prefs.TooltipsEnabled
