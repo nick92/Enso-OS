@@ -319,21 +319,29 @@ namespace Plank
 		 */
 		protected override AnimationType on_clicked (PopupButton button, Gdk.ModifierType mod, uint32 event_time)
 		{
-			if (!is_window ())
+			if (!is_window ()){
 				if (button == PopupButton.MIDDLE
 					|| (button == PopupButton.LEFT && (App == null || App.get_windows ().length () == 0
 					|| (mod & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK))) {
 					launch ();
 					return AnimationType.BOUNCE;
 				}
-			
-			if (button == PopupButton.LEFT && App != null && App.get_windows ().length () > 0) {
+			}
+
+			if (button == PopupButton.LEFT && App != null && App.get_windows ().length () == 1) {
 				WindowControl.smart_focus (App, event_time);
 				return AnimationType.DARKEN;
 			}
-			
+
+			if (button == PopupButton.LEFT && App != null && App.get_windows ().length () > 1) {
+				WindowControl.cycle_windows (App, event_time);
+				return AnimationType.DARKEN;
+			}
+
+
 			return AnimationType.NONE;
 		}
+
 		
 		/**
 		 * {@inheritDoc}
@@ -345,13 +353,13 @@ namespace Plank
 			
 			if (GLib.get_monotonic_time () - LastScrolled < ITEM_SCROLL_DURATION * 1000)
 				return AnimationType.DARKEN;
-			
+
 			LastScrolled = GLib.get_monotonic_time ();
 			
 			if (direction == Gdk.ScrollDirection.UP || direction == Gdk.ScrollDirection.LEFT)
-				WindowControl.focus_previous (App, event_time);
+				WindowControl.restore(App, event_time);
 			else
-				WindowControl.focus_next (App, event_time);
+				WindowControl.minimize (App);
 			
 			return AnimationType.DARKEN;
 		}

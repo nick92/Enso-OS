@@ -224,6 +224,20 @@ namespace Plank
 					window.close (event_time);
 			}
 		}
+
+		public static void minimize_all (Bamf.Application app, uint32 event_time)
+		{
+			Wnck.Screen.get_default ();
+			Array<uint32>? xids = app.get_xids ();
+
+			warn_if_fail (xids != null);
+
+			for (var i = 0; xids != null && i < xids.length; i++) {
+				unowned Wnck.Window window = Wnck.Window.@get (xids.index (i));
+				if (window != null && !window.is_skip_tasklist ())
+					window.minimize ();
+			}
+		}
 		
 		public static void focus_window (Bamf.Window window, uint32 event_time)
 		{
@@ -298,6 +312,38 @@ namespace Plank
 				i = 0;
 			
 			focus_window_by_xid (xids.index (i), event_time);
+		}
+
+		public static void cycle_windows(Bamf.Application app, uint32 event_time)
+		{
+			Wnck.Screen.get_default ();
+			Array<uint32>? xids = app.get_xids ();
+			var i = 0;
+
+			var stack = get_ordered_window_stack (app);
+			stack.reverse ();
+
+			foreach (unowned Wnck.Window window in stack) {
+				unowned Wnck.Workspace? active_workspace = window.get_screen ().get_active_workspace ();
+				if (active_workspace != null && window.is_in_viewport (active_workspace)) {
+					if(!window.is_active()){
+						center_and_focus_window (window, event_time);
+						break;
+					}
+					else {
+						focus_next(app, event_time);
+						break;
+					}
+				}
+			}
+
+			warn_if_fail (xids != null);
+
+			if (xids == null)
+				return;
+
+			if (i == xids.length)
+				i = 0;
 		}
 		
 		public static void minimize (Bamf.Application app)
