@@ -93,13 +93,13 @@ public class UserList : Object {
         int i = user.index;
         if(i < size - 1)
             return get_user (i + 1);
-        return get_user (0);
+        return get_user (size - 1);
     }
 
     public LoginOption get_prev (LoginOption user) {
         int i = user.index;
         if(i > 0)
             return get_user (i - 1);
-        return get_user (size - 1);
+        return get_user (0);
     }
 }

@@ -70,6 +70,7 @@ public class CredentialsArea : Gtk.Revealer {
         var settings = new Gtk.ToggleButton ();
         settings.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         settings.image = new Gtk.Image.from_icon_name ("application-menu-symbolic", Gtk.IconSize.MENU);
+        settings.get_style_context ().add_class ("button");
         settings.set_size_request (32, 32);
         settings.valign = Gtk.Align.CENTER;
 
@@ -144,6 +145,8 @@ public class CredentialsArea : Gtk.Revealer {
         if (login_name_entry != null) {
             grid.grab_focus();
         }
+
+        login_name_entry.grab_focus();
     }
 
     public void show_message (LightDM.MessageType type, MessageText messagetext = MessageText.OTHER, string text = "") {
