@@ -59,11 +59,7 @@ Run `meson build` to configure the build environment. Change to the build direct
     cd build
     ninja
 
-You can set the `documentation` option to `true` to build the documentation. In the build directory, use `meson configure`
-
-    meson configure -Ddocumentation=true
-
-To install, use `ninja install`, then execute with `gala --replace`
+To install, use `ninja install`, then execute with `plank`
 
     sudo ninja install
-    gala --replace
+    plank
