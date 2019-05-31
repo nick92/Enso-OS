@@ -1,6 +1,6 @@
 /***
 
-    Copyright (C) 2018 Enso Developers
+    Copyright (C) 2019 Enso Developers
 
     This program is free software: you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License version 3, as
