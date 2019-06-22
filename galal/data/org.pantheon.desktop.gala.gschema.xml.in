@@ -95,6 +95,11 @@
 	</schema>
 	
 	<schema path="/org/pantheon/desktop/gala/keybindings/" id="org.pantheon.desktop.gala.keybindings" gettext-domain="@GETTEXT_PACKAGE@">
+		<key type="as" name="focus-current">
+			<default><![CDATA[['<Super>f']]]></default>
+			<summary>Focus on current window</summary>
+			<description></description>
+		</key>
 		<key type="as" name="show-workspace-view">
 			<default><![CDATA[['<Super>a']]]></default>
 			<summary>Display Multitasking View</summary>

@@ -241,14 +241,14 @@ gala_base_dep = [glib_dep, gee_dep, gtk_dep, plank_dep, bamf_dep, mutter_dep, gr
 subdir('data')
 subdir('lib')
 subdir('src')
-subdir('plugins/maskcorners')
+#subdir('plugins/maskcorners')
 subdir('plugins/notify')
 #subdir('plugins/pip')
-subdir('plugins/template')
+#subdir('plugins/template')
 subdir('plugins/zoom')
 if get_option('documentation')
 	subdir('docs')
 endif
 subdir('po')
 
-#meson.add_install_script('build-aux/meson/post_install.py')
+meson.add_install_script('meson/post_install.py')

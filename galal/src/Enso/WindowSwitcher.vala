@@ -150,7 +150,6 @@ namespace Gala
 				if (!opened) {
 					collect_windows (display, workspace);
 					open_switcher ();
-
 					update_indicator_position ();
 				}
 
