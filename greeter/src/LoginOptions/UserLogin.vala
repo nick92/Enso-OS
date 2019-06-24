@@ -29,7 +29,7 @@ public class UserLogin : LoginOption {
         
         warning(lightdm_user.background);
         
-        if (lightdm_user.background == null) {
+        //if (lightdm_user.background == null) {
             try {
                 string path = Path.build_filename ("/var", "lib", "lightdm-data", lightdm_user.name, "wallpaper");
                 var background_directory = File.new_for_path (path);
@@ -48,11 +48,11 @@ public class UserLogin : LoginOption {
                 background_path = path;
             } catch (Error e) {
                 warning (e.message);
-                background_path = "";
+                background_path = lightdm_user.background;
             }
-        } else {
+        /*} else {
             background_path = lightdm_user.background;
-        }
+        }*/
     }
 
     public override string? avatar_path {

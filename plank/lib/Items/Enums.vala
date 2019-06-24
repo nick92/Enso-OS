@@ -39,7 +39,11 @@ namespace Plank
 		/**
 		 * Brighten the icon, then restore it.
 		 */
-		LIGHTEN
+		LIGHTEN,
+		/**
+		 * Pop up the icon, then restore it.
+		 */
+		POPUP
 	}
 	
 	/**

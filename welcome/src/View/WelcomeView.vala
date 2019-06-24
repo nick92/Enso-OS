@@ -1,6 +1,6 @@
 /***
 
-    Copyright (C) 2018 Enso Developers
+    Copyright (C) 2019 Enso Developers
 
     This program is free software: you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License version 3, as
@@ -21,14 +21,14 @@ namespace Welcome {
 	public class WelcomeView : Gtk.EventBox {
 
 		private Granite.Widgets.Welcome enso_welcome;
-		private Gtk.Image 				rose_image;
-		private Gtk.Grid				grid;
+		private Gtk.Image rose_image;
+		private Gtk.Grid grid;
 
 		construct {
 			/**
            *  Initialize the GUI components
    	 */
-      enso_welcome = new Granite.Widgets.Welcome (_("Welcome to Enso!"), _("0.3 - Rabling Rose"));
+      enso_welcome = new Granite.Widgets.Welcome (_("Welcome to Enso!"), _("0.3.1 - Dancing Daisy"));
 
 			rose_image = new Gtk.Image.from_pixbuf (new Gdk.Pixbuf.from_resource_at_scale ("/org/enso/welcome/icon/flower.svg", 400, 400, true));
 

@@ -263,6 +263,14 @@ namespace Gala
 				}
 			});
 
+			display.add_keybinding ("focus-current", keybinding_schema, 0, () => {
+				try {
+					perform_action (ActionType.FOCUS_CURRENT);
+				} catch (Error e) {
+					warning (e.message);
+				}
+			});
+
 			display.add_keybinding ("show-workspace-view", keybinding_schema, 0, () => {
 				if (workspace_view.is_opened ())
 					workspace_view.close ();
@@ -671,6 +679,12 @@ namespace Gala
 				case ActionType.MINIMIZE_ALL:
 					foreach (var window in workspace.list_windows ()) {
 						if (window != null && window.window_type == WindowType.NORMAL)
+							window.minimize ();
+					}
+					break;
+				case ActionType.FOCUS_CURRENT:
+					foreach (var window in workspace.list_windows ()) {
+						if (window != null && window != current && window.window_type == WindowType.NORMAL)
 							window.minimize ();
 					}
 					break;

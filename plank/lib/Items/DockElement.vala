@@ -160,7 +160,7 @@ namespace Plank
 		 */
 		protected virtual AnimationType on_hovered ()
 		{
-			return AnimationType.LIGHTEN;
+			return AnimationType.POPUP;
  		}
 		
 		/**

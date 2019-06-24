@@ -600,11 +600,17 @@ namespace Plank
 				case AnimationType.NONE:
 					break;
 				case AnimationType.LIGHTEN:
+						draw_value.lighten = hover_animation_progress * 0.2;
+					break;
+				case AnimationType.POPUP:
 					draw_value.lighten = hover_animation_progress * 0.2;
+					if (screen_is_composited)
+						y_offset += 2;
 					break;
 				}
 			} else if (hovered_item == item) {
 				draw_value.lighten = 0.2;
+				y_offset += 2;
 			}
 			
 			if (hovered_item == item && controller.window.menu_is_visible ())
