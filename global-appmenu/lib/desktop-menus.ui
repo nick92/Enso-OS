@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="vala-panel-appmenu">
+  <menu id="appmenu-desktop">
+    <section>
+        <item>
+          <attribute name="label" translatable="yes">_Desktop Settings</attribute>
+          <attribute name="action">menu.desktop-settings</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">_System Settings</attribute>
+          <attribute name="action">menu.control-center</attribute>
+        </item>
+    </section>
+  </menu>
+  <menu id="menubar">
+      <submenu id="files">
+          <attribute name="label" translatable="yes">_Files</attribute>
+          <attribute name="submenu-action">menu.populate-files</attribute>
+      </submenu>
+      <submenu id="docs">
+          <attribute name="label" translatable="yes">_Documents</attribute>
+          <attribute name="submenu-action">menu.populate-docs</attribute>
+      </submenu>
+      <submenu id="music">
+          <attribute name="label" translatable="yes">_Music</attribute>
+          <attribute name="submenu-action">menu.populate-music</attribute>
+      </submenu>
+      <submenu id="picts">
+          <attribute name="label" translatable="yes">_Pictures</attribute>
+          <attribute name="submenu-action">menu.populate-picts</attribute>
+      </submenu>
+      <submenu id="video">
+          <attribute name="label" translatable="yes">_Video</attribute>
+          <attribute name="submenu-action">menu.populate-video</attribute>
+      </submenu>
+  </menu>
+  <menu id="appmenu-stub">
+      <section>
+		  <item>
+		      <attribute name="label" translatable="yes">_New</attribute>
+		      <attribute name="action">conf.new</attribute>
+		      <attribute name="hidden-when">action-missing</attribute>
+		  </item>
+	  </section>
+	  <section id="desktop-actions">
+	  </section>
+	  <section id="unity-actions">
+	  </section>
+      <section>
+		  <item>
+		      <attribute name="label" translatable="yes">_Quit</attribute>
+		      <attribute name="action">conf.quit</attribute>
+		      <attribute name="hidden-when">action-missing</attribute>
+		  </item>
+	  </section>
+  </menu>
+</interface>
