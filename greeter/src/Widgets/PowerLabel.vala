@@ -19,8 +19,8 @@
 */
 
 public class PowerLabel : Gtk.Grid {
-    private Gtk.Button restart_button;
-    private Gtk.Button shutdown_button;
+    //  private Gtk.Button restart_button;
+    //  private Gtk.Button shutdown_button;
     private Gtk.ListBox settings_list;
     private Gtk.EventBox eventbox_shutdown;
     private Gtk.EventBox eventbox_restart;
@@ -36,7 +36,7 @@ public class PowerLabel : Gtk.Grid {
       var settings = new Gtk.ToggleButton ();
       settings.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
       settings.get_style_context ().add_class ("power");
-      settings.image = new Gtk.Image.from_file (Constants.PKGDATADIR + "/power.svg");
+      settings.image = new Gtk.Image.from_resource ("/io/elementary/greeter/power.svg");
       settings.set_size_request (45, 45);
       settings.valign = Gtk.Align.CENTER;
 

@@ -40,16 +40,16 @@ public class Wallpaper : Gtk.Stack {
     }
 
     construct {
-        /*GL.GLint result = 1;
+        GL.GLint result = 1;
         GL.glGetIntegerv(GL.GL_MAX_TEXTURE_SIZE, out result);
-        gpu_limit = result;*/
+        gpu_limit = result;
     }
 
     string get_default () {
         var settings = new KeyFile ();
         string default_wallpaper="";
         try {
-            settings.load_from_file (Constants.CONF_DIR + "/greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+            settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
             default_wallpaper = settings.get_string ("greeter", "default-wallpaper");
         } catch (Error e) {
             warning (e.message);
@@ -127,7 +127,7 @@ public class Wallpaper : Gtk.Stack {
             wallpapers.append (new_wallpaper);
 
         } catch (IOError.CANCELLED e) {
-            message (@"Cancelled to load '$path'");
+            warning (@"Cancelled to load '$path'");
             // do nothing, we cancelled on purpose
         } catch (Error e) {
             if (get_default() != path) {

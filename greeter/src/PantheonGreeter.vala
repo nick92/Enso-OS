@@ -32,9 +32,8 @@ public class PantheonGreeter : Gtk.Window {
     Clutter.Actor greeterbox;
     UserListActor userlist_actor;
     UserList userlist;
-    GtkClutter.Actor indicator_bar_actor;
+    //  GtkClutter.Actor indicator_bar_actor;
     Wallpaper wallpaper;
-    DeepinBlurEffect blur_effect_actor;
 
     int timeout;
     int interval;
@@ -160,7 +159,7 @@ public class PantheonGreeter : Gtk.Window {
 
         if(blur_effect)
         {
-            blur_effect_actor.setup(wallpaper_actor, g_width, g_height, setting_brightness, 10);
+            DeepinBlurEffect.setup(wallpaper_actor, g_width, g_height, setting_brightness, 10);
         }
 
         monitors_changed ();
@@ -550,7 +549,7 @@ string get_defaults (string default) {
     var settings = new KeyFile ();
     string ret = "";
     try {
-        settings.load_from_file (Constants.CONF_DIR + "/greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+        settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
         switch(default){
           case("gtk-theme"):
             ret = settings.get_string ("greeter", "gtk-theme");

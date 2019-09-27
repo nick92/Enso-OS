@@ -2,5 +2,8 @@
 <gresources>
   <gresource prefix="/io/elementary/greeter/">
     <file alias="Greeter.css" compressed="true">Greeter.css</file>
+    <file alias="power.svg" compressed="true">power.svg</file>
+    <file alias="fingerprint.svg" compressed="true">fingerprint.svg</file>
+    <file alias="checked.svg" compressed="true">checked.svg</file>
   </gresource>
 </gresources>
