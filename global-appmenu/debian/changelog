@@ -1,0 +1,53 @@
+vala-panel-appmenu (0.2.8-1) vivid; urgency=medium
+
+  * New upstream version
+
+ -- Konstantin <ria.freelander@gmail.com>  Sat, 23 May 2015 10:19:47 +0600
+
+vala-panel-appmenu (0.2.7-1) vivid; urgency=medium
+
+  * New upstream version
+
+ -- Konstantin <ria.freelander@gmail.com>  Sun, 03 May 2015 10:19:47 +0600
+
+vala-panel-appmenu (0.2.6.2-1) vivid; urgency=medium
+
+  * New upstream version
+
+ -- Konstantin <ria.freelander@gmail.com>  Sun, 03 May 2015 10:19:47 +0600
+
+vala-panel-appmenu (0.2.6.1-1) vivid; urgency=medium
+
+  * New upstream version
+
+ -- Konstantin <ria.freelander@gmail.com>  Sat, 02 May 2015 10:19:47 +0600
+
+vala-panel-appmenu (0.2.6-1) vivid; urgency=medium
+
+  * New upstream version
+
+ -- Konstantin <ria.freelander@gmail.com>  Tue, 28 Apr 2015 20:19:47 +0600
+
+vala-panel-appmenu (0.2.5-2) vivid; urgency=medium
+
+  * Fixed xfce4-panel-dev makedepend
+
+ -- Konstantin <ria.freelander@gmail.com>  Mon, 27 Apr 2015 20:19:47 +0600
+
+vala-panel-appmenu (0.2.5-1) vivid; urgency=medium
+
+  * New upstream version
+
+ -- Konstantin <ria.freelander@gmail.com>  Mon, 27 Apr 2015 20:19:47 +0600
+
+vala-panel-appmenu (0.2.4.1-1ubuntu1) vivid; urgency=medium
+
+  * Fixed valac builddep
+
+ -- Konstantin <ria.freelander@gmail.com>  Sun, 26 Apr 2015 20:19:47 +0600
+
+vala-panel-appmenu (0.2.4.1-1) vivid; urgency=low
+
+  * Initial release
+
+ -- Konstantin <ria.freelander@gmail.com>  Sat, 25 Apr 2015 00:57:09 +0600

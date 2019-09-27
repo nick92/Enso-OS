@@ -1,0 +1,7 @@
+src/Plug.vala
+src/Backend/MouseSettings.vala
+src/Backend/TouchpadSettings.vala
+src/Views/General.vala
+src/Views/Mouse.vala
+src/Views/Touchpad.vala
+src/Widgets/SettingLabel.vala

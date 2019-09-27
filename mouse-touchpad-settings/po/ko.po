@@ -1,0 +1,230 @@
+# Korean translation for switchboard-plug-mouse-touchpad
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the switchboard-plug-mouse-touchpad package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-mouse-touchpad\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-26 22:45+0200\n"
+"PO-Revision-Date: 2019-02-28 04:39+0000\n"
+"Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
+"Language-Team: Korean <http://weblate.elementary.io/projects/switchboard/"
+"switchboard-plug-mouse-touchpad/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.4\n"
+"X-Launchpad-Export-Date: 2017-02-16 06:46+0000\n"
+
+#: src/Plug.vala:43
+msgid "Mouse & Touchpad"
+msgstr "마우스 & 터치패드"
+
+#: src/Plug.vala:44
+msgid "Configure mouse and touchpad"
+msgstr "마우스와 터치패드를 설정합니다"
+
+#: src/Plug.vala:63
+msgid "General"
+msgstr "일반 설정"
+
+#: src/Plug.vala:64 src/Plug.vala:117 src/Plug.vala:118 src/Plug.vala:119
+#: src/Plug.vala:120
+msgid "Mouse"
+msgstr "마우스"
+
+#: src/Plug.vala:65 src/Plug.vala:121 src/Plug.vala:122 src/Plug.vala:123
+#: src/Plug.vala:124 src/Plug.vala:125 src/Plug.vala:126 src/Plug.vala:127
+#: src/Plug.vala:128
+msgid "Touchpad"
+msgstr "터치패드"
+
+#: src/Plug.vala:110
+msgid "Primary button"
+msgstr "실행 버튼"
+
+#: src/Plug.vala:111
+msgid "Reveal pointer"
+msgstr "포인터 표시"
+
+#: src/Plug.vala:112
+msgid "Long-press secondary click"
+msgstr "길게 누르기로 보조 클릭"
+
+#: src/Plug.vala:113
+msgid "Long-press length"
+msgstr "길게 누르기 시간"
+
+#: src/Plug.vala:114
+msgid "Middle click paste"
+msgstr "가운데 클릭 붙여 넣기"
+
+#: src/Plug.vala:115
+msgid "Control pointer using keypad"
+msgstr "키패드로 포인터 조종하기"
+
+#: src/Plug.vala:116
+msgid "Keypad pointer speed"
+msgstr "키패드 포인터 속도"
+
+#: src/Plug.vala:118 src/Plug.vala:122
+msgid "Pointer speed"
+msgstr "포인터 속도"
+
+#: src/Plug.vala:119
+msgid "Pointer acceleration"
+msgstr "포인터 가속"
+
+#: src/Plug.vala:120 src/Plug.vala:126
+msgid "Natural scrolling"
+msgstr "자연스러운 스크롤"
+
+#: src/Plug.vala:123
+msgid "Tap to click"
+msgstr "탭 해서 클릭"
+
+#: src/Plug.vala:124
+msgid "Physical clicking"
+msgstr "클릭 방식"
+
+#: src/Plug.vala:125
+msgid "Scrolling"
+msgstr "스크롤"
+
+#: src/Plug.vala:127
+msgid "Ignore while typing"
+msgstr "타이핑할 땐 끄기"
+
+#: src/Plug.vala:128
+msgid "Ignore when mouse is connected"
+msgstr "마우스를 연결하면 끄기"
+
+#: src/Views/General.vala:30
+msgid "Primary button:"
+msgstr "실행 버튼:"
+
+#: src/Views/General.vala:34
+msgid "Left"
+msgstr "왼쪽"
+
+#: src/Views/General.vala:37
+msgid "Right"
+msgstr "오른쪽"
+
+#: src/Views/General.vala:73
+msgid "Pressing the control key will highlight the position of the pointer"
+msgstr "ctrl 키를 누르면 포인터 위치를 표시합니다"
+
+#: src/Views/General.vala:79
+msgid "Long-press secondary click:"
+msgstr "길게 누르기로 보조 클릭:"
+
+#: src/Views/General.vala:84
+msgid "Long-pressing and releasing the primary button will secondary click."
+msgstr "실행 버튼을 길게 눌렀다 놓으면 보조 클릭 기능을 합니다."
+
+#: src/Views/General.vala:90
+msgid "Length:"
+msgstr ""
+
+#: src/Views/General.vala:106
+msgid "Speed:"
+msgstr ""
+
+#: src/Views/General.vala:112
+msgid "This disables both levels of keys on the numeric keypad."
+msgstr "숫자 키패드에 있는 두 레벨의 키를 모두 비활성화합니다."
+
+#: src/Views/General.vala:131
+msgid "Reveal pointer:"
+msgstr "포인터 표시:"
+
+#: src/Views/General.vala:135
+msgid "Control pointer using keypad:"
+msgstr "키패드로 포인터 조종하기:"
+
+#: src/Views/General.vala:146
+msgid ""
+"Middle or three-finger clicking on an input will paste any selected text"
+msgstr "가운데 또는 세 손가락으로 입력을 클릭하면 선택한 텍스트가 붙여집니다"
+
+#: src/Views/General.vala:152
+msgid "Middle click paste:"
+msgstr "가운데 클릭 붙여 넣기:"
+
+#: src/Views/Mouse.vala:30 src/Views/Touchpad.vala:48
+msgid "Hardware default"
+msgstr "하드웨어 기본값"
+
+#: src/Views/Mouse.vala:31
+msgid "None"
+msgstr "안 함"
+
+#: src/Views/Mouse.vala:32
+msgid "Adaptive"
+msgstr "감응식"
+
+#: src/Views/Mouse.vala:40 src/Views/Touchpad.vala:86
+msgid "Pointer speed:"
+msgstr "포인터 속도:"
+
+#: src/Views/Mouse.vala:42
+msgid "Pointer acceleration:"
+msgstr "포인터 가속:"
+
+#: src/Views/Mouse.vala:46 src/Views/Touchpad.vala:95
+msgid "Natural scrolling:"
+msgstr "자연스러운 스크롤:"
+
+#: src/Views/Touchpad.vala:49
+msgid "Multitouch"
+msgstr "멀티터치"
+
+#: src/Views/Touchpad.vala:50
+msgid "Touchpad areas"
+msgstr "터치패드 안에서"
+
+#: src/Views/Touchpad.vala:64
+msgid "Two-finger"
+msgstr "두 손가락"
+
+#: src/Views/Touchpad.vala:65
+msgid "Edge"
+msgstr "모서리"
+
+#: src/Views/Touchpad.vala:66
+msgid "Disabled"
+msgstr "사용 안 함"
+
+#: src/Views/Touchpad.vala:88
+msgid "Tap to click:"
+msgstr "탭 해서 클릭:"
+
+#: src/Views/Touchpad.vala:90
+msgid "Physical clicking:"
+msgstr "클릭 방식:"
+
+#: src/Views/Touchpad.vala:93
+msgid "Scrolling:"
+msgstr "스크롤:"
+
+#: src/Views/Touchpad.vala:97
+msgid "Ignore while typing:"
+msgstr "타이핑할 땐 끄기:"
+
+#: src/Views/Touchpad.vala:99
+msgid "Ignore when mouse is connected:"
+msgstr "마우스를 연결하면 끄기:"
+
+#~ msgid "Long-press length:"
+#~ msgstr "길게 누르기 시간:"
+
+#~ msgid "Keypad pointer speed:"
+#~ msgstr "키패드 포인터 속도:"
+
+#~ msgid "Disable while typing"
+#~ msgstr "타이핑할 땐 끄기"

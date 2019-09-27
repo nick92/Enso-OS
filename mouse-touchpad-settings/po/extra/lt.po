@@ -1,0 +1,30 @@
+# Lithuanian translations for extra package.
+# Copyright (C) 2018 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-26 22:45+0200\n"
+"PO-Revision-Date: 2019-05-16 09:14+0000\n"
+"Last-Translator: Moo <hazap@hotmail.com>\n"
+"Language-Team: Lithuanian <https://l10n.elementary.io/projects/switchboard/"
+"mouse-touchpad-plug-extra/lt/>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
+"19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
+"1 : 2);\n"
+"X-Generator: Weblate 3.6.1\n"
+
+#: data/io.elementary.switchboard.mouse-touchpad.appdata.xml.in:5
+msgid "Mouse &amp; Touchpad Settings"
+msgstr "Pelės ir jutiklinio kilimėlio nustatymai"
+
+#: data/io.elementary.switchboard.mouse-touchpad.appdata.xml.in:6
+msgid "Configure mouse and touchpad"
+msgstr "Konfigūruoti pelę ir jutiklinį kilimėlį"

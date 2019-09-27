@@ -1,0 +1,19 @@
+Source: switchboard-plug-mouse-touchpad
+Section: x11
+Priority: optional
+Maintainer: elementary OS Team <builds@elementary.io>
+Build-Depends: debhelper (>= 10.5.1),
+               gettext,
+               libgranite-dev,
+               libswitchboard-2.0-dev,
+               meson,
+               valac (>= 0.22)
+Standards-Version: 4.1.1
+Homepage: https://github.com/elementary/switchboard-plug-mouse-touchpad
+
+Package: switchboard-plug-mouse-touchpad
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Enhances: switchboard
+Description: Mouse/Touchpad plug for Switchboard
+ This plug configures mouse and touchpad.

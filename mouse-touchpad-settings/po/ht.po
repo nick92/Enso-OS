@@ -1,0 +1,217 @@
+# Haitian translations for mouse-touchpad-plug package.
+# Copyright (C) 2018 THE mouse-touchpad-plug'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the mouse-touchpad-plug package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mouse-touchpad-plug\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-26 22:45+0200\n"
+"PO-Revision-Date: 2018-03-05 23:53+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ht\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Plug.vala:43
+msgid "Mouse & Touchpad"
+msgstr ""
+
+#: src/Plug.vala:44
+msgid "Configure mouse and touchpad"
+msgstr ""
+
+#: src/Plug.vala:63
+msgid "General"
+msgstr ""
+
+#: src/Plug.vala:64 src/Plug.vala:117 src/Plug.vala:118 src/Plug.vala:119
+#: src/Plug.vala:120
+msgid "Mouse"
+msgstr ""
+
+#: src/Plug.vala:65 src/Plug.vala:121 src/Plug.vala:122 src/Plug.vala:123
+#: src/Plug.vala:124 src/Plug.vala:125 src/Plug.vala:126 src/Plug.vala:127
+#: src/Plug.vala:128
+msgid "Touchpad"
+msgstr ""
+
+#: src/Plug.vala:110
+msgid "Primary button"
+msgstr ""
+
+#: src/Plug.vala:111
+msgid "Reveal pointer"
+msgstr ""
+
+#: src/Plug.vala:112
+msgid "Long-press secondary click"
+msgstr ""
+
+#: src/Plug.vala:113
+msgid "Long-press length"
+msgstr ""
+
+#: src/Plug.vala:114
+msgid "Middle click paste"
+msgstr ""
+
+#: src/Plug.vala:115
+msgid "Control pointer using keypad"
+msgstr ""
+
+#: src/Plug.vala:116
+msgid "Keypad pointer speed"
+msgstr ""
+
+#: src/Plug.vala:118 src/Plug.vala:122
+msgid "Pointer speed"
+msgstr ""
+
+#: src/Plug.vala:119
+msgid "Pointer acceleration"
+msgstr ""
+
+#: src/Plug.vala:120 src/Plug.vala:126
+msgid "Natural scrolling"
+msgstr ""
+
+#: src/Plug.vala:123
+msgid "Tap to click"
+msgstr ""
+
+#: src/Plug.vala:124
+msgid "Physical clicking"
+msgstr ""
+
+#: src/Plug.vala:125
+msgid "Scrolling"
+msgstr ""
+
+#: src/Plug.vala:127
+msgid "Ignore while typing"
+msgstr ""
+
+#: src/Plug.vala:128
+msgid "Ignore when mouse is connected"
+msgstr ""
+
+#: src/Views/General.vala:30
+msgid "Primary button:"
+msgstr ""
+
+#: src/Views/General.vala:34
+msgid "Left"
+msgstr ""
+
+#: src/Views/General.vala:37
+msgid "Right"
+msgstr ""
+
+#: src/Views/General.vala:73
+msgid "Pressing the control key will highlight the position of the pointer"
+msgstr ""
+
+#: src/Views/General.vala:79
+msgid "Long-press secondary click:"
+msgstr ""
+
+#: src/Views/General.vala:84
+msgid "Long-pressing and releasing the primary button will secondary click."
+msgstr ""
+
+#: src/Views/General.vala:90
+msgid "Length:"
+msgstr ""
+
+#: src/Views/General.vala:106
+msgid "Speed:"
+msgstr ""
+
+#: src/Views/General.vala:112
+msgid "This disables both levels of keys on the numeric keypad."
+msgstr ""
+
+#: src/Views/General.vala:131
+msgid "Reveal pointer:"
+msgstr ""
+
+#: src/Views/General.vala:135
+msgid "Control pointer using keypad:"
+msgstr ""
+
+#: src/Views/General.vala:146
+msgid ""
+"Middle or three-finger clicking on an input will paste any selected text"
+msgstr ""
+
+#: src/Views/General.vala:152
+msgid "Middle click paste:"
+msgstr ""
+
+#: src/Views/Mouse.vala:30 src/Views/Touchpad.vala:48
+msgid "Hardware default"
+msgstr ""
+
+#: src/Views/Mouse.vala:31
+msgid "None"
+msgstr ""
+
+#: src/Views/Mouse.vala:32
+msgid "Adaptive"
+msgstr ""
+
+#: src/Views/Mouse.vala:40 src/Views/Touchpad.vala:86
+msgid "Pointer speed:"
+msgstr ""
+
+#: src/Views/Mouse.vala:42
+msgid "Pointer acceleration:"
+msgstr ""
+
+#: src/Views/Mouse.vala:46 src/Views/Touchpad.vala:95
+msgid "Natural scrolling:"
+msgstr ""
+
+#: src/Views/Touchpad.vala:49
+msgid "Multitouch"
+msgstr ""
+
+#: src/Views/Touchpad.vala:50
+msgid "Touchpad areas"
+msgstr ""
+
+#: src/Views/Touchpad.vala:64
+msgid "Two-finger"
+msgstr ""
+
+#: src/Views/Touchpad.vala:65
+msgid "Edge"
+msgstr ""
+
+#: src/Views/Touchpad.vala:66
+msgid "Disabled"
+msgstr ""
+
+#: src/Views/Touchpad.vala:88
+msgid "Tap to click:"
+msgstr ""
+
+#: src/Views/Touchpad.vala:90
+msgid "Physical clicking:"
+msgstr ""
+
+#: src/Views/Touchpad.vala:93
+msgid "Scrolling:"
+msgstr ""
+
+#: src/Views/Touchpad.vala:97
+msgid "Ignore while typing:"
+msgstr ""
+
+#: src/Views/Touchpad.vala:99
+msgid "Ignore when mouse is connected:"
+msgstr ""

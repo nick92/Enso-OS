@@ -1,0 +1,234 @@
+# Italian translation for switchboard-plug-mouse-touchpad
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the switchboard-plug-mouse-touchpad package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: switchboard-plug-mouse-touchpad\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-18 11:17-0800\n"
+"PO-Revision-Date: 2019-07-02 14:46+0000\n"
+"Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
+"Language-Team: Italian <https://l10n.elementary.io/projects/switchboard/"
+"switchboard-plug-mouse-touchpad/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6.1\n"
+"X-Launchpad-Export-Date: 2017-03-03 06:05+0000\n"
+
+#: src/Plug.vala:43
+msgid "Mouse & Touchpad"
+msgstr "Mouse e touchpad"
+
+#: src/Plug.vala:44
+msgid "Configure mouse and touchpad"
+msgstr "Configura il mouse e il touchpad"
+
+#: src/Plug.vala:63
+msgid "General"
+msgstr "Generali"
+
+#: src/Plug.vala:64 src/Plug.vala:117 src/Plug.vala:118 src/Plug.vala:119
+#: src/Plug.vala:120
+msgid "Mouse"
+msgstr "Mouse"
+
+#: src/Plug.vala:65 src/Plug.vala:121 src/Plug.vala:122 src/Plug.vala:123
+#: src/Plug.vala:124 src/Plug.vala:125 src/Plug.vala:126 src/Plug.vala:127
+#: src/Plug.vala:128
+msgid "Touchpad"
+msgstr "Touchpad"
+
+#: src/Plug.vala:110
+msgid "Primary button"
+msgstr "Pulsante principale"
+
+#: src/Plug.vala:111
+msgid "Reveal pointer"
+msgstr "Rivela puntatore"
+
+#: src/Plug.vala:112
+msgid "Long-press secondary click"
+msgstr "Click secondario lungo"
+
+#: src/Plug.vala:113
+msgid "Long-press length"
+msgstr "Durata del click lungo"
+
+#: src/Plug.vala:114
+msgid "Middle click paste"
+msgstr "Incolla con un click centrale"
+
+#: src/Plug.vala:115
+msgid "Control pointer using keypad"
+msgstr "Controlla il puntatore utilizzando il tastierino numerico:"
+
+#: src/Plug.vala:116
+msgid "Keypad pointer speed"
+msgstr "Velocità del puntatore con il tastierino numerico:"
+
+#: src/Plug.vala:118 src/Plug.vala:122
+msgid "Pointer speed"
+msgstr "Velocità del puntatore"
+
+#: src/Plug.vala:119
+msgid "Pointer acceleration"
+msgstr "Accelerazione del puntatore"
+
+#: src/Plug.vala:120 src/Plug.vala:126
+msgid "Natural scrolling"
+msgstr "Scorrimento naturale"
+
+#: src/Plug.vala:123
+msgid "Tap to click"
+msgstr "Tocca per cliccare"
+
+#: src/Plug.vala:124
+msgid "Physical clicking"
+msgstr "Click fisico"
+
+#: src/Plug.vala:125
+msgid "Scrolling"
+msgstr "Scorrimento"
+
+#: src/Plug.vala:127
+msgid "Ignore while typing"
+msgstr "Disabilita durante la digitazione:"
+
+#: src/Plug.vala:128
+msgid "Ignore when mouse is connected"
+msgstr "Disabilita quando il mouse è connesso:"
+
+#: src/Views/General.vala:30
+msgid "Primary button:"
+msgstr "Pulsante principale:"
+
+#: src/Views/General.vala:34
+msgid "Left"
+msgstr "Sinistro"
+
+#: src/Views/General.vala:37
+msgid "Right"
+msgstr "Destro"
+
+#: src/Views/General.vala:73
+msgid "Pressing the control key will highlight the position of the pointer"
+msgstr "Premere il pulsante control evidenzierà la posizione del puntatore"
+
+#: src/Views/General.vala:79
+msgid "Long-press secondary click:"
+msgstr "Click secondario lungo:"
+
+#: src/Views/General.vala:84
+msgid "Long-pressing and releasing the primary button will secondary click."
+msgstr ""
+"La pressione prolungata e il rilascio del pulsante principale induce il "
+"click secondario."
+
+#: src/Views/General.vala:90
+msgid "Length:"
+msgstr ""
+
+#: src/Views/General.vala:106
+msgid "Speed:"
+msgstr ""
+
+#: src/Views/General.vala:112
+msgid "This disables both levels of keys on the numeric keypad."
+msgstr ""
+"Questo disabiliterà entrambi i livelli di tasti del tastierino numerico."
+
+#: src/Views/General.vala:131
+msgid "Reveal pointer:"
+msgstr "Rivela puntatore:"
+
+#: src/Views/General.vala:135
+msgid "Control pointer using keypad:"
+msgstr "Controlla il puntatore utilizzando il tastierino numerico:"
+
+#: src/Views/General.vala:146
+msgid ""
+"Middle or three-finger clicking on an input will paste any selected text"
+msgstr ""
+"Un click centrale o con tre dita su un campo incollerà il testo selezionato"
+
+#: src/Views/General.vala:152
+msgid "Middle click paste:"
+msgstr "Incolla con un click centrale:"
+
+#: src/Views/Mouse.vala:30 src/Views/Touchpad.vala:48
+msgid "Hardware default"
+msgstr "Predefinito dell'hardware"
+
+#: src/Views/Mouse.vala:31
+msgid "None"
+msgstr "Nessuna"
+
+#: src/Views/Mouse.vala:32
+msgid "Adaptive"
+msgstr "Adattativo"
+
+#: src/Views/Mouse.vala:40 src/Views/Touchpad.vala:86
+msgid "Pointer speed:"
+msgstr "Velocità del puntatore:"
+
+#: src/Views/Mouse.vala:42
+msgid "Pointer acceleration:"
+msgstr "Accelerazione del puntatore:"
+
+#: src/Views/Mouse.vala:46 src/Views/Touchpad.vala:95
+msgid "Natural scrolling:"
+msgstr "Scorrimento naturale:"
+
+#: src/Views/Touchpad.vala:49
+msgid "Multitouch"
+msgstr "Multitouch"
+
+#: src/Views/Touchpad.vala:50
+msgid "Touchpad areas"
+msgstr "Aree del touchpad"
+
+#: src/Views/Touchpad.vala:64
+msgid "Two-finger"
+msgstr "Due dita"
+
+#: src/Views/Touchpad.vala:65
+msgid "Edge"
+msgstr "Bordo"
+
+#: src/Views/Touchpad.vala:66
+msgid "Disabled"
+msgstr "Disabilitato"
+
+#: src/Views/Touchpad.vala:88
+msgid "Tap to click:"
+msgstr "Tocca per cliccare:"
+
+#: src/Views/Touchpad.vala:90
+msgid "Physical clicking:"
+msgstr "Click fisico:"
+
+#: src/Views/Touchpad.vala:93
+msgid "Scrolling:"
+msgstr "Scorrimento:"
+
+#: src/Views/Touchpad.vala:97
+msgid "Ignore while typing:"
+msgstr "Disabilita durante la digitazione:"
+
+#: src/Views/Touchpad.vala:99
+msgid "Ignore when mouse is connected:"
+msgstr "Ignora quando il mouse è connesso:"
+
+#~ msgid "Long-press length:"
+#~ msgstr "Durata del click lungo:"
+
+#~ msgid "Keypad pointer speed:"
+#~ msgstr "Velocità del puntatore con il tastierino numerico:"
+
+#~ msgid "Disable while typing"
+#~ msgstr "Disattiva durante la digitazione"
