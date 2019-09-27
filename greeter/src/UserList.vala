@@ -91,7 +91,7 @@ public class UserList : Object {
 
     public LoginOption get_next (LoginOption user) {
         int i = user.index;
-        if(i < size - 1)
+        if(i < size - 1 && size > 0)
             return get_user (i + 1);
         return get_user (size - 1);
     }

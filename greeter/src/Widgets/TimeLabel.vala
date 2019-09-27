@@ -50,9 +50,9 @@ public class TimeLabel : Gtk.Grid {
         var date = new GLib.DateTime.now_local ();
 
         /// Date display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
-        var day_format = _("%A, %B %e");
+        var day_format = _(get_date_format_config ());
         /// Time display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details
-        var time_format = _("%l:%M");
+        var time_format = _(get_time_format_config ());
         /// AM/PM display, see http://valadoc.org/#!api=glib-2.0/GLib.DateTime.format for more details. If you translate in a language that has no equivalent for AM/PM, keep the original english string.
         var meridiem_format = _(" %p");
 
@@ -60,5 +60,29 @@ public class TimeLabel : Gtk.Grid {
         time_label.label = date.format (time_format);
         pm_label.label = date.format (meridiem_format);
         return true;
+    }
+
+    string get_time_format_config () {
+        var settings = new KeyFile ();
+        string time_format="";
+        try {
+            settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+            time_format = settings.get_string ("greeter", "time-format");
+        } catch (Error e) {
+            return "%l:%M";
+        }
+        return time_format;
+    }
+
+    string get_date_format_config () {
+        var settings = new KeyFile ();
+        string date_format="%A, %B %e";
+        try {
+            settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+            date_format = settings.get_string ("greeter", "date-format");
+        } catch (Error e) {
+            return "%A, %B %e";
+        }
+        return date_format;
     }
 }

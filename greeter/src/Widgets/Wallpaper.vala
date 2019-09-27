@@ -130,9 +130,9 @@ public class Wallpaper : Gtk.Stack {
             warning (@"Cancelled to load '$path'");
             // do nothing, we cancelled on purpose
         } catch (Error e) {
-            if (get_default() != path) {
-                set_wallpaper (get_default ());
-            }
+            //  if (get_default() != path) {
+            //      set_wallpaper (get_default ());
+            //  }
             warning (@"Can't load: '$path' due to $(e.message)");
         }
     }
