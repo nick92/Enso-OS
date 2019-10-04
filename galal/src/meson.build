@@ -40,7 +40,7 @@ gala_bin_sources = files(
 	'Enso/BlurActor.vala',
 	'Enso/RendererInfo.vala',
 	'Enso/PreviewPage.vala',
-	'Enso/PreviewRow.vala',
+	# 'Enso/PreviewRow.vala',
 	'Enso/WindowSwitcher.vala',
 )
 

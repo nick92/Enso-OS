@@ -27,7 +27,6 @@ namespace Gala
 		public Meta.Window window { get; construct; }
 
 		public Clutter.Actor container { get; private set; }
-
 		private Clutter.Clone clone;
 
 		public WindowActorClone (Meta.WindowActor window_actor) {
@@ -87,7 +86,6 @@ namespace Gala
 		}
 
 		PreviewPage? current_page = null;
-		BlurActor? actor_blur = null;
 		Actor? background = null;
 
 		public EnsoWindowSwitcher (WindowManager wm)
@@ -107,12 +105,8 @@ namespace Gala
 			wrapper = new Actor ();
 
 			background = new Actor ();
-			background.background_color = { 0, 0, 0, 155 };
-			//actor_blur = new BlurActor (background);
-
-//			background.add_effect_with_name ("darken", new Clutter.BlurEffect ());
-			//DeepinBlurEffect.setup(background, 2, 2);
-
+			background.background_color = { 0, 0, 0, 150 };
+			
 			wrapper.reactive = true;
 			wrapper.set_pivot_point (0.5f, 0.5f);
 			wrapper.key_release_event.connect (key_relase_event);
@@ -195,7 +189,6 @@ namespace Gala
 			unowned List<Meta.WindowActor> actors = Compositor.get_window_actors (wm.get_screen ());
 			actors.@foreach ((actor) => {
 				if (actor.get_meta_window () == window) {
-					actor_blur = new BlurActor (actor);
 					window_actor = actor;
 					return;
 				}
@@ -318,9 +311,19 @@ namespace Gala
 				return true;
 			}
 
+			var settings = AlternateAltTabSettings.get_default ();
+			var workspace = settings.all_workspaces ? null : screen.get_active_workspace ();
+			var display = screen.get_display ();
+
 			switch (event.keyval) {
 				case Key.Escape:
 					close_switcher (event.time);
+					return true;
+				case Key.Right:
+					next_window (display, workspace, false);
+					return true;
+				case Key.Left:
+					next_window (display, workspace, true);
 					return true;
 			}
 

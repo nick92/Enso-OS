@@ -7,9 +7,9 @@ namespace Gala
 {
     public class PreviewPage : Clutter.Actor
     {
-    		const int SPACING = 12;
-    		const int PADDING = 24;
-    		const int MIN_OFFSET = 32;
+        const int SPACING = 12;
+        const int PADDING = 24;
+        const int MIN_OFFSET = 32;
 
         public Screen screen { get; construct; }
 

@@ -75,7 +75,7 @@ namespace Gala.Plugins.Notify
 			}
 		}
 
-		public Notification (uint32 id, Gdk.Pixbuf? icon, NotificationUrgency urgency,
+		protected Notification (uint32 id, Gdk.Pixbuf? icon, NotificationUrgency urgency,
 			int32 expire_timeout)
 		{
 			Object (
