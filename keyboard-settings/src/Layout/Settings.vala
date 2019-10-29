@@ -221,11 +221,15 @@ namespace Pantheon.Keyboard.LayoutPage
             currently_writing = true;
             try {
                 Variant[] elements = {};
+                string str_elements = "";
                 for (uint i = 0; i < layouts.length; i++) {
                     elements += layouts.get_layout (i).to_variant ();
+                    str_elements += layouts.get_layout (i).name + ",";
                 }
                 GLib.Variant list = new GLib.Variant.array (new VariantType ("(ss)"), elements);
                 settings.set_value ("sources", list);
+                warning(str_elements);
+                xfsettings.set_property_value ("keyboard-layout", "/Default/XkbLayout", str_elements);
             } finally {
                 currently_writing = false;
             }
