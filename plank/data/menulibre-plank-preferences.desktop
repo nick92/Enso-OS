@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Plank Preferences
+Comment=Edit Plank Preferences
+Icon=applications-other
+Exec=plank --preferences
+Actions=
+Categories=DesktopSettings;Settings;X-XFCE;X-Xfce-Toplevel;
+Keywords=plank;plank preferences;preferences;
