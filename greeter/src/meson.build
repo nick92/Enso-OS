@@ -2,7 +2,8 @@
 gobject_dep = dependency('gobject-2.0')
 glib_dep = dependency('glib-2.0')
 gtk_dep = dependency('gtk+-3.0')
-granite_dep = dependency('granite')
+gee_dep = dependency('gee-0.8')
+# granite_dep = dependency('granite')
 lightdm_dep = dependency('liblightdm-gobject-1')
 clutter_gtk_dep = dependency('clutter-gtk-1.0')
 gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0')
@@ -60,7 +61,7 @@ executable(
     greeter_resources,
     cogl_fixes,
     config_header,
-    dependencies: [ gobject_dep, glib_dep, gtk_dep, granite_dep, lightdm_dep, clutter_gtk_dep, gdk_x11_dep, gdk_pixbuf_dep, gl_dep ],
+    dependencies: [ gobject_dep, glib_dep, gee_dep, gtk_dep, lightdm_dep, clutter_gtk_dep, gdk_x11_dep, gdk_pixbuf_dep, gl_dep ],
     install : true,
     install_dir: install_path
 )
