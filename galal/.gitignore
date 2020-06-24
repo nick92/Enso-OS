@@ -47,3 +47,4 @@ po/Rules-quot
 po/stamp-po
 src/gala
 build
+builddir
