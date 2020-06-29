@@ -10,20 +10,31 @@ namespace Gala
         const int SPACING = 12;
         const int PADDING = 24;
         const int MIN_OFFSET = 32;
-
+#if HAS_MUTTER330
+        public Display display { get; construct; }
+#else
         public Screen screen { get; construct; }
-
+#endif
         public WindowActorClone? current { get; set; }
 
         public Clutter.Actor container;
-
+#if HAS_MUTTER330
+        public PreviewPage (Display display) {
+            Object (display: display);
+        }
+#else 
         public PreviewPage (Screen screen) {
             Object (screen: screen);
         }
-
+#endif
         construct {
+#if HAS_MUTTER330
+            var monitor = display.get_current_monitor ();
+            var geom = display.get_monitor_geometry (monitor);
+#else
             var monitor = screen.get_current_monitor ();
             var geom = screen.get_monitor_geometry (monitor);
+#endif
             width = geom.width - MIN_OFFSET * 2;
             height = geom.height - MIN_OFFSET * 2;
             x = MIN_OFFSET;

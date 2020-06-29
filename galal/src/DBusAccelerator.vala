@@ -15,114 +15,154 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-namespace Gala
-{
-	public struct Accelerator
-	{
-		public string name;
-		public uint flags;
-	}
+namespace Gala {
+    public struct Accelerator {
+        public string name;
+        public uint flags;
+#if HAS_MUTTER332
+        public Meta.KeyBindingFlags grab_flags;
+#endif
+    }
 
-	[DBus (name="org.gnome.Shell")]
-	public class DBusAccelerator
-	{
-		static DBusAccelerator? instance;
-		
-		[DBus (visible = false)]
-		public static unowned DBusAccelerator init (WindowManager wm)
-		{
-			if (instance == null)
-				instance = new DBusAccelerator (wm);
+    [DBus (name="org.gnome.Shell")]
+    public class DBusAccelerator {
+        static DBusAccelerator? instance;
 
-			return instance;
-		}
+        [DBus (visible = false)]
+        public static unowned DBusAccelerator init (WindowManager wm) {
+            if (instance == null)
+                instance = new DBusAccelerator (wm);
 
-		public signal void accelerator_activated (uint action, GLib.HashTable<string, Variant> parameters);
+            return instance;
+        }
 
-		WindowManager wm;
-		HashTable<string, uint?> grabbed_accelerators;
+        public signal void accelerator_activated (uint action, GLib.HashTable<string, Variant> parameters);
 
-		DBusAccelerator (WindowManager _wm)
-		{
-			wm = _wm;
-			grabbed_accelerators = new HashTable<string, uint> (str_hash, str_equal);
+        WindowManager wm;
+        HashTable<string, uint?> grabbed_accelerators;
 
-			wm.get_screen ().get_display ().accelerator_activated.connect (on_accelerator_activated);
-		}
+        DBusAccelerator (WindowManager _wm) {
+            wm = _wm;
+            grabbed_accelerators = new HashTable<string, uint?> (str_hash, str_equal);
 
-		void on_accelerator_activated (uint action, uint device_id, uint timestamp)
-		{
-			foreach (string accelerator in grabbed_accelerators.get_keys ()) {
-				if (grabbed_accelerators[accelerator] == action) {
-					var parameters = new GLib.HashTable<string, Variant> (null, null);
-					parameters.set ("device-id", new Variant.uint32 (device_id));
-					parameters.set ("timestamp", new Variant.uint32 (timestamp));
+#if HAS_MUTTER330
+            wm.get_display ().accelerator_activated.connect (on_accelerator_activated);
+#else
+            wm.get_screen ().get_display ().accelerator_activated.connect (on_accelerator_activated);
+#endif
+        }
 
-					accelerator_activated (action, parameters);
-				}
-			}
-		}
+#if HAS_MUTTER334
+        void on_accelerator_activated (uint action, Clutter.InputDevice device, uint timestamp) {
+#else
+        void on_accelerator_activated (uint action, uint device_id, uint timestamp) {
+#endif
+            foreach (string accelerator in grabbed_accelerators.get_keys ()) {
+                if (grabbed_accelerators[accelerator] == action) {
+                    var parameters = new GLib.HashTable<string, Variant> (null, null);
+#if HAS_MUTTER334
+                    parameters.set ("device-id", new Variant.uint32 (device.id));
+#else
+                    parameters.set ("device-id", new Variant.uint32 (device_id));
+#endif
+                    parameters.set ("timestamp", new Variant.uint32 (timestamp));
 
-		public uint grab_accelerator (string accelerator, uint flags)
-		{
-			uint? action = grabbed_accelerators[accelerator];
+                    accelerator_activated (action, parameters);
+                }
+            }
+        }
 
-			if (action == null) {
-				action = wm.get_screen ().get_display ().grab_accelerator (accelerator);
-				if (action > 0) {
-					grabbed_accelerators[accelerator] = action;
-				}
-			}
+#if HAS_MUTTER332
+        public uint grab_accelerator (string accelerator, uint flags, Meta.KeyBindingFlags grab_flags) throws DBusError, IOError {
+#else
+        public uint grab_accelerator (string accelerator, uint flags) throws DBusError, IOError {
+#endif
+            uint? action = grabbed_accelerators[accelerator];
 
-			return action;
-		}
+            if (action == null) {
+#if HAS_MUTTER332
+                action = wm.get_display ().grab_accelerator (accelerator, grab_flags);
+#elif HAS_MUTTER330
+                action = wm.get_display ().grab_accelerator (accelerator);
+#else
+                action = wm.get_screen ().get_display ().grab_accelerator (accelerator);
+#endif
+                if (action > 0) {
+                    grabbed_accelerators[accelerator] = action;
+                }
+            }
 
-		public uint[] grab_accelerators (Accelerator[] accelerators)
-		{
-			uint[] actions = {};
+            return action;
+        }
 
-			foreach (unowned Accelerator? accelerator in accelerators) {
-				actions += grab_accelerator (accelerator.name, accelerator.flags);
-			}
+        public uint[] grab_accelerators (Accelerator[] accelerators) throws DBusError, IOError {
+            uint[] actions = {};
 
-			return actions;
-		}
+            foreach (unowned Accelerator? accelerator in accelerators) {
+#if HAS_MUTTER332
+                actions += grab_accelerator (accelerator.name, accelerator.flags, accelerator.grab_flags);
+#else
+                actions += grab_accelerator (accelerator.name, accelerator.flags);
+#endif
+            }
 
-		public bool ungrab_accelerator (uint action)
-		{
-			bool ret = false;
+            return actions;
+        }
 
-			foreach (unowned string accelerator in grabbed_accelerators.get_keys ()) {
-				if (grabbed_accelerators[accelerator] == action) {
-					ret = wm.get_screen ().get_display ().ungrab_accelerator (action);
-					grabbed_accelerators.remove (accelerator);
-					break;
-				}
-			}
+        public bool ungrab_accelerator (uint action) throws DBusError, IOError {
+            bool ret = false;
 
-			return ret;
-		}
+            foreach (unowned string accelerator in grabbed_accelerators.get_keys ()) {
+                if (grabbed_accelerators[accelerator] == action) {
+#if HAS_MUTTER330
+                    ret = wm.get_display ().ungrab_accelerator (action);
+#else
+                    ret = wm.get_screen ().get_display ().ungrab_accelerator (action);
+#endif
+                    grabbed_accelerators.remove (accelerator);
+                    break;
+                }
+            }
 
-		[DBus (name = "ShowOSD")]
-		public void show_osd (GLib.HashTable<string, Variant> parameters)
-		{
-			int32 monitor_index = -1;
-			if (parameters.contains ("monitor"))
-				monitor_index = parameters["monitor"].get_int32 ();
-			string icon = "";
-			if (parameters.contains ("icon"))
-				icon = parameters["icon"].get_string ();
-			string label = "";
-			if (parameters.contains ("label"))
-				label = parameters["label"].get_string ();
-			int32 level = 0;
-			if (parameters.contains ("level"))
-				level = parameters["level"].get_int32 ();
-			
-			//if (monitor_index > -1)
-			//	message ("MediaFeedback requested for specific monitor %i which is not supported", monitor_index);
-			
-			MediaFeedback.send (icon, level);
-		}
-	}
+            return ret;
+        }
+
+#if HAS_MUTTER334
+        public bool ungrab_accelerators (uint[] actions) throws DBusError, IOError {
+            foreach (uint action in actions) {
+                ungrab_accelerator (action);
+            }
+
+            return true;
+        }
+#endif
+
+        [DBus (name = "ShowOSD")]
+        public void show_osd (GLib.HashTable<string, Variant> parameters) throws DBusError, IOError {
+            int32 monitor_index = -1;
+            if (parameters.contains ("monitor"))
+                monitor_index = parameters["monitor"].get_int32 ();
+            string icon = "";
+            if (parameters.contains ("icon"))
+                icon = parameters["icon"].get_string ();
+            string label = "";
+            if (parameters.contains ("label"))
+                label = parameters["label"].get_string ();
+            int32 level = 0;
+#if HAS_MUTTER334
+            if (parameters.contains ("level")) {
+                var double_level = parameters["level"].get_double ();
+                level = (int)(double_level * 100);
+            }
+#else
+            if (parameters.contains ("level"))
+                level = parameters["level"].get_int32 ();
+#endif
+
+            //if (monitor_index > -1)
+            //    message ("MediaFeedback requested for specific monitor %i which is not supported", monitor_index);
+
+            MediaFeedback.send (icon, level);
+        }
+    }
 }

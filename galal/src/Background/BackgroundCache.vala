@@ -15,104 +15,103 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-namespace Gala
-{
-	public class BackgroundCache : Object
-	{
-		static BackgroundCache? instance = null;
+namespace Gala {
+    public class BackgroundCache : Object {
+        static BackgroundCache? instance = null;
 
-		public static unowned BackgroundCache get_default ()
-		{
-			if (instance == null)
-				instance = new BackgroundCache ();
+        public static unowned BackgroundCache get_default () {
+            if (instance == null)
+                instance = new BackgroundCache ();
 
-			return instance;
-		}
+            return instance;
+        }
 
-		public signal void file_changed (string filename);
+        public signal void file_changed (string filename);
 
-		Gee.HashMap<string,FileMonitor> file_monitors;
-		Gee.HashMap<string,BackgroundSource> background_sources;
+        Gee.HashMap<string,FileMonitor> file_monitors;
+        Gee.HashMap<string,BackgroundSource> background_sources;
 
-		Animation animation;
-		string animation_filename;
+        Animation animation;
+        string animation_filename;
 
-		public BackgroundCache ()
-		{
-			Object ();
-		}
+        public BackgroundCache () {
+            Object ();
+        }
 
-		construct
-		{
-			file_monitors = new Gee.HashMap<string,FileMonitor> ();
-			background_sources = new Gee.HashMap<string,BackgroundSource> ();
-		}
+        construct {
+            file_monitors = new Gee.HashMap<string,FileMonitor> ();
+            background_sources = new Gee.HashMap<string,BackgroundSource> ();
+        }
 
-		public void monitor_file (string filename)
-		{
-			if (file_monitors.has_key (filename))
-				return;
+        public void monitor_file (string filename) {
+            if (file_monitors.has_key (filename))
+                return;
 
-			var file = File.new_for_path (filename);
-			try {
-				var monitor = file.monitor (FileMonitorFlags.NONE, null);
-				monitor.changed.connect(() => {
-					file_changed (filename);
-				});
+            var file = File.new_for_path (filename);
+            try {
+                var monitor = file.monitor (FileMonitorFlags.NONE, null);
+                monitor.changed.connect (() => {
+                    file_changed (filename);
+                });
 
-				file_monitors[filename] = monitor;
-			} catch (Error e) {
-				warning ("Failed to monitor %s: %s", filename, e.message);
-			}
-		}
+                file_monitors[filename] = monitor;
+            } catch (Error e) {
+                warning ("Failed to monitor %s: %s", filename, e.message);
+            }
+        }
 
-		public async Animation get_animation (string filename)
-		{
-			if (animation_filename == filename) {
-				Idle.add (() => {
-					get_animation.callback ();
-					return false;
-				});
-				yield;
+        public async Animation get_animation (string filename) {
+            if (animation_filename == filename) {
+                Idle.add (() => {
+                    get_animation.callback ();
+                    return false;
+                });
+                yield;
 
-				return animation;
-			}
+                return animation;
+            }
 
-			var animation = new Animation (filename);
+            var animation = new Animation (filename);
 
-			yield animation.load ();
+            yield animation.load ();
 
-			Idle.add (() => {
-				get_animation.callback ();
-				return false;
-			});
-			yield;
+            Idle.add (() => {
+                get_animation.callback ();
+                return false;
+            });
+            yield;
 
-			return animation;
-		}
+            return animation;
+        }
 
-		public BackgroundSource get_background_source (Meta.Screen screen, string settings_schema)
-		{
-			var background_source = background_sources[settings_schema];
-			if (background_source == null) {
-				background_source = new BackgroundSource (screen, settings_schema);
-				background_source.use_count = 1;
-				background_sources[settings_schema] = background_source;
-			} else
-				background_source.use_count++;
+#if HAS_MUTTER330
+        public BackgroundSource get_background_source (Meta.Display display, string settings_schema) {
+#else
+        public BackgroundSource get_background_source (Meta.Screen screen, string settings_schema) {
+#endif
+            var background_source = background_sources[settings_schema];
+            if (background_source == null) {
+#if HAS_MUTTER330
+                background_source = new BackgroundSource (display, settings_schema);
+#else
+                background_source = new BackgroundSource (screen, settings_schema);
+#endif
+                background_source.use_count = 1;
+                background_sources[settings_schema] = background_source;
+            } else
+                background_source.use_count++;
 
-			return background_source;
-		}
+            return background_source;
+        }
 
-		public void release_background_source (string settings_schema)
-		{
-			if (background_sources.has_key (settings_schema)) {
-				var source = background_sources[settings_schema];
-				if (--source.use_count == 0) {
-					background_sources.unset (settings_schema);
-					source.destroy ();
-				}
-			}
-		}
-	}
+        public void release_background_source (string settings_schema) {
+            if (background_sources.has_key (settings_schema)) {
+                var source = background_sources[settings_schema];
+                if (--source.use_count == 0) {
+                    background_sources.unset (settings_schema);
+                    source.destroy ();
+                }
+            }
+        }
+    }
 }

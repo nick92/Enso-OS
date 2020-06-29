@@ -75,7 +75,12 @@ namespace Gala
 		Actor indicator;
 
 		int modifier_mask;
-		Meta.Screen screen;
+#if HAS_MUTTER330
+		Meta.Display display;
+		Meta.WorkspaceManager manager;
+#else
+        Meta.Screen screen;
+#endif
 
 		Gee.ArrayList<PreviewPage> pages;
 
@@ -95,7 +100,20 @@ namespace Gala
 
 		construct
 		{
-			screen = wm.get_screen ();
+
+#if HAS_MUTTER330
+            display = wm.get_display ();
+			manager = display.get_workspace_manager ();
+
+			manager.workspace_switched.connect (close);
+            display.restacked.connect (restack_windows);
+#else
+            screen = wm.get_screen ();
+
+            screen.workspace_switched.connect (close);
+            screen.restacked.connect (restack_windows);
+#endif
+
 			pages = new Gee.ArrayList<PreviewPage> ();
 
 			var layout = new FlowLayout (FlowOrientation.HORIZONTAL);
@@ -122,12 +140,20 @@ namespace Gala
 		}
 
 		[CCode (instance_pos = -1)]
-	    public void handle_switch_windows (Display display, Screen screen, Window? window,
-			KeyEvent? event, Meta.KeyBinding binding)
-		{
+#if HAS_MUTTER330
+        public void handle_switch_windows (Display display, Window? window, Clutter.KeyEvent event,
+            KeyBinding binding) {
+#else
+        public void handle_switch_windows (Display display, Screen screen, Window? window,
+            Clutter.KeyEvent event, KeyBinding binding) {
+#endif
 			try{
 				var settings = AlternateAltTabSettings.get_default ();
-				var workspace = settings.all_workspaces ? null : screen.get_active_workspace ();
+#if HAS_MUTTER330
+            	var workspace = display.get_workspace_manager ().get_active_workspace ();
+#else
+            	var workspace = screen.get_active_workspace ();
+#endif
 
 				// copied from gnome-shell, finds the primary modifier in the mask
 				var mask = binding.get_mask ();
@@ -156,6 +182,7 @@ namespace Gala
 					backward = ((get_current_modifiers () & ModifierType.SHIFT_MASK) != 0);
 
 				next_window (display, workspace, backward);
+
 			}catch(Error ex){
 				warning(ex.message);
 			}
@@ -163,13 +190,20 @@ namespace Gala
 
 		void collect_windows (Display display, Workspace? workspace)
 		{
-			var screen = wm.get_screen ();
+#if !HAS_MUTTER330
+            var screen = workspace.get_screen ();
+            var display = screen.get_display ();
+#endif
 
 			var windows = display.get_tab_list (TabList.NORMAL, workspace);
 			var current_window = display.get_tab_current (TabList.NORMAL, workspace);
 
 			pages.clear ();
+#if HAS_MUTTER330
+			var page = new PreviewPage (display);
+#else
 			var page = new PreviewPage (screen);
+#endif
 			foreach (var window in windows) {
 				var actor = get_actor_for_window (window);
 				var clone = new WindowActorClone (actor);
@@ -186,7 +220,11 @@ namespace Gala
 		Meta.WindowActor? get_actor_for_window (Meta.Window window)
 		{
 			Meta.WindowActor? window_actor = null;
-			unowned List<Meta.WindowActor> actors = Compositor.get_window_actors (wm.get_screen ());
+#if HAS_MUTTER330
+            unowned GLib.List<Meta.WindowActor> actors = display.get_window_actors ();
+#else
+            unowned GLib.List<Meta.WindowActor> actors = screen.get_window_actors ();
+#endif
 			actors.@foreach ((actor) => {
 				if (actor.get_meta_window () == window) {
 					window_actor = actor;
@@ -214,7 +252,12 @@ namespace Gala
 			current_page = pages[0];
 			wrapper.add_child (current_page);
 
-			var screen = wm.get_screen ();
+#if HAS_MUTTER330
+			var screen = wm.get_display ();
+#else
+			var screen = wm.get_screen ()
+#endif
+
 			var settings = AlternateAltTabSettings.get_default ();
 
 			if (settings.animate) {
@@ -244,7 +287,11 @@ namespace Gala
 
 			// if we did not have the grab before the key was released, close immediately
 			if ((get_current_modifiers () & modifier_mask) == 0)
+#if HAS_MUTTER330
+				close_switcher (display.get_current_time ());
+#else
 				close_switcher (screen.get_display ().get_current_time ());
+#endif
 		}
 
 		void close_switcher (uint32 time)
@@ -281,10 +328,19 @@ namespace Gala
 
 			var window = current.window;
 			var workspace = window.get_workspace ();
+#if HAS_MUTTER330
+			//  unowned Meta.Workspace active_workspace = wm.get_active_workspace ();
+			if (workspace != display.get_workspace_manager ().get_active_workspace ())
+				workspace.activate_with_focus (window, time);
+			else
+				window.activate (time);
+#else			
 			if (workspace != wm.get_screen ().get_active_workspace ())
 				workspace.activate_with_focus (window, time);
 			else
 				window.activate (time);
+#endif
+			
 		}
 
 		void next_window (Display display, Workspace? workspace, bool backward)
@@ -312,9 +368,13 @@ namespace Gala
 			}
 
 			var settings = AlternateAltTabSettings.get_default ();
+#if HAS_MUTTER330
+			var workspace = settings.all_workspaces ? null : display.get_workspace_manager ().get_active_workspace ();
+#else
 			var workspace = settings.all_workspaces ? null : screen.get_active_workspace ();
 			var display = screen.get_display ();
-
+#endif
+			
 			switch (event.keyval) {
 				case Key.Escape:
 					close_switcher (event.time);
@@ -346,5 +406,49 @@ namespace Gala
 			// return true for any keybinding that should be handled here.
 			return false;
 		}
+
+		/**
+         * {@inheritDoc}
+         */
+        public void close () {
+            //  if (!visible || !ready)
+            //      return;
+
+            wm.pop_modal (modal_proxy);
+
+            foreach (var child in get_children ()) {
+                ((WindowCloneContainer) child).close ();
+            }
+
+            Clutter.Threads.Timeout.add (300, () => {
+                cleanup ();
+
+                return false;
+            });
+		}
+		
+		void cleanup () {
+#if HAS_MUTTER330
+            foreach (var window in display.get_workspace_manager ().get_active_workspace ().list_windows ())
+#else
+            foreach (var window in screen.get_active_workspace ().list_windows ())
+#endif
+                if (window.showing_on_its_workspace ())
+                    ((Actor) window.get_compositor_private ()).show ();
+
+            destroy_all_children ();
+        }
+
+#if HAS_MUTTER330
+        void restack_windows (Display display) {
+            foreach (var child in get_children ())
+                ((WindowCloneContainer) child).restack_windows (display);
+        }
+#else
+        void restack_windows (Screen screen) {
+            foreach (var child in get_children ())
+                ((WindowCloneContainer) child).restack_windows (screen);
+        }
+#endif
 	}
 }

@@ -15,54 +15,47 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-namespace Gala
-{
-	/**
-	 * Provides access to a PlankDrawingDockTheme and PlankDockPrefereces
-	 */
-	public class DockThemeManager : Object
-	{
-		static DockThemeManager? instance = null;
+namespace Gala {
+    /**
+     * Provides access to a PlankDrawingDockTheme and PlankDockPrefereces
+     */
+    public class DockThemeManager : Object {
+        static DockThemeManager? instance = null;
 
-		public static unowned DockThemeManager get_default ()
-		{
-			if (instance == null)
-				instance = new DockThemeManager ();
+        public static unowned DockThemeManager get_default () {
+            if (instance == null)
+                instance = new DockThemeManager ();
 
-			return instance;
-		}
+            return instance;
+        }
 
-		Plank.DockPreferences? dock_settings = null;
-		Plank.DockTheme? dock_theme = null;
+        Plank.DockPreferences? dock_settings = null;
+        Plank.DockTheme? dock_theme = null;
 
-		public signal void dock_theme_changed (Plank.DockTheme? old_theme,
-			Plank.DockTheme new_theme);
+        public signal void dock_theme_changed (Plank.DockTheme? old_theme,
+            Plank.DockTheme new_theme);
 
-		DockThemeManager ()
-		{
-			dock_settings = new Plank.DockPreferences ("dock1");
-			dock_settings.notify["Theme"].connect (load_dock_theme);
-		}
+        DockThemeManager () {
+            dock_settings = new Plank.DockPreferences ("dock1");
+            dock_settings.notify["Theme"].connect (load_dock_theme);
+        }
 
-		public Plank.DockTheme get_dock_theme ()
-		{
-			if (dock_theme == null)
-				load_dock_theme ();
+        public Plank.DockTheme get_dock_theme () {
+            if (dock_theme == null)
+                load_dock_theme ();
 
-			return dock_theme;
-		}
+            return dock_theme;
+        }
 
-		public Plank.DockPreferences get_dock_settings ()
-		{
-			return dock_settings;
-		}
+        public Plank.DockPreferences get_dock_settings () {
+            return dock_settings;
+        }
 
-		void load_dock_theme ()
-		{
-			var new_theme = new Plank.DockTheme (dock_settings.Theme);
-			new_theme.load ("dock");
-			dock_theme_changed (dock_theme, new_theme);
-			dock_theme = new_theme;
-		}
-	}
+        void load_dock_theme () {
+            var new_theme = new Plank.DockTheme (dock_settings.Theme);
+            new_theme.load ("dock");
+            dock_theme_changed (dock_theme, new_theme);
+            dock_theme = new_theme;
+        }
+    }
 }

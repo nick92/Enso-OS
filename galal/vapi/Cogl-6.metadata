@@ -1,0 +1,84 @@
+* cheader_filename="cogl/cogl.h"
+
+Color struct
+Matrix struct
+
+Material base_type="Cogl.Handle"
+MaterialLayer base_type="Cogl.Handle"
+
+_ColorSizeCheck skip
+_MatrixSizeCheck skip
+_TextureVertexSizeCheck skip
+
+Color
+  .init_* skip
+color_init_from_hsl skip
+color_equal.v1 type="Cogl.Color"
+color_equal.v2 type="Cogl.Color"
+color_equal symbol_type=method
+
+texture_new_* name="texture_new_(.+)" parent="Cogl.Texture"
+Texture
+  .get_data.data type="uint8[]"
+  .new_from_data.data type="uint8[]"
+  .set_data.data type="uint8[]"
+  .set_region.data type="uint8[]"
+
+Texture2D
+  .new_from_data skip=false
+  .new_from_data.data array=true
+
+Matrix
+  .transform_points.points_in type="uint8[]"
+  .transform_points.stride_out out
+  .transform_points.points_out out type="uint8[]"
+  .project_points.points_in type="uint8[]"
+  .project_points.stride_out out
+  .project_points.points_out out type="uint8[]"
+
+matrix_equal.v1 type="Cogl.Matrix"
+matrix_equal.v2 type="Cogl.Matrix"
+matrix_equal symbol_type=method
+
+shader_* name="shader_(.+)" parent="Cogl.Shader"
+shader_* symbol_type="method" instance_idx=0
+
+program_* name="program_(.+)" parent="Cogl.Program"
+program_attach_shader symbol_type="method" instance_idx=0
+program_get_uniform_location symbol_type="method" instance_idx=0
+program_link symbol_type="method" instance_idx=0
+program_set_uniform_1f symbol_type="method" instance_idx=0
+program_set_uniform_1i symbol_type="method" instance_idx=0
+program_set_uniform_float symbol_type="method" instance_idx=0
+program_set_uniform_int symbol_type="method" instance_idx=0
+program_set_uniform_matrix symbol_type="method" instance_idx=0
+
+is_bitmap parent="Cogl.Object" symbol_type="method" instance_idx=0
+is_offscreen parent="Cogl.Object" symbol_type="method" instance_idx=0
+is_program parent="Cogl.Handle"
+is_shader parent="Cogl.Handle"
+is_texture parent="Cogl.Object" symbol_type="method" instance_idx=0
+is_context parent="Cogl.Object" symbol_type="method" instance_idx=0
+is_framebuffer parent="Cogl.Object" symbol_type="method" instance_idx=0
+is_onscreen parent="Cogl.Object" symbol_type="method" instance_idx=0
+is_pipeline parent="Cogl.Object" symbol_type="method" instance_idx=0
+is_texture_2d parent="Cogl.Object" symbol_type="method" instance_idx=0
+is_texture_2d_sliced parent="Cogl.Object" symbol_type="method" instance_idx=0
+
+create_program type="unowned Cogl.Program" name="create" parent="Cogl.Program"
+create_shader type="unowned Cogl.Shader" name="create" parent="Cogl.Shader"
+
+foreach_feature parent="Cogl.Context" symbol_type="method" instance_idx=0
+get_clock_time parent="Cogl.Context" symbol_type="method" instance_idx=0
+get_graphics_reset_status parent="Cogl.Context" symbol_type="method" instance_idx=0
+has_feature parent="Cogl.Context" symbol_type="method" instance_idx=0
+
+Bitmap.error_quark parent="Cogl.BitmapError" name="quark"
+Texture.error_quark parent="Cogl.TextureError" name="quark"
+texture_error_quark skip
+
+BitmapError errordomain
+BlendStringError errordomain
+RendererError errordomain
+SystemError errordomain
+TextureError errordomain

@@ -1,0 +1,99 @@
+Color struct
+Quaternion skip=false
+
+Material base_type="Cogl.Handle"
+MaterialLayer base_type="Cogl.Handle"
+
+_ColorSizeCheck skip
+_MatrixSizeCheck skip
+_TextureVertexSizeCheck skip
+
+Offscreen.ref skip
+Offscreen.unref skip
+
+Color
+  .init_* skip
+color_init_from_hsl skip
+color_equal.v1 type="Cogl.Color"
+color_equal.v2 type="Cogl.Color"
+color_equal symbol_type=method
+
+texture_new_* name="texture_new_(.+)" parent="Cogl.Texture"
+Texture
+  .get_data.data type="uint8[]"
+  .new_from_data.data type="uint8[]"
+  .set_data.data type="uint8[]"
+  .set_region.data type="uint8[]"
+
+Matrix
+  .transform_points.points_in type="uint8[]"
+  .transform_points.stride_out out
+  .transform_points.points_out out type="uint8[]"
+  .project_points.points_in type="uint8[]"
+  .project_points.stride_out out
+  .project_points.points_out out type="uint8[]"
+
+matrix_equal.v1 type="Cogl.Matrix"
+matrix_equal.v2 type="Cogl.Matrix"
+matrix_equal symbol_type=method
+
+polygon.vertices array array_length_idx=1
+
+vertex_buffer_* name="vertex_buffer_(.+)" parent="Cogl.VertexBuffer"
+//vertex_buffer_* symbol_type="method" instance_idx=0
+vertex_buffer_add symbol_type="method" instance_idx=0
+vertex_buffer_delete symbol_type="method" instance_idx=0
+vertex_buffer_disable symbol_type="method" instance_idx=0
+vertex_buffer_draw symbol_type="method" instance_idx=0
+vertex_buffer_draw_elements symbol_type="method" instance_idx=0
+vertex_buffer_enable symbol_type="method" instance_idx=0
+vertex_buffer_get_n_vertices symbol_type="method" instance_idx=0
+vertex_buffer_indices_get_type symbol_type="method" instance_idx=0
+vertex_buffer_submit symbol_type="method" instance_idx=0
+vertex_buffer_unref skip
+vertex_buffer_ref skip
+
+shader_* name="shader_(.+)" parent="Cogl.Shader"
+shader_* symbol_type="method" instance_idx=0
+shader_unref skip
+shader_ref skip
+
+program_* name="program_(.+)" parent="Cogl.Program"
+program_attach_shader symbol_type="method" instance_idx=0
+program_get_uniform_location symbol_type="method" instance_idx=0
+program_link symbol_type="method" instance_idx=0
+program_set_uniform_1f symbol_type="method" instance_idx=0
+program_set_uniform_1i symbol_type="method" instance_idx=0
+program_set_uniform_float symbol_type="method" instance_idx=0
+program_set_uniform_int symbol_type="method" instance_idx=0
+program_set_uniform_matrix symbol_type="method" instance_idx=0
+program_use symbol_type="method" instance_idx=0
+
+program_unref skip
+program_ref skip
+
+is_bitmap parent="Cogl.Handle"
+is_material parent="Cogl.Handle"
+is_offscreen parent="Cogl.Handle"
+is_program parent="Cogl.Handle"
+is_shader parent="Cogl.Handle"
+is_texture parent="Cogl.Handle"
+is_vertex_buffer parent="Cogl.Handle"
+is_vertex_buffer_indices parent="Cogl.Handle"
+
+create_program type="unowned Cogl.Program" name="create" parent="Cogl.Program"
+create_shader type="unowned Cogl.Shader" name="create" parent="Cogl.Shader"
+
+get_source type="unowned Cogl.Material"
+push_source.material type="Cogl.Material"
+set_source.material type="Cogl.Material"
+
+Bitmap.error_quark parent="Cogl.BitmapError" name="quark"
+Texture.error_quark parent="Cogl.TextureError" name="quark"
+texture_error_quark skip
+
+BitmapError errordomain
+BlendStringError errordomain
+RendererError errordomain
+SystemError errordomain
+TextureError errordomain

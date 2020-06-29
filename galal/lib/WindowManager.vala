@@ -15,139 +15,156 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-namespace Gala
-{
-	public enum ActionType
-	{
-		NONE = 0,
-		SHOW_WORKSPACE_VIEW,
-		MAXIMIZE_CURRENT,
-		MINIMIZE_CURRENT,
-		MINIMIZE_ALL,
-		OPEN_LAUNCHER,
-		CUSTOM_COMMAND,
-		WINDOW_OVERVIEW,
-		WINDOW_OVERVIEW_ALL,
-		FOCUS_CURRENT
-	}
+namespace Gala {
+    public enum ActionType {
+        NONE = 0,
+        SHOW_WORKSPACE_VIEW,
+        MAXIMIZE_CURRENT,
+        MINIMIZE_CURRENT,
+        MINIMIZE_ALL,
+        OPEN_LAUNCHER,
+        CUSTOM_COMMAND,
+        WINDOW_OVERVIEW,
+        WINDOW_OVERVIEW_ALL,
+        SWITCH_TO_WORKSPACE_LAST,
+        START_MOVE_CURRENT,
+        START_RESIZE_CURRENT,
+        TOGGLE_ALWAYS_ON_TOP_CURRENT,
+        TOGGLE_ALWAYS_ON_VISIBLE_WORKSPACE_CURRENT,
+        MOVE_CURRENT_WORKSPACE_LEFT,
+        MOVE_CURRENT_WORKSPACE_RIGHT,
+        CLOSE_CURRENT
+    }
 
+    [Flags]
+    public enum WindowFlags {
+        NONE = 0,
+        CAN_MINIMIZE,
+        CAN_MAXIMIZE,
+        IS_MAXIMIZED,
+        ALLOWS_MOVE,
+        ALLOWS_RESIZE,
+        ALWAYS_ON_TOP,
+        ON_ALL_WORKSPACES,
+        CAN_CLOSE
+    }
 
-	/**
-	 * Function that should return true if the given shortcut should be blocked.
-	 */
-	public delegate bool KeybindingFilter (Meta.KeyBinding binding);
+    /**
+     * Function that should return true if the given shortcut should be blocked.
+     */
+    public delegate bool KeybindingFilter (Meta.KeyBinding binding);
 
-	/**
-	 * A minimal class mostly used to identify your call to {@link WindowManager.push_modal} and used
-	 * to end your modal mode again with {@link WindowManager.pop_modal}
-	 */
-	public class ModalProxy : Object
-	{
-		/**
-		 * A function which is called whenever a keybinding is pressed. If you supply a custom
-		 * one you can filter out those that'd you like to be passed through and block all others.
-		 * Defaults to blocking all.
-		 * @see KeybindingFilter
-		 */
-		public KeybindingFilter? keybinding_filter { get; owned set; default = () => true; }
+    /**
+     * A minimal class mostly used to identify your call to {@link WindowManager.push_modal} and used
+     * to end your modal mode again with {@link WindowManager.pop_modal}
+     */
+    public class ModalProxy : Object {
+        /**
+         * A function which is called whenever a keybinding is pressed. If you supply a custom
+         * one you can filter out those that'd you like to be passed through and block all others.
+         * Defaults to blocking all.
+         * @see KeybindingFilter
+         */
+        public KeybindingFilter? keybinding_filter { get; owned set; default = () => true; }
 
-		public ModalProxy ()
-		{
-		}
+        public ModalProxy () {
+        }
 
-		/**
-		 * Small utility to allow all keybindings
-		 */
-		public void allow_all_keybindings ()
-		{
-			keybinding_filter = null;
-		}
-	}
+        /**
+         * Small utility to allow all keybindings
+         */
+        public void allow_all_keybindings () {
+            keybinding_filter = null;
+        }
+    }
 
-	public interface WindowManager : Meta.Plugin
-	{
-		/**
-		 * This is the container you'll most likely want to add your component to. It wraps
-		 * every other container listed in this interface and is a direct child of the stage.
-		 */
-		public abstract Clutter.Actor ui_group { get; protected set; }
+    public interface WindowManager : Meta.Plugin {
+        /**
+         * This is the container you'll most likely want to add your component to. It wraps
+         * every other container listed in this interface and is a direct child of the stage.
+         */
+        public abstract Clutter.Actor ui_group { get; protected set; }
 
-		/**
-		 * The stage of the window manager
-		 */
-		public abstract Clutter.Stage stage { get; protected set; }
+        /**
+         * The stage of the window manager
+         */
+        public abstract Clutter.Stage stage { get; protected set; }
 
-		/**
-		 * A group containting all 'usual' windows
-		 * @see top_window_group
-		 */
-		public abstract Clutter.Actor window_group { get; protected set; }
+        /**
+         * A group containting all 'usual' windows
+         * @see top_window_group
+         */
+        public abstract Clutter.Actor window_group { get; protected set; }
 
-		/**
-		 * The top window group contains special windows that are always placed on top
-		 * like fullscreen windows.
-		 */
-		public abstract Clutter.Actor top_window_group { get; protected set; }
+        /**
+         * The top window group contains special windows that are always placed on top
+         * like fullscreen windows.
+         */
+        public abstract Clutter.Actor top_window_group { get; protected set; }
 
-		/**
-		 * The background group is a container for the background actors forming the wallpaper
-		 */
-		public abstract Meta.BackgroundGroup background_group { get; protected set; }
+        /**
+         * The background group is a container for the background actors forming the wallpaper
+         */
+        public abstract Meta.BackgroundGroup background_group { get; protected set; }
 
-		/**
-		 * Enters the modal mode, which means that all events are directed to the stage instead
-		 * of the windows. This is the only way to receive keyboard events besides shortcut listeners.
-		 *
-		 * @return a {@link ModalProxy} which is needed to end the modal mode again and provides some
-		 *         some basic control on the behavior of the window manager while it is in modal mode.
-		 */
-		public abstract ModalProxy push_modal ();
+        /**
+         * Whether animations should be displayed.
+         */
+        public abstract bool enable_animations { get; protected set; }
 
-		/**
-		 * May exit the modal mode again, unless another component has called {@link push_modal}
-		 *
-		 * @param proxy The {@link ModalProxy} received from {@link push_modal}
-		 */
-		public abstract void pop_modal (ModalProxy proxy);
+        /**
+         * Enters the modal mode, which means that all events are directed to the stage instead
+         * of the windows. This is the only way to receive keyboard events besides shortcut listeners.
+         *
+         * @return a {@link ModalProxy} which is needed to end the modal mode again and provides some
+         *         some basic control on the behavior of the window manager while it is in modal mode.
+         */
+        public abstract ModalProxy push_modal ();
 
-		/**
-		 * Returns whether the window manager is currently in modal mode.
-		 * @see push_modal
-		 */
-		public abstract bool is_modal ();
+        /**
+         * May exit the modal mode again, unless another component has called {@link push_modal}
+         *
+         * @param proxy The {@link ModalProxy} received from {@link push_modal}
+         */
+        public abstract void pop_modal (ModalProxy proxy);
 
-		/**
-		 * Tests if a given {@link ModalProxy} is valid and may be popped. Should not be necessary
-		 * to use this function in most cases, but it may be helpful for debugging. Gala catches
-		 * invalid proxies as well and emits a warning in that case.
-		 *
-		 * @param proxy The {@link ModalProxy} to check
-		 * @return      Returns true if the prox is valid
-		 */
-		public abstract bool modal_proxy_valid (ModalProxy proxy);
+        /**
+         * Returns whether the window manager is currently in modal mode.
+         * @see push_modal
+         */
+        public abstract bool is_modal ();
 
-		/**
-		 * Tells the window manager to perform the given action.
-		 *
-		 * @param type The type of action to perform
-		 */
-		public abstract void perform_action (ActionType type);
+        /**
+         * Tests if a given {@link ModalProxy} is valid and may be popped. Should not be necessary
+         * to use this function in most cases, but it may be helpful for debugging. Gala catches
+         * invalid proxies as well and emits a warning in that case.
+         *
+         * @param proxy The {@link ModalProxy} to check
+         * @return      Returns true if the prox is valid
+         */
+        public abstract bool modal_proxy_valid (ModalProxy proxy);
 
-		/**
-		 * Moves the window to the workspace next to its current workspace in the given direction.
-		 * Gala currently only supports LEFT and RIGHT.
-		 *
-		 * @param window    The window to be moved
-		 * @param direction The direction in which to move the window
-		 */
-		public abstract void move_window (Meta.Window? window, Meta.MotionDirection direction);
+        /**
+         * Tells the window manager to perform the given action.
+         *
+         * @param type The type of action to perform
+         */
+        public abstract void perform_action (ActionType type);
 
-		/**
-		 * Switches to the next workspace in the given direction.
-		 *
-		 * @param direction The direction in which to switch
-		 */
-		public abstract void switch_to_next_workspace (Meta.MotionDirection direction);
-	}
+        /**
+         * Moves the window to the workspace next to its current workspace in the given direction.
+         * Gala currently only supports LEFT and RIGHT.
+         *
+         * @param window    The window to be moved
+         * @param direction The direction in which to move the window
+         */
+        public abstract void move_window (Meta.Window? window, Meta.MotionDirection direction);
+
+        /**
+         * Switches to the next workspace in the given direction.
+         *
+         * @param direction The direction in which to switch
+         */
+        public abstract void switch_to_next_workspace (Meta.MotionDirection direction);
+    }
 }
-

@@ -15,119 +15,91 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-//using Xfconf;
+namespace Gala {
+    public class KeyboardManager : Object {
+        static KeyboardManager? instance;
+        static VariantType sources_variant_type;
 
-namespace Gala
-{
-	public class KeyboardManager : Object
-	{
-		static KeyboardManager? instance;
-		static VariantType sources_variant_type;
-		//static Xfconf.Channel channel;
+        public static void init (Meta.Display display) {
+            if (instance != null)
+                return;
 
-		public string prop_string;
+            instance = new KeyboardManager ();
 
-		public static void init (Meta.Display display)
-		{
-			if (instance != null)
-				return;
+            display.modifiers_accelerator_activated.connect (instance.handle_modifiers_accelerator_activated);
+        }
 
-			//try { Xfconf.init (); } catch (Xfconf.Error ex){return;}
+        static construct {
+            sources_variant_type = new VariantType ("a(ss)");
+        }
 
-			instance = new KeyboardManager ();
+        GLib.Settings settings;
 
-			display.modifiers_accelerator_activated.connect (instance.handle_modifiers_accelerator_activated);
-		}
+        KeyboardManager () {
+            Object ();
+        }
 
-		static construct
-		{
-			sources_variant_type = new VariantType ("a(ss)");
-		}
+        construct {
+            var schema = GLib.SettingsSchemaSource.get_default ().lookup ("org.gnome.desktop.input-sources", true);
+            if (schema == null)
+                return;
 
-		GLib.Settings settings;
+            settings = new GLib.Settings.full (schema, null, null);
+            Signal.connect (settings, "changed", (Callback) set_keyboard_layout, this);
 
-		KeyboardManager ()
-		{
-			Object ();
-		}
+            set_keyboard_layout (settings, "current");
+        }
 
-		construct
-		{
-			var schema = GLib.SettingsSchemaSource.get_default ().lookup ("org.gnome.desktop.input-sources", true);
-			if (schema == null)
-				return;
+        [CCode (instance_pos = -1)]
+        bool handle_modifiers_accelerator_activated (Meta.Display display) {
+            display.ungrab_keyboard (display.get_current_time ());
 
-			settings = new GLib.Settings.full (schema, null, null);
-			Signal.connect (settings, "changed", (Callback) set_keyboard_layout, this);
+            var sources = settings.get_value ("sources");
+            if (!sources.is_of_type (sources_variant_type))
+                return true;
 
-			/*channel = new Xfconf.Channel ("keyboard-layout");
-			if(channel != null){
-				prop_string = channel.get_string("/Default/XkbLayout", "").substring(0, channel.get_string("/Default/XkbLayout", "").index_of(","));
-				if(prop_string != "") {
-					set_keyboard_layout (settings, "current", prop_string);
-				}
+            var n_sources = (uint) sources.n_children ();
+            if (n_sources < 2)
+                return true;
 
-			}*/
+            var current = settings.get_uint ("current");
+            settings.set_uint ("current", (current + 1) % n_sources);
 
-			set_keyboard_layout (settings, "current", "");
-		}
+            return true;
+        }
 
-		[CCode (instance_pos = -1)]
-		bool handle_modifiers_accelerator_activated (Meta.Display display)
-		{
-			display.ungrab_keyboard (display.get_current_time ());
+        [CCode (instance_pos = -1)]
+        void set_keyboard_layout (GLib.Settings settings, string key) {
+            if (!(key == "current" || key == "source" || key == "xkb-options"))
+                return;
 
-			var sources = settings.get_value ("sources");
-			if (!sources.is_of_type (sources_variant_type))
-				return true;
+            string layout = "us", variant = "", options = "";
 
-			var n_sources = (uint) sources.n_children ();
-			if (n_sources < 2)
-				return true;
+            var sources = settings.get_value ("sources");
+            if (!sources.is_of_type (sources_variant_type))
+                return;
 
-			var current = settings.get_uint ("current");
-			settings.set_uint ("current", (current + 1) % n_sources);
+            var current = settings.get_uint ("current");
+            unowned string? type = null, name = null;
+            if (sources.n_children () > current)
+                sources.get_child (current, "(&s&s)", out type, out name);
+            if (type == "xkb") {
+                string[] arr = name.split ("+", 2);
+                layout = arr[0];
+                variant = arr[1] ?? "";
+            }
 
-			return true;
-		}
+            var xkb_options = settings.get_strv ("xkb-options");
+            if (xkb_options.length > 0)
+                options = string.joinv (",", xkb_options);
 
-		[CCode (instance_pos = -1)]
-		void set_keyboard_layout (GLib.Settings settings, string key, string xfce_prop)
-		{
-			if (!(key == "current" || key == "source" || key == "xkb-options"))
-				return;
+            // Needed to make common keybindings work on non-latin layouts
+            if (layout != "us" || variant != "") {
+                layout = layout + ",us";
+                variant = variant + ",";
+            }
 
-			string layout = "us", variant = "", options = "";
-
-			var sources = settings.get_value ("sources");
-			if (!sources.is_of_type (sources_variant_type))
-				return;
-
-			var current = settings.get_uint ("current");
-			unowned string? type = null, name = null;
-			if (sources.n_children () > current)
-				sources.get_child (current, "(&s&s)", out type, out name);
-			if (type == "xkb") {
-				string[] arr = name.split ("+", 2);
-				layout = arr[0];
-				variant = arr[1] ?? "";
-			}
-
-			var xkb_options = settings.get_strv ("xkb-options");
-			if (xkb_options.length > 0)
-				options = string.joinv (",", xkb_options);
-
-			// Needed to make common keybindings work on non-latin layouts
-			if(xfce_prop != "" && layout != xfce_prop) {
-				layout = xfce_prop;
-				variant = variant + ",";
-			}
-			else if (layout != "us" || variant != "") {
-				layout = layout + ",us";
-				variant = variant + ",";
-			}
-
-			Meta.Backend.get_backend ().set_keymap (layout, variant, options);
-		}
-	}
+            Meta.Backend.get_backend ().set_keymap (layout, variant, options);
+        }
+    }
 }

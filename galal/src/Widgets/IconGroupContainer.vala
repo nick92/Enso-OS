@@ -18,91 +18,137 @@
 using Clutter;
 using Meta;
 
-namespace Gala
-{
-	/**
-	 * This class contains the icon groups at the bottom and will take
-	 * care of displaying actors for inserting windows between the groups
-	 * once implemented
-	 */
-	public class IconGroupContainer : Actor
-	{
-		public const int SPACING = 48;
-		public const int GROUP_WIDTH = 64;
+namespace Gala {
+    /**
+     * This class contains the icon groups at the bottom and will take
+     * care of displaying actors for inserting windows between the groups
+     * once implemented
+     */
+    public class IconGroupContainer : Actor {
+        public const int SPACING = 48;
+        public const int GROUP_WIDTH = 64;
 
-		public signal void request_reposition ();
+        public signal void request_reposition (bool animate);
 
-		public Screen screen { get; construct; }
+#if HAS_MUTTER330
+        public Meta.Display display { get; construct; }
+#else
+        public Screen screen { get; construct; }
+#endif
 
-		public IconGroupContainer (Screen screen)
-		{
-			Object (screen: screen);
+#if HAS_MUTTER330
+        public IconGroupContainer (Meta.Display display) {
+            Object (display: display);
 
-			layout_manager = new BoxLayout ();
-		}
+            layout_manager = new BoxLayout ();
+        }
+#else
+        public IconGroupContainer (Screen screen) {
+            Object (screen: screen);
 
-		public void add_group (IconGroup group)
-		{
-			var index = group.workspace.index ();
+            layout_manager = new BoxLayout ();
+        }
+#endif
 
-			insert_child_at_index (group, index * 2);
+        public void add_group (IconGroup group) {
+            var index = group.workspace.index ();
 
-			var thumb = new WorkspaceInsertThumb (index);
-			thumb.notify["expanded"].connect_after (expanded_changed);
-			insert_child_at_index (thumb, index * 2);
+            insert_child_at_index (group, index * 2);
 
-			update_inserter_indices ();
-		}
+            var thumb = new WorkspaceInsertThumb (index);
+            thumb.notify["expanded"].connect_after (expanded_changed);
+            insert_child_at_index (thumb, index * 2);
 
-		public void remove_group (IconGroup group)
-		{
-			var thumb = (WorkspaceInsertThumb) group.get_previous_sibling ();
-			thumb.notify["expanded"].disconnect (expanded_changed);
-			remove_child (thumb);
+            update_inserter_indices ();
+        }
 
-			remove_child (group);
+        public void remove_group (IconGroup group) {
+            var thumb = (WorkspaceInsertThumb) group.get_previous_sibling ();
+            thumb.notify["expanded"].disconnect (expanded_changed);
+            remove_child (thumb);
 
-			update_inserter_indices ();
-		}
+            remove_child (group);
 
-		void expanded_changed (ParamSpec param)
-		{
-			request_reposition ();
-		}
+            update_inserter_indices ();
+        }
 
-		/**
-		 * Calculates the width that will be occupied taking currently running animations
-		 * end states into account
-		 */
-		public float calculate_total_width ()
-		{
-			var width = 0.0f;
-			foreach (var child in get_children ()) {
-				if (child is WorkspaceInsertThumb) {
-					if (((WorkspaceInsertThumb) child).expanded)
-						width += GROUP_WIDTH + SPACING * 2;
-					else
-						width += SPACING;
-				} else
-					width += GROUP_WIDTH;
-			}
+        /**
+         * Removes an icon group "in place".
+         * When initially dragging an icon group we remove
+         * it and it's previous WorkspaceInsertThumb. This would make
+         * the container immediately reallocate and fill the empty space
+         * with right-most IconGroups.
+         * 
+         * We don't want that until the IconGroup 
+         * leaves the expanded WorkspaceInsertThumb.
+         */
+        public void remove_group_in_place (IconGroup group) {
+            var deleted_thumb = (WorkspaceInsertThumb) group.get_previous_sibling ();
+            var deleted_placeholder_thumb = (WorkspaceInsertThumb) group.get_next_sibling ();
 
-			width += SPACING;
+            remove_group (group);
 
-			return width;
-		}
+            /**
+             * We will account for that empty space
+             * by manually expanding the next WorkspaceInsertThumb with the
+             * width we deleted. Because the IconGroup is still hovering over
+             * the expanded thumb, we will also update the drag & drop action
+             * of IconGroup on that.
+             */
+            float deleted_width = deleted_thumb.get_width () + group.get_width ();
+            deleted_placeholder_thumb.expanded = true;
+            deleted_placeholder_thumb.width += deleted_width;
+            group.set_hovered_actor (deleted_placeholder_thumb);
+        }
 
-		void update_inserter_indices ()
-		{
-			var current_index = 0;
+        public void reset_thumbs (int delay) {
+            foreach (var child in get_children ()) {
+                unowned WorkspaceInsertThumb thumb = child as WorkspaceInsertThumb;
+                if (thumb != null) {
+                    thumb.delay = delay;
+                    thumb.destroy_all_children ();
+                }
+            }
+        }
 
-			foreach (var child in get_children ()) {
-				unowned WorkspaceInsertThumb thumb = child as WorkspaceInsertThumb;
-				if (thumb != null) {
-					thumb.workspace_index = current_index++;
-				}
-			}
-		}
-	}
+        void expanded_changed (ParamSpec param) {
+            request_reposition (true);
+        }
+
+        /**
+         * Calculates the width that will be occupied taking currently running animations
+         * end states into account
+         */
+        public float calculate_total_width () {
+            var scale = InternalUtils.get_ui_scaling_factor ();
+            var spacing = SPACING * scale;
+            var group_width = GROUP_WIDTH * scale;
+
+            var width = 0.0f;
+            foreach (var child in get_children ()) {
+                if (child is WorkspaceInsertThumb) {
+                    if (((WorkspaceInsertThumb) child).expanded)
+                        width += group_width + spacing * 2;
+                    else
+                        width += spacing;
+                } else
+                    width += group_width;
+            }
+
+            width += spacing;
+
+            return width;
+        }
+
+        void update_inserter_indices () {
+            var current_index = 0;
+
+            foreach (var child in get_children ()) {
+                unowned WorkspaceInsertThumb thumb = child as WorkspaceInsertThumb;
+                if (thumb != null) {
+                    thumb.workspace_index = current_index++;
+                }
+            }
+        }
+    }
 }
-

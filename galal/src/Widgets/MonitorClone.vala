@@ -18,115 +18,140 @@
 using Clutter;
 using Meta;
 
-namespace Gala
-{
-	/**
-	 * More or less utility class to contain a WindowCloneContainer for each
-	 * non-primary monitor. It's the pendant to the WorkspaceClone which is
-	 * only placed on the primary monitor. It also draws a wallpaper behind itself
-	 * as the WindowGroup is hidden while the view is active. Only used when
-	 * workspaces-only-on-primary is set to true.
-	 */
-	public class MonitorClone : Actor
-	{
-		public signal void window_selected (Window window);
+namespace Gala {
+    /**
+     * More or less utility class to contain a WindowCloneContainer for each
+     * non-primary monitor. It's the pendant to the WorkspaceClone which is
+     * only placed on the primary monitor. It also draws a wallpaper behind itself
+     * as the WindowGroup is hidden while the view is active. Only used when
+     * workspaces-only-on-primary is set to true.
+     */
+    public class MonitorClone : Actor {
+        public signal void window_selected (Window window);
 
-		public Screen screen { get; construct; }
-		public int monitor { get; construct; }
+#if HAS_MUTTER330
+        public Meta.Display display { get; construct; }
+#else
+        public Screen screen { get; construct; }
+#endif
+        public int monitor { get; construct; }
 
-		WindowCloneContainer window_container;
-		BackgroundManager background;
+        WindowCloneContainer window_container;
+        BackgroundManager background;
 
-		public MonitorClone (Screen screen, int monitor)
-		{
-			Object (screen: screen, monitor: monitor);
-		}
+#if HAS_MUTTER330
+        public MonitorClone (Meta.Display display, int monitor) {
+            Object (display: display, monitor: monitor);
+        }
+#else
+        public MonitorClone (Screen screen, int monitor) {
+            Object (screen: screen, monitor: monitor);
+        }
+#endif
 
-		construct
-		{
-			reactive = true;
+        construct {
+            reactive = true;
 
-			background = new BackgroundManager (screen, monitor, false);
-			background.set_easing_duration (MultitaskingView.ANIMATION_DURATION);
+#if HAS_MUTTER330
+            background = new BackgroundManager (display, monitor, false);
+#else
+            background = new BackgroundManager (screen, monitor, false);
+#endif
+            background.set_easing_duration (MultitaskingView.ANIMATION_DURATION);
 
-			window_container = new WindowCloneContainer ();
-			window_container.window_selected.connect ((w) => { window_selected (w); });
-			screen.restacked.connect (window_container.restack_windows);
+            window_container = new WindowCloneContainer ();
+            window_container.window_selected.connect ((w) => { window_selected (w); });
+#if HAS_MUTTER330
+            display.restacked.connect (window_container.restack_windows);
 
-			screen.window_entered_monitor.connect (window_entered);
-			screen.window_left_monitor.connect (window_left);
+            display.window_entered_monitor.connect (window_entered);
+            display.window_left_monitor.connect (window_left);
+#else
+            screen.restacked.connect (window_container.restack_windows);
 
-			foreach (unowned Meta.WindowActor window_actor in Meta.Compositor.get_window_actors (screen)) {
-				if (window_actor.is_destroyed ())
-					continue;
+            screen.window_entered_monitor.connect (window_entered);
+            screen.window_left_monitor.connect (window_left);
+#endif
 
-				unowned Meta.Window window = window_actor.get_meta_window ();
-				if (window.get_monitor () == monitor) {
-					window_entered (monitor, window);
-				}
-			}
+#if HAS_MUTTER330
+            unowned GLib.List<Meta.WindowActor> window_actors = display.get_window_actors ();
+#else
+            unowned GLib.List<Meta.WindowActor> window_actors = screen.get_window_actors ();
+#endif
+            foreach (unowned Meta.WindowActor window_actor in window_actors) {
+                if (window_actor.is_destroyed ())
+                    continue;
 
-			add_child (background);
-			add_child (window_container);
+                unowned Meta.Window window = window_actor.get_meta_window ();
+                if (window.get_monitor () == monitor) {
+                    window_entered (monitor, window);
+                }
+            }
 
-			var drop = new DragDropAction (DragDropActionType.DESTINATION, "multitaskingview-window");
-			add_action (drop);
+            add_child (background);
+            add_child (window_container);
 
-			update_allocation ();
-		}
+            var drop = new DragDropAction (DragDropActionType.DESTINATION, "multitaskingview-window");
+            add_action (drop);
 
-		~MonitorClone ()
-		{
-			screen.window_entered_monitor.disconnect (window_entered);
-			screen.window_left_monitor.disconnect (window_left);
-			screen.restacked.disconnect (window_container.restack_windows);
-		}
+            update_allocation ();
+        }
 
-		/**
-		 * Make sure the MonitorClone is at the location of the monitor on the stage
-		 */
-		public void update_allocation ()
-		{
-			var monitor_geometry = screen.get_monitor_geometry (monitor);
+        ~MonitorClone () {
+#if HAS_MUTTER330
+            display.window_entered_monitor.disconnect (window_entered);
+            display.window_left_monitor.disconnect (window_left);
+            display.restacked.disconnect (window_container.restack_windows);
+#else
+            screen.window_entered_monitor.disconnect (window_entered);
+            screen.window_left_monitor.disconnect (window_left);
+            screen.restacked.disconnect (window_container.restack_windows);
+#endif
+        }
 
-			set_position (monitor_geometry.x, monitor_geometry.y);
-			set_size (monitor_geometry.width, monitor_geometry.height);
-			window_container.set_size (monitor_geometry.width, monitor_geometry.height);
-		}
+        /**
+         * Make sure the MonitorClone is at the location of the monitor on the stage
+         */
+        public void update_allocation () {
+#if HAS_MUTTER330
+            var monitor_geometry = display.get_monitor_geometry (monitor);
+#else
+            var monitor_geometry = screen.get_monitor_geometry (monitor);
+#endif
 
-		/**
-		 * Animate the windows from their old location to a tiled layout
-		 */
-		public void open ()
-		{
-			window_container.open ();
-			// background.opacity = 0; TODO consider this option
-		}
+            set_position (monitor_geometry.x, monitor_geometry.y);
+            set_size (monitor_geometry.width, monitor_geometry.height);
+            window_container.set_size (monitor_geometry.width, monitor_geometry.height);
+        }
 
-		/**
-		 * Animate the windows back to their old location
-		 */
-		public void close ()
-		{
-			window_container.close ();
-			background.opacity = 255;
-		}
+        /**
+         * Animate the windows from their old location to a tiled layout
+         */
+        public void open () {
+            window_container.open ();
+            // background.opacity = 0; TODO consider this option
+        }
 
-		void window_left (int window_monitor, Window window)
-		{
-			if (window_monitor != monitor)
-				return;
+        /**
+         * Animate the windows back to their old location
+         */
+        public void close () {
+            window_container.close ();
+            background.opacity = 255;
+        }
 
-			window_container.remove_window (window);
-		}
+        void window_left (int window_monitor, Window window) {
+            if (window_monitor != monitor)
+                return;
 
-		void window_entered (int window_monitor, Window window)
-		{
-			if (window_monitor != monitor || window.window_type != WindowType.NORMAL)
-				return;
+            window_container.remove_window (window);
+        }
 
-			window_container.add_window (window);
-		}
-	}
+        void window_entered (int window_monitor, Window window) {
+            if (window_monitor != monitor || window.window_type != WindowType.NORMAL)
+                return;
+
+            window_container.add_window (window);
+        }
+    }
 }
-

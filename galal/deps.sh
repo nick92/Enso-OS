@@ -11,7 +11,7 @@ sudo apt install meson \
                  libgnome-desktop-3-dev \
                  libgranite-dev \
                  libgtk-3-dev \
-                 libmutter-2-dev \
+                 libmutter-6-dev \
                  libplank-dev \
                  libxml2-utils \
                  valac
