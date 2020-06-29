@@ -303,6 +303,14 @@
 		</key>
 	</schema>
 
+	<schema path="/io/elementary/desktop/screensaver/" id="io.elementary.desktop.screensaver">
+	    <key type="b" name="lock-on-suspend">
+		    <default>true</default>
+		    <summary>Automatically lock the screen when the computer suspends</summary>
+		    <description></description>
+		</key>
+	</schema>
+
 	<schema path="/org/pantheon/desktop/gala/plugins/alternate-alt-tab/" id="org.pantheon.desktop.gala.plugins.alternate-alt-tab" gettext-domain="gala">
 		<key type="b" name="all-workspaces">
 			<default>false</default>
