@@ -1,0 +1,50 @@
+# Japanese translations for extra package.
+# Copyright (C) 2018 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 22:19+0000\n"
+"PO-Revision-Date: 2020-06-08 10:11+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/switchboard/"
+"desktop-plug-extra/ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:5
+msgid "Desktop Settings"
+msgstr "デスクトップの設定"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:6
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "ドック、ホットコーナーを設定し、壁紙を変更します"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:12
+msgid "Illustrate Dock icon sizes"
+msgstr "ドックアイコンの大きさを視覚化"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:13
+msgid "Fix system wallpapers being copied"
+msgstr "システムの壁紙がコピーされる不具合を修正"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:14
+msgid "Update search results"
+msgstr "検索結果を更新"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:15
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:20
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:26
+msgid "Updated translations"
+msgstr "翻訳の更新"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:25
+msgid "Fix issues with setting wallpapers on the Login and Lock screen"
+msgstr "ログイン・ロック画面に壁紙を設定できない不具合を修正"

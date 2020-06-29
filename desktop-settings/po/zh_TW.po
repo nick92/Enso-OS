@@ -7,19 +7,81 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-17 01:55+0200\n"
-"PO-Revision-Date: 2016-10-14 15:25+0000\n"
+"POT-Creation-Date: 2020-05-08 21:13+0000\n"
+"PO-Revision-Date: 2020-03-01 14:09+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
-"Language: \n"
+"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
+"switchboard/switchboard-plug-pantheon-shell/zh_Hant/>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-02-12 06:16+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
-#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#: src/Plug.vala:40
+msgid "Desktop"
+msgstr "桌面"
+
+#: src/Plug.vala:41
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "調整 Dock、熱角、和更改桌布"
+
+#: src/Plug.vala:55 src/Plug.vala:109
+msgid "Wallpaper"
+msgstr "桌布"
+
+#: src/Plug.vala:58 src/Plug.vala:115 src/Plug.vala:116 src/Plug.vala:117
+#: src/Plug.vala:118
+msgid "Appearance"
+msgstr "外觀"
+
+#: src/Plug.vala:62 src/Plug.vala:110 src/Plug.vala:111 src/Plug.vala:112
+#: src/Plug.vala:113 src/Plug.vala:114
+msgid "Dock"
+msgstr "Dock"
+
+#: src/Plug.vala:65 src/Plug.vala:119
+msgid "Hot Corners"
+msgstr "熱角"
+
+#: src/Plug.vala:111
+msgid "Hide Mode"
+msgstr "隱藏模式"
+
+#: src/Plug.vala:112
+msgid "Icon Size"
+msgstr "圖示大小"
+
+#: src/Plug.vala:113
+msgid "Pressure reveal"
+msgstr "壓感揭示"
+
+#: src/Plug.vala:114
+msgid "Display"
+msgstr "顯示"
+
+#: src/Plug.vala:116
+#, fuzzy
+#| msgid "Window animations:"
+msgid "Window animations"
+msgstr "視窗動畫："
+
+#: src/Plug.vala:117
+#, fuzzy
+#| msgid "Panel translucency:"
+msgid "Panel translucency"
+msgstr "面板透明度："
+
+#: src/Plug.vala:118
+#, fuzzy
+#| msgid "Text size:"
+msgid "Text size"
+msgstr "文字大小："
+
+#.
+#. * Copyright (c) 2017 elementary LLC. (https://github.com/elementary/switchboard-plug-pantheon-shell)
 #. *
 #. * This program is free software; you can redistribute it and/or
 #. * modify it under the terms of the GNU General Public
@@ -36,216 +98,292 @@ msgstr ""
 #. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 #. * Boston, MA 02110-1301 USA
 #.
-#: ../src/Translations.vala:20
+#: src/Translations.vala:20
 msgid "Set as _Desktop Background"
 msgstr "設為桌面背景(_D)"
 
-#: ../src/Translations.vala:21
+#: src/Translations.vala:21
 msgid "Set selected image to be the new desktop background"
 msgstr "將所選的影像設為新的桌面背景"
 
-#: ../src/Views/Dock.vala:34
-msgid "Small"
+#: src/Views/Appearance.vala:43
+msgid "Style:"
 msgstr ""
 
-#: ../src/Views/Dock.vala:35
-msgid "Normal"
-msgstr "一般"
+#: src/Views/Appearance.vala:57 src/Views/Appearance.vala:107
+#: src/Views/Dock.vala:42
+msgid "Default"
+msgstr "預設"
 
-#: ../src/Views/Dock.vala:36
+#: src/Views/Appearance.vala:75
+msgid "Dark"
+msgstr ""
+
+#: src/Views/Appearance.vala:83
+msgid "Visual style for system components like the Dock and Panel indicators."
+msgstr ""
+
+#: src/Views/Appearance.vala:90
+msgid "Window animations:"
+msgstr "視窗動畫："
+
+#: src/Views/Appearance.vala:96
+msgid "Panel translucency:"
+msgstr "面板透明度："
+
+#: src/Views/Appearance.vala:102
+msgid "Text size:"
+msgstr "文字大小："
+
+#: src/Views/Appearance.vala:106 src/Views/Dock.vala:38
+msgid "Small"
+msgstr "較小"
+
+#: src/Views/Appearance.vala:108 src/Views/Dock.vala:50
 msgid "Large"
 msgstr "大"
 
-#: ../src/Views/Dock.vala:58
-msgid "Custom (%dpx)"
-msgstr "自訂 (%dpx)"
+#: src/Views/Appearance.vala:109
+msgid "Larger"
+msgstr "較大"
 
-#: ../src/Views/Dock.vala:87
+#. / TRANSLATORS: as in "Accent color"
+#: src/Views/Appearance.vala:189
+msgid "Accent:"
+msgstr ""
+
+#: src/Views/Appearance.vala:193
+msgid "Blueberry"
+msgstr ""
+
+#: src/Views/Appearance.vala:196
+msgid "Strawberry"
+msgstr ""
+
+#: src/Views/Appearance.vala:199
+msgid "Orange"
+msgstr ""
+
+#: src/Views/Appearance.vala:202
+msgid "Banana"
+msgstr ""
+
+#: src/Views/Appearance.vala:205
+msgid "Lime"
+msgstr ""
+
+#: src/Views/Appearance.vala:208
+msgid "Mint"
+msgstr ""
+
+#: src/Views/Appearance.vala:211
+msgid "Grape"
+msgstr ""
+
+#: src/Views/Appearance.vala:214
+msgid "Bubblegum"
+msgstr ""
+
+#: src/Views/Appearance.vala:217
+msgid "Cocoa"
+msgstr ""
+
+#: src/Views/Appearance.vala:220
+msgid "Slate"
+msgstr ""
+
+#: src/Views/Appearance.vala:235
+msgid ""
+"Used across the system by default. Apps can always use their own accent "
+"color."
+msgstr ""
+
+#: src/Views/Dock.vala:70
 msgid "Focused window is maximized"
 msgstr "焦點下的視窗最大化時"
 
-#: ../src/Views/Dock.vala:88
+#: src/Views/Dock.vala:71
 msgid "Focused window overlaps the dock"
 msgstr "焦點下的視窗覆蓋到 Dock 時"
 
-#: ../src/Views/Dock.vala:89
+#: src/Views/Dock.vala:72
 msgid "Any window overlaps the dock"
 msgstr "任何視窗覆蓋到 Dock 時"
 
-#: ../src/Views/Dock.vala:90
+#: src/Views/Dock.vala:73
 msgid "Not being used"
 msgstr "不使用"
 
-#: ../src/Views/Dock.vala:126
+#: src/Views/Dock.vala:109
 msgid "Primary display:"
-msgstr ""
+msgstr "主顯示器："
 
-#: ../src/Views/Dock.vala:130
+#: src/Views/Dock.vala:113
 msgid "Display:"
 msgstr "顯示器："
 
-#: ../src/Views/Dock.vala:161
+#: src/Views/Dock.vala:144
 msgid "Icon size:"
-msgstr ""
+msgstr "圖示大小："
 
-#: ../src/Views/Dock.vala:163
+#: src/Views/Dock.vala:146
 msgid "Hide when:"
 msgstr "隱藏條件："
 
-#: ../src/Views/Dock.vala:167
+#: src/Views/Dock.vala:150
 msgid "Pressure reveal:"
 msgstr "壓感揭示："
 
-#: ../src/Views/Dock.vala:206
+#: src/Views/Dock.vala:217
+#, c-format
 msgid "Monitor %d"
 msgstr "螢幕 %d"
 
-#: ../src/Views/Dock.vala:211
+#: src/Views/Dock.vala:222
+#, c-format
 msgid "Display %d"
 msgstr "顯示器 %d"
 
-#: ../src/Views/HotCorners.vala:28
+#: src/Views/HotCorners.vala:37
 msgid "When the cursor enters the corner of the display:"
 msgstr "當游標進入顯示器的角落時："
 
-#: ../src/Views/HotCorners.vala:62
+#: src/Views/HotCorners.vala:69
 msgid "Custom command:"
-msgstr ""
+msgstr "自訂指令："
 
-#: ../src/Views/HotCorners.vala:78
+#: src/Views/HotCorners.vala:108
 msgid "Do nothing"
-msgstr ""
+msgstr "不做處理"
 
-#: ../src/Views/HotCorners.vala:79
+#. none
+#: src/Views/HotCorners.vala:109
 msgid "Multitasking View"
 msgstr "多工作業檢視"
 
-#: ../src/Views/HotCorners.vala:80
+#. show-workspace-view
+#: src/Views/HotCorners.vala:110
 msgid "Maximize current window"
-msgstr ""
+msgstr "讓目前視窗最大化"
 
-#: ../src/Views/HotCorners.vala:81
-msgid "Minimize current window"
-msgstr ""
-
-#: ../src/Views/HotCorners.vala:82
+#. maximize-current
+#: src/Views/HotCorners.vala:111
 msgid "Show Applications Menu"
 msgstr "顯示應用程式選單"
 
-#: ../src/Views/HotCorners.vala:83
+#. open-launcher
+#: src/Views/HotCorners.vala:112
 msgid "Show all windows"
-msgstr ""
+msgstr "顯示所有視窗"
 
-#: ../src/Views/HotCorners.vala:84
+#. window-overview-all
+#: src/Views/HotCorners.vala:113
+msgid "Switch to new workspace"
+msgstr "切換至新的工作空間"
+
+#. switch-new-workspace
+#: src/Views/HotCorners.vala:114
 msgid "Execute custom command"
-msgstr ""
+msgstr "執行自訂指令"
 
-#: ../src/Views/Wallpaper.vala:146
-msgid "Pictures"
-msgstr "圖片"
+#: src/Views/Wallpaper.vala:100
+msgid "Import Photo…"
+msgstr "匯入相片…"
 
-#: ../src/Views/Wallpaper.vala:147
-msgid "Backgrounds"
-msgstr "背景"
-
-#: ../src/Views/Wallpaper.vala:148
-msgid "Custom…"
-msgstr "自訂…"
-
-#: ../src/Views/Wallpaper.vala:154
+#: src/Views/Wallpaper.vala:105
 msgid "Centered"
 msgstr "置中"
 
-#: ../src/Views/Wallpaper.vala:155
+#: src/Views/Wallpaper.vala:106
 msgid "Zoom"
 msgstr "遠近"
 
-#: ../src/Views/Wallpaper.vala:156
+#: src/Views/Wallpaper.vala:107
 msgid "Spanned"
 msgstr "橫跨"
 
-#: ../src/Views/Wallpaper.vala:327
-msgid "Select a folder"
-msgstr "選取資料夾"
+#: src/Views/Wallpaper.vala:150
+msgid "Import Photo"
+msgstr "匯入相片"
 
-#: ../src/Views/Wallpaper.vala:328
-#: ../set-wallpaper-contract/set-wallpaper.vala:220
+#: src/Views/Wallpaper.vala:151
+msgid "Import"
+msgstr "匯入"
+
+#: src/Views/Wallpaper.vala:152 set-wallpaper-contract/set-wallpaper.vala:222
 msgid "Cancel"
 msgstr "取消"
 
-#: ../src/Views/Wallpaper.vala:329
-msgid "Open"
-msgstr "開啟"
+#: src/Widgets/WallpaperContainer.vala:118
+msgid "Remove"
+msgstr "移除"
 
-#: ../src/desktop-plug.vala:34
-msgid "Desktop"
-msgstr "桌面"
+#: src/Widgets/WallpaperContainer.vala:188
+#, c-format
+msgid "Artist: %s"
+msgstr "演出者：%s"
 
-#: ../src/desktop-plug.vala:35
-msgid "Configure the dock, hot corners, and change wallpaper"
-msgstr "調整 Dock、熱角、和更改桌布"
-
-#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
-msgid "Wallpaper"
-msgstr "桌布"
-
-#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
-#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
-#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
-msgid "Dock"
-msgstr "Dock"
-
-#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
-msgid "Hot Corners"
-msgstr "熱角"
-
-#: ../src/desktop-plug.vala:95
-msgid "Theme"
-msgstr "主題"
-
-#: ../src/desktop-plug.vala:96
-msgid "Hide Mode"
-msgstr "隱藏模式"
-
-#: ../src/desktop-plug.vala:97
-msgid "Icon Size"
-msgstr "圖示大小"
-
-#: ../src/desktop-plug.vala:98
-msgid "Display"
-msgstr "顯示"
-
-#: ../set-wallpaper-contract/set-wallpaper.vala:90
+#: set-wallpaper-contract/set-wallpaper.vala:94
+#, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d 秒"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:93
+#: set-wallpaper-contract/set-wallpaper.vala:97
+#, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d 分鐘"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:97
+#: set-wallpaper-contract/set-wallpaper.vala:101
+#, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 小時"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:100
+#: set-wallpaper-contract/set-wallpaper.vala:104
 msgid "1 day"
 msgstr "1 日"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:104
+#: set-wallpaper-contract/set-wallpaper.vala:108
 msgid "Show each photo for"
 msgstr "顯示每張相片"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:217
-#: ../set-wallpaper-contract/set-wallpaper.vala:225
+#: set-wallpaper-contract/set-wallpaper.vala:219
+#: set-wallpaper-contract/set-wallpaper.vala:227
 msgid "Set As Desktop Slideshow"
 msgstr "設為桌面投影秀"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:221
+#: set-wallpaper-contract/set-wallpaper.vala:223
 msgid "Create slideshow"
 msgstr "製作投影秀"
+
+#~ msgid "Normal"
+#~ msgstr "一般"
+
+#~ msgid "Custom (%dpx)"
+#~ msgstr "自訂 (%dpx)"
+
+#~ msgid "Theme"
+#~ msgstr "主題"
+
+#~ msgid "Pictures"
+#~ msgstr "圖片"
+
+#~ msgid "Backgrounds"
+#~ msgstr "背景"
+
+#~ msgid "Custom…"
+#~ msgstr "自訂…"
+
+#~ msgid "Select a folder"
+#~ msgstr "選取資料夾"
+
+#~ msgid "Open"
+#~ msgstr "開啟"
+
+#~ msgid "Minimize current window"
+#~ msgstr "讓目前視窗最小化"
 
 #~ msgid "Stretched"
 #~ msgstr "延展"

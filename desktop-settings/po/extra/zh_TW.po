@@ -1,0 +1,52 @@
+# Chinese translations for extra package.
+# Copyright (C) 2018 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 22:19+0000\n"
+"PO-Revision-Date: 2020-03-01 14:09+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
+"switchboard/desktop-plug-extra/zh_Hant/>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:5
+#, fuzzy
+#| msgid "Desktop"
+msgid "Desktop Settings"
+msgstr "桌面"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:6
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "調整 Dock、熱角、變更桌布等設定"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:12
+msgid "Illustrate Dock icon sizes"
+msgstr ""
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:13
+msgid "Fix system wallpapers being copied"
+msgstr ""
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:14
+msgid "Update search results"
+msgstr ""
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:15
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:20
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:26
+msgid "Updated translations"
+msgstr "翻譯更新"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:25
+msgid "Fix issues with setting wallpapers on the Login and Lock screen"
+msgstr "修正登入與鎖定畫面設定桌面時的問題"

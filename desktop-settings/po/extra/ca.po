@@ -1,0 +1,53 @@
+# Catalan translations for extra package.
+# Copyright (C) 2018 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 22:19+0000\n"
+"PO-Revision-Date: 2020-04-30 04:10+0000\n"
+"Last-Translator: David M <rbndavid@gmail.com>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/switchboard/"
+"desktop-plug-extra/ca/>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:5
+msgid "Desktop Settings"
+msgstr "Paràmetres de l'escriptori"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:6
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr ""
+"Configureu l'acoblador, els cantons actius i canvieu el fons de pantalla."
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:12
+msgid "Illustrate Dock icon sizes"
+msgstr "Il·lustració de les mides de les icones de l'acoblador"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:13
+msgid "Fix system wallpapers being copied"
+msgstr "Correcció dels fons de pantalla del sistema quan es copien"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:14
+msgid "Update search results"
+msgstr "Actualització dels resultats de la cerca"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:15
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:20
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:26
+msgid "Updated translations"
+msgstr "Traduccions actualitzades"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:25
+msgid "Fix issues with setting wallpapers on the Login and Lock screen"
+msgstr ""
+"Correcció d'errors amb l'establiment del fons a la pantalla d'entrada i a la "
+"de bloqueig."

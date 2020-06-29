@@ -18,69 +18,47 @@
 */
 
 public class Dock : Gtk.Grid {
-    Gtk.Label primary_monitor_label;
-    Gtk.Switch primary_monitor;
-    Gtk.Label monitor_label;
-    Gtk.ComboBoxText monitor;
-    Plank.DockPreferences dock_preferences;
-    Plank.DBusClient client;
+    private Gtk.Label primary_monitor_label;
+    private Gtk.Switch primary_monitor;
+    private Gtk.Label monitor_label;
+    private Gtk.ComboBoxText monitor;
+    private Plank.DockPreferences dock_preferences;
 
-    public const string DOCKLET_URI_PREFIX = "docklet://";
-
-    public Dock () {
+    construct {
         column_spacing = 12;
         halign = Gtk.Align.CENTER;
-        row_spacing = 6;
+        row_spacing = 12;
         margin_start = margin_end = 6;
 
-        var icon_size = new Granite.Widgets.ModeButton ();
-        icon_size.append_text (_("Small"));
-        icon_size.append_text (_("Normal"));
-        icon_size.append_text (_("Large"));
+        weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
+        default_theme.add_resource_path ("/io/elementary/switchboard/plug/pantheon-shell");
 
-        client = Plank.DBusClient.get_instance ();
+        var icon_size_32 = new Gtk.RadioButton (null);
+        icon_size_32.image = new Gtk.Image.from_icon_name ("application-default-icon-symbolic", Gtk.IconSize.DND);
+        icon_size_32.tooltip_text = _("Small");
 
-#if HAVE_PLANK_0_11
-        Plank.Paths.initialize ("plank", Build.PLANKDATADIR);
+        var icon_size_48 = new Gtk.RadioButton.from_widget (icon_size_32);
+        icon_size_48.image = new Gtk.Image.from_icon_name ("application-default-icon-symbolic", Gtk.IconSize.DIALOG);
+        icon_size_48.tooltip_text = _("Default");
+
+        var image_64 = new Gtk.Image ();
+        image_64.icon_name = "application-default-icon-symbolic";
+        image_64.pixel_size = 64;
+
+        var icon_size_64 = new Gtk.RadioButton.from_widget (icon_size_32);
+        icon_size_64.image = image_64;
+        icon_size_64.tooltip_text = _("Large");
+
+        var icon_size_unsupported = new Gtk.RadioButton.from_widget (icon_size_32);
+
+        var icon_size_grid = new Gtk.Grid ();
+        icon_size_grid.column_spacing = 24;
+        icon_size_grid.add (icon_size_32);
+        icon_size_grid.add (icon_size_48);
+        icon_size_grid.add (icon_size_64);
+
+        Plank.Paths.initialize ("plank", Constants.PLANKDATADIR);
         dock_preferences = new Plank.DockPreferences ("dock1");
-#else
-        Plank.Services.Paths.initialize ("plank", Build.PLANKDATADIR);
-        dock_preferences = new Plank.DockPreferences.with_file (Plank.Services.Paths.AppConfigFolder.get_child ("dock1").get_child ("settings"));
-#endif
-        var current = dock_preferences.IconSize;
-
-        switch (current) {
-            case 32:
-                icon_size.selected = 0;
-                break;
-            case 48:
-                icon_size.selected = 1;
-                break;
-            case 64:
-                icon_size.selected = 2;
-                break;
-            default:
-                icon_size.append_text (_("Custom (%dpx)").printf (current));
-                icon_size.selected = 3;
-                break;
-        }
-
-        icon_size.mode_changed.connect (() => {
-            switch (icon_size.selected) {
-                case 0:
-                    dock_preferences.IconSize = 32;
-                    break;
-                case 1:
-                    dock_preferences.IconSize = 48;
-                    break;
-                case 2:
-                    dock_preferences.IconSize = 64;
-                    break;
-                case 3:
-                    dock_preferences.IconSize = current;
-                    break;
-            }
-        });
 
         var pressure_switch = new Gtk.Switch ();
         pressure_switch.halign = Gtk.Align.START;
@@ -126,38 +104,6 @@ public class Dock : Gtk.Grid {
             }
         });
 
-        var docklets_select = new Gtk.ComboBoxText ();
-
-        Plank.DockletManager.get_default ().load_docklets ();
-
-        foreach (var docklet in Plank.DockletManager.get_default ().list_docklets ()) {
-          docklets_select.append_text(_(docklet.get_id ()));
-  			}
-
-        docklets_select.set_active(0);
-
-        var add_docklet = new Gtk.Button ();
-        add_docklet.image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.BUTTON);
-        add_docklet.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-
-        add_docklet.clicked.connect (() => {
-            var uri = "%s%s".printf (DOCKLET_URI_PREFIX, docklets_select.get_active_text ());
-            client.add_item (uri);
-        });
-
-        var theme_select = new Gtk.ComboBoxText ();
-        int pos = 0;
-        foreach (unowned string theme in Plank.Theme.get_theme_list ()) {
-          theme_select.append_text(_(theme));
-          if(theme == dock_preferences.Theme)
-            theme_select.set_active(pos);
-          pos++;
-				}
-
-        theme_select.changed.connect (() => {
-            dock_preferences.Theme = theme_select.get_active_text();
-        });
-
         monitor = new Gtk.ComboBoxText ();
 
         primary_monitor_label = new Gtk.Label (_("Primary display:"));
@@ -176,7 +122,7 @@ public class Dock : Gtk.Grid {
                 monitor_label.sensitive = false;
                 monitor.sensitive = false;
             } else {
-                var plug_names = get_monitor_plug_names (get_screen ());
+                var plug_names = get_monitor_plug_names (get_display ());
                 if (plug_names.length > monitor.active)
                     dock_preferences.Monitor = plug_names[monitor.active];
                 monitor_label.sensitive = true;
@@ -187,7 +133,7 @@ public class Dock : Gtk.Grid {
 
         monitor.notify["active"].connect (() => {
             if (monitor.active >= 0 && primary_monitor.active == false) {
-                var plug_names = get_monitor_plug_names (get_screen ());
+                var plug_names = get_monitor_plug_names (get_display ());
                 if (plug_names.length > monitor.active)
                     dock_preferences.Monitor = plug_names[monitor.active];
             }
@@ -197,49 +143,65 @@ public class Dock : Gtk.Grid {
 
         var icon_label = new Gtk.Label (_("Icon size:"));
         icon_label.halign = Gtk.Align.END;
-        var hide_label = new Gtk.Label (_("Hide:"));
+        var hide_label = new Gtk.Label (_("Hide when:"));
         hide_label.halign = Gtk.Align.END;
-        var hide_when_label = new Gtk.Label (_("Hide when:"));
-        hide_when_label.halign = Gtk.Align.END;
         var primary_monitor_grid = new Gtk.Grid ();
         primary_monitor_grid.add (primary_monitor);
         var pressure_label = new Gtk.Label (_("Pressure reveal:"));
         pressure_label.halign = Gtk.Align.END;
-        var theme_label = new Gtk.Label (_("Themes:"));
-        theme_label.halign = Gtk.Align.END;
-        var docklets_label = new Gtk.Label (_("Docklets:"));
-        docklets_label.halign = Gtk.Align.END;
 
         attach (icon_label, 1, 0, 1, 1);
-        attach (icon_size, 2, 0, 1, 1);
+        attach (icon_size_grid, 2, 0, 2);
         attach (hide_label, 1, 1, 1, 1);
-        attach (hide_switch, 2, 1, 1, 1);
-        attach (hide_when_label, 1, 2, 1, 1);
-        attach (hide_mode, 2, 2, 1, 1);
+        attach (hide_mode, 2, 1, 1, 1);
+        attach (hide_switch, 3, 1, 1, 1);
         attach (primary_monitor_label, 1, 3, 1, 1);
         attach (primary_monitor_grid, 2, 3, 1, 1);
         attach (monitor_label, 1, 4, 1, 1);
         attach (monitor, 2, 4, 1, 1);
         attach (pressure_label, 1, 5, 1, 1);
         attach (pressure_switch, 2, 5, 1, 1);
-        attach (theme_label, 1, 6, 1, 1);
-        attach (theme_select, 2, 6, 1, 1);
-        attach (docklets_label, 1, 7, 1, 1);
-        attach (docklets_select, 2, 7, 1, 1);
-        attach (add_docklet, 3, 7, 1, 1);
 
         check_for_screens ();
+
+        switch (dock_preferences.IconSize) {
+            case 32:
+                icon_size_32.active = true;
+                break;
+            case 48:
+                icon_size_48.active = true;
+                break;
+            case 64:
+                icon_size_64.active = true;
+                break;
+            default:
+                icon_size_unsupported.active = true;
+                debug ("Unsupported dock icon size");
+        }
+
+        icon_size_32.toggled.connect (() => {
+            dock_preferences.IconSize = 32;
+        });
+
+        icon_size_48.toggled.connect (() => {
+            dock_preferences.IconSize = 48;
+        });
+
+        icon_size_64.toggled.connect (() => {
+            dock_preferences.IconSize = 64;
+        });
     }
 
     private void check_for_screens () {
         int i = 0;
         int primary_screen = 0;
+        var default_display = get_display ();
         var default_screen = get_screen ();
         monitor.remove_all ();
         try {
             var screen = new Gnome.RRScreen (default_screen);
-            for (i = 0; i < default_screen.get_n_monitors () ; i++) {
-                var monitor_plug_name = default_screen.get_monitor_plug_name (i);
+            for (i = 0; i < default_display.get_n_monitors () ; i++) {
+                var monitor_plug_name = default_display.get_monitor (i).model;
 
                 if (monitor_plug_name != null) {
                     unowned Gnome.RROutput output = screen.get_output_by_name (monitor_plug_name);
@@ -252,12 +214,12 @@ public class Dock : Gtk.Grid {
                     }
                 }
 
-                monitor.append_text (_("Monitor %d").printf (i+1) );
+                monitor.append_text (_("Monitor %d").printf (i + 1) );
             }
         } catch (Error e) {
             critical (e.message);
-            for (i = 0; i < default_screen.get_n_monitors () ; i ++) {
-                monitor.append_text (_("Display %d").printf (i+1) );
+            for (i = 0; i < default_display.get_n_monitors () ; i ++) {
+                monitor.append_text (_("Display %d").printf (i + 1));
             }
         }
 
@@ -269,7 +231,7 @@ public class Dock : Gtk.Grid {
             monitor.hide ();
         } else {
             if (dock_preferences.Monitor != "") {
-                monitor.active = find_monitor_number (get_screen (), dock_preferences.Monitor);
+                monitor.active = find_monitor_number (get_display (), dock_preferences.Monitor);
             } else {
                 monitor.active = primary_screen;
             }
@@ -281,25 +243,28 @@ public class Dock : Gtk.Grid {
         }
     }
 
-    static string[] get_monitor_plug_names (Gdk.Screen screen) {
-        int n_monitors = screen.get_n_monitors ();
+    static string[] get_monitor_plug_names (Gdk.Display display) {
+        int n_monitors = display.get_n_monitors ();
         var result = new string[n_monitors];
 
-        for (int i = 0; i < n_monitors; i++)
-            result[i] = screen.get_monitor_plug_name (i);
+        for (int i = 0; i < n_monitors; i++) {
+            result[i] = display.get_monitor (i).model;
+        }
 
         return result;
     }
 
-    static int find_monitor_number (Gdk.Screen screen, string plug_name) {
-        int n_monitors = screen.get_n_monitors ();
+    static int find_monitor_number (Gdk.Display display, string plug_name) {
+        int n_monitors = display.get_n_monitors ();
 
         for (int i = 0; i < n_monitors; i++) {
-            var name = screen.get_monitor_plug_name (i);
+            var monitor = display.get_monitor (i);
+            var name = monitor.get_model ();
             if (plug_name == name)
                 return i;
         }
 
-        return screen.get_primary_monitor ();
+        return display.get_n_monitors ();
     }
+
 }

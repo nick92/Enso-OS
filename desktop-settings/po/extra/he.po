@@ -1,0 +1,50 @@
+# Hebrew translations for extra package.
+# Copyright (C) 2018 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 22:19+0000\n"
+"PO-Revision-Date: 2020-04-30 21:30+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: Hebrew <https://l10n.elementary.io/projects/switchboard/"
+"desktop-plug-extra/he/>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:5
+msgid "Desktop Settings"
+msgstr "הגדרות שולחן עבודה"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:6
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "הגדרת המעגן, הפינות החמות והחלפת רקע שולחן העבודה"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:12
+msgid "Illustrate Dock icon sizes"
+msgstr "הדמיית גדלי סמלי המעגן"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:13
+msgid "Fix system wallpapers being copied"
+msgstr "תיקון מצב בו הטפטים של המערכת משוכפלים"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:14
+msgid "Update search results"
+msgstr "עדכון תוצאות חיפוש"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:15
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:20
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:26
+msgid "Updated translations"
+msgstr "תרגומים עודכנו"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:25
+msgid "Fix issues with setting wallpapers on the Login and Lock screen"
+msgstr "תיקון תקלות עם הגדרת רקעים במסך הכניסה והנעילה"

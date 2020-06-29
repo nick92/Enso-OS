@@ -1,0 +1,52 @@
+# Portuguese translations for extra package.
+# Copyright (C) 2018 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-28 22:19+0000\n"
+"PO-Revision-Date: 2020-05-21 00:11+0000\n"
+"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
+"switchboard/desktop-plug-extra/pt_BR/>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:5
+msgid "Desktop Settings"
+msgstr "Configurações da Área de Trabalho"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:6
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "Configure o dock, os cantos, e mude o papel de parede"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:12
+msgid "Illustrate Dock icon sizes"
+msgstr "Ilustrar os tamanhos dos ícones do Dock"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:13
+msgid "Fix system wallpapers being copied"
+msgstr "Corrigir papéis de parede do sistema sendo copiados"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:14
+msgid "Update search results"
+msgstr "Atualizar resultados da pesquisa"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:15
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:20
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:26
+msgid "Updated translations"
+msgstr "Traduções atualizadas"
+
+#: data/io.elementary.switchboard.pantheon-shell.appdata.xml.in:25
+msgid "Fix issues with setting wallpapers on the Login and Lock screen"
+msgstr ""
+"Corrigir problemas com a configuração de papéis de parede na tela início de "
+"sessão e bloqueio"

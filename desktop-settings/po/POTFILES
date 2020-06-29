@@ -1,0 +1,11 @@
+src/IOHelper.vala
+src/Plug.vala
+src/ThumbnailGenerator.vala
+src/Translations.vala
+src/Views/Appearance.vala
+src/Views/Dock.vala
+src/Views/HotCorners.vala
+src/Views/Wallpaper.vala
+src/Widgets/SolidColorContainer.vala
+src/Widgets/WallpaperContainer.vala
+set-wallpaper-contract/set-wallpaper.vala

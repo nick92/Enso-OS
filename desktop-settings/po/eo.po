@@ -7,19 +7,81 @@ msgid ""
 msgstr ""
 "Project-Id-Version: maya\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-17 01:53+0200\n"
-"PO-Revision-Date: 2012-10-26 19:34+0000\n"
-"Last-Translator: Michael Moroni <michael.moroni@openmailbox.org>\n"
-"Language-Team: Esperanto <eo@li.org>\n"
+"POT-Creation-Date: 2020-05-08 21:13+0000\n"
+"PO-Revision-Date: 2019-07-09 01:28+0000\n"
+"Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
+"Language-Team: Esperanto <https://l10n.elementary.io/projects/switchboard/"
+"switchboard-plug-pantheon-shell/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2017-02-12 06:15+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
-#. //github.com/elementary/switchboard-plug-pantheon-shell)
+#: src/Plug.vala:40
+msgid "Desktop"
+msgstr "Labortablo"
+
+#: src/Plug.vala:41
+msgid "Configure the dock, hot corners, and change wallpaper"
+msgstr "Agordi la butonbreton, sensemajn angulojn, kaj fonon"
+
+#: src/Plug.vala:55 src/Plug.vala:109
+msgid "Wallpaper"
+msgstr "Fono"
+
+#: src/Plug.vala:58 src/Plug.vala:115 src/Plug.vala:116 src/Plug.vala:117
+#: src/Plug.vala:118
+msgid "Appearance"
+msgstr "Aspekto"
+
+#: src/Plug.vala:62 src/Plug.vala:110 src/Plug.vala:111 src/Plug.vala:112
+#: src/Plug.vala:113 src/Plug.vala:114
+msgid "Dock"
+msgstr "Butonbreto"
+
+#: src/Plug.vala:65 src/Plug.vala:119
+msgid "Hot Corners"
+msgstr "Sensemaj Anguloj"
+
+#: src/Plug.vala:111
+msgid "Hide Mode"
+msgstr "Kaŝa Reĝimo"
+
+#: src/Plug.vala:112
+msgid "Icon Size"
+msgstr "Bildeta Amplekso"
+
+#: src/Plug.vala:113
+msgid "Pressure reveal"
+msgstr "Rivelo per klako"
+
+#: src/Plug.vala:114
+msgid "Display"
+msgstr "Ekrano"
+
+#: src/Plug.vala:116
+#, fuzzy
+#| msgid "Window animations:"
+msgid "Window animations"
+msgstr "Fenestraj animacioj:"
+
+#: src/Plug.vala:117
+#, fuzzy
+#| msgid "Panel translucency:"
+msgid "Panel translucency"
+msgstr "Panel travidebleco:"
+
+#: src/Plug.vala:118
+#, fuzzy
+#| msgid "Text size:"
+msgid "Text size"
+msgstr "Teksta amplekso:"
+
+#.
+#. * Copyright (c) 2017 elementary LLC. (https://github.com/elementary/switchboard-plug-pantheon-shell)
 #. *
 #. * This program is free software; you can redistribute it and/or
 #. * modify it under the terms of the GNU General Public
@@ -36,216 +98,271 @@ msgstr ""
 #. * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 #. * Boston, MA 02110-1301 USA
 #.
-#: ../src/Translations.vala:20
+#: src/Translations.vala:20
 msgid "Set as _Desktop Background"
-msgstr ""
+msgstr "Agordi kiel Labortabla _Fono"
 
-#: ../src/Translations.vala:21
+#: src/Translations.vala:21
 msgid "Set selected image to be the new desktop background"
+msgstr "Agordi la elektitan bildon kiel novan labortablan fonon"
+
+#: src/Views/Appearance.vala:43
+msgid "Style:"
 msgstr ""
 
-#: ../src/Views/Dock.vala:34
+#: src/Views/Appearance.vala:57 src/Views/Appearance.vala:107
+#: src/Views/Dock.vala:42
+msgid "Default"
+msgstr "Apriora"
+
+#: src/Views/Appearance.vala:75
+msgid "Dark"
+msgstr ""
+
+#: src/Views/Appearance.vala:83
+msgid "Visual style for system components like the Dock and Panel indicators."
+msgstr ""
+
+#: src/Views/Appearance.vala:90
+msgid "Window animations:"
+msgstr "Fenestraj animacioj:"
+
+#: src/Views/Appearance.vala:96
+msgid "Panel translucency:"
+msgstr "Panel travidebleco:"
+
+#: src/Views/Appearance.vala:102
+msgid "Text size:"
+msgstr "Teksta amplekso:"
+
+#: src/Views/Appearance.vala:106 src/Views/Dock.vala:38
 msgid "Small"
-msgstr ""
+msgstr "Malgranda"
 
-#: ../src/Views/Dock.vala:35
-msgid "Normal"
-msgstr ""
-
-#: ../src/Views/Dock.vala:36
+#: src/Views/Appearance.vala:108 src/Views/Dock.vala:50
 msgid "Large"
+msgstr "Granda"
+
+#: src/Views/Appearance.vala:109
+msgid "Larger"
+msgstr "Grandega"
+
+#. / TRANSLATORS: as in "Accent color"
+#: src/Views/Appearance.vala:189
+msgid "Accent:"
 msgstr ""
 
-#: ../src/Views/Dock.vala:58
-msgid "Custom (%dpx)"
+#: src/Views/Appearance.vala:193
+msgid "Blueberry"
 msgstr ""
 
-#: ../src/Views/Dock.vala:87
+#: src/Views/Appearance.vala:196
+msgid "Strawberry"
+msgstr ""
+
+#: src/Views/Appearance.vala:199
+msgid "Orange"
+msgstr ""
+
+#: src/Views/Appearance.vala:202
+msgid "Banana"
+msgstr ""
+
+#: src/Views/Appearance.vala:205
+msgid "Lime"
+msgstr ""
+
+#: src/Views/Appearance.vala:208
+msgid "Mint"
+msgstr ""
+
+#: src/Views/Appearance.vala:211
+msgid "Grape"
+msgstr ""
+
+#: src/Views/Appearance.vala:214
+msgid "Bubblegum"
+msgstr ""
+
+#: src/Views/Appearance.vala:217
+msgid "Cocoa"
+msgstr ""
+
+#: src/Views/Appearance.vala:220
+msgid "Slate"
+msgstr ""
+
+#: src/Views/Appearance.vala:235
+msgid ""
+"Used across the system by default. Apps can always use their own accent "
+"color."
+msgstr ""
+
+#: src/Views/Dock.vala:70
 msgid "Focused window is maximized"
-msgstr ""
+msgstr "Fokusita fenestro maksimumiĝas"
 
-#: ../src/Views/Dock.vala:88
+#: src/Views/Dock.vala:71
 msgid "Focused window overlaps the dock"
-msgstr ""
+msgstr "Fokusita fenestro kovras la butonbreton"
 
-#: ../src/Views/Dock.vala:89
+#: src/Views/Dock.vala:72
 msgid "Any window overlaps the dock"
-msgstr ""
+msgstr "Ĉiu fenestro kovras la butonbreton"
 
-#: ../src/Views/Dock.vala:90
+#: src/Views/Dock.vala:73
 msgid "Not being used"
-msgstr ""
+msgstr "Ne uzata"
 
-#: ../src/Views/Dock.vala:126
+#: src/Views/Dock.vala:109
 msgid "Primary display:"
-msgstr ""
+msgstr "Ĉefa ekrano:"
 
-#: ../src/Views/Dock.vala:130
+#: src/Views/Dock.vala:113
 msgid "Display:"
-msgstr ""
+msgstr "Ekrano:"
 
-#: ../src/Views/Dock.vala:161
+#: src/Views/Dock.vala:144
 msgid "Icon size:"
-msgstr ""
+msgstr "Bildeta amplekso:"
 
-#: ../src/Views/Dock.vala:163
+#: src/Views/Dock.vala:146
 msgid "Hide when:"
-msgstr ""
+msgstr "Kaŝi kiam:"
 
-#: ../src/Views/Dock.vala:167
+#: src/Views/Dock.vala:150
 msgid "Pressure reveal:"
-msgstr ""
+msgstr "Rivelo per klako:"
 
-#: ../src/Views/Dock.vala:206
+#: src/Views/Dock.vala:217
+#, c-format
 msgid "Monitor %d"
-msgstr ""
+msgstr "Ekrano %d"
 
-#: ../src/Views/Dock.vala:211
+#: src/Views/Dock.vala:222
+#, c-format
 msgid "Display %d"
-msgstr ""
+msgstr "Ekrano %d"
 
-#: ../src/Views/HotCorners.vala:28
+#: src/Views/HotCorners.vala:37
 msgid "When the cursor enters the corner of the display:"
-msgstr ""
+msgstr "Kiam la musmontrilo venas en angulo de la ekrano:"
 
-#: ../src/Views/HotCorners.vala:62
+#: src/Views/HotCorners.vala:69
 msgid "Custom command:"
-msgstr ""
+msgstr "Propra komando:"
 
-#: ../src/Views/HotCorners.vala:78
+#: src/Views/HotCorners.vala:108
 msgid "Do nothing"
-msgstr ""
+msgstr "Fari nenion"
 
-#: ../src/Views/HotCorners.vala:79
+#. none
+#: src/Views/HotCorners.vala:109
 msgid "Multitasking View"
-msgstr ""
+msgstr "Taskbaskula vido"
 
-#: ../src/Views/HotCorners.vala:80
+#. show-workspace-view
+#: src/Views/HotCorners.vala:110
 msgid "Maximize current window"
-msgstr ""
+msgstr "Maksimumigi la aktivan fenestron"
 
-#: ../src/Views/HotCorners.vala:81
-msgid "Minimize current window"
-msgstr ""
-
-#: ../src/Views/HotCorners.vala:82
+#. maximize-current
+#: src/Views/HotCorners.vala:111
 msgid "Show Applications Menu"
-msgstr ""
+msgstr "Montri la Aplikaĵan Menuon"
 
-#: ../src/Views/HotCorners.vala:83
+#. open-launcher
+#: src/Views/HotCorners.vala:112
 msgid "Show all windows"
-msgstr ""
+msgstr "Montri ĉiujn fenestrojn"
 
-#: ../src/Views/HotCorners.vala:84
+#. window-overview-all
+#: src/Views/HotCorners.vala:113
+msgid "Switch to new workspace"
+msgstr "Salti al nova laborspaco"
+
+#. switch-new-workspace
+#: src/Views/HotCorners.vala:114
 msgid "Execute custom command"
-msgstr ""
+msgstr "Lanĉi propran komandon"
 
-#: ../src/Views/Wallpaper.vala:146
-msgid "Pictures"
-msgstr ""
+#: src/Views/Wallpaper.vala:100
+msgid "Import Photo…"
+msgstr "Importi Fotojn…"
 
-#: ../src/Views/Wallpaper.vala:147
-msgid "Backgrounds"
-msgstr ""
-
-#: ../src/Views/Wallpaper.vala:148
-msgid "Custom…"
-msgstr ""
-
-#: ../src/Views/Wallpaper.vala:154
+#: src/Views/Wallpaper.vala:105
 msgid "Centered"
-msgstr ""
+msgstr "Centrita"
 
-#: ../src/Views/Wallpaper.vala:155
+#: src/Views/Wallpaper.vala:106
 msgid "Zoom"
-msgstr ""
+msgstr "Zomi"
 
-#: ../src/Views/Wallpaper.vala:156
+#: src/Views/Wallpaper.vala:107
 msgid "Spanned"
-msgstr ""
+msgstr "Etendita"
 
-#: ../src/Views/Wallpaper.vala:327
-msgid "Select a folder"
-msgstr ""
+#: src/Views/Wallpaper.vala:150
+msgid "Import Photo"
+msgstr "Importi Foton"
 
-#: ../src/Views/Wallpaper.vala:328
-#: ../set-wallpaper-contract/set-wallpaper.vala:220
+#: src/Views/Wallpaper.vala:151
+msgid "Import"
+msgstr "Importi"
+
+#: src/Views/Wallpaper.vala:152 set-wallpaper-contract/set-wallpaper.vala:222
 msgid "Cancel"
-msgstr ""
+msgstr "Rezigni"
 
-#: ../src/Views/Wallpaper.vala:329
-msgid "Open"
-msgstr ""
+#: src/Widgets/WallpaperContainer.vala:118
+msgid "Remove"
+msgstr "Forigi"
 
-#: ../src/desktop-plug.vala:34
-msgid "Desktop"
-msgstr ""
+#: src/Widgets/WallpaperContainer.vala:188
+#, c-format
+msgid "Artist: %s"
+msgstr "Artisto: %s"
 
-#: ../src/desktop-plug.vala:35
-msgid "Configure the dock, hot corners, and change wallpaper"
-msgstr ""
-
-#: ../src/desktop-plug.vala:51 ../src/desktop-plug.vala:93
-msgid "Wallpaper"
-msgstr ""
-
-#: ../src/desktop-plug.vala:52 ../src/desktop-plug.vala:94
-#: ../src/desktop-plug.vala:95 ../src/desktop-plug.vala:96
-#: ../src/desktop-plug.vala:97 ../src/desktop-plug.vala:98
-msgid "Dock"
-msgstr ""
-
-#: ../src/desktop-plug.vala:53 ../src/desktop-plug.vala:99
-msgid "Hot Corners"
-msgstr ""
-
-#: ../src/desktop-plug.vala:95
-msgid "Theme"
-msgstr ""
-
-#: ../src/desktop-plug.vala:96
-msgid "Hide Mode"
-msgstr ""
-
-#: ../src/desktop-plug.vala:97
-msgid "Icon Size"
-msgstr ""
-
-#: ../src/desktop-plug.vala:98
-msgid "Display"
-msgstr ""
-
-#: ../set-wallpaper-contract/set-wallpaper.vala:90
+#: set-wallpaper-contract/set-wallpaper.vala:94
+#, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekundo"
+msgstr[1] "%d sekundoj"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:93
+#: set-wallpaper-contract/set-wallpaper.vala:97
+#, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minuto"
+msgstr[1] "%d minutoj"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:97
+#: set-wallpaper-contract/set-wallpaper.vala:101
+#, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d horo"
+msgstr[1] "%d horoj"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:100
+#: set-wallpaper-contract/set-wallpaper.vala:104
 msgid "1 day"
-msgstr ""
+msgstr "1 tago"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:104
+#: set-wallpaper-contract/set-wallpaper.vala:108
 msgid "Show each photo for"
-msgstr ""
+msgstr "Montri ĉiun foton dum"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:217
-#: ../set-wallpaper-contract/set-wallpaper.vala:225
+#: set-wallpaper-contract/set-wallpaper.vala:219
+#: set-wallpaper-contract/set-wallpaper.vala:227
 msgid "Set As Desktop Slideshow"
-msgstr ""
+msgstr "Agordi kiel fundan animacion"
 
-#: ../set-wallpaper-contract/set-wallpaper.vala:221
+#: set-wallpaper-contract/set-wallpaper.vala:223
 msgid "Create slideshow"
-msgstr ""
+msgstr "Krei animacion"
+
+#~ msgid "Normal"
+#~ msgstr "Normala"
+
+#~ msgid "Custom (%dpx)"
+#~ msgstr "Propra (%dpx)"
