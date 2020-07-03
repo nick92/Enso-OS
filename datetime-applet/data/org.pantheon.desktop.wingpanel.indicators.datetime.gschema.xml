@@ -6,5 +6,10 @@
             <summary>Show week numbers.</summary>
             <description>If this is set to true, week numbers will be shown in the calendar.</description>
         </key>
+        <key type="b" name="show-seconds">
+            <default>false</default>
+            <summary>Show week numbers.</summary>
+            <description>If this is set to true, week numbers will be shown in the calendar.</description>
+        </key>
     </schema>
 </schemalist>

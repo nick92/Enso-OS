@@ -46,15 +46,19 @@ public class DateTime.Widgets.PanelLabel : Gtk.Grid {
     construct {
         orientation = Gtk.Orientation.VERTICAL;
         column_spacing = 12;
-        margin = 12;
+        margin_bottom = 12;
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
 
         date_label = new Gtk.Label (null);
         time_label = new Gtk.Label (null);
 
-        this.add (time_label);
-        this.add (date_label);
+        date_label.get_style_context ().add_class ("header");
+        time_label.get_style_context ().add_class ("header");
+        
+
+        add (time_label);
+        add (date_label);
     }
 
     private void update_labels () {

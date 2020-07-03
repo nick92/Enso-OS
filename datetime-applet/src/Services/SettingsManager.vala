@@ -17,13 +17,14 @@
  * Boston, MA 02110-1301 USA.
  */
 
-public class DateTime.Services.SettingsManager : Granite.Services.Settings {
+public class DateTime.Services.SettingsManager {
     private static SettingsManager? instance = null;
+    public static GLib.Settings settings;
 
-    public bool show_weeks{ get; set; }
+    public bool show_weeks { get; set; }
 
     public SettingsManager () {
-        base ("org.pantheon.desktop.wingpanel.indicators.datetime");
+        settings = new GLib.Settings ("org.pantheon.desktop.wingpanel.indicators.datetime");
     }
 
     public static SettingsManager get_default () {

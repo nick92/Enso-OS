@@ -1,0 +1,63 @@
+Build started at 2020-07-01T13:07:26.268337
+Main binary: /usr/bin/python3
+Python system: Linux
+The Meson build system
+Version: 0.45.1
+Source dir: /home/nick/work/Enso-OS/greeter
+Build dir: /home/nick/work/Enso-OS/greeter/builddir
+Build type: native build
+Project name: pantheon-greeter
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc /home/nick/work/Enso-OS/greeter/builddir/meson-private/sanitycheckc.c -o /home/nick/work/Enso-OS/greeter/builddir/meson-private/sanitycheckc.exe
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/nick/work/Enso-OS/greeter/builddir/meson-private/sanitycheckc.exe
+Native C compiler: cc (gcc 7.5.0 "cc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0")
+Running compile:
+Working directory:  /tmp/tmp7ceu14yu
+Command line:  valac /tmp/tmp7ceu14yu/testfile.vala -C -C -o /tmp/tmp7ceu14yu/output.obj 
+
+Code:
+ class MesonSanityCheck : Object { }
+Compiler stdout:
+ Compilation succeeded - 1 warning(s)
+
+Compiler stderr:
+ warning: --output and -o have no effect when -C or --ccode is set
+
+Native Vala compiler: valac (valac 0.40.19)
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Found pkg-config: /usr/bin/pkg-config (0.29.1)
+Determining dependency 'glib-2.0' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency glib-2.0 found: YES 2.56.4
+Determining dependency 'gobject-2.0' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency gobject-2.0 found: YES 2.56.4
+Determining dependency 'glib-2.0' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency glib-2.0 found: YES 2.56.4
+Determining dependency 'gtk+-3.0' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency gtk+-3.0 found: YES 3.22.30
+Determining dependency 'gee-0.8' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency gee-0.8 found: YES 0.20.1
+Determining dependency 'liblightdm-gobject-1' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency liblightdm-gobject-1 found: YES 1.26.0
+Determining dependency 'clutter-gtk-1.0' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency clutter-gtk-1.0 found: YES 1.8.4
+Determining dependency 'gdk-pixbuf-2.0' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency gdk-pixbuf-2.0 found: YES 2.36.11
+Determining dependency 'gdk-x11-3.0' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency gdk-x11-3.0 found: YES 3.22.30
+Determining dependency 'gl' with pkg-config executable '/usr/bin/pkg-config'
+Native dependency gl found: YES 19.2.8
+Configuring config.vala using configuration
+src/meson.build:23: WARNING: The variable(s) 'DATADIR', 'PKGDATADIR', 'PLUGINDIR', 'RELEASE_NAME', 'VERSION_INFO' in the input file src/config.vala.in are not present in the given configuration data.
+Configuring pantheon-greeter.desktop.in using configuration
+Program desktop-file-validate found: YES (/usr/bin/desktop-file-validate)
+Adding test "Validate desktop file".
+Build targets in project: 7
+Found ninja-1.8.2 at /usr/bin/ninja

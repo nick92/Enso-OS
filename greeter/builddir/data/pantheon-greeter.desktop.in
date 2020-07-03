@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Greeter
+Comment=Greeter
+Exec=pantheon-greeter
+Type=Application
+X-Ubuntu-Gettext-Domain=greeter
+

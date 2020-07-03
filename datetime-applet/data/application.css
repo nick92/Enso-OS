@@ -2,9 +2,9 @@
     font-weight: 500;
 }
 
-.h2 {
+.header {
     font-weight: 300;
-    font-size: 20px;
+    font-size: 1.66em;
 }
 
 .circular {
@@ -14,4 +14,20 @@
     color: @bg_color;
     box-shadow: none;
     -gtk-icon-shadow: none;
+}
+
+.accent {
+    font-weight: bold;
+}
+
+.circular {
+    border-radius: 50%;
+}
+
+.circular:selected .accent {
+    color: @selected_fg_color;
+}
+
+grid:disabled .accent {
+    color: @insensitive_color;
 }
