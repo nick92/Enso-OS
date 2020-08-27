@@ -487,7 +487,7 @@ namespace Gala {
             if (window == null)
                 return;
 
-            var direction = (binding.get_name () == "move-to-workspace-left" ? Meta.MotionDirection.LEFT : Meta.MotionDirection.RIGHT);
+            var direction = (binding.get_name () == "move-to-workspace-left" ? Meta.MotionDirection.UP : Meta.MotionDirection.DOWN);
             move_window (window, direction);
         }
 
@@ -507,7 +507,7 @@ namespace Gala {
         [CCode (instance_pos = -1)]
         void handle_switch_to_workspace (Meta.Display display, Meta.Window? window,
             Clutter.KeyEvent event, Meta.KeyBinding binding) {
-            var direction = (binding.get_name () == "switch-to-workspace-left" ? Meta.MotionDirection.LEFT : Meta.MotionDirection.RIGHT);
+            var direction = (binding.get_name () == "switch-to-workspace-left" ? Meta.MotionDirection.UP : Meta.MotionDirection.DOWN);
             switch_to_next_workspace (direction);
         }
 
@@ -541,7 +541,7 @@ namespace Gala {
             if (window == null)
                 return;
 
-            var direction = (binding.get_name () == "move-to-workspace-left" ? Meta.MotionDirection.LEFT : Meta.MotionDirection.RIGHT);
+            var direction = (binding.get_name () == "move-to-workspace-left" ? Meta.MotionDirection.UP : Meta.MotionDirection.DOWN);
             move_window (window, direction);
         }
 
@@ -560,7 +560,7 @@ namespace Gala {
         [CCode (instance_pos = -1)]
         void handle_switch_to_workspace (Meta.Display display, Meta.Screen screen, Meta.Window? window,
             Clutter.KeyEvent event, Meta.KeyBinding binding) {
-            var direction = (binding.get_name () == "switch-to-workspace-left" ? Meta.MotionDirection.LEFT : Meta.MotionDirection.RIGHT);
+            var direction = (binding.get_name () == "switch-to-workspace-left" ? Meta.MotionDirection.UP : Meta.MotionDirection.DOWN);
             switch_to_next_workspace (direction);
         }
 
@@ -579,18 +579,13 @@ namespace Gala {
             Meta.Workspace neighbor = null;
 #if HAS_MUTTER330
             unowned Meta.Display display = get_display ();
-            unowned Meta.WorkspaceManager manager = display.get_workspace_manager ();
-            var active_workspace = manager.get_active_workspace ();
-            neighbor = active_workspace.get_neighbor (direction);
-            
-            //  unowned Meta.Display display = get_display ();
-            //  var active_workspace = display.get_workspace_manager ().get_active_workspace ();
+            var active_workspace = display.get_workspace_manager ().get_active_workspace ();
 #else
             var screen = get_screen ();
             var display = screen.get_display ();
             var active_workspace = screen.get_active_workspace ();
-            neighbor = active_workspace.get_neighbor (direction);
 #endif
+            neighbor = active_workspace.get_neighbor (direction);
             
             if (neighbor != active_workspace) {
                 neighbor.activate (display.get_current_time ());
@@ -601,7 +596,7 @@ namespace Gala {
             if (ui_group.get_transition ("nudge") != null)
                 return;
 
-            var dest = (direction == Meta.MotionDirection.LEFT ? 32.0f : -32.0f);
+            var dest = (direction == Meta.MotionDirection.UP ? 32.0f : -32.0f);
 
             double[] keyframes = { 0.28, 0.58 };
             GLib.Value[] x = { dest, dest };
@@ -950,14 +945,14 @@ namespace Gala {
                     break;
                 case ActionType.MOVE_CURRENT_WORKSPACE_LEFT:
                     if (current != null) {
-                        var wp = current.get_workspace ().get_neighbor (Meta.MotionDirection.LEFT);
+                        var wp = current.get_workspace ().get_neighbor (Meta.MotionDirection.UP);
                         if (wp != null)
                             current.change_workspace (wp);
                     }
                     break;
                 case ActionType.MOVE_CURRENT_WORKSPACE_RIGHT:
                     if (current != null) {
-                        var wp = current.get_workspace ().get_neighbor (Meta.MotionDirection.RIGHT);
+                        var wp = current.get_workspace ().get_neighbor (Meta.MotionDirection.DOWN);
                         if (wp != null)
                             current.change_workspace (wp);
                     }
@@ -1891,7 +1886,7 @@ namespace Gala {
 
             if (!enable_animations
                 || animation_duration == 0
-                || (direction != Meta.MotionDirection.LEFT && direction != Meta.MotionDirection.RIGHT)) {
+                || (direction != Meta.MotionDirection.UP && direction != Meta.MotionDirection.DOWN)) {
                 switch_workspace_completed ();
                 return;
             }
@@ -2068,7 +2063,7 @@ namespace Gala {
             main_container.height = move_primary_only ? monitor_geom.height : screen_height;
 
             var x2 = move_primary_only ? monitor_geom.width : screen_width;
-            if (direction == Meta.MotionDirection.RIGHT)
+            if (direction == Meta.MotionDirection.DOWN)
                 x2 = -x2;
 
             out_group.x = 0.0f;

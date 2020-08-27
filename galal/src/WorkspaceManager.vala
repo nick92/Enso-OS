@@ -57,8 +57,6 @@ namespace Gala {
             manager.workspace_removed.connect_after (workspace_removed);
             display.window_entered_monitor.connect (window_entered_monitor);
             display.window_left_monitor.connect (window_left_monitor);
-
-            append_workspace ();
             
             // make sure the last workspace has no windows on it
             if (Prefs.get_dynamic_workspaces ()
@@ -288,7 +286,6 @@ namespace Gala {
         }
 
         void append_workspace () {
-            warning("append_workspace");
 #if HAS_MUTTER330
             unowned Meta.Display display = wm.get_display ();
             unowned Meta.WorkspaceManager manager = display.get_workspace_manager ();
@@ -322,10 +319,10 @@ namespace Gala {
             if (workspace == active_workspace) {
                 Workspace? next = null;
 
-                next = workspace.get_neighbor (MotionDirection.LEFT);
+                next = workspace.get_neighbor (MotionDirection.UP);
                 // if it's the first one we may have another one to the right
                 if (next == workspace || next == null)
-                    next = workspace.get_neighbor (MotionDirection.RIGHT);
+                    next = workspace.get_neighbor (MotionDirection.DOWN);
 
                 if (next != null)
                     next.activate (time);
