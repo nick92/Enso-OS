@@ -36,6 +36,7 @@ namespace Gala.Plugins.Notify {
             content_area = new Gtk.Stack ();
             content_area.transition_type = Gtk.StackTransitionType.SLIDE_DOWN;
             content_area.vhomogeneous = false;
+            content_area.transition_duration = 195;
 
             draw_area = new Gtk.Grid ();
             draw_area.hexpand = true;
@@ -43,18 +44,8 @@ namespace Gala.Plugins.Notify {
             draw_area.get_style_context ().add_class ("gala-notification");
             draw_area.add (content_area);
 
-            var close_button = new Gtk.Button.from_icon_name ("window-close-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-            close_button.halign = close_button.valign = Gtk.Align.START;
-            close_button.get_style_context ().add_class ("close");
-
-            var close_revealer = new Gtk.Revealer ();
-            close_revealer.reveal_child = false;
-            close_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
-            close_revealer.add (close_button);
-
             var overlay = new Gtk.Overlay ();
             overlay.add (draw_area);
-            overlay.add_overlay (close_revealer);
 
             revealer = new Gtk.Revealer ();
             revealer.reveal_child = true;
@@ -72,13 +63,7 @@ namespace Gala.Plugins.Notify {
             get_style_context ().add_class ("notification");
             set_titlebar (label);
 
-            close_button.clicked.connect (() => {
-                closed (NotifyServer.CloseReason.DISMISSED);
-                dismiss ();
-            });
-
             enter_notify_event.connect (() => {
-                close_revealer.reveal_child = true;
                 stop_timeout ();
                 return Gdk.EVENT_PROPAGATE;
             });
@@ -87,7 +72,6 @@ namespace Gala.Plugins.Notify {
                 if (event.detail == Gdk.NotifyType.INFERIOR) {
                     return Gdk.EVENT_STOP;
                 }
-                close_revealer.reveal_child = false;
                 return Gdk.EVENT_PROPAGATE;
             });
         }
