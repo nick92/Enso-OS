@@ -576,16 +576,22 @@ namespace Gala {
          * {@inheritDoc}
          */
         public void switch_to_next_workspace (Meta.MotionDirection direction) {
+            Meta.Workspace neighbor = null;
 #if HAS_MUTTER330
             unowned Meta.Display display = get_display ();
-            var active_workspace = display.get_workspace_manager ().get_active_workspace ();
+            unowned Meta.WorkspaceManager manager = display.get_workspace_manager ();
+            var active_workspace = manager.get_active_workspace ();
+            neighbor = active_workspace.get_neighbor (direction);
+            
+            //  unowned Meta.Display display = get_display ();
+            //  var active_workspace = display.get_workspace_manager ().get_active_workspace ();
 #else
             var screen = get_screen ();
             var display = screen.get_display ();
             var active_workspace = screen.get_active_workspace ();
+            neighbor = active_workspace.get_neighbor (direction);
 #endif
-            var neighbor = active_workspace.get_neighbor (direction);
-
+            
             if (neighbor != active_workspace) {
                 neighbor.activate (display.get_current_time ());
                 return;

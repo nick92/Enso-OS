@@ -120,7 +120,7 @@ public class Gala.NotificationStack : Object {
         var scale = Utils.get_ui_scaling_factor ();
         var y = stack_y + TOP_OFFSET + add_y + ADDITIONAL_MARGIN * scale;
         var i = notifications.size;
-        var delay_step = i > 0 ? 150 / i : 0;
+        var delay_step = i > 0 ? 50 / i : 0;
         foreach (var actor in notifications) {
             actor.save_easing_state ();
             actor.set_easing_mode (Clutter.AnimationMode.EASE_OUT_BACK);

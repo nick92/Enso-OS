@@ -1,9 +1,7 @@
-gala_gschema = configure_file(
-	input: 'org.pantheon.desktop.gala.gschema.xml.in',
-	output: 'org.pantheon.desktop.gala.gschema.xml',
-	configuration: customconf,
-	install: true,
-	install_dir: join_paths(data_dir, 'glib-2.0', 'schemas')
+install_data(
+    'gala.gschema.xml',
+    install_dir: join_paths(data_dir, 'glib-2.0', 'schemas'),
+    rename: 'org.pantheon.desktop.gala.gschema.xml'
 )
 
 gala_gschema_compile = gnome.compile_schemas()

@@ -52,6 +52,11 @@
 				followed by a ':' and then the command. ';;' is used as delimiter between command defintions.
 			</description>
 		</key>
+		<key type="b" name="use-new-notifications">
+			<default>false</default>
+			<summary>If new notifications should be used</summary>
+			<description>If new notifications UI should be used, requires io.elemenetary.notifications to be present and running</description>
+		</key>
 		<key type="b" name="edge-tiling">
 			<default>true</default>
 			<summary>Enable edge tiling when dropping windows on screen edges</summary>
@@ -231,31 +236,31 @@
 		</key>
 	</schema>
 	
-	<schema path="/org/pantheon/desktop/gala/shadows/" id="org.pantheon.desktop.gala.shadows" gettext-domain="@GETTEXT_PACKAGE@">
+	<schema path="/org/pantheon/desktop/gala/shadows/" id="org.pantheon.desktop.gala.shadows">
 		<key type="as" name="normal-focused">
-			<default>['20', '-1', '0', '15', '220']</default>
-			<summary>Defines the shadow of normal focused windows</summary>
-			<description>The first value is the radius of the blur of the shadow, the second one the top fade (which is usually just -1), the third and fourth the x- and y-offset and the last the opacity. So [blur-radius, top-fade, x-offset, y-offset, opacity]</description>
+		<default>['20', '-1', '0', '15', '100']</default>
+		<summary>Defines the shadow of normal focused windows</summary>
+		<description>The first value is the radius of the blur of the shadow, the second one the top fade (which is usually just -1), the third and fourth the x- and y-offset and the last the opacity. So [blur-radius, top-fade, x-offset, y-offset, opacity].</description>
 		</key>
 		<key type="as" name="normal-unfocused">
-			<default>['8', '-1', '0', '6', '150']</default>
-			<summary>Defines the shadow of a normal unfocused window</summary>
-			<description>See normal-focused</description>
+		<default>['6', '-1', '0', '4', '80']</default>
+		<summary>Defines the shadow of a normal unfocused window</summary>
+		<description>See normal-focused.</description>
 		</key>
 		<key type="as" name="menu">
-			<default>['7', '-1', '0', '5', '130']</default>
-			<summary>Defines the shadow of a menu</summary>
-			<description>See normal-focused</description>
+		<default>['6', '-1', '0', '4', '80']</default>
+		<summary>Defines the shadow of a menu</summary>
+		<description>See normal-focused.</description>
 		</key>
 		<key type="as" name="dialog-focused">
-			<default>['12', '-1', '0', '7', '190']</default>
-			<summary>Defines the shadow of a focused dialog</summary>
-			<description>See normal-focused</description>
+		<default>['12', '-1', '0', '4', '100']</default>
+		<summary>Defines the shadow of a focused dialog</summary>
+		<description>See normal-focused.</description>
 		</key>
 		<key type="as" name="dialog-unfocused">
-			<default>['7', '-1', '0', '4', '130']</default>
-			<summary>Defines the shadow of an unfocused dialog</summary>
-			<description>See normal-focused</description>
+		<default>['6', '-1', '0', '4', '80']</default>
+		<summary>Defines the shadow of an unfocused dialog</summary>
+		<description>See normal-focused.</description>
 		</key>
 	</schema>
 	

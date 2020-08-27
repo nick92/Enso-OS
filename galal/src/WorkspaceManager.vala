@@ -58,6 +58,8 @@ namespace Gala {
             display.window_entered_monitor.connect (window_entered_monitor);
             display.window_left_monitor.connect (window_left_monitor);
 
+            append_workspace ();
+            
             // make sure the last workspace has no windows on it
             if (Prefs.get_dynamic_workspaces ()
                 && Utils.get_n_windows (manager.get_workspace_by_index (manager.get_n_workspaces () - 1)) > 0)
@@ -286,6 +288,7 @@ namespace Gala {
         }
 
         void append_workspace () {
+            warning("append_workspace");
 #if HAS_MUTTER330
             unowned Meta.Display display = wm.get_display ();
             unowned Meta.WorkspaceManager manager = display.get_workspace_manager ();
