@@ -28,14 +28,9 @@ public class DateTime.Widgets.CalendarView : Gtk.Grid {
     private Grid grid;
     private Gtk.Stack stack;
     private Gtk.Grid big_grid;
+    private Gtk.Button date_button;
 
     construct {
-        var label = new Gtk.Label (new GLib.DateTime.now_local ().format (_("%OB, %Y")));
-        label.hexpand = true;
-        label.margin_start = 6;
-        label.xalign = 0;
-        label.width_chars = 13;
-
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("/org/enso/datetime/application.css");
 
@@ -44,16 +39,16 @@ public class DateTime.Widgets.CalendarView : Gtk.Grid {
         //  label_style_context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         var left_button = new Gtk.Button.from_icon_name ("pan-start-symbolic");
-        var center_button = new Gtk.Button.from_icon_name ("office-calendar-symbolic");
-        center_button.tooltip_text = _("Go to today's date");
+        date_button = new Gtk.Button.with_label (new GLib.DateTime.now_local ().format (_("%OB, %Y")));
+        date_button.tooltip_text = _("Go to today's date");
         var right_button = new Gtk.Button.from_icon_name ("pan-end-symbolic");
 
         var box_buttons = new Gtk.Grid ();
-        box_buttons.margin_end = 6;
+        box_buttons.hexpand = true;
         box_buttons.valign = Gtk.Align.CENTER;
         box_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         box_buttons.add (left_button);
-        box_buttons.add (center_button);
+        box_buttons.add (date_button);
         box_buttons.add (right_button);
 
         big_grid = create_big_grid ();
@@ -76,13 +71,13 @@ public class DateTime.Widgets.CalendarView : Gtk.Grid {
         column_spacing = 6;
         row_spacing = 6;
         margin_start = margin_end = 10;
-        attach (label, 0, 0);
+        //  attach (label, 0, 0);
         attach (box_buttons, 1, 0);
         attach (stack, 0, 1, 2);
 
         var model = CalendarModel.get_default ();
         model.notify["data-range"].connect (() => {
-            label.label = model.month_start.format (_("%OB, %Y"));
+            date_button.label = model.month_start.format (_("%OB, %Y"));
 
             sync_with_model ();
 
@@ -98,7 +93,7 @@ public class DateTime.Widgets.CalendarView : Gtk.Grid {
             model.change_month (1);
         });
 
-        center_button.clicked.connect (() => {
+        date_button.clicked.connect (() => {
             show_today ();
         });
 

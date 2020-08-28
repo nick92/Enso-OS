@@ -47,7 +47,7 @@ public class DateTime.Plugin : Xfce.PanelPlugin {
       });
 
       app_button.toggled.connect (() => {
-
+        
         position_widget (indicator, null, out x, out y);
         indicator.move (x, y);
 
