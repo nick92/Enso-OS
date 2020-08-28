@@ -32,8 +32,8 @@ install_data(
     install_dir: join_paths(get_option('sysconfdir'), 'lightdm')
 )
 
-test (
-    'Validate desktop file',
-    find_program('desktop-file-validate'),
-    args: join_paths(meson.current_build_dir (), meson.project_name() + '.desktop')
-)
+# test (
+#     'Validate desktop file',
+#     find_program('desktop-file-validate'),
+#     args: join_paths(meson.current_build_dir (), meson.project_name() + '.desktop')
+# )

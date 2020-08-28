@@ -115,7 +115,7 @@ public class PantheonGreeter : Gtk.Window {
 
         settings = new KeyFile ();
         try {
-            settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
+            settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "pantheon-greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
         } catch (Error e) {
             warning (e.message);
         }
@@ -549,7 +549,7 @@ string get_defaults (string default) {
     var settings = new KeyFile ();
     string ret = "";
     try {
-        settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+        settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "pantheon-greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
         switch(default){
           case("gtk-theme"):
             ret = settings.get_string ("greeter", "gtk-theme");
@@ -560,9 +560,6 @@ string get_defaults (string default) {
           case("cursor-theme"):
             ret = settings.get_string ("greeter", "cursor-theme");
             break;
-          case("blur"):
-            ret = settings.get_string ("greeter", "blur");
-          break;
         }
     } catch (Error e) {
         warning (e.message);

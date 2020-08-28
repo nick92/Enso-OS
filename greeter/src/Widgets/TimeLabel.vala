@@ -66,7 +66,7 @@ public class TimeLabel : Gtk.Grid {
         var settings = new KeyFile ();
         string time_format="";
         try {
-            settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+            settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "pantheon-greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
             time_format = settings.get_string ("greeter", "time-format");
         } catch (Error e) {
             return "%l:%M";
@@ -78,7 +78,7 @@ public class TimeLabel : Gtk.Grid {
         var settings = new KeyFile ();
         string date_format="%A, %B %e";
         try {
-            settings.load_from_file (Constants.CONF_DIR + "/pantheon-greeter.conf", KeyFileFlags.KEEP_COMMENTS);
+            settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "pantheon-greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
             date_format = settings.get_string ("greeter", "date-format");
         } catch (Error e) {
             return "%A, %B %e";
