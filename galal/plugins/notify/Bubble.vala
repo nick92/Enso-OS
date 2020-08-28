@@ -68,6 +68,7 @@ namespace Gala.Plugins.Notify {
                 case GLib.NotificationPriority.HIGH:
                 case GLib.NotificationPriority.URGENT:
                     content_area.get_style_context ().add_class ("urgent");
+                    start_timeout (8000);
                     break;
                 default:
                     start_timeout (4000);
