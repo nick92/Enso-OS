@@ -18,7 +18,7 @@
 */
 
 public abstract class Pantheon.Keyboard.AbstractPage : Gtk.Grid {
-    public AbstractPage () {
+    protected AbstractPage () {
         Object (
             column_spacing: 12,
             row_spacing: 12
