@@ -52,6 +52,11 @@
 				followed by a ':' and then the command. ';;' is used as delimiter between command defintions.
 			</description>
 		</key>
+		<key type="b" name="use-new-notifications">
+			<default>false</default>
+			<summary>If new notifications should be used</summary>
+			<description>If new notifications UI should be used, requires io.elemenetary.notifications to be present and running</description>
+		</key>
 		<key type="b" name="edge-tiling">
 			<default>true</default>
 			<summary>Enable edge tiling when dropping windows on screen edges</summary>
@@ -91,6 +96,11 @@
 			<default><![CDATA[['docky', 'Docky', 'plank']]]></default>
 			<summary>Names that are recognized as dock windows for the window switcher</summary>
 			<description>When launching the window-switcher, gala iterates over this list and attempts to find a window matching the names. If it does, it will hide this window and fade it back in, once the the switcher is closed.</description>
+		</key>
+		<key type="b" name="move-maximized-workspace">
+			<default>false</default>
+			<summary>Automatically move maximized windows to a new workspace</summary>
+			<description></description>
 		</key>
 	</schema>
 	
@@ -231,31 +241,31 @@
 		</key>
 	</schema>
 	
-	<schema path="/org/pantheon/desktop/gala/shadows/" id="org.pantheon.desktop.gala.shadows" gettext-domain="@GETTEXT_PACKAGE@">
+	<schema path="/org/pantheon/desktop/gala/shadows/" id="org.pantheon.desktop.gala.shadows">
 		<key type="as" name="normal-focused">
-			<default>['20', '-1', '0', '15', '220']</default>
-			<summary>Defines the shadow of normal focused windows</summary>
-			<description>The first value is the radius of the blur of the shadow, the second one the top fade (which is usually just -1), the third and fourth the x- and y-offset and the last the opacity. So [blur-radius, top-fade, x-offset, y-offset, opacity]</description>
+		<default>['20', '-1', '0', '15', '100']</default>
+		<summary>Defines the shadow of normal focused windows</summary>
+		<description>The first value is the radius of the blur of the shadow, the second one the top fade (which is usually just -1), the third and fourth the x- and y-offset and the last the opacity. So [blur-radius, top-fade, x-offset, y-offset, opacity].</description>
 		</key>
 		<key type="as" name="normal-unfocused">
-			<default>['8', '-1', '0', '6', '150']</default>
-			<summary>Defines the shadow of a normal unfocused window</summary>
-			<description>See normal-focused</description>
+		<default>['6', '-1', '0', '4', '80']</default>
+		<summary>Defines the shadow of a normal unfocused window</summary>
+		<description>See normal-focused.</description>
 		</key>
 		<key type="as" name="menu">
-			<default>['7', '-1', '0', '5', '130']</default>
-			<summary>Defines the shadow of a menu</summary>
-			<description>See normal-focused</description>
+		<default>['6', '-1', '0', '4', '80']</default>
+		<summary>Defines the shadow of a menu</summary>
+		<description>See normal-focused.</description>
 		</key>
 		<key type="as" name="dialog-focused">
-			<default>['12', '-1', '0', '7', '190']</default>
-			<summary>Defines the shadow of a focused dialog</summary>
-			<description>See normal-focused</description>
+		<default>['12', '-1', '0', '4', '100']</default>
+		<summary>Defines the shadow of a focused dialog</summary>
+		<description>See normal-focused.</description>
 		</key>
 		<key type="as" name="dialog-unfocused">
-			<default>['7', '-1', '0', '4', '130']</default>
-			<summary>Defines the shadow of an unfocused dialog</summary>
-			<description>See normal-focused</description>
+		<default>['6', '-1', '0', '4', '80']</default>
+		<summary>Defines the shadow of an unfocused dialog</summary>
+		<description>See normal-focused.</description>
 		</key>
 	</schema>
 	
@@ -332,6 +342,32 @@
 			<default>128</default>
 			<summary>The size of the icons</summary>
 			<description>The size at which the icons in the switcher should be displayed.</description>
+		</key>
+	</schema>
+
+	<schema path="/io/elementary/notifications/" id="io.elementary.notifications">
+		<key type="b" name="do-not-disturb">
+		<default>false</default>
+		<summary>Disable all notifications</summary>
+		</key>
+		<child name="applications" schema="io.elementary.notifications.applications" />
+	</schema>
+	<schema id="io.elementary.notifications.applications">
+		<key type="b" name="ask">
+		<default>true</default>
+		<summary>Ask before allowing notifications</summary>
+		</key>
+		<key type="b" name="bubbles">
+		<default>true</default>
+		<summary>Enable bubbles</summary>
+		</key>
+		<key type="b" name="sounds">
+		<default>true</default>
+		<summary>Enable sounds</summary>
+		</key>
+		<key type="b" name="remember">
+		<default>true</default>
+		<summary>Show missed notifications in notification center</summary>
 		</key>
 	</schema>
 </schemalist>

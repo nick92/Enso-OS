@@ -20,4 +20,10 @@
 		<file alias="buttons/close.svg" compressed="true" preprocess="xml-stripblanks">close.svg</file>
 		<file alias="buttons/resize.svg" compressed="true" preprocess="xml-stripblanks">resize.svg</file>
 	</gresource>
+    <gresource prefix="/io/elementary/desktop/gala">
+		<file compressed="true">gala.css</file>
+        <file compressed="true">notification.css</file>
+		<file>texture.png</file>
+        <file>mask.svg</file>
+	</gresource>
 </gresources>

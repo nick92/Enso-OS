@@ -31,7 +31,7 @@ public class DateTime.Plugin : Xfce.PanelPlugin {
 
       int x = 0, y = 0;
       app_button = new Gtk.ToggleButton ();
-      app_button.get_style_context ().add_class ("clock");
+      //  app_button.get_style_context ().add_class ("clock");
       app_button.set_relief(Gtk.ReliefStyle.NONE);
       //app_button.set_focus_on_click(false);
       add (app_button);
