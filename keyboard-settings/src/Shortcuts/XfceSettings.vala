@@ -22,36 +22,39 @@ namespace Pantheon.Keyboard.Shortcuts
   public class XfceSettings : Object {
 
     construct {
-        try { Xfconf.init (); } catch (Xfconf.Error ex){return;}
+		try { Xfconf.init (); } 
+		catch (Xfconf.Error ex){
+			warning(ex.message);
+			return;
+		}
     }
 
     public void set_property_value (string channel, string property, string value) {
-      var xfchannel = new Xfconf.Channel (channel);
+      	var xfchannel = new Xfconf.Channel (channel);
 
-			if(xfchannel != null){
-				//if(xfchannel.get_string(property, "") != "")
-					xfchannel.set_string (property, value);
-				}
+		if(xfchannel != null){
+			xfchannel.set_string (property, value);
 		}
+	}
 
     public void set_property_boolean (string channel, string property, bool value) {
-      var xfchannel = new Xfconf.Channel (channel);
+      	var xfchannel = new Xfconf.Channel (channel);
 
-			if(xfchannel != null){
-				//if(xfchannel.get_string(property, "") != "")
-					xfchannel.set_bool (property, value);
-				}
+		if(xfchannel != null){
+			//if(xfchannel.get_string(property, "") != "")
+			xfchannel.set_bool (property, value);
 		}
+	}
 
     public string get_property_value (string channel, string property, string value) {
-      var xfchannel = new Xfconf.Channel (channel);
+		var xfchannel = new Xfconf.Channel (channel);
 
-			if(xfchannel != null){
-				if(xfchannel.get_string(property, "") != "")
-					return xfchannel.get_string (property, value);
-			}
-
-      return "";
+		if(xfchannel != null){
+			if(xfchannel.get_string(property, "") != "")
+				return xfchannel.get_string (property, value);
 		}
+
+		return "";
+	}
   }
 }

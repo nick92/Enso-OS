@@ -3,7 +3,7 @@ gala_notify_sources = [
     'Main.vala',
     'Bubble.vala',
     'Confirmation.vala',
-    'DBus.vala',
+    'NotifyServer.vala',
     'Widgets/MaskedImage.vala',
 ]
 

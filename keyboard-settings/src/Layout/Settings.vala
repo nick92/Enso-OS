@@ -228,8 +228,14 @@ namespace Pantheon.Keyboard.LayoutPage
                 }
                 GLib.Variant list = new GLib.Variant.array (new VariantType ("(ss)"), elements);
                 settings.set_value ("sources", list);
+                
+                str_elements = str_elements.substring(0, str_elements.length - 1);
+                //  xfsettings.set_property_boolean ("keyboard-layout", "/Default/XkbDisable", false);
+                //  xfsettings.set_property_value ("keyboard-layout", "/Default/XkbVariant", ",");
+
+                //xfsettings.set_property_value ("keyboard-layout", "/Default/XkbLayout", str_elements);
+
                 warning(str_elements);
-                xfsettings.set_property_value ("keyboard-layout", "/Default/XkbLayout", str_elements);
             } finally {
                 currently_writing = false;
             }
@@ -245,8 +251,8 @@ namespace Pantheon.Keyboard.LayoutPage
                   elements += layouts.get_layout (i).name + ",";
             }
 
-            xfsettings.set_property_boolean ("keyboard-layout", "/Default/XkbDisable", false);
-            xfsettings.set_property_value ("keyboard-layout", "/Default/XkbLayout", elements);
+            //  xfsettings.set_property_boolean ("keyboard-layout", "/Default/XkbDisable", false);
+            //  xfsettings.set_property_value ("keyboard-layout", "/Default/XkbLayout", elements);
         }
 
         void update_list_from_gsettings () {

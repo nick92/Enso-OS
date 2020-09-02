@@ -125,7 +125,7 @@ class Pantheon.Keyboard.Shortcuts.CustomShortcutSettings : Object {
         var command = relocatable_settings.get_string ("command");
         relocatable_settings.set_string ("binding", shortcut);
         apply_settings (relocatable_settings);
-        xfsettings.set_property_value ("xfce4-keyboard-shortcuts", "/commands/custom/" + shortcut, command);
+        //xfsettings.set_property_value ("xfce4-keyboard-shortcuts", "/commands/custom/" + shortcut, command);
         return true;
     }
 
