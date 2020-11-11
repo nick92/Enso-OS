@@ -29,9 +29,10 @@ public class UserLogin : LoginOption {
         
         warning(lightdm_user.background);
         bool default_wallpaper=false;
+        var settings = new KeyFile();
         try {
             settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "pantheon-greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
-            default_wallpaper = settings.get_bool ("greeter", "use-default-wallpaper");
+            default_wallpaper = settings.get_boolean ("greeter", "use-default-wallpaper");
         } catch (Error e) {
             warning (e.message);
         }
