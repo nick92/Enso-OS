@@ -28,6 +28,10 @@ public class UserLogin : LoginOption {
         this.lightdm_user = user;
         
         warning(lightdm_user.background);
+
+        // Copied straight from Widgets/Wallpaper.vala
+        // Fix if problematic
+        // Allows user to configure greeter to never use user wallpapers
         bool default_wallpaper=false;
         var settings = new KeyFile();
         try {
