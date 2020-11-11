@@ -28,8 +28,14 @@ public class UserLogin : LoginOption {
         this.lightdm_user = user;
         
         warning(lightdm_user.background);
-        
-        //if (lightdm_user.background == null) {
+        bool default_wallpaper=false;
+        try {
+            settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "pantheon-greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
+            default_wallpaper = settings.get_bool ("greeter", "use-default-wallpaper");
+        } catch (Error e) {
+            warning (e.message);
+        }
+        if (!default_wallpaper) {
             try {
                 string path = Path.build_filename ("/var", "lib", "lightdm-data", lightdm_user.name, "wallpaper");
                 var background_directory = File.new_for_path (path);
@@ -50,9 +56,9 @@ public class UserLogin : LoginOption {
                 warning (e.message);
                 background_path = lightdm_user.background;
             }
-        /*} else {
-            background_path = lightdm_user.background;
-        }*/
+        } else {
+            background_path = "";
+        }
     }
 
     public override string? avatar_path {
