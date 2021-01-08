@@ -28,8 +28,19 @@ public class UserLogin : LoginOption {
         this.lightdm_user = user;
         
         warning(lightdm_user.background);
-        
-        //if (lightdm_user.background == null) {
+
+        // Copied straight from Widgets/Wallpaper.vala
+        // Fix if problematic
+        // Allows user to configure greeter to never use user wallpapers
+        bool default_wallpaper=false;
+        var settings = new KeyFile();
+        try {
+            settings.load_from_file (Path.build_filename (Constants.CONF_DIR, "pantheon-greeter.conf"), KeyFileFlags.KEEP_COMMENTS);
+            default_wallpaper = settings.get_boolean ("greeter", "use-default-wallpaper");
+        } catch (Error e) {
+            warning (e.message);
+        }
+        if (!default_wallpaper) {
             try {
                 string path = Path.build_filename ("/var", "lib", "lightdm-data", lightdm_user.name, "wallpaper");
                 var background_directory = File.new_for_path (path);
@@ -50,9 +61,9 @@ public class UserLogin : LoginOption {
                 warning (e.message);
                 background_path = lightdm_user.background;
             }
-        /*} else {
-            background_path = lightdm_user.background;
-        }*/
+        } else {
+            background_path = "";
+        }
     }
 
     public override string? avatar_path {
