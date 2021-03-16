@@ -32,7 +32,7 @@ namespace Gala.Plugins.Notify {
         }
 
         construct {
-            var mask = new Gtk.Image.from_resource ("/io/elementary/desktop/gala/mask.svg");
+            var mask = new Gtk.Image.from_resource ("/io/elementary/notifications/image-mask.svg");
             mask.pixel_size = ICON_SIZE;
 
             var scale = get_style_context ().get_scale ();
@@ -66,5 +66,6 @@ namespace Gala.Plugins.Notify {
 
             return Gdk.pixbuf_get_from_surface (surface, 0, 0, mask_size, mask_size);
         }
-    }
+}
+
 }

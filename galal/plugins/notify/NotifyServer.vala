@@ -41,16 +41,15 @@ namespace Gala.Plugins.Notify {
         public signal void notification_closed (uint32 id, uint32 reason);
     
         private const string X_CANONICAL_PRIVATE_SYNCHRONOUS = "x-canonical-private-synchronous";
-        private const string OTHER_APP_ID = "gala-other";
     
         private uint32 id_counter = 0;
         private unowned Canberra.Context? ca_context = null;
         private DBus? bus_proxy = null;
-        private Confirmation? confirmation = null;
+        private Notifications.Confirmation? confirmation = null;
     
         private GLib.Settings settings;
     
-        private Gee.HashMap<uint32, Bubble> bubbles;
+        private Gee.HashMap<uint32, Notifications.Bubble> bubbles;
     
         construct {
             try {
@@ -70,7 +69,7 @@ namespace Gala.Plugins.Notify {
     
             settings = new GLib.Settings ("io.elementary.notifications");
     
-            bubbles = new Gee.HashMap<uint32, Bubble> ();
+            bubbles = new Gee.HashMap<uint32, Notifications.Bubble> ();
         }
     
         public void close_notification (uint32 id) throws DBusError, IOError {
@@ -117,56 +116,20 @@ namespace Gala.Plugins.Notify {
             if (hints.contains (X_CANONICAL_PRIVATE_SYNCHRONOUS)) {
                 send_confirmation (app_icon, hints);
             } else {
-                unowned Variant? variant = null;
+                var notification = new Notifications.Notification (app_name, app_icon, summary, body, actions, hints);
     
-                var priority = GLib.NotificationPriority.NORMAL;
-                if ((variant = hints.lookup ("urgency")) != null && variant.is_of_type (VariantType.BYTE)) {
-                    priority = (GLib.NotificationPriority) variant.get_byte ();
-                }
-    
-                if (!settings.get_boolean ("do-not-disturb") || priority == GLib.NotificationPriority.URGENT) {
-                    string app_id = OTHER_APP_ID;
-                    if ((variant = hints.lookup ("desktop-entry")) != null && variant.is_of_type (VariantType.STRING)) {
-                        app_id = variant.get_string ();
-                        app_id.replace (".desktop", "");
-                    }
-    
+                if (!settings.get_boolean ("do-not-disturb") || notification.priority == GLib.NotificationPriority.URGENT) {
                     var app_settings = new GLib.Settings.full (
                         SettingsSchemaSource.get_default ().lookup ("io.elementary.notifications.applications", true),
                         null,
-                        "/io/elementary/notifications/applications/%s/".printf (app_id)
+                        "/io/elementary/notifications/applications/%s/".printf (notification.app_id)
                     );
     
                     if (app_settings.get_boolean ("bubbles")) {
-                        string? image_path = null;
-                        if ((variant = hints.lookup ("image-path")) != null || (variant = hints.lookup ("image_path")) != null) {
-                            image_path = variant.get_string ();
-    
-                            if (!image_path.has_prefix ("/") && !image_path.has_prefix ("file://")) {
-                                image_path = null;
-                            }
-                        }
-    
                         if (bubbles.has_key (id) && bubbles[id] != null) {
-                            bubbles[id].replace (summary, body, image_path);
+                            bubbles[id].replace (notification);
                         } else {
-                            GLib.DesktopAppInfo? app_info = null;
-    
-                            if (app_id != OTHER_APP_ID) {
-                                app_info = new DesktopAppInfo ("%s.desktop".printf (app_id));
-                            }
-    
-                            bubbles[id] = new Bubble (
-                                app_info,
-                                app_icon,
-                                app_name,
-                                summary,
-                                body,
-                                actions,
-                                priority,
-                                image_path,
-                                id
-                            );
+                            bubbles[id] = new Notifications.Bubble (notification, actions, id);
                             bubbles[id].show_all ();
     
                             bubbles[id].action_invoked.connect ((action_key) => {
@@ -209,7 +172,7 @@ namespace Gala.Plugins.Notify {
             }
     
             if (confirmation == null) {
-                confirmation = new Confirmation (
+                confirmation = new Notifications.Confirmation (
                     icon_name,
                     progress_value
                 );
@@ -296,5 +259,4 @@ namespace Gala.Plugins.Notify {
     
             return sound;
         }
-    }
 }

@@ -25,7 +25,6 @@ namespace Gala.Plugins.Notify {
 
         public override void initialize (Gala.WindowManager wm) {
             behavior_settings = new GLib.Settings ("org.pantheon.desktop.gala.behavior");
-
             this.wm = wm;
             enable ();
         }

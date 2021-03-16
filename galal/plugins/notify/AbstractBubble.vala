@@ -44,8 +44,21 @@ namespace Gala.Plugins.Notify {
             draw_area.get_style_context ().add_class ("gala-notification");
             draw_area.add (content_area);
 
+            var close_button = new Gtk.Button.from_icon_name ("window-close-symbolic", Gtk.IconSize.LARGE_TOOLBAR) {
+                halign = Gtk.Align.START,
+                valign = Gtk.Align.START
+            };
+            close_button.get_style_context ().add_class ("notify-close");
+    
+            var close_revealer = new Gtk.Revealer () {
+                reveal_child = false,
+                transition_type = Gtk.RevealerTransitionType.CROSSFADE
+            };
+            close_revealer.add (close_button);
+
             var overlay = new Gtk.Overlay ();
             overlay.add (draw_area);
+            overlay.add_overlay (close_revealer);
 
             revealer = new Gtk.Revealer ();
             revealer.reveal_child = true;
@@ -62,8 +75,15 @@ namespace Gala.Plugins.Notify {
             add (revealer);
             get_style_context ().add_class ("notification");
             set_titlebar (label);
+            set_accept_focus (false);
+
+            close_button.enter.connect (() => {
+                closed (NotifyServer.CloseReason.DISMISSED);
+                dismiss ();
+            });
 
             enter_notify_event.connect (() => {
+                close_revealer.reveal_child = true;
                 stop_timeout ();
                 return Gdk.EVENT_PROPAGATE;
             });
@@ -72,6 +92,7 @@ namespace Gala.Plugins.Notify {
                 if (event.detail == Gdk.NotifyType.INFERIOR) {
                     return Gdk.EVENT_STOP;
                 }
+                close_revealer.reveal_child = false;
                 return Gdk.EVENT_PROPAGATE;
             });
         }

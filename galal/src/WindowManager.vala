@@ -162,18 +162,11 @@ namespace Gala {
             DBus.init (this);
             DBusAccelerator.init (this);
             MediaFeedback.init ();
-#if HAS_MUTTER330
+
             WindowListener.init (display);
-#else
-            WindowListener.init (screen);
-#endif
             KeyboardManager.init (display);
 
-#if HAS_MUTTER330
             notification_stack = new NotificationStack (display);
-#else
-            notification_stack = new NotificationStack (screen);
-#endif
 
             // Due to a bug which enables access to the stage when using multiple monitors
             // in the screensaver, we have to listen for changes and make sure the input area
@@ -1581,7 +1574,7 @@ namespace Gala {
 
                     break;
                 case Meta.WindowType.NOTIFICATION:
-                    notification_stack.show_notification (actor);
+                    notification_stack.show_notification (actor, enable_animations);
                     map_completed (actor);
 
                     break;
@@ -1683,15 +1676,23 @@ namespace Gala {
                     });
                     break;
                 case Meta.WindowType.NOTIFICATION:
-                    destroying.add (actor);
-                    notification_stack.destroy_notification (actor);
+                    if (enable_animations) {
+                        destroying.add (actor);
+                    }
 
-                    ulong destroy_handler_id = 0UL;
-                    destroy_handler_id = actor.transitions_completed.connect (() => {
-                        actor.disconnect (destroy_handler_id);
-                        destroying.remove (actor);
+                    notification_stack.destroy_notification (actor, enable_animations);
+
+                    if (enable_animations) {
+                        ulong destroy_handler_id = 0UL;
+                        destroy_handler_id = actor.transitions_completed.connect (() => {
+                            actor.disconnect (destroy_handler_id);
+                            destroying.remove (actor);
+                            destroy_completed (actor);
+                        });
+                    } else {
                         destroy_completed (actor);
-                    });
+                    }
+
                     break;
                 default:
                     destroy_completed (actor);
