@@ -20,13 +20,15 @@ using Meta;
 
 namespace Gala.Plugins.Notify {
     public class Main : Gala.Plugin {
-        private GLib.Settings behavior_settings;
+        private BehaviorSettings settings;
         Gala.WindowManager? wm = null;
 
         public override void initialize (Gala.WindowManager wm) {
-            behavior_settings = new GLib.Settings ("org.pantheon.desktop.gala.behavior");
+            settings = BehaviorSettings.get_default ();
             this.wm = wm;
-            enable ();
+
+            if(!settings.use_new_notifications)
+                enable ();
         }
 
         void enable ()

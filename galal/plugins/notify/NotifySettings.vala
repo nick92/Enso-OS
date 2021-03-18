@@ -35,4 +35,40 @@ namespace Gala.Plugins.Notify {
             return instance;
         }
     }
+
+    public class BehaviorSettings : Granite.Services.Settings
+	{
+		public bool dynamic_workspaces { get; set; }
+		public bool edge_tiling { get; set; }
+        public bool use_new_notifications { get; set; }
+		public string panel_main_menu_action { get; set; }
+		public string change_background_action { get; set; }
+		public string settings_action { get; set; }
+		public string toggle_recording_action { get; set; }
+		public string overlay_action { get; set; }
+		public string hotcorner_custom_command { get; set; }
+		public string[] dock_names { get; set; }
+
+		//public WindowOverviewType window_overview_type { get; set; }
+
+		public ActionType hotcorner_topleft { get; set; }
+		public ActionType hotcorner_topright { get; set; }
+		public ActionType hotcorner_bottomleft { get; set; }
+		public ActionType hotcorner_bottomright { get; set; }
+
+		static BehaviorSettings? instance = null;
+
+		private BehaviorSettings ()
+		{
+			base (Config.SCHEMA + ".behavior");
+		}
+
+		public static unowned BehaviorSettings get_default ()
+		{
+			if (instance == null)
+				instance = new BehaviorSettings ();
+
+			return instance;
+		}
+    }
 }

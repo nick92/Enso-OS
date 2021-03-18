@@ -4,6 +4,7 @@ gala_notify_sources = [
     'Bubble.vala',
     'Confirmation.vala',
     'NotifyServer.vala',
+	'NotifySettings.vala',
     'Widgets/MaskedImage.vala',
 ]
 
